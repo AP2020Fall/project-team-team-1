@@ -1,0 +1,99 @@
+package Controller.BattleSeaController;
+
+public class GameBattleSea {
+    private BattleSeaPlayer player1;
+    private BattleSeaPlayer player2;
+    private Board firstPlayerOwnBoard;
+    private Board firstPlayerEnemyBoard;
+    private Board secondPlayerOwnBoard;
+    private Board secondPlayerEnemyBoard;
+
+    public GameBattleSea(BattleSeaPlayer player1, BattleSeaPlayer player2) {
+        this.player1 = player1;
+        this.player1 = player2;
+        this.firstPlayerOwnBoard = new Board();
+        this.secondPlayerOwnBoard = new Board();
+        this.firstPlayerEnemyBoard = this.secondPlayerOwnBoard;
+        this.secondPlayerEnemyBoard = this.firstPlayerOwnBoard;
+    }
+
+    public BattleSeaPlayer getP1() {
+        return player1;
+    }
+
+    public BattleSeaPlayer getP2() {
+        return player1;
+    }
+
+    public Board getFirstPlayerOwnBoard() {
+        return firstPlayerOwnBoard;
+    }
+
+    public void setFirstPlayerOwnBoard(Board firstPlayerOwnBoard) {
+        this.firstPlayerOwnBoard = firstPlayerOwnBoard;
+    }
+
+    public Board getFirstPlayerEnemyBoard() {
+        return firstPlayerEnemyBoard;
+    }
+
+    public void setFirstPlayerEnemyBoard(Board firstPlayerEnemyBoard) {
+        this.firstPlayerEnemyBoard = firstPlayerEnemyBoard;
+    }
+
+    public Board getSecondPlayerOwnBoard() {
+        return secondPlayerOwnBoard;
+    }
+
+    public void setSecondPlayerOwnBoard(Board secondPlayerOwnBoard) {
+        this.secondPlayerOwnBoard = secondPlayerOwnBoard;
+    }
+
+    public Board getSecondPlayerEnemyBoard() {
+        return secondPlayerEnemyBoard;
+    }
+
+    public void setSecondPlayerEnemyBoard(Board secondPlayerEnemyBoard) {
+        this.secondPlayerEnemyBoard = secondPlayerEnemyBoard;
+    }
+
+    private void move(BattleSeaPlayer player, int x , int y){
+
+    }
+    private void changeDirection(BattleSeaPlayer player){
+
+    }
+    private void Boom(BattleSeaPlayer player,int x,int y){
+
+    }
+    private void showPlayerBoard(BattleSeaPlayer player){
+
+    }
+    private void showEnemyBoard(BattleSeaPlayer player){
+
+    }
+    private void showEnemyBoardCorrectBooms(BattleSeaPlayer player){
+
+    }
+    private void showEnemyBoardICorrectBooms(BattleSeaPlayer player){
+
+    }
+    private void showPlayerBoardBoomedShip(BattleSeaPlayer player){
+
+    }
+    private void showPlayerBoardUnBoomedShip(BattleSeaPlayer player){
+
+    }
+
+    @Override
+    public String toString() {
+        return "GameBattleSea{" +
+                "p1=" + player1 +
+                ", p2=" + player1 +
+                ", firstPlayerOwnBoard=" + firstPlayerOwnBoard +
+                ", firstPlayerEnemyBoard=" + firstPlayerEnemyBoard +
+                ", secondPlayerOwnBoard=" + secondPlayerOwnBoard +
+                ", secondPlayerEnemyBoard=" + secondPlayerEnemyBoard +
+                '}';
+    }
+}
