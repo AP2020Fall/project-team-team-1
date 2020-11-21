@@ -1,5 +1,4 @@
 package Controller.DotsAndBoxesController;
 
-public class Box {
-
+public class Lines {
 }
