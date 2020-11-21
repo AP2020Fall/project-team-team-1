@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Line extends Lines {
 
-    public final String EMPTY = null;
-    public final String HORI_LINE = null ;
-    public final String VERT_LINE = null ;
+//    public final String EMPTY = null;
+//    public final String HORI_LINE = null ;
+//    public final String VERT_LINE = null ;
     private ArrayList<Box> boxes = new ArrayList<>();
     private Player owner ;
     private Dots first ;

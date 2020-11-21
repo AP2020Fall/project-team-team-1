@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class DotsAndBoxes {
     private static ArrayList<DotsAndBoxes> dotsAndBoxes = new ArrayList<>();
-    public final String PROMPT = null ;
+    //public final String PROMPT = null ;
     private GameBoard gameBoard ;
     private int rows;
     private int columns;

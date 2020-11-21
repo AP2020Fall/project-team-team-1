@@ -3,7 +3,7 @@ package Controller.DotsAndBoxesController;
 public class Dots {
     private int row ;
     private int column ;
-    public final String DOT = null;
+    //public final String DOT = null;
 
     public Dots(int row, int column) {
         this.row = row;
