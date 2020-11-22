@@ -1,5 +1,8 @@
 package Controller.AdminController;
 
+import Controller.CompetencyController.Validation;
+import Model.PlatoModel.Admin;
+
 public class Edit {
     public static void editField(String field, String input) {
         if (field.trim().equalsIgnoreCase("name")) {
@@ -17,7 +20,10 @@ public class Edit {
     }
 
     protected static void editName(String input) {
-
+        boolean pass = false;
+        pass = Validation.NameOrLastNameIsValid(input);
+         if (pass)
+             Admin.getAdmins().get(0).setName(input);
     }
 
     protected static void editLastName(String input) {
