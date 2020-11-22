@@ -1,10 +1,10 @@
 package Controller.RegisterController;
 
 public class LogIn {
-    private void loginAsPlayer(){
+    private void loginAsPlayer(String input){
 
     }
-    private void loginAsAdmin(){
+    private void loginAsAdmin(String input){
 
     }
 }
