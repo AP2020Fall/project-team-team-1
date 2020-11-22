@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class SignUpMenu extends Menu {
     public SignUpMenu( Menu parentMenu) {
-        super("Signup Menu!", parentMenu);
+        super("Signup Menu", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,registerAsAdmin());
         submenus.put(2,registerAsPlayer());

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class LoginMenu extends Menu {
     public LoginMenu( Menu parentMenu) {
-        super("login Menu!", parentMenu);
+        super("login Menu", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,signInAsAdminMenu());
         submenus.put(2,signInAsPlayer());
@@ -80,6 +80,7 @@ public class LoginMenu extends Menu {
         }
 
     }
+    //todo next menu to admin menu
 
     @Override
     public void run() {

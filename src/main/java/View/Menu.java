@@ -66,7 +66,7 @@ public abstract class Menu {
     }
     public void execute(){
         Menu nextMenu = null;
-        System.out.println("You Are in " + this.name + "please chose a valid option :");
+        System.out.println("You Are in " + this.name + " Please chose a valid option :");
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
             this.run();
