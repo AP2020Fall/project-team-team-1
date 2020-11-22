@@ -9,7 +9,7 @@ public class Existence {
 
     public static boolean checkUserNameExistence(String userName) {
         boolean result = false;
-        for (User user : Player.users) {
+        for (User user : User.users) {
             if (user.getUserName().equals(userName)) {
                 result = true;
                 break;
@@ -20,7 +20,7 @@ public class Existence {
 
     public static boolean checkEmailExistence(String email) {
         boolean result = false;
-        for (User user : Player.users) {
+        for (User user : User.users) {
             if (user.getEmail().equals(email)) {
                 result = true;
                 break;

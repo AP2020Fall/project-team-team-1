@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 public class ValidationTest extends TestCase {
 
     public void testEmailIsValid() {
-        String emailForTrue  = "hess_am-as12.13na@yahoo.com";
+        String emailForTrue  = "amirZgh@gmail.com";
         assertTrue(Validation.EmailIsValid(emailForTrue));
         String emailForFlase  = "hess_am-as12.13na.com";
         assertFalse(Validation.EmailIsValid(emailForFlase));

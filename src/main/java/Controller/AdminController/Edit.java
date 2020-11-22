@@ -48,8 +48,12 @@ public class Edit {
 
         if (pass) {
             pass = Existence.checkEmailExistence(input);
-            if (!pass)
+            if (pass){
                 System.out.println("Email is Existence!");
+                pass = false;
+            }else {
+                pass = true;
+            }
 
             if (pass)
                 Admin.getAdmins().get(0).setEmail(input);
@@ -64,8 +68,13 @@ public class Edit {
 
         if (pass) {
             pass = Existence.checkUserNameExistence(input);
-            if (!pass)
+            if (pass){
                 System.out.println("Username is Existence!");
+                pass = false;
+            }else {
+                pass = true;
+            }
+
             if (pass)
                 Admin.getAdmins().get(0).setUserName(input);
         }
