@@ -26,8 +26,8 @@ public class Edit {
         if (!pass)
             System.out.println("Format is InValid !");
 
-         if (pass)
-             Admin.getAdmins().get(0).setName(input);
+        if (pass)
+            Admin.getAdmins().get(0).setName(input);
     }
 
     protected static void editLastName(String input) {
@@ -46,7 +46,7 @@ public class Edit {
         if (!pass)
             System.out.println("Format is InValid !");
 
-        if (pass){
+        if (pass) {
             pass = Existence.checkEmailExistence(input);
             if (!pass)
                 System.out.println("Email is Existence!");
@@ -55,8 +55,9 @@ public class Edit {
                 Admin.getAdmins().get(0).setEmail(input);
         }
     }
+
     protected static void editUsername(String input) {
-        boolean pass =false;
+        boolean pass = false;
         pass = Validation.UsernameIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
@@ -81,6 +82,24 @@ public class Edit {
     }
 
     public static void editPassword(String oldPassword, String newPassword) {
+        boolean pass = false;
+        pass = Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword);
+        if (!pass)
+            System.out.println("Password is InValid !");
+        if (pass) {
+            if (oldPassword.equals(newPassword)) {
+                System.out.println("Old password and new password are same! please enter new password");
+                pass = false;
+            }
+            if (pass) {
+                pass = Validation.PasswordIsValid(newPassword);
+                if (!pass)
+                    System.out.println("Make Stranger Password (read Hits for make good Password)");
 
+                if (pass)
+                    Admin.getAdmins().get(0).setPassword(newPassword);
+            }
+
+        }
     }
 }
