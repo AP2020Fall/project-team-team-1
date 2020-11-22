@@ -7,10 +7,10 @@ import Model.PlatoModel.User;
 
 public class Existence {
 
-    public static boolean CheckUserNameExistence(String userName) {
+    public static boolean checkUserNameExistence(String userName) {
         boolean result = false;
         for (User user : Player.users) {
-            if (user.getUserName().equals(userName)){
+            if (user.getUserName().equals(userName)) {
                 result = true;
                 break;
             }
@@ -18,10 +18,10 @@ public class Existence {
         return result;
     }
 
-    public static boolean CheckEmailExistence(String email) {
+    public static boolean checkEmailExistence(String email) {
         boolean result = false;
         for (User user : Player.users) {
-            if (user.getEmail().equals(email)){
+            if (user.getEmail().equals(email)) {
                 result = true;
                 break;
             }
@@ -29,28 +29,29 @@ public class Existence {
         return result;
     }
 
-    public static boolean CheckPassword(String username, String password) {
+    public static boolean checkPassword(String username, String password) {
         boolean result = false;
         User userByUsername = null;
         for (User user : Player.users) {
-            if (user.getUserName().equals(username)){
+            if (user.getUserName().equals(username)) {
                 userByUsername = user;
                 break;
             }
         }
-        if (userByUsername != null){
-            if (userByUsername.getPassword().equals(password)){
+        if (userByUsername != null) {
+            if (userByUsername.getPassword().equals(password)) {
                 result = true;
             }
         }
         return result;
     }
-        public static boolean AdminExistence(){
-            boolean result = false;
-            if (Admin.getAdmins().isEmpty())
-                result = true;
-            return result;
-        }
+
+    public static boolean adminExistence() {
+        boolean result = false;
+        if (Admin.getAdmins().isEmpty())
+            result = true;
+        return result;
+    }
 
 }
 
