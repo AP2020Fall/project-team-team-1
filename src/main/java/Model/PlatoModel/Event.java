@@ -6,14 +6,14 @@ import java.util.Date;
 public class Event {
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Player> playersInThisEvent;
-    private Games gameName ;
+    private String gameName ;
     private Date startDate;
     private Date endDate;
     private long score;
     private int eventID;
     private int counter = 0;
 
-    public Event(Games gameName, Date startDate, Date endDate, long score) {
+    public Event(String gameName, Date startDate, Date endDate, long score) {
         this.eventID = makeEventID();
         this.gameName = gameName;
         this.startDate = startDate;
@@ -33,11 +33,11 @@ public class Event {
         Event.events = events;
     }
 
-    public Games getGameName() {
+    public String getGameName() {
         return gameName;
     }
 
-    public void setGameName(Games gameName) {
+    public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
@@ -93,8 +93,8 @@ public class Event {
         playersInThisEvent.add(player);
     }
 
-    private void addNewEvent(){
-
+    public static void addNewEvent(Event event){
+        events.add(event);
     }
     
     private int makeEventID() {
