@@ -14,7 +14,7 @@ public class SignUpMenu extends Menu {
         this.setSubmenus(submenus);
     }
     private Menu registerAsAdmin(){
-        return new Menu("Register Admin",this) {
+        return new Menu("Register As Admin",this) {
             @Override
             public void show() {
                 System.out.println(this.getName()+": ");
@@ -44,7 +44,7 @@ public class SignUpMenu extends Menu {
         };
     }
     private void getAdminInformation(ArrayList<String> adminInfo){
-        System.out.println("Hello our Dear Admin \n Please notice that if there is already an admin you can not register as Admin !");
+        System.out.println("Hello our Dear Admin \nPlease notice that if there is already an admin you can not register as Admin !");
         System.out.println("Please Enter Your Firstname :");
         while (true){
             String firstname = scanner.nextLine();
@@ -158,5 +158,7 @@ public class SignUpMenu extends Menu {
     public void run() {
         this.show();
         this.execute();
+//        System.out.println("registration completed");
+//        this.parentMenu.run();
     }
 }

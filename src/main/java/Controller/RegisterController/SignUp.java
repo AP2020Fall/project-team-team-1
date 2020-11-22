@@ -10,4 +10,5 @@ public class SignUp {
     public void addPlayer(String playerInfo){
 
     }
+    //todo String dadam bayad split kone be in soorat ke name lastname username email password phoneNumber
 }
