@@ -16,7 +16,7 @@ public abstract class Menu {
     protected HashMap<Integer,Menu> submenus = new HashMap<>();
     protected Menu parentMenu;
     public static Scanner scanner;
-
+//---------------------------------------Controller//-------------------------------------------
     protected Coin coinController;
     protected Edit adminEditController;
     protected Event adminEventController;
@@ -36,7 +36,7 @@ public abstract class Menu {
     protected Delete processDeleteAccountController;
     protected LogIn processLoginController;
     protected SignUp processSignupController;
-
+//------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
         this.name = name;
@@ -66,7 +66,7 @@ public abstract class Menu {
     }
     public void execute(){
         Menu nextMenu = null;
-        System.out.println("You Are in " + this.name + "please chose a valid option :");
+        System.out.println("You Are in " + this.name + " Please chose a valid option :");
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
             this.run();

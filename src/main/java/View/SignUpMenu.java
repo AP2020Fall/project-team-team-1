@@ -7,14 +7,14 @@ import java.util.HashMap;
 
 public class SignUpMenu extends Menu {
     public SignUpMenu( Menu parentMenu) {
-        super("Signup Menu!", parentMenu);
+        super("Signup Menu", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,registerAsAdmin());
         submenus.put(2,registerAsPlayer());
         this.setSubmenus(submenus);
     }
     private Menu registerAsAdmin(){
-        return new Menu("Register Admin",this) {
+        return new Menu("Register As Admin",this) {
             @Override
             public void show() {
                 System.out.println(this.getName()+": ");
@@ -24,7 +24,7 @@ public class SignUpMenu extends Menu {
             public void execute() {
                 ArrayList<String> adminInfo = new ArrayList<>();
                 getAdminInformation(adminInfo);
-                processSignupController.addAdmin(adminInfo);
+                processSignupController.addAdmin(arrayListToString(adminInfo));
             }
         };
     }
@@ -39,12 +39,12 @@ public class SignUpMenu extends Menu {
             public void execute() {
                 ArrayList<String> playerInfo = new ArrayList<>();
                 getPlayerInfo(playerInfo);
-                processSignupController.addPlayer(playerInfo);
+                processSignupController.addPlayer(arrayListToString(playerInfo));
             }
         };
     }
     private void getAdminInformation(ArrayList<String> adminInfo){
-        System.out.println("Hello our Dear Admin \n Please notice that if there is already an admin you can not register as Admin !");
+        System.out.println("Hello our Dear Admin \nPlease notice that if there is already an admin you can not register as Admin !");
         System.out.println("Please Enter Your Firstname :");
         while (true){
             String firstname = scanner.nextLine();
@@ -146,14 +146,19 @@ public class SignUpMenu extends Menu {
         }
     }
 
-//    @Override
-//    public void show() {
-//        System.out.println("You Want To Signup as ? :");
-//    }
+    public static String arrayListToString(ArrayList<String> arrayList){
+        String output="";
+        for (String string : arrayList) {
+            output+=string+" ";
+        }
+        return output;
+    }
 
     @Override
     public void run() {
         this.show();
         this.execute();
+//        System.out.println("registration completed");
+//        this.parentMenu.run();
     }
 }
