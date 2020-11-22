@@ -24,7 +24,7 @@ public class SignUpMenu extends Menu {
             public void execute() {
                 ArrayList<String> adminInfo = new ArrayList<>();
                 getAdminInformation(adminInfo);
-                processSignupController.addAdmin(adminInfo);
+                processSignupController.addAdmin(arrayListToString(adminInfo));
             }
         };
     }
@@ -39,7 +39,7 @@ public class SignUpMenu extends Menu {
             public void execute() {
                 ArrayList<String> playerInfo = new ArrayList<>();
                 getPlayerInfo(playerInfo);
-                processSignupController.addPlayer(playerInfo);
+                processSignupController.addPlayer(arrayListToString(playerInfo));
             }
         };
     }
@@ -146,10 +146,13 @@ public class SignUpMenu extends Menu {
         }
     }
 
-//    @Override
-//    public void show() {
-//        System.out.println("You Want To Signup as ? :");
-//    }
+    private static String arrayListToString(ArrayList<String> arrayList){
+        String output="";
+        for (String string : arrayList) {
+            output+=string+" ";
+        }
+        return output;
+    }
 
     @Override
     public void run() {

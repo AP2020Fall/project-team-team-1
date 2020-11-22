@@ -1,7 +1,7 @@
 package Controller.RegisterController;
 
 public class Delete {
-    public static void deleteUser(){
+    public static void deleteUser(String input){
 
     }
 }

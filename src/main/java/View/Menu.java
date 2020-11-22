@@ -16,7 +16,7 @@ public abstract class Menu {
     protected HashMap<Integer,Menu> submenus = new HashMap<>();
     protected Menu parentMenu;
     public static Scanner scanner;
-
+//---------------------------------------Controller//-------------------------------------------
     protected Coin coinController;
     protected Edit adminEditController;
     protected Event adminEventController;
@@ -36,7 +36,7 @@ public abstract class Menu {
     protected Delete processDeleteAccountController;
     protected LogIn processLoginController;
     protected SignUp processSignupController;
-
+//------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
         this.name = name;
