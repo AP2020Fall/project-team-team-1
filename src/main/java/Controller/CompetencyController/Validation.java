@@ -14,7 +14,7 @@ public class Validation {
     }
     public static boolean PhoneNumberIsValid(String phoneNumber){
         boolean result = false;
-        Pattern phonePattern = Pattern.compile("(^((([0-9]{1})*[- .(]*([0-9]{3})[- .)]*[0-9]{3}[- .]*[0-9]{4})+)*$)");
+        Pattern phonePattern = Pattern.compile("^(0)?9\\d{9}$");
         Matcher matcher = phonePattern.matcher(phoneNumber);
         if (matcher.matches())
             result = true;
@@ -38,7 +38,7 @@ public class Validation {
     }
     public static boolean AgeIsValid(String age){
         boolean result = false;
-        Pattern agePattern = Pattern.compile("(^[0-9][0-9]$)");
+        Pattern agePattern = Pattern.compile("(^[a-zA-Z]*$)");
         Matcher matcher = agePattern.matcher(age);
         if (matcher.matches())
             result = true;
