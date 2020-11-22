@@ -146,7 +146,7 @@ public class SignUpMenu extends Menu {
         }
     }
 
-    private static String arrayListToString(ArrayList<String> arrayList){
+    public static String arrayListToString(ArrayList<String> arrayList){
         String output="";
         for (String string : arrayList) {
             output+=string+" ";
