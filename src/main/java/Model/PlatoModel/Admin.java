@@ -20,9 +20,10 @@ public class Admin extends User {
         Admin.admins = admins;
     }
 
-    private static void addNewAdmin(User user){
-        admins.add(new Admin(user.getName(),user.getLastName(),user.getUserID(),user.getUserName(),user.getPassword(),user.getEmail(),user.getPhoneNum()));
-//        admins.add(this);
+    public static void AddNewAdmin(Admin admin) {
+        admins.add(admin);
+        User.addNewUser(admin);
+
     }
 
 }
