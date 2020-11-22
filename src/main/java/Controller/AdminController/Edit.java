@@ -86,11 +86,13 @@ public class Edit {
         pass = Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword);
         if (!pass)
             System.out.println("Password is InValid !");
+
         if (pass) {
             if (oldPassword.equals(newPassword)) {
                 System.out.println("Old password and new password are same! please enter new password");
                 pass = false;
             }
+
             if (pass) {
                 pass = Validation.PasswordIsValid(newPassword);
                 if (!pass)
