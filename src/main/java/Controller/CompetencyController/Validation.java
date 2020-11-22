@@ -38,7 +38,7 @@ public class Validation {
     }
     public static boolean AgeIsValid(String age){
         boolean result = false;
-        Pattern agePattern = Pattern.compile("(^[a-zA-Z]*$)");
+        Pattern agePattern = Pattern.compile("^(1[90]|[2-6][0-9])$");
         Matcher matcher = agePattern.matcher(age);
         if (matcher.matches())
             result = true;

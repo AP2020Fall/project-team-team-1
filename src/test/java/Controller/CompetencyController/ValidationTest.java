@@ -32,8 +32,10 @@ public class ValidationTest extends TestCase {
     }
 
     public void testAgeIsValid() {
-        String age = "50";
-        assertTrue(Validation.AgeIsValid(age));
+        String ageForFalse = "999";
+        assertFalse(Validation.AgeIsValid(ageForFalse));
+        String ageForTrue = "50";
+        assertTrue(Validation.AgeIsValid(ageForTrue));
     }
 
     public void testUsernameIsValid() {
