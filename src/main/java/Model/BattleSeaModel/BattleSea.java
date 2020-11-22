@@ -1,7 +1,10 @@
 package Model.BattleSea;
 
-import Model.Plato.Game;
-import Model.Plato.Player;
+
+
+
+import Model.PlatoModel.Game;
+import Model.PlatoModel.Player;
 
 import java.util.ArrayList;
 
