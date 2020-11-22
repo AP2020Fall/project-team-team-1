@@ -3,7 +3,6 @@ package Controller.AdminController;
 import Model.PlatoModel.Admin;
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
 
 public class EditTest extends TestCase {
 
@@ -30,5 +29,11 @@ public class EditTest extends TestCase {
     }
 
     public void testEditPassword() {
+        Admin admin1 = new Admin("hesam","asnashari",100,"hessamasna","Apteam@123334","hessamasna@yahoo.com","09121111111");
+        Admin.AddNewAdmin(admin1);
+        Edit.editPassword("Apteam23334","Qwe3434dsd23");
+        assertEquals(admin1.getPassword(),"Apteam@123334");
+        Edit.editPassword("Apteam@123334","Qwe3434dsd23");
+        assertEquals(admin1.getPassword(),"Qwe3434dsd23");
     }
 }
