@@ -1,11 +1,13 @@
 package Controller.RegisterController;
 
 
+import java.util.ArrayList;
+
 public class SignUp {
-    private void addAdmin(){
+    public void addAdmin(ArrayList<String> adminInfo){
 
     }
-    private void addPlayer(){
+    public void addPlayer(ArrayList<String> playerInfo){
 
     }
 }

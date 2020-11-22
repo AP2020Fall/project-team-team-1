@@ -9,17 +9,41 @@ public class SignUpMenu extends Menu {
     public SignUpMenu( Menu parentMenu) {
         super("Signup Menu!", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
-
+        submenus.put(1,registerAsAdmin());
+        submenus.put(2,registerAsPlayer());
+        this.setSubmenus(submenus);
     }
-//    private Menu registerAsAdmin(){
-//        return new Menu("register Admin",this) {
-//            @Override
-//            public void show() {
-//                System.out.println(this.getName());
-//            }
-//        }
-//    }
-    private void getManagerInformation(ArrayList<String> adminInfo){
+    private Menu registerAsAdmin(){
+        return new Menu("Register Admin",this) {
+            @Override
+            public void show() {
+                System.out.println(this.getName()+": ");
+            }
+
+            @Override
+            public void execute() {
+                ArrayList<String> adminInfo = new ArrayList<>();
+                getAdminInformation(adminInfo);
+                processSignupController.addAdmin(adminInfo);
+            }
+        };
+    }
+    private Menu registerAsPlayer(){
+        return new Menu("Register As Player",this) {
+            @Override
+            public void show() {
+                System.out.println(this.getName()+": ");
+            }
+
+            @Override
+            public void execute() {
+                ArrayList<String> playerInfo = new ArrayList<>();
+                getPlayerInfo(playerInfo);
+                processSignupController.addPlayer(playerInfo);
+            }
+        };
+    }
+    private void getAdminInformation(ArrayList<String> adminInfo){
         System.out.println("Hello our Dear Admin \n Please notice that if there is already an admin you can not register as Admin !");
         System.out.println("Please Enter Your Firstname :");
         while (true){
@@ -63,9 +87,9 @@ public class SignUpMenu extends Menu {
         }
         System.out.println("Please Enter Your PhoneNumber :");
         while (true){
-            String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
-                adminInfo.add(password);
+            String phoneNumber = scanner.nextLine();
+            if (Validation.PhoneNumberIsValid(phoneNumber)){
+                adminInfo.add(phoneNumber);
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
         }
@@ -114,13 +138,22 @@ public class SignUpMenu extends Menu {
         }
         System.out.println("Please Enter Your PhoneNumber :");
         while (true){
-            String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
-                playerInfo.add(password);
+            String phoneNumber = scanner.nextLine();
+            if (Validation.PhoneNumberIsValid(phoneNumber)){
+                playerInfo.add(phoneNumber);
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
         }
     }
 
+//    @Override
+//    public void show() {
+//        System.out.println("You Want To Signup as ? :");
+//    }
 
+    @Override
+    public void run() {
+        this.show();
+        this.execute();
+    }
 }

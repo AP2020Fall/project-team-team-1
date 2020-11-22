@@ -1,5 +1,13 @@
 package View;
 
+import Controller.AdminController.*;
+import Controller.AdminController.Edit;
+import Controller.AdminController.Suggestion;
+import Controller.PlayerController.*;
+import Controller.RegisterController.Delete;
+import Controller.RegisterController.LogIn;
+import Controller.RegisterController.SignUp;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,6 +16,27 @@ public abstract class Menu {
     protected HashMap<Integer,Menu> submenus = new HashMap<>();
     protected Menu parentMenu;
     public static Scanner scanner;
+
+    protected Coin coinController;
+    protected Edit adminEditController;
+    protected Event adminEventController;
+    protected Message adminMessageController;
+    protected PlayerLists adminPlayerListController;
+    protected Controller.PlayerController.Edit playerEditController;
+    protected FavoriteGames playerFavoritesGame;
+    protected FindPlayerByInfo playerFindPlayerByInfoController;
+    protected Friend playerFriendController;
+    protected JoinEvent playerJoinEventController;
+    protected PlayerInfo playerInfoController;
+    protected PlayerStatusInGame playerStatusInGameController;
+    protected RunGame playerRunGameController;
+    protected Suggestion adminSuggestionController;
+    protected Controller.PlayerController.Suggestion playerSuggestionController;
+    protected ViewPlatoBotMessages playerViewPlatoBotsMassagesController;
+    protected Delete processDeleteAccountController;
+    protected LogIn processLoginController;
+    protected SignUp processSignupController;
+
 
     public Menu(String name, Menu parentMenu) {
         this.name = name;
