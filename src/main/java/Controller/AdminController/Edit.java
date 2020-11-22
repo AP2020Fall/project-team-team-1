@@ -23,6 +23,9 @@ public class Edit {
     protected static void editName(String input) {
         boolean pass = false;
         pass = Validation.NameOrLastNameIsValid(input);
+        if (!pass)
+            System.out.println("Format is InValid !");
+
          if (pass)
              Admin.getAdmins().get(0).setName(input);
     }
@@ -30,6 +33,9 @@ public class Edit {
     protected static void editLastName(String input) {
         boolean pass = false;
         pass = Validation.NameOrLastNameIsValid(input);
+        if (!pass)
+            System.out.println("Format is InValid !");
+
         if (pass)
             Admin.getAdmins().get(0).setLastName(input);
     }
@@ -37,21 +43,39 @@ public class Edit {
     protected static void editEmail(String input) {
         boolean pass = false;
         pass = Validation.EmailIsValid(input);
-        pass = Existence.checkEmailExistence(input);
-        if (pass)
-            Admin.getAdmins().get(0).setEmail(input);
+        if (!pass)
+            System.out.println("Format is InValid !");
+
+        if (pass){
+            pass = Existence.checkEmailExistence(input);
+            if (!pass)
+                System.out.println("Email is Existence!");
+
+            if (pass)
+                Admin.getAdmins().get(0).setEmail(input);
+        }
     }
     protected static void editUsername(String input) {
         boolean pass =false;
         pass = Validation.UsernameIsValid(input);
-        pass = Existence.checkUserNameExistence(input);
-        if (pass)
-            Admin.getAdmins().get(0).setUserName(input);
+        if (!pass)
+            System.out.println("Format is InValid !");
+
+        if (pass) {
+            pass = Existence.checkUserNameExistence(input);
+            if (!pass)
+                System.out.println("Username is Existence!");
+            if (pass)
+                Admin.getAdmins().get(0).setUserName(input);
+        }
     }
 
     protected static void editPhoneNumber(String input) {
         boolean pass = false;
         pass = Validation.PhoneNumberIsValid(input);
+        if (!pass)
+            System.out.println("Format is InValid !");
+
         if (pass)
             Admin.getAdmins().get(0).setPhoneNum(input);
     }
