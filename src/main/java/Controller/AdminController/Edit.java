@@ -42,7 +42,11 @@ public class Edit {
             Admin.getAdmins().get(0).setEmail(input);
     }
     protected static void editUsername(String input) {
-
+        boolean pass =false;
+        pass = Validation.UsernameIsValid(input);
+        pass = Existence.checkUserNameExistence(input);
+        if (pass)
+            Admin.getAdmins().get(0).setUserName(input);
     }
 
     protected static void editPhoneNumber(String input) {
