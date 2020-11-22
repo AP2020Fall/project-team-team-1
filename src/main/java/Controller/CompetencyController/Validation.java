@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validation {
-    public static boolean EmailIsValid(String email){
+    public static boolean emailIsValid(String email){
         boolean result = false;
         Pattern emailPattern = Pattern.compile("(^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4})*$)");
         Matcher matcher = emailPattern.matcher(email);
@@ -12,7 +12,7 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean PhoneNumberIsValid(String phoneNumber){
+    public static boolean phoneNumberIsValid(String phoneNumber){
         boolean result = false;
         Pattern phonePattern = Pattern.compile("^(0)?9\\d{9}$");
         Matcher matcher = phonePattern.matcher(phoneNumber);
@@ -20,7 +20,7 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean NameOrLastNameIsValid(String nameOrLastName){
+    public static boolean nameOrLastNameIsValid(String nameOrLastName){
         boolean result = false;
         Pattern namePattern = Pattern.compile("(^[a-zA-Z]*$)");
         Matcher matcher = namePattern.matcher(nameOrLastName);
@@ -28,7 +28,7 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean PasswordIsValid(String password){
+    public static boolean passwordIsValid(String password){
         boolean result = false;
         Pattern passwordPattern = Pattern.compile("(^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$)");
         Matcher matcher = passwordPattern.matcher(password);
@@ -36,7 +36,7 @@ public class Validation {
             result=true;
         return result;
     }
-    public static boolean AgeIsValid(String age){
+    public static boolean ageIsValid(String age){
         boolean result = false;
         Pattern agePattern = Pattern.compile("^(1[90]|[2-6][0-9])$");
         Matcher matcher = agePattern.matcher(age);
@@ -44,10 +44,18 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean UsernameIsValid(String Username){
+    public static boolean usernameIsValid(String username){
         boolean result = false;
         Pattern namePattern = Pattern.compile("(^[a-zA-Z0-9]*$)");
-        Matcher matcher = namePattern.matcher(Username);
+        Matcher matcher = namePattern.matcher(username);
+        if (matcher.matches())
+            result=true;
+        return result;
+    }
+    public static boolean dateIsValid(String date){
+        boolean result = false;
+        Pattern namePattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
+        Matcher matcher = namePattern.matcher(date);
         if (matcher.matches())
             result=true;
         return result;

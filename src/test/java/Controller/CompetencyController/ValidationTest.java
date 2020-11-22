@@ -6,40 +6,40 @@ public class ValidationTest extends TestCase {
 
     public void testEmailIsValid() {
         String emailForTrue  = "amirZgh@gmail.com";
-        assertTrue(Validation.EmailIsValid(emailForTrue));
+        assertTrue(Validation.emailIsValid(emailForTrue));
         String emailForFlase  = "hess_am-as12.13na.com";
-        assertFalse(Validation.EmailIsValid(emailForFlase));
+        assertFalse(Validation.emailIsValid(emailForFlase));
     }
 
     public void testPhoneNumberIsValid() {
         String phoneNumber = "09125552730";
-        assertTrue(Validation.PhoneNumberIsValid(phoneNumber));
+        assertTrue(Validation.phoneNumberIsValid(phoneNumber));
     }
 
     public void testNameOrLastNameIsValid() {
         String nameOrLastnameForFalse = "hes123sam";
-        assertFalse(Validation.NameOrLastNameIsValid(nameOrLastnameForFalse));
+        assertFalse(Validation.nameOrLastNameIsValid(nameOrLastnameForFalse));
         String nameOrLastnameForTrue = "APteam";
-        assertTrue(Validation.NameOrLastNameIsValid(nameOrLastnameForTrue));
+        assertTrue(Validation.nameOrLastNameIsValid(nameOrLastnameForTrue));
     }
 
     public void testPasswordIsValid() {
         String passwordForFalse = "aminisolaq";
-        assertFalse(Validation.PasswordIsValid(passwordForFalse));
+        assertFalse(Validation.passwordIsValid(passwordForFalse));
         String passwordForTrue = "Apteam@1235";
-        assertTrue(Validation.PasswordIsValid(passwordForTrue));
+        assertTrue(Validation.passwordIsValid(passwordForTrue));
 
     }
 
     public void testAgeIsValid() {
         String ageForFalse = "999";
-        assertFalse(Validation.AgeIsValid(ageForFalse));
+        assertFalse(Validation.ageIsValid(ageForFalse));
         String ageForTrue = "50";
-        assertTrue(Validation.AgeIsValid(ageForTrue));
+        assertTrue(Validation.ageIsValid(ageForTrue));
     }
 
     public void testUsernameIsValid() {
         String name = "Amirzgh11";
-        assertTrue(Validation.UsernameIsValid(name));
+        assertTrue(Validation.usernameIsValid(name));
     }
 }

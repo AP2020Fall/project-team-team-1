@@ -22,7 +22,7 @@ public class Edit {
 
     protected static void editName(String input) {
         boolean pass = false;
-        pass = Validation.NameOrLastNameIsValid(input);
+        pass = Validation.nameOrLastNameIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
 
@@ -32,7 +32,7 @@ public class Edit {
 
     protected static void editLastName(String input) {
         boolean pass = false;
-        pass = Validation.NameOrLastNameIsValid(input);
+        pass = Validation.nameOrLastNameIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
 
@@ -42,7 +42,7 @@ public class Edit {
 
     protected static void editEmail(String input) {
         boolean pass = false;
-        pass = Validation.EmailIsValid(input);
+        pass = Validation.emailIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
 
@@ -62,7 +62,7 @@ public class Edit {
 
     protected static void editUsername(String input) {
         boolean pass = false;
-        pass = Validation.UsernameIsValid(input);
+        pass = Validation.usernameIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
 
@@ -82,7 +82,7 @@ public class Edit {
 
     protected static void editPhoneNumber(String input) {
         boolean pass = false;
-        pass = Validation.PhoneNumberIsValid(input);
+        pass = Validation.phoneNumberIsValid(input);
         if (!pass)
             System.out.println("Format is InValid !");
 
@@ -103,7 +103,7 @@ public class Edit {
             }
 
             if (pass) {
-                pass = Validation.PasswordIsValid(newPassword);
+                pass = Validation.passwordIsValid(newPassword);
                 if (!pass)
                     System.out.println("Make Stranger Password (read Hits for make good Password)");
 

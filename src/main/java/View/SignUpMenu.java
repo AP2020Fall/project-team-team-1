@@ -48,7 +48,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Firstname :");
         while (true){
             String firstname = scanner.nextLine();
-            if (Validation.NameOrLastNameIsValid(firstname)){
+            if (Validation.nameOrLastNameIsValid(firstname)){
                 adminInfo.add(firstname);
                 break;
             }else System.out.println("Please Enter a Valid name!");
@@ -56,7 +56,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Lastname :");
         while (true){
             String lastname = scanner.nextLine();
-            if (Validation.NameOrLastNameIsValid(lastname)){
+            if (Validation.nameOrLastNameIsValid(lastname)){
                 adminInfo.add(lastname);
                 break;
             }else System.out.println("Please Enter a Valid name!");
@@ -64,7 +64,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Username :");
         while (true){
             String username = scanner.nextLine();
-            if (Validation.UsernameIsValid(username)){
+            if (Validation.usernameIsValid(username)){
                 adminInfo.add(username);
                 break;
             }else System.out.println("Please Enter a Valid Username!");
@@ -72,7 +72,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Email Address :");
         while (true){
             String email = scanner.nextLine();
-            if (Validation.EmailIsValid(email)){
+            if (Validation.emailIsValid(email)){
                 adminInfo.add(email);
                 break;
             }else System.out.println("Please Enter a Valid Email!");
@@ -80,7 +80,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Password :");
         while (true){
             String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
+            if (Validation.passwordIsValid(password)){
                 adminInfo.add(password);
                 break;
             }else System.out.println("Please Enter a Valid Password!");
@@ -88,7 +88,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your PhoneNumber :");
         while (true){
             String phoneNumber = scanner.nextLine();
-            if (Validation.PhoneNumberIsValid(phoneNumber)){
+            if (Validation.phoneNumberIsValid(phoneNumber)){
                 adminInfo.add(phoneNumber);
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
@@ -99,7 +99,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Firstname :");
         while (true){
             String firstname = scanner.nextLine();
-            if (Validation.NameOrLastNameIsValid(firstname)){
+            if (Validation.nameOrLastNameIsValid(firstname)){
                 playerInfo.add(firstname);
                 break;
             }else System.out.println("Please Enter a Valid name!");
@@ -107,7 +107,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Lastname :");
         while (true){
             String lastname = scanner.nextLine();
-            if (Validation.NameOrLastNameIsValid(lastname)){
+            if (Validation.nameOrLastNameIsValid(lastname)){
                 playerInfo.add(lastname);
                 break;
             }else System.out.println("Please Enter a Valid name!");
@@ -115,7 +115,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Username :");
         while (true){
             String username = scanner.nextLine();
-            if (Validation.UsernameIsValid(username)){
+            if (Validation.usernameIsValid(username)){
                 playerInfo.add(username);
                 break;
             }else System.out.println("Please Enter a Valid Username!");
@@ -123,7 +123,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Email Address :");
         while (true){
             String email = scanner.nextLine();
-            if (Validation.EmailIsValid(email)){
+            if (Validation.emailIsValid(email)){
                 playerInfo.add(email);
                 break;
             }else System.out.println("Please Enter a Valid Email!");
@@ -131,7 +131,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Password :");
         while (true){
             String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
+            if (Validation.passwordIsValid(password)){
                 playerInfo.add(password);
                 break;
             }else System.out.println("Please Enter a Valid Password!");
@@ -139,7 +139,7 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your PhoneNumber :");
         while (true){
             String phoneNumber = scanner.nextLine();
-            if (Validation.PhoneNumberIsValid(phoneNumber)){
+            if (Validation.phoneNumberIsValid(phoneNumber)){
                 playerInfo.add(phoneNumber);
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
