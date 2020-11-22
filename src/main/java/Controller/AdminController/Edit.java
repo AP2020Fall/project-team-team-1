@@ -1,5 +1,6 @@
 package Controller.AdminController;
 
+import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
 import Model.PlatoModel.Admin;
 
@@ -34,7 +35,11 @@ public class Edit {
     }
 
     protected static void editEmail(String input) {
-
+        boolean pass = false;
+        pass = Validation.EmailIsValid(input);
+        pass = Existence.checkEmailExistence(input);
+        if (pass)
+            Admin.getAdmins().get(0).setEmail(input);
     }
     protected static void editUsername(String input) {
 
