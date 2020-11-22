@@ -1,6 +1,7 @@
 package Controller.CompetencyController;
 
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 
@@ -50,6 +51,17 @@ public class Existence {
         boolean result = false;
         if (Admin.getAdmins().isEmpty())
             result = true;
+        return result;
+    }
+
+    public static boolean checkEventExistence(int eventID) {
+        boolean result = false;
+        for (Event event : Event.getEvents()) {
+            if (event.getEventID() == eventID){
+                result = true;
+                break;
+            }
+        }
         return result;
     }
 
