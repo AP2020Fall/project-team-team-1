@@ -14,6 +14,10 @@ public abstract class Menu {
         this.parentMenu = parentMenu;
     }
 
+    public void setSubmenus(HashMap<Integer, Menu> submenus) {
+        this.submenus = submenus;
+    }
+
     public String getName() {
         return name;
     }
@@ -33,7 +37,7 @@ public abstract class Menu {
     }
     public void execute(){
         Menu nextMenu = null;
-        System.out.println("You Are in " + this.name + "please enter a number between 0 and" + this.submenus.size()+1);
+        System.out.println("You Are in " + this.name + "please chose a valid option :");
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
             this.run();
@@ -42,7 +46,10 @@ public abstract class Menu {
             if (chosenMenu==submenus.size()+1){
                 if (this.parentMenu==null){
                     System.exit(1);
-                }else nextMenu=this.parentMenu;
+                }else {
+                    nextMenu=this.parentMenu;
+                    nextMenu.run();
+                }
             } else {
                 nextMenu = submenus.get(chosenMenu);
                 nextMenu.run();
