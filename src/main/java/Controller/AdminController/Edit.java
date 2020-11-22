@@ -27,7 +27,10 @@ public class Edit {
     }
 
     protected static void editLastName(String input) {
-
+        boolean pass = false;
+        pass = Validation.NameOrLastNameIsValid(input);
+        if (pass)
+            Admin.getAdmins().get(0).setLastName(input);
     }
 
     protected static void editEmail(String input) {
