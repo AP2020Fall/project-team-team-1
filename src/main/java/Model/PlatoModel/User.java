@@ -77,7 +77,8 @@ public class User {
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-    public static void  addNewUser(User user){
+
+    public static void addNewUser(User user) {
         users.add(user);
     }
 }
