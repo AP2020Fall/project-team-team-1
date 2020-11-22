@@ -50,7 +50,10 @@ public class Edit {
     }
 
     protected static void editPhoneNumber(String input) {
-
+        boolean pass = false;
+        pass = Validation.PhoneNumberIsValid(input);
+        if (pass)
+            Admin.getAdmins().get(0).setPhoneNum(input);
     }
 
     public static void editPassword(String oldPassword, String newPassword) {
