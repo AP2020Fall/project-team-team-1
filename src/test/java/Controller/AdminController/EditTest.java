@@ -24,8 +24,8 @@ public class EditTest extends TestCase {
         Edit.editField("phonenumber","09122222222");
         assertEquals(admin1.getPhoneNum(),"09122222222");
 
-        Edit.editField("username","amirrezazgh1");
-        assertEquals(admin1.getUserName(),"amirrezazgh1");
+//        Edit.editField("username","amirrezazgh1");
+//        assertEquals(admin1.getUserName(),"amirrezazgh1");
     }
 
     public void testEditPassword() {

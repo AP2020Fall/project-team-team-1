@@ -14,9 +14,11 @@ public class Edit {
             editEmail(input);
         } else if (field.trim().equalsIgnoreCase("phonenumber")) {
             editPhoneNumber(input);
-        } else if (field.trim().equalsIgnoreCase("username")) {
-            editUsername(input);
-        } else
+        }
+//        else if (field.trim().equalsIgnoreCase("username")) {
+//            editUsername(input);
+//        }
+        else
             System.out.println("Field for edit is InValid !");
     }
 
@@ -48,10 +50,10 @@ public class Edit {
 
         if (pass) {
             pass = Existence.checkEmailExistence(input);
-            if (pass){
+            if (pass) {
                 System.out.println("Email is Existence!");
                 pass = false;
-            }else {
+            } else {
                 pass = true;
             }
 
@@ -60,25 +62,25 @@ public class Edit {
         }
     }
 
-    protected static void editUsername(String input) {
-        boolean pass = false;
-        pass = Validation.usernameIsValid(input);
-        if (!pass)
-            System.out.println("Format is InValid !");
-
-        if (pass) {
-            pass = Existence.checkUserNameExistence(input);
-            if (pass){
-                System.out.println("Username is Existence!");
-                pass = false;
-            }else {
-                pass = true;
-            }
-
-            if (pass)
-                Admin.getAdmins().get(0).setUserName(input);
-        }
-    }
+//    protected static void editUsername(String input) {
+//        boolean pass = false;
+//        pass = Validation.usernameIsValid(input);
+//        if (!pass)
+//            System.out.println("Format is InValid !");
+//
+//        if (pass) {
+//            pass = Existence.checkUserNameExistence(input);
+//            if (pass){
+//                System.out.println("Username is Existence!");
+//                pass = false;
+//            }else {
+//                pass = true;
+//            }
+//
+//            if (pass)
+//                Admin.getAdmins().get(0).setUserName(input);
+//        }
+//    }
 
     protected static void editPhoneNumber(String input) {
         boolean pass = false;
