@@ -54,6 +54,14 @@ public class Player extends User {
 
     }
 
+    public ArrayList<Message> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(ArrayList<Message> receivedMessages) {
+        this.receivedMessages = receivedMessages;
+    }
+
     public static ArrayList<Player> getPlayers() {
         return players;
     }
