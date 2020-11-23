@@ -32,7 +32,7 @@ public class Suggestion {
         return result;
     }
 
-    private static Model.PlatoModel.Suggestion findSuggestionBySuggestionID(String suggestionID){
+    public static Model.PlatoModel.Suggestion findSuggestionBySuggestionID(String suggestionID){
         Model.PlatoModel.Suggestion suggestion = null;
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
             if (allSuggestion.getSuggestionID() == Integer.parseInt(suggestionID)){

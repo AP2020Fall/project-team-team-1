@@ -17,8 +17,10 @@ public class Player extends User {
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
         suggestedGamesID = new ArrayList<>();
+        friendsRequests = new ArrayList<>();
         receivedMessages = new ArrayList<>();
         favoritesGamesName = new ArrayList<>();
+        friends = new ArrayList<>();
         PlayerLog.addNewPlayerLog(new PlayerLog(userID, "DotsAndBoxes"));
         PlayerLog.addNewPlayerLog(new PlayerLog(userID, "BattleSea"));
     }
@@ -38,7 +40,7 @@ public class Player extends User {
     }
 
     private void addNewFriend(Player player) {
-        friends.add(player);
+
     }
 
     public ArrayList<String> getFavoritesGamesName() {
@@ -66,5 +68,13 @@ public class Player extends User {
 
     public static ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public static ArrayList<Player> getFriendsRequests() {
+        return friendsRequests;
+    }
+
+    public ArrayList<Integer> getSuggestedGamesID() {
+        return suggestedGamesID;
     }
 }

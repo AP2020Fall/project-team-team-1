@@ -4,17 +4,13 @@ package Controller.PlayerController;
 import Model.PlatoModel.Player;
 
 public class Friend {
-    private static Player acceptRequest (){
-        Player player = null;
-        return player;
+    private static  void acceptRequest (){
+
     }
     private  static void declineRequest (String username){
 
     }
-    private static Player findFriendByUserName(String username){
-        Player player = null;
-        return player;
-    }
+
     private void addFriends(String username){
 
     }
