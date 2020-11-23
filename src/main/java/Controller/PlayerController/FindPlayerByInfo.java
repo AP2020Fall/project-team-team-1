@@ -15,20 +15,20 @@ public class FindPlayerByInfo {
         }
         return player ;
     }
-    public static Player findByUserID(String userName){
+    public static Player findByUserID(String userId){
         Player player = null;
         for (Player wantedPlayer : Player.getPlayers()) {
-            if (wantedPlayer.getUserID() == Integer.parseInt(userName)){
+            if (wantedPlayer.getUserID() == Integer.parseInt(userId)){
                 player = wantedPlayer ;
                 break;
             }
         }
         return player ;
     }
-    public static Player findByUserEmail(String userName){
+    public static Player findByUserEmail(String userEmail){
         Player player = null;
         for (Player wantedPlayer : Player.getPlayers()) {
-            if (wantedPlayer.getEmail().equals(userName)) {
+            if (wantedPlayer.getEmail().equals(userEmail)) {
                 player = wantedPlayer ;
                 break;
             }
