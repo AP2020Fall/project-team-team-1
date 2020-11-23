@@ -5,6 +5,11 @@ import Controller.CompetencyController.Validation;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
+
+
+//TODO link signup menu and proper menu
 public class SignUpMenu extends Menu {
     public SignUpMenu( Menu parentMenu) {
         super("Signup Menu", parentMenu);

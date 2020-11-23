@@ -25,6 +25,7 @@ public class LoginMenu extends Menu {
                 ArrayList<String> input = new ArrayList<>();
                 getInputAdmin(input);
                 processLoginController.loginAsAdmin(arrayListToString(input));
+                //todo link sign in to next menu from here
             }
         };
     }
@@ -47,7 +48,7 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Username");
         while (true){
             String username = scanner.nextLine();
-            if (Validation.UsernameIsValid(username)){
+            if (Validation.usernameIsValid(username)){
                 playerInput.add(username);
                 break;
             }else System.out.println("Please Enter Valid Username");
@@ -55,7 +56,7 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Password");
         while (true){
             String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
+            if (Validation.passwordIsValid(password)){
                 playerInput.add(password);
                 break;
             }else System.out.println("Please Enter Valid Password");
@@ -65,7 +66,7 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Username");
         while (true){
             String username = scanner.nextLine();
-            if (Validation.UsernameIsValid(username)){
+            if (Validation.usernameIsValid(username)){
                 adminInput.add(username);
                 break;
             }else System.out.println("Please Enter Valid Username");
@@ -73,7 +74,7 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Password");
         while (true){
             String password = scanner.nextLine();
-            if (Validation.PasswordIsValid(password)){
+            if (Validation.passwordIsValid(password)){
                 adminInput.add(password);
                 break;
             }else System.out.println("Please Enter Valid Password");
