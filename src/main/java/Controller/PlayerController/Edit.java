@@ -3,10 +3,13 @@ package Controller.PlayerController;
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField(String field, String input) {
+    public static void editField(String username,String field, String input) {
+        Player player = FindPlayerByInfo.findByUserName(username);
+
         if (field.trim().equalsIgnoreCase("name")) {
             editFirstName(input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
@@ -16,12 +19,12 @@ public class Edit {
         } else if (field.trim().equalsIgnoreCase("phonenumber")) {
             editPhoneNumber(input);
         } else if (field.trim().equalsIgnoreCase("username")) {
-            editUsername(input);
+            editUsername(player,input);
         } else
             System.out.println("Can not edit this field !");
     }
 
-    protected static void editUsername(String input) {
+    protected static void editUsername(Player player,String input) {
         boolean pass = false;
         pass = Validation.usernameIsValid(input);
         if (!pass)
@@ -37,7 +40,7 @@ public class Edit {
             }
 
             if (pass)
-                Admin.getAdmins().get(0).setUserName(input);
+                player.setUserName(input);
         }
     }
 
