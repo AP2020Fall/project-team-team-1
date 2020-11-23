@@ -54,5 +54,7 @@ public class Player extends User {
 
     }
 
-
+    public static ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

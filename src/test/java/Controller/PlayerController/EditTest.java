@@ -22,16 +22,16 @@ public class EditTest extends TestCase {
         Controller.PlayerController.Edit.editField("atarhz","phonenumber","09122222222");
         assertEquals(player.getPhoneNum(),"09122222222");
 
-        Controller.PlayerController.Edit.editField("atarhz","username","amirrezazgh1");
-        assertEquals(player.getUserName(),"amirrezazgh1");
+//        Controller.PlayerController.Edit.editField("atarhz","username","amirrezazgh1");
+//        assertEquals(player.getUserName(),"amirrezazgh1");
     }
 
-    public void testEditUsername() {
-        Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
-        Player.AddNewPlayer(player);
-        Edit.editUsername(player,"hesam");
-        assertEquals(player.getUserName(),"hesam");
-    }
+//    public void testEditUsername() {
+//        Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
+//        Player.AddNewPlayer(player);
+//        Edit.editUsername(player,"hesam");
+//        assertEquals(player.getUserName(),"hesam");
+//    }
 
     public void testEditFirstName() {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
