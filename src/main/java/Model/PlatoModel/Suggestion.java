@@ -6,15 +6,30 @@ public class Suggestion {
     private static ArrayList<Suggestion> allSuggestions =new ArrayList<>();
     private int suggestionID=0;
     private Player playerName;
-    private Game suggestedGame;
-    private Admin adminName;
+    private String suggestedGame;
 
-    public Suggestion(Player playerName, Game suggestedGame, Admin adminName) {
+
+    public Suggestion(Player playerName, String suggestedGame) {
         this.playerName = playerName;
         this.suggestedGame = suggestedGame;
-        this.adminName = adminName;
         suggestionID=suggestionID();
         playerName.suggestedGamesID.add(suggestionID());
+    }
+
+    public static ArrayList<Suggestion> getAllSuggestions() {
+        return allSuggestions;
+    }
+
+    public int getSuggestionID() {
+        return suggestionID;
+    }
+
+    public Player getPlayerName() {
+        return playerName;
+    }
+
+    public String getSuggestedGame() {
+        return suggestedGame;
     }
 
     private int suggestionID (){
