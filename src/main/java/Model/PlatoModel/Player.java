@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Player extends User {
-    private static ArrayList<Player> players = new ArrayList<Player>();
+    public static ArrayList<Player> players = new ArrayList<Player>();
     private double coin;
     private Date registerDate;
     private ArrayList<Player> friends;
@@ -53,6 +53,8 @@ public class Player extends User {
         playerLog.add(gameLog);
 
     }
+
+
 
     public ArrayList<Message> getReceivedMessages() {
         return receivedMessages;
