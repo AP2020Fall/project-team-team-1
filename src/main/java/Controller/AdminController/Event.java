@@ -2,11 +2,9 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
-import Model.PlatoModel.Admin;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Event {
     public static void addEvent(String input) {
@@ -18,26 +16,32 @@ public class Event {
     public static void showEvent() {
         eventDateChecker();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
-            System.out.println("EventId: " + event.getEventID() + "Game name: " + event.getGameName() + "Start date: " + event.getStartDate() + "End date: " + event.getEndDate() + "Score: " + event.getScore());
+            if (event.getStartDate().isBefore(LocalDate.now()) || event.getStartDate().equals(LocalDate.now()))
+                System.out.println("EventId: " + event.getEventID() + "Game name: " + event.getGameName() + "Start date: " + event.getStartDate() + "End date: " + event.getEndDate() + "Score: " + event.getScore());
         }
     }
 
     public static void editEvent(String eventID, String field, String input) {
         eventDateChecker();
-        if (!Existence.checkEventExistence(Integer.parseInt(eventID))) {
-            System.out.println("There is no Event with this it");
-        } else {
-            if (field.trim().equalsIgnoreCase("GameName")) {
-                editGameName(eventID, input);
-            } else if (field.trim().equalsIgnoreCase("StartDate")) {
-                editStartDate(eventID, input);
-            } else if (field.trim().equalsIgnoreCase("EndDate")) {
-                editEndDate(eventID, input);
-            } else if (field.trim().equalsIgnoreCase("Score")) {
-                editScore(eventID, input);
-            } else
-                System.out.println("Field for edit is InValid !");
-        }
+        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+
+        if (event == null)
+            //todo exception handling
+
+            if (!Existence.checkEventExistence(Integer.parseInt(eventID))) {
+                System.out.println("There is no Event with this it");
+            } else {
+                if (field.trim().equalsIgnoreCase("GameName")) {
+                    editGameName(event, input);
+                } else if (field.trim().equalsIgnoreCase("StartDate")) {
+                    editStartDate(event, input);
+                } else if (field.trim().equalsIgnoreCase("EndDate")) {
+                    editEndDate(event, input);
+                } else if (field.trim().equalsIgnoreCase("Score")) {
+                    editScore(event, input);
+                } else
+                    System.out.println("Field for edit is InValid !");
+            }
 
     }
 
@@ -60,8 +64,7 @@ public class Event {
                 removeEvent(String.valueOf(eventForDelete.getEventID()));
             }
         }
-
-
+        //todo if we have waiting list for events we should put it here
     }
 
     private static Model.PlatoModel.Event eventFinderByEventID(String eventID) {
@@ -77,46 +80,52 @@ public class Event {
 
     /****************************************************EditMethods****************************************************/
 
-    protected static void editGameName(String eventID ,String input) {
-        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
-        if (input.equalsIgnoreCase("dotsAndBoxes")||input.equalsIgnoreCase("battleSea")){
+    protected static void editGameName(Model.PlatoModel.Event event, String input) {
+        if (input.equalsIgnoreCase("dotsAndBoxes") || input.equalsIgnoreCase("battleSea")) {
             event.setGameName(input);
-        }else {
+        } else {
             System.out.println("game dose not Exist!");
         }
     }
 
-    protected static void editStartDate(String eventID ,String input) {
-        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
-        boolean pass=true;
+    protected static void editStartDate(Model.PlatoModel.Event event, String input) {
+        boolean pass = true;
         LocalDate startDate = LocalDate.parse(input);
 
-        /*********EXSEPTIONs FOR MAKE PASS FALSE*********/
+        /*********EXCEPTION FOR MAKE PASS FALSE*********/
 
         pass = Validation.dateIsValid(input);
-        //todo exseption handeling
+        //todo exception handling
 
         pass = startDate.isAfter(LocalDate.now());
-        //todo exseption handeling
+        //todo exception handling
 
         pass = startDate.isBefore(event.getEndDate());
-        //todo exseption handeling
+        //todo exception handling
 
         if (pass)
             event.setStartDate(startDate);
 
     }
 
-    protected static void editEndDate(String eventID ,String input) {
-        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
-        boolean pass=true;
-        LocalDate startDate = LocalDate.parse(input);
+    protected static void editEndDate(Model.PlatoModel.Event event, String input) {
+        boolean pass = true;
+        LocalDate endDate = LocalDate.parse(input);
 
+        /*********EXCEPTION FOR MAKE PASS FALSE*********/
+
+        pass = Validation.dateIsValid(input);
+        //todo exception handling
+
+        pass = endDate.isAfter(event.getStartDate());
+        //todo exception handling
+
+        if (pass)
+            event.setStartDate(endDate);
     }
 
-    protected static void editScore(String eventID ,String input) {
-        boolean pass = false;
-
+    protected static void editScore(Model.PlatoModel.Event event, String input) {
+        event.setScore(Long.parseLong(input));
     }
 
 
