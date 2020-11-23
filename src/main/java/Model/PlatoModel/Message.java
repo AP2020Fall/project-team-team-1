@@ -18,6 +18,10 @@ public class Message {
         return massageID;
     }
 
+    public static void addNewMessage(Message message){
+        messages.add(message);
+    }
+
     @Override
     public String toString() {
         return "Message{" +
