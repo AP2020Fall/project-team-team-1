@@ -1,5 +1,6 @@
 package Model.PlatoModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,13 +8,13 @@ public class Event {
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Player> playersInThisEvent;
     private String gameName ;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private long score;
     private int eventID;
     private int counter = 0;
 
-    public Event(String gameName, Date startDate, Date endDate, long score) {
+    public Event(String gameName, LocalDate startDate, LocalDate endDate, long score) {
         this.eventID = makeEventID();
         this.gameName = gameName;
         this.startDate = startDate;
@@ -41,19 +42,19 @@ public class Event {
         this.gameName = gameName;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -4,7 +4,9 @@ import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
 import Model.PlatoModel.Admin;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Event {
     public static void addEvent(String input) {
@@ -48,7 +50,7 @@ public class Event {
     public static void eventDateChecker() {
         ArrayList<Model.PlatoModel.Event> listForDelete = new ArrayList<>();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.getEvents()) {
-            if (event.getStartDate().after(event.getEndDate())) {
+            if (event.getStartDate().isAfter(event.getEndDate())) {
                 listForDelete.add(event);
             }
         }
@@ -86,11 +88,29 @@ public class Event {
 
     protected static void editStartDate(String eventID ,String input) {
         Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+        boolean pass=true;
+        LocalDate startDate = LocalDate.parse(input);
+
+        /*********EXSEPTIONs FOR MAKE PASS FALSE*********/
+
+        pass = Validation.dateIsValid(input);
+        //todo exseption handeling
+
+        pass = startDate.isAfter(LocalDate.now());
+        //todo exseption handeling
+
+        pass = startDate.isBefore(event.getEndDate());
+        //todo exseption handeling
+
+        if (pass)
+            event.setStartDate(startDate);
 
     }
 
     protected static void editEndDate(String eventID ,String input) {
-        boolean pass = false;
+        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+        boolean pass=true;
+        LocalDate startDate = LocalDate.parse(input);
 
     }
 
