@@ -7,17 +7,17 @@ import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField (String username,String field, String input) {
+    public static void editField(String username, String field, String input) {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (field.trim().equalsIgnoreCase("name")) {
-            editFirstName(player,input);
+            editFirstName(player, input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
-            editLastName(player,input);
+            editLastName(player, input);
         } else if (field.trim().equalsIgnoreCase("email")) {
-            editEmail(player,input);
+            editEmail(player, input);
         } else if (field.trim().equalsIgnoreCase("phonenumber")) {
-            editPhoneNumber(player,input);
+            editPhoneNumber(player, input);
         }
 //        else if (field.trim().equalsIgnoreCase("username")) {
 //            editUsername(player,input);
@@ -48,29 +48,29 @@ public class Edit {
 //        }
 //    }
 
-    public static void editFirstName(Player player, String input){
+    protected static void editFirstName(Player player, String input) {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
-        if (!pass){
+        if (!pass) {
             System.out.println("This format is invalid !");
         }
-        if (pass){
+        if (pass) {
             player.setName(input);
         }
     }
 
-    public static void editLastName(Player player,String input){
+    protected static void editLastName(Player player, String input) {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
-        if (!pass){
+        if (!pass) {
             System.out.println("This format is invalid !");
         }
-        if (pass){
+        if (pass) {
             player.setLastName(input);
         }
     }
 
-    public static void editPassword(Player player , String oldPassword , String newPassword){
+    public static void editPassword(Player player, String oldPassword, String newPassword) {
         boolean pass = false;
         pass = Existence.checkPassword(player.getUserName(), oldPassword);
         if (!pass)
@@ -94,7 +94,7 @@ public class Edit {
         }
     }
 
-    public static void editEmail(Player player ,String input){
+    protected static void editEmail(Player player, String input) {
         boolean pass = false;
         pass = Validation.emailIsValid(input);
         if (!pass)
@@ -102,27 +102,26 @@ public class Edit {
 
         if (pass) {
             pass = Existence.checkEmailExistence(input);
-            if (pass){
+            if (pass) {
                 System.out.println("Email is Existence!");
                 pass = false;
-            }
-            else {
+            } else {
                 pass = true;
             }
 
-            if (pass){
+            if (pass) {
                 player.setEmail(input);
             }
         }
     }
 
-    public static void editPhoneNumber(Player player,String input){
+    protected static void editPhoneNumber(Player player, String input) {
         boolean pass = false;
         pass = Validation.phoneNumberIsValid(input);
         if (!pass)
             System.out.println("This format is invalid !");
 
-        if (pass){
+        if (pass) {
             player.setPhoneNum(input);
         }
     }
