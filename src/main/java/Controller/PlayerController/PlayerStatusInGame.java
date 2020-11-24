@@ -7,22 +7,38 @@ import java.util.*;
 public class PlayerStatusInGame {
 
 
-//    public static void gamesHistoryInThisGame (String userName , String gameName){
+    //    public static void gamesHistoryInThisGame (String userName , String gameName){
 //
 //    }
-    public static void showScoreboardInThisGame (String userName , String gameName){
-
+    public static void showScoreboardInThisGame(String gameName) {
+        int index = 0;
+        int counter = 1;
+        HashMap<String, Long> scoreBoard = new HashMap<>();
+        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+            index = 1;
+        } else {
+            System.out.println("not valid");
+            return;
+        }
+        for (Player player : Player.getPlayers()) {
+            scoreBoard.put(player.getUserName(), player.getPlayerLog().get(index).getTakenScore());
+        }
+        for (String sorted : sortingFunction(scoreBoard).keySet()) {
+            System.out.println(counter + ". Username : " + sorted + " Score : " + sortingFunction(scoreBoard).get(sorted));
+            counter++;
+        }
     }
-    public static void showGameLogInThisGame (String userName , String gameName){
+
+    public static void showGameLogInThisGame(String userName, String gameName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
-        int index = 0 ;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")){
-            index = 0 ;
-        }
-        else if (gameName.equalsIgnoreCase("BattleSea")){
-            index = 1 ;
-        }
-        else {
+        int index = 0;
+        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+            index = 1;
+        } else {
             System.out.println("not valid");
             return;
         }
@@ -33,48 +49,45 @@ public class PlayerStatusInGame {
         System.out.println("Lose : " + loses);
         System.out.println("Number of match : " + numberOfPlayed);
     }
-    public static void numberOfWinsInThisGame (String userName , String gameName){
+
+    public static void numberOfWinsInThisGame(String userName, String gameName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
-        int index = 0 ;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")){
-            index = 0 ;
-        }
-        else if (gameName.equalsIgnoreCase("BattleSea")){
-            index = 1 ;
-        }
-        else {
+        int index = 0;
+        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+            index = 1;
+        } else {
             System.out.println("not valid");
             return;
         }
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
         System.out.println("Wins : " + wins);
     }
-    public static void numberOfGamePlayedInThisGame (String userName , String gameName){
+
+    public static void numberOfGamePlayedInThisGame(String userName, String gameName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
-        int index = 0 ;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")){
-            index = 0 ;
-        }
-        else if (gameName.equalsIgnoreCase("BattleSea")){
-            index = 1 ;
-        }
-        else {
+        int index = 0;
+        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+            index = 1;
+        } else {
             System.out.println("not valid");
             return;
         }
         int numberOfPlayed = player.getPlayerLog().get(index).getNumberOfGamePlayed();
         System.out.println("Number of match : " + numberOfPlayed);
     }
-    public static void showPlayerPointsInThisGame (String userName , String gameName){
+
+    public static void showPlayerPointsInThisGame(String userName, String gameName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
-        int index = 0 ;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")){
-            index = 0 ;
-        }
-        else if (gameName.equalsIgnoreCase("BattleSea")){
-            index = 1 ;
-        }
-        else {
+        int index = 0;
+        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+            index = 1;
+        } else {
             System.out.println("not valid");
             return;
         }
