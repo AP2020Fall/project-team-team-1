@@ -1,15 +1,24 @@
 package Controller.RegisterController;
 
 public class LogIn {
-    public void loginAsPlayer(String input){
 
-    }
-    public void loginAsAdmin(String input){
+    //String[] splitInput = input.split("\\s");
 
+    public boolean loginAsPlayer(String input){
+        return true;
     }
-    public boolean  checkLoginSuccess(String input){
-        boolean result = false;
-        //"man ezafe kardam bbakhsid" Gang+
-        return result;
+    public boolean loginAsAdmin(String input){
+        return true;
     }
 }
+//input ro split konam by space
+//username + pass
+//check pass in competency existance -> check pass
+//if wrong false
+// if correct true
+//delete user fel
+//use adminexist ke bebinam aslan admini vojood dare ya na chon faghat 1 admin darim
+//write testcases.
+
+
+
