@@ -29,7 +29,7 @@ public class LoginMenu extends Menu {
                 AdminMainMenu adminMainMenu = new AdminMainMenu(this,input.get(0));
                 processLoginController.loginAsAdmin(arrayListToString(input));
                 //todo link sign in to next menu from here
-                if (processLoginController.checkLoginSuccess(arrayListToString(input))){
+                if (processLoginController.loginAsAdmin(arrayListToString(input))){
                     System.out.println("You Signed in Successfully");
                     nextMenu=adminMainMenu;
                     nextMenu.run();
