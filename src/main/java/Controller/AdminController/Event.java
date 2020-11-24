@@ -40,7 +40,7 @@ public class Event {
         }
     }
 
-    public static void editEvent(String eventID, String field, String input) {
+    public void editEvent(String eventID, String field, String input) {
         eventDateChecker();
         Model.PlatoModel.Event event = eventFinderByEventID(eventID);
 
