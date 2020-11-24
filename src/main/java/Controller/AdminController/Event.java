@@ -7,28 +7,28 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Event {
-    public  void addEvent(String input) {
-        boolean pass= true;
+    public boolean addEvent(String input) {
+        boolean pass = true;
         String[] inputSpilt = input.split("\\s");
         LocalDate startDate = LocalDate.parse(inputSpilt[1]);
         LocalDate endDate = LocalDate.parse(inputSpilt[2]);
-        if (startDate.isBefore(endDate)){
+        if (startDate.isBefore(endDate)) {
             pass = false;
-            checkEventSuccess(false);
-
+            return false;
         }
-        if (pass){
+        if (pass) {
 //            if (Existence.checkEventExistence(Integer.parseInt(inputSpilt[0]))){
 //                pass = false;
-//                checkEventSuccess(false);
+//            return false;
 //            }
 
-            if (pass){
-                Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0],startDate,endDate,Long.parseLong(inputSpilt[3])));
-                checkEventSuccess(true);
+            if (pass) {
+                Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3])));
+                return true;
             }
 
         }
+        return false;
 
     }
 
@@ -147,7 +147,7 @@ public class Event {
         event.setScore(Long.parseLong(input));
     }
 
-    public static boolean checkEventSuccess(boolean pass){
+    public static boolean checkEventSuccess(boolean pass) {
         return pass;
     }
 
