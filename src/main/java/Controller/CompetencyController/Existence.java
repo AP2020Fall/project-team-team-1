@@ -1,9 +1,6 @@
 package Controller.CompetencyController;
 
-import Model.PlatoModel.Admin;
-import Model.PlatoModel.Event;
-import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
+import Model.PlatoModel.*;
 
 
 public class Existence {
@@ -58,6 +55,17 @@ public class Existence {
         boolean result = false;
         for (Event event : Event.getEvents()) {
             if (event.getEventID() == eventID){
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public static boolean checkGameExistence(String gameName){
+        boolean result = false;
+        for (Games game : Games.getGames()) {
+            if (game.getGameName().equals(gameName)){
                 result = true;
                 break;
             }
