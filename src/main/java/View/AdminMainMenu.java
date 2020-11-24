@@ -30,7 +30,8 @@ public class AdminMainMenu extends Menu {
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
                 getEventInfo(input);
-                adminEventController
+                adminEventController.addEvent(arrayListToString(input));
+
             }
         };
     }
