@@ -14,12 +14,14 @@ public class Player extends User {
     protected ArrayList<Integer> suggestedGamesID;
     private ArrayList<Message> receivedMessages;
     private ArrayList<String> favoritesGamesName;
+    private String lastPlayed;
 
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
         suggestedGamesID = new ArrayList<>();
         friendsRequests = new ArrayList<>();
         receivedMessages = new ArrayList<>();
+        this.lastPlayed = "";
         favoritesGamesName = new ArrayList<>();
         friends = new ArrayList<>();
         PlayerLog.addNewPlayerLog(new PlayerLog(userID, "DotsAndBoxes"));
@@ -93,5 +95,21 @@ public class Player extends User {
 
     public ArrayList<Integer> getSuggestedGamesID() {
         return suggestedGamesID;
+    }
+
+    public ArrayList<PlayerLog> getPlayerLog() {
+        return playerLog;
+    }
+
+    public void setPlayerLog(ArrayList<PlayerLog> playerLog) {
+        this.playerLog = playerLog;
+    }
+
+    public String getLastPlayed() {
+        return lastPlayed;
+    }
+
+    public void setLastPlayed(String lastPlayed) {
+        this.lastPlayed = lastPlayed;
     }
 }
