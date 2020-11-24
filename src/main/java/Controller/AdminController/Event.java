@@ -65,8 +65,11 @@ public class Event {
         }
 
     }
+    public void removeEventByAdminFromView(String eventID){
+        removeEvent(eventID);
+    }
 
-    public void removeEvent(String eventID) {
+    public static void removeEvent(String eventID) {
         if (Existence.checkEventExistence(Integer.parseInt(eventID))) {
             Model.PlatoModel.Event.events.remove(eventFinderByEventID(eventID));
         }
