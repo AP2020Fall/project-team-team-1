@@ -40,7 +40,7 @@ public class Friend {
 
     }
 
-    private void removeFriend(String username, String friendUsername) {
+    public static void removeFriend(String username, String friendUsername) {
         Player player = FindPlayerByInfo.findByUserName(username);
         Player friend = FindPlayerByInfo.findByUserName(friendUsername);
 
@@ -77,7 +77,10 @@ public class Friend {
     public static void showFriendProfile(String username, String friendUsername) {
         // if its her/his friend
         Player player = FindPlayerByInfo.findByUserName(username);
-
+        if (!userNameIsFriend(username, friendUsername)){
+            System.out.println(friendUsername+" is not "+username+" friend");
+            return;
+        }
         for (Player playerFriend : player.getFriends()) {
             if (playerFriend.getUserName().equals(friendUsername)) {
                 System.out.println("getUserID: " + playerFriend.getUserID() + " Username: " + playerFriend.getUserName() + " Name: " + playerFriend.getName() + " LastName: " + playerFriend.getLastName() + " Email: " + playerFriend.getEmail() + " Phone Number: " + playerFriend.getPhoneNum());
@@ -104,7 +107,7 @@ public class Friend {
         boolean result = false;
         Player player = FindPlayerByInfo.findByUserName(username);
 
-        for (Player playerFriend : player.getFriends()) {
+        for (Player playerFriend : player.getFriendsRequests()) {
             if (playerFriend.getUserName().equals(friendUsername)) {
                 result = true;
                 break;
