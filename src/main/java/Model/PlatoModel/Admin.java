@@ -6,8 +6,8 @@ public class Admin extends User {
     private static ArrayList<Admin> admins = new ArrayList<Admin>();
 
 
-    public Admin(String name, String lastName,  String userName, String password, String email, String phoneNum) {
-        super(name, lastName, 1000, userName, password, email, phoneNum);
+    public Admin(String name, String lastName,int userID,  String userName, String password, String email, String phoneNum) {
+        super(name, lastName, userID, userName, password, email, phoneNum);
 
     }
 
