@@ -1,12 +1,13 @@
 package Model.PlatoModel;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Player extends User {
     public static ArrayList<Player> players = new ArrayList<Player>();
     private double coin;
-    private Date registerDate;
+    private LocalDate registerDate;
     private ArrayList<Player> friends;
     private ArrayList<Player> friendsRequests;
     private ArrayList<PlayerLog> playerLog;
@@ -68,7 +69,13 @@ public class Player extends User {
 
     }
 
+    public LocalDate getRegisterDate() {
+        return registerDate;
+    }
 
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
 
     public ArrayList<Message> getReceivedMessages() {
         return receivedMessages;
