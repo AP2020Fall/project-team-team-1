@@ -12,7 +12,7 @@ public class Event {
         String[] inputSpilt = input.split("\\s");
         LocalDate startDate = LocalDate.parse(inputSpilt[1]);
         LocalDate endDate = LocalDate.parse(inputSpilt[2]);
-        if (startDate.isBefore(endDate)) {
+        if (startDate.isAfter(endDate)) {
             pass = false;
             return false;
         }
@@ -147,9 +147,6 @@ public class Event {
         event.setScore(Long.parseLong(input));
     }
 
-    public static boolean checkEventSuccess(boolean pass) {
-        return pass;
-    }
 
 
 }
