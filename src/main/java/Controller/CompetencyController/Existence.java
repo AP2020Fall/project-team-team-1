@@ -45,9 +45,9 @@ public class Existence {
     }
 
     public static boolean adminExistence() {
-        boolean result = false;
+        boolean result = true;
         if (Admin.getAdmins().isEmpty())
-            result = true;
+            result = false;
         return result;
     }
 
