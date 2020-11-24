@@ -30,7 +30,10 @@ public class AdminMainMenu extends Menu {
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
                 getEventInfo(input);
-                adminEventController.addEvent(arrayListToString(input));
+                if (adminEventController.addEvent(arrayListToString(input))){
+                    System.out.println("Add Event Successfully");
+                    parentMenu.run();
+                }else this.run();
 
             }
         };
@@ -64,7 +67,7 @@ public class AdminMainMenu extends Menu {
         }
         System.out.println("Please Enter The Score Of This Event : ");
         String score = scanner.nextLine();
-        eventInfo.add(score)
+        eventInfo.add(score);
 
 
     }
