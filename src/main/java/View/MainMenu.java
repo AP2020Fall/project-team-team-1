@@ -26,12 +26,12 @@ public class MainMenu extends Menu {
                 ArrayList<String> deleteInfo = new ArrayList<>();
                 getInfo(deleteInfo);
                 Delete.deleteUser(arrayListToString(deleteInfo));
-                if (){
-
-                }else {
-                    System.out.println("Something goes wrong Try Again mate!");
-                    this.run();
-                }
+//                if (){
+//
+//                }else {
+//                    System.out.println("Something goes wrong Try Again mate!");
+//                    this.run();
+//                }
             }
         };
     }
