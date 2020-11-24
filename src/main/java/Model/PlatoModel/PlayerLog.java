@@ -10,12 +10,14 @@ public class PlayerLog {
     private int userId;
     private int numberOfWins;
     private long takenScore;
+    private int numberOfLoses;
     public PlayerLog(int userId , String gameName){
         this.logID= logIdMaker();
         this.gameName = gameName;
         this.userId = userId ;
         this.numberOfGamePlayed = 0;
         this.numberOfWins = 0 ;
+        this.numberOfLoses = 0 ;
         this.takenScore = 0 ;
     }
 
@@ -64,5 +66,13 @@ public class PlayerLog {
     }
     public static void addNewPlayerLog(PlayerLog playerLog){
         playerLogs.add(playerLog);
+    }
+
+    public int getNumberOfLoses() {
+        return numberOfLoses;
+    }
+
+    public void setNumberOfLoses(int numberOfLoses) {
+        this.numberOfLoses = numberOfLoses;
     }
 }
