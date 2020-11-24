@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Event {
-    public boolean addEvent(String input) {
+    public static boolean addEvent(String input) {
         boolean pass = true;
         String[] inputSpilt = input.split("\\s");
         LocalDate startDate = LocalDate.parse(inputSpilt[1]);
@@ -40,7 +40,7 @@ public class Event {
         }
     }
 
-    public void editEvent(String eventID, String field, String input) {
+    public static void editEvent(String eventID, String field, String input) {
         eventDateChecker();
         Model.PlatoModel.Event event = eventFinderByEventID(eventID);
 

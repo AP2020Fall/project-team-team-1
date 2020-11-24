@@ -1,19 +1,19 @@
 package Controller.AdminController;
 
 public class Suggestion {
-    public void addSuggestion(String input) {
+    public static void addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
 //        new Model.PlatoModel.Suggestion();
 
     }
 
-    public void showSuggestion() {
+    public static void showSuggestion() {
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
             System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
         }
     }
 
-    public void removeSuggestion(String suggestionID) {
+    public static void removeSuggestion(String suggestionID) {
         Model.PlatoModel.Suggestion suggestion = null;
         suggestion = findSuggestionBySuggestionID(suggestionID);
 //        if (suggestion == null)

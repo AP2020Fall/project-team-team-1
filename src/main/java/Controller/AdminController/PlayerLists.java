@@ -5,13 +5,13 @@ import Model.PlatoModel.Player;
 
 public class PlayerLists {
 
-    public void showAllUsers() {
+    public static void showAllUsers() {
         for (Player player : Player.players) {
             System.out.println(player.getUserID());
         }
     }
 
-    public void showUsersByUserName(String userName) {
+    public static void showUsersByUserName(String userName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
 //        if (player == null)
 //            todo exception handling
