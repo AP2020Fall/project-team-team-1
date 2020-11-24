@@ -13,12 +13,12 @@ public class ViewPlatoBotMessages {
         }
 
     }
-    public static void showAdminSuggestions (String username){
-        Player player = FindPlayerByInfo.findByUserName(username);
-        for (Integer ID : player.getSuggestedGamesID()) {
-            System.out.println(Suggestion.findSuggestionBySuggestionID(String.valueOf(ID)));
-        }
-    }
+//    public static void showAdminSuggestions (String username){
+//        Player player = FindPlayerByInfo.findByUserName(username);
+//        for (Integer ID : player.getSuggestedGamesID()) {
+//            System.out.println(Suggestion.findSuggestionBySuggestionID(String.valueOf(ID)));
+//        }
+//    }
 
 
 }
