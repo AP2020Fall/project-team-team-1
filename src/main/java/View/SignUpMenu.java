@@ -103,14 +103,7 @@ public class SignUpMenu extends Menu {
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
         }
-        System.out.println("Please Enter Your Age :");
-        while (true){
-            String Age = scanner.nextLine();
-            if (Validation.ageIsValid(Age)){
-                adminInfo.add(Age);
-                break;
-            }
-        }
+
     }
     private void getPlayerInfo(ArrayList<String> playerInfo){
         System.out.println("Hello My Friend Welcome to Your New Home (: ");
@@ -162,14 +155,7 @@ public class SignUpMenu extends Menu {
                 break;
             }else System.out.println("Please Enter a Valid PhoneNumber!");
         }
-        System.out.println("Please Enter Your Age :");
-        while (true){
-            String Age = scanner.nextLine();
-            if (Validation.ageIsValid(Age)){
-                playerInfo.add(Age);
-                break;
-            }
-        }
+
     }
 
     public static String arrayListToString(ArrayList<String> arrayList){
