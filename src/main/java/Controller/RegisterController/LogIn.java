@@ -1,24 +1,44 @@
 package Controller.RegisterController;
 
+import Controller.CompetencyController.Existence;
+
 public class LogIn {
 
     //String[] splitInput = input.split("\\s");
 
-    public boolean loginAsPlayer(String input){
+    public boolean loginAsPlayer(String input) {
+        String[] inputSplit = input.split("\\s");
+
+        if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
+            System.out.println("INVALID USERNAME");
+            return false;
+        }
+
+        if (!(Existence.checkPassword(inputSplit[0], inputSplit[1]))) {
+            System.out.println("WRONG PASSWORD");
+            return false;
+        }
+        System.out.println("LOGIN SUCCESSFULLY");
         return true;
     }
-    public boolean loginAsAdmin(String input){
+
+    public boolean loginAsAdmin(String input) {
+
+        String[] inputSplit = input.split("\\s");
+
+        if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
+            System.out.println("INVALID USERNAME");
+            return false;
+        }
+
+        if (!(Existence.checkPassword(inputSplit[0], inputSplit[1]))) {
+            System.out.println("WRONG PASSWORD");
+            return false;
+        }
+        System.out.println("LOGIN SUCCESSFULLY");
         return true;
     }
 }
-//input ro split konam by space
-//username + pass
-//check pass in competency existance -> check pass
-//if wrong false
-// if correct true
-//delete user fel
-//use adminexist ke bebinam aslan admini vojood dare ya na chon faghat 1 admin darim
-//write testcases.
 
 
 
