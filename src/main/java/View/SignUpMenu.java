@@ -11,7 +11,9 @@ import java.util.HashMap;
 
 //TODO link signup menu and proper menu
 public class SignUpMenu extends Menu {
-    public SignUpMenu( Menu parentMenu) {
+    private Menu LoginMenu;
+
+    public SignUpMenu(Menu parentMenu) {
         super("Signup Menu", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,registerAsAdmin());
@@ -42,9 +44,12 @@ public class SignUpMenu extends Menu {
 
             @Override
             public void execute() {
+                Menu nextMenu = null;
                 ArrayList<String> playerInfo = new ArrayList<>();
                 getPlayerInfo(playerInfo);
                 processSignupController.addPlayer(arrayListToString(playerInfo));
+                nextMenu=LoginMenu;
+                nextMenu.run();
             }
         };
     }
