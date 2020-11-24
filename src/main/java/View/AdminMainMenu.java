@@ -3,7 +3,8 @@ package View;
 import java.util.HashMap;
 
 public class AdminMainMenu extends Menu {
-    public AdminMainMenu( Menu parentMenu) {
+    String username;
+    public AdminMainMenu( Menu parentMenu,String username) {
         super("Admin Main Menu", parentMenu);
         HashMap<Integer,Menu> submenus= new HashMap<>();
         submenus.put(1,addEvent());
@@ -11,6 +12,8 @@ public class AdminMainMenu extends Menu {
         submenus.put(3,addSuggestion());
         submenus.put(4,viewSuggestion());
         submenus.put(5,viewUsers());
+        this.setSubmenus(submenus);
+        this.username=username;
     }
     private Menu addEvent(){
         return new Menu("add Event",this) {

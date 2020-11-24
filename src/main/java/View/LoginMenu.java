@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginMenu extends Menu {
-    public LoginMenu( Menu parentMenu) {
+
+    public LoginMenu(Menu parentMenu) {
         super("login Menu", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,signInAsAdminMenu());
@@ -22,10 +23,20 @@ public class LoginMenu extends Menu {
 
             @Override
             public void execute() {
+                Menu nextMenu = null;
                 ArrayList<String> input = new ArrayList<>();
                 getInputAdmin(input);
+                AdminMainMenu adminMainMenu = new AdminMainMenu(this,input.get(0));
                 processLoginController.loginAsAdmin(arrayListToString(input));
                 //todo link sign in to next menu from here
+                if (processLoginController.checkLoginSuccess(arrayListToString(input))){
+                    System.out.println("You Signed in Successfully");
+                    nextMenu=adminMainMenu;
+                    nextMenu.run();
+                }else{
+                    System.out.println("Username Or Password is Invalid!");
+                    this.run();
+                }
             }
         };
     }
@@ -39,8 +50,9 @@ public class LoginMenu extends Menu {
             @Override
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
-                getInputAdmin(input);
-                processLoginController.loginAsAdmin(arrayListToString(input));
+                getInputPlayer(input);
+                processLoginController.loginAsPlayer(arrayListToString(input));
+                //todo link to player menu
             }
         };
     }

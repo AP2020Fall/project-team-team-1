@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.*;
 import Controller.AdminController.Edit;
 import Controller.AdminController.Suggestion;
+import Controller.GeneralController.UserController;
 import Controller.PlayerController.*;
 import Controller.RegisterController.Delete;
 import Controller.RegisterController.LogIn;
@@ -36,6 +37,7 @@ public abstract class Menu {
     protected Delete processDeleteAccountController;
     protected LogIn processLoginController;
     protected SignUp processSignupController;
+    protected UserController userController;
 //------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
