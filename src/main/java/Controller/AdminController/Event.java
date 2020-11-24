@@ -91,7 +91,7 @@ public class Event {
         //todo if we have waiting list for events we should put it here
     }
 
-    private static Model.PlatoModel.Event eventFinderByEventID(String eventID) {
+    public static Model.PlatoModel.Event eventFinderByEventID(String eventID) {
         Model.PlatoModel.Event resultEvent = null;
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.getEvents()) {
             if (event.getEventID() == Integer.parseInt(eventID)) {
