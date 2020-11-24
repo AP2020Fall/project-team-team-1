@@ -22,6 +22,7 @@ public class Player extends User {
         friendsRequests = new ArrayList<>();
         receivedMessages = new ArrayList<>();
         this.lastPlayed = "";
+        this.registerDate = LocalDate.now();
         favoritesGamesName = new ArrayList<>();
         friends = new ArrayList<>();
         PlayerLog.addNewPlayerLog(new PlayerLog(userID, "DotsAndBoxes"));
