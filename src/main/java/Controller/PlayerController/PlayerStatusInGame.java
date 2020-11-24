@@ -2,6 +2,8 @@ package Controller.PlayerController;
 
 import Model.PlatoModel.Player;
 
+import java.util.*;
+
 public class PlayerStatusInGame {
 
 
@@ -79,4 +81,19 @@ public class PlayerStatusInGame {
         long score = player.getPlayerLog().get(index).getTakenScore();
         System.out.println("Level : " + score);
     }
+
+    private static LinkedHashMap<String, Integer> sortingFunction(HashMap vorodi) {
+
+        TreeMap<String, Integer> sortedAlphabet = new TreeMap<>(vorodi);
+
+        Map<String, Integer> unSortedMap = sortedAlphabet;
+
+        LinkedHashMap<String, Integer> SortedMapNumber = new LinkedHashMap<>();
+        unSortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> SortedMapNumber.put(x.getKey(), x.getValue()));
+
+        return SortedMapNumber;
+
+    }
+
 }
