@@ -11,7 +11,11 @@ public class Friend {
 
     }
 
-    private void addFriends(String username){
+    private void addFriends(String username,String friendUsername){
+        Player player = FindPlayerByInfo.findByUserName(username);
+        Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(friendUsername);
+
+        playerHowReceivedRequests.getFriendsRequests().add(player);
 
     }
     private void removeFriend(String username){

@@ -43,6 +43,14 @@ public class Player extends User {
 
     }
 
+    public void setFriends(ArrayList<Player> friends) {
+        this.friends = friends;
+    }
+
+    public static void setFriendsRequests(ArrayList<Player> friendsRequests) {
+        Player.friendsRequests = friendsRequests;
+    }
+
     public ArrayList<String> getFavoritesGamesName() {
         return favoritesGamesName;
     }
