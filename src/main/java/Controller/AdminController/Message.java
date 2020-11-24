@@ -6,7 +6,7 @@ import Model.PlatoModel.Player;
 
 public class Message {
 
-    public static void sendMassage(String username ,String text){
+    public void sendMassage(String username ,String text){
         Player player = FindPlayerByInfo.findByUserName(username);
 //        if (player == null)
 //            todo exception handling
@@ -16,7 +16,7 @@ public class Message {
 
     }
 
-    public static void showPlayerMassage(String username){
+    public void showPlayerMassage(String username){
         Player player = FindPlayerByInfo.findByUserName(username);
 //        if (player == null)
 //            todo exception handling

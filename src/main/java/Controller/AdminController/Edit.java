@@ -5,7 +5,7 @@ import Controller.CompetencyController.Validation;
 import Model.PlatoModel.Admin;
 
 public class Edit {
-    public static void editField(String field, String input) {
+    public void editField(String field, String input) {
         if (field.trim().equalsIgnoreCase("name")) {
             editName(input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
@@ -92,7 +92,7 @@ public class Edit {
             Admin.getAdmins().get(0).setPhoneNum(input);
     }
 
-    public static void editPassword(String oldPassword, String newPassword) {
+    public void editPassword(String oldPassword, String newPassword) {
         boolean pass = false;
         pass = Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword);
         if (!pass)
