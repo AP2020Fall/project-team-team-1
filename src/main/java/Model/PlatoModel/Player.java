@@ -8,7 +8,7 @@ public class Player extends User {
     private double coin;
     private Date registerDate;
     private ArrayList<Player> friends;
-    private static ArrayList<Player> friendsRequests;
+    private ArrayList<Player> friendsRequests;
     private ArrayList<PlayerLog> playerLog;
     protected ArrayList<Integer> suggestedGamesID;
     private ArrayList<Message> receivedMessages;
@@ -47,8 +47,12 @@ public class Player extends User {
         this.friends = friends;
     }
 
-    public static void setFriendsRequests(ArrayList<Player> friendsRequests) {
-        Player.friendsRequests = friendsRequests;
+    public ArrayList<Player> getFriendsRequests() {
+        return friendsRequests;
+    }
+
+    public void setFriendsRequests(ArrayList<Player> friendsRequests) {
+        this.friendsRequests = friendsRequests;
     }
 
     public ArrayList<String> getFavoritesGamesName() {
@@ -78,9 +82,7 @@ public class Player extends User {
         return players;
     }
 
-    public static ArrayList<Player> getFriendsRequests() {
-        return friendsRequests;
-    }
+
 
     public ArrayList<Integer> getSuggestedGamesID() {
         return suggestedGamesID;
