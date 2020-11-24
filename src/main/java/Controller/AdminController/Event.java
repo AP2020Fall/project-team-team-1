@@ -44,27 +44,29 @@ public class Event {
         eventDateChecker();
         Model.PlatoModel.Event event = eventFinderByEventID(eventID);
 
-        if (event == null)
+        if (event == null) {
             //todo exception handling
 
-            if (!Existence.checkEventExistence(Integer.parseInt(eventID))) {
-                System.out.println("There is no Event with this it");
-            } else {
-                if (field.trim().equalsIgnoreCase("GameName")) {
-                    editGameName(event, input);
-                } else if (field.trim().equalsIgnoreCase("StartDate")) {
-                    editStartDate(event, input);
-                } else if (field.trim().equalsIgnoreCase("EndDate")) {
-                    editEndDate(event, input);
-                } else if (field.trim().equalsIgnoreCase("Score")) {
-                    editScore(event, input);
-                } else
-                    System.out.println("Field for edit is InValid !");
-            }
+        }
+
+        if (!Existence.checkEventExistence(Integer.parseInt(eventID))) {
+            System.out.println("There is no Event with this it");
+        } else {
+            if (field.trim().equalsIgnoreCase("GameName")) {
+                editGameName(event, input);
+            } else if (field.trim().equalsIgnoreCase("StartDate")) {
+                editStartDate(event, input);
+            } else if (field.trim().equalsIgnoreCase("EndDate")) {
+                editEndDate(event, input);
+            } else if (field.trim().equalsIgnoreCase("Score")) {
+                editScore(event, input);
+            } else
+                System.out.println("Field for edit is InValid !");
+        }
 
     }
 
-    public static void removeEvent(String eventID) {
+    public void removeEvent(String eventID) {
         if (Existence.checkEventExistence(Integer.parseInt(eventID))) {
             Model.PlatoModel.Event.events.remove(eventFinderByEventID(eventID));
         }
@@ -140,13 +142,12 @@ public class Event {
         //todo exception handling
 
         if (pass)
-            event.setStartDate(endDate);
+            event.setEndDate(endDate);
     }
 
     protected static void editScore(Model.PlatoModel.Event event, String input) {
         event.setScore(Long.parseLong(input));
     }
-
 
 
 }
