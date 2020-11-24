@@ -38,14 +38,13 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private void getEventInfo(ArrayList arrayList){
+    private void getEventInfo(ArrayList<String> arrayList){
         //todo need validation
         System.out.println("please enter the game : ");
-        ArrayList<String> eventInfo = new ArrayList<>();
         while (true){
             String game = scanner.nextLine();
             if (game.equalsIgnoreCase("battleShip")||game.equalsIgnoreCase("dotsAndBoxes")){
-                eventInfo.add(game);
+                arrayList.add(game);
                 break;
             }
         }
@@ -53,7 +52,7 @@ public class AdminMainMenu extends Menu {
         while (true){
             String startDate = scanner.nextLine();
             if (Validation.dateIsValid(startDate)){
-                eventInfo.add(startDate);
+                arrayList.add(startDate);
                 break;
             }
         }
@@ -61,20 +60,42 @@ public class AdminMainMenu extends Menu {
         while (true){
             String endDate = scanner.nextLine();
             if (Validation.dateIsValid(endDate)){
-                eventInfo.add(endDate);
+                arrayList.add(endDate);
                 break;
             }
         }
         System.out.println("Please Enter The Score Of This Event : ");
         String score = scanner.nextLine();
-        eventInfo.add(score);
+        arrayList.add(score);
 
 
     }
     private Menu addSuggestion(){
         return new Menu("add Suggestion",this) {
+            @Override
+            public void show() {
+                System.out.println("Please Enter Your Suggestion");
+            }
 
+            @Override
+            public void execute() {
+                ArrayList<String> input = new ArrayList<>();
+                getEventInfo(input);
+
+            }
         };
+    }
+    private void getSuggestionInfo(ArrayList<String> arrayList){
+        System.out.println("Please Enter The Username");
+        String username = scanner.nextLine();
+        arrayList.add(username);
+        String game = scanner.nextLine();
+        while (true){
+            if (game.equalsIgnoreCase("battleSea") || game.equalsIgnoreCase("dotsAndBoxes")) {
+                arrayList.add(game);
+                break;
+            }
+        }
     }
     private Menu viewSuggestion(){
         return new Menu("View Suggestion",this) {
