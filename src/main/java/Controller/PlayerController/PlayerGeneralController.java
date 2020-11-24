@@ -9,7 +9,7 @@ public class PlayerGeneralController {
         Edit.editField(username, field, input);
     }
 
-    public static void editPassword(Player player, String oldPassword, String newPassword) {
+    public void editPassword(Player player, String oldPassword, String newPassword) {
         Edit.editPassword(player, oldPassword, newPassword);
     }
     /***************************************************************************************************/
@@ -84,71 +84,71 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public static void showBasicInformation(String userName) {
+    public void showBasicInformation(String userName) {
         PlayerInfo.showBasicInformation(userName);
     }
 
-    public static void showUserAge(String userName) {
+    public void showUserAge(String userName) {
         PlayerInfo.showUserAge(userName);
     }
 
-    public static void showUserGamesStatistics(String userName, String gameName) {
+    public void showUserGamesStatistics(String userName, String gameName) {
         PlayerInfo.showUserGamesStatistics(userName, gameName);
     }
 
-    public static void showUserLastPlayed(String userName) {
+    public void showUserLastPlayed(String userName) {
         PlayerInfo.showUserLastPlayed(userName);
     }
 
-    public static void showPoint(String userName) {
+    public void showPoint(String userName) {
         PlayerInfo.showPoint(userName);
     }
     /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
-    public static void showScoreboardInThisGame(String gameName) {
+    public void showScoreboardInThisGame(String gameName) {
         PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
 
-    public static void showGameLogInThisGame(String userName, String gameName) {
+    public void showGameLogInThisGame(String userName, String gameName) {
         PlayerStatusInGame.showGameLogInThisGame(userName, gameName);
     }
 
-    public static void numberOfWinsInThisGame(String userName, String gameName) {
+    public void numberOfWinsInThisGame(String userName, String gameName) {
         PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
     }
 
-    public static void numberOfGamePlayedInThisGame(String userName, String gameName) {
+    public void numberOfGamePlayedInThisGame(String userName, String gameName) {
         PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
     }
 
-    public static void showPlayerPointsInThisGame(String userName, String gameName) {
+    public void showPlayerPointsInThisGame(String userName, String gameName) {
         PlayerStatusInGame.showPlayerPointsInThisGame(userName, gameName);
     }
     /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
-    public static void findGameForRun(String playerUserName, String gameName, String score) {
+    public void findGameForRun(String playerUserName, String gameName, String score) {
         RunGame.findGameForRun(playerUserName, gameName, score);
     }
     /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
-    public static void showSuggestion(String username) {
+    public void showSuggestion(String username) {
         Suggestion.showSuggestion(username);
     }
 
-    public static void playSuggestedGame(String userName, String suggestionId) {
+    public void playSuggestedGame(String userName, String suggestionId) {
         Suggestion.playSuggestedGame(userName, suggestionId);
     }
     /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
-    public static void viewBotMessages(String username) {
+    public void viewBotMessages(String username) {
         ViewPlatoBotMessages.viewBotMessages(username);
     }
     /***************************************************************************************************/
