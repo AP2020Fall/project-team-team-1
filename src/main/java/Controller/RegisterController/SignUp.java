@@ -5,6 +5,8 @@ import Controller.CompetencyController.Existence;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 
+import java.util.Random;
+
 public class SignUp {
     public boolean addAdmin(String adminInfo) {
 
@@ -33,9 +35,14 @@ public class SignUp {
             return false;
         }
 
-        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], 2000, playerInfoSplit[2],playerInfoSplit[3], playerInfoSplit[4],playerInfoSplit[5]));
+        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[3], playerInfoSplit[4],playerInfoSplit[5]));
         //todo user must be fixed! we dont have to get a username to signup
         return true;
+    }
+
+    private int randomUserId(int min , int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
 }
 
