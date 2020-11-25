@@ -1,6 +1,7 @@
 package Controller.RegisterController;
 
 import Controller.CompetencyController.Existence;
+import Model.PlatoModel.Admin;
 
 public class LogIn {
 
@@ -26,7 +27,12 @@ public class LogIn {
 
         String[] inputSplit = input.split("\\s");
 
-        if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
+        if (!Existence.adminExistence()) {
+            System.out.println("There is no Admin Yet!");
+            return false;
+        }
+
+        if (!(Admin.getAdmins().get(0).getUserName().equals(inputSplit[0]))) {
             System.out.println("INVALID USERNAME");
             return false;
         }

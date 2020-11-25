@@ -17,7 +17,7 @@ public class SignUp {
             return false;
         }
 
-        Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [3], adminInfoSplit[4], adminInfoSplit[5]));
+        Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [4], adminInfoSplit[3], adminInfoSplit[5]));
         return true;
     }
 
@@ -35,7 +35,7 @@ public class SignUp {
             return false;
         }
 
-        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[3], playerInfoSplit[4],playerInfoSplit[5]));
+        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[4], playerInfoSplit[3],playerInfoSplit[5]));
         //todo user must be fixed! we dont have to get a username to signup
         return true;
     }
