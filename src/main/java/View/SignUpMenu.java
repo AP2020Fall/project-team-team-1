@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.RegisterController.SignUp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,9 +30,14 @@ public class SignUpMenu extends Menu {
 
             @Override
             public void execute() {
+                Menu nextMenu = null;
                 ArrayList<String> adminInfo = new ArrayList<>();
                 getAdminInformation(adminInfo);
-                processSignupController.addAdmin(arrayListToString(adminInfo));
+                if (processSignupController.addAdmin(arrayListToString(adminInfo))){
+                    System.out.println("Admin Registered Successfully");
+                    this.parentMenu.parentMenu.submenus.get(1).run();
+                }else this.run();
+
             }
         };
     }

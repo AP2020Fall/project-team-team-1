@@ -18,26 +18,26 @@ public abstract class Menu {
     protected Menu parentMenu;
     public static Scanner scanner;
 //---------------------------------------Controller//-------------------------------------------
-    protected Coin coinController;
-    protected Edit adminEditController;
-    protected Event adminEventController;
-    protected Message adminMessageController;
-    protected PlayerLists adminPlayerListController;
-    protected Controller.PlayerController.Edit playerEditController;
-    protected FavoriteGames playerFavoritesGame;
-    protected FindPlayerByInfo playerFindPlayerByInfoController;
-    protected Friend playerFriendController;
-    protected JoinEvent playerJoinEventController;
-    protected PlayerInfo playerInfoController;
-    protected PlayerStatusInGame playerStatusInGameController;
-    protected RunGame playerRunGameController;
-    protected Suggestion adminSuggestionController;
-    protected Controller.PlayerController.Suggestion playerSuggestionController;
-    protected ViewPlatoBotMessages playerViewPlatoBotsMassagesController;
-    protected Delete processDeleteAccountController;
-    protected LogIn processLoginController;
-    protected SignUp processSignupController;
-    protected UserController userController;
+    protected static Coin coinController = new Coin();
+    protected static Edit adminEditController = new Edit();
+    protected static Event adminEventController = new Event();
+    protected static Message adminMessageController = new Message();
+    protected static PlayerLists adminPlayerListController = new PlayerLists();
+    protected static Controller.PlayerController.Edit playerEditController = new Controller.PlayerController.Edit();
+    protected static FavoriteGames playerFavoritesGame = new FavoriteGames();
+    protected static FindPlayerByInfo playerFindPlayerByInfoController = new FindPlayerByInfo();
+    protected static Friend playerFriendController = new Friend();
+    protected static JoinEvent playerJoinEventController = new JoinEvent();
+    protected static PlayerInfo playerInfoController = new PlayerInfo();
+    protected static PlayerStatusInGame playerStatusInGameController = new PlayerStatusInGame();
+    protected static RunGame playerRunGameController = new RunGame();
+    protected static Suggestion adminSuggestionController = new Suggestion();
+    protected static Controller.PlayerController.Suggestion playerSuggestionController = new Controller.PlayerController.Suggestion();
+    protected static ViewPlatoBotMessages playerViewPlatoBotsMassagesController = new ViewPlatoBotMessages();
+    protected static Delete processDeleteAccountController = new Delete();
+    protected static LogIn processLoginController = new LogIn();
+    protected static SignUp processSignupController = new SignUp();
+    protected static UserController userController = new UserController();
 //------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
