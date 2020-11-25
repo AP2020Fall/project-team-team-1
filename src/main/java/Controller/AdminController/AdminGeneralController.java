@@ -47,8 +47,8 @@ public class AdminGeneralController {
     /*****************************************************************************************************/
 
     /**********************************************SUGGESTION**********************************************/
-    public void addSuggestion(String input) {
-        Suggestion.addSuggestion(input);
+    public boolean addSuggestion(String input) {
+        return Suggestion.addSuggestion(input);
     }
 
     public void showSuggestion() {

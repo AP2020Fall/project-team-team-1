@@ -1,5 +1,6 @@
 package View;
 
+import Controller.AdminController.Suggestion;
 import Controller.CompetencyController.Validation;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class AdminMainMenu extends Menu {
                 arrayList.add(startDate);
                 break;
             }
+            else System.out.println("NOT VALID ENTER AGAIN!");
         }
         System.out.println("Please Enter End Date : ");
         while (true){
@@ -62,7 +64,7 @@ public class AdminMainMenu extends Menu {
             if (Validation.dateIsValid(endDate)){
                 arrayList.add(endDate);
                 break;
-            }
+            }else System.out.println("NOT VALID ENTER AGAIN!");
         }
         System.out.println("Please Enter The Score Of This Event : ");
         String score = scanner.nextLine();
@@ -80,7 +82,14 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
-                getEventInfo(input);
+                getSuggestionInfo(input);
+                if (adminGeneralController.addSuggestion(arrayListToString(input))){
+                    System.out.println("Suggestion Added Successfully");
+                    this.parentMenu.run();
+                }else {
+                    System.out.println("NOT VALID ENTER AGAIN!");
+                    this.run();
+                }
 
             }
         };
@@ -91,15 +100,24 @@ public class AdminMainMenu extends Menu {
         arrayList.add(username);
         String game = scanner.nextLine();
         while (true){
-            if (game.equalsIgnoreCase("battleSea") || game.equalsIgnoreCase("dotsAndBoxes")) {
+            if (game.equalsIgnoreCase("battleShip") || game.equalsIgnoreCase("dotsAndBoxes")) {
                 arrayList.add(game);
                 break;
-            }
+            }else System.out.println("NOT VALID ENTER AGAIN!");
         }
     }
     private Menu viewSuggestion(){
         return new Menu("View Suggestion",this) {
+
+            @Override
+            public void execute() {
+                adminGeneralController.addSuggestion(getSuggestionID());
+            }
         };
+    }
+    private String getSuggestionID(){
+        String suggestionID=scanner.nextLine();
+        return suggestionID;
     }
     private Menu viewUsers(){
         return new Menu("view all users",this) {

@@ -1,10 +1,11 @@
 package Controller.AdminController;
 
 public class Suggestion {
-    public static void addSuggestion(String input) {
+    public static boolean addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
 //        new Model.PlatoModel.Suggestion();
-
+        boolean result = false;
+        return result;
     }
 
     public static void showSuggestion() {

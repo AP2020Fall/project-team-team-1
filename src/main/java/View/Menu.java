@@ -38,6 +38,7 @@ public abstract class Menu {
     protected static LogIn processLoginController = new LogIn();
     protected static SignUp processSignupController = new SignUp();
     protected static UserController userController = new UserController();
+    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
 //------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
