@@ -25,12 +25,12 @@ public class SignUp {
 
         String[] playerInfoSplit = playerInfo.split("\\s");
 
-        if ( !( Existence.checkUserNameExistence(playerInfoSplit[2]))){
+        if ( ( Existence.checkUserNameExistence(playerInfoSplit[2]))){
             System.out.println("THIS USERNAME ALREADY BELONGS TO A USER");
             return false;
         }
 
-        if(!( Existence.checkEmailExistence(playerInfoSplit[4]))){
+        if(( Existence.checkEmailExistence(playerInfoSplit[4]))){
             System.out.println("THIS EMAIL ALREADY BELONGS TO A USER");
             return false;
         }

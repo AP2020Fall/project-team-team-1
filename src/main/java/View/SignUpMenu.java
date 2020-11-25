@@ -30,7 +30,6 @@ public class SignUpMenu extends Menu {
 
             @Override
             public void execute() {
-                Menu nextMenu = null;
                 ArrayList<String> adminInfo = new ArrayList<>();
                 getAdminInformation(adminInfo);
                 if (processSignupController.addAdmin(arrayListToString(adminInfo))){
@@ -50,12 +49,12 @@ public class SignUpMenu extends Menu {
 
             @Override
             public void execute() {
-                Menu nextMenu = null;
                 ArrayList<String> playerInfo = new ArrayList<>();
                 getPlayerInfo(playerInfo);
-                processSignupController.addPlayer(arrayListToString(playerInfo));
-                nextMenu=LoginMenu;
-                nextMenu.run();
+                if (processSignupController.addPlayer(arrayListToString(playerInfo))){
+                    System.out.println("Player Registered Successfully");
+                    this.parentMenu.parentMenu.submenus.get(1).run();
+                }else this.run();
             }
         };
     }
