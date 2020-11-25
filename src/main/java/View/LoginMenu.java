@@ -27,7 +27,7 @@ public class LoginMenu extends Menu {
                 ArrayList<String> input = new ArrayList<>();
                 getInputAdmin(input);
                 AdminMainMenu adminMainMenu = new AdminMainMenu(this,input.get(0));
-                processLoginController.loginAsAdmin(arrayListToString(input));
+//                processLoginController.loginAsAdmin(arrayListToString(input));
                 if (processLoginController.loginAsAdmin(arrayListToString(input))){
                     System.out.println("You Signed in Successfully");
                     nextMenu=adminMainMenu;
