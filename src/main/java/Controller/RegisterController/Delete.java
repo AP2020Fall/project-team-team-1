@@ -1,10 +1,10 @@
 package Controller.RegisterController;
 
 
-import Controller.CompetencyController.Existence;
-import Controller.PlayerController.FindPlayerByInfo;
-import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
+        import Controller.CompetencyController.Existence;
+        import Controller.PlayerController.FindPlayerByInfo;
+        import Model.PlatoModel.Player;
+        import Model.PlatoModel.User;
 
 public class Delete {
     public static boolean deleteUser(String input) {
