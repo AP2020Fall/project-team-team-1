@@ -9,7 +9,7 @@ import org.junit.Test;
 public class DeleteTest {
     @Test
     public void testDelete(){
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007pass","yasminkad@gmail.com", "09123334455");
+        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007pass","yasmiinkad@gmail.com", "09129749527");
         Player.players.add(playerYasmin);
         User.users.add(playerYasmin);
 
