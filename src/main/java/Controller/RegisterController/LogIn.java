@@ -5,7 +5,6 @@ import Model.PlatoModel.Admin;
 
 public class LogIn {
 
-    //String[] splitInput = input.split("\\s");
 
     public boolean loginAsPlayer(String input) {
         String[] inputSplit = input.split("\\s");

@@ -2,7 +2,6 @@ package Controller.RegisterController;
 
 
 import Controller.CompetencyController.Existence;
-import Controller.CompetencyController.Validation;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
