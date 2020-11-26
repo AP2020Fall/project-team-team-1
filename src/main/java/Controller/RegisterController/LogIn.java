@@ -45,6 +45,3 @@ public class LogIn {
         return true;
     }
 }
-
-
-
