@@ -1,6 +1,7 @@
 package RegisterController;
 
 import Controller.PlayerController.FindPlayerByInfo;
+import Controller.RegisterController.Delete;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 import org.junit.Assert;
@@ -13,9 +14,7 @@ public class DeleteTest {
         Player.players.add(playerYasmin);
         User.users.add(playerYasmin);
 
-        Player player = FindPlayerByInfo.findByUserName("yamsiin");
-        Player.players.remove(player);
-        User.users.remove(player);
+        Delete.deleteUser("yamsiin 007pass");
 
         Assert.assertFalse(Player.players.contains(playerYasmin));
         Assert.assertFalse(User.users.contains(playerYasmin));
