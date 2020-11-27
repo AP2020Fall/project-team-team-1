@@ -16,6 +16,7 @@ public class Suggestion {
         playerName.suggestedGamesID.add(suggestionID);
     }
 
+
     public static ArrayList<Suggestion> getAllSuggestions() {
         return allSuggestions;
     }
@@ -36,5 +37,12 @@ public class Suggestion {
         allSuggestions.add(suggestion);
     }
 
-
+    @Override
+    public String toString() {
+        return "Suggestion{" +
+                "suggestionID=" + suggestionID +
+                ", playerName=" + playerName +
+                ", suggestedGame='" + suggestedGame + '\'' +
+                '}';
+    }
 }
