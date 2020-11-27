@@ -1,5 +1,6 @@
 package Controller.AdminController;
 
+import Controller.Exception.InvalidDateException;
 import junit.framework.TestCase;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ public class EventTest extends TestCase {
         Model.PlatoModel.Event.addNewEvent(event);
     }
 
-    public void testEditEvent() {
+    public void testEditEvent() throws InvalidDateException {
         Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"),LocalDate.parse("2020-11-26"),50);
         Model.PlatoModel.Event.addNewEvent(event1);
 

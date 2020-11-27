@@ -2,13 +2,16 @@ package Controller.PlayerController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPasswordException;
+import Controller.Exception.InvalidPhoneNumberException;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField(String username, String field, String input) throws InvalidNameException {
+    public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (field.trim().equalsIgnoreCase("name")) {
@@ -71,7 +74,7 @@ public class Edit {
         }
     }
 
-    public static void editPassword(Player player, String oldPassword, String newPassword) {
+    public static void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException {
         boolean pass = false;
         pass = Existence.checkPassword(player.getUserName(), oldPassword);
         if (!pass)
@@ -95,7 +98,7 @@ public class Edit {
         }
     }
 
-    protected static void editEmail(Player player, String input) {
+    protected static void editEmail(Player player, String input) throws InvalidEmailException {
         boolean pass = false;
         pass = Validation.emailIsValid(input);
         if (!pass)
@@ -116,7 +119,7 @@ public class Edit {
         }
     }
 
-    protected static void editPhoneNumber(Player player, String input) {
+    protected static void editPhoneNumber(Player player, String input) throws InvalidPhoneNumberException {
         boolean pass = false;
         pass = Validation.phoneNumberIsValid(input);
         if (!pass)

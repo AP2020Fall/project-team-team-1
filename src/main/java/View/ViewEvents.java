@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Exception.InvalidDateException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,7 +17,11 @@ public class ViewEvents extends Menu {
             public void execute() {
                 ArrayList<String> editInfo = new ArrayList<>();
                 getEditEventInfo(editInfo);
-                adminGeneralController.editEvent(arrayListToString(editInfo));
+                try {
+                    adminGeneralController.editEvent(arrayListToString(editInfo));
+                } catch (InvalidDateException e) {
+                    System.out.println(e.getMessage());
+                }
                 this.parentMenu.run();
             }
         };

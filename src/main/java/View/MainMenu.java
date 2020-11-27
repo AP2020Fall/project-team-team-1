@@ -1,6 +1,8 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidPasswordException;
+import Controller.Exception.InvalidUserNameException;
 import Controller.RegisterController.Delete;
 
 import java.util.ArrayList;
@@ -9,13 +11,14 @@ import java.util.HashMap;
 public class MainMenu extends Menu {
     public MainMenu() {
         super("Main Menu", null);
-        HashMap<Integer,Menu> submenus = new HashMap<>();
-        submenus.put(1,new LoginMenu(this));
-        submenus.put(2,new SignUpMenu(this));
+        HashMap<Integer, Menu> submenus = new HashMap<>();
+        submenus.put(1, new LoginMenu(this));
+        submenus.put(2, new SignUpMenu(this));
         this.setSubmenus(submenus);
     }
-    private Menu DeleteUser(){
-        return new Menu("Delete User",this) {
+
+    private Menu DeleteUser() {
+        return new Menu("Delete User", this) {
             @Override
             public void show() {
                 System.out.println("You R About To Delete Your Account");
@@ -35,21 +38,30 @@ public class MainMenu extends Menu {
             }
         };
     }
-    private void getInfo(ArrayList info){
+
+    private void getInfo(ArrayList info) {
         System.out.println("Please Enter Username : ");
-        while (true){
+        while (true) {
             String username = scanner.nextLine();
-            if (Validation.usernameIsValid(username)){
+            try {
+                Validation.usernameIsValid(username);
                 info.add(username);
                 break;
+
+            } catch (InvalidUserNameException e) {
+                System.out.println(e.getMessage());
             }
         }
         System.out.println("Please Enter password : ");
-        while (true){
+        while (true) {
             String password = scanner.nextLine();
-            if (Validation.passwordIsValid(password)){
+            try {
+                Validation.passwordIsValid(password);
                 info.add(password);
                 break;
+
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -60,10 +72,11 @@ public class MainMenu extends Menu {
         this.show();
         this.execute();
     }
-    public static String arrayListToString(ArrayList<String> arrayList){
-        String output="";
+
+    public static String arrayListToString(ArrayList<String> arrayList) {
+        String output = "";
         for (String string : arrayList) {
-            output+=string+" ";
+            output += string + " ";
         }
         return output;
     }

@@ -2,6 +2,7 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidDateException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class Event {
         }
     }
 
-    public static void editEvent(String input) {
+    public static void editEvent(String input) throws InvalidDateException {
         eventDateChecker();
         String[] inputSpilt = input.split("\\s");
         Model.PlatoModel.Event event = eventFinderByEventID(inputSpilt[0]);
@@ -113,7 +114,7 @@ public class Event {
         }
     }
 
-    protected static void editStartDate(Model.PlatoModel.Event event, String input) {
+    protected static void editStartDate(Model.PlatoModel.Event event, String input) throws InvalidDateException {
         boolean pass = true;
         LocalDate startDate = LocalDate.parse(input);
 
@@ -133,7 +134,7 @@ public class Event {
 
     }
 
-    protected static void editEndDate(Model.PlatoModel.Event event, String input) {
+    protected static void editEndDate(Model.PlatoModel.Event event, String input) throws InvalidDateException {
         boolean pass = true;
         LocalDate endDate = LocalDate.parse(input);
 

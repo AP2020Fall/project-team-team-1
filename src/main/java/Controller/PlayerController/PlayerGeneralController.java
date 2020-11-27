@@ -1,16 +1,19 @@
 package Controller.PlayerController;
 
+import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPasswordException;
+import Controller.Exception.InvalidPhoneNumberException;
 import Model.PlatoModel.Player;
 
 public class PlayerGeneralController {
 
     /***********************************************EDIT***********************************************/
-    public void editField(String username, String field, String input) throws InvalidNameException {
+    public void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
         Edit.editField(username, field, input);
     }
 
-    public void editPassword(Player player, String oldPassword, String newPassword) {
+    public void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException {
         Edit.editPassword(player, oldPassword, newPassword);
     }
     /***************************************************************************************************/

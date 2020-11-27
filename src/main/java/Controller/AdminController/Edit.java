@@ -2,11 +2,14 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPasswordException;
+import Controller.Exception.InvalidPhoneNumberException;
 import Model.PlatoModel.Admin;
 
 public class Edit {
-    public static void editField(String field, String input) throws InvalidNameException {
+    public static void editField(String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
         if (field.trim().equalsIgnoreCase("name")) {
             editName(input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
@@ -43,7 +46,7 @@ public class Edit {
             Admin.getAdmins().get(0).setLastName(input);
     }
 
-    protected static void editEmail(String input) {
+    protected static void editEmail(String input) throws InvalidEmailException {
         boolean pass = false;
         pass = Validation.emailIsValid(input);
         if (!pass)
@@ -83,7 +86,7 @@ public class Edit {
 //        }
 //    }
 
-    protected static void editPhoneNumber(String input) {
+    protected static void editPhoneNumber(String input) throws InvalidPhoneNumberException {
         boolean pass = false;
         pass = Validation.phoneNumberIsValid(input);
         if (!pass)
@@ -93,7 +96,7 @@ public class Edit {
             Admin.getAdmins().get(0).setPhoneNum(input);
     }
 
-    public static void editPassword(String oldPassword, String newPassword) {
+    public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException {
         boolean pass = false;
         pass = Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword);
         if (!pass)

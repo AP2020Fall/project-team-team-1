@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidDateException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,11 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
-                getEventInfo(input);
+                try {
+                    getEventInfo(input);
+                } catch (InvalidDateException e) {
+                    System.out.println(e.getMessage());
+                }
                 if (adminEventController.addEvent(arrayListToString(input))){
                     System.out.println("Add Event Successfully");
                     parentMenu.run();
@@ -38,7 +43,7 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private void getEventInfo(ArrayList<String> arrayList){
+    private void getEventInfo(ArrayList<String> arrayList) throws InvalidDateException {
         //todo need validation
         System.out.println("please enter the game : ");
         while (true){

@@ -1,13 +1,16 @@
 package Controller.PlayerController;
 
+import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPasswordException;
+import Controller.Exception.InvalidPhoneNumberException;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 import junit.framework.TestCase;
 
 public class EditTest extends TestCase {
 
-    public void testEditField() throws InvalidNameException {
+    public void testEditField() throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
 
@@ -48,21 +51,21 @@ public class EditTest extends TestCase {
         assertEquals(player.getLastName(),"asna");
     }
 
-    public void testEditPassword() {
+    public void testEditPassword() throws InvalidPasswordException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
         Edit.editPassword(player,"11223344","hesamKhare22");
         assertEquals(player.getPassword(),"hesamKhare22");
     }
 
-    public void testEditEmail() {
+    public void testEditEmail() throws InvalidEmailException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
         Edit.editEmail(player,"hesamasna@yahoo.com");
         assertEquals(player.getEmail(),"hesamasna@yahoo.com");
     }
 
-    public void testEditPhoneNumber() {
+    public void testEditPhoneNumber() throws InvalidPhoneNumberException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
         Edit.editPhoneNumber(player,"09121111111");
