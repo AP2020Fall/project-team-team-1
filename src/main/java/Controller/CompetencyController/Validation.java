@@ -66,12 +66,14 @@ public class Validation {
             throw new InvalidUserNameException(username);
         return result;
     }
-    public static boolean dateIsValid(String date){
+    public static boolean dateIsValid(String date) throws InvalidDateException {
         boolean result = false;
         Pattern namePattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$");
         Matcher matcher = namePattern.matcher(date);
         if (matcher.matches())
             result=true;
+        else
+            throw new InvalidDateException("Date format is invalid");
         return result;
     }
 
