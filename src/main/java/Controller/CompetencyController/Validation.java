@@ -1,9 +1,6 @@
 package Controller.CompetencyController;
 
-import Controller.Exception.InvalidEmailException;
-import Controller.Exception.InvalidNameException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidPhoneNumberException;
+import Controller.Exception.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,12 +46,14 @@ public class Validation {
             throw new InvalidPasswordException("Password is invalid");
         return result;
     }
-    public static boolean ageIsValid(String age){
+    public static boolean ageIsValid(String age) throws InvalidAgeException {
         boolean result = false;
         Pattern agePattern = Pattern.compile("^(1[90]|[2-6][0-9])$");
         Matcher matcher = agePattern.matcher(age);
         if (matcher.matches())
             result = true;
+        else
+            throw new InvalidAgeException("Age format is invalid");
         return result;
     }
     public static boolean usernameIsValid(String username){
