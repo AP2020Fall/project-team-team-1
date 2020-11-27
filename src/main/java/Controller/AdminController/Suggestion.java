@@ -1,9 +1,15 @@
 package Controller.AdminController;
 
+import Controller.PlayerController.FindPlayerByInfo;
+import Model.PlatoModel.Player;
+
+import java.util.Random;
+
 public class Suggestion {
     public static boolean addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
-//        new Model.PlatoModel.Suggestion();
+        Player player = FindPlayerByInfo.findByUserName(inputSpilt[0]);
+        new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
         boolean result = true;
         return result;
     }
@@ -42,6 +48,10 @@ public class Suggestion {
             }
         }
         return suggestion;
+    }
+    private static int randomUserId(int min , int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
 
 }

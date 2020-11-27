@@ -9,11 +9,11 @@ public class Suggestion {
     private String suggestedGame;
 
 
-    public Suggestion(Player playerName, String suggestedGame) {
+    public Suggestion(int suggestionID,Player playerName, String suggestedGame) {
         this.playerName = playerName;
         this.suggestedGame = suggestedGame;
-        suggestionID=suggestionID();
-        playerName.suggestedGamesID.add(suggestionID());
+        this.suggestionID=suggestionID;
+        playerName.suggestedGamesID.add(suggestionID);
     }
 
     public static ArrayList<Suggestion> getAllSuggestions() {
@@ -32,8 +32,5 @@ public class Suggestion {
         return suggestedGame;
     }
 
-    private int suggestionID (){
-        suggestionID++;
-        return suggestionID;
-    }
+
 }
