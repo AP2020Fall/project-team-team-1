@@ -56,12 +56,14 @@ public class Validation {
             throw new InvalidAgeException("Age format is invalid");
         return result;
     }
-    public static boolean usernameIsValid(String username){
+    public static boolean usernameIsValid(String username) throws InvalidUserNameException {
         boolean result = false;
         Pattern namePattern = Pattern.compile("(^[a-zA-Z0-9]*$)");
         Matcher matcher = namePattern.matcher(username);
         if (matcher.matches())
             result=true;
+        else
+            throw new InvalidUserNameException(username);
         return result;
     }
     public static boolean dateIsValid(String date){

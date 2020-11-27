@@ -104,10 +104,13 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Username :");
         while (true) {
             String username = scanner.nextLine();
-            if (Validation.usernameIsValid(username)) {
+            try {
+                Validation.usernameIsValid(username);
                 adminInfo.add(username);
                 break;
-            } else System.out.println("Please Enter a Valid Username!");
+            } catch (InvalidUserNameException e) {
+                System.out.println(e.getUserName() + e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Email Address :");
         while (true) {
@@ -125,10 +128,10 @@ public class SignUpMenu extends Menu {
         while (true) {
             String password = scanner.nextLine();
             try {
-                if (Validation.passwordIsValid(password)) {
-                    adminInfo.add(password);
-                    break;
-                } else System.out.println("Please Enter a Valid Password!");
+                Validation.passwordIsValid(password);
+                adminInfo.add(password);
+                break;
+
             } catch (InvalidPasswordException e) {
                 System.out.println(e.getMessage());
             }
@@ -175,10 +178,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Username :");
         while (true) {
             String username = scanner.nextLine();
-            if (Validation.usernameIsValid(username)) {
+            try {
+                Validation.usernameIsValid(username);
                 playerInfo.add(username);
                 break;
-            } else System.out.println("Please Enter a Valid Username!");
+
+            } catch (InvalidUserNameException e) {
+                System.out.println(e.getUserName() + e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Email Address :");
         while (true) {
@@ -196,10 +203,10 @@ public class SignUpMenu extends Menu {
         while (true) {
             String password = scanner.nextLine();
             try {
-                if (Validation.passwordIsValid(password)) {
-                    playerInfo.add(password);
-                    break;
-                } else System.out.println("Please Enter a Valid Password!");
+                Validation.passwordIsValid(password);
+                playerInfo.add(password);
+                break;
+
             } catch (InvalidPasswordException e) {
                 System.out.println(e.getMessage());
             }
