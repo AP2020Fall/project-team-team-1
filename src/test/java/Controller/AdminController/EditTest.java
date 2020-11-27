@@ -1,12 +1,13 @@
 package Controller.AdminController;
 
+import Controller.Exception.InvalidNameException;
 import Model.PlatoModel.Admin;
 import junit.framework.TestCase;
 
 
 public class EditTest extends TestCase {
         Edit edit = new Edit();
-    public void testEditField() {
+    public void testEditField() throws InvalidNameException {
         Admin admin1 = new Admin("hesam","asnashari",100,"hessamasna","Apteam@123334","hessamasna@yahoo.com","09121111111");
         Admin.AddNewAdmin(admin1);
         Admin admin2 = new Admin("wedwedwe","wedari",1010,"amirrezazgh","Apteam@123334","hessa11masna@yahoo.com","09121211111");

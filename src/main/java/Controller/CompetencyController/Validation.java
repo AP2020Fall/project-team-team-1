@@ -1,5 +1,7 @@
 package Controller.CompetencyController;
 
+import Controller.Exception.InvalidNameException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,12 +22,14 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean nameOrLastNameIsValid(String nameOrLastName){
+    public static boolean nameOrLastNameIsValid(String nameOrLastName) throws InvalidNameException {
         boolean result = false;
         Pattern namePattern = Pattern.compile("(^[a-zA-Z]*$)");
         Matcher matcher = namePattern.matcher(nameOrLastName);
         if (matcher.matches())
             result = true;
+        else
+            throw new InvalidNameException("Name Or Lastname is Invalid");
         return result;
     }
     public static boolean passwordIsValid(String password){

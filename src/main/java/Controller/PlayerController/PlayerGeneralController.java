@@ -1,11 +1,12 @@
 package Controller.PlayerController;
 
+import Controller.Exception.InvalidNameException;
 import Model.PlatoModel.Player;
 
 public class PlayerGeneralController {
 
     /***********************************************EDIT***********************************************/
-    public void editField(String username, String field, String input) {
+    public void editField(String username, String field, String input) throws InvalidNameException {
         Edit.editField(username, field, input);
     }
 

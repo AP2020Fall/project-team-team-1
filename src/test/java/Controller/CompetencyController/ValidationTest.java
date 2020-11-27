@@ -1,5 +1,6 @@
 package Controller.CompetencyController;
 
+import Controller.Exception.InvalidNameException;
 import junit.framework.TestCase;
 
 public class ValidationTest extends TestCase {
@@ -16,7 +17,7 @@ public class ValidationTest extends TestCase {
         assertTrue(Validation.phoneNumberIsValid(phoneNumber));
     }
 
-    public void testNameOrLastNameIsValid() {
+    public void testNameOrLastNameIsValid() throws InvalidNameException {
         String nameOrLastnameForFalse = "hes123sam";
         assertFalse(Validation.nameOrLastNameIsValid(nameOrLastnameForFalse));
         String nameOrLastnameForTrue = "APteam";

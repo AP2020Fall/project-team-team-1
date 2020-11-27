@@ -4,6 +4,7 @@ import Controller.CompetencyController.Validation;
 import Controller.Exception.ExistAdminException;
 import Controller.Exception.ExistEmailException;
 import Controller.Exception.ExistUserNameException;
+import Controller.Exception.InvalidNameException;
 import Controller.RegisterController.SignUp;
 
 import java.util.ArrayList;
@@ -83,18 +84,25 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Firstname :");
         while (true) {
             String firstname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(firstname)) {
-                adminInfo.add(firstname);
-                break;
-            } else System.out.println("Please Enter a Valid name!");
-        }
+            try {
+                Validation.nameOrLastNameIsValid(firstname);
+                    adminInfo.add(firstname);
+                    break;
+            } catch (InvalidNameException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
         System.out.println("Please Enter Your Lastname :");
         while (true) {
             String lastname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(lastname)) {
-                adminInfo.add(lastname);
-                break;
-            } else System.out.println("Please Enter a Valid name!");
+            try {
+                Validation.nameOrLastNameIsValid(lastname);
+                    adminInfo.add(lastname);
+                    break;
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Username :");
         while (true) {
@@ -136,18 +144,24 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Firstname :");
         while (true) {
             String firstname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(firstname)) {
+            try {
+                Validation.nameOrLastNameIsValid(firstname);
                 playerInfo.add(firstname);
                 break;
-            } else System.out.println("Please Enter a Valid name!");
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Lastname :");
         while (true) {
             String lastname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(lastname)) {
+            try {
+                Validation.nameOrLastNameIsValid(lastname);
                 playerInfo.add(lastname);
                 break;
-            } else System.out.println("Please Enter a Valid name!");
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Username :");
         while (true) {

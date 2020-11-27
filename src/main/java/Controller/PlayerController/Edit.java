@@ -2,12 +2,13 @@ package Controller.PlayerController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidNameException;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField(String username, String field, String input) {
+    public static void editField(String username, String field, String input) throws InvalidNameException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (field.trim().equalsIgnoreCase("name")) {
@@ -48,7 +49,7 @@ public class Edit {
 //        }
 //    }
 
-    protected static void editFirstName(Player player, String input) {
+    protected static void editFirstName(Player player, String input) throws InvalidNameException {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
         if (!pass) {
@@ -59,7 +60,7 @@ public class Edit {
         }
     }
 
-    protected static void editLastName(Player player, String input) {
+    protected static void editLastName(Player player, String input) throws InvalidNameException {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
         if (!pass) {

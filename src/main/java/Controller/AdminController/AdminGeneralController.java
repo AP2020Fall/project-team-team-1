@@ -1,8 +1,10 @@
 package Controller.AdminController;
 
+import Controller.Exception.InvalidNameException;
+
 public class AdminGeneralController {
     /***********************************************EDIT***********************************************/
-    public void editField(String field, String input) {
+    public void editField(String field, String input) throws InvalidNameException {
         Edit.editField(field, input);
     }
 

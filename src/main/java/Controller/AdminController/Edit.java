@@ -2,10 +2,11 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidNameException;
 import Model.PlatoModel.Admin;
 
 public class Edit {
-    public static void editField(String field, String input) {
+    public static void editField(String field, String input) throws InvalidNameException {
         if (field.trim().equalsIgnoreCase("name")) {
             editName(input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
@@ -22,7 +23,7 @@ public class Edit {
             System.out.println("Field for edit is InValid !");
     }
 
-    protected static void editName(String input) {
+    protected static void editName(String input) throws InvalidNameException {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
         if (!pass)
@@ -32,7 +33,7 @@ public class Edit {
             Admin.getAdmins().get(0).setName(input);
     }
 
-    protected static void editLastName(String input) {
+    protected static void editLastName(String input) throws InvalidNameException {
         boolean pass = false;
         pass = Validation.nameOrLastNameIsValid(input);
         if (!pass)
