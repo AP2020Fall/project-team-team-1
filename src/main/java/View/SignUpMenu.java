@@ -112,10 +112,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Email Address :");
         while (true) {
             String email = scanner.nextLine();
-            if (Validation.emailIsValid(email)) {
+            try {
+                Validation.emailIsValid(email);
                 adminInfo.add(email);
                 break;
-            } else System.out.println("Please Enter a Valid Email!");
+
+            } catch (InvalidEmailException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Password :");
         while (true) {
@@ -175,10 +179,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Email Address :");
         while (true) {
             String email = scanner.nextLine();
-            if (Validation.emailIsValid(email)) {
+            try {
+                Validation.emailIsValid(email);
                 playerInfo.add(email);
                 break;
-            } else System.out.println("Please Enter a Valid Email!");
+
+            } catch (InvalidEmailException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Password :");
         while (true) {

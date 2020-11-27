@@ -1,5 +1,6 @@
 package Controller.CompetencyController;
 
+import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
 import Controller.Exception.InvalidPhoneNumberException;
 
@@ -7,12 +8,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validation {
-    public static boolean emailIsValid(String email){
+    public static boolean emailIsValid(String email) throws InvalidEmailException {
         boolean result = false;
         Pattern emailPattern = Pattern.compile("(^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4})*$)");
         Matcher matcher = emailPattern.matcher(email);
         if (matcher.matches())
             result = true;
+        else
+            throw new InvalidEmailException(" Email is invalid");
         return result;
     }
     public static boolean phoneNumberIsValid(String phoneNumber) throws InvalidPhoneNumberException {
