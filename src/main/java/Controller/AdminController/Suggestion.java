@@ -9,7 +9,8 @@ public class Suggestion {
     public static boolean addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
         Player player = FindPlayerByInfo.findByUserName(inputSpilt[0]);
-        new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
+        Model.PlatoModel.Suggestion suggestion = new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
+        Model.PlatoModel.Suggestion.addNewSyggestion(suggestion);
         boolean result = true;
         return result;
     }

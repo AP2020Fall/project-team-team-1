@@ -32,5 +32,9 @@ public class Suggestion {
         return suggestedGame;
     }
 
+    public static void addNewSyggestion(Suggestion suggestion){
+        allSuggestions.add(suggestion);
+    }
+
 
 }
