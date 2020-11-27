@@ -111,7 +111,7 @@ public class AdminMainMenu extends Menu {
 
             @Override
             public void execute() {
-                adminGeneralController.showEvent();
+                adminGeneralController.showSuggestion();
                 System.out.println("if you want to delete an event enter remove otherwise enter back.");
                 String nextStep = scanner.nextLine();
                 if (nextStep.equalsIgnoreCase("remove")){
