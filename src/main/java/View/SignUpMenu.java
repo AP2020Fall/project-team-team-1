@@ -124,10 +124,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Password :");
         while (true) {
             String password = scanner.nextLine();
-            if (Validation.passwordIsValid(password)) {
-                adminInfo.add(password);
-                break;
-            } else System.out.println("Please Enter a Valid Password!");
+            try {
+                if (Validation.passwordIsValid(password)) {
+                    adminInfo.add(password);
+                    break;
+                } else System.out.println("Please Enter a Valid Password!");
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your PhoneNumber :");
         while (true) {
@@ -191,10 +195,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your Password :");
         while (true) {
             String password = scanner.nextLine();
-            if (Validation.passwordIsValid(password)) {
-                playerInfo.add(password);
-                break;
-            } else System.out.println("Please Enter a Valid Password!");
+            try {
+                if (Validation.passwordIsValid(password)) {
+                    playerInfo.add(password);
+                    break;
+                } else System.out.println("Please Enter a Valid Password!");
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your PhoneNumber :");
         while (true) {

@@ -2,6 +2,7 @@ package Controller.CompetencyController;
 
 import Controller.Exception.InvalidEmailException;
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPasswordException;
 import Controller.Exception.InvalidPhoneNumberException;
 
 import java.util.regex.Matcher;
@@ -38,12 +39,14 @@ public class Validation {
             throw new InvalidNameException("Name Or Lastname is Invalid");
         return result;
     }
-    public static boolean passwordIsValid(String password){
+    public static boolean passwordIsValid(String password) throws InvalidPasswordException {
         boolean result = false;
         Pattern passwordPattern = Pattern.compile("(^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$)");
         Matcher matcher = passwordPattern.matcher(password);
         if (matcher.matches())
             result=true;
+        else
+            throw new InvalidPasswordException("Password is invalid");
         return result;
     }
     public static boolean ageIsValid(String age){
