@@ -17,7 +17,7 @@ public class Suggestion {
 
     public static void showSuggestion() {
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
-            System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
+            System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName().getUserName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
         }
     }
 
