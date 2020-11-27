@@ -21,8 +21,8 @@ public class AdminGeneralController {
         Event.showEvent();
     }
 
-    public void editEvent(String eventID, String field, String input) {
-        Event.editEvent(eventID, field, input);
+    public void editEvent(String input) {
+        Event.editEvent(input);
     }
     /*****************************************************************************************************/
 
