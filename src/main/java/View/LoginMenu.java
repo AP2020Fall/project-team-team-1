@@ -52,6 +52,8 @@ public class LoginMenu extends Menu {
                 getInputPlayer(input);
                 processLoginController.loginAsPlayer(arrayListToString(input));
                 //todo link to player menu
+                this.parentMenu.run();
+                //todo the upper command is just temporary
             }
         };
     }

@@ -4,7 +4,7 @@ public class Suggestion {
     public static boolean addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
 //        new Model.PlatoModel.Suggestion();
-        boolean result = false;
+        boolean result = true;
         return result;
     }
 
