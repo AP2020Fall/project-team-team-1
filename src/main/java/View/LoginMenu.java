@@ -1,6 +1,9 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.ExistAdminException;
+import Controller.Exception.InvalidUserNameException;
+import Controller.Exception.WrongPasswordException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +31,24 @@ public class LoginMenu extends Menu {
                 getInputAdmin(input);
                 AdminMainMenu adminMainMenu = new AdminMainMenu(this,input.get(0));
 //                processLoginController.loginAsAdmin(arrayListToString(input));
-                if (processLoginController.loginAsAdmin(arrayListToString(input))){
-                    System.out.println("You Signed in Successfully");
-                    nextMenu=adminMainMenu;
-                    nextMenu.run();
-                }else{
-                    System.out.println("Username Or Password is Invalid!");
-                    this.run();
+                try {
+                    processLoginController.loginAsAdmin(arrayListToString(input));
+                        System.out.println("You Signed in Successfully");
+                        nextMenu=adminMainMenu;
+                        nextMenu.run();
+
+//                        System.out.println("Username Or Password is Invalid!");
+//                        this.run();
+
+                } catch (InvalidUserNameException e) {
+                    System.out.println(e.getUserName() + e.getMessage());
+                    this.parentMenu.run();
+                } catch (ExistAdminException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
+                } catch (WrongPasswordException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
                 }
             }
         };
@@ -50,9 +64,20 @@ public class LoginMenu extends Menu {
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
                 getInputPlayer(input);
-                processLoginController.loginAsPlayer(arrayListToString(input));
+                try {
+                    processLoginController.loginAsPlayer(arrayListToString(input));
+                    System.out.println(" Login successfully !");
+                    //todo this.runNextMenu ();
+                } catch (InvalidUserNameException e) {
+                    System.out.println(e.getUserName() + e.getMessage());
+                    this.parentMenu.run();
+                } catch (WrongPasswordException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
+                }
                 //todo link to player menu
-                this.parentMenu.run();
+                //this.parentMenu.run();
+
                 //todo the upper command is just temporary
             }
         };
