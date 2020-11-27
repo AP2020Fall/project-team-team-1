@@ -1,10 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.ExistAdminException;
-import Controller.Exception.ExistEmailException;
-import Controller.Exception.ExistUserNameException;
-import Controller.Exception.InvalidNameException;
+import Controller.Exception.*;
 import Controller.RegisterController.SignUp;
 
 import java.util.ArrayList;
@@ -131,10 +128,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your PhoneNumber :");
         while (true) {
             String phoneNumber = scanner.nextLine();
-            if (Validation.phoneNumberIsValid(phoneNumber)) {
+            try {
+                Validation.phoneNumberIsValid(phoneNumber);
                 adminInfo.add(phoneNumber);
                 break;
-            } else System.out.println("Please Enter a Valid PhoneNumber!");
+
+            } catch (InvalidPhoneNumberException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }
@@ -190,10 +191,14 @@ public class SignUpMenu extends Menu {
         System.out.println("Please Enter Your PhoneNumber :");
         while (true) {
             String phoneNumber = scanner.nextLine();
-            if (Validation.phoneNumberIsValid(phoneNumber)) {
+            try {
+                Validation.phoneNumberIsValid(phoneNumber);
                 playerInfo.add(phoneNumber);
                 break;
-            } else System.out.println("Please Enter a Valid PhoneNumber!");
+
+            } catch (InvalidPhoneNumberException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }

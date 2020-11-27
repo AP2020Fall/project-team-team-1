@@ -1,6 +1,7 @@
 package Controller.CompetencyController;
 
 import Controller.Exception.InvalidNameException;
+import Controller.Exception.InvalidPhoneNumberException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,12 +15,14 @@ public class Validation {
             result = true;
         return result;
     }
-    public static boolean phoneNumberIsValid(String phoneNumber){
+    public static boolean phoneNumberIsValid(String phoneNumber) throws InvalidPhoneNumberException {
         boolean result = false;
         Pattern phonePattern = Pattern.compile("^(0)?9\\d{9}$");
         Matcher matcher = phonePattern.matcher(phoneNumber);
         if (matcher.matches())
             result = true;
+        else
+            throw new InvalidPhoneNumberException(" Phone number is invalid");
         return result;
     }
     public static boolean nameOrLastNameIsValid(String nameOrLastName) throws InvalidNameException {
