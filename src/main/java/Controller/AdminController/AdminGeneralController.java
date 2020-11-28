@@ -14,9 +14,9 @@ public class AdminGeneralController {
     /***************************************************************************************************/
 
     /***********************************************EVENT***********************************************/
-    public boolean addEvent(String input) {
-        boolean pass = Event.addEvent(input);
-        return pass;
+    public void addEvent(String input) throws StartDatesException {
+        Event.addEvent(input);
+
     }
 
     public void showEvent() {

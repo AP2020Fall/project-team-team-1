@@ -2,6 +2,7 @@ package View;
 
 import Controller.CompetencyController.Validation;
 import Controller.Exception.InvalidDateException;
+import Controller.Exception.StartDatesException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,10 +36,14 @@ public class AdminMainMenu extends Menu {
                 } catch (InvalidDateException e) {
                     System.out.println(e.getMessage());
                 }
-                if (adminEventController.addEvent(arrayListToString(input))){
-                    System.out.println("Add Event Successfully");
-                    parentMenu.run();
-                }else this.run();
+                try {
+                    adminEventController.addEvent(arrayListToString(input));
+                        System.out.println("Add Event Successfully");
+                        parentMenu.run();
+                } catch (StartDatesException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
 
             }
         };

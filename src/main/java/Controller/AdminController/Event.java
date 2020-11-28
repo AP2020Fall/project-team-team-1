@@ -2,34 +2,26 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.ExistEventException;
 import Controller.Exception.InvalidDateException;
+import Controller.Exception.StartDatesException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Event {
-    public static boolean addEvent(String input) {
-        boolean pass = true;
+    public static void addEvent(String input) throws StartDatesException {
+
         String[] inputSpilt = input.split("\\s");
         LocalDate startDate = LocalDate.parse(inputSpilt[1]);
         LocalDate endDate = LocalDate.parse(inputSpilt[2]);
         if (startDate.isAfter(endDate)) {
-            pass = false;
-            return false;
+            throw new StartDatesException("Start Date Must be before than End Date");
         }
-        if (pass) {
-//            if (Existence.checkEventExistence(Integer.parseInt(inputSpilt[0]))){
-//                pass = false;
-//            return false;
-//            }
 
-            if (pass) {
-                Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3])));
-                return true;
-            }
+        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3])));
 
-        }
-        return false;
+
 
     }
 
@@ -67,7 +59,8 @@ public class Event {
         }
 
     }
-    public void removeEventByAdminFromView(String eventID){
+
+    public void removeEventByAdminFromView(String eventID) {
         removeEvent(eventID);
     }
 

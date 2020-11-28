@@ -1,6 +1,7 @@
 package Controller.AdminController;
 
 import Controller.Exception.InvalidDateException;
+import Controller.Exception.StartDatesException;
 import junit.framework.TestCase;
 
 import java.time.LocalDate;
@@ -8,10 +9,10 @@ import java.time.LocalDate;
 public class EventTest extends TestCase {
     Event event = new Event();
 
-    public void testAddEvent() {
+    public void testAddEvent() throws StartDatesException {
         String string ="BattleSea 2020-11-24 2020-11-26 50";
-        Boolean pass = event.addEvent(string);
-        assertTrue(pass);
+        event.addEvent(string);
+
     }
 
     public void testShowEvent() {
