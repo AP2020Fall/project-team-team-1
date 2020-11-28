@@ -1,16 +1,23 @@
 package Controller.AdminController;
 
+import Controller.PlayerController.FindPlayerByInfo;
+import Model.PlatoModel.Player;
+
+import java.util.Random;
+
 public class Suggestion {
     public static boolean addSuggestion(String input) {
         String[] inputSpilt = input.split("\\s");
-//        new Model.PlatoModel.Suggestion();
-        boolean result = false;
+        Player player = FindPlayerByInfo.findByUserName(inputSpilt[0]);
+        Model.PlatoModel.Suggestion suggestion = new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
+        Model.PlatoModel.Suggestion.addNewSyggestion(suggestion);
+        boolean result = true;
         return result;
     }
 
     public static void showSuggestion() {
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
-            System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
+            System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName().getUserName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
         }
     }
 
@@ -42,6 +49,10 @@ public class Suggestion {
             }
         }
         return suggestion;
+    }
+    private static int randomUserId(int min , int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
 
 }

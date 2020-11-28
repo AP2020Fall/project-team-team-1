@@ -2,6 +2,7 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidDateException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,26 +41,27 @@ public class Event {
         }
     }
 
-    public static void editEvent(String eventID, String field, String input) {
+    public static void editEvent(String input) throws InvalidDateException {
         eventDateChecker();
-        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+        String[] inputSpilt = input.split("\\s");
+        Model.PlatoModel.Event event = eventFinderByEventID(inputSpilt[0]);
 
         if (event == null) {
             //todo exception handling
 
         }
 
-        if (!Existence.checkEventExistence(Integer.parseInt(eventID))) {
+        if (!Existence.checkEventExistence(Integer.parseInt(inputSpilt[0]))) {
             System.out.println("There is no Event with this it");
         } else {
-            if (field.trim().equalsIgnoreCase("GameName")) {
-                editGameName(event, input);
-            } else if (field.trim().equalsIgnoreCase("StartDate")) {
-                editStartDate(event, input);
-            } else if (field.trim().equalsIgnoreCase("EndDate")) {
-                editEndDate(event, input);
-            } else if (field.trim().equalsIgnoreCase("Score")) {
-                editScore(event, input);
+            if (inputSpilt[1].trim().equalsIgnoreCase("GameName")) {
+                editGameName(event, inputSpilt[2]);
+            } else if (inputSpilt[1].trim().equalsIgnoreCase("StartDate")) {
+                editStartDate(event, inputSpilt[2]);
+            } else if (inputSpilt[1].trim().equalsIgnoreCase("EndDate")) {
+                editEndDate(event, inputSpilt[2]);
+            } else if (inputSpilt[1].trim().equalsIgnoreCase("Score")) {
+                editScore(event, inputSpilt[2]);
             } else
                 System.out.println("Field for edit is InValid !");
         }
@@ -112,7 +114,7 @@ public class Event {
         }
     }
 
-    protected static void editStartDate(Model.PlatoModel.Event event, String input) {
+    protected static void editStartDate(Model.PlatoModel.Event event, String input) throws InvalidDateException {
         boolean pass = true;
         LocalDate startDate = LocalDate.parse(input);
 
@@ -132,7 +134,7 @@ public class Event {
 
     }
 
-    protected static void editEndDate(Model.PlatoModel.Event event, String input) {
+    protected static void editEndDate(Model.PlatoModel.Event event, String input) throws InvalidDateException {
         boolean pass = true;
         LocalDate endDate = LocalDate.parse(input);
 

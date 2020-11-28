@@ -113,4 +113,19 @@ public class Player extends User {
     public void setLastPlayed(String lastPlayed) {
         this.lastPlayed = lastPlayed;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "coin=" + coin +
+                ", registerDate=" + registerDate +
+                ", friends=" + friends +
+                ", friendsRequests=" + friendsRequests +
+                ", playerLog=" + playerLog +
+                ", suggestedGamesID=" + suggestedGamesID +
+                ", receivedMessages=" + receivedMessages +
+                ", favoritesGamesName=" + favoritesGamesName +
+                ", lastPlayed='" + lastPlayed + '\'' +
+                '}';
+    }
 }

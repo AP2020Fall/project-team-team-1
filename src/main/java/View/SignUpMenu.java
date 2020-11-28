@@ -1,13 +1,11 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.*;
 import Controller.RegisterController.SignUp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
-
 
 
 //TODO link signup menu and proper menu
@@ -16,157 +14,222 @@ public class SignUpMenu extends Menu {
 
     public SignUpMenu(Menu parentMenu) {
         super("Signup Menu", parentMenu);
-        HashMap<Integer,Menu> submenus = new HashMap<>();
-        submenus.put(1,registerAsAdmin());
-        submenus.put(2,registerAsPlayer());
+        HashMap<Integer, Menu> submenus = new HashMap<>();
+        submenus.put(1, registerAsAdmin());
+        submenus.put(2, registerAsPlayer());
         this.setSubmenus(submenus);
     }
-    private Menu registerAsAdmin(){
-        return new Menu("Register As Admin",this) {
+
+    private Menu registerAsAdmin() {
+        return new Menu("Register As Admin", this) {
             @Override
             public void show() {
-                System.out.println(this.getName()+": ");
+                System.out.println(this.getName() + ": ");
             }
 
             @Override
             public void execute() {
                 ArrayList<String> adminInfo = new ArrayList<>();
                 getAdminInformation(adminInfo);
-                if (processSignupController.addAdmin(arrayListToString(adminInfo))){
+                try {
+                    processSignupController.addAdmin(arrayListToString(adminInfo));
                     System.out.println("Admin Registered Successfully");
                     this.parentMenu.parentMenu.submenus.get(1).run();
-                }else this.run();
+                } catch (ExistAdminException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                } catch (ExistUserNameException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                } catch (ExistEmailException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
 
             }
         };
     }
-    private Menu registerAsPlayer(){
-        return new Menu("Register As Player",this) {
+
+    private Menu registerAsPlayer() {
+        return new Menu("Register As Player", this) {
             @Override
             public void show() {
-                System.out.println(this.getName()+": ");
+                System.out.println(this.getName() + ": ");
             }
 
             @Override
             public void execute() {
                 ArrayList<String> playerInfo = new ArrayList<>();
                 getPlayerInfo(playerInfo);
-                if (processSignupController.addPlayer(arrayListToString(playerInfo))){
+                try {
+                    processSignupController.addPlayer(arrayListToString(playerInfo));
                     System.out.println("Player Registered Successfully");
                     this.parentMenu.parentMenu.submenus.get(1).run();
-                }else this.run();
+                } catch (ExistUserNameException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                } catch (ExistEmailException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
             }
         };
     }
-    private void getAdminInformation(ArrayList<String> adminInfo){
+
+    private void getAdminInformation(ArrayList<String> adminInfo) {
         System.out.println("Hello our Dear Admin \nPlease notice that if there is already an admin you can not register as Admin !");
         System.out.println("Please Enter Your Firstname :");
-        while (true){
+        while (true) {
             String firstname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(firstname)){
-                adminInfo.add(firstname);
-                break;
-            }else System.out.println("Please Enter a Valid name!");
-        }
+            try {
+                Validation.nameOrLastNameIsValid(firstname);
+                    adminInfo.add(firstname);
+                    break;
+            } catch (InvalidNameException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
         System.out.println("Please Enter Your Lastname :");
-        while (true){
+        while (true) {
             String lastname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(lastname)){
-                adminInfo.add(lastname);
-                break;
-            }else System.out.println("Please Enter a Valid name!");
+            try {
+                Validation.nameOrLastNameIsValid(lastname);
+                    adminInfo.add(lastname);
+                    break;
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Username :");
-        while (true){
+        while (true) {
             String username = scanner.nextLine();
-            if (Validation.usernameIsValid(username)){
+            try {
+                Validation.usernameIsValid(username);
                 adminInfo.add(username);
                 break;
-            }else System.out.println("Please Enter a Valid Username!");
+            } catch (InvalidUserNameException e) {
+                System.out.println(e.getUserName() + e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Email Address :");
-        while (true){
+        while (true) {
             String email = scanner.nextLine();
-            if (Validation.emailIsValid(email)){
+            try {
+                Validation.emailIsValid(email);
                 adminInfo.add(email);
                 break;
-            }else System.out.println("Please Enter a Valid Email!");
+
+            } catch (InvalidEmailException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Password :");
-        while (true){
+        while (true) {
             String password = scanner.nextLine();
-            if (Validation.passwordIsValid(password)){
+            try {
+                Validation.passwordIsValid(password);
                 adminInfo.add(password);
                 break;
-            }else System.out.println("Please Enter a Valid Password!");
+
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your PhoneNumber :");
-        while (true){
+        while (true) {
             String phoneNumber = scanner.nextLine();
-            if (Validation.phoneNumberIsValid(phoneNumber)){
+            try {
+                Validation.phoneNumberIsValid(phoneNumber);
                 adminInfo.add(phoneNumber);
                 break;
-            }else System.out.println("Please Enter a Valid PhoneNumber!");
+
+            } catch (InvalidPhoneNumberException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }
-    private void getPlayerInfo(ArrayList<String> playerInfo){
+
+    private void getPlayerInfo(ArrayList<String> playerInfo) {
         System.out.println("Hello My Friend Welcome to Your New Home (: ");
         System.out.println("Please Enter Your Firstname :");
-        while (true){
+        while (true) {
             String firstname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(firstname)){
+            try {
+                Validation.nameOrLastNameIsValid(firstname);
                 playerInfo.add(firstname);
                 break;
-            }else System.out.println("Please Enter a Valid name!");
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Lastname :");
-        while (true){
+        while (true) {
             String lastname = scanner.nextLine();
-            if (Validation.nameOrLastNameIsValid(lastname)){
+            try {
+                Validation.nameOrLastNameIsValid(lastname);
                 playerInfo.add(lastname);
                 break;
-            }else System.out.println("Please Enter a Valid name!");
+            } catch (InvalidNameException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Username :");
-        while (true){
+        while (true) {
             String username = scanner.nextLine();
-            if (Validation.usernameIsValid(username)){
+            try {
+                Validation.usernameIsValid(username);
                 playerInfo.add(username);
                 break;
-            }else System.out.println("Please Enter a Valid Username!");
+
+            } catch (InvalidUserNameException e) {
+                System.out.println(e.getUserName() + e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Email Address :");
-        while (true){
+        while (true) {
             String email = scanner.nextLine();
-            if (Validation.emailIsValid(email)){
+            try {
+                Validation.emailIsValid(email);
                 playerInfo.add(email);
                 break;
-            }else System.out.println("Please Enter a Valid Email!");
+
+            } catch (InvalidEmailException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your Password :");
-        while (true){
+        while (true) {
             String password = scanner.nextLine();
-            if (Validation.passwordIsValid(password)){
+            try {
+                Validation.passwordIsValid(password);
                 playerInfo.add(password);
                 break;
-            }else System.out.println("Please Enter a Valid Password!");
+
+            } catch (InvalidPasswordException e) {
+                System.out.println(e.getMessage());
+            }
         }
         System.out.println("Please Enter Your PhoneNumber :");
-        while (true){
+        while (true) {
             String phoneNumber = scanner.nextLine();
-            if (Validation.phoneNumberIsValid(phoneNumber)){
+            try {
+                Validation.phoneNumberIsValid(phoneNumber);
                 playerInfo.add(phoneNumber);
                 break;
-            }else System.out.println("Please Enter a Valid PhoneNumber!");
+
+            } catch (InvalidPhoneNumberException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }
 
-    public static String arrayListToString(ArrayList<String> arrayList){
-        String output="";
+    public static String arrayListToString(ArrayList<String> arrayList) {
+        String output = "";
         for (String string : arrayList) {
-            output+=string+" ";
+            output += string + " ";
         }
         return output;
     }

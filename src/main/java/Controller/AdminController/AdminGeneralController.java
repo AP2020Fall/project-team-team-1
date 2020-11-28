@@ -1,12 +1,14 @@
 package Controller.AdminController;
 
+import Controller.Exception.*;
+
 public class AdminGeneralController {
     /***********************************************EDIT***********************************************/
-    public void editField(String field, String input) {
+    public void editField(String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
         Edit.editField(field, input);
     }
 
-    public void editPassword(String oldPassword, String newPassword) {
+    public void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException {
         Edit.editPassword(oldPassword, newPassword);
     }
     /***************************************************************************************************/
@@ -21,8 +23,8 @@ public class AdminGeneralController {
         Event.showEvent();
     }
 
-    public void editEvent(String eventID, String field, String input) {
-        Event.editEvent(eventID, field, input);
+    public void editEvent(String input) throws InvalidDateException {
+        Event.editEvent(input);
     }
     /*****************************************************************************************************/
 

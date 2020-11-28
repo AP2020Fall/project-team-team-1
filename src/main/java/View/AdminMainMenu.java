@@ -1,7 +1,7 @@
 package View;
 
-import Controller.AdminController.Suggestion;
 import Controller.CompetencyController.Validation;
+import Controller.Exception.InvalidDateException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +30,11 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
-                getEventInfo(input);
+                try {
+                    getEventInfo(input);
+                } catch (InvalidDateException e) {
+                    System.out.println(e.getMessage());
+                }
                 if (adminEventController.addEvent(arrayListToString(input))){
                     System.out.println("Add Event Successfully");
                     parentMenu.run();
@@ -39,7 +43,7 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private void getEventInfo(ArrayList<String> arrayList){
+    private void getEventInfo(ArrayList<String> arrayList) throws InvalidDateException {
         //todo need validation
         System.out.println("please enter the game : ");
         while (true){
@@ -95,11 +99,12 @@ public class AdminMainMenu extends Menu {
         };
     }
     private void getSuggestionInfo(ArrayList<String> arrayList){
-        System.out.println("Please Enter The Username");
+        System.out.println("Please Enter The Username : ");
         String username = scanner.nextLine();
         arrayList.add(username);
-        String game = scanner.nextLine();
+        System.out.println("Please Enter The Game Name : ");
         while (true){
+            String game = scanner.nextLine();
             if (game.equalsIgnoreCase("battleShip") || game.equalsIgnoreCase("dotsAndBoxes")) {
                 arrayList.add(game);
                 break;
@@ -111,17 +116,41 @@ public class AdminMainMenu extends Menu {
 
             @Override
             public void execute() {
-                adminGeneralController.addSuggestion(getSuggestionID());
+                adminGeneralController.showSuggestion();
+                System.out.println("if you want to delete an event enter remove otherwise enter back.");
+                String nextStep = scanner.nextLine();
+                if (nextStep.equalsIgnoreCase("remove")){
+                    adminGeneralController.removeSuggestion(getSuggestionID());
+                    this.parentMenu.run();
+                    //Todo It Doesnt check if this username is correct or not
+                }else if (nextStep.equalsIgnoreCase("back")){
+                    this.parentMenu.run();
+                }
+
             }
         };
     }
     private String getSuggestionID(){
+        System.out.println("If You Want To Delete a Suggestion Please Enter The Suggestion ID : ");
         String suggestionID=scanner.nextLine();
         return suggestionID;
     }
     private Menu viewUsers(){
         return new Menu("view all users",this) {
+            @Override
+            public void execute() {
+                adminGeneralController.showAllUsers();
+                adminGeneralController.showUsersByUserName(getUsernameInformation());
+                System.out.println(" enter back to get back to last menu ");
+                if (scanner.nextLine().equalsIgnoreCase("back")){
+                    this.parentMenu.run();
+                }
+            }
         };
+    }
+    private String getUsernameInformation(){
+        System.out.println("Enter the User name : ");
+        return scanner.nextLine();
     }
     public static String arrayListToString(ArrayList<String> arrayList){
         String output="";

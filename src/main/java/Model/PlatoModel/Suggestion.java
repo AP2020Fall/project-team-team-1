@@ -9,12 +9,13 @@ public class Suggestion {
     private String suggestedGame;
 
 
-    public Suggestion(Player playerName, String suggestedGame) {
+    public Suggestion(int suggestionID,Player playerName, String suggestedGame) {
         this.playerName = playerName;
         this.suggestedGame = suggestedGame;
-        suggestionID=suggestionID();
-        playerName.suggestedGamesID.add(suggestionID());
+        this.suggestionID=suggestionID;
+        playerName.suggestedGamesID.add(suggestionID);
     }
+
 
     public static ArrayList<Suggestion> getAllSuggestions() {
         return allSuggestions;
@@ -32,8 +33,16 @@ public class Suggestion {
         return suggestedGame;
     }
 
-    private int suggestionID (){
-        suggestionID++;
-        return suggestionID;
+    public static void addNewSyggestion(Suggestion suggestion){
+        allSuggestions.add(suggestion);
+    }
+
+    @Override
+    public String toString() {
+        return "Suggestion{" +
+                "suggestionID=" + suggestionID +
+                ", playerName=" + playerName +
+                ", suggestedGame='" + suggestedGame + '\'' +
+                '}';
     }
 }
