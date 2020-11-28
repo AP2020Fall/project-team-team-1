@@ -3,9 +3,9 @@ package View;
 import java.util.HashMap;
 import Controller.GeneralController.UserController;
 
-public class UserMenu extends Menu {
+public class UserMenuForAdmin extends Menu {
     String username;
-    public UserMenu(String username,Menu parentMenu) {
+    public UserMenuForAdmin(String username, Menu parentMenu) {
         super("User Menu", parentMenu);
         this.username=username;
         HashMap<Integer,Menu> subMenus = new HashMap<>();
