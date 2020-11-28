@@ -143,7 +143,7 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 adminGeneralController.showSuggestion();
-                System.out.println("if you want to delete an event enter remove otherwise enter back.");
+                System.out.println("if you want to delete a Suggestion enter remove otherwise enter back.");
                 String nextStep = scanner.nextLine();
                 if (nextStep.equalsIgnoreCase("remove")) {
                     adminGeneralController.removeSuggestion(getSuggestionID());
@@ -159,8 +159,7 @@ public class AdminMainMenu extends Menu {
 
     private String getSuggestionID() {
         System.out.println("If You Want To Delete a Suggestion Please Enter The Suggestion ID : ");
-        String suggestionID = scanner.nextLine();
-        return suggestionID;
+        return scanner.nextLine();
     }
 
     private Menu viewUsers() {

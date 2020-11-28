@@ -103,4 +103,16 @@ public class Event {
         return counter;
     }
 
+    @Override
+    public String toString() {
+        return "Event{" +
+                "playersInThisEvent=" + playersInThisEvent +
+                ", gameName='" + gameName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", score=" + score +
+                ", eventID=" + eventID +
+                ", counter=" + counter +
+                '}';
+    }
 }

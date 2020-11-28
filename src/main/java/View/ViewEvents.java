@@ -78,13 +78,11 @@ public class ViewEvents extends Menu {
     }
 
     @Override
-    public void show() {
+    public void execute() {
         try {
             adminGeneralController.showEvent();
         } catch (ExistEventException e) {
             System.out.println(e.getMessage());
         }
     }
-
-
 }
