@@ -37,7 +37,7 @@ public class AdminMainMenu extends Menu {
                 ArrayList<String> input = new ArrayList<>();
                 getEventInfo(input);
                 try {
-                    adminEventController.addEvent(arrayListToString(input));
+                    adminGeneralController.addEvent(arrayListToString(input));
                     System.out.println("Add Event Successfully");
                     parentMenu.run();
                 } catch (StartDatesException e) {
@@ -50,7 +50,6 @@ public class AdminMainMenu extends Menu {
     }
 
     private void getEventInfo(ArrayList<String> arrayList) {
-        //todo need validation
         System.out.println("please enter the game : ");
         while (true) {
             String game = scanner.nextLine();
@@ -129,6 +128,7 @@ public class AdminMainMenu extends Menu {
             try {
                 Validation.gameNameIsValid(game);
                 arrayList.add(game);
+                break;
             } catch (InvalidGameNameException e) {
                 System.out.println(e.getGameName() + e.getMessage());
 
@@ -166,6 +166,11 @@ public class AdminMainMenu extends Menu {
     private Menu viewUsers() {
         return new Menu("view all users", this) {
             @Override
+            public void show() {
+                System.out.println(this.getName()+" : ");
+            }
+
+            @Override
             public void execute() {
                 adminGeneralController.showAllUsers();
                 adminGeneralController.showUsersByUserName(getUsernameInformation());
@@ -173,6 +178,7 @@ public class AdminMainMenu extends Menu {
                 if (scanner.nextLine().equalsIgnoreCase("back")) {
                     this.parentMenu.run();
                 }
+
             }
         };
     }

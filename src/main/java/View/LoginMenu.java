@@ -78,10 +78,7 @@ public class LoginMenu extends Menu {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
-                //todo link to player menu
-                //this.parentMenu.run();
 
-                //todo the upper command is just temporary
             }
         };
     }
@@ -140,7 +137,6 @@ public class LoginMenu extends Menu {
         }
 
     }
-    //todo next menu to admin menu
 
     @Override
     public void run() {

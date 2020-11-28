@@ -7,7 +7,7 @@ public class PlayerLists {
 
     public static void showAllUsers() {
         for (Player player : Player.players) {
-            System.out.println(player.getUserID());
+            System.out.println(player.getUserName());
         }
     }
 

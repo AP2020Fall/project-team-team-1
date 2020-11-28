@@ -13,6 +13,8 @@ public class ViewEvents extends Menu {
         super("View Events", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, editEvent());
+        submenus.put(2,removeEvent());
+        this.setSubmenus(submenus);
     }
 
     private Menu editEvent() {
@@ -25,11 +27,7 @@ public class ViewEvents extends Menu {
                     adminGeneralController.editEvent(arrayListToString(editInfo));
                 } catch (InvalidDateException e) {
                     System.out.println(e.getMessage());
-                } catch (InvalidFieldException e) {
-                    e.printStackTrace();
-                } catch (ExistEventException e) {
-                    e.printStackTrace();
-                } catch (StartDatesException e) {
+                } catch (InvalidFieldException | ExistEventException | StartDatesException e) {
                     e.printStackTrace();
                 }
                 this.parentMenu.run();
@@ -87,4 +85,6 @@ public class ViewEvents extends Menu {
             System.out.println(e.getMessage());
         }
     }
+
+
 }
