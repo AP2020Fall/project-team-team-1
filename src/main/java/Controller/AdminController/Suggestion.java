@@ -1,18 +1,21 @@
 package Controller.AdminController;
 
+import Controller.Exception.ExistPlayerException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Player;
 
 import java.util.Random;
 
 public class Suggestion {
-    public static boolean addSuggestion(String input) {
+    public static void addSuggestion(String input) throws ExistPlayerException {
         String[] inputSpilt = input.split("\\s");
         Player player = FindPlayerByInfo.findByUserName(inputSpilt[0]);
+        if (player == null)
+            throw new ExistPlayerException(inputSpilt[0]," Is not Exist in Players List");
+
         Model.PlatoModel.Suggestion suggestion = new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
         Model.PlatoModel.Suggestion.addNewSyggestion(suggestion);
-        boolean result = true;
-        return result;
+
     }
 
     public static void showSuggestion() {

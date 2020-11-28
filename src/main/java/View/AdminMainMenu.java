@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.ExistPlayerException;
 import Controller.Exception.InvalidDateException;
 import Controller.Exception.InvalidGameNameException;
 import Controller.Exception.StartDatesException;
@@ -104,11 +105,13 @@ public class AdminMainMenu extends Menu {
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
                 getSuggestionInfo(input);
-                if (adminGeneralController.addSuggestion(arrayListToString(input))) {
+                try {
+                    adminGeneralController.addSuggestion(arrayListToString(input));
                     System.out.println("Suggestion Added Successfully");
                     this.parentMenu.run();
-                } else {
-                    System.out.println("NOT VALID ENTER AGAIN!");
+
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
                     this.run();
                 }
 

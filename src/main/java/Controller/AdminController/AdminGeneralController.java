@@ -49,8 +49,8 @@ public class AdminGeneralController {
     /*****************************************************************************************************/
 
     /**********************************************SUGGESTION**********************************************/
-    public boolean addSuggestion(String input) {
-        return Suggestion.addSuggestion(input);
+    public void addSuggestion(String input) throws ExistPlayerException {
+        Suggestion.addSuggestion(input);
     }
 
     public void showSuggestion() {
