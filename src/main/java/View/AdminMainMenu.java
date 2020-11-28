@@ -126,10 +126,14 @@ public class AdminMainMenu extends Menu {
         System.out.println("Please Enter The Game Name : ");
         while (true) {
             String game = scanner.nextLine();
-            if (game.equalsIgnoreCase("battleShip") || game.equalsIgnoreCase("dotsAndBoxes")) {
+            try {
+                Validation.gameNameIsValid(game);
                 arrayList.add(game);
-                break;
-            } else System.out.println("NOT VALID ENTER AGAIN!");
+            } catch (InvalidGameNameException e) {
+                System.out.println(e.getGameName() + e.getMessage());
+
+            }
+
         }
     }
 

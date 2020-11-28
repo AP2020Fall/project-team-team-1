@@ -11,7 +11,6 @@ public class AdminGeneralController {
     public void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException {
         Edit.editPassword(oldPassword, newPassword);
     }
-    /***************************************************************************************************/
 
     /***********************************************EVENT***********************************************/
     public void addEvent(String input) throws StartDatesException {
@@ -19,14 +18,13 @@ public class AdminGeneralController {
 
     }
 
-    public void showEvent() {
+    public void showEvent() throws ExistEventException {
         Event.showEvent();
     }
 
-    public void editEvent(String input) throws InvalidDateException {
+    public void editEvent(String input) throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException {
         Event.editEvent(input);
     }
-    /*****************************************************************************************************/
 
     /***********************************************MESSAGE***********************************************/
     public void sendMassage(String username, String text) {
@@ -36,7 +34,6 @@ public class AdminGeneralController {
     public void showPlayerMassage(String username) {
         Message.showPlayerMassage(username);
     }
-    /*****************************************************************************************************/
 
     /***********************************************USERS***********************************************/
     public void showAllUsers() {
@@ -46,7 +43,6 @@ public class AdminGeneralController {
     public void showUsersByUserName(String userName) {
         PlayerLists.showUsersByUserName(userName);
     }
-    /*****************************************************************************************************/
 
     /**********************************************SUGGESTION**********************************************/
     public void addSuggestion(String input) throws ExistPlayerException {
@@ -60,7 +56,6 @@ public class AdminGeneralController {
     public void removeSuggestion(String suggestionID) {
         Suggestion.removeSuggestion(suggestionID);
     }
-    /*****************************************************************************************************/
 
 
 }
