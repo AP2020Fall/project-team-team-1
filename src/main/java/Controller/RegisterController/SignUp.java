@@ -4,7 +4,6 @@ package Controller.RegisterController;
 import Controller.CompetencyController.Existence;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
-
 import java.util.Random;
 
 public class SignUp {

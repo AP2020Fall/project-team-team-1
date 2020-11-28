@@ -10,11 +10,11 @@ import org.junit.Test;
 public class DeleteTest {
     @Test
     public void testDelete(){
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007pass","yasmiinkad@gmail.com", "09129749527");
+        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
         Player.players.add(playerYasmin);
         User.users.add(playerYasmin);
 
-        Delete.deleteUser("yamsiin 007pass");
+        Delete.deleteUser("yamsiin 007Password");
 
         Assert.assertFalse(Player.players.contains(playerYasmin));
         Assert.assertFalse(User.users.contains(playerYasmin));
