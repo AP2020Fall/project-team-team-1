@@ -75,4 +75,9 @@ public class ShowAdminInfo extends Menu {
         }
         return output;
     }
+
+    @Override
+    public void execute() {
+
+    }
 }
