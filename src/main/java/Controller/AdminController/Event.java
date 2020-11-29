@@ -31,8 +31,8 @@ public class Event {
         if (Model.PlatoModel.Event.getEvents().size() == 0)
             throw new ExistEventException("There is no Event for show!");
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
-            if (event.getStartDate().isBefore(LocalDate.now()) || event.getStartDate().equals(LocalDate.now()))
-                System.out.println("EventId: " + event.getEventID() + "Game name: " + event.getGameName() + "Start date: " + event.getStartDate() + "End date: " + event.getEndDate() + "Score: " + event.getScore());
+//            if (event.getStartDate().isBefore(LocalDate.now()) || event.getStartDate().equals(LocalDate.now()))
+                System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore());
 
         }
     }

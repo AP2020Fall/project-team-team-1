@@ -99,8 +99,13 @@ public class Event {
     }
     
     private int makeEventID() {
-        counter++;
-        return counter;
+        int id = 1;
+        if (events.size()==0){
+            return id;
+        }else
+            id=events.get(events.size()-1).getEventID();
+            id+=1;
+      return id;
     }
 
     @Override
