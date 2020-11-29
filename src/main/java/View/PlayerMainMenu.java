@@ -1,5 +1,7 @@
 package View;
 
+import Controller.PlayerController.FindPlayerByInfo;
+
 import java.util.HashMap;
 
 public class PlayerMainMenu extends Menu{
@@ -56,6 +58,9 @@ public class PlayerMainMenu extends Menu{
                 String friendName = requestFriendship();
                 playerGeneralController.addFriends(username,friendName);
                 System.out.println("Friend Request to "+ friendName +" is Pending.");
+                //the below commands is bullshits
+                System.out.println(FindPlayerByInfo.findByUserName("User1").getFriendsRequests());
+                this.parentMenu.run();
             }
         };
     }
