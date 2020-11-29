@@ -71,8 +71,10 @@ public class Edit {
         }
     }
 
-    public static void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
         boolean pass = false;
+        Player player = FindPlayerByInfo.findByUserName(username);
+
         pass = Existence.checkPassword(player.getUserName(), oldPassword);
         if (!pass)
             System.out.println("This format is invalid !");

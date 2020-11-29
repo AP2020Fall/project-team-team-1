@@ -11,9 +11,9 @@ public class PlayerGeneralController {
         Edit.editField(strings[0],strings[1],strings[2]);
     }
 
-    public void editPassword(Player player,String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
-
-        Edit.editPassword(player, oldPassword, newPassword);
+    public void editPassword(String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+        String[] inputSplit = input.split("\\s");
+        Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
     }
     /***************************************************************************************************/
 

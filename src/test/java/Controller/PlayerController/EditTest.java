@@ -51,7 +51,7 @@ public class EditTest extends TestCase {
     public void testEditPassword() throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
-        Edit.editPassword(player,"11223344","hesamKhare22");
+        Edit.editPassword("atarhz","11223344","hesamKhare22");
         assertEquals(player.getPassword(),"hesamKhare22");
     }
 
