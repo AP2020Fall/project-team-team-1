@@ -45,8 +45,10 @@ public class AdminGeneralController {
     public void showUsersByUserName(String userName) {
         PlayerLists.showUsersByUserName(userName);
     }
-
-    /**********************************************SUGGESTION**********************************************/
+    public void showAdminInfo() {
+        PlayerLists.showAdminInfo();
+    }
+        /**********************************************SUGGESTION**********************************************/
     public void addSuggestion(String input) throws ExistPlayerException {
         Suggestion.addSuggestion(input);
     }
