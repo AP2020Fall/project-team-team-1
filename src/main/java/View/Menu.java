@@ -39,6 +39,7 @@ public abstract class Menu {
     protected static SignUp processSignupController = new SignUp();
     protected static UserController userController = new UserController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 //------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
