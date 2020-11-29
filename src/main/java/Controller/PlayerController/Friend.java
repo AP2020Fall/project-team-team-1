@@ -101,20 +101,20 @@ public class Friend {
             }
 
         }
-        return true;
+        return result;
     }
     protected static boolean userNameIsInFriendRequest (String username, String friendUsername) {
         boolean result = false;
         Player player = FindPlayerByInfo.findByUserName(username);
 
-        for (Player playerFriend : player.getFriendsRequests()) {
-            if (playerFriend.getUserName().equals(friendUsername)) {
+        for (Player playerFriendRec : player.getFriendsRequests()) {
+            if (playerFriendRec.getUserName().equals(friendUsername)) {
                 result = true;
                 break;
             }
 
         }
-        return true;
+        return result;
     }
 
 //    private static void removeFromRequestList(String username) {
