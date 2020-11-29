@@ -69,8 +69,9 @@ public class LoginMenu extends Menu {
                 getInputPlayer(input);
                 try {
                     processLoginController.loginAsPlayer(arrayListToString(input));
-                    System.out.println(" Login successfully !");
-                    //todo this.runNextMenu ();
+                    System.out.println("Login successfully !");
+                    PlayerMainPage playerMainPage = new PlayerMainPage(input.get(0),this);
+                    playerMainPage.run();
                 } catch (InvalidUserNameException e) {
                     System.out.println(e.getUserName() + e.getMessage());
                     this.parentMenu.run();
