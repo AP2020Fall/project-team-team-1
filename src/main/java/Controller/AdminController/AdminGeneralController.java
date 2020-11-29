@@ -53,11 +53,11 @@ public class AdminGeneralController {
         Suggestion.addSuggestion(input);
     }
 
-    public void showSuggestion() {
+    public void showSuggestion() throws ExistSuggestionException {
         Suggestion.showSuggestion();
     }
 
-    public void removeSuggestion(String suggestionID) {
+    public void removeSuggestion(String suggestionID) throws ExistSuggestionException {
         Suggestion.removeSuggestion(suggestionID);
     }
 

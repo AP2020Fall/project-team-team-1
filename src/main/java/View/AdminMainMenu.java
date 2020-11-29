@@ -1,10 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.InvalidDateException;
-import Controller.Exception.InvalidGameNameException;
-import Controller.Exception.StartDatesException;
+import Controller.Exception.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +17,7 @@ public class AdminMainMenu extends Menu {
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
         submenus.put(5, viewUsers());
-        submenus.put(6,new UserMenuForAdmin(username,this));
+        submenus.put(6, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
@@ -142,12 +139,20 @@ public class AdminMainMenu extends Menu {
 
             @Override
             public void execute() {
-                adminGeneralController.showSuggestion();
+                try {
+                    adminGeneralController.showSuggestion();
+                } catch (ExistSuggestionException e) {
+                    System.out.println(e.getMessage());
+                }
                 System.out.println("if you want to delete a Suggestion enter remove otherwise enter back.");
                 String nextStep = scanner.nextLine();
                 if (nextStep.equalsIgnoreCase("remove")) {
-                    adminGeneralController.removeSuggestion(getSuggestionID());
-                    this.parentMenu.run();
+                    try {
+                        adminGeneralController.removeSuggestion(getSuggestionID());
+                        this.parentMenu.run();
+                    } catch (ExistSuggestionException e) {
+                        System.out.println(e.getMessage());
+                    }
                     //Todo It Doesnt check if this username is correct or not
                 } else if (nextStep.equalsIgnoreCase("back")) {
                     this.parentMenu.run();
@@ -166,7 +171,7 @@ public class AdminMainMenu extends Menu {
         return new Menu("view all users", this) {
             @Override
             public void show() {
-                System.out.println(this.getName()+" : ");
+                System.out.println(this.getName() + " : ");
             }
 
             @Override

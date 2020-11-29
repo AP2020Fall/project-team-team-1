@@ -1,6 +1,7 @@
 package Controller.AdminController;
 
 import Controller.Exception.ExistPlayerException;
+import Controller.Exception.ExistSuggestionException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Player;
 
@@ -18,17 +19,19 @@ public class Suggestion {
 
     }
 
-    public static void showSuggestion() {
+    public static void showSuggestion() throws ExistSuggestionException {
+        if (Model.PlatoModel.Suggestion.getAllSuggestions().size()==0)
+            throw new ExistSuggestionException("There is no Suggestion for show");
+
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
             System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName().getUserName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
         }
     }
 
-    public static void removeSuggestion(String suggestionID) {
-        Model.PlatoModel.Suggestion suggestion = null;
-        suggestion = findSuggestionBySuggestionID(suggestionID);
-//        if (suggestion == null)
-//            //todo exception handling
+    public static void removeSuggestion(String suggestionID) throws ExistSuggestionException {
+        Model.PlatoModel.Suggestion suggestion = findSuggestionBySuggestionID(suggestionID);
+        if (suggestion == null)
+            throw new ExistSuggestionException("There is no Suggestion for Delete with ID");
         Model.PlatoModel.Suggestion.getAllSuggestions().remove(suggestion);
     }
 
