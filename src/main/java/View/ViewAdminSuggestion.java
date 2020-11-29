@@ -9,6 +9,7 @@ public class ViewAdminSuggestion extends Menu {
         this.username=username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,chooseSuggestion());
+        this.setSubmenus(submenus);
     }
     private Menu chooseSuggestion(){
         return new Menu("Choose Suggestion",this) {

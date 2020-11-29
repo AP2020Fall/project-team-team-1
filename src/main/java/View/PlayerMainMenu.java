@@ -12,6 +12,9 @@ public class PlayerMainMenu extends Menu{
         submenus.put(2,showFavoritesGames());
         submenus.put(3,showPlatoBotsMessage());
         submenus.put(4,showLastPlayed());
+        submenus.put(5,new ViewAdminSuggestion(username,this));
+        submenus.put(6,addFriend());
+        this.setSubmenus(submenus);
     }
     private Menu showPoints(){
         return new Menu("show points",this) {
@@ -44,5 +47,19 @@ public class PlayerMainMenu extends Menu{
                 playerGeneralController.showUserLastPlayed(username);
             }
         };
+    }
+    private Menu addFriend(){
+        return new Menu("Add Friend",this) {
+            @Override
+            public void execute() {
+                String friendName = requestFriendship();
+                playerGeneralController.addFriends(username,friendName);
+                System.out.println("Friend Request to "+ friendName +" is Pending.");
+            }
+        };
+    }
+    private String requestFriendship(){
+        System.out.println("Enter The Player You Want To be Friend With");
+        return scanner.nextLine();
     }
 }
