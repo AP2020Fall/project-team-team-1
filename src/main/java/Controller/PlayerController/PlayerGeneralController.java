@@ -6,11 +6,13 @@ import Model.PlatoModel.Player;
 public class PlayerGeneralController {
 
     /***********************************************EDIT***********************************************/
-    public void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
-        Edit.editField(username, field, input);
+    public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
+        String[]strings=input.split("\\s");
+        Edit.editField(strings[0],strings[1],strings[2]);
     }
 
-    public void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+    public void editPassword(Player player,String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+
         Edit.editPassword(player, oldPassword, newPassword);
     }
     /***************************************************************************************************/
@@ -93,7 +95,7 @@ public class PlayerGeneralController {
         PlayerInfo.showUserAge(userName);
     }
 
-    public void showUserGamesStatistics(String userName, String gameName) {
+    public void showUserGamesStatistics(String userName) {
         PlayerInfo.showUserGamesStatistics(userName);
     }
 

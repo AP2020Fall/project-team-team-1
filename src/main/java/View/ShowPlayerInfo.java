@@ -8,5 +8,7 @@ public class ShowPlayerInfo extends Menu {
         super("User info", parentMenu);
         this.username=username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
+
+        this.setSubmenus(submenus);
     }
 }

@@ -14,6 +14,7 @@ public class PlayerMainMenu extends Menu{
         submenus.put(4,showLastPlayed());
         submenus.put(5,new ViewAdminSuggestion(username,this));
         submenus.put(6,addFriend());
+        submenus.put(7,new UserMenuForPlayer(username,this));
         this.setSubmenus(submenus);
     }
     private Menu showPoints(){
