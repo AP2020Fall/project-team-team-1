@@ -4,12 +4,14 @@ import Controller.Exception.*;
 
 public class AdminGeneralController {
     /***********************************************EDIT***********************************************/
-    public void editField(String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
-        Edit.editField(field, input);
+    public void editField(String info) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
+        String[] strings = info.split("\\s");
+        Edit.editField(strings[0],strings[1]);
     }
 
-    public void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException {
-        Edit.editPassword(oldPassword, newPassword);
+    public void editPassword(String info) throws InvalidPasswordException {
+        String[] strings = info.split("\\s");
+        Edit.editPassword(strings[1],strings[2]);
     }
 
     /***********************************************EVENT***********************************************/
