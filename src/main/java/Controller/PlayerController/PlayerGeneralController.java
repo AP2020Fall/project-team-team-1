@@ -6,16 +6,15 @@ import Model.PlatoModel.Player;
 public class PlayerGeneralController {
 
     /***********************************************EDIT***********************************************/
-    public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
+    public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
         String[]strings=input.split("\\s");
         Edit.editField(strings[0],strings[1],strings[2]);
     }
 
-    public void editPassword(String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+    public void editPassword(String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, SamePasswordException {
         String[] inputSplit = input.split("\\s");
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -30,7 +29,6 @@ public class PlayerGeneralController {
     public void showFavoritesGames(String userName) {
         FavoriteGames.showFavoritesGames(userName);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -45,7 +43,6 @@ public class PlayerGeneralController {
     public Player findByUserEmail(String userEmail) {
         return FindPlayerByInfo.findByUserEmail(userEmail);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -76,14 +73,12 @@ public class PlayerGeneralController {
     public void showFriendProfile(String username, String friendUsername) {
         Friend.showFriendProfile(username, friendUsername);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
     public void playEvent() {
 
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -110,7 +105,6 @@ public class PlayerGeneralController {
     public void showPoint(String userName) {
         PlayerInfo.showPoint(userName);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -133,14 +127,12 @@ public class PlayerGeneralController {
     public void showPlayerPointsInThisGame(String userName, String gameName) {
         PlayerStatusInGame.showPlayerPointsInThisGame(userName, gameName);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
     public void findGameForRun(String playerUserName, String gameName, String score) {
         RunGame.findGameForRun(playerUserName, gameName, score);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
@@ -151,14 +143,12 @@ public class PlayerGeneralController {
     public void playSuggestedGame(String userName, String suggestionId) {
         Suggestion.playSuggestedGame(userName, suggestionId);
     }
-    /***************************************************************************************************/
 
 
     /***********************************************EDIT***********************************************/
     public void viewBotMessages(String username) {
         ViewPlatoBotMessages.viewBotMessages(username);
     }
-    /***************************************************************************************************/
 
 
 }

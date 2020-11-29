@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 public class EditTest extends TestCase {
 
-    public void testEditField() throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
+    public void testEditField() throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
 
@@ -48,7 +48,7 @@ public class EditTest extends TestCase {
         assertEquals(player.getLastName(),"asna");
     }
 
-    public void testEditPassword() throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+    public void testEditPassword() throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
         Player player = new Player("ata","rhz",1,"atarhz","11223344","ataarahimzadeh@gmail.com","09365909061");
         Player.AddNewPlayer(player);
         Edit.editPassword("atarhz","11223344","hesamKhare22");

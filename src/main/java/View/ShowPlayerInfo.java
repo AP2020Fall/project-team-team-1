@@ -7,16 +7,18 @@ import java.util.HashMap;
 
 public class ShowPlayerInfo extends Menu {
     private String username;
+
     public ShowPlayerInfo(String username, Menu parentMenu) {
         super("User info", parentMenu);
-        this.username=username;
-        HashMap<Integer,Menu> submenus = new HashMap<>();
-        submenus.put(1,changePassword());
-        submenus.put(2,changeAfield());
+        this.username = username;
+        HashMap<Integer, Menu> submenus = new HashMap<>();
+        submenus.put(1, changePassword());
+        submenus.put(2, changeAfield());
         this.setSubmenus(submenus);
     }
-    private Menu changePassword(){
-        return new Menu("change Password",this) {
+
+    private Menu changePassword() {
+        return new Menu("change Password", this) {
             @Override
             public void execute() {
                 ArrayList<String> info = new ArrayList<>();
@@ -26,19 +28,19 @@ public class ShowPlayerInfo extends Menu {
                     playerGeneralController.editPassword(arrayListToString(info));
                     System.out.println("Change password Successfully");
                     this.parentMenu.run();
-                } catch (InvalidPasswordException e) {
+                } catch (InvalidPasswordException | WrongPasswordException | SamePasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
-                } catch (WrongPasswordException e) {
-                    System.out.println(e.getMessage());
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                    this.run();
                 }
             }
         };
 
     }
-    private Menu changeAfield(){
+
+    private Menu changeAfield() {
         return new Menu("Change name | Lastname | Email | phoneNum", this) {
             @Override
             public void execute() {
@@ -47,28 +49,27 @@ public class ShowPlayerInfo extends Menu {
                 //todo exceptions not completed!!!! kad dont touch it!!!!!!!!
                 try {
                     playerGeneralController.editField(arrayListToString(info));
-                    System.out.println(info.get(0)+" changed successfully.");
-                } catch (InvalidNameException e) {
-                    e.printStackTrace();
-                } catch (InvalidEmailException e) {
-                    e.printStackTrace();
-                } catch (InvalidPhoneNumberException e) {
-                    e.printStackTrace();
-                } catch (ExistEmailException e) {
-                    e.printStackTrace();
+                    System.out.println(info.get(0) + " changed successfully.");
+                    this.parentMenu.run();
+                } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException | ExistEmailException | InvalidFieldException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
                 }
             }
         };
     }
-    private void getChangeINfo(ArrayList<String> changeInfo){
+
+    private void getChangeINfo(ArrayList<String> changeInfo) {
+        changeInfo.add(username);
         System.out.println("Enter The field you want to change : ");
         String field = scanner.nextLine();
         changeInfo.add(field);
-        System.out.println("Enter "+ field +" new Value : ");
+        System.out.println("Enter " + field + " new Value : ");
         String newValue = scanner.nextLine();
         changeInfo.add(newValue);
     }
-    private void getPasswords(ArrayList<String> passwords){
+
+    private void getPasswords(ArrayList<String> passwords) {
         System.out.println("Please Enter Your Previous Password");
         String oldPass = scanner.nextLine();
         passwords.add(oldPass);
@@ -82,15 +83,15 @@ public class ShowPlayerInfo extends Menu {
         playerGeneralController.showBasicInformation(username);
         Menu nextMenu = null;
         String num = scanner.nextLine();
-        if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+        if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1) {
             this.run();
-        }else {
+        } else {
             int chosenMenu = Integer.parseInt(num);
-            if (chosenMenu==submenus.size()+1){
-                if (this.parentMenu==null){
+            if (chosenMenu == submenus.size() + 1) {
+                if (this.parentMenu == null) {
                     System.exit(1);
-                }else {
-                    nextMenu=this.parentMenu;
+                } else {
+                    nextMenu = this.parentMenu;
                     nextMenu.run();
                 }
             } else {

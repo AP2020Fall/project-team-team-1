@@ -8,7 +8,7 @@ import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
+    public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (field.trim().equalsIgnoreCase("name")) {
@@ -24,7 +24,7 @@ public class Edit {
 //            editUsername(player,input);
 //        }
         else
-            System.out.println("Can not edit this field !");
+            throw new InvalidFieldException("Entered Field for change in Invalid");
     }
 
 //    protected static void editUsername(Player player,String input) {
@@ -50,82 +50,55 @@ public class Edit {
 //    }
 
     protected static void editFirstName(Player player, String input) throws InvalidNameException {
-        boolean pass = false;
-        pass = Validation.nameOrLastNameIsValid(input);
-        if (!pass) {
-            System.out.println("This format is invalid !");
-        }
-        if (pass) {
-            player.setName(input);
-        }
+
+        Validation.nameOrLastNameIsValid(input);
+
+        player.setName(input);
     }
 
     protected static void editLastName(Player player, String input) throws InvalidNameException {
-        boolean pass = false;
-        pass = Validation.nameOrLastNameIsValid(input);
-        if (!pass) {
-            System.out.println("This format is invalid !");
-        }
-        if (pass) {
-            player.setLastName(input);
-        }
+        Validation.nameOrLastNameIsValid(input);
+
+        player.setLastName(input);
+
     }
 
-    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
-        boolean pass = false;
+    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
-        pass = Existence.checkPassword(player.getUserName(), oldPassword);
-        if (!pass)
-            System.out.println("This format is invalid !");
+        if (!Existence.checkPassword(player.getUserName(), oldPassword))
+            throw new WrongPasswordException();
 
-        if (pass) {
-            if (oldPassword.equals(newPassword)) {
-                System.out.println("Old password and new password are same! please enter new password");
-                pass = false;
-            }
 
-            if (pass) {
-                pass = Validation.passwordIsValid(newPassword);
-                if (!pass)
-                    System.out.println("Make Stranger Password (read Hits for make good Password)");
+        if (oldPassword.equals(newPassword))
+            throw new SamePasswordException("New Password is same to Old password! please Enter new Password");
 
-                if (pass)
-                    player.setPassword(newPassword);
-            }
 
-        }
+        Validation.passwordIsValid(newPassword);
+
+        player.setPassword(newPassword);
+
+
     }
 
     protected static void editEmail(Player player, String input) throws InvalidEmailException, ExistEmailException {
-        boolean pass = false;
-        pass = Validation.emailIsValid(input);
-        if (!pass)
-            System.out.println("This format is invalid !");
 
-        if (pass) {
-            pass = Existence.checkEmailExistence(input);
-            if (pass) {
-                System.out.println("Email is Existence!");
-                pass = false;
-            } else {
-                pass = true;
-            }
+        Validation.emailIsValid(input);
 
-            if (pass) {
-                player.setEmail(input);
-            }
-        }
+
+        if (Existence.checkEmailExistence(input))
+            throw new ExistEmailException("This Email is Belong to another Player Enter another Email");
+
+        player.setEmail(input);
+
+
     }
 
     protected static void editPhoneNumber(Player player, String input) throws InvalidPhoneNumberException {
-        boolean pass = false;
-        pass = Validation.phoneNumberIsValid(input);
-        if (!pass)
-            System.out.println("This format is invalid !");
 
-        if (pass) {
-            player.setPhoneNum(input);
-        }
+        Validation.phoneNumberIsValid(input);
+
+        player.setPhoneNum(input);
+
     }
 }
