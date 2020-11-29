@@ -2,16 +2,13 @@ package Controller.PlayerController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
-import Controller.Exception.InvalidEmailException;
-import Controller.Exception.InvalidNameException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidPhoneNumberException;
+import Controller.Exception.*;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 
 public class Edit {
 
-    public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
+    public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (field.trim().equalsIgnoreCase("name")) {
@@ -74,7 +71,7 @@ public class Edit {
         }
     }
 
-    public static void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException {
+    public static void editPassword(Player player, String oldPassword, String newPassword) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
         boolean pass = false;
         pass = Existence.checkPassword(player.getUserName(), oldPassword);
         if (!pass)
@@ -98,7 +95,7 @@ public class Edit {
         }
     }
 
-    protected static void editEmail(Player player, String input) throws InvalidEmailException {
+    protected static void editEmail(Player player, String input) throws InvalidEmailException, ExistEmailException {
         boolean pass = false;
         pass = Validation.emailIsValid(input);
         if (!pass)

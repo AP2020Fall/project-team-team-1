@@ -176,8 +176,16 @@ public class AdminMainMenu extends Menu {
 
             @Override
             public void execute() {
-                adminGeneralController.showAllUsers();
-                adminGeneralController.showUsersByUserName(getUsernameInformation());
+                try {
+                    adminGeneralController.showAllUsers();
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getMessage());
+                }
+                try {
+                    adminGeneralController.showUsersByUserName(getUsernameInformation());
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
+                }
                 System.out.println(" enter back to get back to last menu ");
                 if (scanner.nextLine().equalsIgnoreCase("back")) {
                     this.parentMenu.run();

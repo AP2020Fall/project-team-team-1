@@ -1,9 +1,6 @@
 package View;
 
-import Controller.Exception.InvalidEmailException;
-import Controller.Exception.InvalidNameException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidPhoneNumberException;
+import Controller.Exception.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,6 +29,10 @@ public class ShowAdminInfo extends Menu {
                 } catch (InvalidPasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
+                } catch (WrongPasswordException e) {
+                    System.out.println(e.getMessage());
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
                 }
 
             }
@@ -55,7 +56,7 @@ public class ShowAdminInfo extends Menu {
                     adminGeneralController.editField(arrayListToString(info));
                     System.out.println(info.get(0)+" changed successfully.");
                     this.parentMenu.run();
-                } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException e) {
+                } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException | ExistEmailException | InvalidFieldException e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }

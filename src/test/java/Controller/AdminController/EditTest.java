@@ -1,16 +1,13 @@
 package Controller.AdminController;
 
-import Controller.Exception.InvalidEmailException;
-import Controller.Exception.InvalidNameException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidPhoneNumberException;
+import Controller.Exception.*;
 import Model.PlatoModel.Admin;
 import junit.framework.TestCase;
 
 
 public class EditTest extends TestCase {
         Edit edit = new Edit();
-    public void testEditField() throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
+    public void testEditField() throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
         Admin admin1 = new Admin("hesam","asnashari",100,"hessamasna","Apteam@123334","hessamasna@yahoo.com","09121111111");
         Admin.AddNewAdmin(admin1);
         Admin admin2 = new Admin("wedwedwe","wedari",1010,"amirrezazgh","Apteam@123334","hessa11masna@yahoo.com","09121211111");
@@ -32,7 +29,7 @@ public class EditTest extends TestCase {
 //        assertEquals(admin1.getUserName(),"amirrezazgh1");
     }
 
-    public void testEditPassword() throws InvalidPasswordException {
+    public void testEditPassword() throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
         Admin admin1 = new Admin("hesam","asnashari",100,"hessamasna","Apteam@123334","hessamasna@yahoo.com","09121111111");
         Admin.AddNewAdmin(admin1);
         edit.editPassword("Apteam23334","Qwe3434dsd23");

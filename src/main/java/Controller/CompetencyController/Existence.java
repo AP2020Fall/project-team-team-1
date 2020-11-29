@@ -41,6 +41,7 @@ public class Existence {
                 result = true;
             }
         }
+
         return result;
     }
 

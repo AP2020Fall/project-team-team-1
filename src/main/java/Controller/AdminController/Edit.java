@@ -2,14 +2,11 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
-import Controller.Exception.InvalidEmailException;
-import Controller.Exception.InvalidNameException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidPhoneNumberException;
+import Controller.Exception.*;
 import Model.PlatoModel.Admin;
 
 public class Edit {
-    public static void editField(String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
+    public static void editField(String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException {
         if (field.trim().equalsIgnoreCase("name")) {
             editName(input);
         } else if (field.trim().equalsIgnoreCase("lastname")) {
@@ -46,24 +43,17 @@ public class Edit {
             Admin.getAdmins().get(0).setLastName(input);
     }
 
-    protected static void editEmail(String input) throws InvalidEmailException {
+    protected static void editEmail(String input) throws InvalidEmailException, ExistEmailException {
         boolean pass = false;
-        pass = Validation.emailIsValid(input);
-        if (!pass)
-            System.out.println("Format is InValid !");
 
-        if (pass) {
-            pass = Existence.checkEmailExistence(input);
-            if (pass) {
-                System.out.println("Email is Existence!");
-                pass = false;
-            } else {
-                pass = true;
-            }
+        Validation.emailIsValid(input);
 
-            if (pass)
-                Admin.getAdmins().get(0).setEmail(input);
-        }
+        if (Existence.checkEmailExistence(input))
+            throw new ExistEmailException("Email is Existence!");
+
+
+        Admin.getAdmins().get(0).setEmail(input);
+
     }
 
 //    protected static void editUsername(String input) {
@@ -87,13 +77,10 @@ public class Edit {
 //    }
 
     protected static void editPhoneNumber(String input) throws InvalidPhoneNumberException {
-        boolean pass = false;
-        pass = Validation.phoneNumberIsValid(input);
-        if (!pass)
-            System.out.println("Format is InValid !");
 
-        if (pass)
-            Admin.getAdmins().get(0).setPhoneNum(input);
+        Validation.phoneNumberIsValid(input);
+        Admin.getAdmins().get(0).setPhoneNum(input);
+
     }
 
     public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException {

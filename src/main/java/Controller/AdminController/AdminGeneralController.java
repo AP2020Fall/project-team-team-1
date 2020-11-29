@@ -4,12 +4,12 @@ import Controller.Exception.*;
 
 public class AdminGeneralController {
     /***********************************************EDIT***********************************************/
-    public void editField(String info) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException {
+    public void editField(String info) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
         String[] strings = info.split("\\s");
         Edit.editField(strings[0],strings[1]);
     }
 
-    public void editPassword(String info) throws InvalidPasswordException {
+    public void editPassword(String info) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
         String[] strings = info.split("\\s");
         Edit.editPassword(strings[1],strings[2]);
     }
@@ -29,20 +29,20 @@ public class AdminGeneralController {
     }
 
     /***********************************************MESSAGE***********************************************/
-    public void sendMassage(String username, String text) {
+    public void sendMassage(String username, String text) throws ExistPlayerException {
         Message.sendMassage(username, text);
     }
 
-    public void showPlayerMassage(String username) {
+    public void showPlayerMassage(String username) throws ExistPlayerException {
         Message.showPlayerMassage(username);
     }
 
     /***********************************************USERS***********************************************/
-    public void showAllUsers() {
+    public void showAllUsers() throws ExistPlayerException {
         PlayerLists.showAllUsers();
     }
 
-    public void showUsersByUserName(String userName) {
+    public void showUsersByUserName(String userName) throws ExistPlayerException {
         PlayerLists.showUsersByUserName(userName);
     }
     public void showAdminInfo() {

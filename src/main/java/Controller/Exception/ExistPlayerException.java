@@ -8,6 +8,10 @@ public class ExistPlayerException extends Exception{
         this.playerName = playerName;
     }
 
+    public ExistPlayerException(String message) {
+        super(message);
+    }
+
     public String getPlayerName() {
         return playerName;
     }
