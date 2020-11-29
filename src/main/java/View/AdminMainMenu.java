@@ -20,7 +20,7 @@ public class AdminMainMenu extends Menu {
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
         submenus.put(5, viewUsers());
-        //submenus.put(6,new UserMenu(username,this));
+        submenus.put(6,new UserMenuForAdmin(username,this));
         this.setSubmenus(submenus);
         this.username = username;
     }

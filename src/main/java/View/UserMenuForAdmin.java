@@ -9,7 +9,11 @@ public class UserMenuForAdmin extends Menu {
         this.username=username;
         HashMap<Integer,Menu> subMenus = new HashMap<>();
         subMenus.put(1,new ShowAdminInfo(this.username,this));
-
     }
 
+    @Override
+    public void run() {
+        this.show();
+        this.execute();
+    }
 }
