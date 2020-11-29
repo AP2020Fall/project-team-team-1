@@ -53,6 +53,7 @@ public class ShowAdminInfo extends Menu {
                 try {
                     adminGeneralController.editField(arrayListToString(info));
                     System.out.println(info.get(0)+" changed successfully.");
+                    this.parentMenu.run();
                 } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException e) {
                     System.out.println(e.getMessage());
                     this.run();
@@ -78,6 +79,25 @@ public class ShowAdminInfo extends Menu {
 
     @Override
     public void execute() {
-
+        adminGeneralController.showAdminInfo();
+        Menu nextMenu = null;
+        System.out.println("You Are in " + this.getName() + " Please chose a valid option :");
+        String num = scanner.nextLine();
+        if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+            this.run();
+        }else {
+            int chosenMenu = Integer.parseInt(num);
+            if (chosenMenu==submenus.size()+1){
+                if (this.parentMenu==null){
+                    System.exit(1);
+                }else {
+                    nextMenu=this.parentMenu;
+                    nextMenu.run();
+                }
+            } else {
+                nextMenu = submenus.get(chosenMenu);
+                nextMenu.run();
+            }
+        }
     }
 }
