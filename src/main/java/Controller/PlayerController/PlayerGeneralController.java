@@ -94,7 +94,11 @@ public class PlayerGeneralController {
     }
 
     public void showUserGamesStatistics(String userName, String gameName) {
-        PlayerInfo.showUserGamesStatistics(userName, gameName);
+        PlayerInfo.showUserGamesStatistics(userName);
+    }
+
+    public void showHistory(String userName) {
+        PlayerInfo.showHistory(userName);
     }
 
     public void showUserLastPlayed(String userName) {

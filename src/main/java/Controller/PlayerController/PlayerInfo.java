@@ -24,11 +24,14 @@ public class PlayerInfo {
         System.out.println(age);
 
     }
-    public static void showUserGamesStatistics(String userName , String gameName) {
+    public static void showUserGamesStatistics(String userName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int wins = player.getPlayerLog().get(0).getNumberOfWins() + player.getPlayerLog().get(1).getNumberOfWins() ;
         int loses = player.getPlayerLog().get(0).getNumberOfLoses() + player.getPlayerLog().get(1).getNumberOfLoses();
         int numberOfPlayed = player.getPlayerLog().get(0).getNumberOfGamePlayed()+player.getPlayerLog().get(1).getNumberOfGamePlayed();
+        System.out.print("age: ");
+        showUserAge(userName);
+        System.out.println("number of Friends: "+ player.getFriends().size());
         System.out.println("Wins : " + wins);
         System.out.println("Lose : " + loses);
         System.out.println("Number of match : " + numberOfPlayed);
@@ -44,7 +47,7 @@ public class PlayerInfo {
         System.out.println("Level : " + score);
         //todo score? level? point?
     }
-//    public static void showHistory (String userName){
-//
-//    }
+    public static void showHistory (String userName){
+
+    }
 }
