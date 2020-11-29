@@ -33,10 +33,11 @@ public class ShowAdminInfo extends Menu {
                     System.out.println(e.getMessage());
                     this.run();
                 }
+
             }
         };
     }
-    private void getPasswords(ArrayList passwords){
+    private void getPasswords(ArrayList<String> passwords){
         System.out.println("Please Enter Your Previous Password");
         String oldPass = scanner.nextLine();
         passwords.add(oldPass);
@@ -61,7 +62,7 @@ public class ShowAdminInfo extends Menu {
             }
         };
     }
-    private void getChangeINfo(ArrayList changeInfo){
+    private void getChangeINfo(ArrayList<String> changeInfo){
         System.out.println("Enter The field you want to change : ");
         String field = scanner.nextLine();
         changeInfo.add(field);
@@ -81,7 +82,6 @@ public class ShowAdminInfo extends Menu {
     public void execute() {
         adminGeneralController.showAdminInfo();
         Menu nextMenu = null;
-        System.out.println("You Are in " + this.getName() + " Please chose a valid option :");
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
             this.run();
@@ -100,4 +100,6 @@ public class ShowAdminInfo extends Menu {
             }
         }
     }
+
+
 }

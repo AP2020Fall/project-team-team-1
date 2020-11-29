@@ -58,7 +58,7 @@ public abstract class Menu {
         Menu.scanner = scanner;
     }
     public void show(){
-        System.out.println(this.name + ":");
+        System.out.println("You Are in " + this.name + " Please chose a valid option :");
         for (Integer menuNum : submenus.keySet()) {
             System.out.println(menuNum + ". " + submenus.get(menuNum).getName());
         }
@@ -69,7 +69,6 @@ public abstract class Menu {
     }
     public void execute(){
         Menu nextMenu = null;
-        System.out.println("You Are in " + this.name + " Please chose a valid option :");
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
             this.run();
