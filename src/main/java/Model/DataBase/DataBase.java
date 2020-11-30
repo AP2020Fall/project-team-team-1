@@ -1,6 +1,7 @@
 package Model.DataBase;
 
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 import com.google.gson.Gson;
@@ -44,7 +45,7 @@ public class DataBase {
         User.loadFromJsonFile();
         Admin.loadFromJsonFile();
         Player.loadFromJsonFile();
-
+        Event.loadFromJsonFile();
 
 
     }

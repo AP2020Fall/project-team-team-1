@@ -1,9 +1,14 @@
 package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -124,6 +129,20 @@ public class Event {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void loadFromJsonFile(){
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(eventfile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Event>>() {}.getType();
+        ArrayList<Event> output = new Gson().fromJson(read,type);
+        events.clear();
+        events.addAll(output);
     }
 
     @Override
