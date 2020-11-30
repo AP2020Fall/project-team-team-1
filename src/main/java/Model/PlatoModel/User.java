@@ -1,8 +1,14 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User {
+    private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
+
     public static ArrayList<User> users = new ArrayList<User>();
     private String name;
     private String lastName;
@@ -80,5 +86,30 @@ public class User {
 
     public static void addNewUser(User user) {
         users.add(user);
+        try {
+            DataBase.save(users,userFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void saveInJsonFile(){
+        try {
+            DataBase.save(users,userFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", UserID=" + UserID +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                '}';
     }
 }
