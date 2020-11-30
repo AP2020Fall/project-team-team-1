@@ -77,7 +77,11 @@ public class ShowPlayerInfo extends Menu {
 
     @Override
     public void execute() {
-        playerGeneralController.showBasicInformation(username);
+        try {
+            playerGeneralController.showBasicInformation(username);
+        } catch (ExistPlayerException e) {
+            System.out.println(e.getPlayerName() + e.getMessage());
+        }
         Menu nextMenu = null;
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1) {

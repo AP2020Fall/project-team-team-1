@@ -82,15 +82,15 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void showBasicInformation(String userName) {
+    public void showBasicInformation(String userName) throws ExistPlayerException {
         PlayerInfo.showBasicInformation(userName);
     }
 
-    public void showUserAge(String userName) {
+    public void showUserAge(String userName) throws ExistPlayerException {
         PlayerInfo.showUserAge(userName);
     }
 
-    public void showUserGamesStatistics(String userName) {
+    public void showUserGamesStatistics(String userName) throws ExistPlayerException {
         PlayerInfo.showUserGamesStatistics(userName);
     }
 
@@ -98,11 +98,11 @@ public class PlayerGeneralController {
         PlayerInfo.showHistory(userName);
     }
 
-    public void showUserLastPlayed(String userName) {
+    public void showUserLastPlayed(String userName) throws ExistPlayerException {
         PlayerInfo.showUserLastPlayed(userName);
     }
 
-    public void showPoint(String userName) {
+    public void showPoint(String userName) throws ExistPlayerException {
         PlayerInfo.showPoint(userName);
     }
 

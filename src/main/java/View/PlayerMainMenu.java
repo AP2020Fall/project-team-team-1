@@ -25,7 +25,11 @@ public class PlayerMainMenu extends Menu{
         return new Menu("show points",this) {
             @Override
             public void execute() {
-                playerGeneralController.showPoint(username);
+                try {
+                    playerGeneralController.showPoint(username);
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
+                }
             }
         };
     }
@@ -53,7 +57,11 @@ public class PlayerMainMenu extends Menu{
         return new Menu("Last Game Played",this) {
             @Override
             public void execute() {
-                playerGeneralController.showUserLastPlayed(username);
+                try {
+                    playerGeneralController.showUserLastPlayed(username);
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
+                }
             }
         };
     }

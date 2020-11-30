@@ -1,6 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
+import Controller.Exception.ExistPlayerException;
 import Controller.Exception.InvalidGameNameException;
 
 import java.util.HashMap;
@@ -27,7 +28,11 @@ public class UserMenuForPlayer extends Menu {
         return new Menu("Plato Statistics",this) {
             @Override
             public void execute() {
-                playerGeneralController.showUserGamesStatistics(username);
+                try {
+                    playerGeneralController.showUserGamesStatistics(username);
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName() + e.getMessage());
+                }
                 while (true){
                     System.out.println("Enter back to get back to last menu! ");
                     String nextCommand = scanner.nextLine();
