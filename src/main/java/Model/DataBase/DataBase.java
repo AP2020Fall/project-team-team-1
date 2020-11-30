@@ -1,8 +1,11 @@
 package Model.DataBase;
 
+import Model.PlatoModel.Admin;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DataBase {
@@ -27,15 +30,17 @@ public class DataBase {
         bWrite.close();
     }
 
-    public static void saveWithArrayList(ArrayList arrayList, boolean New) {
+//    public static void saveWithArrayList(ArrayList arrayList, boolean New) {
+//
+//    }
+//
+//    public static void remove(Object object) {
+//
+//    }
 
-    }
+    public static void loadAllDataFromJsonFiles() {
+        Admin.loadFromJsonFile();
 
-    public static void remove(Object object) {
-
-    }
-
-    public static void load(Object object, boolean New) {
 
     }
 }

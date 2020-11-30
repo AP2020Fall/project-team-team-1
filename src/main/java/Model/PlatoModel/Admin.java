@@ -1,9 +1,12 @@
 package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Admin extends User {
@@ -42,6 +45,22 @@ public class Admin extends User {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void loadFromJsonFile(){
+                String read = "";
+        try {
+            FileReader myFile1 = new FileReader(adminFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Admin>>() {}.getType();
+        ArrayList<Admin> output = new Gson().fromJson(read,type);
+        admins.clear();
+        admins.addAll(output);
     }
 
     @Override
