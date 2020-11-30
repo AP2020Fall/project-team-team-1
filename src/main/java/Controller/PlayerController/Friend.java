@@ -1,86 +1,107 @@
 package Controller.PlayerController;
 
 
+import Controller.Exception.AcceptAndDeclineFriendException;
+import Controller.Exception.ExistFriendException;
+import Controller.Exception.ExistPlayerException;
 import Model.PlatoModel.Player;
 
 public class Friend {
-    public static void acceptRequest(String username, String friendUsername) {
+    public static void acceptRequest(String username, String friendUsername) throws AcceptAndDeclineFriendException, ExistPlayerException {
         Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(username);
+
         Player playerHowSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
-        if (!userNameIsInFriendRequest(username, friendUsername)){
-            System.out.println(friendUsername+" is not in "+username+" Request list!");
-            return;
-        }
+
+        if (playerHowSentRequests == null)
+            throw new ExistPlayerException(friendUsername," isn't exist please make sure about Username! ");
+
+        if (!userNameIsInFriendRequest(username, friendUsername))
+            throw new AcceptAndDeclineFriendException(" it isn't in your Request list!,make Sure about the Username ",friendUsername);
+
         playerHowReceivedRequests.getFriendsRequests().remove(playerHowSentRequests);
+
         playerHowReceivedRequests.getFriends().add(playerHowSentRequests);
+
         playerHowSentRequests.getFriends().add(playerHowReceivedRequests);
+
     }
 
-    public static void declineRequest(String username, String friendUsername) {
+    public static void declineRequest(String username, String friendUsername) throws AcceptAndDeclineFriendException, ExistPlayerException {
         Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(username);
+
         Player playerHowSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
-        if (!userNameIsInFriendRequest(username, friendUsername)){
-            System.out.println(friendUsername+" is not in "+username+" Request list!");
-            return;
-        }
+
+        if (playerHowSentRequests == null)
+            throw new ExistPlayerException(friendUsername," isn't exist please make sure about Username! ");
+
+        if (!userNameIsInFriendRequest(username, friendUsername))
+            throw new AcceptAndDeclineFriendException(" it isn't in your Request list!,make Sure about the Username ",friendUsername);
+
+
         playerHowReceivedRequests.getFriendsRequests().remove(playerHowSentRequests);
     }
 
-    public static void addFriends(String username, String friendUsername) {
+    public static void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(username);
         Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(friendUsername);
 
-        if (userNameIsFriend(username, friendUsername)){
-            System.out.println(friendUsername+" is already friend");
-            return;
-        }
+        if (playerHowReceivedRequests == null)
+            throw new ExistPlayerException(friendUsername," isn't exist please make sure about Username! ");
+
+        if (userNameIsFriend(username, friendUsername))
+            throw new ExistFriendException(friendUsername," is already in you friends list :) ");
+
 
         playerHowReceivedRequests.getFriendsRequests().add(player);
 
 
     }
 
-    public static void removeFriend(String username, String friendUsername) {
+    public static void removeFriend(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(username);
+
         Player friend = FindPlayerByInfo.findByUserName(friendUsername);
 
-//todo check palyer is friend or no!
-        if (!userNameIsFriend(username, friendUsername)){
-            System.out.println(friendUsername+" is not exist in your Friends");
-            return;
-        }
-        if (!userNameIsFriend(username, friendUsername)){
-            System.out.println(friendUsername+" is not in "+username+" Request list!");
-            return;
-        }
+        if (friend == null)
+            throw new ExistPlayerException(friendUsername," isn't exist please make sure about Username! ");
+
+        if (!userNameIsFriend(username, friendUsername))
+            throw new ExistFriendException(friendUsername," isn't in you friends list, Make Sure about Username and Try Again! ");
+
 
         player.getFriends().remove(friend);
     }
 
 
-    public static void showRequests(String username) {
+    public static void showRequests(String username) throws ExistFriendException {
         Player player = FindPlayerByInfo.findByUserName(username);
+
+        if (player.getFriendsRequests().size() == 0)
+            throw new ExistFriendException(" There is no Request for Show! ");
 
         for (Player playerFriendRequests : player.getFriendsRequests()) {
             System.out.println("getUserID: " + playerFriendRequests.getUserID() + " Username: " + playerFriendRequests.getUserName() + " Name: " + playerFriendRequests.getName() + " LastName: " + playerFriendRequests.getLastName() + " Email: " + playerFriendRequests.getEmail() + " Phone Number: " + playerFriendRequests.getPhoneNum());
         }
     }
 
-    public static void showFriends(String username) {
+    public static void showFriends(String username) throws ExistFriendException {
         Player player = FindPlayerByInfo.findByUserName(username);
+
+        if (player.getFriends().size() == 0)
+            throw new ExistFriendException(" There is no Friend for Show! ");
 
         for (Player playerFriend : player.getFriends()) {
             System.out.println("getUserID: " + playerFriend.getUserID() + " Username: " + playerFriend.getUserName() + " Name: " + playerFriend.getName() + " LastName: " + playerFriend.getLastName() + " Email: " + playerFriend.getEmail() + " Phone Number: " + playerFriend.getPhoneNum());
         }
     }
 
-    public static void showFriendProfile(String username, String friendUsername) {
-        // if its her/his friend
+    public static void showFriendProfile(String username, String friendUsername) throws ExistFriendException {
+
         Player player = FindPlayerByInfo.findByUserName(username);
-        if (!userNameIsFriend(username, friendUsername)){
-            System.out.println(friendUsername+" is not "+username+" friend");
-            return;
-        }
+
+        if (!userNameIsFriend(username, friendUsername))
+            throw new ExistFriendException(friendUsername," isn't in you friends list, Make Sure about Username and Try Again! ");
+
         for (Player playerFriend : player.getFriends()) {
             if (playerFriend.getUserName().equals(friendUsername)) {
                 System.out.println("getUserID: " + playerFriend.getUserID() + " Username: " + playerFriend.getUserName() + " Name: " + playerFriend.getName() + " LastName: " + playerFriend.getLastName() + " Email: " + playerFriend.getEmail() + " Phone Number: " + playerFriend.getPhoneNum());

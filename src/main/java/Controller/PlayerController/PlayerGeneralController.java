@@ -11,7 +11,7 @@ public class PlayerGeneralController {
         Edit.editField(strings[0],strings[1],strings[2]);
     }
 
-    public void editPassword(String input) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, SamePasswordException {
+    public void editPassword(String input) throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
         String[] inputSplit = input.split("\\s");
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
     }
@@ -46,31 +46,31 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void addFriends(String username, String friendUsername) {
+    public void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
         Friend.addFriends(username, friendUsername);
     }
 
-    public void acceptRequest(String username, String friendUsername) {
+    public void acceptRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException {
         Friend.acceptRequest(username, friendUsername);
     }
 
-    public void declineRequest(String username, String friendUsername) {
+    public void declineRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException {
         Friend.declineRequest(username, friendUsername);
     }
 
-    public void removeFriend(String username, String friendUsername) {
+    public void removeFriend(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
         Friend.removeFriend(username, friendUsername);
     }
 
-    public void showRequests(String username) {
+    public void showRequests(String username) throws ExistFriendException {
         Friend.showRequests(username);
     }
 
-    public void showFriends(String username) {
+    public void showFriends(String username) throws ExistFriendException {
         Friend.showFriends(username);
     }
 
-    public void showFriendProfile(String username, String friendUsername) {
+    public void showFriendProfile(String username, String friendUsername) throws ExistFriendException {
         Friend.showFriendProfile(username, friendUsername);
     }
 

@@ -1,7 +1,8 @@
 package View;
 
 import Controller.Exception.ExistFavoriteException;
-import Controller.PlayerController.FindPlayerByInfo;
+import Controller.Exception.ExistFriendException;
+import Controller.Exception.ExistPlayerException;
 
 import java.util.HashMap;
 
@@ -61,9 +62,18 @@ public class PlayerMainMenu extends Menu{
             @Override
             public void execute() {
                 String friendName = requestFriendship();
-                playerGeneralController.addFriends(username,friendName);
-                System.out.println("Friend Request to "+ friendName +" is Pending.");
-                this.parentMenu.run();
+                try {
+                    playerGeneralController.addFriends(username,friendName);
+                    System.out.println("Friend Request to "+ friendName +" is Pending.");
+                    this.parentMenu.run();
+                } catch (ExistFriendException e) {
+                    System.out.println(e.getName() + e.getMessage());
+                    this.parentMenu.run();
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getPlayerName()+e.getMessage());
+                    this.parentMenu.run();
+                }
+
             }
         };
     }
