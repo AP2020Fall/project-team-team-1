@@ -1,9 +1,6 @@
 package Model.DataBase;
 
-import Model.PlatoModel.Admin;
-import Model.PlatoModel.Event;
-import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
+import Model.PlatoModel.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -46,6 +43,9 @@ public class DataBase {
         Admin.loadFromJsonFile();
         Player.loadFromJsonFile();
         Event.loadFromJsonFile();
+        Suggestion.loadFromJsonFile();
+        Message.loadFromJsonFile();
+        PlayerLog.loadFromJsonFile();
 
 
     }
