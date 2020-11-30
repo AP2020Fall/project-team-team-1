@@ -13,18 +13,22 @@ public class FavoriteGames {
             throw new InvalidGameNameException(gameName);
 
         if (checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName," Is already exist ! ");
+            throw new ExistFavoriteException(gameName, " Is already exist ! ");
 
         player.getFavoritesGamesName().add(gameName);
+        Player.saveInJsonFile();
+
     }
 
     public static void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (!checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName," isn't exist in your List! ");
+            throw new ExistFavoriteException(gameName, " isn't exist in your List! ");
 
         player.getFavoritesGamesName().remove(gameName);
+        Player.saveInJsonFile();
+
 
     }
 

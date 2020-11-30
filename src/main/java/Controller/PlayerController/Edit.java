@@ -25,6 +25,8 @@ public class Edit {
 //        }
         else
             throw new InvalidFieldException("Entered Field for change in Invalid");
+
+        Player.saveInJsonFile();
     }
 
 //    protected static void editUsername(Player player,String input) {
@@ -77,6 +79,7 @@ public class Edit {
         Validation.passwordIsValid(newPassword);
 
         player.setPassword(newPassword);
+        Player.saveInJsonFile();
 
 
     }
