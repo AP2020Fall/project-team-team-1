@@ -110,8 +110,8 @@ public class User {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Admin>>() {}.getType();
-        ArrayList<Admin> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        ArrayList<User> output = new Gson().fromJson(read,type);
         users.clear();
         users.addAll(output);
     }
