@@ -1,8 +1,14 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class PlayerLog {
+    private static final File playerLogsFile = new File("src\\main\\java\\Model\\Database\\PlayerLog.json");
+
     public static ArrayList<PlayerLog> playerLogs = new ArrayList<PlayerLog>();
     private int logID = 0;
     private int numberOfGamePlayed;
@@ -66,6 +72,18 @@ public class PlayerLog {
     }
     public static void addNewPlayerLog(PlayerLog playerLog){
         playerLogs.add(playerLog);
+        try {
+            DataBase.save(playerLogs,playerLogsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(playerLogs,playerLogsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getNumberOfLoses() {
@@ -74,5 +92,18 @@ public class PlayerLog {
 
     public void setNumberOfLoses(int numberOfLoses) {
         this.numberOfLoses = numberOfLoses;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerLog{" +
+                "logID=" + logID +
+                ", numberOfGamePlayed=" + numberOfGamePlayed +
+                ", gameName='" + gameName + '\'' +
+                ", userId=" + userId +
+                ", numberOfWins=" + numberOfWins +
+                ", takenScore=" + takenScore +
+                ", numberOfLoses=" + numberOfLoses +
+                '}';
     }
 }

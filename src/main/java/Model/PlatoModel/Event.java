@@ -1,10 +1,16 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Event {
+    private static final File eventfile = new File("src\\main\\java\\Model\\Database\\Event.json");
+
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Player> playersInThisEvent;
     private String gameName ;
@@ -96,6 +102,11 @@ public class Event {
 
     public static void addNewEvent(Event event){
         events.add(event);
+        try {
+            DataBase.save(events,eventfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     private int makeEventID() {
@@ -106,6 +117,13 @@ public class Event {
             id=events.get(events.size()-1).getEventID();
             id+=1;
       return id;
+    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(events,eventfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

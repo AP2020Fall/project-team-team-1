@@ -1,8 +1,14 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Suggestion {
+    private static final File suggestionFile = new File("src\\main\\java\\Model\\Database\\Suggestion.json");
+
     private static ArrayList<Suggestion> allSuggestions =new ArrayList<>();
     private int suggestionID=0;
     private Player playerName;
@@ -35,9 +41,21 @@ public class Suggestion {
 
     public static void addNewSyggestion(Suggestion suggestion){
         allSuggestions.add(suggestion);
+        try {
+            DataBase.save(allSuggestions,suggestionFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(allSuggestions,suggestionFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
+        @Override
     public String toString() {
         return "Suggestion{" +
                 "suggestionID=" + suggestionID +
