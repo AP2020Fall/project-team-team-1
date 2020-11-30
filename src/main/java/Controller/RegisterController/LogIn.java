@@ -23,6 +23,7 @@ public class LogIn {
             throw new WrongPasswordException();
             //return false;
         }
+
         //System.out.println("LOGIN SUCCESSFULLY");
         //return true;
     }

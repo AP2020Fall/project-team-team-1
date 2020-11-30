@@ -15,7 +15,7 @@ public class SignUp {
         String[] adminInfoSplit = adminInfo.split("\\s");
 
         if (Existence.adminExistence()) {
-            throw new ExistAdminException("There is no Admin Yet!");
+            throw new ExistAdminException("THE ADMIN ALREADY EXISTS!");
 //            System.out.println("THE ADMIN ALREADY EXISTS");
 //            return false;
         }
