@@ -1,9 +1,14 @@
 package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Message {
@@ -38,6 +43,20 @@ public class Message {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static void loadFromJsonFile(){
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(messageFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Message>>() {}.getType();
+        ArrayList<Message> output = new Gson().fromJson(read,type);
+        messages.clear();
+        messages.addAll(output);
     }
 
     @Override
