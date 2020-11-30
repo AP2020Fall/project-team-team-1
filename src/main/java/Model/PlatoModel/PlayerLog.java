@@ -10,12 +10,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayerLog {
     private static final File playerLogsFile = new File("src\\main\\java\\Model\\Database\\PlayerLog.json");
 
     public static ArrayList<PlayerLog> playerLogs = new ArrayList<PlayerLog>();
-    private int logID = 0;
+    private int logID ;
     private int numberOfGamePlayed;
     private String gameName;
     private int userId;
@@ -24,7 +25,7 @@ public class PlayerLog {
     private int numberOfLoses;
 
     public PlayerLog(int userId, String gameName) {
-        this.logID = logIdMaker();
+        this.logID = randomPlayerLogId(700,900);
         this.gameName = gameName;
         this.userId = userId;
         this.numberOfGamePlayed = 0;
@@ -73,11 +74,10 @@ public class PlayerLog {
         this.takenScore = takenScore;
     }
 
-    public int logIdMaker() {
-        logID++;
-        return logID;
+    private int randomPlayerLogId(int min , int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
-
     public static void addNewPlayerLog(PlayerLog playerLog) {
         playerLogs.add(playerLog);
         try {

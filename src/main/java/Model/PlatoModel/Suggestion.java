@@ -15,7 +15,7 @@ public class Suggestion {
     private static final File suggestionFile = new File("src\\main\\java\\Model\\Database\\Suggestion.json");
 
     private static ArrayList<Suggestion> allSuggestions = new ArrayList<>();
-    private int suggestionID = 0;
+    private int suggestionID;
     private Player playerName;
     private String suggestedGame;
 

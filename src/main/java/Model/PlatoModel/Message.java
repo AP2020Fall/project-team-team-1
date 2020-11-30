@@ -10,19 +10,20 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Message {
     private static final File messageFile = new File("src\\main\\java\\Model\\Database\\Message.json");
 
     private static ArrayList<Message> messages = new ArrayList<>();
-    private int massageID = 0;
+    private int massageID ;
     private String text;
     private Player receiver;
 
     public Message(String text, Player receiver) {
         this.text = text;
         this.receiver = receiver;
-        this.massageID = massageID();
+        this.massageID = randomMessageId(2000,2500);
     }
 
     private int massageID() {
@@ -37,6 +38,10 @@ public class Message {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private int randomMessageId(int min , int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
     }
 
     public static void saveInJsonFile() {
