@@ -52,8 +52,6 @@ public class Admin extends User {
             FileReader myFile1 = new FileReader(adminFile);
             BufferedReader br = new BufferedReader(myFile1);
             read = br.readLine();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package Model.DataBase;
 
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +40,7 @@ public class DataBase {
 //    }
 
     public static void loadAllDataFromJsonFiles() {
+        User.loadFromJsonFile();
         Admin.loadFromJsonFile();
 
 
