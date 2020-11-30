@@ -1,8 +1,14 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Admin extends User {
+    private static final File adminFile = new File("src\\main\\java\\Model\\Database\\Admin.json");
+
     private static ArrayList<Admin> admins = new ArrayList<Admin>();
 
 
@@ -23,7 +29,19 @@ public class Admin extends User {
     public static void AddNewAdmin(Admin admin) {
         admins.add(admin);
         User.addNewUser(admin);
+        try {
+            DataBase.save(admins,adminFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(admins,adminFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
