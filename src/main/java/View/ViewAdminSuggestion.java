@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Exception.ExistSuggestionException;
+
 import java.util.HashMap;
 
 public class ViewAdminSuggestion extends Menu {
@@ -15,9 +17,14 @@ public class ViewAdminSuggestion extends Menu {
         return new Menu("Choose Suggestion",this) {
             @Override
             public void execute() {
-                playerGeneralController.showSuggestion(username);
-                String chosenSuggestion = scanner.nextLine();
-                playerGeneralController.playSuggestedGame(username,chosenSuggestion);
+                try {
+                    playerGeneralController.showSuggestion(username);
+                    String chosenSuggestion = scanner.nextLine();
+                    playerGeneralController.playSuggestedGame(username,chosenSuggestion);
+                } catch (ExistSuggestionException e) {
+                    System.out.println(e.getMessage());
+                }
+
             }
         };
     }

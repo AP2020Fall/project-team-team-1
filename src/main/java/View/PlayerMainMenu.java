@@ -2,6 +2,7 @@ package View;
 
 import Controller.Exception.ExistFavoriteException;
 import Controller.Exception.ExistFriendException;
+import Controller.Exception.ExistPlatoMessageException;
 import Controller.Exception.ExistPlayerException;
 
 import java.util.HashMap;
@@ -49,7 +50,11 @@ public class PlayerMainMenu extends Menu{
         return new Menu("PlatoBots Messages",this) {
             @Override
             public void execute() {
-                playerGeneralController.viewBotMessages(username);
+                try {
+                    playerGeneralController.viewBotMessages(username);
+                } catch (ExistPlatoMessageException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         };
     }
@@ -78,7 +83,7 @@ public class PlayerMainMenu extends Menu{
                     System.out.println(e.getName() + e.getMessage());
                     this.parentMenu.run();
                 } catch (ExistPlayerException e) {
-                    System.out.println(e.getPlayerName()+e.getMessage());
+                    System.out.println(e.getPlayerName() + e.getMessage());
                     this.parentMenu.run();
                 }
 

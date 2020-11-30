@@ -136,17 +136,17 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void showSuggestion(String username) {
+    public void showSuggestion(String username) throws ExistSuggestionException {
         Suggestion.showSuggestion(username);
     }
 
-    public void playSuggestedGame(String userName, String suggestionId) {
+    public void playSuggestedGame(String userName, String suggestionId) throws ExistSuggestionException {
         Suggestion.playSuggestedGame(userName, suggestionId);
     }
 
 
     /***********************************************EDIT***********************************************/
-    public void viewBotMessages(String username) {
+    public void viewBotMessages(String username) throws ExistPlatoMessageException {
         ViewPlatoBotMessages.viewBotMessages(username);
     }
 
