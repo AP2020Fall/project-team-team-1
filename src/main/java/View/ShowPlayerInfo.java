@@ -31,9 +31,6 @@ public class ShowPlayerInfo extends Menu {
                 } catch (InvalidPasswordException | WrongPasswordException | SamePasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
-                } catch (ExistPlayerException e) {
-                    System.out.println(e.getPlayerName() + e.getMessage());
-                    this.run();
                 }
             }
         };
