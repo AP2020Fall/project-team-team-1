@@ -33,6 +33,7 @@ public class Suggestion {
         if (suggestion == null)
             throw new ExistSuggestionException("There is no Suggestion for Delete with ID");
         Model.PlatoModel.Suggestion.getAllSuggestions().remove(suggestion);
+        Model.PlatoModel.Suggestion.saveInJsonFile();
     }
 
     private boolean checkSuggestionExistence(String suggestionID) {

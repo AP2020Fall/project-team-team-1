@@ -61,10 +61,14 @@ public class Event {
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
+        Model.PlatoModel.Event.saveInJsonFile();
+
     }
 
     public void removeEventByAdminFromView(String eventID) throws ExistEventException {
         removeEvent(eventID);
+        Model.PlatoModel.Event.saveInJsonFile();
+
     }
 
     public static void removeEvent(String eventID) throws ExistEventException {
@@ -87,6 +91,8 @@ public class Event {
                 removeEvent(String.valueOf(eventForDelete.getEventID()));
             }
         }
+        Model.PlatoModel.Event.saveInJsonFile();
+
     }
 
     public static Model.PlatoModel.Event eventFinderByEventID(String eventID) throws ExistEventException {

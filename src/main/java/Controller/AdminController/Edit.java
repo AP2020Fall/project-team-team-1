@@ -21,6 +21,8 @@ public class Edit {
 //        }
         else
             throw new InvalidFieldException("Field for Edit is Invalid");
+
+        Admin.saveInJsonFile();
     }
 
     protected static void editName(String input) throws InvalidNameException {
@@ -93,6 +95,8 @@ public class Edit {
 
 
         Admin.getAdmins().get(0).setPassword(newPassword);
+        Admin.saveInJsonFile();
+
 
 
     }

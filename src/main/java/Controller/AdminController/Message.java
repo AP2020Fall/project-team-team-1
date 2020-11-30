@@ -13,7 +13,9 @@ public class Message {
             throw new ExistPlayerException(username + " Is Invalid");
         Model.PlatoModel.Message message = new Model.PlatoModel.Message(text,player);
         Model.PlatoModel.Message.addNewMessage(message);
+
         player.getReceivedMessages().add(message);
+        Player.saveInJsonFile();
 
     }
 
