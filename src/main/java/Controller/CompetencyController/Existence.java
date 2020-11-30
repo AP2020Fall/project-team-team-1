@@ -65,12 +65,9 @@ public class Existence {
 
     public static boolean checkGameExistence(String gameName){
         boolean result = false;
-        for (Games game : Games.getGames()) {
-            if (game.getGameName().equals(gameName)){
+        if (gameName.equalsIgnoreCase("DotsAndBoxes") || gameName.equalsIgnoreCase("BattleShip"))
                 result = true;
-                break;
-            }
-        }
+
         return result;
     }
 

@@ -18,15 +18,15 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void addGameToFavoritesGames(String userName, String gameName) {
+    public void addGameToFavoritesGames(String userName, String gameName) throws ExistFavoriteException, InvalidGameNameException {
         FavoriteGames.addGameToFavoritesGames(userName, gameName);
     }
 
-    public void RemoveFavoritesGames(String userName, String gameName) {
+    public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
         FavoriteGames.RemoveFavoritesGames(userName, gameName);
     }
 
-    public void showFavoritesGames(String userName) {
+    public void showFavoritesGames(String userName) throws ExistFavoriteException {
         FavoriteGames.showFavoritesGames(userName);
     }
 

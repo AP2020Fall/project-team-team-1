@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Exception.ExistFavoriteException;
 import Controller.PlayerController.FindPlayerByInfo;
 
 import java.util.HashMap;
@@ -31,7 +32,11 @@ public class PlayerMainMenu extends Menu{
      return new Menu("Favorites Games",this) {
          @Override
          public void execute() {
-             playerGeneralController.showFavoritesGames(username);
+             try {
+                 playerGeneralController.showFavoritesGames(username);
+             } catch (ExistFavoriteException e) {
+                 System.out.println(e.getMessage());
+             }
          }
      };
     }
