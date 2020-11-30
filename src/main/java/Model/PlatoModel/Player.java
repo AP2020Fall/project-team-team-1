@@ -1,10 +1,16 @@
 package Model.PlatoModel;
 
+import Model.DataBase.DataBase;
+
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Player extends User {
+    private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
+
     public static ArrayList<Player> players = new ArrayList<Player>();
     private double coin;
     private LocalDate registerDate;
@@ -32,6 +38,11 @@ public class Player extends User {
     public static void AddNewPlayer(Player player) {
         players.add(player);
         User.addNewUser(player);
+        try {
+            DataBase.save(players,playerFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Player> getFriends() {
@@ -114,6 +125,13 @@ public class Player extends User {
         this.lastPlayed = lastPlayed;
     }
 
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(players,playerFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public String toString() {
         return "Player{" +
