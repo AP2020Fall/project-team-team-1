@@ -1,9 +1,14 @@
 package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class PlayerLog {
@@ -78,13 +83,6 @@ public class PlayerLog {
             e.printStackTrace();
         }
     }
-    public static void saveInJsonFile() {
-        try {
-            DataBase.save(playerLogs,playerLogsFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public int getNumberOfLoses() {
         return numberOfLoses;
@@ -92,6 +90,28 @@ public class PlayerLog {
 
     public void setNumberOfLoses(int numberOfLoses) {
         this.numberOfLoses = numberOfLoses;
+    }
+
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(playerLogs,playerLogsFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void loadFromJsonFile(){
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(playerLogsFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<PlayerLog>>() {}.getType();
+        ArrayList<PlayerLog> output = new Gson().fromJson(read,type);
+        playerLogs.clear();
+        playerLogs.addAll(output);
     }
 
     @Override
