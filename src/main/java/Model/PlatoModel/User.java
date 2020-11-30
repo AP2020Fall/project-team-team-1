@@ -89,19 +89,23 @@ public class User {
     public static void addNewUser(User user) {
         users.add(user);
         try {
-            DataBase.save(users,userFile);
+            DataBase.save(users, userFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void saveInJsonFile(){
+
+    public static void saveInJsonFile() {
         try {
-            DataBase.save(users,userFile);
+            DataBase.save(users, userFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadFromJsonFile(){
+
+    public static void loadFromJsonFile() {
+        if (!userFile.exists())
+            return;
         String read = "";
         try {
             FileReader myFile1 = new FileReader(userFile);
@@ -110,8 +114,9 @@ public class User {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<User>>() {}.getType();
-        ArrayList<User> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        ArrayList<User> output = new Gson().fromJson(read, type);
         users.clear();
         users.addAll(output);
     }

@@ -18,7 +18,7 @@ public class Event {
 
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<Player> playersInThisEvent;
-    private String gameName ;
+    private String gameName;
     private LocalDate startDate;
     private LocalDate endDate;
     private long score;
@@ -31,9 +31,10 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.score = score;
-        playersInThisEvent=new ArrayList<Player>();
+        playersInThisEvent = new ArrayList<Player>();
     }
-    private static void removeEvent(Event event){
+
+    private static void removeEvent(Event event) {
 
     }
 
@@ -101,36 +102,40 @@ public class Event {
         this.playersInThisEvent = playersInThisEvent;
     }
 
-    private void addPlayerToEvent(Player player){
+    private void addPlayerToEvent(Player player) {
         playersInThisEvent.add(player);
     }
 
-    public static void addNewEvent(Event event){
+    public static void addNewEvent(Event event) {
         events.add(event);
         try {
-            DataBase.save(events,eventfile);
+            DataBase.save(events, eventfile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     private int makeEventID() {
         int id = 1;
-        if (events.size()==0){
+        if (events.size() == 0) {
             return id;
-        }else
-            id=events.get(events.size()-1).getEventID();
-            id+=1;
-      return id;
+        } else
+            id = events.get(events.size() - 1).getEventID();
+        id += 1;
+        return id;
     }
+
     public static void saveInJsonFile() {
         try {
-            DataBase.save(events,eventfile);
+            DataBase.save(events, eventfile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadFromJsonFile(){
+
+    public static void loadFromJsonFile() {
+        if (!eventfile.exists())
+            return;
         String read = "";
         try {
             FileReader myFile1 = new FileReader(eventfile);
@@ -139,8 +144,9 @@ public class Event {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Event>>() {}.getType();
-        ArrayList<Event> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<Event>>() {
+        }.getType();
+        ArrayList<Event> output = new Gson().fromJson(read, type);
         events.clear();
         events.addAll(output);
     }

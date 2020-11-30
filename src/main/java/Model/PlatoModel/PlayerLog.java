@@ -22,14 +22,15 @@ public class PlayerLog {
     private int numberOfWins;
     private long takenScore;
     private int numberOfLoses;
-    public PlayerLog(int userId , String gameName){
-        this.logID= logIdMaker();
+
+    public PlayerLog(int userId, String gameName) {
+        this.logID = logIdMaker();
         this.gameName = gameName;
-        this.userId = userId ;
+        this.userId = userId;
         this.numberOfGamePlayed = 0;
-        this.numberOfWins = 0 ;
-        this.numberOfLoses = 0 ;
-        this.takenScore = 0 ;
+        this.numberOfWins = 0;
+        this.numberOfLoses = 0;
+        this.takenScore = 0;
     }
 
     public static ArrayList<PlayerLog> getPlayerLogs() {
@@ -71,14 +72,16 @@ public class PlayerLog {
     public void setTakenScore(long takenScore) {
         this.takenScore = takenScore;
     }
-    public int logIdMaker (){
+
+    public int logIdMaker() {
         logID++;
         return logID;
     }
-    public static void addNewPlayerLog(PlayerLog playerLog){
+
+    public static void addNewPlayerLog(PlayerLog playerLog) {
         playerLogs.add(playerLog);
         try {
-            DataBase.save(playerLogs,playerLogsFile);
+            DataBase.save(playerLogs, playerLogsFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,12 +97,15 @@ public class PlayerLog {
 
     public static void saveInJsonFile() {
         try {
-            DataBase.save(playerLogs,playerLogsFile);
+            DataBase.save(playerLogs, playerLogsFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadFromJsonFile(){
+
+    public static void loadFromJsonFile() {
+        if (!playerLogsFile.exists())
+            return;
         String read = "";
         try {
             FileReader myFile1 = new FileReader(playerLogsFile);
@@ -108,8 +114,9 @@ public class PlayerLog {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<PlayerLog>>() {}.getType();
-        ArrayList<PlayerLog> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<PlayerLog>>() {
+        }.getType();
+        ArrayList<PlayerLog> output = new Gson().fromJson(read, type);
         playerLogs.clear();
         playerLogs.addAll(output);
     }

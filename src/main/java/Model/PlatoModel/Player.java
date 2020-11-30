@@ -44,7 +44,7 @@ public class Player extends User {
         players.add(player);
         User.addNewUser(player);
         try {
-            DataBase.save(players,playerFile);
+            DataBase.save(players, playerFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,7 +109,6 @@ public class Player extends User {
     }
 
 
-
     public ArrayList<Integer> getSuggestedGamesID() {
         return suggestedGamesID;
     }
@@ -132,13 +131,16 @@ public class Player extends User {
 
     public static void saveInJsonFile() {
         try {
-            DataBase.save(players,playerFile);
+            DataBase.save(players, playerFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadFromJsonFile(){
+
+    public static void loadFromJsonFile() {
         String read = "";
+        if (!playerFile.exists())
+            return;
         try {
             FileReader myFile1 = new FileReader(playerFile);
             BufferedReader br = new BufferedReader(myFile1);
@@ -146,11 +148,13 @@ public class Player extends User {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Player>>() {}.getType();
-        ArrayList<Player> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<Player>>() {
+        }.getType();
+        ArrayList<Player> output = new Gson().fromJson(read, type);
         players.clear();
         players.addAll(output);
     }
+
     @Override
     public String toString() {
         return "Player{" +

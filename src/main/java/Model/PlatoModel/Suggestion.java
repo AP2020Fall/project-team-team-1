@@ -14,16 +14,16 @@ import java.util.ArrayList;
 public class Suggestion {
     private static final File suggestionFile = new File("src\\main\\java\\Model\\Database\\Suggestion.json");
 
-    private static ArrayList<Suggestion> allSuggestions =new ArrayList<>();
-    private int suggestionID=0;
+    private static ArrayList<Suggestion> allSuggestions = new ArrayList<>();
+    private int suggestionID = 0;
     private Player playerName;
     private String suggestedGame;
 
 
-    public Suggestion(int suggestionID,Player playerName, String suggestedGame) {
+    public Suggestion(int suggestionID, Player playerName, String suggestedGame) {
         this.playerName = playerName;
         this.suggestedGame = suggestedGame;
-        this.suggestionID=suggestionID;
+        this.suggestionID = suggestionID;
         playerName.suggestedGamesID.add(suggestionID);
     }
 
@@ -44,23 +44,27 @@ public class Suggestion {
         return suggestedGame;
     }
 
-    public static void addNewSyggestion(Suggestion suggestion){
+    public static void addNewSyggestion(Suggestion suggestion) {
         allSuggestions.add(suggestion);
         try {
-            DataBase.save(allSuggestions,suggestionFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void saveInJsonFile() {
-        try {
-            DataBase.save(allSuggestions,suggestionFile);
+            DataBase.save(allSuggestions, suggestionFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void loadFromJsonFile(){
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(allSuggestions, suggestionFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadFromJsonFile() {
+        if (!suggestionFile.exists())
+            return;
+
         String read = "";
         try {
             FileReader myFile1 = new FileReader(suggestionFile);
@@ -69,14 +73,15 @@ public class Suggestion {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Suggestion>>() {}.getType();
-        ArrayList<Suggestion> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<Suggestion>>() {
+        }.getType();
+        ArrayList<Suggestion> output = new Gson().fromJson(read, type);
         allSuggestions.clear();
         allSuggestions.addAll(output);
     }
 
 
-        @Override
+    @Override
     public String toString() {
         return "Suggestion{" +
                 "suggestionID=" + suggestionID +

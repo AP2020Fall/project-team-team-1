@@ -15,36 +15,41 @@ public class Message {
     private static final File messageFile = new File("src\\main\\java\\Model\\Database\\Message.json");
 
     private static ArrayList<Message> messages = new ArrayList<>();
-    private int massageID=0;
+    private int massageID = 0;
     private String text;
     private Player receiver;
 
     public Message(String text, Player receiver) {
         this.text = text;
         this.receiver = receiver;
-        this.massageID=massageID();
+        this.massageID = massageID();
     }
-    private int massageID(){
+
+    private int massageID() {
         massageID++;
         return massageID;
     }
 
-    public static void addNewMessage(Message message){
+    public static void addNewMessage(Message message) {
         messages.add(message);
         try {
-            DataBase.save(messages,messageFile);
+            DataBase.save(messages, messageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     public static void saveInJsonFile() {
         try {
-            DataBase.save(messages,messageFile);
+            DataBase.save(messages, messageFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static void loadFromJsonFile(){
+
+    public static void loadFromJsonFile() {
+        if (!messageFile.exists())
+            return;
         String read = "";
         try {
             FileReader myFile1 = new FileReader(messageFile);
@@ -53,8 +58,9 @@ public class Message {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Message>>() {}.getType();
-        ArrayList<Message> output = new Gson().fromJson(read,type);
+        Type type = new TypeToken<ArrayList<Message>>() {
+        }.getType();
+        ArrayList<Message> output = new Gson().fromJson(read, type);
         messages.clear();
         messages.addAll(output);
     }
