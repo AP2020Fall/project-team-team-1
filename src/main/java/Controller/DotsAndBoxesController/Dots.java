@@ -26,7 +26,20 @@ public class Dots {
     }
 
     public boolean equals (Object object){
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+
+        Dots dot = (Dots) object;
+
+        if (row != dot.row){
+            return false;
+        }
+        if (column != dot.column){
+            return false;
+        }
+
         return true;
+     // nemidunm chika krdm naporsid !
     }
 
 }

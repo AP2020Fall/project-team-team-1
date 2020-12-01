@@ -58,6 +58,6 @@ public class Line extends Lines {
                 '}';
     }
     public boolean equals (Object object) {
-        return true ;
+     return false;
     }
 }
