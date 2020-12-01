@@ -2,6 +2,7 @@ package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -106,19 +107,27 @@ public class User {
     public static void loadFromJsonFile() {
         if (!userFile.exists())
             return;
+        Type type = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        Gson gson =new Gson();
         String read = "";
         try {
             FileReader myFile1 = new FileReader(userFile);
             BufferedReader br = new BufferedReader(myFile1);
             read = br.readLine();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        ArrayList<User> output = new Gson().fromJson(read, type);
+
+        ArrayList<User> output = gson.fromJson(read,type);
         users.clear();
         users.addAll(output);
+
+
+
     }
 
     @Override

@@ -24,13 +24,13 @@ public class DataBase {
     }
 
     public static void loadAllDataFromJsonFiles() {
-        User.loadFromJsonFile();
-        Admin.loadFromJsonFile();
-        Player.loadFromJsonFile();
         Event.loadFromJsonFile();
         Suggestion.loadFromJsonFile();
         Message.loadFromJsonFile();
         PlayerLog.loadFromJsonFile();
+        User.loadFromJsonFile();
+        Admin.loadFromJsonFile();
+        Player.loadFromJsonFile();
 
 
     }
