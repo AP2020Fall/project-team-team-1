@@ -15,7 +15,7 @@ public class Message {
         Model.PlatoModel.Message.addNewMessage(message);
 
         player.getReceivedMessages().add(message);
-        Player.saveInJsonFile();
+        //Player.saveInJsonFile();
 
     }
 

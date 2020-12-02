@@ -31,40 +31,40 @@ public class Admin extends User {
 
     public static void AddNewAdmin(Admin admin) {
         admins.add(admin);
-        User.addNewUser(admin);
-        try {
-            DataBase.save(admins, adminFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        User.addNewUser(admin);
+//        try {
+//            DataBase.save(admins, adminFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
-    public static void saveInJsonFile() {
-        try {
-            DataBase.save(admins, adminFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void loadFromJsonFile() {
-        if (!adminFile.exists())
-            return;
-        String read = "";
-        try {
-            FileReader myFile1 = new FileReader(adminFile);
-            BufferedReader br = new BufferedReader(myFile1);
-            read = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Type type = new TypeToken<ArrayList<Admin>>() {
-        }.getType();
-        ArrayList<Admin> output = new Gson().fromJson(read, type);
-        admins.clear();
-        admins.addAll(output);
-    }
+//    public static void saveInJsonFile() {
+//        try {
+//            DataBase.save(admins, adminFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void loadFromJsonFile() {
+//        if (!adminFile.exists())
+//            return;
+//        String read = "";
+//        try {
+//            FileReader myFile1 = new FileReader(adminFile);
+//            BufferedReader br = new BufferedReader(myFile1);
+//            read = br.readLine();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Type type = new TypeToken<ArrayList<Admin>>() {
+//        }.getType();
+//        ArrayList<Admin> output = new Gson().fromJson(read, type);
+//        admins.clear();
+//        admins.addAll(output);
+//    }
 
     @Override
     public String toString() {
