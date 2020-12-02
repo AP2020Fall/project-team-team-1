@@ -81,8 +81,27 @@ public class ViewEvents extends Menu {
     public void execute() {
         try {
             adminGeneralController.showEvent();
+            Menu nextMenu = null;
+            String num = scanner.nextLine();
+            if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+                this.run();
+            }else {
+                int chosenMenu = Integer.parseInt(num);
+                if (chosenMenu==submenus.size()+1){
+                    if (this.parentMenu==null){
+                        System.exit(1);
+                    }else {
+                        nextMenu=this.parentMenu;
+                        nextMenu.run();
+                    }
+                } else {
+                    nextMenu = submenus.get(chosenMenu);
+                    nextMenu.run();
+                }
+            }
         } catch (ExistEventException e) {
             System.out.println(e.getMessage());
+            this.parentMenu.run();
         }
     }
 }
