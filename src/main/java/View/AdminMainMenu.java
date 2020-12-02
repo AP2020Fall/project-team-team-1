@@ -17,7 +17,8 @@ public class AdminMainMenu extends Menu {
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
         submenus.put(5, viewUsers());
-        submenus.put(6, new UserMenuForAdmin(username, this));
+        submenus.put(6,sendMessageAsPlatoBot());
+        submenus.put(7, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
@@ -197,6 +198,29 @@ public class AdminMainMenu extends Menu {
 
     private String getUsernameInformation() {
         System.out.println("Enter the User name : ");
+        return scanner.nextLine();
+    }
+    private Menu sendMessageAsPlatoBot(){
+        return new Menu("Send Message" , this) {
+            @Override
+            public void show() {
+            }
+
+            @Override
+            public void execute() {
+                try {
+                    adminGeneralController.sendMassage(getUsernameInformation(),getText());
+                    System.out.println("Message Delivered!");
+                    this.parentMenu.run();
+                } catch (ExistPlayerException e) {
+                    e.printStackTrace();
+                    this.run();
+                }
+            }
+        };
+    }
+    private String getText(){
+        System.out.println("Please Enter Your Message to This User : ");
         return scanner.nextLine();
     }
 
