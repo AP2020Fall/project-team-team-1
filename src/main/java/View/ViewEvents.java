@@ -20,6 +20,11 @@ public class ViewEvents extends Menu {
     private Menu editEvent() {
         return new Menu("edit event", this) {
             @Override
+            public void show() {
+
+            }
+
+            @Override
             public void execute() {
                 ArrayList<String> editInfo = new ArrayList<>();
                 getEditEventInfo(editInfo);
@@ -37,6 +42,10 @@ public class ViewEvents extends Menu {
 
     private Menu removeEvent() {
         return new Menu("remove Event", this) {
+            @Override
+            public void show() {
+
+            }
 
             @Override
             public void execute() {
