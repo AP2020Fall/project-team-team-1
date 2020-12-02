@@ -70,6 +70,19 @@ public class Message {
 //        messages.addAll(output);
 //    }
 
+
+    public int getMassageID() {
+        return massageID;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Player getReceiver() {
+        return receiver;
+    }
+
     @Override
     public String toString() {
         return "Message{" +

@@ -1,5 +1,8 @@
 package View;
 
+import Controller.AdminController.AdminGeneralController;
+import Controller.AdminController.Message;
+import Controller.Exception.ExistPlayerException;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
@@ -15,6 +18,14 @@ public class Main {
         Player.AddNewPlayer(player1);
         Admin admin1 = new Admin("hesam","asnashari",100,"Admin","Admin11228","Admin@yahoo.com","09121111111");
         Admin.AddNewAdmin(admin1);
+        try {
+            Message.sendMassage("User","fuck");
+            Message.sendMassage("User","you");
+            Message.sendMassage("User","amir");
+        } catch (ExistPlayerException e) {
+            e.printStackTrace();
+        }
+
         Menu.setScanner(new Scanner(System.in));
         Menu currentMenu = new MainMenu();
         currentMenu.run();

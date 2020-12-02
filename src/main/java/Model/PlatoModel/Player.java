@@ -155,6 +155,7 @@ public class Player extends User {
 //        players.addAll(output);
 //    }
 
+
     @Override
     public String toString() {
         return "Player{" +
@@ -164,7 +165,6 @@ public class Player extends User {
                 ", friendsRequests=" + friendsRequests +
                 ", playerLog=" + playerLog +
                 ", suggestedGamesID=" + suggestedGamesID +
-                ", receivedMessages=" + receivedMessages +
                 ", favoritesGamesName=" + favoritesGamesName +
                 ", lastPlayed='" + lastPlayed + '\'' +
                 '}';
