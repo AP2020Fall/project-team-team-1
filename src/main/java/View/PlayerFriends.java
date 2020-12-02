@@ -7,5 +7,8 @@ public class PlayerFriends extends Menu {
     public PlayerFriends(String username,Menu parentMenu) {
         super("Friends", parentMenu);
         this.username= username;
+        HashMap<Integer,Menu> submenus = new HashMap<>();
+        submenus.put(1,new ShowFriends(username,this));
     }
+
 }
