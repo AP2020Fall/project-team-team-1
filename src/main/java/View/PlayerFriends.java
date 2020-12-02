@@ -9,6 +9,8 @@ public class PlayerFriends extends Menu {
         this.username= username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,new ShowFriends(username,this));
+        submenus.put(2,new ShowFriendsRequests(username,this));
+        this.setSubmenus(submenus);
     }
 
 }
