@@ -31,7 +31,7 @@ public class Admin extends User {
 
     public static void AddNewAdmin(Admin admin) {
         admins.add(admin);
-//        User.addNewUser(admin);
+        User.addNewUser(admin);
 //        try {
 //            DataBase.save(admins, adminFile);
 //        } catch (IOException e) {
