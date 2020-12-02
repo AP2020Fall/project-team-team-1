@@ -30,6 +30,25 @@ public class PlayerMainMenu extends Menu{
                     playerGeneralController.showPoint(username);
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                    this.parentMenu.run();
+                }
+                Menu nextMenu = null;
+                String num = scanner.nextLine();
+                if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+                    this.run();
+                }else {
+                    int chosenMenu = Integer.parseInt(num);
+                    if (chosenMenu==submenus.size()+1){
+                        if (this.parentMenu==null){
+                            System.exit(1);
+                        }else {
+                            nextMenu=this.parentMenu;
+                            nextMenu.run();
+                        }
+                    } else {
+                        nextMenu = submenus.get(chosenMenu);
+                        nextMenu.run();
+                    }
                 }
             }
         };
@@ -42,6 +61,25 @@ public class PlayerMainMenu extends Menu{
                  playerGeneralController.showFavoritesGames(username);
              } catch (ExistFavoriteException e) {
                  System.out.println(e.getMessage());
+                 this.parentMenu.run();
+             }
+             Menu nextMenu = null;
+             String num = scanner.nextLine();
+             if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+                 this.run();
+             }else {
+                 int chosenMenu = Integer.parseInt(num);
+                 if (chosenMenu==submenus.size()+1){
+                     if (this.parentMenu==null){
+                         System.exit(1);
+                     }else {
+                         nextMenu=this.parentMenu;
+                         nextMenu.run();
+                     }
+                 } else {
+                     nextMenu = submenus.get(chosenMenu);
+                     nextMenu.run();
+                 }
              }
          }
      };
@@ -54,6 +92,25 @@ public class PlayerMainMenu extends Menu{
                     playerGeneralController.viewBotMessages(username);
                 } catch (ExistPlatoMessageException e) {
                     System.out.println(e.getMessage());
+                    this.parentMenu.run();
+                }
+                Menu nextMenu = null;
+                String num = scanner.nextLine();
+                if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+                    this.run();
+                }else {
+                    int chosenMenu = Integer.parseInt(num);
+                    if (chosenMenu==submenus.size()+1){
+                        if (this.parentMenu==null){
+                            System.exit(1);
+                        }else {
+                            nextMenu=this.parentMenu;
+                            nextMenu.run();
+                        }
+                    } else {
+                        nextMenu = submenus.get(chosenMenu);
+                        nextMenu.run();
+                    }
                 }
             }
         };
@@ -66,6 +123,25 @@ public class PlayerMainMenu extends Menu{
                     playerGeneralController.showUserLastPlayed(username);
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                    this.parentMenu.run();
+                }
+                Menu nextMenu = null;
+                String num = scanner.nextLine();
+                if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+                    this.run();
+                }else {
+                    int chosenMenu = Integer.parseInt(num);
+                    if (chosenMenu==submenus.size()+1){
+                        if (this.parentMenu==null){
+                            System.exit(1);
+                        }else {
+                            nextMenu=this.parentMenu;
+                            nextMenu.run();
+                        }
+                    } else {
+                        nextMenu = submenus.get(chosenMenu);
+                        nextMenu.run();
+                    }
                 }
             }
         };
