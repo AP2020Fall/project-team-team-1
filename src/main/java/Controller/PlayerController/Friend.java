@@ -24,7 +24,7 @@ public class Friend {
 
         playerHowSentRequests.getFriends().add(playerHowReceivedRequests);
 
-        Player.saveInJsonFile();
+        //Player.saveInJsonFile();
 
 
     }
@@ -43,7 +43,7 @@ public class Friend {
 
         playerHowReceivedRequests.getFriendsRequests().remove(playerHowSentRequests);
 
-        Player.saveInJsonFile();
+        //Player.saveInJsonFile();
 
     }
 
@@ -60,7 +60,7 @@ public class Friend {
 
         playerHowReceivedRequests.getFriendsRequests().add(player);
 
-        Player.saveInJsonFile();
+        //Player.saveInJsonFile();
 
 
     }
@@ -79,7 +79,7 @@ public class Friend {
 
         player.getFriends().remove(friend);
 
-        Player.saveInJsonFile();
+        //Player.saveInJsonFile();
 
     }
 

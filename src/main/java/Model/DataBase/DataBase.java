@@ -8,30 +8,39 @@ import java.util.ArrayList;
 
 public class DataBase {
 
-    public static void save(ArrayList arrayList, File file) throws IOException {
-
-        if (file.exists())
-            file.delete();
-
-        file.createNewFile();
-
-        String outForData = new Gson().toJson(arrayList);
-
-        FileWriter fWrite = new FileWriter(file, true); // true for appending content to the existing file
-        BufferedWriter bWrite = new BufferedWriter(fWrite);
-        bWrite.write(outForData);
-        bWrite.close();
-    }
-
-    public static void loadAllDataFromJsonFiles() {
-        User.loadFromJsonFile();
-        Admin.loadFromJsonFile();
-        Player.loadFromJsonFile();
-        Event.loadFromJsonFile();
-        Suggestion.loadFromJsonFile();
-        Message.loadFromJsonFile();
-        PlayerLog.loadFromJsonFile();
-
-
-    }
+//    public static void save(ArrayList arrayList, File file) throws IOException {
+//
+//        if (file.exists())
+//            file.delete();
+//
+//        file.createNewFile();
+//
+//        String outForData = new Gson().toJson(arrayList);
+//
+//        FileWriter fWrite = new FileWriter(file, true); // true for appending content to the existing file
+//        BufferedWriter bWrite = new BufferedWriter(fWrite);
+//        bWrite.write(outForData);
+//        bWrite.close();
+//    }
+//
+//    public static void loadAllDataFromJsonFiles() {
+//        Event.loadFromJsonFile();
+//        Suggestion.loadFromJsonFile();
+//        Message.loadFromJsonFile();
+//        PlayerLog.loadFromJsonFile();
+//        User.loadFromJsonFile();
+//        Admin.loadFromJsonFile();
+//        Player.loadFromJsonFile();
+//
+//
+//    }
+//    public static void saveAllDataFromJsonFiles() {
+//        Event.saveInJsonFile();
+//        Suggestion.saveInJsonFile();
+//        Message.saveInJsonFile();
+//        PlayerLog.saveInJsonFile();
+//        User.saveInJsonFile();
+//        Admin.saveInJsonFile();
+//        Player.saveInJsonFile();
+//    }
 }

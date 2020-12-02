@@ -23,8 +23,8 @@ public class Delete {
         Player player = FindPlayerByInfo.findByUserName(inputSplit[0]);
         Player.players.remove(player);
         User.users.remove(player);
-        User.saveInJsonFile();
-        Player.saveInJsonFile();
+//        User.saveInJsonFile();
+//        Player.saveInJsonFile();
         return true;
     }
 }
