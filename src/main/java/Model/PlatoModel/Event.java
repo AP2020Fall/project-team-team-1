@@ -17,7 +17,7 @@ public class Event {
     private static final File eventfile = new File("src\\main\\java\\Model\\Database\\Event.json");
 
     public static ArrayList<Event> events = new ArrayList<Event>();
-    private ArrayList<Player> playersInThisEvent;
+    private ArrayList<String> playersInThisEvent;
     private String gameName;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -31,7 +31,7 @@ public class Event {
         this.startDate = startDate;
         this.endDate = endDate;
         this.score = score;
-        playersInThisEvent = new ArrayList<Player>();
+        playersInThisEvent = new ArrayList<String>();
     }
 
     private static void removeEvent(Event event) {
@@ -94,15 +94,15 @@ public class Event {
         this.counter = counter;
     }
 
-    public ArrayList<Player> getPlayersInThisEvent() {
+    public ArrayList<String> getPlayersInThisEvent() {
         return playersInThisEvent;
     }
 
-    public void setPlayersInThisEvent(ArrayList<Player> playersInThisEvent) {
+    public void setPlayersInThisEvent(ArrayList<String> playersInThisEvent) {
         this.playersInThisEvent = playersInThisEvent;
     }
 
-    private void addPlayerToEvent(Player player) {
+    private void addPlayerToEvent(String player) {
         playersInThisEvent.add(player);
     }
 

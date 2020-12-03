@@ -8,6 +8,7 @@ import java.io.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Admin extends User {
     private static final File adminFile = new File("src\\main\\java\\Model\\Database\\Admin.json");
@@ -32,39 +33,49 @@ public class Admin extends User {
     public static void AddNewAdmin(Admin admin) {
         admins.add(admin);
         User.addNewUser(admin);
-//        try {
-//            DataBase.save(admins, adminFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+//        if (adminFile.exists())
+//            adminFile.delete();
+        try {
+            DataBase.save(admins, adminFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
-//    public static void saveInJsonFile() {
-//        try {
-//            DataBase.save(admins, adminFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void loadFromJsonFile() {
-//        if (!adminFile.exists())
-//            return;
-//        String read = "";
-//        try {
-//            FileReader myFile1 = new FileReader(adminFile);
-//            BufferedReader br = new BufferedReader(myFile1);
-//            read = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Type type = new TypeToken<ArrayList<Admin>>() {
-//        }.getType();
-//        ArrayList<Admin> output = new Gson().fromJson(read, type);
-//        admins.clear();
-//        admins.addAll(output);
-//    }
+    public static void saveInJsonFile() {
+        User.saveInJsonFile();
+        if (adminFile.exists())
+            adminFile.delete();
+        try {
+            DataBase.save(admins, adminFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadFromJsonFile() {
+        if (!adminFile.exists())
+            return;
+        StringBuilder read = new StringBuilder();
+        try {
+            Scanner myReader = new Scanner(adminFile);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                read.append(data);
+                System.out.println(read);
+            }
+            myReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Admin>>() {
+        }.getType();
+        ArrayList<Admin> output = new Gson().fromJson(String.valueOf(read), type);
+        admins.clear();
+        admins.addAll(output);
+
+    }
 
     @Override
     public String toString() {
