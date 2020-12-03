@@ -295,7 +295,129 @@ public class Run {
         putShipPlayer2(x,y,ship,direction);
     }
 
+    /*************************** Boom Player Ships ***************************/
+    public static void boomPlayer1Ships(int x, int y) {
+        x--;
+        y--;
+        if (player2.getPlayerBooms().contains(x + " " + y)) {
+            System.out.println("selected " + x + "," + y + "has been already boomed");
+            return;
+        }
+        player2.getPlayerBooms().add(x + " " + y);
+        char namee = game.getFirstPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
 
+        if (namee == 'E') {
+            game.getSecondPlayerEnemyBoard().getGameBoard()[x][y] = "-";
+            game.getFirstPlayerOwnBoard().getGameBoard()[x][y] = "-";
+            Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
+            player2.getInCorrectPlayerBooms().add(x+" "+y);
+            return;
+        }
+
+        Ship ship = null;
+        for (Ship ships : player1.getPlayerShip()) {
+            if (ships.getName().charAt(0) == namee) {
+                ship = ships;
+                break;
+            }
+        }
+        if (ship != null) {
+            game.getSecondPlayerEnemyBoard().getGameBoard()[x][y] = "+";
+            game.getFirstPlayerOwnBoard().getGameBoard()[x][y] = "+";
+            player2.getCorrectPlayerBooms().add(x+" "+y);
+            ship.setSize(ship.getSize() - 1);
+        } else
+            return;
+
+        if (ship.getSize() == 0) {
+            for (int i = ship.getCoordinate().getxStart(); i <= ship.getCoordinate().getxLast(); i++) {
+                for (int j = ship.getCoordinate().getyStart(); j <= ship.getCoordinate().getyLast(); j++) {
+                    game.getSecondPlayerEnemyBoard().getGameBoard()[i][j] = "*";
+                    game.getFirstPlayerOwnBoard().getGameBoard()[i][j] = "*";
+                    player1.getBoomedPlayerShip().add(ship);
+                    player1.getUnBoomedPlayerShip().remove(ship);
+                }
+
+            }
+        }
+
+        System.out.println("------------------------------------------");
+        Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
+        System.out.println("------------------------------------------");
+        if (winPlayer2Checker())
+            System.out.println("player 2 WIN !");
+
+    }
+
+    public static void boomPlayer2Ships(int x, int y) {
+        x--;
+        y--;
+        if (player1.getPlayerBooms().contains(x + " " + y)) {
+            System.out.println("selected " + x + "," + y + "has been already boomed");
+            return;
+        }
+        player1.getPlayerBooms().add(x + " " + y);
+        char namee = game.getSecondPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
+
+        if (namee == 'E') {
+            game.getFirstPlayerEnemyBoard().getGameBoard()[x][y] = "-";
+            game.getSecondPlayerOwnBoard().getGameBoard()[x][y] = "-";
+            Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
+            return;
+        }
+
+        Ship ship = null;
+        for (Ship ships : player2.getPlayerShip()) {
+            if (ships.getName().charAt(0) == namee) {
+                ship = ships;
+                break;
+            }
+        }
+        if (ship != null) {
+            game.getFirstPlayerEnemyBoard().getGameBoard()[x][y] = "+";
+            game.getSecondPlayerOwnBoard().getGameBoard()[x][y] = "+";
+            ship.setSize(ship.getSize() - 1);
+        } else
+            return;
+
+        if (ship.getSize() == 0) {
+            for (int i = ship.getCoordinate().getxStart(); i <= ship.getCoordinate().getxLast(); i++) {
+                for (int j = ship.getCoordinate().getyStart(); j <= ship.getCoordinate().getyLast(); j++) {
+                    game.getFirstPlayerEnemyBoard().getGameBoard()[i][j] = "*";
+                    game.getSecondPlayerOwnBoard().getGameBoard()[i][j] = "*";
+                    player2.getBoomedPlayerShip().add(ship);
+                    player2.getUnBoomedPlayerShip().remove(ship);
+                }
+
+            }
+        }
+
+        System.out.println("------------------------------------------");
+        Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
+        System.out.println("------------------------------------------");
+        if (winPlayer1Checker())
+            System.out.println("player 1 WIN !");
+
+    }
+
+    /**************************** Winner Checker *****************************/
+    protected static boolean winPlayer1Checker() {
+        for (Ship ship : player2.getPlayerShip()) {
+            if (ship.getSize() != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected static boolean winPlayer2Checker() {
+        for (Ship ship : player1.getPlayerShip()) {
+            if (ship.getSize() != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 //    public static void showww(){
 //        String[][] strings = game.getFirstPlayerOwnBoard().getGameBoard();
