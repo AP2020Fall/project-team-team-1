@@ -8,7 +8,7 @@ import Model.PlatoModel.Player;
 import java.util.Random;
 
 public class SignUp {
-    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException {
+    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException, EmptyExceptionForName {
 
         String[] adminInfoSplit = adminInfo.split("\\s");
 
@@ -27,6 +27,9 @@ public class SignUp {
             throw new ExistEmailException("THIS EMAIL ALREADY BELONGS TO A USER");
 //            System.out.println("THIS EMAIL ALREADY BELONGS TO A USER");
 //            return false;
+        }
+        if ((adminInfoSplit[0].isEmpty())) {
+            throw new EmptyExceptionForName("Name field can not be empty");
         }
 
         Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [4], adminInfoSplit[3], adminInfoSplit[5]));
