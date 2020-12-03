@@ -69,8 +69,8 @@ public class ShowFriends extends Menu {
     @Override
     public void execute() {
         try {
-            playerGeneralController.showBasicInformation(username);
-        } catch (ExistPlayerException e) {
+            playerGeneralController.showFriends(username);
+        } catch (ExistFriendException e) {
             e.printStackTrace();
         }
         //remove exceptions for this.

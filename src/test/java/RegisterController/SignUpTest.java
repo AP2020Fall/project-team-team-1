@@ -1,8 +1,6 @@
 package RegisterController;
 
-import Controller.Exception.ExistAdminException;
-import Controller.Exception.ExistEmailException;
-import Controller.Exception.ExistUserNameException;
+import Controller.Exception.*;
 import Controller.PlayerController.FindPlayerByInfo;
 import Controller.RegisterController.SignUp;
 import Model.PlatoModel.Admin;
@@ -29,7 +27,7 @@ public class SignUpTest {
     }
 
     @Test
-    public void testAddPlayer() throws ExistEmailException, ExistUserNameException {
+    public void testAddPlayer() throws ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForEmail, EmptyExceptionForUserName {
         SignUp signUp = new SignUp();
         signUp.addPlayer("ata rhz atarhz 008Password atarhz@gmail.com 09129709521");
         Assert.assertTrue(Player.players.contains(FindPlayerByInfo.findByUserName("atarhz")));
