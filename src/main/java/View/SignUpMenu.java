@@ -3,6 +3,7 @@ package View;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.*;
 import Controller.RegisterController.SignUp;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,6 +76,9 @@ public class SignUpMenu extends Menu {
                     System.out.println(e.getMessage());
                     this.run();
                 } catch (EmptyExceptionForLastName e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                } catch (EmptyExceptionForUserName e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }

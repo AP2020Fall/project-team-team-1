@@ -33,7 +33,7 @@ public class SignUp {
 //        return true;
     }
 
-    public void addPlayer(String playerInfo) throws ExistUserNameException, ExistEmailException, EmptyExceptionForName, EmptyExceptionForLastName {
+    public void addPlayer(String playerInfo) throws ExistUserNameException, ExistEmailException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForUserName {
 
         String[] playerInfoSplit = playerInfo.split("\\s");
 
@@ -53,6 +53,9 @@ public class SignUp {
         }
         if (playerInfoSplit[1].isEmpty()){
             throw new EmptyExceptionForLastName("Last name field can not be empty");
+        }
+        if (playerInfoSplit[2].isEmpty()){
+            throw new EmptyExceptionForUserName("User name field can not be empty");
         }
 
         Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[4], playerInfoSplit[3],playerInfoSplit[5]));
