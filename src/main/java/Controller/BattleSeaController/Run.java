@@ -130,16 +130,47 @@ public class Run {
         return true;
     }
 
+    /*************************** Random Pick Ships ***************************/
 
-//    public static void showww(){
-//        String[][] strings = game.getFirstPlayerOwnBoard().getGameBoard();
-//        for (int i = 0; i < 10 ; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                System.out.print(strings[j][i]+" | ");
-//            }
-//            System.out.println("");
-//        }
-//    }
+    public static void randomShipPlaceForPlayer1(){
+        for (int i = 1; i <= 5 ; i++) {
+            while (true){
+                int x = randomMessageId(1,10);
+                int y = randomMessageId(1,10);
+                Direction direction;
+                if ((x+y)%2 == 1){
+                    direction = Direction.HORIZONTAL;
+                }else
+                    direction = Direction.VERTICAL;
+
+                if (Run.putShipPlayer1(x,y,i,direction))
+                    break;
+
+            }
+            System.out.println("+++++++++++++++++++++++++++++");
+        }
+    }
+
+    public static void randomShipPlaceForPlayer2(){
+        for (int i = 1; i <= 5 ; i++) {
+            while (true){
+                int x = randomMessageId(1,10);
+                int y = randomMessageId(1,10);
+                Direction direction;
+                if ((x+y)%2 == 1){
+                    direction = Direction.HORIZONTAL;
+                }else
+                    direction = Direction.VERTICAL;
+
+                if (Run.putShipPlayer2(x,y,i,direction))
+                    break;
+
+            }
+            System.out.println("+++++++++++++++++++++++++++++");
+        }
+    }
+
+
 
     private static int randomMessageId(int min , int max){
         Random random = new Random();
