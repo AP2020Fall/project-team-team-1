@@ -8,7 +8,7 @@ import Model.PlatoModel.Player;
 import java.util.Random;
 
 public class SignUp {
-    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName {
+    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForUserName {
 
         String[] adminInfoSplit = adminInfo.split("\\s");
 
@@ -33,6 +33,9 @@ public class SignUp {
         }
         if (adminInfoSplit[1].isEmpty()){
             throw new EmptyExceptionForLastName("Last name field can not be empty");
+        }
+        if (adminInfoSplit[2].isEmpty()){
+            throw new EmptyExceptionForUserName("User name field can not be empty");
         }
 
         Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [4], adminInfoSplit[3], adminInfoSplit[5]));
