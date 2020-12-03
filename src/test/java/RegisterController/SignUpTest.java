@@ -27,7 +27,7 @@ public class SignUpTest {
     }
 
     @Test
-    public void testAddPlayer() throws ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName {
+    public void testAddPlayer() throws ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForEmail, EmptyExceptionForUserName {
         SignUp signUp = new SignUp();
         signUp.addPlayer("ata rhz atarhz 008Password atarhz@gmail.com 09129709521");
         Assert.assertTrue(Player.players.contains(FindPlayerByInfo.findByUserName("atarhz")));
