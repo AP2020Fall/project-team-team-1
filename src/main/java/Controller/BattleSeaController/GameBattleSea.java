@@ -13,8 +13,8 @@ public class GameBattleSea {
         this.player1 = player2;
         this.firstPlayerOwnBoard = new Board();
         this.secondPlayerOwnBoard = new Board();
-        this.firstPlayerEnemyBoard = this.secondPlayerOwnBoard;
-        this.secondPlayerEnemyBoard = this.firstPlayerOwnBoard;
+        this.firstPlayerEnemyBoard = new Board();
+        this.secondPlayerEnemyBoard = new Board();
     }
 
     public BattleSeaPlayer getP1() {
@@ -56,6 +56,7 @@ public class GameBattleSea {
     public void setSecondPlayerEnemyBoard(Board secondPlayerEnemyBoard) {
         this.secondPlayerEnemyBoard = secondPlayerEnemyBoard;
     }
+
 
     private void move(BattleSeaPlayer player, int x , int y){
 
