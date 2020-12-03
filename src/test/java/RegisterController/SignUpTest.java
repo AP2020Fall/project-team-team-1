@@ -1,5 +1,6 @@
 package RegisterController;
 
+import Controller.Exception.EmptyException;
 import Controller.Exception.ExistAdminException;
 import Controller.Exception.ExistEmailException;
 import Controller.Exception.ExistUserNameException;
@@ -29,7 +30,7 @@ public class SignUpTest {
     }
 
     @Test
-    public void testAddPlayer() throws ExistEmailException, ExistUserNameException {
+    public void testAddPlayer() throws ExistEmailException, ExistUserNameException, EmptyException {
         SignUp signUp = new SignUp();
         signUp.addPlayer("ata rhz atarhz 008Password atarhz@gmail.com 09129709521");
         Assert.assertTrue(Player.players.contains(FindPlayerByInfo.findByUserName("atarhz")));

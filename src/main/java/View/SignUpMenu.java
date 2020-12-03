@@ -71,6 +71,9 @@ public class SignUpMenu extends Menu {
                 } catch (ExistEmailException e) {
                     System.out.println(e.getMessage());
                     this.run();
+                } catch (EmptyException e) {
+                    System.out.println(e.getName()+e.getMessage());
+                    this.run();
                 }
             }
         };
