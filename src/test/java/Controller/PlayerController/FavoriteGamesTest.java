@@ -22,4 +22,22 @@ public class FavoriteGamesTest {
         Assert.assertTrue(playerYasmin.getFavoritesGamesName().contains("battleShip"));
         Assert.assertEquals(playerYasmin.getFavoritesGamesName().size() , 1);
     }
+
+    @Test
+    public void testRemoveFavoriteGames() throws ExistFavoriteException, InvalidGameNameException {
+        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
+        Player.players.add(playerYasmin);
+        User.users.add(playerYasmin);
+
+        FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
+        FavoriteGames.addGameToFavoritesGames("yamsiin","dotsAndBoxes");
+
+        FavoriteGames.removeFavoritesGames("yamsiin", "battleShip");
+
+        assertThrows(ExistFavoriteException.class, () -> FavoriteGames.removeFavoritesGames("yamsiin","battleShip"));
+        Assert.assertFalse(playerYasmin.getFavoritesGamesName().contains("battleShip"));
+        Assert.assertTrue(playerYasmin.getFavoritesGamesName().contains("dotsAndBoxes"));
+        Assert.assertEquals(playerYasmin.getFavoritesGamesName().size(), 1);
+
+    }
 }

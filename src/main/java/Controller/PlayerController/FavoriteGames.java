@@ -12,7 +12,7 @@ public class FavoriteGames {
             throw new InvalidGameNameException(gameName);
 
         if (checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName, " Is already exist ! ");
+            throw new ExistFavoriteException(gameName, "THIS GAME ALREADY EXISTS");
 
         player.getFavoritesGamesName().add(gameName);
         //Player.saveInJsonFile();
@@ -23,7 +23,7 @@ public class FavoriteGames {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (!checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName, " isn't exist in your List! ");
+            throw new ExistFavoriteException(gameName, " THIS GAME DOESN'T EXIST IN YOUR LIST ");
 
         player.getFavoritesGamesName().remove(gameName);
         //Player.saveInJsonFile();
@@ -35,7 +35,7 @@ public class FavoriteGames {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player.getFavoritesGamesName().size() == 0)
-            throw new ExistFavoriteException("There is no favorite game");
+            throw new ExistFavoriteException("THE FAVORITE GAMES LIST IN EMPTY");
 
         for (String favorite : player.getFavoritesGamesName()) {
             System.out.println(favorite);
