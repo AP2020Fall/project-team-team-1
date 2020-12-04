@@ -55,9 +55,22 @@ public class RunBattleShip extends Menu {
     }
 
     private static void runGame(String player1, String player2) {
-        while (!battleSeaController.tellMeWhenTheGameIsOver().equalsIgnoreCase("over")) {
+        int counter = 1;
+        while (true) {
+            if (counter == 1){
+                battleSeaController.randomShipPlaceForPlayer1();
+                battleSeaController.randomShipPlaceForPlayer2();
+                battleSeaController.addPlayersToArrayList();
+            }
             String nexCommand = scanner.nextLine();
-            battleSeaController.mainCommandProcessor(player1, player2);
+
+            //battleSeaController.mainCommandProcessor(player1, player2);
+            if (counter%2 == 1){
+                battleSeaController.mainCommandProcessor("player1",nexCommand);
+            }else
+                battleSeaController.mainCommandProcessor("player2",nexCommand);
+
+            counter++;
         }
     }
 
