@@ -16,8 +16,14 @@ public class Main {
 //        Run.putShipPlayer1(2,2,1, Direction.HORIZONTAL);
 //        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
 //        Run.putShipPlayer1(3,2,1, Direction.HORIZONTAL);
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
+//
 //        Run.putShipPlayer1(3,2,2, Direction.HORIZONTAL);
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
+//
 //        Run.putShipPlayer1(3,3,2, Direction.HORIZONTAL);
+//        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
+//
 //        Run.putShipPlayer1(1,1,3, Direction.VERTICAL);
 
 //        Run.boomPlayer1Ships(1,3);

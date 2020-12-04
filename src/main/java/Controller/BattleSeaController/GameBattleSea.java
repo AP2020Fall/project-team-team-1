@@ -10,20 +10,21 @@ public class GameBattleSea {
 
     public GameBattleSea(BattleSeaPlayer player1, BattleSeaPlayer player2) {
         this.player1 = player1;
-        this.player1 = player2;
+        this.player2 = player2;
         this.firstPlayerOwnBoard = new Board();
         this.secondPlayerOwnBoard = new Board();
         this.firstPlayerEnemyBoard = new Board();
         this.secondPlayerEnemyBoard = new Board();
     }
 
-    public BattleSeaPlayer getP1() {
+    public BattleSeaPlayer getPlayer1() {
         return player1;
     }
 
-    public BattleSeaPlayer getP2() {
-        return player1;
+    public BattleSeaPlayer getPlayer2() {
+        return player2;
     }
+
 
     public Board getFirstPlayerOwnBoard() {
         return firstPlayerOwnBoard;
