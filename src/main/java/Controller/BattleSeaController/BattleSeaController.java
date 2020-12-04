@@ -116,4 +116,11 @@ public class BattleSeaController {
     public void details(){
 
     }
+    public String tellMeWhenTheGameIsOver(){
+        if (false){
+            return "NotYet";
+        }else return "Over";
+    }
+    //todo method boolean
+
 }
