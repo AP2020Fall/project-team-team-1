@@ -66,8 +66,10 @@ public class PlayerInfo {
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        long score = player.getPlayerLog().get(0).getTakenScore() + player.getPlayerLog().get(1).getTakenScore();
-        System.out.println("Level : " + score);
+
+
+        long score = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
+        System.out.println("point : " + score);
         //todo score? level? point?
     }
     public static void showHistory (String userName){

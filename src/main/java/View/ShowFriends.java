@@ -26,7 +26,7 @@ public class ShowFriends extends Menu {
                     System.out.println(friendUsername + "Successfully Removed From Your Friends!");
                     this.parentMenu.run();
                 } catch (ExistFriendException | ExistPlayerException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
             }

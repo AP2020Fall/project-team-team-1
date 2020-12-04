@@ -19,19 +19,27 @@ public class PlayerLog {
     private int logID ;
     private int numberOfGamePlayed;
     private String gameName;
-    private int userId;
+    private String username;
     private int numberOfWins;
     private long takenScore;
     private int numberOfLoses;
 
-    public PlayerLog(int userId, String gameName) {
+    public PlayerLog(String string, String gameName) {
         this.logID = randomPlayerLogId(700,900);
         this.gameName = gameName;
-        this.userId = userId;
+        this.username = string;
         this.numberOfGamePlayed = 0;
         this.numberOfWins = 0;
         this.numberOfLoses = 0;
         this.takenScore = 0;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public static ArrayList<PlayerLog> getPlayerLogs() {
@@ -127,7 +135,7 @@ public class PlayerLog {
                 "logID=" + logID +
                 ", numberOfGamePlayed=" + numberOfGamePlayed +
                 ", gameName='" + gameName + '\'' +
-                ", userId=" + userId +
+                ", userId=" + username +
                 ", numberOfWins=" + numberOfWins +
                 ", takenScore=" + takenScore +
                 ", numberOfLoses=" + numberOfLoses +
