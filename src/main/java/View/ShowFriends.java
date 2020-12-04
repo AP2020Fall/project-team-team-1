@@ -41,7 +41,7 @@ public class ShowFriends extends Menu {
                 try {
                     playerGeneralController.showFriendProfile(username,friendUsername);
                 } catch (ExistFriendException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getName()+e.getMessage());
                     this.parentMenu.run();
                 }
                 Menu nextMenu = null;
@@ -71,9 +71,8 @@ public class ShowFriends extends Menu {
         try {
             playerGeneralController.showFriends(username);
         } catch (ExistFriendException e) {
-            e.printStackTrace();
+            System.out.println(e.getName()+e.getMessage());
         }
-        //remove exceptions for this.
         Menu nextMenu = null;
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){

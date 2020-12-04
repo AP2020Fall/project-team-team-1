@@ -30,7 +30,7 @@ public class ShowFriendsRequests extends Menu {
                     playerGeneralController.acceptRequest(username,usernameOfRequests);
                     System.out.println(usernameOfRequests+" Successfully Added To Your Friends LIst");
                 } catch (ExistPlayerException | AcceptAndDeclineFriendException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
                 this.parentMenu.run();
@@ -47,7 +47,7 @@ public class ShowFriendsRequests extends Menu {
                     playerGeneralController.declineRequest(username,usernameOfRequests);
                     System.out.println(usernameOfRequests+"'s friendship request declined Successfully.");
                 } catch (ExistPlayerException | AcceptAndDeclineFriendException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
                 this.parentMenu.run();
@@ -60,7 +60,7 @@ public class ShowFriendsRequests extends Menu {
         try {
             playerGeneralController.showRequests(username);
         } catch (ExistFriendException e) {
-            e.printStackTrace();
+            System.out.println(e.getName()+e.getMessage());
         }
         Menu nextMenu = null;
         String num = scanner.nextLine();
