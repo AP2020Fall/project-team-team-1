@@ -3,7 +3,6 @@ package Controller.PlayerController;
 import Controller.CompetencyController.Existence;
 import Controller.Exception.ExistFavoriteException;
 import Controller.Exception.InvalidGameNameException;
-import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
 public class FavoriteGames {
@@ -20,7 +19,7 @@ public class FavoriteGames {
 
     }
 
-    public static void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
+    public static void removeFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (!checkFavoriteGameExistence(userName, gameName))

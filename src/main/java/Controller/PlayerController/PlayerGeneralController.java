@@ -23,7 +23,7 @@ public class PlayerGeneralController {
     }
 
     public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
-        FavoriteGames.RemoveFavoritesGames(userName, gameName);
+        FavoriteGames.removeFavoritesGames(userName, gameName);
     }
 
     public void showFavoritesGames(String userName) throws ExistFavoriteException {
