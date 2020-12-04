@@ -64,15 +64,21 @@ public class UserMenuForPlayer extends Menu {
         return new Menu("Game Statistics by Game",this) {
             @Override
             public void execute() {
-                playerGeneralController.showGameLogInThisGame(username,gameName());
-                while (true){
-                    System.out.println("Enter back to get back to last menu! ");
-                    String nextCommand = scanner.nextLine();
-                    if (nextCommand.equalsIgnoreCase("back")){
-                        this.parentMenu.run();
-                        break;
+                try {
+                    playerGeneralController.showGameLogInThisGame(username,gameName());
+                    while (true){
+                        System.out.println("Enter back to get back to last menu! ");
+                        String nextCommand = scanner.nextLine();
+                        if (nextCommand.equalsIgnoreCase("back")){
+                            this.parentMenu.run();
+                            break;
+                        }
                     }
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                    this.run();
                 }
+
             }
         };
     }

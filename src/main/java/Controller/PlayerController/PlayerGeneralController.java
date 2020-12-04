@@ -108,23 +108,23 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void showScoreboardInThisGame(String gameName) {
+    public void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
 
-    public void showGameLogInThisGame(String userName, String gameName) {
+    public void showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.showGameLogInThisGame(userName, gameName);
     }
 
-    public void showNumberOFWins(String userName, String gameName) {
+    public void showNumberOFWins(String userName, String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
     }
 
-    public void showNumberOfGamePlayedInThisGame(String userName, String gameName) {
+    public void showNumberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
     }
 
-    public void showPlayerPointsInThisGame(String userName, String gameName) {
+    public void showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.showPlayerPointsInThisGame(userName, gameName);
     }
 

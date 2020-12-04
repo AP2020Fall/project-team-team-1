@@ -1,5 +1,6 @@
 package Controller.PlayerController;
 
+import Controller.Exception.InvalidGameNameException;
 import Model.PlatoModel.Player;
 
 import java.util.*;
@@ -7,20 +8,17 @@ import java.util.*;
 public class PlayerStatusInGame {
 
 
-    //    public static void gamesHistoryInThisGame (String userName , String gameName){
-//
-//    }
-    public static void showScoreboardInThisGame(String gameName) {
+
+    public static void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         int index = 0;
         int counter = 1;
         HashMap<String, Long> scoreBoard = new HashMap<>();
         if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+        } else if (gameName.equalsIgnoreCase("BattleShip")) {
             index = 1;
         } else {
-            System.out.println("not valid");
-            return;
+            throw new InvalidGameNameException(gameName);
         }
         for (Player player : Player.getPlayers()) {
             scoreBoard.put(player.getUserName(), player.getPlayerLog().get(index).getTakenScore());
@@ -31,16 +29,16 @@ public class PlayerStatusInGame {
         }
     }
 
-    public static void showGameLogInThisGame(String userName, String gameName) {
+    public static void showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+        } else if (gameName.equalsIgnoreCase("BattleShip")) {
             index = 1;
         } else {
-            System.out.println("not valid");
-            return;
+            throw new InvalidGameNameException(gameName);
+
         }
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
         int loses = player.getPlayerLog().get(index).getNumberOfLoses();
@@ -50,46 +48,46 @@ public class PlayerStatusInGame {
         System.out.println("Number of match : " + numberOfPlayed);
     }
 
-    public static void numberOfWinsInThisGame(String userName, String gameName) {
+    public static void numberOfWinsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+        } else if (gameName.equalsIgnoreCase("BattleShip")) {
             index = 1;
         } else {
-            System.out.println("not valid");
-            return;
+            throw new InvalidGameNameException(gameName);
+
         }
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
         System.out.println("Wins : " + wins);
     }
 
-    public static void numberOfGamePlayedInThisGame(String userName, String gameName) {
+    public static void numberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+        } else if (gameName.equalsIgnoreCase("BattleShip")) {
             index = 1;
         } else {
-            System.out.println("not valid");
-            return;
+            throw new InvalidGameNameException(gameName);
+
         }
         int numberOfPlayed = player.getPlayerLog().get(index).getNumberOfGamePlayed();
         System.out.println("Number of match : " + numberOfPlayed);
     }
 
-    public static void showPlayerPointsInThisGame(String userName, String gameName) {
+    public static void showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleSea")) {
+        } else if (gameName.equalsIgnoreCase("BattleShip")) {
             index = 1;
         } else {
-            System.out.println("not valid");
-            return;
+            throw new InvalidGameNameException(gameName);
+
         }
         long score = player.getPlayerLog().get(index).getTakenScore();
         System.out.println("Level : " + score);
