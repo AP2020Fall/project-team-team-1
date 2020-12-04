@@ -72,7 +72,7 @@ public class BattleShipMenu extends Menu {
     }
 
     private Menu showLog() {
-        return new Menu("show " + this.username + "'s " + this.getName() + " GameLog", this) {
+        return new Menu("show " + this.username + "'s Battleship GameLog", this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -192,6 +192,14 @@ public class BattleShipMenu extends Menu {
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName());
                 }
+                while (true) {
+                    String next = scanner.nextLine();
+                    if (next.equalsIgnoreCase("back")) {
+                        this.parentMenu.run();
+                        break;
+                    }
+                }
+
             }
         };
     }

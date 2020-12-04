@@ -179,6 +179,13 @@ public class DotsAndBoxesMenu extends Menu {
                     System.out.println(e.getGameName()+e.getMessage());
                     this.run();
                 }
+                while (true) {
+                    String next = scanner.nextLine();
+                    if (next.equalsIgnoreCase("back")) {
+                        this.parentMenu.run();
+                        break;
+                    }
+                }
             }
         };
     }
