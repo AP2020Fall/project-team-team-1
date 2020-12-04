@@ -19,7 +19,7 @@ public class UserControllerTest {
 
         Method reflectFindUserByUserName = userController.getClass().getDeclaredMethod("findUserByUsername", String.class);
         reflectFindUserByUserName.setAccessible(true);
-        reflectFindUserByUserName.invoke(userController, "yamsiin");
+
         Assert.assertEquals((reflectFindUserByUserName.invoke(userController, "yamsiin")).toString(), "User{name='yasmin', lastName='kad', UserID=1100, userName='yamsiin', password='007Password', email='yasmiinkad@gmail.com', phoneNum='09129749527'}");
 
         //man testesho neveshtam vali baz migam age mikhaym chizi ro sout konim bayad to view bashe na controller
@@ -36,7 +36,6 @@ public class UserControllerTest {
 
         Method reflectFindUserByUserName = userController.getClass().getDeclaredMethod("findUserByUsername", String.class);
         reflectFindUserByUserName.setAccessible(true);
-        reflectFindUserByUserName.invoke(userController, "yamsiin");
 
         Assert.assertNotNull(reflectFindUserByUserName.invoke(userController,"yamsiin"));
         Assert.assertNull(reflectFindUserByUserName.invoke(userController,"hessanasna"));
