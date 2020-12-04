@@ -35,7 +35,7 @@ public class FavoriteGames {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player.getFavoritesGamesName().size() == 0)
-            throw new ExistFavoriteException("THE FAVORITE GAMES LIST IN EMPTY");
+            throw new ExistFavoriteException("THE FAVORITE GAMES LIST IS EMPTY");
 
         for (String favorite : player.getFavoritesGamesName()) {
             System.out.println(favorite);
