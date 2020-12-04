@@ -8,11 +8,6 @@ import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -64,19 +59,22 @@ public class FavoriteGamesTest {
 
     }
 
-//    @Test
-//    public boolean testCheckFavoriteGameExistence() throws ExistFavoriteException, InvalidGameNameException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-//        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
-//        Player.players.add(playerYasmin);
-//        User.users.add(playerYasmin);
-//
-//        UserController userController = new UserController();
-//
-//        FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
-//        FavoriteGames.addGameToFavoritesGames("yamsiin","dotsAndBoxes");
-//
-//        Method reflectFindUserByUserName = userController.getClass().getDeclaredMethod("checkFavoriteGameExistence", String.class);
-//        reflectFindUserByUserName.setAccessible(true);
-//        reflectFindUserByUserName.invoke(userController, "yamsiin");
-//    }
+    @Test
+    public void testCheckFavoriteGameExistence() throws ExistFavoriteException, InvalidGameNameException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
+        Player.players.add(playerYasmin);
+        User.users.add(playerYasmin);
+
+        FavoriteGames favoriteGames = new FavoriteGames();
+
+        FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
+
+        Method reflectcheckFavoriteGameExistence = favoriteGames.getClass().getDeclaredMethod("checkFavoriteGameExistence", String.class, String.class);
+        reflectcheckFavoriteGameExistence.setAccessible(true);
+        boolean resultBattleShip = (Boolean) reflectcheckFavoriteGameExistence.invoke(favoriteGames, "yamsiin", "battleShip");
+        boolean resultDotsAndBoxes = (Boolean) reflectcheckFavoriteGameExistence.invoke(favoriteGames, "yamsiin", "dotsAndBoxes");
+
+        Assert.assertTrue(resultBattleShip);
+        Assert.assertFalse(resultDotsAndBoxes);
+    }
 }
