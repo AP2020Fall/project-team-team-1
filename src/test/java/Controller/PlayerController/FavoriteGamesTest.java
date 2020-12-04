@@ -2,6 +2,8 @@ package Controller.PlayerController;
 
 import Controller.Exception.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import Controller.GeneralController.UserController;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 import org.junit.Assert;
@@ -11,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class FavoriteGamesTest {
 
@@ -59,4 +63,6 @@ public class FavoriteGamesTest {
         //Exceptiono inja test kardam okay ham mide vali vase method showfavoritegames nemishe test nevesht fek koanm chon age estebah nakonam haghe print kardane chizio tooye controller nadarim
 
     }
+
+
 }
