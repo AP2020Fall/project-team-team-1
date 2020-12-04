@@ -64,5 +64,19 @@ public class FavoriteGamesTest {
 
     }
 
-
+//    @Test
+//    public boolean testCheckFavoriteGameExistence() throws ExistFavoriteException, InvalidGameNameException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
+//        Player.players.add(playerYasmin);
+//        User.users.add(playerYasmin);
+//
+//        UserController userController = new UserController();
+//
+//        FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
+//        FavoriteGames.addGameToFavoritesGames("yamsiin","dotsAndBoxes");
+//
+//        Method reflectFindUserByUserName = userController.getClass().getDeclaredMethod("checkFavoriteGameExistence", String.class);
+//        reflectFindUserByUserName.setAccessible(true);
+//        reflectFindUserByUserName.invoke(userController, "yamsiin");
+//    }
 }
