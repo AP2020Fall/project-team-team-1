@@ -78,7 +78,7 @@ public class Friend {
 
 
         player.getFriends().remove(friend);
-
+        friend.getFriends().remove(player);
         //Player.saveInJsonFile();
 
     }
@@ -86,23 +86,25 @@ public class Friend {
 
     public static void showRequests(String username) throws ExistFriendException {
         Player player = FindPlayerByInfo.findByUserName(username);
-
+        int counter =1;
         if (player.getFriendsRequests().size() == 0)
             throw new ExistFriendException(" There is no Request for Show! ");
 
         for (Player playerFriendRequests : player.getFriendsRequests()) {
-            System.out.println("getUserID: " + playerFriendRequests.getUserID() + " Username: " + playerFriendRequests.getUserName() + " Name: " + playerFriendRequests.getName() + " LastName: " + playerFriendRequests.getLastName() + " Email: " + playerFriendRequests.getEmail() + " Phone Number: " + playerFriendRequests.getPhoneNum());
+            System.out.println(counter+". Username: "+ playerFriendRequests.getUserName());
+            counter++;
         }
     }
 
     public static void showFriends(String username) throws ExistFriendException {
         Player player = FindPlayerByInfo.findByUserName(username);
+        int counter =1;
 
         if (player.getFriends().size() == 0)
             throw new ExistFriendException(" There is no Friend for Show! ");
 
         for (Player playerFriend : player.getFriends()) {
-            System.out.println("getUserID: " + playerFriend.getUserID() + " Username: " + playerFriend.getUserName() + " Name: " + playerFriend.getName() + " LastName: " + playerFriend.getLastName() + " Email: " + playerFriend.getEmail() + " Phone Number: " + playerFriend.getPhoneNum());
+            System.out.println(counter+". Username: "+ playerFriend.getUserName());
         }
     }
 

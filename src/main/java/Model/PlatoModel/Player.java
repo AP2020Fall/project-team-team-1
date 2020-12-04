@@ -37,13 +37,16 @@ public class Player extends User {
         this.registerDate = LocalDate.now();
         favoritesGamesName = new ArrayList<>();
         friends = new ArrayList<>();
-        PlayerLog.addNewPlayerLog(new PlayerLog(userID, "DotsAndBoxes"));
-        PlayerLog.addNewPlayerLog(new PlayerLog(userID, "BattleSea"));
+        playerLog= new ArrayList<>();
     }
 
     public static void AddNewPlayer(Player player) {
         players.add(player);
         User.addNewUser(player);
+
+        player.playerLog.add(new PlayerLog(player.getUserName(),"BattleShip"));
+        player.playerLog.add(new PlayerLog(player.getUserName(),"DotsAndBoxes"));
+
 
         try {
             DataBase.save(players, playerFile);
