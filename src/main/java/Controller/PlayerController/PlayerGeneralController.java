@@ -116,11 +116,11 @@ public class PlayerGeneralController {
         PlayerStatusInGame.showGameLogInThisGame(userName, gameName);
     }
 
-    public void numberOfWinsInThisGame(String userName, String gameName) {
+    public void showNumberOFWins(String userName, String gameName) {
         PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
     }
 
-    public void numberOfGamePlayedInThisGame(String userName, String gameName) {
+    public void showNumberOfGamePlayedInThisGame(String userName, String gameName) {
         PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
     }
 

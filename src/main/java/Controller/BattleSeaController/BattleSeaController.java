@@ -113,4 +113,7 @@ public class BattleSeaController {
         }
         return player;
     }
+    public void details(){
+
+    }
 }

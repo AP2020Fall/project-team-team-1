@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.*;
 import Controller.AdminController.Edit;
 import Controller.AdminController.Suggestion;
+import Controller.BattleSeaController.BattleSeaController;
 import Controller.GeneralController.UserController;
 import Controller.PlayerController.*;
 import Controller.RegisterController.Delete;
@@ -40,6 +41,7 @@ public abstract class Menu {
     protected static UserController userController = new UserController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    protected static BattleSeaController battleSeaController = new BattleSeaController();
 //------------------------------------------------------------------------------------------------
 
     public Menu(String name, Menu parentMenu) {
