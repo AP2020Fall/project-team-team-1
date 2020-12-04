@@ -30,7 +30,11 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                playerGeneralController.showScoreboardInThisGame("DotsAndBoxes");
+                try {
+                    playerGeneralController.showScoreboardInThisGame("DotsAndBoxes");
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                }
             }
         };
     }
@@ -64,14 +68,20 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                playerGeneralController.showGameLogInThisGame(username,"DotsAndBoxes");
-                while (true){
-                    String next = scanner.nextLine();
-                    if (next.equalsIgnoreCase("back")){
-                        this.parentMenu.run();
-                        break;
+                try {
+                    playerGeneralController.showGameLogInThisGame(username,"DotsAndBoxes");
+                    while (true){
+                        String next = scanner.nextLine();
+                        if (next.equalsIgnoreCase("back")){
+                            this.parentMenu.run();
+                            break;
+                        }
                     }
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                    this.run();
                 }
+
             }
         };
     }
@@ -84,14 +94,20 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                playerGeneralController.showNumberOFWins(username,"DotsAndBoxes");
-                while (true){
-                    String next = scanner.nextLine();
-                    if (next.equalsIgnoreCase("back")){
-                        this.parentMenu.run();
-                        break;
+                try {
+                    playerGeneralController.showNumberOFWins(username,"DotsAndBoxes");
+                    while (true){
+                        String next = scanner.nextLine();
+                        if (next.equalsIgnoreCase("back")){
+                            this.parentMenu.run();
+                            break;
+                        }
                     }
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                    this.run();
                 }
+
             }
         };
     }
@@ -104,14 +120,20 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                playerGeneralController.showNumberOfGamePlayedInThisGame(username,"DotsAndBoxes");
-                while (true){
-                    String next = scanner.nextLine();
-                    if (next.equalsIgnoreCase("back")){
-                        this.parentMenu.run();
-                        break;
+                try {
+                    playerGeneralController.showNumberOfGamePlayedInThisGame(username,"DotsAndBoxes");
+                    while (true){
+                        String next = scanner.nextLine();
+                        if (next.equalsIgnoreCase("back")){
+                            this.parentMenu.run();
+                            break;
+                        }
                     }
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                    this.run();
                 }
+
             }
         };
     }
@@ -151,7 +173,12 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                playerGeneralController.showPlayerPointsInThisGame(username,"DotsAndBoxes");
+                try {
+                    playerGeneralController.showPlayerPointsInThisGame(username,"DotsAndBoxes");
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+e.getMessage());
+                    this.run();
+                }
             }
         };
     }
