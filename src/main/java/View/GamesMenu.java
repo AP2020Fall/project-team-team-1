@@ -9,6 +9,7 @@ public class GamesMenu extends Menu {
         this.username=username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,new BattleShipMenu(username,this));
+        submenus.put(2,new DotsAndBoxesMenu(username,this));
         this.setSubmenus(submenus);
     }
 
