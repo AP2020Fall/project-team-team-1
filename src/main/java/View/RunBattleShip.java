@@ -57,18 +57,44 @@ public class RunBattleShip extends Menu {
     private static void runGame(String player1, String player2) {
         int counter = 1;
         while (true) {
-            if (counter == 1){
-                battleSeaController.randomShipPlaceForPlayer1();
-                battleSeaController.randomShipPlaceForPlayer2();
+            if (counter == 1) {
                 battleSeaController.addPlayersToArrayList();
+
+                while (true) {
+                    System.out.println(player1 + "'s Board \nIf you want to change the map Enter \" Change \" , otherwise enter \" done \" ");
+                    battleSeaController.randomShipPlaceForPlayer1();
+                    if (scanner.nextLine().equalsIgnoreCase("done")) {
+                        break;
+                    }
+                    //todo for change first we should reset Ship of player and player board
+                    //battleSeaController.restPlayer1Board();
+
+                }
+                while (true) {
+                    System.out.println(player2 + "'s Map \nIf you want to change the map Enter \" Change \" , otherwise enter \" done \" ");
+                    battleSeaController.randomShipPlaceForPlayer2();
+                    if (scanner.nextLine().equalsIgnoreCase("done")) {
+                        break;
+                    }
+                    //todo for change first we should reset Ship of player and player board
+                    //battleSeaController.restPlayer2Board();
+                }
             }
+            if (counter%2==1){
+                System.out.println(player1 + "'s Turn ");
+            }else {
+                System.out.println(player2 + "'s Turn ");
+            }
+
             String nexCommand = scanner.nextLine();
 
             //battleSeaController.mainCommandProcessor(player1, player2);
-            if (counter%2 == 1){
-                battleSeaController.mainCommandProcessor("player1",nexCommand);
-            }else
-                battleSeaController.mainCommandProcessor("player2",nexCommand);
+            if (counter % 2 == 1) {
+                battleSeaController.mainCommandProcessor("player1", nexCommand);
+
+            } else {
+                battleSeaController.mainCommandProcessor("player2", nexCommand);
+            }
 
             counter++;
         }
@@ -83,5 +109,5 @@ public class RunBattleShip extends Menu {
     }
 
 
-    }
+}
 

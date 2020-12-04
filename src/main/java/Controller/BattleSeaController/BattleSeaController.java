@@ -123,6 +123,12 @@ public class BattleSeaController {
     public void addPlayersToArrayList() {
         Run.addPlayer();
     }
+    public void restPlayer1Board(){
+
+    }
+    public void restPlayer2Board(){
+
+    }
 
     public void details() {
 

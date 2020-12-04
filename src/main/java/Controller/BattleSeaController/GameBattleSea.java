@@ -25,6 +25,7 @@ public class GameBattleSea {
         return player2;
     }
 
+
     public Board getFirstPlayerOwnBoard() {
         return firstPlayerOwnBoard;
     }

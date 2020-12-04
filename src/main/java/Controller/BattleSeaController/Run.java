@@ -31,16 +31,16 @@ public class Run {
         }
         if (direction == Direction.HORIZONTAL) {
             if (x + player1.getPlayerShip().get(ship).getSize() > 9) {
-//                System.out.println("check your" + x);
+                System.out.println("check your" + x);
                 return false;
             }
             if (y > 9) {
-//                System.out.println("check your" + y);
+                System.out.println("check your" + y);
                 return false;
             }
             for (int i = x; i < x + player1.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals("E")) {
-//                    System.out.println("Wrong");
+                if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
+                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -52,17 +52,17 @@ public class Run {
         } else {
 
             if (y + player1.getPlayerShip().get(ship).getSize() > 9) {
-//                System.out.println("check your" + y);
+                System.out.println("check your" + y);
                 return false;
             }
             if (x > 9) {
-//                System.out.println("check your" + x);
+                System.out.println("check your" + x);
                 return false;
             }
             for (int i = y; i < y + player1.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals("E")) {
+                if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
 //                    pass = false;
-//                    System.out.println("Wrong");
+                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -96,7 +96,7 @@ public class Run {
                 return false;
             }
             for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals("E")) {
+                if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
 //                    pass = false;
 //                    System.out.println("Wrong");
                     return false;
@@ -118,7 +118,7 @@ public class Run {
                 return false;
             }
             for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals("E")) {
+                if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
 //                    pass = false;
 //                    System.out.println("Wrong");
                     return false;
@@ -176,6 +176,7 @@ public class Run {
         }
         Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
         System.out.println("+++++++++++++++++++++++++++++");
+
     }
 
     /************************** Edit Ship Corrdinate **************************/
@@ -202,13 +203,16 @@ public class Run {
                 return;
             }
             for (int i = x; i < x + player1.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals("E")) {
+                if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
                     System.out.println("Wrong");
                     return;
                 }
             }
-            for (int i = player1.getPlayerShip().get(ship).getCoordinate().getxStart(); i < player1.getPlayerShip().get(ship).getCoordinate().getxStart() + player1.getPlayerShip().get(ship).getSize(); i++) {
-                game.getFirstPlayerOwnBoard().getGameBoard()[i][y] = "E";
+
+            for (int i = player1.getPlayerShip().get(ship).getCoordinate().getxStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getxLast() ; i++) {
+//                player1.getPlayerShip().get(ship).getCoordinate().getxStart() + player1.getPlayerShip().get(ship).getSize()
+                game.getFirstPlayerOwnBoard().getGameBoard()[i][player1.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
+                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
             }
         } else {
 
@@ -221,24 +225,32 @@ public class Run {
                 return;
             }
             for (int i = y; i < y + player1.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals("E")) {
+                if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
                     System.out.println("Wrong");
                     return;
                 }
             }
 
-            for (int i = player1.getPlayerShip().get(ship).getCoordinate().getyStart(); i < player1.getPlayerShip().get(ship).getCoordinate().getyStart() + player1.getPlayerShip().get(ship).getSize(); i++) {
-                game.getFirstPlayerOwnBoard().getGameBoard()[x][i] = "E";
+            for (int i = player1.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getyLast() ; i++) {
+//                player1.getPlayerShip().get(ship).getCoordinate().getyStart() + player1.getPlayerShip().get(ship).getSize()
+                game.getFirstPlayerOwnBoard().getGameBoard()[player1.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
+                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
+
             }
         }
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
         Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
         player1.getPlayerShip().get(ship).setAlreadyPlaced(false);
         player1.getPlayerShip().get(ship).setCoordinate(null);
         ship++;
         y++;
         x++;
+
         putShipPlayer1(x, y, ship, direction);
 
+        Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
+        System.out.println("+++++++++++++++++++++++++++++");
 
     }
 
@@ -256,6 +268,7 @@ public class Run {
             return;
         }
         if (player2.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
+            direction = Direction.HORIZONTAL;
             if (x + player2.getPlayerShip().get(ship).getSize() > 9) {
                 System.out.println("check your" + x);
                 return;
@@ -265,16 +278,17 @@ public class Run {
                 return;
             }
             for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals("E")) {
+                if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
                     System.out.println("Wrong");
                     return;
                 }
             }
 
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getxStart(); i < player2.getPlayerShip().get(ship).getCoordinate().getxStart() + player2.getPlayerShip().get(ship).getSize(); i++) {
-                game.getFirstPlayerOwnBoard().getGameBoard()[i][y] = "E";
+                game.getSecondPlayerOwnBoard().getGameBoard()[i][player2.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
             }
         } else {
+            direction = Direction.VERTICAL;
 
             if (y + player2.getPlayerShip().get(ship).getSize() > 9) {
                 System.out.println("check your" + y);
@@ -285,22 +299,23 @@ public class Run {
                 return;
             }
             for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
-                if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals("E")) {
+                if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
                     System.out.println("Wrong");
                     return;
                 }
             }
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getyStart(); i < player2.getPlayerShip().get(ship).getCoordinate().getyStart() + player2.getPlayerShip().get(ship).getSize(); i++) {
-                game.getFirstPlayerOwnBoard().getGameBoard()[x][i] = "E";
+                game.getSecondPlayerOwnBoard().getGameBoard()[player1.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
             }
         }
-        Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
         player2.getPlayerShip().get(ship).setAlreadyPlaced(false);
         player2.getPlayerShip().get(ship).setCoordinate(null);
         ship++;
         y++;
         x++;
         putShipPlayer2(x, y, ship, direction);
+        Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
+
     }
 
     /*************************** Boom Player Ships ***************************/
