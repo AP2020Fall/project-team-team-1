@@ -44,8 +44,9 @@ public class Player extends User {
         players.add(player);
         User.addNewUser(player);
 
-        player.playerLog.add(new PlayerLog(player.getUserName(),"BattleShip"));
         player.playerLog.add(new PlayerLog(player.getUserName(),"DotsAndBoxes"));
+        player.playerLog.add(new PlayerLog(player.getUserName(),"BattleShip"));
+
 
 
         try {
