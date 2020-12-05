@@ -19,7 +19,7 @@ public abstract class Menu {
     protected Menu parentMenu;
     public static Scanner scanner;
 //---------------------------------------Controller//-------------------------------------------
-    protected static Coin coinController = new Coin();
+  //  protected static Coin coinController = new Coin();
     protected static Edit adminEditController = new Edit();
     protected static Event adminEventController = new Event();
     protected static Message adminMessageController = new Message();
