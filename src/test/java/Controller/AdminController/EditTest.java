@@ -20,10 +20,10 @@ public class EditTest extends TestCase {
         edit.editField("Lastname", "Zgh");
         assertEquals(admin1.getLastName(), "Zgh");
 
-        edit.editField("email", "amirZgh1@yahoo.com");
-        assertEquals(admin1.getEmail(), "amirZgh1@yahoo.com");
+        edit.editField("email", "amirzgh1@yahoo.com");
+        assertEquals(admin1.getEmail(), "amirzgh1@yahoo.com");
 
-        edit.editField("phone number", "09122222222");
+        edit.editField("phonenumber", "09122222222");
         assertEquals(admin1.getPhoneNum(), "09122222222");
 
 //        Edit.editField("username","amirrezazgh1");

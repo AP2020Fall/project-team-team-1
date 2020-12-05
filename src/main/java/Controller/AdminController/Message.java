@@ -26,7 +26,6 @@ public class Message {
         for (Model.PlatoModel.Message playerReceivedMessage : player.getReceivedMessages()) {
             System.out.println(playerReceivedMessage);
         }
-
     }
 
 }
