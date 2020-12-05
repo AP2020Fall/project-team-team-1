@@ -3,7 +3,6 @@ package Controller.PlayerController;
 import Controller.CompetencyController.Existence;
 import Controller.Exception.ExistFavoriteException;
 import Controller.Exception.InvalidGameNameException;
-import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
 public class FavoriteGames {
@@ -13,18 +12,18 @@ public class FavoriteGames {
             throw new InvalidGameNameException(gameName);
 
         if (checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName, " Is already exist ! ");
+            throw new ExistFavoriteException(gameName, "THIS GAME ALREADY EXISTS");
 
         player.getFavoritesGamesName().add(gameName);
         //Player.saveInJsonFile();
 
     }
 
-    public static void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
+    public static void removeFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (!checkFavoriteGameExistence(userName, gameName))
-            throw new ExistFavoriteException(gameName, " isn't exist in your List! ");
+            throw new ExistFavoriteException(gameName, " THIS GAME DOESN'T EXIST IN YOUR LIST ");
 
         player.getFavoritesGamesName().remove(gameName);
         //Player.saveInJsonFile();
@@ -36,7 +35,7 @@ public class FavoriteGames {
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player.getFavoritesGamesName().size() == 0)
-            throw new ExistFavoriteException("There is no favorite game");
+            throw new ExistFavoriteException("THE FAVORITE GAMES LIST IS EMPTY");
 
         for (String favorite : player.getFavoritesGamesName()) {
             System.out.println(favorite);

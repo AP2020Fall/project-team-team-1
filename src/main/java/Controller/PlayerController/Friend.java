@@ -1,6 +1,5 @@
 package Controller.PlayerController;
 
-
 import Controller.Exception.AcceptAndDeclineFriendException;
 import Controller.Exception.ExistFriendException;
 import Controller.Exception.ExistPlayerException;
@@ -8,21 +7,21 @@ import Model.PlatoModel.Player;
 
 public class Friend {
     public static void acceptRequest(String username, String friendUsername) throws AcceptAndDeclineFriendException, ExistPlayerException {
-        Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(username);
+        Player playerWhoReceivedRequests = FindPlayerByInfo.findByUserName(username);
 
-        Player playerHowSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
+        Player playerWhoSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
 
-        if (playerHowSentRequests == null)
-            throw new ExistPlayerException(friendUsername, " isn't exist please make sure about Username! ");
+        if (playerWhoSentRequests == null)
+            throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
         if (!userNameIsInFriendRequest(username, friendUsername))
-            throw new AcceptAndDeclineFriendException(" it isn't in your Request list!,make Sure about the Username ", friendUsername);
+            throw new AcceptAndDeclineFriendException(" THIS PLAYER IS NOT IN YOUR REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ", friendUsername);
 
-        playerHowReceivedRequests.getFriendsRequests().remove(playerHowSentRequests);
+        playerWhoReceivedRequests.getFriendsRequests().remove(playerWhoSentRequests);
 
-        playerHowReceivedRequests.getFriends().add(playerHowSentRequests);
+        playerWhoReceivedRequests.getFriends().add(playerWhoSentRequests);
 
-        playerHowSentRequests.getFriends().add(playerHowReceivedRequests);
+        playerWhoSentRequests.getFriends().add(playerWhoReceivedRequests);
 
         //Player.saveInJsonFile();
 
@@ -30,18 +29,18 @@ public class Friend {
     }
 
     public static void declineRequest(String username, String friendUsername) throws AcceptAndDeclineFriendException, ExistPlayerException {
-        Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(username);
+        Player playerWhoReceivedRequests = FindPlayerByInfo.findByUserName(username);
 
-        Player playerHowSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
+        Player playerWhoSentRequests = FindPlayerByInfo.findByUserName(friendUsername);
 
-        if (playerHowSentRequests == null)
-            throw new ExistPlayerException(friendUsername, " isn't exist please make sure about Username! ");
+        if (playerWhoSentRequests == null)
+            throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID.");
 
         if (!userNameIsInFriendRequest(username, friendUsername))
-            throw new AcceptAndDeclineFriendException(" it isn't in your Request list!,make Sure about the Username ", friendUsername);
+            throw new AcceptAndDeclineFriendException(" THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ", friendUsername);
 
 
-        playerHowReceivedRequests.getFriendsRequests().remove(playerHowSentRequests);
+        playerWhoReceivedRequests.getFriendsRequests().remove(playerWhoSentRequests);
 
         //Player.saveInJsonFile();
 
@@ -49,16 +48,15 @@ public class Friend {
 
     public static void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(username);
-        Player playerHowReceivedRequests = FindPlayerByInfo.findByUserName(friendUsername);
+        Player playerWhoReceivedRequests = FindPlayerByInfo.findByUserName(friendUsername);
 
-        if (playerHowReceivedRequests == null)
-            throw new ExistPlayerException(friendUsername, " isn't exist please make sure about Username! ");
+        if (playerWhoReceivedRequests == null)
+            throw new ExistPlayerException(friendUsername, "THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
         if (userNameIsFriend(username, friendUsername))
-            throw new ExistFriendException(friendUsername, " is already in you friends list :) ");
+            throw new ExistFriendException(friendUsername, " THIS USER ALREADY IN YOUR FRIEND LIST :) ");
 
-
-        playerHowReceivedRequests.getFriendsRequests().add(player);
+        playerWhoReceivedRequests.getFriendsRequests().add(player);
 
         //Player.saveInJsonFile();
 
@@ -71,10 +69,10 @@ public class Friend {
         Player friend = FindPlayerByInfo.findByUserName(friendUsername);
 
         if (friend == null)
-            throw new ExistPlayerException(friendUsername, " isn't exist please make sure about Username! ");
+            throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
         if (!userNameIsFriend(username, friendUsername))
-            throw new ExistFriendException(friendUsername, " isn't in you friends list, Make Sure about Username and Try Again! ");
+            throw new ExistFriendException(friendUsername, "THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
 
         player.getFriends().remove(friend);
@@ -88,7 +86,7 @@ public class Friend {
         Player player = FindPlayerByInfo.findByUserName(username);
         int counter =1;
         if (player.getFriendsRequests().size() == 0)
-            throw new ExistFriendException(" There is no Request for Show! ");
+            throw new ExistFriendException(" THERE ARE NO REQUESTS TO SHOW");
 
         for (Player playerFriendRequests : player.getFriendsRequests()) {
             System.out.println(counter+". Username: "+ playerFriendRequests.getUserName());
@@ -101,7 +99,7 @@ public class Friend {
         int counter =1;
 
         if (player.getFriends().size() == 0)
-            throw new ExistFriendException(" There is no Friend for Show! ");
+            throw new ExistFriendException(" YOU DON'T HAVE ANY FRIENDS ");
 
         for (Player playerFriend : player.getFriends()) {
             System.out.println(counter+". Username: "+ playerFriend.getUserName());
@@ -113,7 +111,7 @@ public class Friend {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (!userNameIsFriend(username, friendUsername))
-            throw new ExistFriendException(friendUsername, " isn't in you friends list, Make Sure about Username and Try Again! ");
+            throw new ExistFriendException(friendUsername, " THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
         for (Player playerFriend : player.getFriends()) {
             if (playerFriend.getUserName().equals(friendUsername)) {
