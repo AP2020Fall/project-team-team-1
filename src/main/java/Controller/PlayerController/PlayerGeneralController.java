@@ -131,9 +131,11 @@ public class PlayerGeneralController {
 
     /***********************************************EDIT***********************************************/
     public void findGameForRun(String playerUserName, String gameName, String score) {
-        RunGame.findGameForRun(playerUserName, gameName, score);
+        Game.findGameForRun(playerUserName, gameName, score);
     }
-
+    public void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput) {
+        Game.giveScoreAndEditPlayerLog(gameName, winnerPlayerInput, loserPlayerInput, scoreInput);
+    }
 
     /***********************************************EDIT***********************************************/
     public void showSuggestion(String username) throws ExistSuggestionException {

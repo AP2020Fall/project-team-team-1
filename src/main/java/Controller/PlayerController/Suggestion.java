@@ -24,6 +24,6 @@ public class Suggestion {
         if (suggestion == null)
             throw new ExistSuggestionException(" Suggestion with this ID doesn't Exist !, Make Sure about Suggestion and try Again ");
 
-        RunGame.findGameForRun(player.getUserName(), suggestion.getSuggestedGame(), "10");
+        Game.findGameForRun(player.getUserName(), suggestion.getSuggestedGame(), "10");
     }
 }

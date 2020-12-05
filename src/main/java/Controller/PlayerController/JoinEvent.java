@@ -11,7 +11,7 @@ public class JoinEvent {
             throw new ExistEventException("Can not join this event !,Make Suer about Event ID");
 
             Model.PlatoModel.Event event = Event.eventFinderByEventID(eventId);
-            RunGame.findGameForRun(userName, gameName, String.valueOf(event.getScore()));
+            Game.findGameForRun(userName, gameName, String.valueOf(event.getScore()));
 
 
     }
