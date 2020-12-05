@@ -33,7 +33,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showScoreboardInThisGame("battleship");
+                    playerGeneralController.showScoreboardInThisGame("BattleShip");
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -188,7 +188,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showPlayerPointsInThisGame(username, "battleship");
+                    playerGeneralController.showPlayerPointsInThisGame(username, "BattleShip");
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName());
                 }

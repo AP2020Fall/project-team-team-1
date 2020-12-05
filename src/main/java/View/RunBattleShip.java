@@ -1,7 +1,11 @@
 package View;
 
+import Controller.BattleSeaController.BattleSeaController;
+import Controller.BattleSeaController.BattleSeaPlayer;
+import Controller.BattleSeaController.Run;
 import Controller.Exception.InvalidUserNameException;
 import Controller.Exception.WrongPasswordException;
+import Controller.PlayerController.Game;
 
 import java.util.ArrayList;
 
@@ -54,50 +58,97 @@ public class RunBattleShip extends Menu {
         };
     }
 
-    private static void runGame(String player1, String player2) {
+    private void runGame(String player1, String player2) {
         int counter = 1;
-        while (true) {
+        int counterForRandom = 1;
+        boolean endGame = true;
+        while (endGame) {
             if (counter == 1) {
                 battleSeaController.addPlayersToArrayList();
 
                 while (true) {
-                    System.out.println(player1 + "'s Board \nIf you want to change the map Enter \" Change \" , otherwise enter \" done \" ");
-                    battleSeaController.randomShipPlaceForPlayer1();
-                    if (scanner.nextLine().equalsIgnoreCase("done")) {
+                    if (counterForRandom == 1) {
+                        battleSeaController.randomShipPlaceForPlayer1();
+                    }
+                    System.out.println(player1 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
+                    System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
+                    System.out.println("Ships names And Numbers for change: \n" +
+                            "Battleship (B) ----> 1\n" +
+                            "AirCarrier (A) ----> 2\n" +
+                            "Cruiser    (C) ----> 3\n" +
+                            "Destroyer  (D) ----> 4\n" +
+                            "Submarine  (S) ----> 5");
+
+                    String input = scanner.nextLine();
+
+                    if (input.equalsIgnoreCase("done")) {
                         break;
+                    }
+                    if (input.startsWith("change")) {
+                        battleSeaController.changeCoordinateProcessor("player1", input);
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer1Board();
-
+                    counterForRandom++;
                 }
+                counterForRandom = 1;
                 while (true) {
-                    System.out.println(player2 + "'s Map \nIf you want to change the map Enter \" Change \" , otherwise enter \" done \" ");
-                    battleSeaController.randomShipPlaceForPlayer2();
-                    if (scanner.nextLine().equalsIgnoreCase("done")) {
+                    if (counterForRandom == 1) {
+                        battleSeaController.randomShipPlaceForPlayer2();
+                    }
+                    System.out.println(player2 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
+                    System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
+                    System.out.println("Ships names And Numbers for change: \n" +
+                            "Battleship (B) ----> 1\n" +
+                            "AirCarrier (A) ----> 2\n" +
+                            "Cruiser    (C) ----> 3\n" +
+                            "Destroyer  (D) ----> 4\n" +
+                            "Submarine  (S) ----> 5");
+
+                    String input = scanner.nextLine();
+
+                    if (input.equalsIgnoreCase("done")) {
                         break;
+                    }
+                    if (input.startsWith("change")) {
+                        battleSeaController.changeCoordinateProcessor("player2", input);
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer2Board();
+                    counterForRandom++;
                 }
             }
-            if (counter%2==1){
+            if (counter % 2 == 1) {
                 System.out.println(player1 + "'s Turn ");
-            }else {
+            } else {
                 System.out.println(player2 + "'s Turn ");
             }
 
             String nexCommand = scanner.nextLine();
 
             //battleSeaController.mainCommandProcessor(player1, player2);
-            if (counter % 2 == 1) {
-                battleSeaController.mainCommandProcessor("player1", nexCommand);
+            if (nexCommand.equalsIgnoreCase("Surrender")){
+                if (counter % 2 == 1) {
+                    System.out.println(player2+" Wins the Game !");
+                    Game.giveScoreAndEditPlayerLog("BattleShip",player2,player1,10);
+                    endGame = false;
+                } else {
+                    System.out.println(player1+" Wins the Game !");
+                    Game.giveScoreAndEditPlayerLog("BattleShip",player1,player2,10);
+                    endGame = false;
 
+                }
+            }
+            if (counter % 2 == 1) {
+                battleSeaController.boomOrShow("player1", nexCommand);
             } else {
-                battleSeaController.mainCommandProcessor("player2", nexCommand);
+                battleSeaController.boomOrShow("player2", nexCommand);
             }
 
             counter++;
         }
+        this.parentMenu.run();
+
     }
 
     public static String arrayListToString(ArrayList<String> arrayList) {

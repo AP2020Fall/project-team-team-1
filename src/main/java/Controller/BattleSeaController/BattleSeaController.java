@@ -6,45 +6,44 @@ import Controller.BattleSeaController.Ships.Ship;
 
 public class BattleSeaController {
 
-    public void mainCommandProcessor(String username, String string) {
+    public void changeCoordinateProcessor(String username, String string) {
         String[] inputSpilt = string.split("\\s");
 
-        if (inputSpilt[0].equalsIgnoreCase("boom")) {
-            String[] coordinate = inputSpilt[1].split(",");
-
-            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username))
-                Run.boomPlayer2Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
-            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
-                Run.boomPlayer1Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
-
-
-        } else if (inputSpilt[0].equalsIgnoreCase("show")) {
-            showCommandProcessor(string);
-        }
-        else if (inputSpilt[3].equalsIgnoreCase("direction")) {
+        if (inputSpilt[3].equalsIgnoreCase("direction")) {
             Direction direction = null;
+            int ship = Integer.parseInt(inputSpilt[2]) - 1;
+
+
             if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username)) {
+//                if (Run.player1.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
+//                    direction = Direction.VERTICAL;
+//                } else {
+//                    direction = Direction.HORIZONTAL;
+//                }
 
-                if (Run.player1.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getDirection().equals(Direction.HORIZONTAL))
-                    direction = Direction.VERTICAL;
-                else
-                    direction = Direction.HORIZONTAL;
-
-                Run.changeShipPlayer1Coordinate(Run.player1.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getxStart(), Run.player1.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getyStart(), Integer.parseInt(inputSpilt[2]), direction);
-
+                //Run.changeShipPlayer1Coordinate(xForInput, yForInput, Integer.parseInt(inputSpilt[2]) , direction);
+                int xForInput = Run.player1.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
+                int yForInput = Run.player1.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
+                Run.changeShipPlayer1Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
             } else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username)) {
-
-                if (Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getDirection().equals(Direction.HORIZONTAL))
-                    direction = Direction.VERTICAL;
-                else
-                    direction = Direction.HORIZONTAL;
-                Run.changeShipPlayer1Coordinate(Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getxStart(), Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getyStart(), Integer.parseInt(inputSpilt[2]), direction);
-
+//                if (Run.player2.getPlayerShip().get(ship).getCoordinate().getDirection().equals(Direction.HORIZONTAL)) {
+//                    direction = Direction.VERTICAL;
+//                } else {
+//                    direction = Direction.HORIZONTAL;
+//                }
+                //Run.changeShipPlayer1Coordinate(Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getxStart(), Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getyStart(), Integer.parseInt(inputSpilt[2]), direction);
+                int xForInput = Run.player2.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
+                int yForInput = Run.player2.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
+                Run.changeShipPlayer2Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
             } else
                 System.out.println("check you Username");
 
         } else if (inputSpilt[3].equalsIgnoreCase("coordinate")) {
             String[] coordinate = inputSpilt[5].split(",");
+//            int ship = Integer.parseInt(inputSpilt[2]) - 1;
+//            int xForInput = Run.player1.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
+//            int yForInput = Run.player1.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
+
             if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username))
                 Run.changeShipPlayer1Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
             else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
@@ -59,7 +58,36 @@ public class BattleSeaController {
 
     }
 
-    public void showCommandProcessor(String string) {
+    public void boomOrShow(String username, String string){
+        String[] inputSplit = string.split("\\s");
+        if (inputSplit[0].equalsIgnoreCase("boom")){
+            boomProcessor(username,string);
+        }else if (inputSplit[0].equalsIgnoreCase("show")){
+            showCommandProcessor(username, string);
+        }else {
+            //todo Exception
+        }
+    }
+
+    public void boomProcessor(String username, String string) {
+        String[] inputSpilt = string.split("\\s");
+
+        if (inputSpilt[0].equalsIgnoreCase("boom")) {
+            String[] coordinate = inputSpilt[1].split(",");
+
+            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username))
+                Run.boomPlayer2Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
+            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
+                Run.boomPlayer1Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
+
+        } else {
+            //todo Exception
+        }
+
+
+    }
+
+    public void showCommandProcessor(String username, String string) {
         String[] inputSpilt = string.split("\\s");
         int counter = 1;
         if (inputSpilt[2].equalsIgnoreCase("ships")) {
@@ -94,8 +122,7 @@ public class BattleSeaController {
                 Board.displayBoard(Run.game.getFirstPlayerEnemyBoard().getGameBoard());
             else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(inputSpilt[2]))
                 Board.displayBoard(Run.game.getSecondPlayerOwnBoard().getGameBoard());
-            else
-                System.out.println("check you Username");
+
         } else {
             //todo Exception
         }
@@ -123,10 +150,12 @@ public class BattleSeaController {
     public void addPlayersToArrayList() {
         Run.addPlayer();
     }
-    public void restPlayer1Board(){
+
+    public void restPlayer1Board() {
 
     }
-    public void restPlayer2Board(){
+
+    public void restPlayer2Board() {
 
     }
 
