@@ -44,7 +44,7 @@ public class Suggestion {
         return suggestedGame;
     }
 
-    public static void addNewSyggestion(Suggestion suggestion) {
+    public static void addNewSuggestion(Suggestion suggestion) {
         allSuggestions.add(suggestion);
 //        try {
 //            DataBase.save(allSuggestions, suggestionFile);

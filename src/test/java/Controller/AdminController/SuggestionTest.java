@@ -14,7 +14,7 @@ class SuggestionTest {
         Player player = new Player("ata","rhz",1,"atarhz","112233","ata@gmail.com","09121112222");
         Player.AddNewPlayer(player);
         Suggestion suggestion = new Suggestion(10, FindPlayerByInfo.findByUserName("atarhz"),"Battleship");
-        Suggestion.addNewSyggestion(suggestion);
+        Suggestion.addNewSuggestion(suggestion);
         assertEquals(suggestion.getSuggestedGame(),"Battleship");
     }
 
@@ -23,7 +23,7 @@ class SuggestionTest {
         Player player = new Player("ata","rhz",1,"atarhz","112233","ata@gmail.com","09121112222");
         Player.AddNewPlayer(player);
         Suggestion suggestion = new Suggestion(10, FindPlayerByInfo.findByUserName("atarhz"),"Battleship");
-        Suggestion.addNewSyggestion(suggestion);
+        Suggestion.addNewSuggestion(suggestion);
         assertEquals(Suggestion.getAllSuggestions().size(),1);
     }
 
@@ -32,7 +32,7 @@ class SuggestionTest {
         Player player = new Player("ata","rhz",1,"atarhz","112233","ata@gmail.com","09121112222");
         Player.AddNewPlayer(player);
         Suggestion suggestion = new Suggestion(10, FindPlayerByInfo.findByUserName("atarhz"),"Battleship");
-        Suggestion.addNewSyggestion(suggestion);
+        Suggestion.addNewSuggestion(suggestion);
         Suggestion.getAllSuggestions().remove(suggestion);
         assertEquals(Suggestion.getAllSuggestions().size(),0);
     }
@@ -42,7 +42,7 @@ class SuggestionTest {
         Player player = new Player("ata","rhz",1,"atarhz","112233","ata@gmail.com","09121112222");
         Player.AddNewPlayer(player);
         Suggestion suggestion = new Suggestion(10, FindPlayerByInfo.findByUserName("atarhz"),"Battleship");
-        Suggestion.addNewSyggestion(suggestion);
+        Suggestion.addNewSuggestion(suggestion);
         assertEquals(Suggestion.getAllSuggestions().size(),1);
     }
 }
