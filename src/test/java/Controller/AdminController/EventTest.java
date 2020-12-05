@@ -5,6 +5,7 @@ import Controller.Exception.InvalidDateException;
 import Controller.Exception.InvalidFieldException;
 import Controller.Exception.StartDatesException;
 import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
@@ -12,31 +13,33 @@ public class EventTest extends TestCase {
     Event event = new Event();
 
     public void testAddEvent() throws StartDatesException {
-        String string = "BattleSea 2020-11-24 2020-11-26 50";
+        String string = "BattleSea 2021-12-07 2022-12-08 50";
         event.addEvent(string);
-
+        assertEquals(string,"BattleSea 2021-12-07 2022-12-08 50");
     }
 
-    public void testShowEvent() {
-        Model.PlatoModel.Event event = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
-        Model.PlatoModel.Event.addNewEvent(event);
+    public void testShowEvent() throws ExistEventException {
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event.addNewEvent(event1);
+        Event.showEvent();
+        assertEquals(Model.PlatoModel.Event.events.size(),1);
     }
 
     public void testEditEvent() throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-12-05"), LocalDate.parse("2022-12-05"), 50);
         Model.PlatoModel.Event.addNewEvent(event1);
 
-        String input1 = "1 StartDate 2020-11-25";
+        String input1 = "1 StartDate 2020-12-05";
         event.editEvent(input1);
-        assertEquals(event1.getStartDate().toString(), "2020-11-25");
+        assertEquals(event1.getStartDate().toString(), "2020-12-05");
 
         String input2 = "1 GameName dotsAndBoxes";
         event.editEvent(input2);
         assertEquals(event1.getGameName(), "dotsAndBoxes");
 
-        String input3 = "1 EndDate 2020-11-28";
+        String input3 = "1 EndDate 2020-12-07";
         event.editEvent(input3);
-        assertEquals(event1.getEndDate().toString(), "2020-11-28");
+        assertEquals(event1.getEndDate().toString(), "2020-12-07");
 
         String input4 = "1 Score 90";
         event.editEvent(input4);
@@ -49,5 +52,19 @@ public class EventTest extends TestCase {
         Event.removeEvent("1");
         assertEquals(Model.PlatoModel.Event.getEvents().size(), 0);
 
+    }
+    public void testEventFinderByEventID() throws ExistEventException {
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event.addNewEvent(event1);
+        Event.eventFinderByEventID("1");
+        assertEquals(Model.PlatoModel.Event.events.size(), 1);
+    }
+    public void testEventDateChecker() throws ExistEventException {
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event.addNewEvent(event1);
+        System.out.println(Model.PlatoModel.Event.events);
+        Event.eventDateChecker();
+        System.out.println(Model.PlatoModel.Event.events);
+        assertEquals(Model.PlatoModel.Event.events.size(),1);
     }
 }
