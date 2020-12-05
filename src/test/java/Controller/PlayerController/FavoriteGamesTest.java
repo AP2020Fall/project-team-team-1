@@ -2,8 +2,6 @@ package Controller.PlayerController;
 
 import Controller.Exception.*;
 import static org.junit.jupiter.api.Assertions.*;
-
-import Controller.GeneralController.UserController;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;
 import org.junit.Assert;
