@@ -38,5 +38,24 @@ public class EditTest extends TestCase {
 //        Edit.editPassword("Apteam@123334","Qwe3434dsd23");
 //        assertEquals(admin1.getPassword(),"Qwe3434dsd23");
     }
+    public void testEditName() throws InvalidNameException {
+        Admin admin1 = new Admin("hesam", "asnashari", 100, "hessamasna", "Apteam@123334", "hessamasna@yahoo.com", "09121111111");
+        Admin.AddNewAdmin(admin1);
+        edit.editName("ata");
+        assertEquals(admin1.getName(),"ata");
+    }
+    public void testEditLastName() throws InvalidNameException {
+        Admin admin1 = new Admin("hesam", "asnashari", 100, "hessamasna", "Apteam@123334", "hessamasna@yahoo.com", "09121111111");
+        Admin.AddNewAdmin(admin1);
+        edit.editLastName("rhz");
+        assertEquals(admin1.getLastName(),"rhz");
+    }
+    public void testEditEmail() throws InvalidEmailException, ExistEmailException {
+        Admin admin1 = new Admin("hesam", "asnashari", 100, "hessamasna", "Apteam@123334", "hessamasna@yahoo.com", "09121111111");
+        Admin.AddNewAdmin(admin1);
+        edit.editEmail("ataarahimzadeh@gmail.com");
+        assertEquals(admin1.getEmail(),"ataarahimzadeh@gmail.com");
+    }
+
 
 }
