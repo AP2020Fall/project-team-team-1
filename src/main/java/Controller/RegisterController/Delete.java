@@ -2,22 +2,22 @@ package Controller.RegisterController;
 
 
         import Controller.CompetencyController.Existence;
+        import Controller.Exception.InvalidUserNameException;
+        import Controller.Exception.WrongPasswordException;
         import Controller.PlayerController.FindPlayerByInfo;
         import Model.PlatoModel.Player;
         import Model.PlatoModel.User;
 
 public class Delete {
-    public static boolean deleteUser(String input) {
+    public void deleteUser(String input) throws InvalidUserNameException, WrongPasswordException {
         String[] inputSplit = input.split("\\s");
 
         if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
-            System.out.println("INVALID USERNAME");
-            return false;
+            throw new InvalidUserNameException(inputSplit[0]);
         }
 
         if (!(Existence.checkPassword(inputSplit[0], inputSplit[1]))) {
-            System.out.println("WRONG PASSWORD");
-            return false;
+            throw new WrongPasswordException();
         }
 
         Player player = FindPlayerByInfo.findByUserName(inputSplit[0]);
@@ -25,6 +25,5 @@ public class Delete {
         User.users.remove(player);
 //        User.saveInJsonFile();
 //        Player.saveInJsonFile();
-        return true;
     }
 }
