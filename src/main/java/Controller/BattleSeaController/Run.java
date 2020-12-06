@@ -3,6 +3,7 @@ package Controller.BattleSeaController;
 import Controller.BattleSeaController.Coordinate.Coordinate;
 import Controller.BattleSeaController.Coordinate.Direction;
 import Controller.BattleSeaController.Ships.Ship;
+import Controller.Exception.BattleShipWinner;
 
 import java.util.Random;
 
@@ -557,11 +558,13 @@ public class Run {
     }
 
     /*************************** Boom Player Ships ***************************/
-    public static void boomPlayer1Ships(int x, int y) {
+    public static void boomPlayer1Ships(int x, int y) throws BattleShipWinner {
         x--;
         y--;
         if (player2.getPlayerBooms().contains(x + " " + y)) {
-            System.out.println("selected " + x + "," + y + "has been already boomed");
+            int xInput = x+1;
+            int yInput = y+1;
+            System.out.println("selected " + xInput + "," + yInput + "has been already boomed");
             return;
         }
         player2.getPlayerBooms().add(x + " " + y);
@@ -606,14 +609,17 @@ public class Run {
         Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
         if (winPlayer2Checker())
-            System.out.println("player 2 WIN !");
+            throw new BattleShipWinner(player2.getPlayer());
+//            System.out.println("player 2 WIN !");
 
     }
-    public static void boomPlayer2Ships(int x, int y) {
+    public static void boomPlayer2Ships(int x, int y) throws BattleShipWinner {
         x--;
         y--;
         if (player1.getPlayerBooms().contains(x + " " + y)) {
-            System.out.println("selected " + x + "," + y + "has been already boomed");
+            int xInput = x+1;
+            int yInput = y+1;
+            System.out.println("selected " + xInput + "," + yInput + "has been already boomed");
             return;
         }
         player1.getPlayerBooms().add(x + " " + y);
@@ -658,7 +664,9 @@ public class Run {
         Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
         if (winPlayer1Checker())
-            System.out.println("player 1 WIN !");
+            throw new BattleShipWinner(player1.getPlayer());
+
+//        System.out.println("player 1 WIN !");
 
     }
 

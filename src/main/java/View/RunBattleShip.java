@@ -3,6 +3,7 @@ package View;
 import Controller.BattleSeaController.BattleSeaController;
 import Controller.BattleSeaController.BattleSeaPlayer;
 import Controller.BattleSeaController.Run;
+import Controller.Exception.BattleShipWinner;
 import Controller.Exception.InvalidUserNameException;
 import Controller.Exception.WrongPasswordException;
 import Controller.PlayerController.Game;
@@ -140,9 +141,21 @@ public class RunBattleShip extends Menu {
                 }
             }
             if (counter % 2 == 1) {
-                battleSeaController.boomOrShow("player1", nexCommand);
+                try {
+                    battleSeaController.boomOrShow("player1", nexCommand);
+                } catch (BattleShipWinner battleShipWinner) {
+                    battleShipWinner.setPlayerName(player2);
+                    System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
+                    endGame = false;
+                }
             } else {
-                battleSeaController.boomOrShow("player2", nexCommand);
+                try {
+                    battleSeaController.boomOrShow("player2", nexCommand);
+                } catch (BattleShipWinner battleShipWinner) {
+                    battleShipWinner.setPlayerName(player1);
+                    System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
+                    endGame = false;
+                }
             }
 
             counter++;
