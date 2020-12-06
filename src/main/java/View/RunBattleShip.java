@@ -124,7 +124,14 @@ public class RunBattleShip extends Menu {
             } else {
                 System.out.println(player2 + "'s Turn ");
             }
-
+            System.out.println("Game instructions: \n" +
+                    "boom X,Y\n" +
+                    "Show <player1 or player2> all booms\n" +
+                    "show <player1 or player2> correct booms\n" +
+                    "Show <player1 or player2> incorrect booms\n" +
+                    "show <player1 or player2> boomed ships\n" +
+                    "show <player1 or player2> unboomed ships\n" +
+                    "show <player1 or player2> coordinate plane");
             String nexCommand = scanner.nextLine();
 
             //battleSeaController.mainCommandProcessor(player1, player2);
