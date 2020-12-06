@@ -49,11 +49,11 @@ public class Player extends User {
 
 
 
-        try {
-            DataBase.save(players, playerFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DataBase.save(players, playerFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public ArrayList<Player> getFriends() {
@@ -135,38 +135,38 @@ public class Player extends User {
         this.lastPlayed = lastPlayed;
     }
 
-    public static void saveInJsonFile() {
-        User.saveInJsonFile();
-//        if (playerFile.exists())
-//            playerFile.delete();
-        try {
-            DataBase.save(players, playerFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void saveInJsonFile() {
+//        User.saveInJsonFile();
+////        if (playerFile.exists())
+////            playerFile.delete();
+//        try {
+//            DataBase.save(players, playerFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    public static void loadFromJsonFile() {
-//        StringBuilder read = new StringBuilder();
-        String read = "";
-        try {
-            Scanner myReader = new Scanner(playerFile);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-//                read.append(data);
-                read = data;
-            }
-            myReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Type type = new TypeToken<ArrayList<Player>>() {
-        }.getType();
-        ArrayList<Player> output = new Gson().fromJson(String.valueOf(read), type);
-        players.clear();
-        players.addAll(output);
-
-    }
+//    public static void loadFromJsonFile() {
+////        StringBuilder read = new StringBuilder();
+//        String read = "";
+//        try {
+//            Scanner myReader = new Scanner(playerFile);
+//            while (myReader.hasNextLine()) {
+//                String data = myReader.nextLine();
+////                read.append(data);
+//                read = data;
+//            }
+//            myReader.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Type type = new TypeToken<ArrayList<Player>>() {
+//        }.getType();
+//        ArrayList<Player> output = new Gson().fromJson(String.valueOf(read), type);
+//        players.clear();
+//        players.addAll(output);
+//
+//    }
 
 
     @Override
