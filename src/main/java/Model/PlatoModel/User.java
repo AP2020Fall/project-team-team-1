@@ -94,48 +94,48 @@ public class User {
 //        if (userFile.exists())
 //            userFile.delete();
 
-        try {
-            DataBase.save(users, userFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            DataBase.save(users, userFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    public static void saveInJsonFile() {
-//        if (userFile.exists())
-//            userFile.delete();
-        try {
-            DataBase.save(users, userFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void loadFromJsonFile() {
-        if (!userFile.exists())
-            return;
-        Type type = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        Gson gson =new Gson();
-        StringBuilder read = new StringBuilder();
-        try {
-            Scanner myReader = new Scanner(userFile);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                read.append(data);
-                System.out.println(read);
-            }
-            myReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<User> output = gson.fromJson(String.valueOf(read),type);
-        users.clear();
-        users.addAll(output);
-        System.out.println(users);
-
-    }
+//    public static void saveInJsonFile() {
+////        if (userFile.exists())
+////            userFile.delete();
+//        try {
+//            DataBase.save(users, userFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void loadFromJsonFile() {
+//        if (!userFile.exists())
+//            return;
+//        Type type = new TypeToken<ArrayList<User>>() {
+//        }.getType();
+//        Gson gson =new Gson();
+//        StringBuilder read = new StringBuilder();
+//        try {
+//            Scanner myReader = new Scanner(userFile);
+//            while (myReader.hasNextLine()) {
+//                String data = myReader.nextLine();
+//                read.append(data);
+//                System.out.println(read);
+//            }
+//            myReader.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        ArrayList<User> output = gson.fromJson(String.valueOf(read),type);
+//        users.clear();
+//        users.addAll(output);
+//        System.out.println(users);
+//
+//    }
 
     @Override
     public String toString() {
