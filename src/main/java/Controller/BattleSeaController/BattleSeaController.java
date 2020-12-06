@@ -2,6 +2,8 @@ package Controller.BattleSeaController;
 
 import Controller.BattleSeaController.Coordinate.Direction;
 import Controller.BattleSeaController.Ships.Ship;
+import Controller.Exception.BattleShipWinner;
+import Controller.PlayerController.Game;
 
 
 public class BattleSeaController {
@@ -58,7 +60,7 @@ public class BattleSeaController {
 
     }
 
-    public void boomOrShow(String username, String string){
+    public void boomOrShow(String username, String string) throws BattleShipWinner {
         String[] inputSplit = string.split("\\s");
         if (inputSplit[0].equalsIgnoreCase("boom")){
             boomProcessor(username,string);
@@ -69,7 +71,7 @@ public class BattleSeaController {
         }
     }
 
-    public void boomProcessor(String username, String string) {
+    public void boomProcessor(String username, String string) throws BattleShipWinner {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[0].equalsIgnoreCase("boom")) {
@@ -90,21 +92,33 @@ public class BattleSeaController {
     public void showCommandProcessor(String username, String string) {
         String[] inputSpilt = string.split("\\s");
         int counter = 1;
+
         if (inputSpilt[2].equalsIgnoreCase("ships")) {
+
+            if (inputSpilt[1].equalsIgnoreCase("player1")){
+                Board.displayBoard(Run.game.getFirstPlayerOwnBoard().getGameBoard());
+            }else
+                Board.displayBoard(Run.game.getSecondPlayerOwnBoard().getGameBoard());
 
         } else if (inputSpilt[2].equalsIgnoreCase("all")) {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getPlayerBooms()) {
-                System.out.println(counter + ". X: " + playerBoom.charAt(0) + " Y: " + playerBoom.charAt(2));
+                int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0)))+1;
+                int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2)))+1;
+                System.out.println(counter + ". X: " +  xInput + " Y: " + yInput);
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("correct")) {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getCorrectPlayerBooms()) {
-                System.out.println(counter + ". X: " + playerBoom.charAt(0) + " Y: " + playerBoom.charAt(2));
+                int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0)))+1;
+                int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2)))+1;
+                System.out.println(counter + ". X: " + xInput + " Y: " + yInput);
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("incorrect")) {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getInCorrectPlayerBooms()) {
-                System.out.println(counter + ".X: " + playerBoom.charAt(0) + " Y: " + playerBoom.charAt(2));
+                int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0)))+1;
+                int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2)))+1;
+                System.out.println(counter + ".X: " + xInput + " Y: " + yInput);
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("boomed")) {
