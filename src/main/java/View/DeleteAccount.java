@@ -3,6 +3,7 @@ package View;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.InvalidPasswordException;
 import Controller.Exception.InvalidUserNameException;
+import Controller.Exception.WrongPasswordException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,8 @@ public class DeleteAccount extends Menu {
     public DeleteAccount(Menu parentMenu) {
         super("Delete Account", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
+        submenus.put(1,deleteAccount());
+        this.setSubmenus(submenus);
     }
     private Menu deleteAccount(){
         return new Menu("Delete",this) {
@@ -23,7 +26,14 @@ public class DeleteAccount extends Menu {
             public void execute() {
                 ArrayList<String> input = new ArrayList<>();
                 getInputPlayer(input);
-                processDeleteAccountController.
+                try {
+                    processDeleteAccountController.deleteUser(arrayListToString(input));
+                    System.out.println(input.get(0)+" deleted Successfully");
+                    this.parentMenu.parentMenu.run();
+                } catch (InvalidUserNameException | WrongPasswordException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
             }
         };
     }
