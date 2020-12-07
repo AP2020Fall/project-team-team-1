@@ -7,8 +7,6 @@ import Model.PlatoModel.Player;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import sun.security.x509.FreshestCRLExtension;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -51,7 +49,7 @@ public class FriendTest {
         assertThrows(ExistPlayerException.class, () -> Friend.declineRequest("hessamasna","yamsin"));
         assertThrows(AcceptAndDeclineFriendException.class, () -> Friend.declineRequest("hessamasna","yamsiin"));
 
-        Assert.assertFalse(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains("yamsiin"));
+        Assert.assertFalse(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains(FindPlayerByInfo.findByUserName("yamsiin")));
 
     }
     @Test
@@ -116,5 +114,4 @@ public class FriendTest {
 
         // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
     }
-
 }

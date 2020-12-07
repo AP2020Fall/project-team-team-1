@@ -3,7 +3,6 @@ package Controller.PlayerController;
 import Controller.Exception.*;
 import static org.junit.jupiter.api.Assertions.*;
 import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
 import org.junit.Assert;
 import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
@@ -11,25 +10,24 @@ import java.lang.reflect.Method;
 
 public class FavoriteGamesTest {
 
+    public void fundamentals(){
+
+        Player.AddNewPlayer(new Player("yasmin", "kad", 1100, "yamsiin", "007Password", "yasmiinkad@gmail.com", "09129749527"));
+    }
+
     @Test
     public void testAddGameToFavoriteGames() throws ExistFavoriteException, InvalidGameNameException {
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
-        Player.players.add(playerYasmin);
-        User.users.add(playerYasmin);
 
         FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
 
         assertThrows(InvalidGameNameException.class, () -> FavoriteGames.addGameToFavoritesGames("yamsiin", "battleShiip"));
         assertThrows(ExistFavoriteException.class, () -> FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip"));
-        Assert.assertTrue(playerYasmin.getFavoritesGamesName().contains("battleShip"));
-        Assert.assertEquals(playerYasmin.getFavoritesGamesName().size() , 1);
+        Assert.assertTrue(FindPlayerByInfo.findByUserName("yamsiin").getFavoritesGamesName().contains("battleShip"));
+        Assert.assertEquals(FindPlayerByInfo.findByUserName("yamsiin").getFavoritesGamesName().size() , 1);
     }
 
     @Test
     public void testRemoveFavoriteGames() throws ExistFavoriteException, InvalidGameNameException {
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
-        Player.players.add(playerYasmin);
-        User.users.add(playerYasmin);
 
         FavoriteGames.addGameToFavoritesGames("yamsiin","battleShip");
         FavoriteGames.addGameToFavoritesGames("yamsiin","dotsAndBoxes");
@@ -37,16 +35,13 @@ public class FavoriteGamesTest {
         FavoriteGames.removeFavoritesGames("yamsiin", "battleShip");
 
         assertThrows(ExistFavoriteException.class, () -> FavoriteGames.removeFavoritesGames("yamsiin","battleShip"));
-        Assert.assertFalse(playerYasmin.getFavoritesGamesName().contains("battleShip"));
-        Assert.assertTrue(playerYasmin.getFavoritesGamesName().contains("dotsAndBoxes"));
-        Assert.assertEquals(playerYasmin.getFavoritesGamesName().size(), 1);
+        Assert.assertFalse(FindPlayerByInfo.findByUserName("yamsiin").getFavoritesGamesName().contains("battleShip"));
+        Assert.assertTrue(FindPlayerByInfo.findByUserName("yamsiin").getFavoritesGamesName().contains("dotsAndBoxes"));
+        Assert.assertEquals(FindPlayerByInfo.findByUserName("yamsiin").getFavoritesGamesName().size(), 1);
     }
 
     @Test
     public void testShowFavoriteGames() throws ExistFavoriteException, InvalidGameNameException {
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
-        Player.players.add(playerYasmin);
-        User.users.add(playerYasmin);
 
         assertThrows(ExistFavoriteException.class, () -> FavoriteGames.showFavoritesGames("yamsiin"));
 
@@ -59,9 +54,6 @@ public class FavoriteGamesTest {
 
     @Test
     public void testCheckFavoriteGameExistence() throws ExistFavoriteException, InvalidGameNameException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
-        Player.players.add(playerYasmin);
-        User.users.add(playerYasmin);
 
         FavoriteGames favoriteGames = new FavoriteGames();
 
