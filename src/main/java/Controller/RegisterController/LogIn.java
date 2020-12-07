@@ -18,7 +18,7 @@ public class LogIn {
             //return false;
         }
 
-        if (!(Existence.checkPassword(inputSplit[0], inputSplit[1]))) {
+        if (!(Existence.checkPasswordForAdmin(inputSplit[1]))) {
             //System.out.println("WRONG PASSWORD");
             throw new WrongPasswordException();
             //return false;

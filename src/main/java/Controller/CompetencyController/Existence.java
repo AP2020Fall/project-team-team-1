@@ -84,6 +84,21 @@ public class Existence {
 
         return result;
     }
+
+    public static boolean checkPasswordForAdmin(String password) {
+        boolean result = false;
+        Admin admin = null;
+
+        admin = Admin.getAdmins().get(0);
+
+        if (admin != null) {
+            if (admin.getPassword().equals(password)) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
     public static boolean adminExistence() {
         boolean result = true;
         if (Admin.getAdmins().isEmpty())
