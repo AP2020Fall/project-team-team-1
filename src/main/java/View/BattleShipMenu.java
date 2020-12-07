@@ -3,6 +3,7 @@ package View;
 import Controller.Exception.ExistFavoriteException;
 import Controller.Exception.InvalidGameNameException;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class BattleShipMenu extends Menu {
@@ -166,6 +167,8 @@ public class BattleShipMenu extends Menu {
                     System.out.println(e.getGameName() + " " + e.getMessage());
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + " " + e.getMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 while (true) {
                     String next = scanner.nextLine();

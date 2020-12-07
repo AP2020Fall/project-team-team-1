@@ -2,6 +2,7 @@ package View;
 
 import Controller.Exception.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +32,8 @@ public class ShowPlayerInfo extends Menu {
                 } catch (InvalidPasswordException | WrongPasswordException | SamePasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         };
@@ -51,6 +54,8 @@ public class ShowPlayerInfo extends Menu {
                 } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException | ExistEmailException | InvalidFieldException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         };

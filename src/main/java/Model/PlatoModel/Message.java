@@ -31,44 +31,48 @@ public class Message {
         return massageID;
     }
 
+    public static ArrayList<Message> getMessages() {
+        return messages;
+    }
+
     public static void addNewMessage(Message message) {
         messages.add(message);
-//        try {
-//            DataBase.save(messages, messageFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DataBase.save(messages, messageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private int randomMessageId(int min , int max){
         Random random = new Random();
         return random.nextInt(max - min) + min;
     }
 
-//    public static void saveInJsonFile() {
-//        try {
-//            DataBase.save(messages, messageFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void loadFromJsonFile() {
-//        if (!messageFile.exists())
-//            return;
-//        String read = "";
-//        try {
-//            FileReader myFile1 = new FileReader(messageFile);
-//            BufferedReader br = new BufferedReader(myFile1);
-//            read = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Type type = new TypeToken<ArrayList<Message>>() {
-//        }.getType();
-//        ArrayList<Message> output = new Gson().fromJson(read, type);
-//        messages.clear();
-//        messages.addAll(output);
-//    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(messages, messageFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadFromJsonFile() {
+        if (!messageFile.exists())
+            return;
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(messageFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Message>>() {
+        }.getType();
+        ArrayList<Message> output = new Gson().fromJson(read, type);
+        messages.clear();
+        messages.addAll(output);
+    }
 
 
     public int getMassageID() {

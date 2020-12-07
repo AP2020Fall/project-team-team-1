@@ -1,33 +1,46 @@
 package Controller.PlayerController;
 
 import Controller.Exception.*;
+import Model.DataBase.DataBase;
+import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
+import Model.PlatoModel.User;
+
+import java.io.File;
+import java.io.IOException;
 
 public class PlayerGeneralController {
-
+    private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
+    //private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
     /***********************************************EDIT***********************************************/
-    public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
+    public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException, IOException {
         String[]strings=input.split("\\s");
         Edit.editField(strings[0],strings[1],strings[2]);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void editPassword(String input) throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
+    public void editPassword(String input) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, IOException {
         String[] inputSplit = input.split("\\s");
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
+        DataBase.save(Player.players,playerFile);
+        //DataBase.save(User.users,userFile);
     }
 
 
     /***********************************************EDIT***********************************************/
-    public void addGameToFavoritesGames(String userName, String gameName) throws ExistFavoriteException, InvalidGameNameException {
+    public void addGameToFavoritesGames(String userName, String gameName) throws ExistFavoriteException, InvalidGameNameException, IOException {
         FavoriteGames.addGameToFavoritesGames(userName, gameName);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException {
+    public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException, IOException {
         FavoriteGames.removeFavoritesGames(userName, gameName);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void showFavoritesGames(String userName) throws ExistFavoriteException {
+    public void showFavoritesGames(String userName) throws ExistFavoriteException, IOException {
         FavoriteGames.showFavoritesGames(userName);
+        DataBase.save(Player.players,playerFile);
     }
 
 
@@ -46,20 +59,24 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
+    public void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException, IOException {
         Friend.addFriends(username, friendUsername);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void acceptRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException {
+    public void acceptRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException, IOException {
         Friend.acceptRequest(username, friendUsername);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void declineRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException {
+    public void declineRequest(String username, String friendUsername) throws ExistPlayerException, AcceptAndDeclineFriendException, IOException {
         Friend.declineRequest(username, friendUsername);
+        DataBase.save(Player.players,playerFile);
     }
 
-    public void removeFriend(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
+    public void removeFriend(String username, String friendUsername) throws ExistFriendException, ExistPlayerException, IOException {
         Friend.removeFriend(username, friendUsername);
+        DataBase.save(Player.players,playerFile);
     }
 
     public void showRequests(String username) throws ExistFriendException {

@@ -3,6 +3,7 @@ package View;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,6 +42,8 @@ public class AdminMainMenu extends Menu {
                 } catch (StartDatesException e) {
                     System.out.println(e.getMessage());
                     this.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -110,6 +113,8 @@ public class AdminMainMenu extends Menu {
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                     this.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -153,6 +158,8 @@ public class AdminMainMenu extends Menu {
                         this.parentMenu.run();
                     } catch (ExistSuggestionException e) {
                         System.out.println(e.getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                     //Todo It Doesnt check if this username is correct or not
                 } else if (nextStep.equalsIgnoreCase("back")) {
@@ -215,6 +222,8 @@ public class AdminMainMenu extends Menu {
                 } catch (ExistPlayerException e) {
                     e.printStackTrace();
                     this.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         };

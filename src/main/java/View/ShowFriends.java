@@ -3,6 +3,7 @@ package View;
 import Controller.Exception.ExistFriendException;
 import Controller.Exception.ExistPlayerException;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ShowFriends extends Menu {
@@ -28,6 +29,8 @@ public class ShowFriends extends Menu {
                 } catch (ExistFriendException | ExistPlayerException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         };

@@ -4,6 +4,7 @@ import Controller.Exception.AcceptAndDeclineFriendException;
 import Controller.Exception.ExistFriendException;
 import Controller.Exception.ExistPlayerException;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ShowFriendsRequests extends Menu {
@@ -32,6 +33,8 @@ public class ShowFriendsRequests extends Menu {
                 } catch (ExistPlayerException | AcceptAndDeclineFriendException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 this.parentMenu.run();
             }
@@ -49,6 +52,8 @@ public class ShowFriendsRequests extends Menu {
                 } catch (ExistPlayerException | AcceptAndDeclineFriendException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 this.parentMenu.run();
             }

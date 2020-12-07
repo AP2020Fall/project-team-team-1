@@ -46,39 +46,39 @@ public class Suggestion {
 
     public static void addNewSuggestion(Suggestion suggestion) {
         allSuggestions.add(suggestion);
-//        try {
-//            DataBase.save(allSuggestions, suggestionFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DataBase.save(allSuggestions, suggestionFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-//
-//    public static void saveInJsonFile() {
-//        try {
-//            DataBase.save(allSuggestions, suggestionFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void loadFromJsonFile() {
-//        if (!suggestionFile.exists())
-//            return;
-//
-//        String read = "";
-//        try {
-//            FileReader myFile1 = new FileReader(suggestionFile);
-//            BufferedReader br = new BufferedReader(myFile1);
-//            read = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Type type = new TypeToken<ArrayList<Suggestion>>() {
-//        }.getType();
-//        ArrayList<Suggestion> output = new Gson().fromJson(read, type);
-//        allSuggestions.clear();
-//        allSuggestions.addAll(output);
-//    }
+
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(allSuggestions, suggestionFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadFromJsonFile() {
+        if (!suggestionFile.exists())
+            return;
+
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(suggestionFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Suggestion>>() {
+        }.getType();
+        ArrayList<Suggestion> output = new Gson().fromJson(read, type);
+        allSuggestions.clear();
+        allSuggestions.addAll(output);
+    }
 
 
     @Override

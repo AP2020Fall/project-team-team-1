@@ -2,6 +2,7 @@ package View;
 
 import Controller.Exception.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,6 +34,8 @@ public class ShowAdminInfo extends Menu {
                     System.out.println(e.getMessage());
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             }
@@ -59,6 +62,8 @@ public class ShowAdminInfo extends Menu {
                 } catch (InvalidNameException | InvalidEmailException | InvalidPhoneNumberException | ExistEmailException | InvalidFieldException e) {
                     System.out.println(e.getMessage());
                     this.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         };

@@ -5,6 +5,7 @@ import Controller.Exception.InvalidDateException;
 import Controller.Exception.InvalidFieldException;
 import Controller.Exception.StartDatesException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,6 +34,8 @@ public class ViewEvents extends Menu {
                 } catch (InvalidDateException e) {
                     System.out.println(e.getMessage());
                 } catch (InvalidFieldException | ExistEventException | StartDatesException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 this.parentMenu.run();

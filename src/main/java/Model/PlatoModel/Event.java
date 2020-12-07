@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Event {
-    private static final File eventfile = new File("src\\main\\java\\Model\\Database\\Event.json");
+    private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
 
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<String> playersInThisEvent;
@@ -108,11 +108,11 @@ public class Event {
 
     public static void addNewEvent(Event event) {
         events.add(event);
-//        try {
-//            DataBase.save(events, eventfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            DataBase.save(events, eventFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private int makeEventID() {
@@ -125,31 +125,31 @@ public class Event {
         return id;
     }
 
-//    public static void saveInJsonFile() {
-//        try {
-//            DataBase.save(events, eventfile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void loadFromJsonFile() {
-//        if (!eventfile.exists())
-//            return;
-//        String read = "";
-//        try {
-//            FileReader myFile1 = new FileReader(eventfile);
-//            BufferedReader br = new BufferedReader(myFile1);
-//            read = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Type type = new TypeToken<ArrayList<Event>>() {
-//        }.getType();
-//        ArrayList<Event> output = new Gson().fromJson(read, type);
-//        events.clear();
-//        events.addAll(output);
-//    }
+    public static void saveInJsonFile() {
+        try {
+            DataBase.save(events, eventFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadFromJsonFile() {
+        if (!eventFile.exists())
+            return;
+        String read = "";
+        try {
+            FileReader myFile1 = new FileReader(eventFile);
+            BufferedReader br = new BufferedReader(myFile1);
+            read = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Type type = new TypeToken<ArrayList<Event>>() {
+        }.getType();
+        ArrayList<Event> output = new Gson().fromJson(read, type);
+        events.clear();
+        events.addAll(output);
+    }
 
     @Override
     public String toString() {

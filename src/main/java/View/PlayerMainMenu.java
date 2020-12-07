@@ -7,6 +7,7 @@ import Controller.Exception.ExistPlayerException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Message;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PlayerMainMenu extends Menu{
@@ -64,6 +65,8 @@ public class PlayerMainMenu extends Menu{
              } catch (ExistFavoriteException e) {
                  System.out.println(e.getMessage());
                  this.parentMenu.run();
+             } catch (IOException e) {
+                 e.printStackTrace();
              }
              Menu nextMenu = null;
              String num = scanner.nextLine();
@@ -163,6 +166,8 @@ public class PlayerMainMenu extends Menu{
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                     this.parentMenu.run();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             }
