@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import Model.PlatoModel.Player;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class FavoriteGamesTest {
 
+    @BeforeEach
     public void fundamentals(){
 
         Player.AddNewPlayer(new Player("yasmin", "kad", 1100, "yamsiin", "007Password", "yasmiinkad@gmail.com", "09129749527"));

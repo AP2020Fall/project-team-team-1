@@ -5,6 +5,7 @@ import Controller.Exception.ExistFriendException;
 import Controller.Exception.ExistPlayerException;
 import Model.PlatoModel.Player;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,6 +26,15 @@ public class FriendTest {
 
         Friend.addFriends("hessamasna","yamsiin");
         Friend.addFriends("hessamasna","atarhz");
+    }
+
+    @AfterEach
+    public void removal() throws ExistFriendException, ExistPlayerException {
+
+        if(!FindPlayerByInfo.findByUserName("hessamasna").getFriends().isEmpty()){
+            Friend.removeFriend("hessamasna","yamsiin");
+        }
+
     }
 
     @Test
@@ -97,9 +107,7 @@ public class FriendTest {
 
         assertThrows(ExistFriendException.class, () -> Friend.showFriends("hessamasna"));
 
-        Friend.addFriends("hessamasna","atarhz");
         Friend.acceptRequest("yamsiin", "hessamasna");
-        Friend.acceptRequest("atarhz" , "hessamasna");
 
         //Testing showFriends output
 
