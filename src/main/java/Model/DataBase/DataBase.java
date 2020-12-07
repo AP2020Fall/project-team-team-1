@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class DataBase {
 
     public static void save(ArrayList arrayList, File file) throws IOException {
-
         if (file.exists())
             file.delete();
 
@@ -20,13 +19,14 @@ public class DataBase {
         BufferedWriter bWrite = new BufferedWriter(fWrite);
         bWrite.write(outForData);
         bWrite.close();
+
     }
 
-    public static void loadAllDataFromJsonFiles() {
+    public static void loadAllDataFromJsonFiles() throws FileNotFoundException {
         Player.loadFromJsonFile();
-        Event.loadFromJsonFile();
+        //Event.loadFromJsonFile();
         Suggestion.loadFromJsonFile();
-        Message.loadFromJsonFile();
+        //Message.loadFromJsonFile();
         PlayerLog.loadFromJsonFile();
         User.loadFromJsonFile();
         Admin.loadFromJsonFile();
