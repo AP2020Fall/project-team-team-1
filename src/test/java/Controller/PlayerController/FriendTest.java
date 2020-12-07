@@ -14,6 +14,7 @@ public class FriendTest {
 
     @BeforeEach
     public void fundamentals() throws ExistFriendException, ExistPlayerException {
+
         Player.AddNewPlayer(new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527"));
 
         Player.AddNewPlayer(new Player("hesam", "asna", 1200, "hessamasna", "008Password","hesamasna@yahoo.com", "09123334455"));
@@ -50,13 +51,29 @@ public class FriendTest {
     }
     @Test
     public void testAddFriends() throws ExistFriendException, ExistPlayerException, AcceptAndDeclineFriendException {
-        assertThrows(ExistPlayerException.class, () -> Friend.addFriends("hesssamasna", "yamsin"));
+
+        assertThrows(ExistPlayerException.class, () -> Friend.addFriends("hessamasna", "yamsin"));
 
         Friend.acceptRequest("yamsiin" , "hessamasna");
 
         assertThrows(ExistFriendException.class, () -> Friend.addFriends("hessamasna","yamsiin"));
+
         Assert.assertTrue(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains(FindPlayerByInfo.findByUserName("yamsiin")));
+        Assert.assertTrue(FindPlayerByInfo.findByUserName("yamsiin").getFriends().contains(FindPlayerByInfo.findByUserName("hessamasna")));
         Assert.assertFalse(FindPlayerByInfo.findByUserName("yamsiin").getFriends().contains(FindPlayerByInfo.findByUserName("amirzgh")));
+
+    }
+    @Test
+    public void testRemoveFriend() throws ExistPlayerException, AcceptAndDeclineFriendException, ExistFriendException {
+
+        Friend.acceptRequest("yamsiin" , "hessamasna");
+        Friend.removeFriend("hessamasna", "yamsiin");
+
+        assertThrows(ExistFriendException.class, () -> Friend.removeFriend("hessamasna", "amirzgh"));
+        assertThrows(ExistPlayerException.class, () -> Friend.removeFriend("hessamasna", "yamsin"));
+
+        Assert.assertFalse(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains(FindPlayerByInfo.findByUserName("yamsiin")));
+        Assert.assertFalse((FindPlayerByInfo.findByUserName("yamsiin").getFriends().contains(FindPlayerByInfo.findByUserName("hessamasna"))));
 
     }
 
