@@ -146,6 +146,7 @@ public class RunBattleShip extends Menu {
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player2);
                     System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
+                    Game.giveScoreAndEditPlayerLog("BattleShip",player2,player1,10);
                     endGame = false;
                 }
             } else {
@@ -154,6 +155,7 @@ public class RunBattleShip extends Menu {
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player1);
                     System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
+                    Game.giveScoreAndEditPlayerLog("BattleShip",player1,player2,10);
                     endGame = false;
                 }
             }
