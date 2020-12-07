@@ -48,6 +48,16 @@ public class FriendTest {
         Assert.assertFalse(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains("yamsiin"));
 
     }
+    @Test
+    public void testAddFriends() throws ExistFriendException, ExistPlayerException, AcceptAndDeclineFriendException {
+        assertThrows(ExistPlayerException.class, () -> Friend.addFriends("hesssamasna", "yamsin"));
 
+        Friend.acceptRequest("yamsiin" , "hessamasna");
+
+        assertThrows(ExistFriendException.class, () -> Friend.addFriends("hessamasna","yamsiin"));
+        Assert.assertTrue(FindPlayerByInfo.findByUserName("hessamasna").getFriends().contains(FindPlayerByInfo.findByUserName("yamsiin")));
+        Assert.assertFalse(FindPlayerByInfo.findByUserName("yamsiin").getFriends().contains(FindPlayerByInfo.findByUserName("amirzgh")));
+
+    }
 
 }
