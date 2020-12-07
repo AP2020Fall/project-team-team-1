@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class PlayerLog {
     private static final File playerLogsFile = new File("src\\main\\java\\Model\\Database\\PlayerLog.json");
@@ -114,17 +115,21 @@ public class PlayerLog {
     public static void loadFromJsonFile() {
         if (!playerLogsFile.exists())
             return;
-        String read = "";
+        StringBuilder read = new StringBuilder();
         try {
-            FileReader myFile1 = new FileReader(playerLogsFile);
-            BufferedReader br = new BufferedReader(myFile1);
-            read = br.readLine();
+            Scanner myReader = new Scanner(playerLogsFile);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                read.append(data);
+                System.out.println(read);
+            }
+            myReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Type type = new TypeToken<ArrayList<PlayerLog>>() {
         }.getType();
-        ArrayList<PlayerLog> output = new Gson().fromJson(read, type);
+        ArrayList<PlayerLog> output = new Gson().fromJson(String.valueOf(read), type);
         playerLogs.clear();
         playerLogs.addAll(output);
     }

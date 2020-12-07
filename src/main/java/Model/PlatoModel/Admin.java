@@ -74,7 +74,6 @@ public class Admin extends User {
         ArrayList<Admin> output = new Gson().fromJson(String.valueOf(read), type);
         admins.clear();
         admins.addAll(output);
-
     }
 
     @Override

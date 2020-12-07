@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Suggestion {
     private static final File suggestionFile = new File("src\\main\\java\\Model\\Database\\Suggestion.json");
@@ -64,18 +65,21 @@ public class Suggestion {
     public static void loadFromJsonFile() {
         if (!suggestionFile.exists())
             return;
-
-        String read = "";
+        StringBuilder read = new StringBuilder();
         try {
-            FileReader myFile1 = new FileReader(suggestionFile);
-            BufferedReader br = new BufferedReader(myFile1);
-            read = br.readLine();
+            Scanner myReader = new Scanner(suggestionFile);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                read.append(data);
+                System.out.println(read);
+            }
+            myReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Type type = new TypeToken<ArrayList<Suggestion>>() {
         }.getType();
-        ArrayList<Suggestion> output = new Gson().fromJson(read, type);
+        ArrayList<Suggestion> output = new Gson().fromJson(String.valueOf(read), type);
         allSuggestions.clear();
         allSuggestions.addAll(output);
     }

@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Event {
     private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
@@ -23,7 +24,6 @@ public class Event {
     private LocalDate endDate;
     private long score;
     private int eventID;
-    private int counter = 0;
 
     public Event(String gameName, LocalDate startDate, LocalDate endDate, long score) {
         this.eventID = makeEventID();
@@ -86,14 +86,6 @@ public class Event {
         this.eventID = eventID;
     }
 
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-
     public ArrayList<String> getPlayersInThisEvent() {
         return playersInThisEvent;
     }
@@ -136,19 +128,26 @@ public class Event {
     public static void loadFromJsonFile() {
         if (!eventFile.exists())
             return;
-        String read = "";
+        StringBuilder read = new StringBuilder();
         try {
-            FileReader myFile1 = new FileReader(eventFile);
-            BufferedReader br = new BufferedReader(myFile1);
-            read = br.readLine();
+            Scanner myReader = new Scanner(eventFile);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                read.append(data);
+                System.out.println(read);
+            }
+            myReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Type type = new TypeToken<ArrayList<Event>>() {
-        }.getType();
-        ArrayList<Event> output = new Gson().fromJson(read, type);
-        events.clear();
-        events.addAll(output);
+//        Type type = new TypeToken<ArrayList<Event>>() {
+//        }.getType();
+//        ArrayList<Event> output = new Gson().fromJson(String.valueOf(read), type);
+        Event[] output = new Gson().fromJson(String.valueOf(read),Event[].class);
+        System.out.println(output[0]);
+        System.out.println(output[1]);
+//        events.clear();
+//        events.addAll(output);
     }
 
     @Override
@@ -160,7 +159,6 @@ public class Event {
                 ", endDate=" + endDate +
                 ", score=" + score +
                 ", eventID=" + eventID +
-                ", counter=" + counter +
                 '}';
     }
 }

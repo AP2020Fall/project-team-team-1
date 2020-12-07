@@ -23,18 +23,19 @@ public class DataBase {
     }
 
     public static void loadAllDataFromJsonFiles() {
+        Player.loadFromJsonFile();
         Event.loadFromJsonFile();
         Suggestion.loadFromJsonFile();
         Message.loadFromJsonFile();
         PlayerLog.loadFromJsonFile();
         User.loadFromJsonFile();
         Admin.loadFromJsonFile();
-        Player.loadFromJsonFile();
+
 
 
     }
     public static void saveAllDataFromJsonFiles() {
-        Event.saveInJsonFile();
+        //Event.saveInJsonFile();
         Suggestion.saveInJsonFile();
         Message.saveInJsonFile();
         PlayerLog.saveInJsonFile();

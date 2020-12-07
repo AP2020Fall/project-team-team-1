@@ -114,9 +114,6 @@ public class User {
     public static void loadFromJsonFile() {
         if (!userFile.exists())
             return;
-        Type type = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        Gson gson =new Gson();
         StringBuilder read = new StringBuilder();
         try {
             Scanner myReader = new Scanner(userFile);
@@ -129,12 +126,11 @@ public class User {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ArrayList<User> output = gson.fromJson(String.valueOf(read),type);
+        Type type = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        ArrayList<User> output = new Gson().fromJson(String.valueOf(read), type);
         users.clear();
         users.addAll(output);
-        System.out.println(users);
-
     }
 
     @Override
