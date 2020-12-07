@@ -21,7 +21,10 @@ public class FriendTest {
 
         Player.AddNewPlayer(new Player("amirreza", "ghasemi", 1300, "amirzgh", "009Password","amirzgh@gmail.com", "09124445566"));
 
+        Player.AddNewPlayer(new Player("ata", "rhz", 1400, "atarhz", "0010Password","atarhz@gmail.com", "09125556677"));
+
         Friend.addFriends("hessamasna","yamsiin");
+        Friend.addFriends("hessamasna","atarhz");
     }
 
     @Test
@@ -76,5 +79,14 @@ public class FriendTest {
         Assert.assertFalse((FindPlayerByInfo.findByUserName("yamsiin").getFriends().contains(FindPlayerByInfo.findByUserName("hessamasna"))));
 
     }
+    @Test
+    public void testShowRequests() throws ExistFriendException, ExistPlayerException, AcceptAndDeclineFriendException {
 
+        Friend.declineRequest("yamsiin", "hessamasna");
+        //Friend.addFriends("hessamasna","atarhz");
+
+        // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
+        assertThrows(ExistFriendException.class, () -> Friend.showRequests("hessamasna"));
+        Assert.assertEquals(FindPlayerByInfo.findByUserName("hessamasna").getFriendsRequests().size(), 0);
+    }
 }
