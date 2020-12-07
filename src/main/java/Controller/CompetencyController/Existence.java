@@ -5,9 +5,49 @@ import Model.PlatoModel.*;
 
 public class Existence {
 
+//    public static boolean checkUserNameExistence(String userName) {
+//        boolean result = false;
+//        for (User user : User.users) {
+//            if (user.getUserName().equals(userName)) {
+//                result = true;
+//                break;
+//            }
+//        }
+//        return result;
+//    }
+//
+//    public static boolean checkEmailExistence(String email) {
+//        boolean result = false;
+//        for (User user : User.users) {
+//            if (user.getEmail().equals(email)) {
+//                result = true;
+//                break;
+//            }
+//        }
+//        return result;
+//    }
+//
+//    public static boolean checkPassword(String username, String password) {
+//        boolean result = false;
+//        User userByUsername = null;
+//        for (User user : Player.users) {
+//            if (user.getUserName().equals(username)) {
+//                userByUsername = user;
+//                break;
+//            }
+//        }
+//        if (userByUsername != null) {
+//            if (userByUsername.getPassword().equals(password)) {
+//                result = true;
+//            }
+//        }
+//
+//        return result;
+//    }
+
     public static boolean checkUserNameExistence(String userName) {
         boolean result = false;
-        for (User user : User.users) {
+        for (Player user : Player.players) {
             if (user.getUserName().equals(userName)) {
                 result = true;
                 break;
@@ -18,7 +58,7 @@ public class Existence {
 
     public static boolean checkEmailExistence(String email) {
         boolean result = false;
-        for (User user : User.users) {
+        for (Player user : Player.players) {
             if (user.getEmail().equals(email)) {
                 result = true;
                 break;
@@ -29,8 +69,8 @@ public class Existence {
 
     public static boolean checkPassword(String username, String password) {
         boolean result = false;
-        User userByUsername = null;
-        for (User user : Player.users) {
+        Player userByUsername = null;
+        for (Player user : Player.players) {
             if (user.getUserName().equals(username)) {
                 userByUsername = user;
                 break;
@@ -44,7 +84,6 @@ public class Existence {
 
         return result;
     }
-
     public static boolean adminExistence() {
         boolean result = true;
         if (Admin.getAdmins().isEmpty())
