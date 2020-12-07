@@ -7,6 +7,8 @@ import Model.PlatoModel.Player;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sun.security.x509.FreshestCRLExtension;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -85,8 +87,24 @@ public class FriendTest {
         Friend.declineRequest("yamsiin", "hessamasna");
         //Friend.addFriends("hessamasna","atarhz");
 
+        // Testing showFriends output
+
         // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
+
         assertThrows(ExistFriendException.class, () -> Friend.showRequests("hessamasna"));
         Assert.assertEquals(FindPlayerByInfo.findByUserName("hessamasna").getFriendsRequests().size(), 0);
+    }
+    @Test
+    public void testShowFriends() throws ExistFriendException, ExistPlayerException, AcceptAndDeclineFriendException {
+
+        assertThrows(ExistFriendException.class, () -> Friend.showFriends("hessamasna"));
+
+        Friend.addFriends("hessamasna","atarhz");
+        Friend.acceptRequest("yamsiin", "hessamasna");
+        Friend.acceptRequest("atarhz" , "hessamasna");
+
+        //Testing showFriends output
+
+        // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
     }
 }
