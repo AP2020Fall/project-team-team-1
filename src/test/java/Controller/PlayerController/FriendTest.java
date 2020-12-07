@@ -107,4 +107,14 @@ public class FriendTest {
 
         // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
     }
+    @Test
+    public void testShowFriendsProfile() throws ExistPlayerException, AcceptAndDeclineFriendException {
+
+        Friend.acceptRequest("yamsiin","hessamasna");
+
+        assertThrows(ExistFriendException.class, () -> Friend.showFriendProfile("hessamasna","atarhz"));
+
+        // too in test man faghat mitoonam Exception ro handle konam chon inj adarim ye chizi ro print mikonim va tooye controller hagh nadarim chizi print konim va bayad pass dade beshe be view
+    }
+
 }
