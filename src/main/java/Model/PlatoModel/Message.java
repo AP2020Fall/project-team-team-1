@@ -33,11 +33,13 @@ public class Message {
     }
 
     public static void addNewMessage(Message message) {
-        messages.add(message);
-        try {
-            DataBase.save(messages, messageFile);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (! message.getText().isEmpty()){
+            messages.add(message);
+            try {
+                DataBase.save(messages, messageFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     private int randomMessageId(int min , int max){
