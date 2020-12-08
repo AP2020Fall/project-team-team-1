@@ -1,4 +1,4 @@
-package Controller.BattleSeaController.Coordinate;
+package Model.BattleSeaModel.Coordinate;
 
 public class Coordinate {
     private String shipName;

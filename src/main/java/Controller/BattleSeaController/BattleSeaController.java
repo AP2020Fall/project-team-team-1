@@ -1,9 +1,9 @@
 package Controller.BattleSeaController;
 
-import Controller.BattleSeaController.Coordinate.Direction;
-import Controller.BattleSeaController.Ships.Ship;
+import Model.BattleSeaModel.Board;
+import Model.BattleSeaModel.Coordinate.Direction;
+import Model.BattleSeaModel.Ships.Ship;
 import Controller.Exception.BattleShipWinner;
-import Controller.PlayerController.Game;
 
 
 public class BattleSeaController {

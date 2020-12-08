@@ -1,4 +1,4 @@
-package Controller.BattleSeaController.Ships;
+package Model.BattleSeaModel.Ships;
 
 public class Cruiser extends Ship {
     public Cruiser() {

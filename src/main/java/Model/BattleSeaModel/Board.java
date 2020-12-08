@@ -1,4 +1,4 @@
-package Controller.BattleSeaController;
+package Model.BattleSeaModel;
 
 
 import java.util.Arrays;

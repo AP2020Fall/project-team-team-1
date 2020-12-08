@@ -1,6 +1,4 @@
-package Controller.BattleSeaController.Ships;
-
-import Controller.BattleSeaController.Coordinate.Coordinate;
+package Model.BattleSeaModel.Ships;
 
 public class AirCarrier extends Ship {
     public AirCarrier() {

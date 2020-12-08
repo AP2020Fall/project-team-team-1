@@ -2,6 +2,7 @@ package View;
 
 import Controller.BattleSeaController.BattleSeaController;
 import Controller.BattleSeaController.BattleSeaPlayer;
+import Controller.BattleSeaController.GameBattleSea;
 import Controller.BattleSeaController.Run;
 import Controller.Exception.BattleShipWinner;
 import Controller.Exception.InvalidUserNameException;
@@ -60,6 +61,7 @@ public class RunBattleShip extends Menu {
     }
 
     private void runGame(String player1, String player2) {
+        Run run = new Run();
         int counter = 1;
         int counterForRandom = 1;
         boolean endGame = true;

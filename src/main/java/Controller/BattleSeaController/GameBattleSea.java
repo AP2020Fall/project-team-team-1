@@ -1,5 +1,7 @@
 package Controller.BattleSeaController;
 
+import Model.BattleSeaModel.Board;
+
 public class GameBattleSea {
     private BattleSeaPlayer player1;
     private BattleSeaPlayer player2;

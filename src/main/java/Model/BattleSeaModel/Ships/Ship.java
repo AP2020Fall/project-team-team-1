@@ -1,8 +1,8 @@
-package Controller.BattleSeaController.Ships;
+package Model.BattleSeaModel.Ships;
 
 
 
-import Controller.BattleSeaController.Coordinate.Coordinate;
+import Model.BattleSeaModel.Coordinate.Coordinate;
 
 import java.util.ArrayList;
 

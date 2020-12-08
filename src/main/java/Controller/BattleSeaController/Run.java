@@ -1,8 +1,9 @@
 package Controller.BattleSeaController;
 
-import Controller.BattleSeaController.Coordinate.Coordinate;
-import Controller.BattleSeaController.Coordinate.Direction;
-import Controller.BattleSeaController.Ships.Ship;
+import Model.BattleSeaModel.Board;
+import Model.BattleSeaModel.Coordinate.Coordinate;
+import Model.BattleSeaModel.Coordinate.Direction;
+import Model.BattleSeaModel.Ships.Ship;
 import Controller.Exception.BattleShipWinner;
 
 import java.util.Random;

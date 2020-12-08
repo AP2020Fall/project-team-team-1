@@ -1,7 +1,7 @@
 package Controller.BattleSeaController;
 
 
-import Controller.BattleSeaController.Ships.*;
+import Model.BattleSeaModel.Ships.*;
 
 import java.util.ArrayList;
 
