@@ -7,15 +7,9 @@ import Model.PlatoModel.Player;
 
 public class Message {
 
-    public static void sendMassage(String username ,String text) throws ExistPlayerException {
-        Player player = FindPlayerByInfo.findByUserName(username);
-        if (player == null)
-            throw new ExistPlayerException(username + " Is Invalid");
+    public static void sendMassage(String text){
         Model.PlatoModel.Message message = new Model.PlatoModel.Message(text);
         Model.PlatoModel.Message.addNewMessage(message);
-
-
-
     }
 
     public static void showPlayerMassage() {

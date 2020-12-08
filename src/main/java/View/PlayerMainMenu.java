@@ -93,12 +93,8 @@ public class PlayerMainMenu extends Menu{
         return new Menu("PlatoBots Messages",this) {
             @Override
             public void execute() {
-                try {
-                    playerGeneralController.viewBotMessages(username);
-                } catch (ExistPlatoMessageException e) {
-                    System.out.println(e.getMessage());
-                    this.parentMenu.run();
-                }
+                    playerGeneralController.viewBotMessages();
+
                 Menu nextMenu = null;
                 String num = scanner.nextLine();
                 if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){

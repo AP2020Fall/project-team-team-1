@@ -216,12 +216,9 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    adminGeneralController.sendMassage(getUsernameInformation(),getText());
+                    adminGeneralController.sendMassageString(getText());
                     System.out.println("Message Delivered!");
                     this.parentMenu.run();
-                } catch (ExistPlayerException e) {
-                    e.printStackTrace();
-                    this.run();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
