@@ -5,11 +5,18 @@ package Controller.RegisterController;
         import Controller.Exception.InvalidUserNameException;
         import Controller.Exception.WrongPasswordException;
         import Controller.PlayerController.FindPlayerByInfo;
+        import Model.DataBase.DataBase;
         import Model.PlatoModel.Player;
         import Model.PlatoModel.User;
 
+        import java.io.File;
+        import java.io.IOException;
+
 public class Delete {
-    public void deleteUser(String input) throws InvalidUserNameException, WrongPasswordException {
+    private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
+    private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
+
+    public void deleteUser(String input) throws InvalidUserNameException, WrongPasswordException, IOException {
         String[] inputSplit = input.split("\\s");
 
         if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
@@ -23,6 +30,9 @@ public class Delete {
         Player player = FindPlayerByInfo.findByUserName(inputSplit[0]);
         Player.players.remove(player);
         User.users.remove(player);
+        DataBase.save(Player.players,playerFile);
+        DataBase.save(User.users,userFile);
+
 //        User.saveInJsonFile();
 //        Player.saveInJsonFile();
     }
