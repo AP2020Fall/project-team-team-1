@@ -176,6 +176,9 @@ public class BattleSeaController {
     public void details() {
 
     }
+    public void deletePlayer() {
+        Run.deletePlayer();
+    }
 
     public String tellMeWhenTheGameIsOver() {
         if (false) {

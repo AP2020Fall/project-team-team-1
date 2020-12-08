@@ -171,6 +171,7 @@ public class RunBattleShip extends Menu {
 
             counter++;
         }
+        battleSeaController.deletePlayer();
         this.parentMenu.run();
 
     }

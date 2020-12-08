@@ -18,6 +18,9 @@ public class Run {
         BattleSeaPlayer.battleSeaPlayers.add(player1);
         BattleSeaPlayer.battleSeaPlayers.add(player2);
     }
+    public static void deletePlayer() {
+        BattleSeaPlayer.battleSeaPlayers.clear();
+    }
 
 
     /*************************** Put For First Time ***************************/
