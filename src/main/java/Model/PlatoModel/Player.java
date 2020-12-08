@@ -18,13 +18,12 @@ public class Player extends User {
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
 
     public static ArrayList<Player> players = new ArrayList<Player>();
-    private double coin;
     private LocalDate registerDate;
     private ArrayList<Player> friends;
     private ArrayList<Player> friendsRequests;
     private ArrayList<PlayerLog> playerLog;
     protected ArrayList<Integer> suggestedGamesID;
-    private ArrayList<Message> receivedMessages;
+    //private ArrayList<Message> receivedMessages;
     private ArrayList<String> favoritesGamesName;
     private String lastPlayed;
 
@@ -32,7 +31,7 @@ public class Player extends User {
         super(name, lastName, userID, userName, password, email, phoneNum);
         suggestedGamesID = new ArrayList<>();
         friendsRequests = new ArrayList<>();
-        receivedMessages = new ArrayList<>();
+        //receivedMessages = new ArrayList<>();
         this.lastPlayed = "";
         this.registerDate = LocalDate.now();
         favoritesGamesName = new ArrayList<>();
@@ -102,13 +101,13 @@ public class Player extends User {
         this.registerDate = registerDate;
     }
 
-    public ArrayList<Message> getReceivedMessages() {
-        return receivedMessages;
-    }
+    //public ArrayList<Message> getReceivedMessages() {
+        //return receivedMessages;
+    //}
 
-    public void setReceivedMessages(ArrayList<Message> receivedMessages) {
-        this.receivedMessages = receivedMessages;
-    }
+    //public void setReceivedMessages(ArrayList<Message> receivedMessages) {
+        //this.receivedMessages = receivedMessages;
+    //}
 
     public static ArrayList<Player> getPlayers() {
         return players;
@@ -175,7 +174,6 @@ public class Player extends User {
     @Override
     public String toString() {
         return "Player{" +
-                "coin=" + coin +
                 ", registerDate=" + registerDate +
                 ", friends=" + friends +
                 ", friendsRequests=" + friendsRequests +

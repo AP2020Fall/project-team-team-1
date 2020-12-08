@@ -26,7 +26,7 @@ public class DataBase {
         Player.loadFromJsonFile();
         Event.loadFromJsonFile();
         Suggestion.loadFromJsonFile();
-        //Message.loadFromJsonFile();
+        Message.loadFromJsonFile();
         PlayerLog.loadFromJsonFile();
         User.loadFromJsonFile();
         Admin.loadFromJsonFile();
@@ -37,7 +37,7 @@ public class DataBase {
     public static void saveAllDataFromJsonFiles() {
         //Event.saveInJsonFile();
         Suggestion.saveInJsonFile();
-        Message.saveInJsonFile();
+        //Message.saveInJsonFile();
         PlayerLog.saveInJsonFile();
         User.saveInJsonFile();
         Admin.saveInJsonFile();

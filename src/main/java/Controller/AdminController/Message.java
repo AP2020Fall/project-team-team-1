@@ -11,21 +11,23 @@ public class Message {
         Player player = FindPlayerByInfo.findByUserName(username);
         if (player == null)
             throw new ExistPlayerException(username + " Is Invalid");
-        Model.PlatoModel.Message message = new Model.PlatoModel.Message(text,player);
+        Model.PlatoModel.Message message = new Model.PlatoModel.Message(text);
         Model.PlatoModel.Message.addNewMessage(message);
 
-        player.getReceivedMessages().add(message);
-        //Player.saveInJsonFile();
+
 
     }
 
     public static void showPlayerMassage(String username) throws ExistPlayerException {
-        Player player = FindPlayerByInfo.findByUserName(username);
-        if (player == null)
-            throw new ExistPlayerException(username + " Is Invalid");
-        for (Model.PlatoModel.Message playerReceivedMessage : player.getReceivedMessages()) {
-            System.out.println(playerReceivedMessage);
+        for (Model.PlatoModel.Message message : Model.PlatoModel.Message.getMessages()) {
+            System.out.println("Message Id : " + message.getMassageID() +" Text : " + message.getText());
         }
+//        Player player = FindPlayerByInfo.findByUserName(username);
+//        if (player == null)
+//            throw new ExistPlayerException(username + " Is Invalid");
+//        for (Model.PlatoModel.Message playerReceivedMessage : player.getReceivedMessages()) {
+//            System.out.println(playerReceivedMessage);
+//        }
     }
 
 }

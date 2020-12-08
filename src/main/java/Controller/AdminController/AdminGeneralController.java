@@ -52,7 +52,8 @@ public class AdminGeneralController {
     /***********************************************MESSAGE***********************************************/
     public void sendMassage(String username, String text) throws ExistPlayerException, IOException {
         Message.sendMassage(username, text);
-        DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
+        //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
+        Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(),messageFile);
     }
 
     public void showPlayerMassage(String username) throws ExistPlayerException {

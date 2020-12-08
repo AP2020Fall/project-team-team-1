@@ -2,12 +2,10 @@ package Model.PlatoModel;
 
 import Model.DataBase.DataBase;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,18 +17,16 @@ public class Message {
     private static ArrayList<Message> messages = new ArrayList<>();
     private int massageID ;
     private String text;
-    private Player receiver;
 
-    public Message(String text, Player receiver) {
+    public Message(String text) {
         this.text = text;
-        this.receiver = receiver;
         this.massageID = randomMessageId(2000,2500);
     }
 
-    private int massageID() {
-        massageID++;
-        return massageID;
-    }
+//    private int massageID() {
+//        massageID++;
+//        return massageID;
+//    }
 
     public static ArrayList<Message> getMessages() {
         return messages;
@@ -49,12 +45,22 @@ public class Message {
         return random.nextInt(max - min) + min;
     }
 
-    public static void saveInJsonFile() {
-        try {
-            DataBase.save(messages, messageFile);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void saveInJsonFile(ArrayList arrayList,File file) throws IOException {
+        if (file.exists()){
+            file.delete();
         }
+        file.createNewFile();
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        FileWriter fWriter = new FileWriter(file,true);
+        fWriter.write(gson.toJson(arrayList));
+        fWriter.close();
+//        try {
+//            DataBase.save(messages, messageFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static void loadFromJsonFile() {
@@ -88,16 +94,15 @@ public class Message {
         return text;
     }
 
-    public Player getReceiver() {
+   /* public Player getReceiver() {
         return receiver;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Message{" +
                 "massageID=" + massageID +
                 ", text='" + text + '\'' +
-                ", receiver=" + receiver +
                 '}';
     }
 }
