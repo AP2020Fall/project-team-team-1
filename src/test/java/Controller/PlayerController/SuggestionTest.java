@@ -1,18 +1,26 @@
 package Controller.PlayerController;
 
+import Controller.Exception.ExistPlayerException;
 import Controller.Exception.ExistSuggestionException;
 import Model.PlatoModel.Player;
 import junit.framework.TestCase;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class SuggestionTest extends TestCase {
-
-    public void testShowSuggestion() throws ExistSuggestionException {
-        Player player = new Player("ata","rhz",1,"atarhz","1122334455","ataarahimzadeh@gmail.com","09365909061");
-        Player.AddNewPlayer(player);
-
-        Suggestion.showSuggestion(player.getUserName());
+public class SuggestionTest {
+    @BeforeEach
+    public void fundamentals(){
+        Player.AddNewPlayer(new Player("ata","rhz",1,"atarhz","1122334455","ataarahimzadeh@gmail.com","09365909061"));
     }
 
-    public void testPlaySuggestedGame() {
+    @Test
+    public void testShowSuggestion() throws ExistSuggestionException {
+
+        Suggestion.showSuggestion(FindPlayerByInfo.findByUserName("atarhz").getUserName());
+    }
+    @Test
+    public void testPlaySuggestedGame() throws ExistPlayerException {
+    //    Model.PlatoModel.Suggestion suggestion = Controller.AdminController.Suggestion.addSuggestion();
+
     }
 }
