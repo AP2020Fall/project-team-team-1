@@ -1,12 +1,9 @@
 package View;
 
 import Controller.Exception.*;
-import Controller.PlayerController.FindPlayerByInfo;
-import Model.PlatoModel.Message;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class PlayerMainMenu extends Menu{
     private String username;
@@ -14,7 +11,7 @@ public class PlayerMainMenu extends Menu{
         super("Menu", parentMenu);
         this.username = username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
-        submenus.put(1,showPoints());
+        submenus.put(1, showLevel());
         submenus.put(2,showFavoritesGames());
         submenus.put(3,showPlatoBotsMessage());
         submenus.put(4,showLastPlayed());
@@ -24,8 +21,8 @@ public class PlayerMainMenu extends Menu{
         submenus.put(8,new UserMenuForPlayer(username,this));
         this.setSubmenus(submenus);
     }
-    private Menu showPoints(){
-        return new Menu("show points",this) {
+    private Menu showLevel(){
+        return new Menu("show Level",this) {
             @Override
             public void execute() {
                 try {
