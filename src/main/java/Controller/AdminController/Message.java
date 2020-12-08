@@ -18,7 +18,7 @@ public class Message {
 
     }
 
-    public static void showPlayerMassage(String username) throws ExistPlayerException {
+    public static void showPlayerMassage() {
         for (Model.PlatoModel.Message message : Model.PlatoModel.Message.getMessages()) {
             System.out.println("Message Id : " + message.getMassageID() +" Text : " + message.getText());
         }

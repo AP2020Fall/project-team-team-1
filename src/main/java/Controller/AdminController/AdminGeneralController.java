@@ -50,14 +50,14 @@ public class AdminGeneralController {
     }
 
     /***********************************************MESSAGE***********************************************/
-    public void sendMassage(String username, String text) throws ExistPlayerException, IOException {
-        Message.sendMassage(username, text);
+    public void sendMassageString (text) throws IOException {
+        Message.sendMassage(text);
         //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
         Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(),messageFile);
     }
 
-    public void showPlayerMassage(String username) throws ExistPlayerException {
-        Message.showPlayerMassage(username);
+    public void showPlayerMassage() throws ExistPlayerException {
+        Message.showPlayerMassage();
     }
 
     /***********************************************USERS***********************************************/

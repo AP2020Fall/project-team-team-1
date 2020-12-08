@@ -165,8 +165,8 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void viewBotMessages(String username) throws ExistPlatoMessageException {
-        ViewPlatoBotMessages.viewBotMessages(username);
+    public void viewBotMessages() {
+        ViewPlatoBotMessages.viewBotMessages();
     }
 
 
