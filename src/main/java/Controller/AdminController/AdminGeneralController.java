@@ -50,7 +50,7 @@ public class AdminGeneralController {
     }
 
     /***********************************************MESSAGE***********************************************/
-    public void sendMassageString (String text) throws IOException {
+    public void sendMassageString (String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
         //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
         Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(),messageFile);

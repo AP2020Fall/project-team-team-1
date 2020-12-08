@@ -2,14 +2,18 @@ package Controller.AdminController;
 
 
 import Controller.Exception.ExistPlayerException;
+import Controller.Exception.NotNullMessageException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Player;
 
 public class Message {
 
-    public static void sendMassage(String text){
+    public static void sendMassage(String text) throws NotNullMessageException {
         Model.PlatoModel.Message message = new Model.PlatoModel.Message(text);
         Model.PlatoModel.Message.addNewMessage(message);
+        if (text.isEmpty()){
+            throw new NotNullMessageException("Please enter a text !");
+        }
     }
 
     public static void showPlayerMassage() {

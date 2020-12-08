@@ -13,6 +13,7 @@ public class ViewPlatoBotMessages {
 
         for (Message message : Message.getMessages()) {
             System.out.println(counter+". Message ID : "+message.getMassageID()+" Text: "+ message.getText());
+            counter++;
         }
 
     }

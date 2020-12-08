@@ -1,6 +1,7 @@
 package Controller.AdminController;
 
 import Controller.Exception.ExistPlayerException;
+import Controller.Exception.NotNullMessageException;
 import Model.PlatoModel.Player;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessageTest {
 
     @Test
-    void sendMassage() throws ExistPlayerException {
+    void sendMassage() throws ExistPlayerException, NotNullMessageException {
 
         Message.sendMassage("The Pro");
         assertEquals("The Pro", Model.PlatoModel.Message.getMessages());
