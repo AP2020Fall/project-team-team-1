@@ -6,6 +6,7 @@ import Controller.Exception.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class AdminMainMenu extends Menu {
     String username;
@@ -142,6 +143,10 @@ public class AdminMainMenu extends Menu {
 
     private Menu viewSuggestion() {
         return new Menu("View Suggestion", this) {
+            @Override
+            public void show() {
+
+            }
 
             @Override
             public void execute() {
@@ -156,15 +161,13 @@ public class AdminMainMenu extends Menu {
                     try {
                         adminGeneralController.removeSuggestion(getSuggestionID());
                         this.parentMenu.run();
-                    } catch (ExistSuggestionException e) {
+                    } catch (ExistSuggestionException | IOException e) {
                         System.out.println(e.getMessage());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        this.run();
                     }
-                    //Todo It Doesnt check if this username is correct or not
                 } else if (nextStep.equalsIgnoreCase("back")) {
                     this.parentMenu.run();
-                }
+                }else this.run();
 
             }
         };
@@ -179,7 +182,7 @@ public class AdminMainMenu extends Menu {
         return new Menu("view all users", this) {
             @Override
             public void show() {
-                System.out.println(this.getName() + " : ");
+
             }
 
             @Override
@@ -188,16 +191,26 @@ public class AdminMainMenu extends Menu {
                     adminGeneralController.showAllUsers();
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getMessage());
+                    this.run();
                 }
-                try {
-                    adminGeneralController.showUsersByUserName(getUsernameInformation());
-                } catch (ExistPlayerException e) {
-                    System.out.println(e.getPlayerName() + e.getMessage());
-                }
-                System.out.println(" enter back to get back to last menu ");
-                if (scanner.nextLine().equalsIgnoreCase("back")) {
+                System.out.println("Enter Continue or Back");
+                String nextCommand = scanner.nextLine();
+                if (nextCommand.equalsIgnoreCase("back")){
                     this.parentMenu.run();
-                }
+                }else if (nextCommand.equalsIgnoreCase("continue")){
+                    try {
+                        adminGeneralController.showUsersByUserName(getUsernameInformation());
+                    } catch (ExistPlayerException e) {
+                        System.out.println(e.getPlayerName() + e.getMessage());
+                        this.run();
+                    }
+                    System.out.println(" enter back to get back to last menu ");
+                    if (scanner.nextLine().equalsIgnoreCase("back")) {
+                        this.parentMenu.run();
+                    }
+                }else this.run();
+
+
 
             }
         };

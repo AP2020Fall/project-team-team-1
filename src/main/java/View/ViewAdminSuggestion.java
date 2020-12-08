@@ -13,8 +13,12 @@ public class ViewAdminSuggestion extends Menu {
         submenus.put(1,chooseSuggestion());
         this.setSubmenus(submenus);
     }
+
+
+
     private Menu chooseSuggestion(){
         return new Menu("Choose Suggestion",this) {
+
             @Override
             public void execute() {
                 try {

@@ -5,6 +5,7 @@ import Controller.Exception.InvalidPasswordException;
 import Controller.Exception.InvalidUserNameException;
 import Controller.Exception.WrongPasswordException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +32,9 @@ public class DeleteAccount extends Menu {
                     System.out.println(input.get(0)+" deleted Successfully");
                     this.parentMenu.parentMenu.run();
                 } catch (InvalidUserNameException | WrongPasswordException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }
