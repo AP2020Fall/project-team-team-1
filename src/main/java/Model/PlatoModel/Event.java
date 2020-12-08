@@ -33,9 +33,6 @@ public class Event {
         playersInThisEvent = new ArrayList<String>();
     }
 
-    private static void removeEvent(Event event) {
-
-    }
 
     public static ArrayList<Event> getEvents() {
         return events;
@@ -93,9 +90,6 @@ public class Event {
         this.playersInThisEvent = playersInThisEvent;
     }
 
-    private void addPlayerToEvent(String player) {
-        playersInThisEvent.add(player);
-    }
 
     public static void addNewEvent(Event event) {
         events.add(event);

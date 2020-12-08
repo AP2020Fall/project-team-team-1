@@ -24,7 +24,7 @@ public class DataBase {
 
     public static void loadAllDataFromJsonFiles() throws FileNotFoundException {
         Player.loadFromJsonFile();
-        //Event.loadFromJsonFile();
+        Event.loadFromJsonFile();
         Suggestion.loadFromJsonFile();
         //Message.loadFromJsonFile();
         PlayerLog.loadFromJsonFile();
