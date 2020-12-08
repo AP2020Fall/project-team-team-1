@@ -17,7 +17,7 @@ public class Friend {
         if (!userNameIsInFriendRequestByUsername(username, friendUsername))
             throw new AcceptAndDeclineFriendException(" THIS PLAYER IS NOT IN YOUR REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ", friendUsername);
 
-        playerWhoReceivedRequests.getFriendsRequests().remove(playerWhoSentRequests);
+        playerWhoReceivedRequests.getFriendsRequests().remove(friendUsername);
 
         playerWhoReceivedRequests.getFriends().add(friendUsername);
 
