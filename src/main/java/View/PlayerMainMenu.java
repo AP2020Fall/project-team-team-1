@@ -1,14 +1,12 @@
 package View;
 
-import Controller.Exception.ExistFavoriteException;
-import Controller.Exception.ExistFriendException;
-import Controller.Exception.ExistPlatoMessageException;
-import Controller.Exception.ExistPlayerException;
+import Controller.Exception.*;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Message;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class PlayerMainMenu extends Menu{
     private String username;
@@ -22,7 +20,8 @@ public class PlayerMainMenu extends Menu{
         submenus.put(4,showLastPlayed());
         submenus.put(5,new ViewAdminSuggestion(username,this));
         submenus.put(6,addFriend());
-        submenus.put(7,new UserMenuForPlayer(username,this));
+        submenus.put(7,joinEvent());
+        submenus.put(8,new UserMenuForPlayer(username,this));
         this.setSubmenus(submenus);
     }
     private Menu showPoints(){
@@ -172,5 +171,34 @@ public class PlayerMainMenu extends Menu{
     private String requestFriendship(){
         System.out.println("Enter The Player You Want To be Friend With");
         return scanner.nextLine();
+    }
+    private Menu joinEvent(){
+        return new Menu("join Event",this) {
+            @Override
+            public void show() {
+                try {
+                    adminGeneralController.showEvent();
+                    System.out.println("Please Enter The Event You want To Join :");
+                } catch (ExistEventException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            @Override
+            public void execute() {
+                String eventID = scanner.nextLine();
+                playerGeneralController.playEvent(username,eventID);
+                System.out.print(Color.GREEN);
+                System.out.println("Join Event " + eventID +" Successfully!");
+                System.out.print(Color.RESET);
+                System.out.println("if you want to join another event type continue otherwise Enter back!");
+                String nextCommand = scanner.nextLine();
+                if (nextCommand.equalsIgnoreCase("continue")){
+                    this.run();
+                }else if (nextCommand.equalsIgnoreCase("back")){
+                    this.parentMenu.run();
+                }
+            }
+        };
     }
 }

@@ -93,7 +93,7 @@ public class PlayerGeneralController {
 
 
     /***********************************************EDIT***********************************************/
-    public void playEvent() {
+    public void playEvent(String username , String eventID) {
 
     }
 
