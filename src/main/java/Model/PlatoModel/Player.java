@@ -157,7 +157,6 @@ public class Player extends User {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 read.append(data);
-                System.out.println(read);
             }
             myReader.close();
         } catch (IOException e) {
