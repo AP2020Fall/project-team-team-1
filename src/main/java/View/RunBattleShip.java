@@ -61,17 +61,17 @@ public class RunBattleShip extends Menu {
     }
 
     private void runGame(String player1, String player2) {
-        Run run = new Run();
+        BattleSeaController battleSeaController1 = new BattleSeaController();
         int counter = 1;
         int counterForRandom = 1;
         boolean endGame = true;
         while (endGame) {
             if (counter == 1) {
-                battleSeaController.addPlayersToArrayList();
+                battleSeaController1.addPlayersToArrayList();
 
                 while (true) {
                     if (counterForRandom == 1) {
-                        battleSeaController.randomShipPlaceForPlayer1();
+                        battleSeaController1.randomShipPlaceForPlayer1();
                     }
                     System.out.println(player1 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
                     System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
@@ -88,7 +88,7 @@ public class RunBattleShip extends Menu {
                         break;
                     }
                     if (input.startsWith("change")) {
-                        battleSeaController.changeCoordinateProcessor("player1", input);
+                        battleSeaController1.changeCoordinateProcessor("player1", input);
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer1Board();
@@ -97,7 +97,7 @@ public class RunBattleShip extends Menu {
                 counterForRandom = 1;
                 while (true) {
                     if (counterForRandom == 1) {
-                        battleSeaController.randomShipPlaceForPlayer2();
+                        battleSeaController1.randomShipPlaceForPlayer2();
                     }
                     System.out.println(player2 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
                     System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
@@ -114,7 +114,7 @@ public class RunBattleShip extends Menu {
                         break;
                     }
                     if (input.startsWith("change")) {
-                        battleSeaController.changeCoordinateProcessor("player2", input);
+                        battleSeaController1.changeCoordinateProcessor("player2", input);
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer2Board();
@@ -151,7 +151,7 @@ public class RunBattleShip extends Menu {
             }
             if (counter % 2 == 1) {
                 try {
-                    battleSeaController.boomOrShow("player1", nexCommand);
+                    battleSeaController1.boomOrShow("player1", nexCommand);
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player2);
                     System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
@@ -160,7 +160,7 @@ public class RunBattleShip extends Menu {
                 }
             } else {
                 try {
-                    battleSeaController.boomOrShow("player2", nexCommand);
+                    battleSeaController1.boomOrShow("player2", nexCommand);
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player1);
                     System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
@@ -171,7 +171,8 @@ public class RunBattleShip extends Menu {
 
             counter++;
         }
-        battleSeaController.deletePlayer();
+        battleSeaController1.deletePlayer();
+        setUsername2(null);
         this.parentMenu.run();
 
     }

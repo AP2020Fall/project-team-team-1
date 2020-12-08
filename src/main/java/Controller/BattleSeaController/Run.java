@@ -10,9 +10,42 @@ import java.util.Random;
 
 
 public class Run {
-    public static BattleSeaPlayer player1 = new BattleSeaPlayer("player1");
-    public static BattleSeaPlayer player2 = new BattleSeaPlayer("player2");
-    public static GameBattleSea game = new GameBattleSea(player1, player2);
+//    public static BattleSeaPlayer player1 = new BattleSeaPlayer("player1");
+//    public static BattleSeaPlayer player2 = new BattleSeaPlayer("player2");
+//    public static GameBattleSea game = new GameBattleSea(player1, player2);
+    public static BattleSeaPlayer player1 ;
+    public static BattleSeaPlayer player2 ;
+    public static GameBattleSea game ;
+
+    public Run() {
+        player1 = new BattleSeaPlayer("player1");
+        player2 = new BattleSeaPlayer("player2");
+        game = new GameBattleSea(player1, player2);
+    }
+
+    public static BattleSeaPlayer getPlayer1() {
+        return player1;
+    }
+
+    public static void setPlayer1(BattleSeaPlayer player1) {
+        Run.player1 = player1;
+    }
+
+    public static BattleSeaPlayer getPlayer2() {
+        return player2;
+    }
+
+    public static void setPlayer2(BattleSeaPlayer player2) {
+        Run.player2 = player2;
+    }
+
+    public static GameBattleSea getGame() {
+        return game;
+    }
+
+    public static void setGame(GameBattleSea game) {
+        Run.game = game;
+    }
 
     public static void addPlayer() {
         BattleSeaPlayer.battleSeaPlayers.add(player1);
