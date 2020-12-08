@@ -19,8 +19,8 @@ public class Player extends User {
 
     public static ArrayList<Player> players = new ArrayList<Player>();
     private LocalDate registerDate;
-    private ArrayList<Player> friends;
-    private ArrayList<Player> friendsRequests;
+    private ArrayList<String> friends;
+    private ArrayList<String> friendsRequests;
     private ArrayList<PlayerLog> playerLog;
     protected ArrayList<Integer> suggestedGamesID;
     //private ArrayList<Message> receivedMessages;
@@ -55,10 +55,21 @@ public class Player extends User {
         }
     }
 
-    public ArrayList<Player> getFriends() {
+    public ArrayList<String> getFriends() {
         return friends;
     }
 
+    public void setFriends(ArrayList<String> friends) {
+        this.friends = friends;
+    }
+
+    public ArrayList<String> getFriendsRequests() {
+        return friendsRequests;
+    }
+
+    public void setFriendsRequests(ArrayList<String> friendsRequests) {
+        this.friendsRequests = friendsRequests;
+    }
 
     private void editProfile(String field, String string) {
 
@@ -68,17 +79,7 @@ public class Player extends User {
 
     }
 
-    public void setFriends(ArrayList<Player> friends) {
-        this.friends = friends;
-    }
 
-    public ArrayList<Player> getFriendsRequests() {
-        return friendsRequests;
-    }
-
-    public void setFriendsRequests(ArrayList<Player> friendsRequests) {
-        this.friendsRequests = friendsRequests;
-    }
 
     public ArrayList<String> getFavoritesGamesName() {
         return favoritesGamesName;

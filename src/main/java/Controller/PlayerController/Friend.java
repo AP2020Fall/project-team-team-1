@@ -14,14 +14,14 @@ public class Friend {
         if (playerWhoSentRequests == null)
             throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
-        if (!userNameIsInFriendRequest(username, friendUsername))
+        if (!userNameIsInFriendRequestByUsername(username, friendUsername))
             throw new AcceptAndDeclineFriendException(" THIS PLAYER IS NOT IN YOUR REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ", friendUsername);
 
         playerWhoReceivedRequests.getFriendsRequests().remove(playerWhoSentRequests);
 
-        playerWhoReceivedRequests.getFriends().add(playerWhoSentRequests);
+        playerWhoReceivedRequests.getFriends().add(friendUsername);
 
-        playerWhoSentRequests.getFriends().add(playerWhoReceivedRequests);
+        playerWhoSentRequests.getFriends().add(username);
 
         //Player.saveInJsonFile();
 
@@ -36,11 +36,11 @@ public class Friend {
         if (playerWhoSentRequests == null)
             throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID.");
 
-        if (!userNameIsInFriendRequest(username, friendUsername))
+        if (!userNameIsInFriendRequestByUsername(username, friendUsername))
             throw new AcceptAndDeclineFriendException(" THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ", friendUsername);
 
 
-        playerWhoReceivedRequests.getFriendsRequests().remove(playerWhoSentRequests);
+        playerWhoReceivedRequests.getFriendsRequests().remove(friendUsername);
 
         //Player.saveInJsonFile();
 
@@ -53,10 +53,10 @@ public class Friend {
         if (playerWhoReceivedRequests == null)
             throw new ExistPlayerException(friendUsername, "THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
-        if (userNameIsFriend(username, friendUsername))
+        if (userNameIsFriendByUsername(username, friendUsername))
             throw new ExistFriendException(friendUsername, " THIS USER ALREADY IN YOUR FRIEND LIST :) ");
 
-        playerWhoReceivedRequests.getFriendsRequests().add(player);
+        playerWhoReceivedRequests.getFriendsRequests().add(username);
 
         //Player.saveInJsonFile();
 
@@ -71,12 +71,12 @@ public class Friend {
         if (friend == null)
             throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
-        if (!userNameIsFriend(username, friendUsername))
+        if (!userNameIsFriendByUsername(username, friendUsername))
             throw new ExistFriendException(friendUsername, "THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
 
-        player.getFriends().remove(friend);
-        friend.getFriends().remove(player);
+        player.getFriends().remove(friendUsername);
+        friend.getFriends().remove(username);
         //Player.saveInJsonFile();
 
     }
@@ -88,8 +88,8 @@ public class Friend {
         if (player.getFriendsRequests().size() == 0)
             throw new ExistFriendException(" THERE ARE NO REQUESTS TO SHOW");
 
-        for (Player playerFriendRequests : player.getFriendsRequests()) {
-            System.out.println(counter+". Username: "+ playerFriendRequests.getUserName());
+        for (String playerFriendRequests : player.getFriendsRequests()) {
+            System.out.println(counter+". Username: "+ playerFriendRequests);
             counter++;
         }
     }
@@ -101,52 +101,81 @@ public class Friend {
         if (player.getFriends().size() == 0)
             throw new ExistFriendException(" YOU DON'T HAVE ANY FRIENDS ");
 
-        for (Player playerFriend : player.getFriends()) {
-            System.out.println(counter+". Username: "+ playerFriend.getUserName());
+        for (String playerFriend : player.getFriends()) {
+            System.out.println(counter+". Username: "+ playerFriend);
         }
     }
 
     public static void showFriendProfile(String username, String friendUsername) throws ExistFriendException {
 
         Player player = FindPlayerByInfo.findByUserName(username);
+        Player friend = FindPlayerByInfo.findByUserName(friendUsername);
 
-        if (!userNameIsFriend(username, friendUsername))
+        if (!userNameIsFriendByUsername(username, friendUsername))
             throw new ExistFriendException(friendUsername, " THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
-        for (Player playerFriend : player.getFriends()) {
-            if (playerFriend.getUserName().equals(friendUsername)) {
-                System.out.println("getUserID: " + playerFriend.getUserID() + " Username: " + playerFriend.getUserName() + " Name: " + playerFriend.getName() + " LastName: " + playerFriend.getLastName() + " Email: " + playerFriend.getEmail() + " Phone Number: " + playerFriend.getPhoneNum());
+        for (String playerFriend : player.getFriends()) {
+            if (playerFriend.equals(friend.getUserName())) {
+                System.out.println("getUserID: " + friend.getUserID() + " Username: " + friend.getUserName() + " Name: " + friend.getName() + " LastName: " + friend.getLastName() + " Email: " + friend.getEmail() + " Phone Number: " + friend.getPhoneNum());
                 break;
             }
         }
 
     }
 
-    protected static boolean userNameIsFriend(String username, String friendUsername) {
+//    protected static boolean userNameIsFriend(String username, String friendUsername) {
+//        boolean result = false;
+//        Player player = FindPlayerByInfo.findByUserName(username);
+//
+//        for (Player playerFriend : player.getFriends()) {
+//            if (playerFriend.getUserName().equals(friendUsername)) {
+//                result = true;
+//                break;
+//            }
+//
+//        }
+//        return result;
+//    }
+
+    protected static boolean userNameIsFriendByUsername(String username, String friendUsername) {
         boolean result = false;
         Player player = FindPlayerByInfo.findByUserName(username);
 
-        for (Player playerFriend : player.getFriends()) {
-            if (playerFriend.getUserName().equals(friendUsername)) {
+        for (String friend : player.getFriends()) {
+            if (friend.equals(friendUsername)){
                 result = true;
                 break;
             }
-
         }
+
         return result;
     }
 
-    protected static boolean userNameIsInFriendRequest(String username, String friendUsername) {
+//    protected static boolean userNameIsInFriendRequest(String username, String friendUsername) {
+//        boolean result = false;
+//        Player player = FindPlayerByInfo.findByUserName(username);
+//
+//        for (Player playerFriendRec : player.getFriendsRequests()) {
+//            if (playerFriendRec.getUserName().equals(friendUsername)) {
+//                result = true;
+//                break;
+//            }
+//
+//        }
+//        return result;
+//    }
+
+    protected static boolean userNameIsInFriendRequestByUsername(String username, String friendUsername) {
         boolean result = false;
         Player player = FindPlayerByInfo.findByUserName(username);
 
-        for (Player playerFriendRec : player.getFriendsRequests()) {
-            if (playerFriendRec.getUserName().equals(friendUsername)) {
+        for (String friendsRequest : player.getFriendsRequests()) {
+            if (friendsRequest.equals(friendsRequest)){
                 result = true;
                 break;
             }
-
         }
+
         return result;
     }
 
