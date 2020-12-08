@@ -221,12 +221,15 @@ public class AdminMainMenu extends Menu {
                     this.parentMenu.run();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (NotNullMessageException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
                 }
             }
         };
     }
     private String getText(){
-        System.out.println("Please Enter Your Message to This User : ");
+        System.out.println("Please Enter Your Message : ");
         return scanner.nextLine();
     }
 

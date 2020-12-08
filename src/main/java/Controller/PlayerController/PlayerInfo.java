@@ -69,8 +69,8 @@ public class PlayerInfo {
 
 
         long score = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
+        score = score/100 ;
         System.out.println("point : " + score);
-        //todo score? level? point?
     }
     public static void showHistory (String userName){
 
