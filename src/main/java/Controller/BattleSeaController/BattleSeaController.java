@@ -132,9 +132,9 @@ public class BattleSeaController {
             }
 
         } else if (inputSpilt[3].equalsIgnoreCase("plane")) {
-            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(inputSpilt[2]))
+            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(inputSpilt[1]))
                 Board.displayBoard(Run.game.getFirstPlayerEnemyBoard().getGameBoard());
-            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(inputSpilt[2]))
+            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(inputSpilt[1]))
                 Board.displayBoard(Run.game.getSecondPlayerOwnBoard().getGameBoard());
 
         } else {
