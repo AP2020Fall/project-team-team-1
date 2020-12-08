@@ -142,6 +142,10 @@ public class AdminMainMenu extends Menu {
 
     private Menu viewSuggestion() {
         return new Menu("View Suggestion", this) {
+            @Override
+            public void show() {
+
+            }
 
             @Override
             public void execute() {
@@ -156,15 +160,13 @@ public class AdminMainMenu extends Menu {
                     try {
                         adminGeneralController.removeSuggestion(getSuggestionID());
                         this.parentMenu.run();
-                    } catch (ExistSuggestionException e) {
+                    } catch (ExistSuggestionException | IOException e) {
                         System.out.println(e.getMessage());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        this.run();
                     }
-                    //Todo It Doesnt check if this username is correct or not
                 } else if (nextStep.equalsIgnoreCase("back")) {
                     this.parentMenu.run();
-                }
+                }else this.run();
 
             }
         };
