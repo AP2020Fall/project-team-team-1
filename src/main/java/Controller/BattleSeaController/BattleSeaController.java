@@ -1,7 +1,9 @@
 package Controller.BattleSeaController;
 
+import Model.BattleSeaModel.BattleSeaPlayer;
 import Model.BattleSeaModel.Board;
 import Model.BattleSeaModel.Coordinate.Direction;
+import Model.BattleSeaModel.Run;
 import Model.BattleSeaModel.Ships.Ship;
 import Controller.Exception.BattleShip.BattleShipWinner;
 
