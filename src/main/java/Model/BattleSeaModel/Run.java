@@ -9,9 +9,7 @@ import java.util.Random;
 
 
 public class Run {
-//    public static BattleSeaPlayer player1 = new BattleSeaPlayer("player1");
-//    public static BattleSeaPlayer player2 = new BattleSeaPlayer("player2");
-//    public static GameBattleSea game = new GameBattleSea(player1, player2);
+
     public static BattleSeaPlayer player1 ;
     public static BattleSeaPlayer player2 ;
     public static GameBattleSea game ;
@@ -63,22 +61,18 @@ public class Run {
         y--;
 
         if (player1.getPlayerShip().get(ship).isAlreadyPlaced()) {
-//            System.out.println("already Placed");
             return false;
         }
         if (direction == Direction.HORIZONTAL) {
             if (x + player1.getPlayerShip().get(ship).getSize() > 9) {
 
-//                System.out.println("check your" + x+1);
                 return false;
             }
             if (y > 9) {
-//                System.out.println("check your" + y+1);
                 return false;
             }
             for (int i = x; i < x + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-//                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -90,17 +84,13 @@ public class Run {
         } else {
 
             if (y + player1.getPlayerShip().get(ship).getSize() > 9) {
-//                System.out.println("check your" + y+1);
                 return false;
             }
             if (x > 9) {
-//                System.out.println("check your" + x+1);
                 return false;
             }
             for (int i = y; i < y + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-//                    pass = false;
-//                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -121,22 +111,17 @@ public class Run {
         y--;
 
         if (player2.getPlayerShip().get(ship).isAlreadyPlaced()) {
-//            System.out.println("already Placed");
             return false;
         }
         if (direction == Direction.HORIZONTAL) {
             if (x + player2.getPlayerShip().get(ship).getSize() > 9) {
-
-//                System.out.println("check your" + x+1);
                 return false;
             }
             if (y > 9) {
-//                System.out.println("check your" + y+1);
                 return false;
             }
             for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-//                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -148,17 +133,13 @@ public class Run {
         } else {
 
             if (y + player2.getPlayerShip().get(ship).getSize() > 9) {
-//                System.out.println("check your" + y+1);
                 return false;
             }
             if (x > 9) {
-//                System.out.println("check your" + x+1);
                 return false;
             }
             for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-//                    pass = false;
-//                    System.out.println("Wrong");
                     return false;
                 }
             }
@@ -172,63 +153,6 @@ public class Run {
 
     }
 
-//    public static boolean putShipPlayer2(int x, int y, int ship, Direction direction) {
-//        boolean pass = true;
-//        ship--;
-//        x--;
-//        y--;
-//
-//        if (player2.getPlayerShip().get(ship).isAlreadyPlaced()) {
-////            System.out.println("already Placed");
-//            return false;
-//        }
-//        if (direction == Direction.HORIZONTAL) {
-//            if (x + player2.getPlayerShip().get(ship).getSize() > 9) {
-////                System.out.println("check your" + x);
-//                return false;
-//            }
-//            if (y > 9) {
-////                System.out.println("check your" + y);
-//                return false;
-//            }
-//            for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
-//                if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-////                    pass = false;
-////                    System.out.println("Wrong");
-//                    return false;
-//                }
-//            }
-//            player2.getPlayerShip().get(ship).setCoordinate(new Coordinate(player2.getPlayerShip().get(ship).getName(), x, y, x + player2.getPlayerShip().get(ship).getSize() - 1, y, direction));
-//            for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
-//                game.getSecondPlayerOwnBoard().getGameBoard()[i][y] = String.valueOf(player2.getPlayerShip().get(ship).getName().charAt(0));
-//            }
-//            player2.getPlayerShip().get(ship).setAlreadyPlaced(true);
-//        } else {
-//
-//            if (y + player2.getPlayerShip().get(ship).getSize() > 9) {
-////                System.out.println("check your" + y);
-//                return false;
-//            }
-//            if (x > 9) {
-////                System.out.println("check your" + x);
-//                return false;
-//            }
-//            for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
-//                if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-////                    pass = false;
-////                    System.out.println("Wrong");
-//                    return false;
-//                }
-//            }
-//            player2.getPlayerShip().get(ship).setCoordinate(new Coordinate(player2.getPlayerShip().get(ship).getName(), x, y, x, y + player2.getPlayerShip().get(ship).getSize() - 1, direction));
-//            for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
-//                game.getSecondPlayerOwnBoard().getGameBoard()[x][i] = String.valueOf(player2.getPlayerShip().get(ship).getName().charAt(0));
-//            }
-//            player2.getPlayerShip().get(ship).setAlreadyPlaced(true);
-//
-//        }
-//        return true;
-//    }
 
     /*************************** Random Pick Ships ***************************/
 
@@ -310,9 +234,7 @@ public class Run {
             }
 
             for (int i = player1.getPlayerShip().get(ship).getCoordinate().getxStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getxLast(); i++) {
-//                player1.getPlayerShip().get(ship).getCoordinate().getxStart() + player1.getPlayerShip().get(ship).getSize()
                 game.getFirstPlayerOwnBoard().getGameBoard()[i][player1.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
-                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
             }
         } else {
 
@@ -334,9 +256,7 @@ public class Run {
             }
 
             for (int i = player1.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
-//                player1.getPlayerShip().get(ship).getCoordinate().getyStart() + player1.getPlayerShip().get(ship).getSize()
                 game.getFirstPlayerOwnBoard().getGameBoard()[player1.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
-                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
 
             }
         }
@@ -388,9 +308,7 @@ public class Run {
             }
 
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getxStart(); i <= player2.getPlayerShip().get(ship).getCoordinate().getxLast(); i++) {
-//                player2.getPlayerShip().get(ship).getCoordinate().getxStart() + player2.getPlayerShip().get(ship).getSize()
                 game.getSecondPlayerOwnBoard().getGameBoard()[i][player2.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
-                //Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
             }
         } else {
 
@@ -412,9 +330,7 @@ public class Run {
             }
 
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player2.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
-//                player2.getPlayerShip().get(ship).getCoordinate().getyStart() + player2.getPlayerShip().get(ship).getSize()
                 game.getSecondPlayerOwnBoard().getGameBoard()[player2.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
-                //Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
 
             }
         }
@@ -444,12 +360,6 @@ public class Run {
             return;
         }
 
-//        if ( player1.getPlayerShip().get(ship).getCoordinate().getDirection() == direction) {
-//            if (player1.getPlayerShip().get(ship).getCoordinate().getxStart() == x && player1.getPlayerShip().get(ship).getCoordinate().getyStart() == y ){
-//                System.out.println("pls enter new Coordinate its same as your last Coordinate");
-//                return;
-//            }
-//        }
 
         if (player1.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.VERTICAL;
@@ -470,9 +380,7 @@ public class Run {
             }
 
             for (int i = player1.getPlayerShip().get(ship).getCoordinate().getxStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getxLast(); i++) {
-//                player1.getPlayerShip().get(ship).getCoordinate().getxStart() + player1.getPlayerShip().get(ship).getSize()
                 game.getFirstPlayerOwnBoard().getGameBoard()[i][player1.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
-                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
             }
         } else {
             direction = Direction.HORIZONTAL;
@@ -493,9 +401,7 @@ public class Run {
                 }
             }
             for (int i = player1.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
-//                player1.getPlayerShip().get(ship).getCoordinate().getyStart() + player1.getPlayerShip().get(ship).getSize()
                 game.getFirstPlayerOwnBoard().getGameBoard()[player1.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
-                //Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
 
             }
         }
@@ -524,12 +430,6 @@ public class Run {
             return;
         }
 
-//        if ( player2.getPlayerShip().get(ship).getCoordinate().getDirection() == direction) {
-//            if (player2.getPlayerShip().get(ship).getCoordinate().getxStart() == x && player2.getPlayerShip().get(ship).getCoordinate().getyStart() == y ){
-//                System.out.println("pls enter new Coordinate its same as your last Coordinate");
-//                return;
-//            }
-//        }
 
         if (player2.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.VERTICAL;
@@ -550,9 +450,7 @@ public class Run {
             }
 
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getxStart(); i <= player2.getPlayerShip().get(ship).getCoordinate().getxLast(); i++) {
-//                player2.getPlayerShip().get(ship).getCoordinate().getxStart() + player2.getPlayerShip().get(ship).getSize()
                 game.getSecondPlayerOwnBoard().getGameBoard()[i][player2.getPlayerShip().get(ship).getCoordinate().getyStart()] = " ";
-                //Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
             }
         } else {
             direction = Direction.HORIZONTAL;
@@ -573,9 +471,7 @@ public class Run {
                 }
             }
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player2.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
-//                player2.getPlayerShip().get(ship).getCoordinate().getyStart() + player2.getPlayerShip().get(ship).getSize()
                 game.getSecondPlayerOwnBoard().getGameBoard()[player2.getPlayerShip().get(ship).getCoordinate().getxStart()][i] = " ";
-                //Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
 
             }
         }
@@ -646,7 +542,7 @@ public class Run {
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
         if (winPlayer2Checker())
             throw new BattleShipWinner(player2.getPlayer());
-//            System.out.println("player 2 WIN !");
+
 
     }
     public static void boomPlayer2Ships(int x, int y) throws BattleShipWinner {
@@ -702,60 +598,9 @@ public class Run {
         if (winPlayer1Checker())
             throw new BattleShipWinner(player1.getPlayer());
 
-//        System.out.println("player 1 WIN !");
-
     }
 
-//    public static void boomPlayer2Ships(int x, int y) {
-//        x--;
-//        y--;
-//        if (player1.getPlayerBooms().contains(x + " " + y)) {
-//            System.out.println("selected " + x + "," + y + "has been already boomed");
-//            return;
-//        }
-//        player1.getPlayerBooms().add(x + " " + y);
-//        char namee = game.getSecondPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
-//
-//        if (namee == 'E') {
-//            game.getFirstPlayerEnemyBoard().getGameBoard()[x][y] = "-";
-//            game.getSecondPlayerOwnBoard().getGameBoard()[x][y] = "-";
-//            Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
-//            return;
-//        }
-//
-//        Ship ship = null;
-//        for (Ship ships : player2.getPlayerShip()) {
-//            if (ships.getName().charAt(0) == namee) {
-//                ship = ships;
-//                break;
-//            }
-//        }
-//        if (ship != null) {
-//            game.getFirstPlayerEnemyBoard().getGameBoard()[x][y] = "+";
-//            game.getSecondPlayerOwnBoard().getGameBoard()[x][y] = "+";
-//            ship.setSize(ship.getSize() - 1);
-//        } else
-//            return;
-//
-//        if (ship.getSize() == 0) {
-//            for (int i = ship.getCoordinate().getxStart(); i <= ship.getCoordinate().getxLast(); i++) {
-//                for (int j = ship.getCoordinate().getyStart(); j <= ship.getCoordinate().getyLast(); j++) {
-//                    game.getFirstPlayerEnemyBoard().getGameBoard()[i][j] = "*";
-//                    game.getSecondPlayerOwnBoard().getGameBoard()[i][j] = "*";
-//                    player2.getBoomedPlayerShip().add(ship);
-//                    player2.getUnBoomedPlayerShip().remove(ship);
-//                }
-//
-//            }
-//        }
-//
-//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-//        Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
-//        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-//        if (winPlayer1Checker())
-//            System.out.println("player 1 WIN !");
-//
-//    }
+
 
     /**************************** Winner Checker *****************************/
     protected static boolean winPlayer1Checker() {
@@ -776,15 +621,7 @@ public class Run {
         return true;
     }
 
-//    public static void showww(){
-//        String[][] strings = game.getFirstPlayerOwnBoard().getGameBoard();
-//        for (int i = 0; i < 10 ; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                System.out.print(strings[j][i]+" | ");
-//            }
-//            System.out.println("");
-//        }
-//    }
+
 
     private static int randomMessageId(int min, int max) {
         Random random = new Random();

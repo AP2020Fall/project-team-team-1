@@ -134,14 +134,14 @@ public class RunBattleShip extends Menu {
             String nexCommand = scanner.nextLine();
 
             //battleSeaController.mainCommandProcessor(player1, player2);
-            if (nexCommand.equalsIgnoreCase("Surrender")){
+            if (nexCommand.equalsIgnoreCase("Surrender")) {
                 if (counter % 2 == 1) {
-                    System.out.println(player2+" Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog("BattleShip",player2,player1,10);
+                    System.out.println(player2 + " Wins the Game !");
+                    Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
                     endGame = false;
                 } else {
-                    System.out.println(player1+" Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog("BattleShip",player1,player2,10);
+                    System.out.println(player1 + " Wins the Game !");
+                    Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
                     endGame = false;
 
                 }
@@ -151,8 +151,8 @@ public class RunBattleShip extends Menu {
                     battleSeaController1.boomOrShow("player1", nexCommand);
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player2);
-                    System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
-                    Game.giveScoreAndEditPlayerLog("BattleShip",player2,player1,10);
+                    System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
+                    Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
                     endGame = false;
                 }
             } else {
@@ -160,8 +160,8 @@ public class RunBattleShip extends Menu {
                     battleSeaController1.boomOrShow("player2", nexCommand);
                 } catch (BattleShipWinner battleShipWinner) {
                     battleShipWinner.setPlayerName(player1);
-                    System.out.println(battleShipWinner.getPlayerName()+battleShipWinner.getMessage());
-                    Game.giveScoreAndEditPlayerLog("BattleShip",player1,player2,10);
+                    System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
+                    Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
                     endGame = false;
                 }
             }

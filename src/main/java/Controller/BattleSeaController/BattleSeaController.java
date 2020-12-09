@@ -24,23 +24,12 @@ public class BattleSeaController {
 
 
             if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username)) {
-//                if (Run.player1.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
-//                    direction = Direction.VERTICAL;
-//                } else {
-//                    direction = Direction.HORIZONTAL;
-//                }
 
-                //Run.changeShipPlayer1Coordinate(xForInput, yForInput, Integer.parseInt(inputSpilt[2]) , direction);
                 int xForInput = run.player1.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
                 int yForInput = run.player1.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
                 run.changeShipPlayer1Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
             } else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username)) {
-//                if (Run.player2.getPlayerShip().get(ship).getCoordinate().getDirection().equals(Direction.HORIZONTAL)) {
-//                    direction = Direction.VERTICAL;
-//                } else {
-//                    direction = Direction.HORIZONTAL;
-//                }
-                //Run.changeShipPlayer1Coordinate(Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getxStart(), Run.player2.getPlayerShip().get(Integer.parseInt(inputSpilt[2])).getCoordinate().getyStart(), Integer.parseInt(inputSpilt[2]), direction);
+
                 int xForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
                 int yForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
                 run.changeShipPlayer2Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
@@ -172,26 +161,10 @@ public class BattleSeaController {
         run.addPlayer();
     }
 
-    public void restPlayer1Board() {
-
-    }
-
-    public void restPlayer2Board() {
-
-    }
-
-    public void details() {
-
-    }
     public void deletePlayer() {
         run.deletePlayer();
     }
 
-    public String tellMeWhenTheGameIsOver() {
-        if (false) {
-            return "NotYet";
-        } else return "Over";
-    }
-    //todo method boolean
+
 
 }
