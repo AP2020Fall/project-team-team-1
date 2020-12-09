@@ -12,9 +12,9 @@ import java.util.HashMap;
 public class DeleteAccount extends Menu {
     public DeleteAccount(Menu parentMenu) {
         super("Delete Account", parentMenu);
-        HashMap<Integer,Menu> submenus = new HashMap<>();
-        submenus.put(1,deleteAccount());
-        this.setSubmenus(submenus);
+//        HashMap<Integer,Menu> submenus = new HashMap<>();
+//        submenus.put(1,deleteAccount());
+//        this.setSubmenus(submenus);
     }
     private Menu deleteAccount(){
         return new Menu("Delete",this) {
@@ -31,16 +31,14 @@ public class DeleteAccount extends Menu {
                     processDeleteAccountController.deleteUser(arrayListToString(input));
                     System.out.println(input.get(0)+" deleted Successfully");
                     this.parentMenu.parentMenu.run();
-                } catch (InvalidUserNameException | WrongPasswordException e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (IOException e) {
+                } catch (InvalidUserNameException | WrongPasswordException | IOException e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }
             }
         };
     }
+
     private static void getInputPlayer(ArrayList<String> playerInput) {
         System.out.println("Please Enter Your Username");
         while (true) {
@@ -67,6 +65,21 @@ public class DeleteAccount extends Menu {
             }
         }
     }
+
+    @Override
+    public void show() {
+        System.out.println("You Are About To Delete An Account Are You Sure ? Yes/No");
+    }
+
+    @Override
+    public void execute() {
+        String continueDeleting = scanner.nextLine();
+        if (continueDeleting.equalsIgnoreCase("no")){
+            System.out.println("oOoOps That Was Close @_@ ");
+            this.parentMenu.run();
+        }else deleteAccount().run();
+    }
+
     public static String arrayListToString(ArrayList<String> arrayList) {
         String output = "";
         for (String string : arrayList) {
