@@ -18,9 +18,10 @@ public class AdminMainMenu extends Menu {
         submenus.put(2, new ViewEvents(this));
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
-        submenus.put(5, viewUsers());
-        submenus.put(6,sendMessageAsPlatoBot());
-        submenus.put(7, new UserMenuForAdmin(username, this));
+        submenus.put(5,addDetail());
+        submenus.put(6, viewUsers());
+        submenus.put(7,sendMessageAsPlatoBot());
+        submenus.put(8, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
@@ -209,9 +210,6 @@ public class AdminMainMenu extends Menu {
                         this.parentMenu.run();
                     }
                 }else this.run();
-
-
-
             }
         };
     }
@@ -241,8 +239,26 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
+    private Menu addDetail(){
+        return new Menu("Add Details",this) {
+            @Override
+            public void show() {
+                System.out.println("Which Game Do You Want to Add Details to? DotsAndBoxes/BattleShips");
+            }
+
+            @Override
+            public void execute() {
+                String game = scanner.nextLine();
+                //todo ask hesam to add add details controller
+            }
+        };
+    }
     private String getText(){
-        System.out.println("Please Enter Your Message : ");
+        if (this.getName().equalsIgnoreCase("Add Details")){
+            System.out.println("Please Enter Your Detail For This Game : ");
+        }else if (this.getName().equalsIgnoreCase("Send Message")){
+            System.out.println("Please Enter Your Message : ");
+        }
         return scanner.nextLine();
     }
 
