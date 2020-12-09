@@ -23,14 +23,19 @@ public class RunDotsAndBoxes extends Menu {
 
     @Override
     public void show() {
+        System.out.print(Color.YELLOW);
         System.out.println("Welcome to Dots And Boxes Game GoodLuck! ");
+        System.out.print(Color.RESET);
     }
 
     @Override
     public void execute() {
         if (this.Username2!=null){
             startTheGame();
-        }else temporaryLogin().run();
+        }else{
+            temporaryLogin().run();
+            this.run();
+        }
     }
     public static void printWinner() {
         if (dotsAndBoxesController.getBluePoints() >dotsAndBoxesController.getRedPoints()) {
@@ -111,10 +116,17 @@ public class RunDotsAndBoxes extends Menu {
         }
     }
     public void startTheGame(){
+        System.out.println("Blue Represents "+this.Username1+" And Red Represent "+this.Username2);
+        System.out.println();
         dotsAndBoxesController.startDotsAndBoxes(scanner);
     }
     private Menu temporaryLogin() {
         return new Menu("login", this) {
+            @Override
+            public void show() {
+
+            }
+
             @Override
             public void execute() {
                 ArrayList<String> info = new ArrayList<>();

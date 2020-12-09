@@ -120,4 +120,5 @@ public class DotsAndBoxesController {
     public Player getRedPlayer(){
         return Player.RED;
     }
+
 }
