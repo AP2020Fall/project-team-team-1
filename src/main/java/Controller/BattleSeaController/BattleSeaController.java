@@ -1,11 +1,11 @@
 package Controller.BattleSeaController;
 
+import Controller.Exception.BattleShip.*;
 import Model.BattleSeaModel.BattleSeaPlayer;
 import Model.BattleSeaModel.Board;
 import Model.BattleSeaModel.Coordinate.Direction;
 import Model.BattleSeaModel.Run;
 import Model.BattleSeaModel.Ships.Ship;
-import Controller.Exception.BattleShip.BattleShipWinner;
 
 
 public class BattleSeaController {
@@ -15,7 +15,7 @@ public class BattleSeaController {
     }
 
 
-    public void changeCoordinateProcessor(String username, String string) {
+    public void changeCoordinateProcessor(String username, String string) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[3].equalsIgnoreCase("direction")) {
@@ -59,7 +59,11 @@ public class BattleSeaController {
     public void boomOrShow(String username, String string) throws BattleShipWinner {
         String[] inputSplit = string.split("\\s");
         if (inputSplit[0].equalsIgnoreCase("boom")){
-            boomProcessor(username,string);
+            try {
+                boomProcessor(username,string);
+            } catch (BoomCheckException e) {
+                System.out.println(e.getMessage());
+            }
         }else if (inputSplit[0].equalsIgnoreCase("show")){
             showCommandProcessor(username, string);
         }else {
@@ -67,7 +71,7 @@ public class BattleSeaController {
         }
     }
 
-    public void boomProcessor(String username, String string) throws BattleShipWinner {
+    public void boomProcessor(String username, String string) throws BattleShipWinner, BoomCheckException {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[0].equalsIgnoreCase("boom")) {

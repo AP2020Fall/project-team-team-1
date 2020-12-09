@@ -1,9 +1,9 @@
 package Model.BattleSeaModel;
 
+import Controller.Exception.BattleShip.*;
 import Model.BattleSeaModel.Coordinate.Coordinate;
 import Model.BattleSeaModel.Coordinate.Direction;
 import Model.BattleSeaModel.Ships.Ship;
-import Controller.Exception.BattleShip.BattleShipWinner;
 
 import java.util.Random;
 
@@ -200,36 +200,31 @@ public class Run {
     }
 
     /************************** Edit Ship Corrdinate **************************/
-    public static void changeShipPlayer1Coordinate(int x, int y, int ship, Direction direction) {
+    public static void changeShipPlayer1Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
 
         if (!player1.getPlayerShip().get(ship).isAlreadyPlaced()) {
-            System.out.println("you should place ship first");
-            return;
+            throw new PlacedShipException("You should place ship first");
         }
 
         if (player1.getPlayerShip().get(ship).getCoordinate().getDirection() == direction) {
             if (player1.getPlayerShip().get(ship).getCoordinate().getxStart() == x && player1.getPlayerShip().get(ship).getCoordinate().getyStart() == y) {
-                System.out.println("pls enter new Coordinate its same as your last Coordinate");
-                return;
+                throw new NewCoordinateForShipException("Please enter new coordinate for your ship");
             }
         }
         if (player1.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.HORIZONTAL;
             if (x + player1.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (y > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             for (int i = x; i < x + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -241,17 +236,14 @@ public class Run {
             direction = Direction.VERTICAL;
 
             if (y + player1.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (x > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             for (int i = y; i < y + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -274,36 +266,31 @@ public class Run {
 
     }
 
-    public static void changeShipPlayer2Coordinate(int x, int y, int ship, Direction direction) {
+    public static void changeShipPlayer2Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
 
         if (!player2.getPlayerShip().get(ship).isAlreadyPlaced()) {
-            System.out.println("you should place ship first");
-            return;
+            throw new PlacedShipException("You should place ship first");
         }
 
         if (player2.getPlayerShip().get(ship).getCoordinate().getDirection() == direction) {
             if (player2.getPlayerShip().get(ship).getCoordinate().getxStart() == x && player2.getPlayerShip().get(ship).getCoordinate().getyStart() == y) {
-                System.out.println("pls enter new Coordinate its same as your last Coordinate");
-                return;
+                throw new NewCoordinateForShipException("Please enter new coordinate for your ship");
             }
         }
         if (player2.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.HORIZONTAL;
             if (x + player2.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (y > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             for (int i = x; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -315,17 +302,14 @@ public class Run {
             direction = Direction.VERTICAL;
 
             if (y + player2.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (x > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             for (int i = y; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -350,32 +334,28 @@ public class Run {
 
     /************************** Edit Ship Direction **************************/
 
-    public static void changeShipPlayer1Direction(int x, int y, int ship, Direction direction) {
+    public static void changeShipPlayer1Direction(int x, int y, int ship, Direction direction) throws PlacedShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
 
         if (!player1.getPlayerShip().get(ship).isAlreadyPlaced()) {
-            System.out.println("you should place ship first");
-            return;
+            throw new PlacedShipException("You should place ship first");
         }
 
 
         if (player1.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.VERTICAL;
             if (x + player1.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (y > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
 
             for (int i = y + 1; i < y + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -386,18 +366,15 @@ public class Run {
             direction = Direction.HORIZONTAL;
 
             if (y + player1.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (x > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
 
             for (int i = x + 1; i < x + player1.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getFirstPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
             for (int i = player1.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player1.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
@@ -420,7 +397,7 @@ public class Run {
 
     }
 
-    public static void changeShipPlayer2Direction(int x, int y, int ship, Direction direction) {
+    public static void changeShipPlayer2Direction(int x, int y, int ship, Direction direction) throws ExistOtherShipException, CorrectCoordinateForShipException {
         ship--;
         x--;
         y--;
@@ -434,18 +411,15 @@ public class Run {
         if (player2.getPlayerShip().get(ship).getCoordinate().getDirection() == Direction.HORIZONTAL) {
             direction = Direction.VERTICAL;
             if (x + player2.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (y > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
 
             for (int i = y + 1; i < y + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[x][i].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
 
@@ -456,18 +430,15 @@ public class Run {
             direction = Direction.HORIZONTAL;
 
             if (y + player2.getPlayerShip().get(ship).getSize() > 9) {
-                System.out.println("check your" + y);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
             if (x > 9) {
-                System.out.println("check your" + x);
-                return;
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
             }
 
             for (int i = x + 1; i < x + player2.getPlayerShip().get(ship).getSize(); i++) {
                 if (!game.getSecondPlayerOwnBoard().getGameBoard()[i][y].equals(" ")) {
-                    System.out.println("Cant watch Around");
-                    return;
+                    throw new ExistOtherShipException("You have other ship in this coordinate, Try again");
                 }
             }
             for (int i = player2.getPlayerShip().get(ship).getCoordinate().getyStart(); i <= player2.getPlayerShip().get(ship).getCoordinate().getyLast(); i++) {
@@ -490,14 +461,11 @@ public class Run {
     }
 
     /*************************** Boom Player Ships ***************************/
-    public static void boomPlayer1Ships(int x, int y) throws BattleShipWinner {
+    public static void boomPlayer1Ships(int x, int y) throws BattleShipWinner, BoomCheckException {
         x--;
         y--;
         if (player2.getPlayerBooms().contains(x + " " + y)) {
-            int xInput = x+1;
-            int yInput = y+1;
-            System.out.println("selected " + xInput + "," + yInput + "has been already boomed");
-            return;
+            throw new BoomCheckException("Select "+ x + "," + y + " has been already boomed");
         }
         player2.getPlayerBooms().add(x + " " + y);
         char namee = game.getFirstPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
@@ -545,14 +513,11 @@ public class Run {
 
 
     }
-    public static void boomPlayer2Ships(int x, int y) throws BattleShipWinner {
+    public static void boomPlayer2Ships(int x, int y) throws BattleShipWinner, BoomCheckException {
         x--;
         y--;
         if (player1.getPlayerBooms().contains(x + " " + y)) {
-            int xInput = x+1;
-            int yInput = y+1;
-            System.out.println("selected " + xInput + "," + yInput + "has been already boomed");
-            return;
+            throw new BoomCheckException("Select "+ x + "," + y + " has been already boomed");
         }
         player1.getPlayerBooms().add(x + " " + y);
         char namee = game.getSecondPlayerOwnBoard().getGameBoard()[x][y].charAt(0);

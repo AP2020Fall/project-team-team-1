@@ -1,7 +1,7 @@
 package View;
 
 import Controller.BattleSeaController.BattleSeaController;
-import Controller.Exception.BattleShip.BattleShipWinner;
+import Controller.Exception.BattleShip.*;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 import Controller.PlayerController.Game;
@@ -85,7 +85,17 @@ public class RunBattleShip extends Menu {
                         break;
                     }
                     if (input.startsWith("change")) {
-                        battleSeaController1.changeCoordinateProcessor("player1", input);
+                        try {
+                            battleSeaController1.changeCoordinateProcessor("player1", input);
+                        } catch (PlacedShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (NewCoordinateForShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (CorrectCoordinateForShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (ExistOtherShipException e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer1Board();
@@ -111,7 +121,17 @@ public class RunBattleShip extends Menu {
                         break;
                     }
                     if (input.startsWith("change")) {
-                        battleSeaController1.changeCoordinateProcessor("player2", input);
+                        try {
+                            battleSeaController1.changeCoordinateProcessor("player2", input);
+                        } catch (PlacedShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (NewCoordinateForShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (CorrectCoordinateForShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (ExistOtherShipException e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
                     //todo for change first we should reset Ship of player and player board
                     //battleSeaController.restPlayer2Board();
