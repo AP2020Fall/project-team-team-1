@@ -284,13 +284,17 @@ public class AdminMainMenu extends Menu {
         return new Menu("Edit Battleship Details",this) {
             @Override
             public void show() {
-                playerGeneralController.battleDetails();
+                System.out.println(playerGeneralController.battleDetails());
             }
 
             @Override
             public void execute() {
                 System.out.println("Please Enter new Details");
-                adminGeneralController.setDetails("battleship", scanner.nextLine());
+                try {
+                    adminGeneralController.setDetails("battleship", scanner.nextLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 this.parentMenu.run();
             }
         };
@@ -299,13 +303,17 @@ public class AdminMainMenu extends Menu {
         return new Menu("Edit DotsAndBoxes Details",this) {
             @Override
             public void show() {
-                playerGeneralController.dotsDetails();
+                System.out.println(playerGeneralController.dotsDetails());
             }
 
             @Override
             public void execute() {
                 System.out.println("Please Enter new Details");
-                adminGeneralController.setDetails("dotsandboxes", scanner.nextLine());
+                try {
+                    adminGeneralController.setDetails("dotsandboxes", scanner.nextLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 this.parentMenu.run();
             }
         };
