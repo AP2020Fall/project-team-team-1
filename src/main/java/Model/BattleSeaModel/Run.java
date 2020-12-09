@@ -1,6 +1,5 @@
-package Controller.BattleSeaController;
+package Model.BattleSeaModel;
 
-import Model.BattleSeaModel.Board;
 import Model.BattleSeaModel.Coordinate.Coordinate;
 import Model.BattleSeaModel.Coordinate.Direction;
 import Model.BattleSeaModel.Ships.Ship;
