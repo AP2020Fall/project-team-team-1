@@ -45,7 +45,7 @@ public class AdminMainMenu extends Menu {
                     System.out.println(e.getMessage());
                     this.run();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
 
             }
@@ -116,7 +116,7 @@ public class AdminMainMenu extends Menu {
                     System.out.println(e.getPlayerName() + e.getMessage());
                     this.run();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
 
             }
@@ -231,7 +231,7 @@ public class AdminMainMenu extends Menu {
                     System.out.println("Message Delivered!");
                     this.parentMenu.run();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 } catch (NotNullMessageException e) {
                     System.out.println(e.getMessage());
                     this.run();
@@ -312,7 +312,7 @@ public class AdminMainMenu extends Menu {
                 try {
                     adminGeneralController.setDetails("dotsandboxes", scanner.nextLine());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 this.parentMenu.run();
             }

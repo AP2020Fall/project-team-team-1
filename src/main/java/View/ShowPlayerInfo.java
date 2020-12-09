@@ -33,7 +33,7 @@ public class ShowPlayerInfo extends Menu {
                     System.out.println(e.getMessage());
                     this.run();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 } catch (StrongerPasswordException e) {
                     System.out.println(e.getMessage());
                 }
@@ -57,7 +57,7 @@ public class ShowPlayerInfo extends Menu {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
             }
         };

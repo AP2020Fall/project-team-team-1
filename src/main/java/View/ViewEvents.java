@@ -34,9 +34,9 @@ public class ViewEvents extends Menu {
                 } catch (InvalidDateException e) {
                     System.out.println(e.getMessage());
                 } catch (InvalidFieldException | ExistEventException | StartDatesException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 this.parentMenu.run();
             }

@@ -156,7 +156,7 @@ public class DotsAndBoxesMenu extends Menu {
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName()+" "+e.getMessage());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 while (true){
                     String next = scanner.nextLine();
