@@ -168,7 +168,12 @@ public class RunDotsAndBoxes extends Menu {
             public void execute() {
                 ArrayList<String> info = new ArrayList<>();
                 System.out.println("please Enter The Username ");
-                info.add(scanner.nextLine());
+                String username = scanner.nextLine();
+                if (username.equals(getUsername1())){
+                    System.out.println("You Cant Play This Game With YourSelf");
+                    this.run();
+                }else
+                info.add(username);
                 System.out.println("Please Enter The password");
                 info.add(scanner.nextLine());
                 try {
