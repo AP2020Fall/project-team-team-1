@@ -144,17 +144,11 @@ public class RunDotsAndBoxes extends Menu {
                     winnerAward(getUsername2(),getUsername1());
                 }
                 break;
-            } catch (NotEmptyString notEmptyString) {
+            } catch (NotEmptyString | WrongFormatInDots | ExistLineException | FindLineException notEmptyString) {
                 System.out.println(notEmptyString.getMessage());
-            } catch (WrongFormatInDots wrongFormatInDots) {
-                System.out.println(wrongFormatInDots.getMessage());
-            } catch (ExistLineException e) {
-                System.out.println(e.getMessage());
-            } catch (FindLineException e) {
-                System.out.println(e.getMessage());
             }
         }
-
+        this.parentMenu.run();
     }
 
     private Menu temporaryLogin() {

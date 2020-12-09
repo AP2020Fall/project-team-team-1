@@ -15,10 +15,11 @@ public class PlayerMainMenu extends Menu{
         submenus.put(2,showFavoritesGames());
         submenus.put(3,showPlatoBotsMessage());
         submenus.put(4,showLastPlayed());
-        submenus.put(5,new ViewAdminSuggestion(username,this));
-        submenus.put(6,addFriend());
-        submenus.put(7,joinEvent());
-        submenus.put(8,new UserMenuForPlayer(username,this));
+        submenus.put(5,showGameHistory());
+        submenus.put(6,new ViewAdminSuggestion(username,this));
+        submenus.put(7,addFriend());
+        submenus.put(8,joinEvent());
+        submenus.put(9,new UserMenuForPlayer(username,this));
         this.setSubmenus(submenus);
     }
     private Menu showLevel(){
@@ -196,6 +197,28 @@ public class PlayerMainMenu extends Menu{
                 if (nextCommand.equalsIgnoreCase("continue")){
                     this.run();
                 }else if (nextCommand.equalsIgnoreCase("back")){
+                    this.parentMenu.run();
+                }
+            }
+        };
+    }
+    public Menu showGameHistory(){
+        return new Menu("Show History",this) {
+            @Override
+            public void show() {
+                System.out.println("History of "+username);
+            }
+
+            @Override
+            public void execute() {
+                try {
+                    playerGeneralController.showHistory(username);
+                    System.out.println("Enter Back To Exit This Menu");
+                    if (scanner.nextLine().equals("back")){
+                        this.parentMenu.run();
+                    }else this.run();
+                } catch (ExistPlayerException | ExistPlayerLogException e) {
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
             }
