@@ -2,6 +2,7 @@ package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.DotsAndBoxes.ExistLineException;
+import Controller.Exception.DotsAndBoxes.FindLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Controller.Exception.Plato.ExistPlayerException;
@@ -142,6 +143,8 @@ public class RunDotsAndBoxes extends Menu {
             } catch (WrongFormatInDots wrongFormatInDots) {
                 System.out.println(wrongFormatInDots.getMessage());
             } catch (ExistLineException e) {
+                System.out.println(e.getMessage());
+            } catch (FindLineException e) {
                 System.out.println(e.getMessage());
             }
         }
