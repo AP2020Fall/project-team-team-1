@@ -1,5 +1,6 @@
 package Model.DataBase;
 
+import Model.DotsAndBoxesModel.Details;
 import Model.PlatoModel.*;
 import com.google.gson.Gson;
 
@@ -30,6 +31,8 @@ public class DataBase {
         PlayerLog.loadFromJsonFile();
         User.loadFromJsonFile();
         Admin.loadFromJsonFile();
+        Details.loadFromJsonFile();
+        Model.BattleSeaModel.Details.loadFromJsonFile();
 
 
 

@@ -88,12 +88,15 @@ public class AdminGeneralController {
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
     }
     /**********************************************SUGGESTION**********************************************/
-    public void setDetails(String gameName,String string){
+    public void setDetails(String gameName,String string) throws IOException {
         if (gameName.equalsIgnoreCase("battleShip")){
             Details.setDetails(string);
+            Details.saveInJsonFile();
         }else if (gameName.equalsIgnoreCase("dotsAndBoxes")){
             Model.DotsAndBoxesModel.Details.setDetails(string);
+            Model.DotsAndBoxesModel.Details.saveInJsonFile();
         }
+
     }
 
 }
