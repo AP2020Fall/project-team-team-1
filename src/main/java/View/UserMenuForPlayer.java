@@ -2,6 +2,7 @@ package View;
 
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.ExistPlayerLogException;
 import Controller.Exception.Plato.InvalidGameNameException;
 
 import java.util.HashMap;
@@ -51,6 +52,9 @@ public class UserMenuForPlayer extends Menu {
                 try {
                     playerGeneralController.showHistory(username);
                 } catch (ExistPlayerException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
+                } catch (ExistPlayerLogException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }

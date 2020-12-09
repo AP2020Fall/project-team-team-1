@@ -1,6 +1,7 @@
 package Controller.PlayerController;
 
 import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.ExistPlayerLogException;
 import Model.PlatoModel.Player;
 
 import java.time.LocalDate;
@@ -52,13 +53,15 @@ public class PlayerInfo {
         System.out.println("Win Percentage : %"+ winPercentage);
 
     }
-    public static void showUserLastPlayed(String userName) throws ExistPlayerException {
+    public static void showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         Player player = FindPlayerByInfo.findByUserName(userName);
-
+        if (player.getLastPlayed().isEmpty()){
+            throw new ExistPlayerLogException("There is no log for this player yet!");
+        }
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
-        //todo if playerLog id empty
-        System.out.println(player.getPlayerLog().get(player.getPlayerLog().size()));
+
+        System.out.println(player.getLastPlayed().get(player.getLastPlayed().size()-1));
     }
     public static void showPoint (String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);
@@ -70,14 +73,17 @@ public class PlayerInfo {
 
         System.out.println("point : " + score);
     }
-    public static void showHistory (String userName) throws ExistPlayerException {
+    public static void showHistory (String userName) throws ExistPlayerException, ExistPlayerLogException {
         Player player = FindPlayerByInfo.findByUserName(userName);
+        if (player.getLastPlayed().isEmpty()){
+            throw new ExistPlayerLogException("There is no history for this player yet!");
+        }
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
-        //todo if playerLog id empty
-        int counter = player.getPlayerLog().size()+1;
-        for (int i = player.getPlayerLog().size(); 0 < i; i--) {
-            System.out.println(counter+". "+player.getPlayerLog().get(i));
+
+        int counter = player.getLastPlayed().size();
+        for (int i = player.getLastPlayed().size() -1 ; 0 <= i; i--) {
+            System.out.println(counter+". "+player.getLastPlayed().get(i));
             counter--;
         }
     }

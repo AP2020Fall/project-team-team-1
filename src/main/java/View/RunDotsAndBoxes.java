@@ -2,6 +2,7 @@ package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.DotsAndBoxes.ExistLineException;
+import Controller.Exception.DotsAndBoxes.FindLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Controller.Exception.Plato.ExistPlayerException;
@@ -143,6 +144,8 @@ public class RunDotsAndBoxes extends Menu {
                 System.out.println(wrongFormatInDots.getMessage());
             } catch (ExistLineException e) {
                 System.out.println(e.getMessage());
+            } catch (FindLineException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -165,7 +168,12 @@ public class RunDotsAndBoxes extends Menu {
             public void execute() {
                 ArrayList<String> info = new ArrayList<>();
                 System.out.println("please Enter The Username ");
-                info.add(scanner.nextLine());
+                String username = scanner.nextLine();
+                if (username.equals(getUsername1())){
+                    System.out.println("You Cant Play This Game With YourSelf");
+                    this.run();
+                }else
+                info.add(username);
                 System.out.println("Please Enter The password");
                 info.add(scanner.nextLine());
                 try {

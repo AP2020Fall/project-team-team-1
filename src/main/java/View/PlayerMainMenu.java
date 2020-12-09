@@ -1,9 +1,6 @@
 package View;
 
-import Controller.Exception.Plato.ExistEventException;
-import Controller.Exception.Plato.ExistFavoriteException;
-import Controller.Exception.Plato.ExistFriendException;
-import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -123,6 +120,9 @@ public class PlayerMainMenu extends Menu{
                     playerGeneralController.showUserLastPlayed(username);
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                    this.parentMenu.run();
+                } catch (ExistPlayerLogException e) {
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
                 Menu nextMenu = null;
