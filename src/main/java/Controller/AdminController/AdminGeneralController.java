@@ -1,6 +1,7 @@
 package Controller.AdminController;
 
 import Controller.Exception.Plato.*;
+import Model.BattleSeaModel.Details;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
@@ -86,6 +87,13 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(),playerFile);
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
     }
-
+    /**********************************************SUGGESTION**********************************************/
+    public void setDetails(String gameName,String string){
+        if (gameName.equalsIgnoreCase("battleShip")){
+            Details.setDetails(string);
+        }else if (gameName.equalsIgnoreCase("dotsAndBoxes")){
+            Model.DotsAndBoxesModel.Details.setDetails(string);
+        }
+    }
 
 }

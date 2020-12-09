@@ -7,4 +7,7 @@ public class Details {
         return details;
     }
 
+    public static void setDetails(String details) {
+        Details.details = details;
+    }
 }

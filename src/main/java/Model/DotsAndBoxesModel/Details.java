@@ -8,4 +8,7 @@ public class Details {
     }
 
 
+    public static void setDetails(String details) {
+        Details.details = details;
+    }
 }
