@@ -17,11 +17,11 @@ public class AdminMainMenu extends Menu {
         submenus.put(2, new ViewEvents(this));
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
-        submenus.put(5,addDetail());
-        submenus.put(6,editDetails());
-        submenus.put(7, viewUsers());
-        submenus.put(8,sendMessageAsPlatoBot());
-        submenus.put(9, new UserMenuForAdmin(username, this));
+//        submenus.put(5,addDetail());
+        submenus.put(5,editDetails());
+        submenus.put(6, viewUsers());
+        submenus.put(7,sendMessageAsPlatoBot());
+        submenus.put(8, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
