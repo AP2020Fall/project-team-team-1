@@ -103,6 +103,7 @@ public class Friend {
 
         for (String playerFriend : player.getFriends()) {
             System.out.println(counter+". Username: "+ playerFriend);
+            counter++;
         }
     }
 

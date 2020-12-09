@@ -36,7 +36,7 @@ public class SignUpMenu extends Menu {
                     this.parentMenu.parentMenu.submenus.get(1).run();
                 } catch (ExistAdminException e) {
                     System.out.println(e.getMessage());
-                    this.run();
+                    this.parentMenu.run();
                 } catch (ExistUserNameException e) {
                     System.out.println(e.getMessage());
                     this.run();

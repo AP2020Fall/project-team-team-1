@@ -38,15 +38,15 @@ public class PlayerInfo {
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        int wins = player.getPlayerLog().get(0).getNumberOfWins() + player.getPlayerLog().get(1).getNumberOfWins() ;
-        int loses = player.getPlayerLog().get(0).getNumberOfLoses() + player.getPlayerLog().get(1).getNumberOfLoses();
-        int numberOfPlayed = player.getPlayerLog().get(0).getNumberOfGamePlayed()+player.getPlayerLog().get(1).getNumberOfGamePlayed();
+        float wins = player.getPlayerLog().get(0).getNumberOfWins() + player.getPlayerLog().get(1).getNumberOfWins() ;
+        float loses = player.getPlayerLog().get(0).getNumberOfLoses() + player.getPlayerLog().get(1).getNumberOfLoses();
+        float numberOfPlayed = player.getPlayerLog().get(0).getNumberOfGamePlayed()+player.getPlayerLog().get(1).getNumberOfGamePlayed();
         float winPercentage = (wins/numberOfPlayed)*100;
 
-        System.out.print("age: ");
+        System.out.print("Your age in plato : ");
         showUserAge(userName);
 
-        System.out.println("number of Friends: "+ player.getFriends().size());
+        System.out.println("Number of Friends: "+ player.getFriends().size());
         System.out.println("Wins : " + wins);
         System.out.println("Lose : " + loses);
         System.out.println("Number of match : " + numberOfPlayed);
@@ -68,10 +68,10 @@ public class PlayerInfo {
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        long score = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
-        score = score/10 ;
+        long level = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
+        level = level/10 ;
 
-        System.out.println("point : " + score);
+        System.out.println("Level : " + level);
     }
     public static void showHistory (String userName) throws ExistPlayerException, ExistPlayerLogException {
         Player player = FindPlayerByInfo.findByUserName(userName);
