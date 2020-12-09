@@ -97,12 +97,13 @@ public class DotsAndBoxesController {
         return difference > gameBoard.boxes.size() / 2 || bluePoints > gameBoard.boxes.size() / 2 || redPoints > gameBoard.boxes.size() / 2 || moves == 112;
     }
 
-    public void startDotsAndBoxes (Scanner scanner) throws NotEmptyString, WrongFormatInDots, ExistLineException, FindLineException {
+    public void startDotsAndBoxes () throws NotEmptyString, WrongFormatInDots, ExistLineException, FindLineException {
 //        GameBoard gameBoard = new GameBoard(8,8);
         while (!isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
             System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
             RunDotsAndBoxes.printBoard();
-            String command = scanner.nextLine();
+//            String command = scanner.nextLine();
+            String command = RunDotsAndBoxes.getNextCommand();
             if (command.isEmpty()){
                 throw new NotEmptyString("You cant give up your turn , Try again ! ");
             }

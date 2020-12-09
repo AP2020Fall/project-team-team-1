@@ -136,7 +136,7 @@ public class RunDotsAndBoxes extends Menu {
         System.out.println();
         while (true) {
             try {
-                dotsAndBoxesController.startDotsAndBoxes(scanner);
+                dotsAndBoxesController.startDotsAndBoxes();
                 break;
             } catch (NotEmptyString notEmptyString) {
                 System.out.println(notEmptyString.getMessage());
@@ -187,6 +187,9 @@ public class RunDotsAndBoxes extends Menu {
                 this.parentMenu.run();
             }
         };
+    }
+    public static String getNextCommand(){
+        return scanner.nextLine();
     }
 
     public static String arrayListToString(ArrayList<String> arrayList) {
