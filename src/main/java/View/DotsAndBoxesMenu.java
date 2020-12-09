@@ -33,8 +33,10 @@ public class DotsAndBoxesMenu extends Menu {
             public void execute() {
                 try {
                     playerGeneralController.showScoreboardInThisGame("DotsAndBoxes");
+                    this.parentMenu.run();
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName()+e.getMessage());
+                    this.parentMenu.run();
                 }
             }
         };
