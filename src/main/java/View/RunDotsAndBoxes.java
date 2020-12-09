@@ -1,6 +1,7 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.Exception.ExistPlayerException;
 import Controller.Exception.InvalidUserNameException;
 import Controller.Exception.WrongPasswordException;
 
@@ -16,6 +17,15 @@ public class RunDotsAndBoxes extends Menu {
         this.Username1=username1;
         this.Username2=username2;
     }
+
+    public String getUsername1() {
+        return Username1;
+    }
+
+    public String getUsername2() {
+        return Username2;
+    }
+
 
     public void setUsername2(String username2) {
         Username2 = username2;
@@ -124,7 +134,13 @@ public class RunDotsAndBoxes extends Menu {
         return new Menu("login", this) {
             @Override
             public void show() {
-
+                System.out.println("Login As One Of These Players");
+                try {
+                    adminGeneralController.showAllUsers();
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
             }
 
             @Override
