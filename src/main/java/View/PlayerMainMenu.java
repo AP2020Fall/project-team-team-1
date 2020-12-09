@@ -63,7 +63,7 @@ public class PlayerMainMenu extends Menu{
                  System.out.println(e.getMessage());
                  this.parentMenu.run();
              } catch (IOException e) {
-                 e.printStackTrace();
+                 System.out.println(e.getMessage());
              }
              Menu nextMenu = null;
              String num = scanner.nextLine();
