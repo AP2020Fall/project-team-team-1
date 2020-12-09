@@ -117,7 +117,7 @@ public class PlayerMainMenu extends Menu{
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showUserLastPlayed(username);
+                    System.out.println(playerGeneralController.showUserLastPlayed(username));
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                     this.parentMenu.run();

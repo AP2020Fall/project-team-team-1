@@ -8,6 +8,7 @@ import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 import Controller.PlayerController.Game;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -167,8 +168,8 @@ public class RunBattleShip extends Menu {
                     System.out.println(player2 + " Wins the Game !");
                     Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
                     try {
-                        playerGeneralController.addHistory(Username2,"At: "+String.valueOf(LocalDate.now())+" "+Username2+" wins "+Username1);
-                    } catch (ExistPlayerException | ExistPlayerLogException e) {
+                        playerGeneralController.historySaver(LocalDate.now(),player2,player1,"Battle Ship");
+                    } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
                     endGame = false;
@@ -176,8 +177,8 @@ public class RunBattleShip extends Menu {
                     System.out.println(player1 + " Wins the Game !");
                     Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
                     try {
-                        playerGeneralController.addHistory(Username1,"At: "+String.valueOf(LocalDate.now())+" "+Username1+" wins "+Username2);
-                    } catch (ExistPlayerException | ExistPlayerLogException e) {
+                        playerGeneralController.historySaver(LocalDate.now(),player1,player2,"Battle Ship");
+                    } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
                     endGame = false;
@@ -195,8 +196,8 @@ public class RunBattleShip extends Menu {
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
                         Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
                         try {
-                            playerGeneralController.addHistory(Username2,"At: "+String.valueOf(LocalDate.now())+" "+Username2+" wins "+Username1);
-                        } catch (ExistPlayerException | ExistPlayerLogException e) {
+                            playerGeneralController.historySaver(LocalDate.now(),player2,player1,"Battle Ship");
+                        } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
                         endGame = false;
@@ -218,8 +219,8 @@ public class RunBattleShip extends Menu {
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
                         Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
                         try {
-                            playerGeneralController.addHistory(Username1,"At: "+String.valueOf(LocalDate.now())+" "+Username1+" wins "+Username2);
-                        } catch (ExistPlayerException | ExistPlayerLogException e) {
+                            playerGeneralController.historySaver(LocalDate.now(),player1,player2,"Battle Ship");
+                        } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
                         endGame = false;

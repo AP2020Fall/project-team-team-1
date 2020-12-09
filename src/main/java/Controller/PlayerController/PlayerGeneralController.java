@@ -7,6 +7,7 @@ import Model.PlatoModel.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class PlayerGeneralController {
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
@@ -113,12 +114,18 @@ public class PlayerGeneralController {
     public void showHistory(String userName) throws ExistPlayerException, ExistPlayerLogException {
         PlayerInfo.showHistory(userName);
     }
-    public void addHistory(String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
-        PlayerInfo.addHistory(userName, history);
-    }
+//    public void addHistory(String userName,String history) throws ExistPlayerException, ExistPlayerLogException, IOException {
+//        PlayerInfo.addHistory(userName, history);
+//        DataBase.save(Player.players,playerFile);
+//
+//    }
+    public void historySaver(LocalDate localDate, String winner, String loser, String gameName) throws IOException {
+        Game.historySaver(localDate, winner, loser, gameName);
+        DataBase.save(Player.players,playerFile);
 
-    public void showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
-        PlayerInfo.showUserLastPlayed(userName);
+    }
+    public String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
+        return PlayerInfo.showUserLastPlayed(userName);
     }
 
     public void showPoint(String userName) throws ExistPlayerException {
@@ -152,8 +159,10 @@ public class PlayerGeneralController {
     public void findGameForRun(String playerUserName, String gameName, String score) {
         Game.findGameForRun(playerUserName, gameName, score);
     }
-    public void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput) {
+    public void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput) throws IOException {
         Game.giveScoreAndEditPlayerLog(gameName, winnerPlayerInput, loserPlayerInput, scoreInput);
+        DataBase.save(Player.players,playerFile);
+
     }
 
     /***********************************************EDIT***********************************************/

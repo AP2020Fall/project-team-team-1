@@ -53,7 +53,7 @@ public class PlayerInfo {
         System.out.println("Win Percentage : %"+ winPercentage);
 
     }
-    public static void showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
+    public static String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player.getLastPlayed().isEmpty()){
             throw new ExistPlayerLogException("There is no log for this player yet!");
@@ -61,7 +61,7 @@ public class PlayerInfo {
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        System.out.println(player.getLastPlayed().get(player.getLastPlayed().size()-1));
+        return player.getLastPlayed().get(player.getLastPlayed().size()-1);
     }
     public static void showPoint (String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);
@@ -88,12 +88,12 @@ public class PlayerInfo {
         }
     }
 
-    public static void addHistory (String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
-        Player player = FindPlayerByInfo.findByUserName(userName);
-
-        if (player == null)
-            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
-
-        player.getLastPlayed().add(history);
-    }
+//    public static void addHistory (String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
+//        Player player = FindPlayerByInfo.findByUserName(userName);
+//
+//        if (player == null)
+//            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
+//
+//        player.getLastPlayed().add(history);
+//    }
 }

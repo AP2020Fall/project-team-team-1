@@ -9,6 +9,7 @@ import Controller.Exception.Plato.ExistPlayerException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RunDotsAndBoxes extends Menu {
@@ -197,7 +198,11 @@ public class RunDotsAndBoxes extends Menu {
         return scanner.nextLine();
     }
     public void winnerAward(String winner , String loser){
-        playerGeneralController.giveScoreAndEditPlayerLog("dotsandboxes",winner,loser,10);
+        try {
+            playerGeneralController.giveScoreAndEditPlayerLog("dotsandboxes",winner,loser,10);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static String arrayListToString(ArrayList<String> arrayList) {

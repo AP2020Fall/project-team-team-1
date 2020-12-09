@@ -2,9 +2,18 @@ package Controller.PlayerController;
 
 import Model.PlatoModel.Player;
 
+import java.time.LocalDate;
+
 public class Game {
     public static void findGameForRun(String playerUserName ,String gameName , String score){
 
+    }
+    public static void historySaver(LocalDate localDate,String winner,String loser,String gameName){
+        Player winnerPlayer = FindPlayerByInfo.findByUserName(winner);
+        Player loserPlayer = FindPlayerByInfo.findByUserName(loser);
+
+        winnerPlayer.getLastPlayed().add("Date: "+String.valueOf(localDate)+" "+winner+" wins "+ loser+" At: "+gameName);
+        loserPlayer.getLastPlayed().add("Date: "+String.valueOf(localDate)+" "+loser+" loser Against "+ winner +" At: "+gameName);
     }
     public static void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput){
         Player winnerPlayer = FindPlayerByInfo.findByUserName(winnerPlayerInput);
