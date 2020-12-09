@@ -198,4 +198,11 @@ public class PlayerMainMenu extends Menu{
             }
         };
     }
+
+    @Override
+    public void show() {
+        for (Integer menuNum : submenus.keySet()) {
+            System.out.println(menuNum + ". " + submenus.get(menuNum).getName());
+        }
+    }
 }

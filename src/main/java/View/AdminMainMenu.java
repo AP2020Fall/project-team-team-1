@@ -269,4 +269,11 @@ public class AdminMainMenu extends Menu {
         }
         return output;
     }
+
+    @Override
+    public void show() {
+        for (Integer menuNum : submenus.keySet()) {
+            System.out.println(menuNum + ". " + submenus.get(menuNum).getName());
+        }
+    }
 }
