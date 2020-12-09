@@ -58,21 +58,28 @@ public class PlayerInfo {
 
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
-
-        System.out.println(player.getLastPlayed());
+        //todo if playerLog id empty
+        System.out.println(player.getPlayerLog().get(player.getPlayerLog().size()));
     }
     public static void showPoint (String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-
-
         long score = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
         score = score/100 ;
+
         System.out.println("point : " + score);
     }
-    public static void showHistory (String userName){
-
+    public static void showHistory (String userName) throws ExistPlayerException {
+        Player player = FindPlayerByInfo.findByUserName(userName);
+        if (player == null)
+            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
+        //todo if playerLog id empty
+        int counter = player.getPlayerLog().size()+1;
+        for (int i = player.getPlayerLog().size(); 0 < i; i--) {
+            System.out.println(counter+". "+player.getPlayerLog().get(i));
+            counter--;
+        }
     }
 }

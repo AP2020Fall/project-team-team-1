@@ -25,14 +25,14 @@ public class Player extends User {
     protected ArrayList<Integer> suggestedGamesID;
     //private ArrayList<Message> receivedMessages;
     private ArrayList<String> favoritesGamesName;
-    private String lastPlayed;
+    private ArrayList<String> lastPlayed;
 
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
         suggestedGamesID = new ArrayList<>();
         friendsRequests = new ArrayList<>();
         //receivedMessages = new ArrayList<>();
-        this.lastPlayed = "";
+        this.lastPlayed = new ArrayList<>();
         this.registerDate = LocalDate.now();
         favoritesGamesName = new ArrayList<>();
         friends = new ArrayList<>();
@@ -127,11 +127,11 @@ public class Player extends User {
         this.playerLog = playerLog;
     }
 
-    public String getLastPlayed() {
+    public ArrayList<String> getLastPlayed() {
         return lastPlayed;
     }
 
-    public void setLastPlayed(String lastPlayed) {
+    public void setLastPlayed(ArrayList<String> lastPlayed) {
         this.lastPlayed = lastPlayed;
     }
 
