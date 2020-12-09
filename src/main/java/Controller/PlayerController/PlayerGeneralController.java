@@ -113,6 +113,9 @@ public class PlayerGeneralController {
     public void showHistory(String userName) throws ExistPlayerException, ExistPlayerLogException {
         PlayerInfo.showHistory(userName);
     }
+    public void addHistory(String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
+        PlayerInfo.addHistory(userName, history);
+    }
 
     public void showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         PlayerInfo.showUserLastPlayed(userName);

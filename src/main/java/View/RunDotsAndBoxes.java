@@ -137,6 +137,11 @@ public class RunDotsAndBoxes extends Menu {
         while (true) {
             try {
                 dotsAndBoxesController.startDotsAndBoxes();
+                if (dotsAndBoxesController.whoIsWinner().equals("blue")){
+                    winnerAward(getUsername1(),getUsername2());
+                }else if (dotsAndBoxesController.whoIsWinner().equals("red")){
+                    winnerAward(getUsername2(),getUsername1());
+                }
                 break;
             } catch (NotEmptyString notEmptyString) {
                 System.out.println(notEmptyString.getMessage());
@@ -190,6 +195,9 @@ public class RunDotsAndBoxes extends Menu {
     }
     public static String getNextCommand(){
         return scanner.nextLine();
+    }
+    public void winnerAward(String winner , String loser){
+        playerGeneralController.giveScoreAndEditPlayerLog("dotsandboxes",winner,loser,10);
     }
 
     public static String arrayListToString(ArrayList<String> arrayList) {

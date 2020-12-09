@@ -123,8 +123,23 @@ public class DotsAndBoxesController {
         }
         if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
             RunDotsAndBoxes.printWinner();
+
         }
     }
+    //todo add player history
+    public String whoIsWinner(){
+        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
+            if (gameBoard.bluePoints>gameBoard.redPoints){
+                return "blue";
+            }else return "red";
+        }else return null;
+    }
+//    public String blueIsWinner(){
+//        return "blue";
+//    }
+//    public String redIsWinner(){
+//        return "red";
+//    }
     public int getRedPoints(){
         return gameBoard.redPoints;
     }

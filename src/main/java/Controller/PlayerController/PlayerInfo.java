@@ -87,4 +87,13 @@ public class PlayerInfo {
             counter--;
         }
     }
+
+    public static void addHistory (String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
+        Player player = FindPlayerByInfo.findByUserName(userName);
+
+        if (player == null)
+            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
+
+        player.getLastPlayed().add(history);
+    }
 }
