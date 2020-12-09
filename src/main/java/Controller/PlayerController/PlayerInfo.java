@@ -69,7 +69,7 @@ public class PlayerInfo {
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
         long score = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
-        score = score/100 ;
+        score = score/10 ;
 
         System.out.println("point : " + score);
     }

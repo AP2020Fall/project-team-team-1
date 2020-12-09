@@ -15,5 +15,6 @@ public class Main {
         Menu.setScanner(new Scanner(System.in));
         Menu currentMenu = new MainMenu();
         currentMenu.run();
+
     }
 }
