@@ -95,6 +95,8 @@ public class RunBattleShip extends Menu {
                             System.out.println(e.getMessage());
                         } catch (ExistOtherShipException e) {
                             System.out.println(e.getMessage());
+                        } catch (InvalidCommandException e) {
+                            System.out.println(e.getMessage());
                         }
                     }
                     //todo for change first we should reset Ship of player and player board
@@ -130,6 +132,8 @@ public class RunBattleShip extends Menu {
                         } catch (CorrectCoordinateForShipException e) {
                             System.out.println(e.getMessage());
                         } catch (ExistOtherShipException e) {
+                            System.out.println(e.getMessage());
+                        } catch (InvalidCommandException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -174,6 +178,8 @@ public class RunBattleShip extends Menu {
                     System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
                     Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
                     endGame = false;
+                } catch (InvalidCommandException e) {
+                    System.out.println(e.getMessage());
                 }
             } else {
                 try {
@@ -183,6 +189,8 @@ public class RunBattleShip extends Menu {
                     System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
                     Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
                     endGame = false;
+                } catch (InvalidCommandException e) {
+                    System.out.println(e.getMessage());
                 }
             }
 

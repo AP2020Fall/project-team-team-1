@@ -15,7 +15,7 @@ public class BattleSeaController {
     }
 
 
-    public void changeCoordinateProcessor(String username, String string) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
+    public void changeCoordinateProcessor(String username, String string) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException, InvalidCommandException {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[3].equalsIgnoreCase("direction")) {
@@ -50,13 +50,13 @@ public class BattleSeaController {
                 System.out.println("check you Username");
 
         } else {
-            //todo Exception
+            throw new InvalidCommandException("Invalid command");
         }
 
 
     }
 
-    public void boomOrShow(String username, String string) throws BattleShipWinner {
+    public void boomOrShow(String username, String string) throws BattleShipWinner, InvalidCommandException {
         String[] inputSplit = string.split("\\s");
         if (inputSplit[0].equalsIgnoreCase("boom")){
             try {
@@ -67,11 +67,11 @@ public class BattleSeaController {
         }else if (inputSplit[0].equalsIgnoreCase("show")){
             showCommandProcessor(username, string);
         }else {
-            //todo Exception
+            throw new InvalidCommandException("Invalid command");
         }
     }
 
-    public void boomProcessor(String username, String string) throws BattleShipWinner, BoomCheckException {
+    public void boomProcessor(String username, String string) throws BattleShipWinner, BoomCheckException, InvalidCommandException {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[0].equalsIgnoreCase("boom")) {
@@ -83,13 +83,13 @@ public class BattleSeaController {
                 run.boomPlayer1Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
 
         } else {
-            //todo Exception
+            throw new InvalidCommandException("Invalid command");
         }
 
 
     }
 
-    public void showCommandProcessor(String username, String string) {
+    public void showCommandProcessor(String username, String string) throws InvalidCommandException {
         String[] inputSpilt = string.split("\\s");
         int counter = 1;
 
@@ -138,7 +138,7 @@ public class BattleSeaController {
                 Board.displayBoard(run.game.getSecondPlayerOwnBoard().getGameBoard());
 
         } else {
-            //todo Exception
+            throw new InvalidCommandException("Invalid command");
         }
     }
 
