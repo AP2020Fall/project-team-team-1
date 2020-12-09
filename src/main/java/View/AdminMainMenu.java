@@ -293,7 +293,7 @@ public class AdminMainMenu extends Menu {
                 try {
                     adminGeneralController.setDetails("battleship", scanner.nextLine());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
                 this.parentMenu.run();
             }
