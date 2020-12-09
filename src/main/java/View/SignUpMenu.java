@@ -157,7 +157,7 @@ public class SignUpMenu extends Menu {
                 adminInfo.add(password);
                 break;
 
-            } catch (InvalidPasswordException e) {
+            } catch (StrongerPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -232,7 +232,7 @@ public class SignUpMenu extends Menu {
                 playerInfo.add(password);
                 break;
 
-            } catch (InvalidPasswordException e) {
+            } catch (StrongerPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }

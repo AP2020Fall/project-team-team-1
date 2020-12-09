@@ -30,7 +30,7 @@ public class EditTest extends TestCase {
 //        assertEquals(admin1.getUserName(),"amirrezazgh1");
     }
 
-    public void testEditPassword() throws InvalidPasswordException, ExistPlayerException, WrongPasswordException {
+    public void testEditPassword() throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, StrongerPasswordException {
         Admin admin1 = new Admin("hesam", "asnashari", 100, "hessamasna", "Apteam@123334", "hessamasna@yahoo.com", "09121111111");
         Admin.AddNewAdmin(admin1);
         edit.editPassword("Apteam@123334", "Qwe3434dsd23");

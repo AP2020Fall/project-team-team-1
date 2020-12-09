@@ -81,7 +81,7 @@ public class Edit {
 
     }
 
-    public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException {
+    public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, StrongerPasswordException {
         boolean pass = false;
 
         if (!Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword))

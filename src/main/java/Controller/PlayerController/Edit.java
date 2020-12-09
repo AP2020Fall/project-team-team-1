@@ -65,7 +65,7 @@ public class Edit {
 
     }
 
-    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
+    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (!Existence.checkPassword(player.getUserName(), oldPassword))

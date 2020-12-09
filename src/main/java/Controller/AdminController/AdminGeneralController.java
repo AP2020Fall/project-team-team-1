@@ -24,7 +24,7 @@ public class AdminGeneralController {
         //DataBase.save(User.users,userFile);
     }
 
-    public void editPassword(String info) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, IOException {
+    public void editPassword(String info) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, IOException, StrongerPasswordException {
         String[] strings = info.split("\\s");
         Edit.editPassword(strings[1],strings[2]);
         DataBase.save(Admin.getAdmins(),adminFile);

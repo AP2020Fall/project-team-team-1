@@ -19,7 +19,7 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
     }
 
-    public void editPassword(String input) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, IOException {
+    public void editPassword(String input) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, IOException, StrongerPasswordException {
         String[] inputSplit = input.split("\\s");
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
         DataBase.save(Player.players,playerFile);

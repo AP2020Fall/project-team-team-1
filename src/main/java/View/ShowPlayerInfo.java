@@ -34,6 +34,8 @@ public class ShowPlayerInfo extends Menu {
                     this.run();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (StrongerPasswordException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         };

@@ -36,6 +36,8 @@ public class ShowAdminInfo extends Menu {
                     System.out.println(e.getPlayerName() + e.getMessage());
                 } catch (IOException e) {
                     e.printStackTrace();
+                } catch (StrongerPasswordException e) {
+                    System.out.println(e.getMessage());
                 }
 
             }

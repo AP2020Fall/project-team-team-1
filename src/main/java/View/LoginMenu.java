@@ -1,10 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.ExistAdminException;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.WrongPasswordException;
+import Controller.Exception.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -105,7 +102,7 @@ public class LoginMenu extends Menu {
                 playerInput.add(password);
                 break;
 
-            } catch (InvalidPasswordException e) {
+            } catch (StrongerPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -132,7 +129,7 @@ public class LoginMenu extends Menu {
                 adminInput.add(password);
                 break;
 
-            } catch (InvalidPasswordException e) {
+            } catch (StrongerPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }

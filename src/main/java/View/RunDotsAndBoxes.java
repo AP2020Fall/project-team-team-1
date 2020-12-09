@@ -1,6 +1,8 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.Exception.DotsAndBoxes.NotEmptyString;
+import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Controller.Exception.ExistPlayerException;
 import Controller.Exception.InvalidUserNameException;
 import Controller.Exception.WrongPasswordException;
@@ -12,10 +14,11 @@ public class RunDotsAndBoxes extends Menu {
     private static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
     private String Username1;
     private String Username2;
-    public RunDotsAndBoxes(String username1,String username2, Menu parentMenu) {
+
+    public RunDotsAndBoxes(String username1, String username2, Menu parentMenu) {
         super("Run DotsAndBoxes", parentMenu);
-        this.Username1=username1;
-        this.Username2=username2;
+        this.Username1 = username1;
+        this.Username2 = username2;
     }
 
     public String getUsername1() {
@@ -40,21 +43,22 @@ public class RunDotsAndBoxes extends Menu {
 
     @Override
     public void execute() {
-        if (this.Username2!=null){
+        if (this.Username2 != null) {
             startTheGame();
-        }else{
+        } else {
             temporaryLogin().run();
             this.run();
         }
     }
+
     public static void printWinner() {
-        if (dotsAndBoxesController.getBluePoints() >dotsAndBoxesController.getRedPoints()) {
+        if (dotsAndBoxesController.getBluePoints() > dotsAndBoxesController.getRedPoints()) {
             System.out.print(Color.YELLOW_BOLD);
             System.out.println("The Winner is : ");
             System.out.print(Color.RESET);
             System.out.print(Color.BLUE);
             System.out.println("Blue Player ");
-            System.out.println("Blue points :"+dotsAndBoxesController.getRedPoints());
+            System.out.println("Blue points :" + dotsAndBoxesController.getRedPoints());
             System.out.print(Color.RESET);
         } else if (dotsAndBoxesController.getRedPoints() > dotsAndBoxesController.getBluePoints()) {
             System.out.print(Color.YELLOW_BOLD);
@@ -62,7 +66,7 @@ public class RunDotsAndBoxes extends Menu {
             System.out.print(Color.RESET);
             System.out.print(Color.RED);
             System.out.println("Red Player ");
-            System.out.println("Red points :"+dotsAndBoxesController.getRedPoints());
+            System.out.println("Red points :" + dotsAndBoxesController.getRedPoints());
             System.out.print(Color.RESET);
         } else {
             System.out.print(Color.YELLOW_BOLD);
@@ -125,11 +129,23 @@ public class RunDotsAndBoxes extends Menu {
             System.out.print(Color.RESET);
         }
     }
-    public void startTheGame(){
-        System.out.println("Blue Represents "+this.Username1+" And Red Represent "+this.Username2);
+
+    public void startTheGame() {
+        System.out.println("Blue Represents " + this.Username1 + " And Red Represent " + this.Username2);
         System.out.println();
-        dotsAndBoxesController.startDotsAndBoxes(scanner);
+        while (true) {
+            try {
+                dotsAndBoxesController.startDotsAndBoxes(scanner);
+                break;
+            } catch (NotEmptyString notEmptyString) {
+                System.out.println(notEmptyString.getMessage());
+            } catch (WrongFormatInDots wrongFormatInDots) {
+                System.out.println(wrongFormatInDots.getMessage());
+            }
+        }
+
     }
+
     private Menu temporaryLogin() {
         return new Menu("login", this) {
             @Override
@@ -162,6 +178,7 @@ public class RunDotsAndBoxes extends Menu {
             }
         };
     }
+
     public static String arrayListToString(ArrayList<String> arrayList) {
         String output = "";
         for (String string : arrayList) {

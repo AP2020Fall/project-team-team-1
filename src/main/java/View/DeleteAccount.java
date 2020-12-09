@@ -3,6 +3,7 @@ package View;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.InvalidPasswordException;
 import Controller.Exception.InvalidUserNameException;
+import Controller.Exception.StrongerPasswordException;
 import Controller.Exception.WrongPasswordException;
 
 import java.io.IOException;
@@ -60,7 +61,7 @@ public class DeleteAccount extends Menu {
                 playerInput.add(password);
                 break;
 
-            } catch (InvalidPasswordException e) {
+            } catch (StrongerPasswordException e) {
                 System.out.println(e.getMessage());
             }
         }

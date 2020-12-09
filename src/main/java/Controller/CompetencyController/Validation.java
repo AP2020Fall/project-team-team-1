@@ -30,13 +30,13 @@ public class Validation {
         else
             throw new InvalidNameException("Name Or Lastname is Invalid");
     }
-    public static boolean passwordIsValid(String password) throws InvalidPasswordException {
+    public static boolean passwordIsValid(String password) throws StrongerPasswordException {
         Pattern passwordPattern = Pattern.compile("(^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$)");
         Matcher matcher = passwordPattern.matcher(password);
         if (matcher.matches())
             return true;
         else
-            throw new InvalidPasswordException("Password is invalid");
+            throw new StrongerPasswordException ("Please try stronger password !");
     }
     public static boolean ageIsValid(String age) throws InvalidAgeException {
         Pattern agePattern = Pattern.compile("^(1[90]|[2-6][0-9])$");

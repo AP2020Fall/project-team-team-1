@@ -53,7 +53,7 @@ public class EditTest{
         assertEquals(FindPlayerByInfo.findByUserName("atarhz").getLastName(),"asna");
     }
     @Test
-    public void testEditPassword() throws InvalidPasswordException, WrongPasswordException, SamePasswordException {
+    public void testEditPassword() throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException {
 
         Edit.editPassword("atarhz","11223344","hesamKhare22");
         assertEquals(FindPlayerByInfo.findByUserName("atarhz").getPassword(),"hesamKhare22");

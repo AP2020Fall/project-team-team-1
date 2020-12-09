@@ -24,7 +24,7 @@ public class ValidationTest extends TestCase {
         assertTrue(Validation.nameOrLastNameIsValid(nameOrLastnameForTrue));
     }
 
-    public void testPasswordIsValid() throws InvalidPasswordException {
+    public void testPasswordIsValid() throws InvalidPasswordException, StrongerPasswordException {
         String passwordForFalse = "aminisolaq";
         assertFalse(Validation.passwordIsValid(passwordForFalse));
         String passwordForTrue = "Apteam@1235";
