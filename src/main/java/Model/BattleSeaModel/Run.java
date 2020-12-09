@@ -461,13 +461,18 @@ public class Run {
     }
 
     /*************************** Boom Player Ships ***************************/
-    public static void boomPlayer1Ships(int x, int y) throws BattleShipWinner, BoomCheckException {
+    public static String boomPlayer1Ships(int x, int y) throws BattleShipWinner, BoomCheckException, CorrectCoordinateForShipException {
         x--;
         y--;
         if (player2.getPlayerBooms().contains(x + " " + y)) {
-            throw new BoomCheckException("Select "+ x + "," + y + " has been already boomed");
+            int xInput = x+1;
+            int yInput = y+1;
+            throw new BoomCheckException("Select "+ xInput + "," + yInput + " has been already boomed");
         }
         player2.getPlayerBooms().add(x + " " + y);
+        if (x>9 || y>9)
+            throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+
         char namee = game.getFirstPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
 
         if (namee == ' ') {
@@ -475,7 +480,7 @@ public class Run {
             game.getFirstPlayerOwnBoard().getGameBoard()[x][y] = "-";
             Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
             player2.getInCorrectPlayerBooms().add(x + " " + y);
-            return;
+            return "InCorrect Boom";
         }
 
         Ship ship = null;
@@ -491,7 +496,7 @@ public class Run {
             player2.getCorrectPlayerBooms().add(x + " " + y);
             ship.setSize(ship.getSize() - 1);
         } else
-            return;
+            return "Cant find the Ship 404";
 
         if (ship.getSize() == 0) {
             for (int i = ship.getCoordinate().getxStart(); i <= ship.getCoordinate().getxLast(); i++) {
@@ -511,15 +516,21 @@ public class Run {
         if (winPlayer2Checker())
             throw new BattleShipWinner(player2.getPlayer());
 
-
+        return "Correct Boom";
     }
-    public static void boomPlayer2Ships(int x, int y) throws BattleShipWinner, BoomCheckException {
+
+    public static String boomPlayer2Ships(int x, int y) throws BattleShipWinner, BoomCheckException, CorrectCoordinateForShipException {
         x--;
         y--;
         if (player1.getPlayerBooms().contains(x + " " + y)) {
-            throw new BoomCheckException("Select "+ x + "," + y + " has been already boomed");
+            int xInput = x+1;
+            int yInput = y+1;
+            throw new BoomCheckException("Select "+ xInput + "," + yInput + " has been already boomed");
         }
         player1.getPlayerBooms().add(x + " " + y);
+        if (x>9 || y>9)
+            throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+
         char namee = game.getSecondPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
 
         if (namee == ' ') {
@@ -527,7 +538,7 @@ public class Run {
             game.getSecondPlayerOwnBoard().getGameBoard()[x][y] = "-";
             Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
             player1.getInCorrectPlayerBooms().add(x + " " + y);
-            return;
+            return "InCorrect Boom";
         }
 
         Ship ship = null;
@@ -543,7 +554,7 @@ public class Run {
             player1.getCorrectPlayerBooms().add(x + " " + y);
             ship.setSize(ship.getSize() - 1);
         } else
-            return;
+            return "Cant find the Ship 404";
 
         if (ship.getSize() == 0) {
             for (int i = ship.getCoordinate().getxStart(); i <= ship.getCoordinate().getxLast(); i++) {
@@ -563,6 +574,7 @@ public class Run {
         if (winPlayer1Checker())
             throw new BattleShipWinner(player1.getPlayer());
 
+        return "Correct Boom";
     }
 
 

@@ -2,10 +2,13 @@ package View;
 
 import Controller.BattleSeaController.BattleSeaController;
 import Controller.Exception.BattleShip.*;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.ExistPlayerLogException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 import Controller.PlayerController.Game;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RunBattleShip extends Menu {
@@ -142,6 +145,7 @@ public class RunBattleShip extends Menu {
                     counterForRandom++;
                 }
             }
+
             if (counter % 2 == 1) {
                 System.out.println(player1 + "'s Turn ");
             } else {
@@ -156,45 +160,91 @@ public class RunBattleShip extends Menu {
                     "show <player1 or player2> unboomed ships\n" +
                     "show <player1 or player2> coordinate plane");
             String nexCommand = scanner.nextLine();
-
+            String[] nexCommandSpilit = nexCommand.split("\\s");
             //battleSeaController.mainCommandProcessor(player1, player2);
             if (nexCommand.equalsIgnoreCase("Surrender")) {
                 if (counter % 2 == 1) {
                     System.out.println(player2 + " Wins the Game !");
                     Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
+                    try {
+                        playerGeneralController.addHistory(Username2,"At: "+String.valueOf(LocalDate.now())+" "+Username2+" wins "+Username1);
+                    } catch (ExistPlayerException | ExistPlayerLogException e) {
+                        System.out.println(e.getMessage());
+                    }
                     endGame = false;
                 } else {
                     System.out.println(player1 + " Wins the Game !");
                     Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
+                    try {
+                        playerGeneralController.addHistory(Username1,"At: "+String.valueOf(LocalDate.now())+" "+Username1+" wins "+Username2);
+                    } catch (ExistPlayerException | ExistPlayerLogException e) {
+                        System.out.println(e.getMessage());
+                    }
                     endGame = false;
 
                 }
             }
-            if (counter % 2 == 1) {
-                try {
-                    battleSeaController1.boomOrShow("player1", nexCommand);
-                } catch (BattleShipWinner battleShipWinner) {
-                    battleShipWinner.setPlayerName(player2);
-                    System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                    Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
-                    endGame = false;
-                } catch (InvalidCommandException e) {
-                    System.out.println(e.getMessage());
+            if (nexCommandSpilit[0].equalsIgnoreCase("boom")) {
+                if (counter % 2 == 1) {
+                    try {
+                        if (battleSeaController1.boomProcessor("player1", nexCommand).equalsIgnoreCase("Correct Boom"))
+                            counter++;
+
+                    } catch (BattleShipWinner battleShipWinner) {
+                        battleShipWinner.setPlayerName(player2);
+                        System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
+                        Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
+                        try {
+                            playerGeneralController.addHistory(Username2,"At: "+String.valueOf(LocalDate.now())+" "+Username2+" wins "+Username1);
+                        } catch (ExistPlayerException | ExistPlayerLogException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        endGame = false;
+                    } catch (InvalidCommandException e) {
+                        System.out.println(e.getMessage());
+                    } catch (BoomCheckException e) {
+                        System.out.println(e.getMessage());
+                        counter++;
+                    } catch (CorrectCoordinateForShipException e) {
+                        System.out.println(e.getMessage());
+                        counter++;
+                    }
+                } else {
+                    try {
+                        if (battleSeaController1.boomProcessor("player2", nexCommand).equalsIgnoreCase("Correct Boom"))
+                            counter++;
+                    } catch (BattleShipWinner battleShipWinner) {
+                        battleShipWinner.setPlayerName(player1);
+                        System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
+                        Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
+                        try {
+                            playerGeneralController.addHistory(Username1,"At: "+String.valueOf(LocalDate.now())+" "+Username1+" wins "+Username2);
+                        } catch (ExistPlayerException | ExistPlayerLogException e) {
+                            System.out.println(e.getMessage());
+                        }
+                        endGame = false;
+                    } catch (InvalidCommandException e) {
+                        System.out.println(e.getMessage());
+                    } catch (BoomCheckException e) {
+                        System.out.println(e.getMessage());
+                        counter++;
+                    } catch (CorrectCoordinateForShipException e) {
+                        System.out.println(e.getMessage());
+                        counter++;
+                    }
                 }
-            } else {
+
+                counter++;
+
+            }
+            if (nexCommandSpilit[0].equalsIgnoreCase("show")){
                 try {
-                    battleSeaController1.boomOrShow("player2", nexCommand);
-                } catch (BattleShipWinner battleShipWinner) {
-                    battleShipWinner.setPlayerName(player1);
-                    System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                    Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
-                    endGame = false;
+                    battleSeaController1.showCommandProcessor(nexCommandSpilit[1],nexCommand);
                 } catch (InvalidCommandException e) {
                     System.out.println(e.getMessage());
                 }
             }
 
-            counter++;
         }
         battleSeaController1.deletePlayer();
         setUsername2(null);
