@@ -18,9 +18,10 @@ public class AdminMainMenu extends Menu {
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
         submenus.put(5,addDetail());
-        submenus.put(6, viewUsers());
-        submenus.put(7,sendMessageAsPlatoBot());
-        submenus.put(8, new UserMenuForAdmin(username, this));
+        submenus.put(6,editDetails());
+        submenus.put(7, viewUsers());
+        submenus.put(8,sendMessageAsPlatoBot());
+        submenus.put(9, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
@@ -259,6 +260,55 @@ public class AdminMainMenu extends Menu {
             System.out.println("Please Enter Your Message : ");
         }
         return scanner.nextLine();
+    }
+    private Menu editDetails(){
+        return new Menu("Edit Details",this) {
+            @Override
+            public void show() {
+                System.out.println("Which Game Do You Want to Edit? ");
+            }
+
+            @Override
+            public void execute() {
+                String gameName = scanner.nextLine();
+                if (gameName.equalsIgnoreCase("battleShip")){
+                    editBattleShipDetails().run();
+                }else if (gameName.equalsIgnoreCase("dotsAndBoxes")){
+                    editDotsAndBoxesDetails().run();
+                }
+            }
+        };
+    }
+
+    private Menu editBattleShipDetails(){
+        return new Menu("Edit Battleship Details",this) {
+            @Override
+            public void show() {
+                playerGeneralController.battleDetails();
+            }
+
+            @Override
+            public void execute() {
+                System.out.println("Please Enter new Details");
+                adminGeneralController.setDetails("battleship", scanner.nextLine());
+                this.parentMenu.run();
+            }
+        };
+    }
+    private Menu editDotsAndBoxesDetails(){
+        return new Menu("Edit DotsAndBoxes Details",this) {
+            @Override
+            public void show() {
+                playerGeneralController.dotsDetails();
+            }
+
+            @Override
+            public void execute() {
+                System.out.println("Please Enter new Details");
+                adminGeneralController.setDetails("dotsandboxes", scanner.nextLine());
+                this.parentMenu.run();
+            }
+        };
     }
 
     public static String arrayListToString(ArrayList<String> arrayList) {
