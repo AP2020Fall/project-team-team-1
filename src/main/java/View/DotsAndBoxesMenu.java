@@ -48,8 +48,7 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                //todo fill this fucking shit
-//                battleSeaController.details();
+                System.out.println(playerGeneralController.dotsDetails());
                 while (true){
                     String next = scanner.nextLine();
                     if (next.equalsIgnoreCase("back")){

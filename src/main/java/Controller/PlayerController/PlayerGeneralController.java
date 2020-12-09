@@ -2,6 +2,7 @@ package Controller.PlayerController;
 
 import Controller.Exception.Plato.*;
 import Model.DataBase.DataBase;
+import Model.DotsAndBoxesModel.Details;
 import Model.PlatoModel.Player;
 
 import java.io.File;
@@ -167,5 +168,13 @@ public class PlayerGeneralController {
         ViewPlatoBotMessages.viewBotMessages();
     }
 
+    /***********************************************Details***********************************************/
+
+    public String dotsDetails(){
+        return Details.getDetails();
+    }
+    public String battleDetails(){
+        return Model.BattleSeaModel.Details.getDetails();
+    }
 
 }

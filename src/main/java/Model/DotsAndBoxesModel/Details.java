@@ -1,6 +1,11 @@
 package Model.DotsAndBoxesModel;
 
 public class Details {
-    String details;
+    private static String details ="";
+
+    public static String getDetails() {
+        return details;
+    }
+
 
 }

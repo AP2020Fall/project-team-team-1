@@ -59,8 +59,7 @@ public class BattleShipMenu extends Menu {
 
             @Override
             public void execute() {
-                //todo fill this fucking shit
-                battleSeaController.details();
+                System.out.println(playerGeneralController.battleDetails());
                 while (true) {
                     String next = scanner.nextLine();
                     if (next.equalsIgnoreCase("back")) {
