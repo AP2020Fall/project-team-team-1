@@ -470,8 +470,12 @@ public class Run {
             throw new BoomCheckException("Select "+ xInput + "," + yInput + " has been already boomed");
         }
         player2.getPlayerBooms().add(x + " " + y);
-        if (x>9 || y>9)
-            throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+        if (x>9 || y>9){
+            if (x<=0 || y<=0){
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+            }
+        }
+
 
         char namee = game.getFirstPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
 
@@ -528,8 +532,11 @@ public class Run {
             throw new BoomCheckException("Select "+ xInput + "," + yInput + " has been already boomed");
         }
         player1.getPlayerBooms().add(x + " " + y);
-        if (x>9 || y>9)
-            throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+        if (x>9 || y>9){
+            if (x<=0 || y<=0){
+                throw new CorrectCoordinateForShipException("Coordinates must be inside the table");
+            }
+        }
 
         char namee = game.getSecondPlayerOwnBoard().getGameBoard()[x][y].charAt(0);
 
