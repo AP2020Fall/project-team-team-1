@@ -1,8 +1,7 @@
 package Controller.AdminController;
 
-import Controller.Exception.ExistPlayerException;
+import Controller.Exception.Plato.ExistPlayerException;
 import Controller.PlayerController.FindPlayerByInfo;
-import Controller.PlayerController.PlayerInfo;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 import org.junit.jupiter.api.Test;

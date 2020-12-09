@@ -1,4 +1,4 @@
-package Controller.Exception;
+package Controller.Exception.Plato;
 
 public class StartDatesException extends Exception{
     public StartDatesException(String message) {

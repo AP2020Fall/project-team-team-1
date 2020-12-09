@@ -1,7 +1,9 @@
 package Controller.PlayerController;
 
-import Controller.Exception.*;
 import static org.junit.jupiter.api.Assertions.*;
+
+import Controller.Exception.Plato.ExistFavoriteException;
+import Controller.Exception.Plato.InvalidGameNameException;
 import Model.PlatoModel.Player;
 import org.junit.Assert;
 import org.junit.Test;

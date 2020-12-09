@@ -1,10 +1,9 @@
 package Controller.AdminController;
 
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
 
 import java.io.File;
 import java.io.IOException;

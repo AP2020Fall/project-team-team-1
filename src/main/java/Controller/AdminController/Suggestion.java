@@ -1,7 +1,7 @@
 package Controller.AdminController;
 
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.ExistSuggestionException;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.ExistSuggestionException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.Player;
 

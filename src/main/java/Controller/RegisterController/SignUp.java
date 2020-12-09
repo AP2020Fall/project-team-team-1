@@ -2,7 +2,7 @@ package Controller.RegisterController;
 
 
 import Controller.CompetencyController.Existence;
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
 import java.util.Random;

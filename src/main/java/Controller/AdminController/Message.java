@@ -1,10 +1,7 @@
 package Controller.AdminController;
 
 
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.NotNullMessageException;
-import Controller.PlayerController.FindPlayerByInfo;
-import Model.PlatoModel.Player;
+import Controller.Exception.Plato.NotNullMessageException;
 
 public class Message {
 

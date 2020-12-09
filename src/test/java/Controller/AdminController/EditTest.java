@@ -1,6 +1,6 @@
 package Controller.AdminController;
 
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Admin;
 import junit.framework.TestCase;
 

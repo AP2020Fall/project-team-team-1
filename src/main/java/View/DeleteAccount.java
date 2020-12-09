@@ -1,14 +1,12 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.StrongerPasswordException;
-import Controller.Exception.WrongPasswordException;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.StrongerPasswordException;
+import Controller.Exception.Plato.WrongPasswordException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DeleteAccount extends Menu {
     public DeleteAccount(Menu parentMenu) {

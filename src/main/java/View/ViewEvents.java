@@ -1,9 +1,9 @@
 package View;
 
-import Controller.Exception.ExistEventException;
-import Controller.Exception.InvalidDateException;
-import Controller.Exception.InvalidFieldException;
-import Controller.Exception.StartDatesException;
+import Controller.Exception.Plato.ExistEventException;
+import Controller.Exception.Plato.InvalidDateException;
+import Controller.Exception.Plato.InvalidFieldException;
+import Controller.Exception.Plato.StartDatesException;
 
 import java.io.IOException;
 import java.util.ArrayList;

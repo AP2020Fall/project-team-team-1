@@ -1,6 +1,6 @@
 package View;
 
-import Controller.Exception.ExistSuggestionException;
+import Controller.Exception.Plato.ExistSuggestionException;
 
 import java.util.HashMap;
 

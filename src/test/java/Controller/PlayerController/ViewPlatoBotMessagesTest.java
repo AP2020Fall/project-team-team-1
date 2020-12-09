@@ -1,6 +1,6 @@
 package Controller.PlayerController;
 
-import Controller.Exception.ExistPlatoMessageException;
+import Controller.Exception.Plato.ExistPlatoMessageException;
 import Model.PlatoModel.Player;
 import junit.framework.TestCase;
 

@@ -1,8 +1,8 @@
 package Controller.PlayerController;
 
-import Controller.Exception.AcceptAndDeclineFriendException;
-import Controller.Exception.ExistFriendException;
-import Controller.Exception.ExistPlayerException;
+import Controller.Exception.Plato.AcceptAndDeclineFriendException;
+import Controller.Exception.Plato.ExistFriendException;
+import Controller.Exception.Plato.ExistPlayerException;
 import Model.PlatoModel.Player;
 
 public class Friend {

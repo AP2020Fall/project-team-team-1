@@ -1,8 +1,8 @@
 package Controller.PlayerController;
 
 import Controller.CompetencyController.Existence;
-import Controller.Exception.ExistFavoriteException;
-import Controller.Exception.InvalidGameNameException;
+import Controller.Exception.Plato.ExistFavoriteException;
+import Controller.Exception.Plato.InvalidGameNameException;
 import Model.PlatoModel.Player;
 
 public class FavoriteGames {

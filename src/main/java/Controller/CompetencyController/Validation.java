@@ -1,6 +1,6 @@
 package Controller.CompetencyController;
 
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

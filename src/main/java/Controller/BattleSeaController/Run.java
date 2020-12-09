@@ -4,7 +4,7 @@ import Model.BattleSeaModel.Board;
 import Model.BattleSeaModel.Coordinate.Coordinate;
 import Model.BattleSeaModel.Coordinate.Direction;
 import Model.BattleSeaModel.Ships.Ship;
-import Controller.Exception.BattleShipWinner;
+import Controller.Exception.BattleShip.BattleShipWinner;
 
 import java.util.Random;
 

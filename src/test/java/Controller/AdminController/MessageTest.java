@@ -1,7 +1,7 @@
 package Controller.AdminController;
 
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.NotNullMessageException;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.NotNullMessageException;
 import Model.PlatoModel.Player;
 import org.junit.jupiter.api.Test;
 

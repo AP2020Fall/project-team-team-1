@@ -1,8 +1,7 @@
 package Controller.PlayerController;
 
-import Controller.Exception.ExistPlayerException;
+import Controller.Exception.Plato.ExistPlayerException;
 import Model.PlatoModel.Player;
-import Model.PlatoModel.PlayerLog;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

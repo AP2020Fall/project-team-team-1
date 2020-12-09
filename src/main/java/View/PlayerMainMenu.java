@@ -1,6 +1,9 @@
 package View;
 
-import Controller.Exception.*;
+import Controller.Exception.Plato.ExistEventException;
+import Controller.Exception.Plato.ExistFavoriteException;
+import Controller.Exception.Plato.ExistFriendException;
+import Controller.Exception.Plato.ExistPlayerException;
 
 import java.io.IOException;
 import java.util.HashMap;

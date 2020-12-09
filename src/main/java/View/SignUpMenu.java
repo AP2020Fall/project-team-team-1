@@ -1,9 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.*;
-import Controller.RegisterController.SignUp;
-import org.junit.experimental.theories.suppliers.TestedOn;
+import Controller.Exception.Plato.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

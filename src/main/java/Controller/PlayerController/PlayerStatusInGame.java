@@ -1,6 +1,6 @@
 package Controller.PlayerController;
 
-import Controller.Exception.InvalidGameNameException;
+import Controller.Exception.Plato.InvalidGameNameException;
 import Model.PlatoModel.Player;
 
 import java.util.*;

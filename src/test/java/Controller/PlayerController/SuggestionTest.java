@@ -1,9 +1,8 @@
 package Controller.PlayerController;
 
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.ExistSuggestionException;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.ExistSuggestionException;
 import Model.PlatoModel.Player;
-import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

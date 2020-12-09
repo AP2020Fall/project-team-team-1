@@ -2,7 +2,7 @@ package Controller.PlayerController;
 
 import Controller.AdminController.Event;
 import Controller.CompetencyController.Existence;
-import Controller.Exception.ExistEventException;
+import Controller.Exception.Plato.ExistEventException;
 
 public class JoinEvent {
 

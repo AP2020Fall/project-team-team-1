@@ -1,8 +1,8 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.InvalidGameNameException;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.InvalidGameNameException;
 
 import java.util.HashMap;
 

@@ -1,9 +1,9 @@
 package Controller.RegisterController;
 
 import Controller.CompetencyController.Existence;
-import Controller.Exception.ExistAdminException;
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.WrongPasswordException;
+import Controller.Exception.Plato.ExistAdminException;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.WrongPasswordException;
 import Model.PlatoModel.Admin;
 
 public class LogIn {

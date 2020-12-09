@@ -3,7 +3,7 @@ package Controller.BattleSeaController;
 import Model.BattleSeaModel.Board;
 import Model.BattleSeaModel.Coordinate.Direction;
 import Model.BattleSeaModel.Ships.Ship;
-import Controller.Exception.BattleShipWinner;
+import Controller.Exception.BattleShip.BattleShipWinner;
 
 
 public class BattleSeaController {

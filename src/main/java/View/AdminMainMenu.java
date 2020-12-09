@@ -1,12 +1,11 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class AdminMainMenu extends Menu {
     String username;

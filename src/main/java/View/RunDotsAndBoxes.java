@@ -1,14 +1,14 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
-import Controller.Exception.ExistPlayerException;
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.WrongPasswordException;
+import Controller.Exception.Plato.ExistPlayerException;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.WrongPasswordException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class RunDotsAndBoxes extends Menu {
     private static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
@@ -141,6 +141,8 @@ public class RunDotsAndBoxes extends Menu {
                 System.out.println(notEmptyString.getMessage());
             } catch (WrongFormatInDots wrongFormatInDots) {
                 System.out.println(wrongFormatInDots.getMessage());
+            } catch (ExistLineException e) {
+                System.out.println(e.getMessage());
             }
         }
 

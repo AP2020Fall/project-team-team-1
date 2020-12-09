@@ -1,5 +1,6 @@
 package Controller.DotsAndBoxesController;
 
+import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Model.DotsAndBoxesModel.*;
@@ -95,7 +96,7 @@ public class DotsAndBoxesController {
         return difference > gameBoard.boxes.size() / 2 || bluePoints > gameBoard.boxes.size() / 2 || redPoints > gameBoard.boxes.size() / 2 || moves == 112;
     }
 
-    public void startDotsAndBoxes (Scanner scanner) throws NotEmptyString, WrongFormatInDots {
+    public void startDotsAndBoxes (Scanner scanner) throws NotEmptyString, WrongFormatInDots, ExistLineException {
 //        GameBoard gameBoard = new GameBoard(8,8);
         while (!isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
             System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
@@ -111,7 +112,7 @@ public class DotsAndBoxesController {
             String[] firstDot = dots[0].split("-");
             String[] secondDot = dots[1].split("-");
             if (getLine(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])).hasOwner()){
-
+                throw new ExistLineException("This line is already taken, Try again!");
             }
             move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
         }

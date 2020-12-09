@@ -2,8 +2,7 @@ package Controller.PlayerController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
-import Controller.Exception.*;
-import Model.PlatoModel.Admin;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Player;
 
 public class Edit {

@@ -1,9 +1,6 @@
 package Controller.PlayerController;
 
-import Controller.AdminController.Suggestion;
-import Controller.Exception.ExistPlatoMessageException;
 import Model.PlatoModel.Message;
-import Model.PlatoModel.Player;
 
 public class ViewPlatoBotMessages {
 

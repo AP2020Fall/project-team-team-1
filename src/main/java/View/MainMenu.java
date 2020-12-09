@@ -1,10 +1,5 @@
 package View;
 
-import Controller.CompetencyController.Validation;
-import Controller.Exception.InvalidPasswordException;
-import Controller.Exception.InvalidUserNameException;
-import Controller.RegisterController.Delete;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -1,7 +1,7 @@
 package View;
 
-import Controller.Exception.ExistFavoriteException;
-import Controller.Exception.InvalidGameNameException;
+import Controller.Exception.Plato.ExistFavoriteException;
+import Controller.Exception.Plato.InvalidGameNameException;
 
 import java.io.IOException;
 import java.util.HashMap;

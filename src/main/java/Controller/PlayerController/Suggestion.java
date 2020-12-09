@@ -1,6 +1,6 @@
 package Controller.PlayerController;
 
-import Controller.Exception.ExistSuggestionException;
+import Controller.Exception.Plato.ExistSuggestionException;
 import Model.PlatoModel.Player;
 
 public class Suggestion {

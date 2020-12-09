@@ -1,7 +1,10 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.*;
+import Controller.Exception.Plato.ExistAdminException;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.StrongerPasswordException;
+import Controller.Exception.Plato.WrongPasswordException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

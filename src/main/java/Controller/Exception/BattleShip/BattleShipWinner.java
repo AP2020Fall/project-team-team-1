@@ -1,4 +1,4 @@
-package Controller.Exception;
+package Controller.Exception.BattleShip;
 
 public class BattleShipWinner extends Exception {
     String playerName;

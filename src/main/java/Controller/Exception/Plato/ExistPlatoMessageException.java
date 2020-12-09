@@ -1,4 +1,4 @@
-package Controller.Exception;
+package Controller.Exception.Plato;
 
 public class ExistPlatoMessageException extends Exception{
     public ExistPlatoMessageException(String message) {

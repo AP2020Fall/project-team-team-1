@@ -1,6 +1,6 @@
 //package Controller.RegisterController;
 //
-//import Controller.Exception.InvalidUserNameException;
+//import Controller.Exception.Plato.InvalidUserNameException;
 //
 //import static org.junit.jupiter.api.Assertions.*;
 //import java.lang.Exception.*;

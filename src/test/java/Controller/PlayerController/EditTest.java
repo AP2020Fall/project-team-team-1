@@ -1,9 +1,7 @@
 package Controller.PlayerController;
 
-import Controller.Exception.*;
-import Model.PlatoModel.Admin;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Player;
-import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;

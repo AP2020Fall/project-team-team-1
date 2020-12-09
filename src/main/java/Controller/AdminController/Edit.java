@@ -2,7 +2,7 @@ package Controller.AdminController;
 
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Admin;
 
 public class Edit {

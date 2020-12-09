@@ -1,12 +1,9 @@
 package View;
 
 import Controller.BattleSeaController.BattleSeaController;
-import Controller.BattleSeaController.BattleSeaPlayer;
-import Controller.BattleSeaController.GameBattleSea;
-import Controller.BattleSeaController.Run;
-import Controller.Exception.BattleShipWinner;
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.WrongPasswordException;
+import Controller.Exception.BattleShip.BattleShipWinner;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.WrongPasswordException;
 import Controller.PlayerController.Game;
 
 import java.util.ArrayList;

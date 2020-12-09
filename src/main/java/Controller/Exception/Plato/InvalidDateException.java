@@ -1,4 +1,4 @@
-package Controller.Exception;
+package Controller.Exception.Plato;
 
 public class InvalidDateException extends Exception{
     public InvalidDateException(String message) {

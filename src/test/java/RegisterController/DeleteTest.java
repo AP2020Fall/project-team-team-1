@@ -1,8 +1,7 @@
 package RegisterController;
 
-import Controller.Exception.InvalidUserNameException;
-import Controller.Exception.WrongPasswordException;
-import Controller.PlayerController.FindPlayerByInfo;
+import Controller.Exception.Plato.InvalidUserNameException;
+import Controller.Exception.Plato.WrongPasswordException;
 import Controller.RegisterController.Delete;
 import Model.PlatoModel.Player;
 import Model.PlatoModel.User;

@@ -1,6 +1,6 @@
 package Controller.CompetencyController;
 
-import Controller.Exception.*;
+import Controller.Exception.Plato.*;
 import junit.framework.TestCase;
 
 public class ValidationTest extends TestCase {
