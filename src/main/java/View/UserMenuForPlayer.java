@@ -48,7 +48,12 @@ public class UserMenuForPlayer extends Menu {
         return new Menu("Game History",this) {
             @Override
             public void execute() {
-                playerGeneralController.showHistory(username);
+                try {
+                    playerGeneralController.showHistory(username);
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getMessage());
+                    this.parentMenu.run();
+                }
                 while (true){
                     System.out.println("Enter back to get back to last menu! ");
                     String nextCommand = scanner.nextLine();

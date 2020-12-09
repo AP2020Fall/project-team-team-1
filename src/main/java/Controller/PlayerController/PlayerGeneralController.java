@@ -109,7 +109,7 @@ public class PlayerGeneralController {
         PlayerInfo.showUserGamesStatistics(userName);
     }
 
-    public void showHistory(String userName) {
+    public void showHistory(String userName) throws ExistPlayerException {
         PlayerInfo.showHistory(userName);
     }
 
