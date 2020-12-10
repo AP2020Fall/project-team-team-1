@@ -65,7 +65,7 @@ public class Event {
 
     }
 
-    public void removeEventByAdminFromView(String eventID) throws ExistEventException {
+    public static void removeEventByAdminFromView(String eventID) throws ExistEventException {
         removeEvent(eventID);
         //Model.PlatoModel.Event.saveInJsonFile();
 

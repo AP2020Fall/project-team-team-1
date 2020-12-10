@@ -48,8 +48,14 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(),playerFile);
         DataBase.save(Model.PlatoModel.Event.getEvents(),eventFile);
     }
+    public void removeEventByAdminFromView(String eventID) throws ExistEventException, IOException {
+        Event.removeEventByAdminFromView(eventID);
+        DataBase.save(Admin.getAdmins(),adminFile);
+        DataBase.save(Player.getPlayers(),playerFile);
+        DataBase.save(Model.PlatoModel.Event.getEvents(),eventFile);
+    }
 
-    /***********************************************MESSAGE***********************************************/
+        /***********************************************MESSAGE***********************************************/
     public void sendMassageString (String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
         //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
