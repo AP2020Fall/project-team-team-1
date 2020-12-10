@@ -26,7 +26,7 @@ public class JoinEvent {
         Event event = null;
         event = Controller.AdminController.Event.eventFinderByEventID(eventId);
         if (event == null){
-            //todo Exception
+            throw new ExistEventException("There is no event for show");
         }
         return event.getGameName();
     }
