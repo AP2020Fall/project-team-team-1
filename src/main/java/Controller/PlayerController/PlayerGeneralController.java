@@ -27,13 +27,13 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************Favorite***********************************************/
     public void addGameToFavoritesGames(String userName, String gameName) throws ExistFavoriteException, InvalidGameNameException, IOException {
         FavoriteGames.addGameToFavoritesGames(userName, gameName);
         DataBase.save(Player.players,playerFile);
     }
 
-    public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException, IOException {
+    public void RemoveFavoritesGames(String userName, String gameName) throws ExistFavoriteException, IOException,InvalidGameNameException {
         FavoriteGames.removeFavoritesGames(userName, gameName);
         DataBase.save(Player.players,playerFile);
     }
@@ -44,7 +44,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************FIND***********************************************/
     public Player findByUserName(String userName) {
         return FindPlayerByInfo.findByUserName(userName);
     }
@@ -58,7 +58,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************FRIEND***********************************************/
     public void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException, IOException {
         Friend.addFriends(username, friendUsername);
         DataBase.save(Player.players,playerFile);
@@ -92,13 +92,13 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************PLAY***********************************************/
     public void playEvent(String username , String eventID) {
 
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************SHOW INFO***********************************************/
     public void showBasicInformation(String userName) throws ExistPlayerException {
         PlayerInfo.showBasicInformation(userName);
     }
@@ -133,7 +133,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************SHOW LOG***********************************************/
     public void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
@@ -155,7 +155,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************SCORE***********************************************/
     public void findGameForRun(String playerUserName, String gameName, String score) {
         Game.findGameForRun(playerUserName, gameName, score);
     }
@@ -165,7 +165,7 @@ public class PlayerGeneralController {
 
     }
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************SUGGESTION***********************************************/
     public void showSuggestion(String username) throws ExistSuggestionException {
         Suggestion.showSuggestion(username);
     }
@@ -175,7 +175,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************EDIT***********************************************/
+    /***********************************************MESSAGE***********************************************/
     public void viewBotMessages() {
         ViewPlatoBotMessages.viewBotMessages();
     }

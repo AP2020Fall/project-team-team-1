@@ -19,8 +19,9 @@ public class BattleShipMenu extends Menu {
         submenus.put(4, showWinsCount());
         submenus.put(5, showPlayedCount());
         submenus.put(6, addToFavorites());
-        submenus.put(7, showPoints());
-        submenus.put(8, new RunBattleShip(username, null, this));
+        submenus.put(7,removeFavorites());
+        submenus.put(8, showPoints());
+        submenus.put(9, new RunBattleShip(username, null, this));
         this.setSubmenus(submenus);
     }
 
@@ -164,6 +165,35 @@ public class BattleShipMenu extends Menu {
                     System.out.println("battleship added to Your Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName() + " " + e.getMessage());
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName() + " " + e.getMessage());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                while (true) {
+                    String next = scanner.nextLine();
+                    if (next.equalsIgnoreCase("back")) {
+                        this.parentMenu.run();
+                        break;
+                    }
+                }
+            }
+        };
+    }
+    private Menu removeFavorites() {
+        return new Menu("remove from favorites", this) {
+            @Override
+            public void show() {
+                System.out.println("Enter back to last Menu");
+            }
+
+            @Override
+            public void execute() {
+                try {
+                    playerGeneralController.RemoveFavoritesGames(username, "battleship");
+                    System.out.println("battleship removed from Favorites Successfully!");
+                } catch (ExistFavoriteException e) {
+                    System.out.println(e.getGameName() + " : " + e.getMessage());
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + " " + e.getMessage());
                 } catch (IOException e) {

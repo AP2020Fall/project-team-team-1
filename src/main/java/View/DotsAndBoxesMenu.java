@@ -182,8 +182,10 @@ public class DotsAndBoxesMenu extends Menu {
                     playerGeneralController.RemoveFavoritesGames(username,"DotsAndBoxes");
                     System.out.println("DotsAndBoxes removed from Your Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
-                    System.out.println(e.getGameName()+" "+e.getMessage());
+                    System.out.println(e.getGameName()+" : "+e.getMessage());
                 } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                } catch (InvalidGameNameException e) {
                     System.out.println(e.getMessage());
                 }
                 while (true){
