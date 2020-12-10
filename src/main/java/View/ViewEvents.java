@@ -53,9 +53,11 @@ public class ViewEvents extends Menu {
             @Override
             public void execute() {
                 try {
-                    adminEventController.removeEventByAdminFromView(getEventID());
+                    adminGeneralController.removeEventByAdminFromView(getEventID());
                     this.parentMenu.run();
                 } catch (ExistEventException e) {
+                    System.out.println(e.getMessage());
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
 
