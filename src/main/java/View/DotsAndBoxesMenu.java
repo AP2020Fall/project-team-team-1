@@ -18,8 +18,9 @@ public class DotsAndBoxesMenu extends Menu {
         submenus.put(4,showWinsCount());
         submenus.put(5,showPlayedCount());
         submenus.put(6,addToFavorites());
-        submenus.put(7,showPoints());
-        submenus.put(8,new RunDotsAndBoxes(username,null,this));
+        submenus.put(7,removeFavorites());
+        submenus.put(8,showPoints());
+        submenus.put(9,new RunDotsAndBoxes(username,null,this));
         this.setSubmenus(submenus);
     }
     private Menu showScoreBoard(){
@@ -154,6 +155,33 @@ public class DotsAndBoxesMenu extends Menu {
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName()+" "+e.getMessage());
                 } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName()+" "+e.getMessage());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                while (true){
+                    String next = scanner.nextLine();
+                    if (next.equalsIgnoreCase("back")){
+                        this.parentMenu.run();
+                        break;
+                    }
+                }
+            }
+        };
+    }
+    private Menu removeFavorites(){
+        return new Menu("Remove from favorites",this) {
+            @Override
+            public void show() {
+                System.out.println("Enter back to last Menu");
+            }
+
+            @Override
+            public void execute() {
+                try {
+                    playerGeneralController.RemoveFavoritesGames(username,"DotsAndBoxes");
+                    System.out.println("DotsAndBoxes removed from Your Favorites Successfully!");
+                } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName()+" "+e.getMessage());
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
