@@ -189,17 +189,23 @@ public class PlayerMainMenu extends Menu{
             @Override
             public void execute() {
                 String eventID = scanner.nextLine();
-                playerGeneralController.joinEvent(username,eventID);
-                System.out.print(Color.GREEN);
-                System.out.println("Join Event " + eventID +" Successfully!");
-                System.out.print(Color.RESET);
-                System.out.println("if you want to join another event type continue otherwise Enter back!");
-                String nextCommand = scanner.nextLine();
-                if (nextCommand.equalsIgnoreCase("continue")){
-                    this.run();
-                }else if (nextCommand.equalsIgnoreCase("back")){
+                try {
+                    playerGeneralController.joinEvent(username,eventID);
+                    System.out.print(Color.GREEN);
+                    System.out.println("Join Event " + eventID +" Successfully!");
+                    System.out.print(Color.RESET);
+                    System.out.println("if you want to join another event type continue otherwise Enter back!");
+                    String nextCommand = scanner.nextLine();
+                    if (nextCommand.equalsIgnoreCase("continue")){
+                        this.run();
+                    }else if (nextCommand.equalsIgnoreCase("back")){
+                        this.parentMenu.run();
+                    }
+                } catch (ExistEventException e) {
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
+
             }
         };
     }
