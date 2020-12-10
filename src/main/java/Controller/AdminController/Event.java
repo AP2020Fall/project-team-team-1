@@ -21,7 +21,7 @@ public class Event {
             throw new StartDatesException("Start Date Must be before than End Date");
         }
 
-        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3])));
+        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3]), inputSpilt[4]));
 
 
     }
@@ -32,12 +32,12 @@ public class Event {
             throw new ExistEventException("There is no Event for show!");
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
 //            if (event.getStartDate().isBefore(LocalDate.now()) || event.getStartDate().equals(LocalDate.now()))
-            System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore());
+            System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore() + " Comment: " + event.getComment());
 
         }
     }
 
-    public static void editEvent(String input) throws InvalidDateException, ExistEventException, InvalidFieldException, StartDatesException {
+    public static void editEvent(String input) throws InvalidDateException, ExistEventException, InvalidFieldException, StartDatesException, NotNullMessageException, InvalidGameNameException {
         eventDateChecker();
         String[] inputSpilt = input.split("\\s");
         Model.PlatoModel.Event event = eventFinderByEventID(inputSpilt[0]);
@@ -58,6 +58,8 @@ public class Event {
             editEndDate(event, inputSpilt[2]);
         } else if (inputSpilt[1].trim().equalsIgnoreCase("Score")) {
             editScore(event, inputSpilt[2]);
+        } else if (inputSpilt[1].trim().equalsIgnoreCase("Comment")) {
+            editComment(event, inputSpilt[4]);
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
@@ -111,16 +113,17 @@ public class Event {
 
     /****************************************************EditMethods****************************************************/
 
-    protected static void editGameName(Model.PlatoModel.Event event, String input) {
-        try {
-            Validation.gameNameIsValid(input);
-            event.setGameName(input);
-        } catch (InvalidGameNameException e) {
-            System.out.println(e.getGameName() + e.getMessage());
-        }
-
-
+    protected static void editGameName(Model.PlatoModel.Event event, String input) throws InvalidGameNameException {
+        Validation.gameNameIsValid(input);
+        event.setGameName(input);
     }
+
+    protected static void editComment(Model.PlatoModel.Event event, String input) throws NotNullMessageException {
+        if (input.isEmpty()) {
+            throw new NotNullMessageException("It is empty, Please enter a comment! ");
+        }
+    }
+
 
     protected static void editStartDate(Model.PlatoModel.Event event, String input) throws InvalidDateException, StartDatesException {
         boolean pass = true;

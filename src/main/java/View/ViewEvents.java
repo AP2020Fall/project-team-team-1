@@ -1,9 +1,6 @@
 package View;
 
-import Controller.Exception.Plato.ExistEventException;
-import Controller.Exception.Plato.InvalidDateException;
-import Controller.Exception.Plato.InvalidFieldException;
-import Controller.Exception.Plato.StartDatesException;
+import Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,11 +28,7 @@ public class ViewEvents extends Menu {
                 getEditEventInfo(editInfo);
                 try {
                     adminGeneralController.editEvent(arrayListToString(editInfo));
-                } catch (InvalidDateException e) {
-                    System.out.println(e.getMessage());
-                } catch (InvalidFieldException | ExistEventException | StartDatesException e) {
-                    System.out.println(e.getMessage());
-                } catch (IOException e) {
+                } catch (InvalidDateException | NotNullMessageException | InvalidGameNameException | IOException | InvalidFieldException | ExistEventException | StartDatesException e) {
                     System.out.println(e.getMessage());
                 }
                 this.parentMenu.run();

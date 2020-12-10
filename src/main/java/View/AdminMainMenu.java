@@ -18,9 +18,9 @@ public class AdminMainMenu extends Menu {
         submenus.put(3, addSuggestion());
         submenus.put(4, viewSuggestion());
 //        submenus.put(5,addDetail());
-        submenus.put(5,editDetails());
+        submenus.put(5, editDetails());
         submenus.put(6, viewUsers());
-        submenus.put(7,sendMessageAsPlatoBot());
+        submenus.put(7, sendMessageAsPlatoBot());
         submenus.put(8, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
@@ -92,6 +92,10 @@ public class AdminMainMenu extends Menu {
         System.out.println("Please Enter The Score Of This Event : ");
         String score = scanner.nextLine();
         arrayList.add(score);
+
+        System.out.println("Please Enter The Comment For This Event : ");
+        String comment = scanner.nextLine();
+        arrayList.add(comment);
 
 
     }
@@ -168,7 +172,7 @@ public class AdminMainMenu extends Menu {
                     }
                 } else if (nextStep.equalsIgnoreCase("back")) {
                     this.parentMenu.run();
-                }else this.run();
+                } else this.run();
 
             }
         };
@@ -196,9 +200,9 @@ public class AdminMainMenu extends Menu {
                 }
                 System.out.println("Enter Continue or Back");
                 String nextCommand = scanner.nextLine();
-                if (nextCommand.equalsIgnoreCase("back")){
+                if (nextCommand.equalsIgnoreCase("back")) {
                     this.parentMenu.run();
-                }else if (nextCommand.equalsIgnoreCase("continue")){
+                } else if (nextCommand.equalsIgnoreCase("continue")) {
                     try {
                         adminGeneralController.showUsersByUserName(getUsernameInformation());
                     } catch (ExistPlayerException e) {
@@ -209,7 +213,7 @@ public class AdminMainMenu extends Menu {
                     if (scanner.nextLine().equalsIgnoreCase("back")) {
                         this.parentMenu.run();
                     }
-                }else this.run();
+                } else this.run();
             }
         };
     }
@@ -218,8 +222,9 @@ public class AdminMainMenu extends Menu {
         System.out.println("Enter the User name : ");
         return scanner.nextLine();
     }
-    private Menu sendMessageAsPlatoBot(){
-        return new Menu("Send Message" , this) {
+
+    private Menu sendMessageAsPlatoBot() {
+        return new Menu("Send Message", this) {
             @Override
             public void show() {
             }
@@ -239,8 +244,9 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private Menu addDetail(){
-        return new Menu("Add Details",this) {
+
+    private Menu addDetail() {
+        return new Menu("Add Details", this) {
             @Override
             public void show() {
                 System.out.println("Which Game Do You Want to Add Details to? DotsAndBoxes/BattleShips");
@@ -253,16 +259,18 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private String getText(){
-        if (this.getName().equalsIgnoreCase("Add Details")){
+
+    private String getText() {
+        if (this.getName().equalsIgnoreCase("Add Details")) {
             System.out.println("Please Enter Your Detail For This Game : ");
-        }else if (this.getName().equalsIgnoreCase("Send Message")){
+        } else if (this.getName().equalsIgnoreCase("Send Message")) {
             System.out.println("Please Enter Your Message : ");
         }
         return scanner.nextLine();
     }
-    private Menu editDetails(){
-        return new Menu("Edit Details",this) {
+
+    private Menu editDetails() {
+        return new Menu("Edit Details", this) {
             @Override
             public void show() {
                 System.out.println("Which Game Do You Want to Edit? ");
@@ -271,17 +279,17 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 String gameName = scanner.nextLine();
-                if (gameName.equalsIgnoreCase("battleShip")){
+                if (gameName.equalsIgnoreCase("battleShip")) {
                     editBattleShipDetails().run();
-                }else if (gameName.equalsIgnoreCase("dotsAndBoxes")){
+                } else if (gameName.equalsIgnoreCase("dotsAndBoxes")) {
                     editDotsAndBoxesDetails().run();
                 }
             }
         };
     }
 
-    private Menu editBattleShipDetails(){
-        return new Menu("Edit Battleship Details",this) {
+    private Menu editBattleShipDetails() {
+        return new Menu("Edit Battleship Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.battleDetails());
@@ -299,8 +307,9 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private Menu editDotsAndBoxesDetails(){
-        return new Menu("Edit DotsAndBoxes Details",this) {
+
+    private Menu editDotsAndBoxesDetails() {
+        return new Menu("Edit DotsAndBoxes Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.dotsDetails());

@@ -92,7 +92,7 @@ public class PlayerGeneralController {
     }
 
 
-    /***********************************************PLAY***********************************************/
+    /***********************************************EVENT***********************************************/
     public void joinEvent(String username , String eventID) throws ExistEventException {
         JoinEvent.joinEvent(username,eventID);
     }

@@ -42,7 +42,7 @@ public class AdminGeneralController {
         Event.showEvent();
     }
 
-    public void editEvent(String input) throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException, IOException {
+    public void editEvent(String input) throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException, IOException, NotNullMessageException, InvalidGameNameException {
         Event.editEvent(input);
         DataBase.save(Admin.getAdmins(),adminFile);
         DataBase.save(Player.getPlayers(),playerFile);

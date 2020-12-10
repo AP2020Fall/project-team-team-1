@@ -35,7 +35,7 @@ public class JoinEvent {
             for (String playerEvent : event.getPlayersInThisEvent()) {
                 if (playerEvent.equals(username)){
                     if (findActivity(event.getStartDate())){
-                        System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore());
+                        System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore() + " Comment: " + event.getComment());
                     }
                 }
             }

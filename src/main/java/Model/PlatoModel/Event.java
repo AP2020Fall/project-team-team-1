@@ -23,16 +23,25 @@ public class Event {
     private LocalDate endDate;
     private long score;
     private int eventID;
+    private String comment;
 
-    public Event(String gameName, LocalDate startDate, LocalDate endDate, long score) {
+    public Event(String gameName, LocalDate startDate, LocalDate endDate, long score ,String comment) {
         this.eventID = makeEventID();
         this.gameName = gameName;
         this.startDate = startDate;
         this.endDate = endDate;
         this.score = score;
+        this.comment = comment;
         playersInThisEvent = new ArrayList<String>();
     }
 
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public static ArrayList<Event> getEvents() {
         return events;
@@ -148,6 +157,7 @@ public class Event {
                 ", endDate=" + endDate +
                 ", score=" + score +
                 ", eventID=" + eventID +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

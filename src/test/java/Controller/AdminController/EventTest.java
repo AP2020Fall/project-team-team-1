@@ -1,9 +1,6 @@
 package Controller.AdminController;
 
-import Controller.Exception.Plato.ExistEventException;
-import Controller.Exception.Plato.InvalidDateException;
-import Controller.Exception.Plato.InvalidFieldException;
-import Controller.Exception.Plato.StartDatesException;
+import Controller.Exception.Plato.*;
 import junit.framework.TestCase;
 
 import java.time.LocalDate;
@@ -18,14 +15,14 @@ public class EventTest extends TestCase {
     }
 
     public void testShowEvent() throws ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50,"salam ");
         Model.PlatoModel.Event.addNewEvent(event1);
         Event.showEvent();
         assertEquals(Model.PlatoModel.Event.events.size(),1);
     }
 
-    public void testEditEvent() throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-12-05"), LocalDate.parse("2022-12-05"), 50);
+    public void testEditEvent() throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException, NotNullMessageException, InvalidGameNameException {
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-12-05"), LocalDate.parse("2022-12-05"), 50,"salam");
         Model.PlatoModel.Event.addNewEvent(event1);
 
         String input1 = "1 StartDate 2020-12-05";
@@ -46,20 +43,20 @@ public class EventTest extends TestCase {
     }
 
     public void testRemoveEvent() throws ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50,"salam");
         Model.PlatoModel.Event.addNewEvent(event1);
         Event.removeEvent("1");
         assertEquals(Model.PlatoModel.Event.getEvents().size(), 0);
 
     }
     public void testEventFinderByEventID() throws ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50,"salam");
         Model.PlatoModel.Event.addNewEvent(event1);
         Event.eventFinderByEventID("1");
         assertEquals(Model.PlatoModel.Event.events.size(), 1);
     }
     public void testEventDateChecker() throws ExistEventException {
-        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50);
+        Model.PlatoModel.Event event1 = new Model.PlatoModel.Event("BattleSea", LocalDate.parse("2020-11-24"), LocalDate.parse("2020-11-26"), 50,"salam");
         Model.PlatoModel.Event.addNewEvent(event1);
         System.out.println(Model.PlatoModel.Event.events);
         Event.eventDateChecker();
