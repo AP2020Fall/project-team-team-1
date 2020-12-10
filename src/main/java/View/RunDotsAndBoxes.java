@@ -10,6 +10,7 @@ import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RunDotsAndBoxes extends Menu {
@@ -18,12 +19,22 @@ public class RunDotsAndBoxes extends Menu {
     private String Username2;
     private static DotsAndBoxesController dotsAndBoxesController;
     private Menu GamesMenu;
+    private int score ;
 
     public RunDotsAndBoxes(String username1, String username2,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
         super("Run DotsAndBoxes", parentMenu);
         this.Username1 = username1;
         this.Username2 = username2;
         RunDotsAndBoxes.dotsAndBoxesController =new DotsAndBoxesController();
+        this.score=10;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getUsername1() {
@@ -197,7 +208,8 @@ public class RunDotsAndBoxes extends Menu {
     }
     public void winnerAward(String winner , String loser){
         try {
-            playerGeneralController.giveScoreAndEditPlayerLog("dotsandboxes",winner,loser,10);
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",winner,loser,getScore());
+            playerGeneralController.historySaver(LocalDate.now(),winner,loser,"DotsAndBoxes");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

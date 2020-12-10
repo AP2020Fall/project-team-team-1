@@ -19,7 +19,8 @@ public class PlayerMainMenu extends Menu{
         submenus.put(6,new ViewAdminSuggestion(username,this));
         submenus.put(7,addFriend());
         submenus.put(8,joinEvent());
-        submenus.put(9,new UserMenuForPlayer(username,this));
+        submenus.put(9,new PlayEvent(username,this));
+        submenus.put(10,new UserMenuForPlayer(username,this));
         this.setSubmenus(submenus);
     }
     private Menu showLevel(){
@@ -188,7 +189,7 @@ public class PlayerMainMenu extends Menu{
             @Override
             public void execute() {
                 String eventID = scanner.nextLine();
-                playerGeneralController.playEvent(username,eventID);
+                playerGeneralController.joinEvent(username,eventID);
                 System.out.print(Color.GREEN);
                 System.out.println("Join Event " + eventID +" Successfully!");
                 System.out.print(Color.RESET);
