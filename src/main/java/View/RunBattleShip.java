@@ -26,6 +26,14 @@ public class RunBattleShip extends Menu {
         Username2 = username2;
     }
 
+    public String getUsername2() {
+        return Username2;
+    }
+
+    public String getUsername1() {
+        return Username1;
+    }
+
     @Override
     public void show() {
         System.out.println("Welcome to Battle Ship");
@@ -42,10 +50,26 @@ public class RunBattleShip extends Menu {
     private Menu temporaryLogin() {
         return new Menu("login", this) {
             @Override
+            public void show() {
+                System.out.println("Login As One Of These Players");
+                try {
+                    adminGeneralController.showAllUsers();
+                } catch (ExistPlayerException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
+                }
+            }
+
+            @Override
             public void execute() {
                 ArrayList<String> info = new ArrayList<>();
                 System.out.println("please Enter The Username ");
-                info.add(scanner.nextLine());
+                String username = scanner.nextLine();
+                if (username.equals(getUsername1())){
+                    System.out.println("You Cant Play This Game With YourSelf");
+                    this.run();
+                }else
+                    info.add(username);
                 System.out.println("Please Enter The password");
                 info.add(scanner.nextLine());
                 try {
