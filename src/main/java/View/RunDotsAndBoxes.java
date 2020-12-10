@@ -17,6 +17,7 @@ public class RunDotsAndBoxes extends Menu {
     private String Username1;
     private String Username2;
     private static DotsAndBoxesController dotsAndBoxesController;
+    private Menu GamesMenu;
 
     public RunDotsAndBoxes(String username1, String username2,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
         super("Run DotsAndBoxes", parentMenu);
@@ -151,7 +152,7 @@ public class RunDotsAndBoxes extends Menu {
             }
         }
         setUsername2(null);
-        this.parentMenu.run();
+        new DotsAndBoxesMenu(getUsername1(),GamesMenu).run();
     }
 
     private Menu temporaryLogin() {

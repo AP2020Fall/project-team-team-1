@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class DotsAndBoxesMenu extends Menu {
-    DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
+    DotsAndBoxesController dotsAndBoxesController;
     private String username;
     public DotsAndBoxesMenu(String username, Menu parentMenu) {
         super("DotsAndBoxes Menu", parentMenu);
+        this.dotsAndBoxesController = new DotsAndBoxesController();
         HashMap<Integer,Menu> submenus = new HashMap<>();
         this.username=username;
         submenus.put(1,showScoreBoard());
