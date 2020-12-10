@@ -21,7 +21,7 @@ public class UserMenuForAdmin extends Menu {
         return new Menu("logout",this) {
             @Override
             public void show() {
-                System.out.println("You have Log Out Successfully see you Soon Mate ");
+                System.out.println("You have Log Out Successfully see you Soon Boss ");
             }
 
             @Override

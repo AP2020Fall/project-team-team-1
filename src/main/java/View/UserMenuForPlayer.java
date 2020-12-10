@@ -106,6 +106,11 @@ public class UserMenuForPlayer extends Menu {
     private Menu logout(){
         return new Menu("logout",this) {
             @Override
+            public void show() {
+                System.out.println("See You Soon Mate ");
+            }
+
+            @Override
             public void execute() {
                 setUsername(null);
                 this.parentMenu.parentMenu.parentMenu.parentMenu.parentMenu.run();
