@@ -1,20 +1,25 @@
 package Controller.PlayerController;
 
-import Controller.AdminController.Event;
 import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.ExistEventException;
+import Model.PlatoModel.Event;
+import Model.PlatoModel.Player;
 
 import java.time.LocalDate;
 
 public class JoinEvent {
 
-    public static void playEvent(String userName, String gameName, String eventId) throws ExistEventException {
+    public static void joinEvent(String userName,String eventId) throws ExistEventException {
+        //Player player = FindPlayerByInfo.findByUserName(userName);
+
         if (!Existence.checkEventExistence(Integer.parseInt(eventId)))
             throw new ExistEventException("Can not join this event !,Make Suer about Event ID");
 
-            Model.PlatoModel.Event event = Event.eventFinderByEventID(eventId);
-            Game.findGameForRun(userName, gameName, String.valueOf(event.getScore()));
-
+        for (Event event : Event.events) {
+            if (event.getEventID() == Integer.parseInt(eventId)){
+                event.getPlayersInThisEvent().add(userName);
+            }
+        }
 
     }
     protected static void activeEvent(String username){

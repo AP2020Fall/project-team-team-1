@@ -93,11 +93,13 @@ public class PlayerGeneralController {
 
 
     /***********************************************PLAY***********************************************/
-    public void joinEvent(String username , String eventID) {
-
+    public void joinEvent(String username , String eventID) throws ExistEventException {
+        JoinEvent.joinEvent(username,eventID);
     }
 
-
+    public void activeEvent(String username){
+        JoinEvent.activeEvent(username);
+    }
     /***********************************************SHOW INFO***********************************************/
     public void showBasicInformation(String userName) throws ExistPlayerException {
         PlayerInfo.showBasicInformation(userName);
