@@ -13,14 +13,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class RunDotsAndBoxes extends Menu {
-    private static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
+//    private static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
     private String Username1;
     private String Username2;
+    private static DotsAndBoxesController dotsAndBoxesController;
 
-    public RunDotsAndBoxes(String username1, String username2, Menu parentMenu) {
+    public RunDotsAndBoxes(String username1, String username2,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
         super("Run DotsAndBoxes", parentMenu);
         this.Username1 = username1;
         this.Username2 = username2;
+        RunDotsAndBoxes.dotsAndBoxesController =new DotsAndBoxesController();
     }
 
     public String getUsername1() {
@@ -148,6 +150,7 @@ public class RunDotsAndBoxes extends Menu {
                 System.out.println(notEmptyString.getMessage());
             }
         }
+        setUsername2(null);
         this.parentMenu.run();
     }
 

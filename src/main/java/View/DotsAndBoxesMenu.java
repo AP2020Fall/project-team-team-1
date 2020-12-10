@@ -1,5 +1,6 @@
 package View;
 
+import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.Plato.ExistFavoriteException;
 import Controller.Exception.Plato.InvalidGameNameException;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class DotsAndBoxesMenu extends Menu {
+    DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
     private String username;
     public DotsAndBoxesMenu(String username, Menu parentMenu) {
         super("DotsAndBoxes Menu", parentMenu);
@@ -20,7 +22,7 @@ public class DotsAndBoxesMenu extends Menu {
         submenus.put(6,addToFavorites());
         submenus.put(7,removeFavorites());
         submenus.put(8,showPoints());
-        submenus.put(9,new RunDotsAndBoxes(username,null,this));
+        submenus.put(9,new RunDotsAndBoxes(username,null,dotsAndBoxesController ,this));
         this.setSubmenus(submenus);
     }
     private Menu showScoreBoard(){
