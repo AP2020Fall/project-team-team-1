@@ -100,7 +100,11 @@ public class PlayerGeneralController {
     public void activeEvent(String username){
         JoinEvent.activeEvent(username);
     }
-    /***********************************************SHOW INFO***********************************************/
+    public String eventGameName(String eventId) throws ExistEventException {
+
+        return JoinEvent.eventGameName(eventId);
+    }
+        /***********************************************SHOW INFO***********************************************/
     public void showBasicInformation(String userName) throws ExistPlayerException {
         PlayerInfo.showBasicInformation(userName);
     }

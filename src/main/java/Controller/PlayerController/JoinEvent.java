@@ -22,6 +22,14 @@ public class JoinEvent {
         }
 
     }
+    protected static String eventGameName(String eventId) throws ExistEventException {
+        Event event = null;
+        event = Controller.AdminController.Event.eventFinderByEventID(eventId);
+        if (event == null){
+            //todo Exception
+        }
+        return event.getGameName();
+    }
     protected static void activeEvent(String username){
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
             for (String playerEvent : event.getPlayersInThisEvent()) {
