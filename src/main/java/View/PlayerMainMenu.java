@@ -261,13 +261,9 @@ public class PlayerMainMenu extends Menu {
                     System.out.println(reportedUserName +  " reported Successfully!");
                     System.out.print(Color.RESET);
 
-                } catch (ExistPlayerException e) {
+                } catch (ExistPlayerException | IOException e) {
                     System.out.println(e.getMessage());
-                }
-                try {
-                    adminGeneralController.showReportListOfPlayer(reportedUserName);
-                } catch (EmptyReportsList emptyReportsList) {
-                    emptyReportsList.printStackTrace();
+                    this.run();
                 }
                 this.run();
             }
