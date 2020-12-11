@@ -192,7 +192,9 @@ public class PlayerGeneralController {
     }
 
     /***********************************************Details***********************************************/
-    public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException {
+    public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException, IOException {
         PlayerInfo.reportsPlayer(usernameWhoLogin, usernameWhoReported);
+        DataBase.save(Player.players,playerFile);
+
     }
 }
