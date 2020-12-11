@@ -21,8 +21,9 @@ public class AdminMainMenu extends Menu {
 //        submenus.put(5,addDetail());
         submenus.put(5, editDetails());
         submenus.put(6, viewUsers());
-        submenus.put(7, sendMessageAsPlatoBot());
-        submenus.put(8, new UserMenuForAdmin(username, this));
+        submenus.put(7, new BanMenu(this));
+        submenus.put(8, sendMessageAsPlatoBot());
+        submenus.put(9, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
