@@ -2,7 +2,6 @@ package Controller.AdminController;
 
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerInfo;
-import Model.BattleSeaModel.Details;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Games;
