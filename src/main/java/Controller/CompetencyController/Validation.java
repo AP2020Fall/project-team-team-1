@@ -1,6 +1,9 @@
 package Controller.CompetencyController;
 
+import Controller.AdminController.AdminGeneralController;
+import Controller.AdminController.Game;
 import Controller.Exception.Plato.*;
+import Model.PlatoModel.Games;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,7 +69,7 @@ public class Validation {
     }
     public static boolean gameNameIsValid(String game) throws InvalidGameNameException {
 
-        if (game.equalsIgnoreCase("battleShip") || game.equalsIgnoreCase("dotsAndBoxes"))
+        if (game.equalsIgnoreCase(Games.getGames().get(0).getGameName()) || game.equalsIgnoreCase(Games.getGames().get(1).getGameName()))
             return true;
         else
             throw new InvalidGameNameException(game);

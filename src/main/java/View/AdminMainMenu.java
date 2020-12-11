@@ -1,5 +1,6 @@
 package View;
 
+import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
 
@@ -249,7 +250,7 @@ public class AdminMainMenu extends Menu {
         return new Menu("Add Details", this) {
             @Override
             public void show() {
-                System.out.println("Which Game Do You Want to Add Details to? DotsAndBoxes/BattleShips");
+                System.out.println("Which Game Do You Want to Add Details to?"+ adminGeneralController.firstGameNameGetter()+" OR "+ adminGeneralController.secondGameNameGetter());
             }
 
             @Override
@@ -279,9 +280,9 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 String gameName = scanner.nextLine();
-                if (gameName.equalsIgnoreCase("battleShip")) {
+                if (gameName.equalsIgnoreCase(adminGeneralController.firstGameNameGetter())) {
                     editBattleShipDetails().run();
-                } else if (gameName.equalsIgnoreCase("dotsAndBoxes")) {
+                } else if (gameName.equalsIgnoreCase(adminGeneralController.secondGameNameGetter())) {
                     editDotsAndBoxesDetails().run();
                 }
             }
@@ -289,7 +290,7 @@ public class AdminMainMenu extends Menu {
     }
 
     private Menu editBattleShipDetails() {
-        return new Menu("Edit Battleship Details", this) {
+        return new Menu("Edit "+ adminGeneralController.firstGameNameGetter() +" Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.battleDetails());
@@ -299,7 +300,7 @@ public class AdminMainMenu extends Menu {
             public void execute() {
                 System.out.println("Please Enter new Details");
                 try {
-                    adminGeneralController.setDetails("battleship", scanner.nextLine());
+                    adminGeneralController.setDetails(adminGeneralController.firstGameNameGetter(), scanner.nextLine());
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
@@ -309,7 +310,7 @@ public class AdminMainMenu extends Menu {
     }
 
     private Menu editDotsAndBoxesDetails() {
-        return new Menu("Edit DotsAndBoxes Details", this) {
+        return new Menu("Edit "+ adminGeneralController.secondGameNameGetter() +" Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.dotsDetails());
@@ -319,7 +320,7 @@ public class AdminMainMenu extends Menu {
             public void execute() {
                 System.out.println("Please Enter new Details");
                 try {
-                    adminGeneralController.setDetails("dotsandboxes", scanner.nextLine());
+                    adminGeneralController.setDetails(adminGeneralController.secondGameNameGetter(), scanner.nextLine());
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }

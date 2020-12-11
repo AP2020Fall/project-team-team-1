@@ -8,9 +8,9 @@ import java.util.HashMap;
 
 public class BattleShipMenu extends Menu {
     private String username;
-
+    //todo check line 12
     public BattleShipMenu(String username, Menu parentMenu) {
-        super("BattleShip Menu", parentMenu);
+        super(adminGeneralController.firstGameNameGetter()+" Menu", parentMenu);
         this.username = username;
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, showScoreBoard());
@@ -35,7 +35,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showScoreboardInThisGame("BattleShip");
+                    playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter());
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -73,7 +73,7 @@ public class BattleShipMenu extends Menu {
     }
 
     private Menu showLog() {
-        return new Menu("show " + this.username + "'s Battleship GameLog", this) {
+        return new Menu("show " + this.username + "'s "+adminGeneralController.firstGameNameGetter()+" GameLog", this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -82,7 +82,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showGameLogInThisGame(username, "battleship");
+                    playerGeneralController.showGameLogInThisGame(username, adminGeneralController.firstGameNameGetter());
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -100,7 +100,7 @@ public class BattleShipMenu extends Menu {
     }
 
     private Menu showWinsCount() {
-        return new Menu("show " + this.username + " WinsCount in BattleShip", this) {
+        return new Menu("show " + this.username + " WinsCount in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -109,7 +109,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOFWins(username, "battleship");
+                    playerGeneralController.showNumberOFWins(username, adminGeneralController.firstGameNameGetter());
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -126,7 +126,7 @@ public class BattleShipMenu extends Menu {
     }
 
     private Menu showPlayedCount() {
-        return new Menu("show " + this.username + " PlayedCount in BattleShip", this) {
+        return new Menu("show " + this.username + " PlayedCount in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -135,7 +135,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOfGamePlayedInThisGame(username, "battleship");
+                    playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.firstGameNameGetter());
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -161,8 +161,8 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.addGameToFavoritesGames(username, "battleship");
-                    System.out.println("battleship added to Your Favorites Successfully!");
+                    playerGeneralController.addGameToFavoritesGames(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(adminGeneralController.firstGameNameGetter()+" added to Your Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName() + " " + e.getMessage());
                 } catch (InvalidGameNameException e) {
@@ -190,8 +190,8 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.RemoveFavoritesGames(username, "battleship");
-                    System.out.println("battleship removed from Favorites Successfully!");
+                    playerGeneralController.RemoveFavoritesGames(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(adminGeneralController.firstGameNameGetter()+" removed from Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName() + " : " + e.getMessage());
                 } catch (InvalidGameNameException e) {
@@ -211,7 +211,7 @@ public class BattleShipMenu extends Menu {
     }
 
     private Menu showPoints() {
-        return new Menu("show " + this.username + "'s points in BattleShip", this) {
+        return new Menu("show " + this.username + "'s points in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -220,7 +220,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showPlayerPointsInThisGame(username, "BattleShip");
+                    playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.firstGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName());
                 }
