@@ -1,10 +1,7 @@
 package View;
 
 import Controller.CompetencyController.Validation;
-import Controller.Exception.Plato.ExistAdminException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.StrongerPasswordException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Controller.Exception.Plato.*;
 import Controller.RegisterController.LogIn;
 
 import java.util.ArrayList;
@@ -71,7 +68,7 @@ public class LoginMenu extends Menu {
                 try {
                     processLoginController.loginAsPlayer(arrayListToString(input));
                     System.out.println("Login successfully !");
-                    PlayerMainPage playerMainPage = new PlayerMainPage(input.get(0),this);
+                    PlayerMainPage playerMainPage = new PlayerMainPage(input.get(0), this);
                     playerMainPage.run();
                 } catch (InvalidUserNameException e) {
                     System.out.println(e.getUserName() + e.getMessage());
@@ -89,10 +86,12 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Username");
         while (true) {
             String username = scanner.nextLine();
-            if (username.equals(LogIn.getUsername())){
-                playerInput.add(username);
-                playerInput.add(LogIn.getPassword());
-                return;
+            if (username.equals(LogIn.getUsername())) {
+                if (LogIn.isActive()) {
+                    playerInput.add(username);
+                    playerInput.add(LogIn.getPassword());
+                    return;
+                }
             }
             try {
                 Validation.usernameIsValid(username);
@@ -117,6 +116,21 @@ public class LoginMenu extends Menu {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println("Remember me ?");
+        while (true) {
+            String remember = scanner.nextLine();
+
+            try {
+                Validation.rememberInputValidation(remember);
+                LogIn.setActive(remember);
+                break;
+            } catch (RememberMeException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
+
     }
 
     private static void getInputAdmin(ArrayList<String> adminInput) {

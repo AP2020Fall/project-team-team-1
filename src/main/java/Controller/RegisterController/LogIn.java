@@ -13,6 +13,7 @@ public class LogIn {
 
     private static String username = "Test";
     private static String password = "Test";
+    private static boolean active = false;
 
     public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException {
         String[] inputSplit = input.split("\\s");
@@ -72,5 +73,16 @@ public class LogIn {
 
     public static void setPassword(String password) {
         LogIn.password = password;
+    }
+
+    public static boolean isActive() {
+        return active;
+    }
+
+    public static void setActive(String active) {
+        if (active.equalsIgnoreCase("yes")){
+            LogIn.active = true;
+        }else
+            LogIn.active = false;
     }
 }
