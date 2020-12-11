@@ -75,6 +75,15 @@ public class Validation {
             throw new InvalidGameNameException(game);
 
     }
+    public static boolean rememberInputValidation(String input) throws RememberMeException {
+        if (input.equalsIgnoreCase("yes")|| input.equalsIgnoreCase("no")){
+            return true;
+        }
+        else {
+            throw new RememberMeException(input);
+        }
+    }
+
 
 }
 
