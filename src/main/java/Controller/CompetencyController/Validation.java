@@ -80,7 +80,7 @@ public class Validation {
             return true;
         }
         else {
-            throw new RememberMeException(input);
+            throw new RememberMeException("Please enter Yes/No");
         }
     }
 
