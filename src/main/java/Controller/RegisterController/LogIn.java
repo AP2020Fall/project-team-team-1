@@ -6,8 +6,13 @@ import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 import Model.PlatoModel.Admin;
 
-public class LogIn {
+import java.io.File;
 
+public class LogIn {
+    //private static final File loginFile = new File("src\\main\\java\\Model\\Database\\LastLogin.json");
+
+    private static String username = "Test";
+    private static String password = "Test";
 
     public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException {
         String[] inputSplit = input.split("\\s");
@@ -51,5 +56,21 @@ public class LogIn {
         }
 //        System.out.println("LOGIN SUCCESSFULLY");
 //        return true;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        LogIn.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        LogIn.password = password;
     }
 }

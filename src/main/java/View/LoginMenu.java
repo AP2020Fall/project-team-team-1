@@ -5,6 +5,7 @@ import Controller.Exception.Plato.ExistAdminException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.StrongerPasswordException;
 import Controller.Exception.Plato.WrongPasswordException;
+import Controller.RegisterController.LogIn;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,9 +89,15 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Username");
         while (true) {
             String username = scanner.nextLine();
+            if (username.equals(LogIn.getUsername())){
+                playerInput.add(username);
+                playerInput.add(LogIn.getPassword());
+                return;
+            }
             try {
                 Validation.usernameIsValid(username);
                 playerInput.add(username);
+                LogIn.setUsername(username);
                 break;
 
             } catch (InvalidUserNameException e) {
@@ -103,6 +110,7 @@ public class LoginMenu extends Menu {
             try {
                 Validation.passwordIsValid(password);
                 playerInput.add(password);
+                LogIn.setPassword(password);
                 break;
 
             } catch (StrongerPasswordException e) {
