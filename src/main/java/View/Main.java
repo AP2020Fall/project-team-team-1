@@ -1,7 +1,6 @@
 package View;
 
 import Model.DataBase.DataBase;
-import Model.PlatoModel.Games;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

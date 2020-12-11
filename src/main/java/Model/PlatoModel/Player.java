@@ -26,17 +26,21 @@ public class Player extends User {
     //private ArrayList<Message> receivedMessages;
     private ArrayList<String> favoritesGamesName;
     private ArrayList<String> lastPlayed;
+    private ArrayList<String> playersWhoReportMe;
+    private boolean activation;
 
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
-        suggestedGamesID = new ArrayList<>();
-        friendsRequests = new ArrayList<>();
+        this.suggestedGamesID = new ArrayList<>();
+        this.friendsRequests = new ArrayList<>();
         //receivedMessages = new ArrayList<>();
         this.lastPlayed = new ArrayList<>();
         this.registerDate = LocalDate.now();
-        favoritesGamesName = new ArrayList<>();
-        friends = new ArrayList<>();
-        playerLog= new ArrayList<>();
+        this.favoritesGamesName = new ArrayList<>();
+        this.friends = new ArrayList<>();
+        this.playerLog= new ArrayList<>();
+        this.playersWhoReportMe = new ArrayList<>();
+        this.activation = true;
     }
 
     public static void AddNewPlayer(Player player) {
@@ -71,15 +75,22 @@ public class Player extends User {
         this.friendsRequests = friendsRequests;
     }
 
-    private void editProfile(String field, String string) {
 
+    public ArrayList<String> getPlayersWhoReportMe() {
+        return playersWhoReportMe;
     }
 
-    private void addNewFriend(Player player) {
-
+    public void setPlayersWhoReportMe(ArrayList<String> playersWhoReportMe) {
+        this.playersWhoReportMe = playersWhoReportMe;
     }
 
+    public boolean isActivation() {
+        return activation;
+    }
 
+    public void setActivation(boolean activation) {
+        this.activation = activation;
+    }
 
     public ArrayList<String> getFavoritesGamesName() {
         return favoritesGamesName;
@@ -174,13 +185,15 @@ public class Player extends User {
     @Override
     public String toString() {
         return "Player{" +
-                ", registerDate=" + registerDate +
+                "registerDate=" + registerDate +
                 ", friends=" + friends +
                 ", friendsRequests=" + friendsRequests +
                 ", playerLog=" + playerLog +
                 ", suggestedGamesID=" + suggestedGamesID +
                 ", favoritesGamesName=" + favoritesGamesName +
-                ", lastPlayed='" + lastPlayed + '\'' +
+                ", lastPlayed=" + lastPlayed +
+                ", playersWhoReportMe=" + playersWhoReportMe +
+                ", activation=" + activation +
                 '}';
     }
 }
