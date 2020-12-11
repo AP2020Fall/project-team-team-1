@@ -154,7 +154,10 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(), playerFile);
 
     }
-    /*******************************************GameName************************************************/
+    public void showBanPlayers() {
+        PlayerInfo.showBanPlayers();
+    }
+        /*******************************************GameName************************************************/
     // first -----> BattleShip
     // index ----> 0
     public String firstGameNameGetter(){

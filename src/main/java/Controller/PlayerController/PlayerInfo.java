@@ -92,8 +92,12 @@ public class PlayerInfo {
         if (player.getPlayersWhoReportMe().isEmpty())
             throw new EmptyReportsList("No one Reports this Username");
 
+        System.out.println("Players who reported "+username+" :");
+        int counter = 1;
+
         for (String reports : player.getPlayersWhoReportMe()) {
-            System.out.println(reports);
+            System.out.println(counter+". "+reports);
+            counter++;
         }
 
     }
@@ -114,6 +118,18 @@ public class PlayerInfo {
             throw new AlreadyBan("this Username Already Ban");
 
         player.setActivation(false);
+    }
+    public static void showBanPlayers(){
+        for (Player player : Player.getPlayers()) {
+            if (!player.isActivation()){
+                System.out.println("players who reports"+player.getUserName());
+                int counter = 1;
+                for (String reports : player.getPlayersWhoReportMe()) {
+                    System.out.println(counter+". "+reports);
+                    counter ++;
+                }
+            }
+        }
     }
 
     public static void unBanPlayer(String username) throws AlreadyBan, ItsNotBan {
