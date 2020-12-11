@@ -10,7 +10,6 @@ import java.time.LocalDate;
 public class JoinEvent {
 
     public static void joinEvent(String userName,String eventId) throws ExistEventException {
-        //Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (!Existence.checkEventExistence(Integer.parseInt(eventId)))
             throw new ExistEventException("Can not join this event !,Make Suer about Event ID");

@@ -30,7 +30,7 @@ public class Details {
         detailsBattleFile.createNewFile();
 
         String outForData = new Gson().toJson(details);
-        FileWriter fWrite = new FileWriter(detailsBattleFile, true); // true for appending content to the existing file
+        FileWriter fWrite = new FileWriter(detailsBattleFile, true);
         BufferedWriter bWrite = new BufferedWriter(fWrite);
         bWrite.write(outForData);
         bWrite.close();

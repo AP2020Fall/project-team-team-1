@@ -23,10 +23,6 @@ public class Message {
         this.massageID = randomMessageId(2000,2500);
     }
 
-//    private int massageID() {
-//        massageID++;
-//        return massageID;
-//    }
 
     public static ArrayList<Message> getMessages() {
         return messages;
@@ -58,11 +54,6 @@ public class Message {
         FileWriter fWriter = new FileWriter(file,true);
         fWriter.write(gson.toJson(arrayList));
         fWriter.close();
-//        try {
-//            DataBase.save(messages, messageFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public static void loadFromJsonFile() {
@@ -95,9 +86,6 @@ public class Message {
         return text;
     }
 
-   /* public Player getReceiver() {
-        return receiver;
-    }*/
 
     @Override
     public String toString() {

@@ -1,5 +1,6 @@
 package Controller.PlayerController;
 
+import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
 import java.time.LocalDate;
@@ -20,10 +21,12 @@ public class Game {
 
         Player loserPlayer = FindPlayerByInfo.findByUserName(loserPlayerInput);
 
-        int index ;
-        if (gameName.equalsIgnoreCase("BattleShip")){
+        int index = 1 ;
+        /*** index = 0 in Games ArrayList ---> BattleShip ***/
+        /*** index = 1 in Games ArrayList ---> DotsAndBoxes ***/
+        if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())){
             index = 1;
-        }else
+        }else if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName()))
             index = 0;
         /********************************* Do Winner Works *********************************/
         winnerPlayer.getPlayerLog().get(index).setNumberOfGamePlayed(winnerPlayer.getPlayerLog().get(index).getNumberOfGamePlayed()+1);

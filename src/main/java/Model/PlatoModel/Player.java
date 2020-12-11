@@ -38,7 +38,7 @@ public class Player extends User {
         this.registerDate = LocalDate.now();
         this.favoritesGamesName = new ArrayList<>();
         this.friends = new ArrayList<>();
-        this.playerLog= new ArrayList<>();
+        this.playerLog = new ArrayList<>();
         this.playersWhoReportMe = new ArrayList<>();
         this.activation = true;
     }
@@ -47,9 +47,8 @@ public class Player extends User {
         players.add(player);
         User.addNewUser(player);
 
-        player.playerLog.add(new PlayerLog(player.getUserName(),"DotsAndBoxes"));
-        player.playerLog.add(new PlayerLog(player.getUserName(),"BattleShip"));
-
+        player.playerLog.add(new PlayerLog(player.getUserName(), "DotsAndBoxes"));
+        player.playerLog.add(new PlayerLog(player.getUserName(), "BattleShip"));
 
 
         try {
@@ -113,13 +112,6 @@ public class Player extends User {
         this.registerDate = registerDate;
     }
 
-    //public ArrayList<Message> getReceivedMessages() {
-        //return receivedMessages;
-    //}
-
-    //public void setReceivedMessages(ArrayList<Message> receivedMessages) {
-        //this.receivedMessages = receivedMessages;
-    //}
 
     public static ArrayList<Player> getPlayers() {
         return players;
@@ -149,8 +141,7 @@ public class Player extends User {
     public static void saveInJsonFile() {
 
         User.saveInJsonFile();
-//        if (playerFile.exists())
-//            playerFile.delete();
+
         try {
             DataBase.save(players, playerFile);
         } catch (IOException e) {

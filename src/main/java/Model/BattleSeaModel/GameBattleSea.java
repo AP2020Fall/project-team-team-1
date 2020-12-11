@@ -59,34 +59,6 @@ public class GameBattleSea {
     }
 
 
-    private void move(BattleSeaPlayer player, int x , int y){
-
-    }
-    private void changeDirection(BattleSeaPlayer player){
-
-    }
-    private void Boom(BattleSeaPlayer player,int x,int y){
-
-    }
-    private void showPlayerBoard(BattleSeaPlayer player){
-
-    }
-    private void showEnemyBoard(BattleSeaPlayer player){
-
-    }
-    private void showEnemyBoardCorrectBooms(BattleSeaPlayer player){
-
-    }
-    private void showEnemyBoardICorrectBooms(BattleSeaPlayer player){
-
-    }
-    private void showPlayerBoardBoomedShip(BattleSeaPlayer player){
-
-    }
-    private void showPlayerBoardUnBoomedShip(BattleSeaPlayer player){
-
-    }
-
     @Override
     public String toString() {
         return "GameBattleSea{" +

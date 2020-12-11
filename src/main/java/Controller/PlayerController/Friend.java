@@ -23,8 +23,6 @@ public class Friend {
 
         playerWhoSentRequests.getFriends().add(username);
 
-        //Player.saveInJsonFile();
-
 
     }
 
@@ -42,8 +40,6 @@ public class Friend {
 
         playerWhoReceivedRequests.getFriendsRequests().remove(friendUsername);
 
-        //Player.saveInJsonFile();
-
     }
 
     public static void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException {
@@ -57,8 +53,6 @@ public class Friend {
             throw new ExistFriendException(friendUsername, " THIS USER ALREADY IN YOUR FRIEND LIST :) ");
 
         playerWhoReceivedRequests.getFriendsRequests().add(username);
-
-        //Player.saveInJsonFile();
 
 
     }
@@ -77,7 +71,6 @@ public class Friend {
 
         player.getFriends().remove(friendUsername);
         friend.getFriends().remove(username);
-        //Player.saveInJsonFile();
 
     }
 
@@ -124,19 +117,6 @@ public class Friend {
 
     }
 
-//    protected static boolean userNameIsFriend(String username, String friendUsername) {
-//        boolean result = false;
-//        Player player = FindPlayerByInfo.findByUserName(username);
-//
-//        for (Player playerFriend : player.getFriends()) {
-//            if (playerFriend.getUserName().equals(friendUsername)) {
-//                result = true;
-//                break;
-//            }
-//
-//        }
-//        return result;
-//    }
 
     protected static boolean userNameIsFriendByUsername(String username, String friendUsername) {
         boolean result = false;
@@ -152,19 +132,6 @@ public class Friend {
         return result;
     }
 
-//    protected static boolean userNameIsInFriendRequest(String username, String friendUsername) {
-//        boolean result = false;
-//        Player player = FindPlayerByInfo.findByUserName(username);
-//
-//        for (Player playerFriendRec : player.getFriendsRequests()) {
-//            if (playerFriendRec.getUserName().equals(friendUsername)) {
-//                result = true;
-//                break;
-//            }
-//
-//        }
-//        return result;
-//    }
 
     protected static boolean userNameIsInFriendRequestByUsername(String username, String friendUsername) {
         boolean result = false;
@@ -180,12 +147,5 @@ public class Friend {
         return result;
     }
 
-//    private static void removeFromRequestList(String username) {
-//
-//    }
-//
-//    private void searchInFriendList(String friendUsername) {
-//
-//    }
 
 }

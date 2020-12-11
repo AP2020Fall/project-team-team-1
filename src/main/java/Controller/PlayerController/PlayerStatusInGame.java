@@ -1,21 +1,23 @@
 package Controller.PlayerController;
 
 import Controller.Exception.Plato.InvalidGameNameException;
+import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
 import java.util.*;
 
 public class PlayerStatusInGame {
 
-
+    /*** index = 0 in Games ArrayList ---> BattleShip ***/
+    /*** index = 1 in Games ArrayList ---> DotsAndBoxes ***/
 
     public static void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         int index = 0;
         int counter = 1;
         HashMap<String, Long> scoreBoard = new HashMap<>();
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleShip")) {
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
             index = 1;
         } else {
             throw new InvalidGameNameException(gameName);
@@ -32,9 +34,9 @@ public class PlayerStatusInGame {
     public static void showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleShip")) {
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
             index = 1;
         } else {
             throw new InvalidGameNameException(gameName);
@@ -51,9 +53,9 @@ public class PlayerStatusInGame {
     public static void numberOfWinsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleShip")) {
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
             index = 1;
         } else {
             throw new InvalidGameNameException(gameName);
@@ -66,9 +68,9 @@ public class PlayerStatusInGame {
     public static void numberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleShip")) {
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
             index = 1;
         } else {
             throw new InvalidGameNameException(gameName);
@@ -81,9 +83,9 @@ public class PlayerStatusInGame {
     public static void showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
-        if (gameName.equalsIgnoreCase("DotsAndBoxes")) {
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
             index = 0;
-        } else if (gameName.equalsIgnoreCase("BattleShip")) {
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
             index = 1;
         } else {
             throw new InvalidGameNameException(gameName);

@@ -120,11 +120,7 @@ public class PlayerGeneralController {
     public void showHistory(String userName) throws ExistPlayerException, ExistPlayerLogException {
         PlayerInfo.showHistory(userName);
     }
-//    public void addHistory(String userName,String history) throws ExistPlayerException, ExistPlayerLogException, IOException {
-//        PlayerInfo.addHistory(userName, history);
-//        DataBase.save(Player.players,playerFile);
-//
-//    }
+
     public void historySaver(LocalDate localDate, String winner, String loser, String gameName) throws IOException {
         Game.historySaver(localDate, winner, loser, gameName);
         DataBase.save(Player.players,playerFile);

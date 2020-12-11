@@ -16,7 +16,7 @@ public class DataBase {
         file.createNewFile();
 
         String outForData = new Gson().toJson(arrayList);
-        FileWriter fWrite = new FileWriter(file, true); // true for appending content to the existing file
+        FileWriter fWrite = new FileWriter(file, true);
         BufferedWriter bWrite = new BufferedWriter(fWrite);
         bWrite.write(outForData);
         bWrite.close();
@@ -36,13 +36,5 @@ public class DataBase {
         Games.loadFromJsonFile();
 
     }
-//    public static void saveAllDataFromJsonFiles() {
-//        //Event.saveInJsonFile();
-//        Suggestion.saveInJsonFile();
-//        //Message.saveInJsonFile();
-//        PlayerLog.saveInJsonFile();
-//        User.saveInJsonFile();
-//        Admin.saveInJsonFile();
-//        Player.saveInJsonFile();
-//    }
+
 }

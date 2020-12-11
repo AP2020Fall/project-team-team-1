@@ -57,21 +57,6 @@ public class BattleSeaController {
 
     }
 
-//    public String boomOrShow(String username, String string) throws BattleShipWinner, InvalidCommandException {
-//        String[] inputSplit = string.split("\\s");
-//        if (inputSplit[0].equalsIgnoreCase("boom")) {
-//            try {
-//                return boomProcessor(username, string);
-//            } catch (BoomCheckException e) {
-//                System.out.println(e.getMessage());
-//            }
-//        } else if (inputSplit[0].equalsIgnoreCase("show")) {
-//            showCommandProcessor(username, string);
-//        } else {
-//            throw new InvalidCommandException("Invalid command");
-//        }
-//        return " Enter Again ";
-//    }
 
     public String boomProcessor(String username, String string) throws BattleShipWinner, BoomCheckException, InvalidCommandException, CorrectCoordinateForShipException {
         String[] inputSpilt = string.split("\\s");

@@ -15,7 +15,6 @@ public class FavoriteGames {
             throw new ExistFavoriteException(gameName, "THIS GAME ALREADY EXISTS");
 
         player.getFavoritesGamesName().add(gameName);
-        //Player.saveInJsonFile();
 
     }
 
@@ -26,7 +25,6 @@ public class FavoriteGames {
             throw new ExistFavoriteException(gameName, " THIS GAME DOESN'T EXIST IN YOUR LIST ");
 
         player.getFavoritesGamesName().remove(gameName);
-        //Player.saveInJsonFile();
 
 
     }

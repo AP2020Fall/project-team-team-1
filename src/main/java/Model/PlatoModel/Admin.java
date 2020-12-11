@@ -33,8 +33,7 @@ public class Admin extends User {
     public static void AddNewAdmin(Admin admin) {
         admins.add(admin);
         User.addNewUser(admin);
-//        if (adminFile.exists())
-//            adminFile.delete();
+
         try {
             DataBase.save(admins, adminFile);
         } catch (IOException e) {

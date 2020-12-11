@@ -154,5 +154,16 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(), playerFile);
 
     }
+    /*******************************************GameName************************************************/
+    // first -----> BattleShip
+    // index ----> 0
+    public String firstGameNameGetter(){
+        return Games.getGames().get(0).getGameName();
+    }
 
+    // second -----> BattleShip
+    // index ----> 1
+    public String secondGameNameGetter(){
+        return Games.getGames().get(1).getGameName();
+    }
 }
