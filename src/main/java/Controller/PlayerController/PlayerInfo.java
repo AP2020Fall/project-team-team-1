@@ -98,6 +98,15 @@ public class PlayerInfo {
 
     }
 
+    public static void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws EmptyReportsList {
+        Player player = FindPlayerByInfo.findByUserName(usernameWhoReported);
+        if (player.getPlayersWhoReportMe().isEmpty())
+            throw new EmptyReportsList("No one Reports this Username");
+
+        player.getPlayersWhoReportMe().add(usernameWhoLogin);
+
+    }
+
     public static void banPlayer(String username) throws AlreadyBan {
         Player player = FindPlayerByInfo.findByUserName(username);
 

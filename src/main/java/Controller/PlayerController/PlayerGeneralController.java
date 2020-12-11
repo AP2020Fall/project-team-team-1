@@ -191,4 +191,8 @@ public class PlayerGeneralController {
         return Model.BattleSeaModel.Details.getDetails();
     }
 
+    /***********************************************Details***********************************************/
+    public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws EmptyReportsList {
+        PlayerInfo.reportsPlayer(usernameWhoLogin, usernameWhoReported);
+    }
 }
