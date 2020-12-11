@@ -1,6 +1,7 @@
 package Controller.RegisterController;
 
 import Controller.CompetencyController.Existence;
+import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistAdminException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
@@ -9,13 +10,12 @@ import Model.PlatoModel.Admin;
 import java.io.File;
 
 public class LogIn {
-    //private static final File loginFile = new File("src\\main\\java\\Model\\Database\\LastLogin.json");
 
     private static String username = "Test";
     private static String password = "Test";
     private static boolean active = false;
 
-    public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException {
+    public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException, BanExceptionForLogin {
         String[] inputSplit = input.split("\\s");
 
         if (!(Existence.checkUserNameExistence(inputSplit[0]))) {
@@ -23,6 +23,8 @@ public class LogIn {
             //System.out.println("INVALID USERNAME");
             //return false;
         }
+        if (Existence.checkPlayerActivation(inputSplit[0]))
+            throw new BanExceptionForLogin("This Username is Ban By Admin. ");
 
         if (!(Existence.checkPassword(inputSplit[0],inputSplit[1]))) {
             //System.out.println("WRONG PASSWORD");

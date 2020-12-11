@@ -115,7 +115,7 @@ public class PlayerInfo {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (!player.isActivation())
-            throw new AlreadyBan("this Username Already Ban");
+            throw new AlreadyBan("this Username Already BanExceptionForLogin");
 
         player.setActivation(false);
     }
@@ -132,7 +132,7 @@ public class PlayerInfo {
         }
     }
 
-    public static void unBanPlayer(String username) throws AlreadyBan, ItsNotBan {
+    public static void unBanPlayer(String username) throws ItsNotBan {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (player.isActivation())

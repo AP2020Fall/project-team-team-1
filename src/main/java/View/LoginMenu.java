@@ -76,6 +76,9 @@ public class LoginMenu extends Menu {
                 } catch (WrongPasswordException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
+                } catch (BanExceptionForLogin banExceptionForLogin) {
+                    System.out.println(banExceptionForLogin.getMessage());
+                    this.parentMenu.run();
                 }
 
             }

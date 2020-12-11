@@ -1,5 +1,6 @@
 package Controller.CompetencyController;
 
+import Controller.PlayerController.FindPlayerByInfo;
 import Model.PlatoModel.*;
 
 
@@ -85,6 +86,10 @@ public class Existence {
                 result = true;
 
         return result;
+    }
+    public static boolean checkPlayerActivation(String username){
+        Player player = FindPlayerByInfo.findByUserName(username);
+        return player.isActivation();
     }
 
 }
