@@ -33,17 +33,16 @@ public class DataBase {
         Admin.loadFromJsonFile();
         Details.loadFromJsonFile();
         Model.BattleSeaModel.Details.loadFromJsonFile();
-
-
+        Games.loadFromJsonFile();
 
     }
-    public static void saveAllDataFromJsonFiles() {
-        //Event.saveInJsonFile();
-        Suggestion.saveInJsonFile();
-        //Message.saveInJsonFile();
-        PlayerLog.saveInJsonFile();
-        User.saveInJsonFile();
-        Admin.saveInJsonFile();
-        Player.saveInJsonFile();
-    }
+//    public static void saveAllDataFromJsonFiles() {
+//        //Event.saveInJsonFile();
+//        Suggestion.saveInJsonFile();
+//        //Message.saveInJsonFile();
+//        PlayerLog.saveInJsonFile();
+//        User.saveInJsonFile();
+//        Admin.saveInJsonFile();
+//        Player.saveInJsonFile();
+//    }
 }
