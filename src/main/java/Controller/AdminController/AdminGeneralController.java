@@ -17,27 +17,28 @@ public class AdminGeneralController {
     private static final File messageFile = new File("src\\main\\java\\Model\\Database\\Message.json");
     private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
-    //private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
+    private static final File gamesFile = new File("src\\main\\java\\Model\\Database\\Games.json");
+
     /***********************************************EDIT***********************************************/
     public void editField(String info) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException, IOException {
         String[] strings = info.split("\\s");
-        Edit.editField(strings[0],strings[1]);
-        DataBase.save(Admin.getAdmins(),adminFile);
+        Edit.editField(strings[0], strings[1]);
+        DataBase.save(Admin.getAdmins(), adminFile);
         //DataBase.save(User.users,userFile);
     }
 
     public void editPassword(String info) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, IOException, StrongerPasswordException {
         String[] strings = info.split("\\s");
-        Edit.editPassword(strings[1],strings[2]);
-        DataBase.save(Admin.getAdmins(),adminFile);
+        Edit.editPassword(strings[1], strings[2]);
+        DataBase.save(Admin.getAdmins(), adminFile);
     }
 
     /***********************************************EVENT***********************************************/
     public void addEvent(String input) throws StartDatesException, IOException {
         Event.addEvent(input);
-        DataBase.save(Admin.getAdmins(),adminFile);
-        DataBase.save(Player.getPlayers(),playerFile);
-        DataBase.save(Model.PlatoModel.Event.getEvents(),eventFile);
+        DataBase.save(Admin.getAdmins(), adminFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
 
     public void showEvent() throws ExistEventException {
@@ -46,22 +47,23 @@ public class AdminGeneralController {
 
     public void editEvent(String input) throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException, IOException, NotNullMessageException, InvalidGameNameException {
         Event.editEvent(input);
-        DataBase.save(Admin.getAdmins(),adminFile);
-        DataBase.save(Player.getPlayers(),playerFile);
-        DataBase.save(Model.PlatoModel.Event.getEvents(),eventFile);
-    }
-    public void removeEventByAdminFromView(String eventID) throws ExistEventException, IOException {
-        Event.removeEventByAdminFromView(eventID);
-        DataBase.save(Admin.getAdmins(),adminFile);
-        DataBase.save(Player.getPlayers(),playerFile);
-        DataBase.save(Model.PlatoModel.Event.getEvents(),eventFile);
+        DataBase.save(Admin.getAdmins(), adminFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
 
-        /***********************************************MESSAGE***********************************************/
-    public void sendMassageString (String text) throws IOException, NotNullMessageException {
+    public void removeEventByAdminFromView(String eventID) throws ExistEventException, IOException {
+        Event.removeEventByAdminFromView(eventID);
+        DataBase.save(Admin.getAdmins(), adminFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
+    }
+
+    /***********************************************MESSAGE***********************************************/
+    public void sendMassageString(String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
         //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
-        Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(),messageFile);
+        Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(), messageFile);
     }
 
     public void showPlayerMassage() throws ExistPlayerException {
@@ -76,14 +78,16 @@ public class AdminGeneralController {
     public void showUsersByUserName(String userName) throws ExistPlayerException {
         PlayerLists.showUsersByUserName(userName);
     }
+
     public void showAdminInfo() {
         PlayerLists.showAdminInfo();
     }
-        /**********************************************SUGGESTION**********************************************/
+
+    /**********************************************SUGGESTION**********************************************/
     public void addSuggestion(String input) throws ExistPlayerException, IOException {
         Suggestion.addSuggestion(input);
-        DataBase.save(Player.getPlayers(),playerFile);
-        DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(), suggestionFile);
     }
 
     public void showSuggestion() throws ExistSuggestionException {
@@ -92,102 +96,63 @@ public class AdminGeneralController {
 
     public void removeSuggestion(String suggestionID) throws ExistSuggestionException, IOException {
         Suggestion.removeSuggestion(suggestionID);
-        DataBase.save(Player.getPlayers(),playerFile);
-        DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(), suggestionFile);
     }
+
     /**********************************************Games**********************************************/
-    public void changeGameName(String gameID,String name) throws InvalidGameID {
+    public void changeGameName(String gameID, String name) throws InvalidGameID, IOException {
 
-        if (Integer.parseInt(gameID) > Games.getGames().size())
-            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
-
-        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
-
-        Games game = Games.getGames().get(indexOfGameInArrayList);
-
-        game.setGameName(name);
-    }
-    public void deActiveGame(String gameID) throws InvalidGameID, GameActivation {
-
-        if (Integer.parseInt(gameID) > Games.getGames().size())
-            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
-
-        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
-
-        Games game = Games.getGames().get(indexOfGameInArrayList);
-
-        if (!game.isActivation())
-            throw new GameActivation("Game is Already Deactivate");
-
-        game.setActivation(false);
-    }
-
-    public void activeGame(String gameID) throws InvalidGameID, GameActivation {
-
-        if (Integer.parseInt(gameID) > Games.getGames().size())
-            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
-
-        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
-
-        Games game = Games.getGames().get(indexOfGameInArrayList);
-
-        if (game.isActivation())
-            throw new GameActivation("Game is Already Activate");
-
-        game.setActivation(true);
-    }
-
-    public void activeMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance {
-
-        if (Integer.parseInt(gameID) > Games.getGames().size())
-            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
-
-        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
-
-        Games game = Games.getGames().get(indexOfGameInArrayList);
-
-        if (game.isUpdate())
-            throw new GameMaintenance("Game Maintenance is Already Active !");
-
-        game.setUpdate(true);
-    }
-    public void deActiveMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance {
-
-        if (Integer.parseInt(gameID) > Games.getGames().size())
-            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
-
-        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
-
-        Games game = Games.getGames().get(indexOfGameInArrayList);
-
-        if (!game.isUpdate())
-            throw new GameMaintenance("Game Maintenance is Already De Active !");
-
-        game.setUpdate(false);
-    }
-
-    public void setDetails(String gameName,String string) throws IOException {
-        if (gameName.equalsIgnoreCase("battleShip")){
-            Details.setDetails(string);
-            Details.saveInJsonFile();
-        }else if (gameName.equalsIgnoreCase("dotsAndBoxes")){
-            Model.DotsAndBoxesModel.Details.setDetails(string);
-            Model.DotsAndBoxesModel.Details.saveInJsonFile();
-        }
+        Game.changeGameName(gameID, name);
+        DataBase.save(Games.getGames(), gamesFile);
 
     }
+
+    public void deActiveGame(String gameID) throws InvalidGameID, GameActivation, IOException {
+
+        Game.deActiveGame(gameID);
+        DataBase.save(Games.getGames(), gamesFile);
+    }
+
+    public void activeGame(String gameID) throws InvalidGameID, GameActivation, IOException {
+
+        Game.activeGame(gameID);
+        DataBase.save(Games.getGames(), gamesFile);
+    }
+
+    public void activeMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance, IOException {
+
+        Game.activeMaintenanceMode(gameID);
+        DataBase.save(Games.getGames(), gamesFile);
+    }
+
+    public void deActiveMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance, IOException {
+
+        Game.deActiveMaintenanceMode(gameID);
+        DataBase.save(Games.getGames(), gamesFile);
+    }
+
+    public void setDetails(String gameName, String string) throws IOException {
+
+        Game.setDetails(gameName, string);
+
+    }
+
     /**********************************************Reports**********************************************/
     public void showReportListOfPlayer(String username) throws EmptyReportsList {
         PlayerInfo.showReportsList(username);
-    }
-    public void banPlayer(String username) throws AlreadyBan, IOException {
-        PlayerInfo.banPlayer(username);
-        DataBase.save(Player.getPlayers(),playerFile);
 
     }
+
+    public void banPlayer(String username) throws AlreadyBan, IOException {
+        PlayerInfo.banPlayer(username);
+        DataBase.save(Player.getPlayers(), playerFile);
+
+    }
+
     public void unBanPlayer(String username) throws ItsNotBan, AlreadyBan, IOException {
         PlayerInfo.unBanPlayer(username);
-        DataBase.save(Player.getPlayers(),playerFile);
+        DataBase.save(Player.getPlayers(), playerFile);
 
     }
 

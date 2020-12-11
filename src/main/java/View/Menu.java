@@ -31,7 +31,7 @@ public abstract class Menu {
     protected static JoinEvent playerJoinEventController = new JoinEvent();
     protected static PlayerInfo playerInfoController = new PlayerInfo();
     protected static PlayerStatusInGame playerStatusInGameController = new PlayerStatusInGame();
-    protected static Game playerGameController = new Game();
+    //protected static Game playerGameController = new Game();
     protected static Suggestion adminSuggestionController = new Suggestion();
     protected static Controller.PlayerController.Suggestion playerSuggestionController = new Controller.PlayerController.Suggestion();
     protected static ViewPlatoBotMessages playerViewPlatoBotsMassagesController = new ViewPlatoBotMessages();
