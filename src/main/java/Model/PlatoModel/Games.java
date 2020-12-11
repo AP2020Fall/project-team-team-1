@@ -36,6 +36,8 @@ public class Games {
         this.update = update;
     }
 
+
+
     public boolean isActivation() {
         return activation;
     }

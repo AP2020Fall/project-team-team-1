@@ -5,6 +5,7 @@ import Controller.PlayerController.PlayerInfo;
 import Model.BattleSeaModel.Details;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
 import java.io.File;
@@ -95,7 +96,75 @@ public class AdminGeneralController {
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
     }
     /**********************************************Games**********************************************/
+    public void changeGameName(String gameID,String name) throws InvalidGameID {
 
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        game.setGameName(name);
+    }
+    public void deActiveGame(String gameID) throws InvalidGameID, GameActivation {
+
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        if (!game.isActivation())
+            throw new GameActivation("Game is Already Deactivate");
+
+        game.setActivation(false);
+    }
+
+    public void activeGame(String gameID) throws InvalidGameID, GameActivation {
+
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        if (game.isActivation())
+            throw new GameActivation("Game is Already Activate");
+
+        game.setActivation(true);
+    }
+
+    public void activeMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance {
+
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        if (game.isUpdate())
+            throw new GameMaintenance("Game Maintenance is Already Active !");
+
+        game.setUpdate(true);
+    }
+    public void deActiveMaintenanceMode(String gameID) throws InvalidGameID, GameMaintenance {
+
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        if (!game.isUpdate())
+            throw new GameMaintenance("Game Maintenance is Already De Active !");
+
+        game.setUpdate(false);
+    }
 
     public void setDetails(String gameName,String string) throws IOException {
         if (gameName.equalsIgnoreCase("battleShip")){
