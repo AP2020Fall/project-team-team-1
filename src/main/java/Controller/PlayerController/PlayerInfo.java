@@ -98,11 +98,11 @@ public class PlayerInfo {
 
     }
 
-    public static void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws EmptyReportsList {
+    public static void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(usernameWhoReported);
-        if (player.getPlayersWhoReportMe().isEmpty())
-            throw new EmptyReportsList("No one Reports this Username");
-
+        if (player==null){
+            throw new ExistPlayerException("This username does not exist");
+        }
         player.getPlayersWhoReportMe().add(usernameWhoLogin);
 
     }

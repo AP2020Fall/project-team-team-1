@@ -192,7 +192,7 @@ public class PlayerGeneralController {
     }
 
     /***********************************************Details***********************************************/
-    public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws EmptyReportsList {
+    public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException {
         PlayerInfo.reportsPlayer(usernameWhoLogin, usernameWhoReported);
     }
 }
