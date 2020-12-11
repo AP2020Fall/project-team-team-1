@@ -17,7 +17,7 @@ public class RunBattleShip extends Menu {
     private String Username2;
 
     public RunBattleShip(String username1, String username2, Menu parentMenu) {
-        super("Run BattleShip", parentMenu);
+        super("Run "+adminGeneralController.firstGameNameGetter(), parentMenu);
         this.Username1 = username1;
 
     }
@@ -115,15 +115,7 @@ public class RunBattleShip extends Menu {
                     if (input.startsWith("change")) {
                         try {
                             battleSeaController1.changeCoordinateProcessor("player1", input);
-                        } catch (PlacedShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (NewCoordinateForShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (CorrectCoordinateForShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (ExistOtherShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (InvalidCommandException e) {
+                        } catch (PlacedShipException | NewCoordinateForShipException | CorrectCoordinateForShipException | ExistOtherShipException | InvalidCommandException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -153,15 +145,7 @@ public class RunBattleShip extends Menu {
                     if (input.startsWith("change")) {
                         try {
                             battleSeaController1.changeCoordinateProcessor("player2", input);
-                        } catch (PlacedShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (NewCoordinateForShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (CorrectCoordinateForShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (ExistOtherShipException e) {
-                            System.out.println(e.getMessage());
-                        } catch (InvalidCommandException e) {
+                        } catch (PlacedShipException | NewCoordinateForShipException | CorrectCoordinateForShipException | ExistOtherShipException | InvalidCommandException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -190,18 +174,18 @@ public class RunBattleShip extends Menu {
             if (nexCommand.equalsIgnoreCase("Surrender")) {
                 if (counter % 2 == 1) {
                     System.out.println(player2 + " Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
+                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, 10);
                     try {
-                        playerGeneralController.historySaver(LocalDate.now(),player2,player1,"Battle Ship");
+                        playerGeneralController.historySaver(LocalDate.now(),player2,player1,adminGeneralController.firstGameNameGetter());
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
                     endGame = false;
                 } else {
                     System.out.println(player1 + " Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
+                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, 10);
                     try {
-                        playerGeneralController.historySaver(LocalDate.now(),player1,player2,"Battle Ship");
+                        playerGeneralController.historySaver(LocalDate.now(),player1,player2,adminGeneralController.firstGameNameGetter());
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
@@ -218,19 +202,16 @@ public class RunBattleShip extends Menu {
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player2);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                        Game.giveScoreAndEditPlayerLog("BattleShip", player2, player1, 10);
+                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, 10);
                         try {
-                            playerGeneralController.historySaver(LocalDate.now(),player2,player1,"Battle Ship");
+                            playerGeneralController.historySaver(LocalDate.now(),player2,player1,adminGeneralController.firstGameNameGetter());
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
                         endGame = false;
                     } catch (InvalidCommandException e) {
                         System.out.println(e.getMessage());
-                    } catch (BoomCheckException e) {
-                        System.out.println(e.getMessage());
-                        counter++;
-                    } catch (CorrectCoordinateForShipException e) {
+                    } catch (BoomCheckException | CorrectCoordinateForShipException e) {
                         System.out.println(e.getMessage());
                         counter++;
                     }
@@ -241,19 +222,16 @@ public class RunBattleShip extends Menu {
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player1);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                        Game.giveScoreAndEditPlayerLog("BattleShip", player1, player2, 10);
+                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, 10);
                         try {
-                            playerGeneralController.historySaver(LocalDate.now(),player1,player2,"Battle Ship");
+                            playerGeneralController.historySaver(LocalDate.now(),player1,player2,adminGeneralController.firstGameNameGetter());
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
                         endGame = false;
                     } catch (InvalidCommandException e) {
                         System.out.println(e.getMessage());
-                    } catch (BoomCheckException e) {
-                        System.out.println(e.getMessage());
-                        counter++;
-                    } catch (CorrectCoordinateForShipException e) {
+                    } catch (BoomCheckException | CorrectCoordinateForShipException e) {
                         System.out.println(e.getMessage());
                         counter++;
                     }

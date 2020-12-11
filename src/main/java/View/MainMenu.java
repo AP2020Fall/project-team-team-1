@@ -64,7 +64,7 @@ public class MainMenu extends Menu {
 
     @Override
     public void run() {
-        System.out.println("Welcome");
+        System.out.println("Welcome 🎈");
         this.show();
         this.execute();
     }

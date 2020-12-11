@@ -32,9 +32,7 @@ public class ShowPlayerInfo extends Menu {
                 } catch (InvalidPasswordException | WrongPasswordException | SamePasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                } catch (StrongerPasswordException e) {
+                } catch (IOException | StrongerPasswordException e) {
                     System.out.println(e.getMessage());
                 }
             }

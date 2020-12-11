@@ -22,7 +22,7 @@ public class RunDotsAndBoxes extends Menu {
     private int score ;
 
     public RunDotsAndBoxes(String username1, String username2,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
-        super("Run DotsAndBoxes", parentMenu);
+        super("Run "+adminGeneralController.secondGameNameGetter(), parentMenu);
         this.Username1 = username1;
         this.Username2 = username2;
         RunDotsAndBoxes.dotsAndBoxesController =new DotsAndBoxesController();
@@ -208,8 +208,8 @@ public class RunDotsAndBoxes extends Menu {
     }
     public void winnerAward(String winner , String loser){
         try {
-            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",winner,loser,getScore());
-            playerGeneralController.historySaver(LocalDate.now(),winner,loser,"DotsAndBoxes");
+            playerGeneralController.giveScoreAndEditPlayerLog(adminGeneralController.secondGameNameGetter(),winner,loser,getScore());
+            playerGeneralController.historySaver(LocalDate.now(),winner,loser,adminGeneralController.secondGameNameGetter());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

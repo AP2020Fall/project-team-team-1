@@ -30,14 +30,12 @@ public class ShowAdminInfo extends Menu {
                 } catch (InvalidPasswordException e) {
                     System.out.println(e.getMessage());
                     this.run();
-                } catch (WrongPasswordException e) {
+                } catch (WrongPasswordException | StrongerPasswordException e) {
                     System.out.println(e.getMessage());
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                 } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                } catch (StrongerPasswordException e) {
-                    System.out.println(e.getMessage());
+                    System.err.println(e.getMessage());
                 }
 
             }

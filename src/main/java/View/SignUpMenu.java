@@ -37,22 +37,7 @@ public class SignUpMenu extends Menu {
                 } catch (ExistAdminException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
-                } catch (ExistUserNameException e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (ExistEmailException e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForUserName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForLastName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForEmail e) {
+                } catch (ExistUserNameException | ExistEmailException | EmptyExceptionForUserName | EmptyExceptionForLastName | EmptyExceptionForName | EmptyExceptionForEmail e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }
@@ -76,22 +61,7 @@ public class SignUpMenu extends Menu {
                     processSignupController.addPlayer(arrayListToString(playerInfo));
                     System.out.println("Player Registered Successfully");
                     this.parentMenu.parentMenu.submenus.get(1).run();
-                } catch (ExistUserNameException e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (ExistEmailException e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForLastName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForUserName e) {
-                    System.out.println(e.getMessage());
-                    this.run();
-                } catch (EmptyExceptionForEmail e) {
+                } catch (ExistUserNameException | ExistEmailException | EmptyExceptionForName | EmptyExceptionForLastName | EmptyExceptionForUserName | EmptyExceptionForEmail e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }

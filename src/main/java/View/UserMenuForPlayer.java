@@ -92,7 +92,7 @@ public class UserMenuForPlayer extends Menu {
         };
     }
     private String gameName(){
-        System.out.println("Please Enter The Game  Battleships|DotsAndBoxes ");
+        System.out.println("Please Enter The Game  "+adminGeneralController.firstGameNameGetter()+" OR "+adminGeneralController.secondGameNameGetter());
         while (true) {
             String game = scanner.nextLine();
             try {
