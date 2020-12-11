@@ -1,7 +1,6 @@
 package Controller.PlayerController;
 
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.ExistPlayerLogException;
+import Controller.Exception.Plato.*;
 import Model.PlatoModel.Player;
 
 import java.time.LocalDate;
@@ -86,6 +85,35 @@ public class PlayerInfo {
             System.out.println(counter+". "+player.getLastPlayed().get(i));
             counter--;
         }
+    }
+
+    public static void showReportsList(String username) throws EmptyReportsList {
+        Player player = FindPlayerByInfo.findByUserName(username);
+        if (player.getPlayersWhoReportMe().isEmpty())
+            throw new EmptyReportsList("No one Reports this Username");
+
+        for (String reports : player.getPlayersWhoReportMe()) {
+            System.out.println(reports);
+        }
+
+    }
+
+    public static void banPlayer(String username) throws AlreadyBan {
+        Player player = FindPlayerByInfo.findByUserName(username);
+
+        if (!player.isActivation())
+            throw new AlreadyBan("this Username Already Ban");
+
+        player.setActivation(false);
+    }
+
+    public static void unBanPlayer(String username) throws AlreadyBan, ItsNotBan {
+        Player player = FindPlayerByInfo.findByUserName(username);
+
+        if (player.isActivation())
+            throw new ItsNotBan("this Username isn't ban , its already active");
+
+        player.setActivation(true);
     }
 
 //    public static void addHistory (String userName,String history) throws ExistPlayerException, ExistPlayerLogException {

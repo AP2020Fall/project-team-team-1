@@ -93,7 +93,7 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(),playerFile);
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
     }
-    /**********************************************SUGGESTION**********************************************/
+    /**********************************************DETAILS**********************************************/
     public void setDetails(String gameName,String string) throws IOException {
         if (gameName.equalsIgnoreCase("battleShip")){
             Details.setDetails(string);
@@ -104,5 +104,6 @@ public class AdminGeneralController {
         }
 
     }
+    /**********************************************Reports**********************************************/
 
 }
