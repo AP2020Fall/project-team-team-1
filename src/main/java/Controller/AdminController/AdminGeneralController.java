@@ -1,6 +1,7 @@
 package Controller.AdminController;
 
 import Controller.Exception.Plato.*;
+import Controller.PlayerController.PlayerInfo;
 import Model.BattleSeaModel.Details;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
@@ -93,7 +94,9 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(),playerFile);
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(),suggestionFile);
     }
-    /**********************************************DETAILS**********************************************/
+    /**********************************************Games**********************************************/
+
+
     public void setDetails(String gameName,String string) throws IOException {
         if (gameName.equalsIgnoreCase("battleShip")){
             Details.setDetails(string);
@@ -105,5 +108,18 @@ public class AdminGeneralController {
 
     }
     /**********************************************Reports**********************************************/
+    public void showReportListOfPlayer(String username) throws EmptyReportsList {
+        PlayerInfo.showReportsList(username);
+    }
+    public void banPlayer(String username) throws AlreadyBan, IOException {
+        PlayerInfo.banPlayer(username);
+        DataBase.save(Player.getPlayers(),playerFile);
+
+    }
+    public void unBanPlayer(String username) throws ItsNotBan, AlreadyBan, IOException {
+        PlayerInfo.unBanPlayer(username);
+        DataBase.save(Player.getPlayers(),playerFile);
+
+    }
 
 }
