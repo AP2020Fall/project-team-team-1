@@ -23,10 +23,21 @@ public class ViewAdminSuggestion extends Menu {
             public void execute() {
                 try {
                     playerGeneralController.showSuggestion(username);
-                    String chosenSuggestion = scanner.nextLine();
-                    playerGeneralController.playSuggestedGame(username,chosenSuggestion);
+                    System.out.println("Enter Anything To continue Or Enter Back! ");
+                    String nextCommand = scanner.nextLine();
+                    if (!nextCommand.equalsIgnoreCase("back")){
+                        String suggestionID = scanner.nextLine();
+                        if (playerGeneralController.suggestionGameName(suggestionID).startsWith("D")||playerGeneralController.suggestionGameName(suggestionID).startsWith("d")){
+                            new DotsAndBoxesMenu(username,this.parentMenu.parentMenu).run();
+                        }else if (playerGeneralController.suggestionGameName(suggestionID).startsWith("b")||playerGeneralController.suggestionGameName(suggestionID).startsWith("B")){
+                            new BattleShipMenu(username,this.parentMenu.parentMenu).run();
+                        }
+                    }else this.parentMenu.run();
+
+//                    playerGeneralController.playSuggestedGame(username,chosenSuggestion);
                 } catch (ExistSuggestionException e) {
                     System.out.println(e.getMessage());
+                    this.run();
                 }
 
             }
