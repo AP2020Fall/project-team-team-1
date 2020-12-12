@@ -2,6 +2,7 @@ package Controller.PlayerController;
 
 import Controller.Exception.Plato.*;
 import Model.PlatoModel.Player;
+import View.Color;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -122,7 +123,10 @@ public class PlayerInfo {
     public static void showBanPlayers(){
         for (Player player : Player.getPlayers()) {
             if (!player.isActivation()){
-                System.out.println("players who reports"+player.getUserName());
+                System.out.print("players who reports ");
+                System.out.print(Color.RED);
+                System.out.print(player.getUserName());
+                System.out.println(Color.RESET);
                 int counter = 1;
                 for (String reports : player.getPlayersWhoReportMe()) {
                     System.out.println(counter+". "+reports);

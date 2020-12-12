@@ -21,7 +21,7 @@ public class BanMenu extends Menu {
     }
 
     private Menu ban() {
-        return new Menu("BanExceptionForLogin player ", this) {
+        return new Menu("Ban player ", this) {
             @Override
             public void show() {
 
@@ -53,16 +53,19 @@ public class BanMenu extends Menu {
             @Override
             public void show() {
                 adminGeneralController.showBanPlayers();
-                System.out.println("Who do you want to UnBan ? ");
+                System.out.println("Who do you want to UnBan ? (for Exit Enter Back!)");
             }
 
             @Override
             public void execute() {
                 String input = scanner.nextLine();
-                System.out.println("player un ban successfully! ");
-                parentMenu.run();
+                if (input.equalsIgnoreCase("back")){
+                    this.parentMenu.run();
+                }
                 try {
                     adminGeneralController.unBanPlayer(input);
+                    System.out.println("player un ban successfully! ");
+                    parentMenu.run();
                 } catch (ItsNotBan itsNotBan) {
                     System.out.println(itsNotBan.getMessage());
                     this.run();
