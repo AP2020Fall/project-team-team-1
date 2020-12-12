@@ -24,7 +24,7 @@ public class DotsAndBoxesMenu extends Menu {
         submenus.put(6, addToFavorites());
         submenus.put(7, removeFavorites());
         submenus.put(8, showPoints());
-        submenus.put(9, new RunDotsAndBoxes(username, null, dotsAndBoxesController, this));
+        submenus.put(9, new RunDotsAndBoxes(username, null,10, dotsAndBoxesController, this));
         this.setSubmenus(submenus);
     }
 

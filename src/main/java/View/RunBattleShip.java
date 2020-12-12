@@ -12,11 +12,16 @@ import java.util.ArrayList;
 public class RunBattleShip extends Menu {
     private final String Username1;
     private String Username2;
+    private int score;
 
-    public RunBattleShip(String username1, String username2, Menu parentMenu) {
+    public RunBattleShip(String username1, String username2,int score, Menu parentMenu) {
         super("Run "+adminGeneralController.firstGameNameGetter(), parentMenu);
         this.Username1 = username1;
+        this.score=score;
+    }
 
+    public int getScore() {
+        return score;
     }
 
     public void setUsername2(String username2) {
@@ -173,7 +178,7 @@ public class RunBattleShip extends Menu {
             if (nexCommand.equalsIgnoreCase("Surrender")) {
                 if (counter % 2 == 1) {
                     System.out.println(player2 + " Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, 10);
+                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, score);
                     try {
                         playerGeneralController.historySaver(LocalDate.now(),player2,player1,adminGeneralController.firstGameNameGetter());
                     } catch (IOException e) {
@@ -182,7 +187,7 @@ public class RunBattleShip extends Menu {
                     endGame = false;
                 } else {
                     System.out.println(player1 + " Wins the Game !");
-                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, 10);
+                    Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, score);
                     try {
                         playerGeneralController.historySaver(LocalDate.now(),player1,player2,adminGeneralController.firstGameNameGetter());
                     } catch (IOException e) {
@@ -201,7 +206,7 @@ public class RunBattleShip extends Menu {
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player2);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, 10);
+                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player2, player1, score);
                         try {
                             playerGeneralController.historySaver(LocalDate.now(),player2,player1,adminGeneralController.firstGameNameGetter());
                         } catch (IOException e) {
@@ -221,7 +226,7 @@ public class RunBattleShip extends Menu {
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player1);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
-                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, 10);
+                        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), player1, player2, score);
                         try {
                             playerGeneralController.historySaver(LocalDate.now(),player1,player2,adminGeneralController.firstGameNameGetter());
                         } catch (IOException e) {

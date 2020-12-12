@@ -22,12 +22,13 @@ public class RunDotsAndBoxes extends Menu {
     private Menu GamesMenu;
     private int score ;
 
-    public RunDotsAndBoxes(String username1, String username2,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
+    public RunDotsAndBoxes(String username1, String username2,int score,DotsAndBoxesController dotsAndBoxesController, Menu parentMenu) {
         super("Run "+adminGeneralController.secondGameNameGetter(), parentMenu);
         this.Username1 = username1;
         this.Username2 = username2;
         RunDotsAndBoxes.dotsAndBoxesController =new DotsAndBoxesController();
-        this.score=10;
+//        this.score=10;
+        this.score=score;
     }
 
     public int getScore() {
@@ -164,7 +165,7 @@ public class RunDotsAndBoxes extends Menu {
             }
         }
         setUsername2(null);
-        new DotsAndBoxesMenu(getUsername1(),GamesMenu).run();
+        new DotsAndBoxesMenu(getUsername1(),this.parentMenu.parentMenu).run();
     }
 
     private Menu temporaryLogin() {
@@ -193,14 +194,16 @@ public class RunDotsAndBoxes extends Menu {
                 System.out.println("Please Enter The password");
                 info.add(scanner.nextLine());
                 try {
-                    processLoginController.loginAsPlayer(arrayListToString(info));
+                    try {
+                        processLoginController.loginAsPlayer(arrayListToString(info));
+                    } catch (BanExceptionForLogin banExceptionForLogin) {
+                        banExceptionForLogin.printStackTrace();
+                    }
                     setUsername2(info.get(0));
                 } catch (InvalidUserNameException | WrongPasswordException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Try Again...");
                     this.run();
-                } catch (BanExceptionForLogin banExceptionForLogin) {
-                    System.out.println(banExceptionForLogin.getMessage());
                 }
                 this.parentMenu.run();
             }
