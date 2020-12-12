@@ -37,7 +37,7 @@ public class ViewAdminSuggestion extends Menu {
 //                    playerGeneralController.playSuggestedGame(username,chosenSuggestion);
                 } catch (ExistSuggestionException e) {
                     System.out.println(e.getMessage());
-                    this.run();
+                    this.parentMenu.run();
                 }
 
             }

@@ -13,4 +13,29 @@ public class PlayerMainPage extends Menu {
         submenus.put(3,new PlayerFriends(username,this));
         this.setSubmenus(submenus);
     }
+
+    @Override
+    public void execute() {
+        Menu nextMenu = null;
+        String num = scanner.nextLine();
+        if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){
+            this.run();
+        }else {
+            int chosenMenu = Integer.parseInt(num);
+            if (chosenMenu==submenus.size()+1){
+                System.out.println("Not Valid Try Again");
+                this.run();
+            } else {
+                nextMenu = submenus.get(chosenMenu);
+                nextMenu.run();
+            }
+        }
+    }
+
+    @Override
+    public void show() {
+        for (Integer menuNum : submenus.keySet()) {
+            System.out.println(menuNum + ". " + submenus.get(menuNum).getName());
+        }
+    }
 }
