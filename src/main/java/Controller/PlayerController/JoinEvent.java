@@ -39,7 +39,8 @@ public class JoinEvent {
         }
         return String.valueOf(event.getScore());
     }
-    protected static void activeEvent(String username){
+    protected static void activeEvent(String username) throws ExistEventException {
+        Controller.AdminController.Event.eventDateChecker();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
             for (String playerEvent : event.getPlayersInThisEvent()) {
                 if (playerEvent.equals(username)){
@@ -51,7 +52,7 @@ public class JoinEvent {
         }
     }
     private static boolean findActivity(LocalDate localDate){
-        return !localDate.isAfter(LocalDate.now());
+        return localDate.isAfter(LocalDate.now());
     }
 
 }
