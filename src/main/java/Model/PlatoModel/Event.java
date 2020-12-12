@@ -21,11 +21,11 @@ public class Event {
     private String gameName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private long score;
+    private int score;
     private int eventID;
     private String comment;
 
-    public Event(String gameName, LocalDate startDate, LocalDate endDate, long score ,String comment) {
+    public Event(String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
         this.eventID = makeEventID();
         this.gameName = gameName;
         this.startDate = startDate;
@@ -79,7 +79,7 @@ public class Event {
         return score;
     }
 
-    public void setScore(long score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

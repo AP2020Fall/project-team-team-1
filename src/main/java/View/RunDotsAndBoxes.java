@@ -5,6 +5,7 @@ import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.Exception.DotsAndBoxes.FindLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
+import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistPlayerException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
@@ -198,6 +199,8 @@ public class RunDotsAndBoxes extends Menu {
                     System.out.println(e.getMessage());
                     System.out.println("Try Again...");
                     this.run();
+                } catch (BanExceptionForLogin banExceptionForLogin) {
+                    System.out.println(banExceptionForLogin.getMessage());
                 }
                 this.parentMenu.run();
             }

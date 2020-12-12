@@ -119,7 +119,7 @@ public class LoginMenu extends Menu {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println("Remember me ?");
+        System.out.println("Remember me ? YES/NO");
         while (true) {
             String remember = scanner.nextLine();
 

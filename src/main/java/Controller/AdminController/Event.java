@@ -21,7 +21,7 @@ public class Event {
             throw new StartDatesException("Start Date Must be before than End Date");
         }
 
-        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Long.parseLong(inputSpilt[3]), inputSpilt[4]));
+        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Integer.parseInt(inputSpilt[3]), inputSpilt[4]));
 
 
     }
@@ -158,7 +158,7 @@ public class Event {
     }
 
     protected static void editScore(Model.PlatoModel.Event event, String input) {
-        event.setScore(Long.parseLong(input));
+        event.setScore(Integer.parseInt(input));
     }
 
 

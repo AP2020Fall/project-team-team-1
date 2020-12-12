@@ -2,10 +2,7 @@ package View;
 
 import Controller.BattleSeaController.BattleSeaController;
 import Controller.Exception.BattleShip.*;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.ExistPlayerLogException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Controller.Exception.Plato.*;
 import Controller.PlayerController.Game;
 
 import java.io.IOException;
@@ -79,6 +76,8 @@ public class RunBattleShip extends Menu {
                     System.out.println(e.getMessage());
                     System.out.println("Try Again...");
                     this.run();
+                } catch (BanExceptionForLogin banExceptionForLogin) {
+                    System.out.println(banExceptionForLogin.getMessage());
                 }
                 this.parentMenu.run();
             }
