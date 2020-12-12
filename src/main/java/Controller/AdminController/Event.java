@@ -3,11 +3,17 @@ package Controller.AdminController;
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
+import Model.DataBase.DataBase;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Event {
+    private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
+
     public static void addEvent(String input) throws StartDatesException {
 
         String[] inputSpilt = input.split("\\s");
@@ -26,7 +32,7 @@ public class Event {
 
     }
 
-    public static void showEvent() throws ExistEventException {
+    public static void showEvent() throws ExistEventException, IOException {
         eventDateChecker();
         if (Model.PlatoModel.Event.getEvents().size() == 0)
             throw new ExistEventException("There is no Event for show!");
@@ -37,7 +43,7 @@ public class Event {
         }
     }
 
-    public static void editEvent(String input) throws InvalidDateException, ExistEventException, InvalidFieldException, StartDatesException, NotNullMessageException, InvalidGameNameException {
+    public static void editEvent(String input) throws InvalidDateException, ExistEventException, InvalidFieldException, StartDatesException, NotNullMessageException, InvalidGameNameException, IOException {
         eventDateChecker();
         String[] inputSpilt = input.split("\\s");
         Model.PlatoModel.Event event = eventFinderByEventID(inputSpilt[0]);
@@ -67,23 +73,26 @@ public class Event {
 
     }
 
-    public static void removeEventByAdminFromView(String eventID) throws ExistEventException {
+    public static void removeEventByAdminFromView(String eventID) throws ExistEventException, IOException {
         removeEvent(eventID);
         //Model.PlatoModel.Event.saveInJsonFile();
 
     }
 
-    public static void removeEvent(String eventID) throws ExistEventException {
+    public static void removeEvent(String eventID) throws ExistEventException, IOException {
         if (Existence.checkEventExistence(Integer.parseInt(eventID))) {
             Model.PlatoModel.Event.events.remove(eventFinderByEventID(eventID));
         } else
             throw new ExistEventException("There is no Event with this ID");
+
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
+
     }
 
-    public static void eventDateChecker() throws ExistEventException {
+    public static void eventDateChecker() throws ExistEventException, IOException {
         ArrayList<Model.PlatoModel.Event> listForDelete = new ArrayList<>();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.getEvents()) {
-            if (event.getStartDate().isAfter(event.getEndDate())) {
+            if (event.getEndDate().isBefore(LocalDate.now())) {
                 listForDelete.add(event);
             }
         }

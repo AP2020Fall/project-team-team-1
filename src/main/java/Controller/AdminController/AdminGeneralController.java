@@ -40,7 +40,7 @@ public class AdminGeneralController {
         DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
 
-    public void showEvent() throws ExistEventException {
+    public void showEvent() throws ExistEventException, IOException {
         Event.showEvent();
     }
 

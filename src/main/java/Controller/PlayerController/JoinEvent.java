@@ -5,6 +5,7 @@ import Controller.Exception.Plato.ExistEventException;
 import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 
@@ -39,7 +40,7 @@ public class JoinEvent {
         }
         return String.valueOf(event.getScore());
     }
-    protected static void activeEvent(String username) throws ExistEventException {
+    protected static void activeEvent(String username) throws ExistEventException, IOException {
         Controller.AdminController.Event.eventDateChecker();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
             for (String playerEvent : event.getPlayersInThisEvent()) {

@@ -109,6 +109,9 @@ public class ViewEvents extends Menu {
         } catch (ExistEventException e) {
             System.out.println(e.getMessage());
             this.parentMenu.run();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            this.parentMenu.run();
         }
     }
 }

@@ -3,6 +3,7 @@ package View;
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.Plato.ExistEventException;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 
@@ -21,6 +22,8 @@ public class PlayEvent extends Menu {
         try {
             playerGeneralController.activeEvent(username);
         } catch (ExistEventException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("Which Event Do You Want To Play ? ");

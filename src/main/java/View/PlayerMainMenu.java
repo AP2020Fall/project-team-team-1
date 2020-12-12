@@ -192,6 +192,8 @@ public class PlayerMainMenu extends Menu {
                     System.out.println("Please Enter The Event You want To Join :");
                 } catch (ExistEventException e) {
                     System.out.println(e.getMessage());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
                 }
             }
 
