@@ -34,7 +34,7 @@ public class BanMenu extends Menu {
 
                 try {
                     adminGeneralController.banPlayer(input);
-                    System.out.println("Player BanExceptionForLogin Successfully");
+                    System.out.println("Player Ban Successfully");
                     parentMenu.run();
                 } catch (AlreadyBan alreadyBan) {
                     System.out.println(alreadyBan.getMessage());
@@ -96,7 +96,7 @@ public class BanMenu extends Menu {
                 try {
                     adminGeneralController.showReportListOfPlayer(inputUsername);
                     System.out.print(Color.RED);
-                    System.out.println("If you want to BanExceptionForLogin \""+ inputUsername +"\" Go to BanExceptionForLogin Menu");
+                    System.out.println("If you want to Ban \""+ inputUsername +"\" Go to BanExceptionForLogin Menu");
                     System.out.print(Color.RESET);
                     parentMenu.run();
                 } catch (EmptyReportsList emptyReportsList) {
