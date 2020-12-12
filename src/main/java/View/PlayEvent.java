@@ -18,7 +18,11 @@ public class PlayEvent extends Menu {
 
     @Override
     public void show() {
-        playerGeneralController.activeEvent(username);
+        try {
+            playerGeneralController.activeEvent(username);
+        } catch (ExistEventException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Which Event Do You Want To Play ? ");
     }
 

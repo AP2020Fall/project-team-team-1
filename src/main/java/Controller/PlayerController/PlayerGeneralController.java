@@ -97,7 +97,7 @@ public class PlayerGeneralController {
         JoinEvent.joinEvent(username,eventID);
     }
 
-    public void activeEvent(String username){
+    public void activeEvent(String username) throws ExistEventException {
         JoinEvent.activeEvent(username);
     }
     public String eventGameName(String eventId) throws ExistEventException {

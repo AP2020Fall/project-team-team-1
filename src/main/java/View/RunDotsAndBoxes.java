@@ -197,7 +197,8 @@ public class RunDotsAndBoxes extends Menu {
                     try {
                         processLoginController.loginAsPlayer(arrayListToString(info));
                     } catch (BanExceptionForLogin banExceptionForLogin) {
-                        banExceptionForLogin.printStackTrace();
+                        System.out.println(banExceptionForLogin.getMessage());
+                        this.parentMenu.run();
                     }
                     setUsername2(info.get(0));
                 } catch (InvalidUserNameException | WrongPasswordException e) {

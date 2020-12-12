@@ -23,7 +23,7 @@ public class LogIn {
             //System.out.println("INVALID USERNAME");
             //return false;
         }
-        if (Existence.checkPlayerActivation(inputSplit[0]))
+        if (!Existence.checkPlayerActivation(inputSplit[0]))
             throw new BanExceptionForLogin("This Username is Ban By Admin. ");
 
         if (!(Existence.checkPassword(inputSplit[0],inputSplit[1]))) {
