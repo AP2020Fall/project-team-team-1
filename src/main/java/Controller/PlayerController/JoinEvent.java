@@ -5,6 +5,7 @@ import Controller.Exception.Plato.ExistEventException;
 import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 
 public class JoinEvent {
@@ -28,6 +29,15 @@ public class JoinEvent {
             throw new ExistEventException("There is no event for show");
         }
         return event.getGameName();
+    }
+
+    protected static String eventScore(String eventId) throws ExistEventException {
+        Event event = null;
+        event = Controller.AdminController.Event.eventFinderByEventID(eventId);
+        if (event == null){
+            throw new ExistEventException("There is no event Please Check EventId !");
+        }
+        return String.valueOf(event.getScore());
     }
     protected static void activeEvent(String username){
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
