@@ -35,7 +35,14 @@ public class Suggestion {
         Model.PlatoModel.Suggestion.getAllSuggestions().remove(suggestion);
         //Model.PlatoModel.Suggestion.saveInJsonFile();
     }
+    public static String suggestionGameName(String suggestionID) throws ExistSuggestionException {
+        Model.PlatoModel.Suggestion suggestion = null;
+        suggestion = findSuggestionBySuggestionID(suggestionID);
+        if (suggestion == null)
+           throw new ExistSuggestionException("there is no Suggestion with this ID");
 
+        return suggestion.getSuggestedGame();
+    }
     private boolean checkSuggestionExistence(String suggestionID) {
         boolean result = false;
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {

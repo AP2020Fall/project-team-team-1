@@ -3,6 +3,8 @@ package Controller.PlayerController;
 import Controller.Exception.Plato.ExistSuggestionException;
 import Model.PlatoModel.Player;
 
+import static Controller.AdminController.Suggestion.findSuggestionBySuggestionID;
+
 public class Suggestion {
     public static void showSuggestion(String username) throws ExistSuggestionException {
         Player player = FindPlayerByInfo.findByUserName(username);
@@ -11,7 +13,7 @@ public class Suggestion {
             throw new ExistSuggestionException(" There is not Suggestion for Show! ");
 
         for (Integer ID : player.getSuggestedGamesID()) {
-            Model.PlatoModel.Suggestion suggestion = Controller.AdminController.Suggestion.findSuggestionBySuggestionID(String.valueOf(ID));
+            Model.PlatoModel.Suggestion suggestion = findSuggestionBySuggestionID(String.valueOf(ID));
             System.out.println("suggestion Id : " + suggestion.getSuggestionID() + "suggested game :" + suggestion.getSuggestedGame());
         }
 
@@ -19,11 +21,20 @@ public class Suggestion {
 
     public static void playSuggestedGame(String userName, String suggestionId) throws ExistSuggestionException {
         Player player = FindPlayerByInfo.findByUserName(userName);
-        Model.PlatoModel.Suggestion suggestion = Controller.AdminController.Suggestion.findSuggestionBySuggestionID(suggestionId);
+        Model.PlatoModel.Suggestion suggestion = findSuggestionBySuggestionID(suggestionId);
 
         if (suggestion == null)
             throw new ExistSuggestionException(" Suggestion with this ID doesn't Exist !, Make Sure about Suggestion and try Again ");
 
         Game.findGameForRun(player.getUserName(), suggestion.getSuggestedGame(), "10");
+    }
+
+    public static String suggestionGameName(String suggestionID) throws ExistSuggestionException {
+        Model.PlatoModel.Suggestion suggestion = null;
+        suggestion = findSuggestionBySuggestionID(suggestionID);
+        if (suggestion == null)
+            throw new ExistSuggestionException("there is no Suggestion with this ID");
+
+        return suggestion.getSuggestedGame();
     }
 }
