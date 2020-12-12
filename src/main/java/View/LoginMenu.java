@@ -55,7 +55,7 @@ public class LoginMenu extends Menu {
     }
 
     private Menu signInAsPlayer() {
-        return new Menu("Sign in As Player", this) {
+        return new Menu("SignIn As Player", this) {
             @Override
             public void show() {
                 System.out.println(this.getName() + ": ");
