@@ -109,15 +109,15 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Password");
         while (true) {
             String password = scanner.nextLine();
-            try {
-                Validation.passwordIsValid(password);
+//            try {
+                //Validation.passwordIsValid(password);
                 playerInput.add(password);
                 LogIn.setPassword(password);
                 break;
 
-            } catch (StrongerPasswordException e) {
-                System.out.println(e.getMessage());
-            }
+//            } catch (StrongerPasswordException e) {
+//                System.out.println(e.getMessage());
+//            }
         }
         System.out.println("Remember me ? YES/NO");
         while (true) {
@@ -152,14 +152,14 @@ public class LoginMenu extends Menu {
         System.out.println("Please Enter Your Password");
         while (true) {
             String password = scanner.nextLine();
-            try {
-                Validation.passwordIsValid(password);
+//            try {
+                //Validation.passwordIsValid(password);
                 adminInput.add(password);
                 break;
 
-            } catch (StrongerPasswordException e) {
-                System.out.println(e.getMessage());
-            }
+//            } catch (StrongerPasswordException e) {
+//                System.out.println(e.getMessage());
+//            }
         }
 
     }
