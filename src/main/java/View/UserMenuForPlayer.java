@@ -54,10 +54,8 @@ public class UserMenuForPlayer extends Menu {
             @Override
             public void execute() {
                 try {
-                    String[] showEvent =playerGeneralController.showHistory(username).split("\\$");
-                    for (String out : showEvent) {
-                        System.out.println(out);
-                    }
+
+                    playerGeneralController.showHistory(username);
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
@@ -81,7 +79,11 @@ public class UserMenuForPlayer extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showGameLogInThisGame(username,gameName());
+                    String[] showEvent = playerGeneralController.showGameLogInThisGame(username,gameName()).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                     while (true){
                         System.out.println("Enter back to get back to last menu! ");
                         String nextCommand = scanner.nextLine();

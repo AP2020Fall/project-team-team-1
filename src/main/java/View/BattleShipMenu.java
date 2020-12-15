@@ -36,7 +36,11 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter());
+                    String[] showEvent = playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter()).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -83,7 +87,11 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showGameLogInThisGame(username, adminGeneralController.firstGameNameGetter());
+                    String[] showEvent = playerGeneralController.showGameLogInThisGame(username, adminGeneralController.firstGameNameGetter()).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -110,7 +118,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOFWins(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(playerGeneralController.showNumberOFWins(username, adminGeneralController.firstGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -136,7 +144,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.firstGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -221,7 +229,7 @@ public class BattleShipMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.firstGameNameGetter()));
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName());
                 }

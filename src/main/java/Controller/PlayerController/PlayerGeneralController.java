@@ -139,24 +139,24 @@ public class PlayerGeneralController {
 
 
     /***********************************************SHOW LOG***********************************************/
-    public void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
-        PlayerStatusInGame.showScoreboardInThisGame(gameName);
+    public String showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
+        return PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
 
-    public void showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
-        PlayerStatusInGame.showGameLogInThisGame(userName, gameName);
+    public String showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
+        return PlayerStatusInGame.showGameLogInThisGame(userName, gameName);
     }
 
-    public void showNumberOFWins(String userName, String gameName) throws InvalidGameNameException {
-        PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
+    public String showNumberOFWins(String userName, String gameName) throws InvalidGameNameException {
+       return PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
     }
 
-    public void showNumberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
-        PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
+    public String showNumberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
+        return PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
     }
 
-    public void showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
-        PlayerStatusInGame.showPlayerPointsInThisGame(userName, gameName);
+    public String showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
+        return PlayerStatusInGame.showPlayerPointsInThisGame(userName, gameName);
     }
 
 

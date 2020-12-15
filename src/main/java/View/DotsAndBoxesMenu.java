@@ -39,8 +39,10 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showScoreboardInThisGame(adminGeneralController.secondGameNameGetter());
-                    this.parentMenu.run();
+                    String[] showEvent = playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter()).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }                    this.parentMenu.run();
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + e.getMessage());
                     this.parentMenu.run();
@@ -80,7 +82,11 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showGameLogInThisGame(username, adminGeneralController.secondGameNameGetter());
+                    String[] showEvent = playerGeneralController.showGameLogInThisGame(username, adminGeneralController.secondGameNameGetter()).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -107,7 +113,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOFWins(username, adminGeneralController.secondGameNameGetter());
+                    System.out.println(playerGeneralController.showNumberOFWins(username, adminGeneralController.secondGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -134,7 +140,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.secondGameNameGetter());
+                    System.out.println(playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.secondGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -219,7 +225,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.secondGameNameGetter());
+                    System.out.println(playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.secondGameNameGetter()));
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + e.getMessage());
                     this.run();

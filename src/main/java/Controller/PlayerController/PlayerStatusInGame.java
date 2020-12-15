@@ -11,7 +11,8 @@ public class PlayerStatusInGame {
     /*** index = 0 in Games ArrayList ---> BattleShip ***/
     /*** index = 1 in Games ArrayList ---> DotsAndBoxes ***/
 
-    public static void showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
+    public static String showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
+        StringBuilder showScoreboardInThisGame = new StringBuilder();
         int index = 0;
         int counter = 1;
         HashMap<String, Long> scoreBoard = new HashMap<>();
@@ -26,12 +27,15 @@ public class PlayerStatusInGame {
             scoreBoard.put(player.getUserName(), player.getPlayerLog().get(index).getTakenScore());
         }
         for (String sorted : sortingFunction(scoreBoard).keySet()) {
-            System.out.println(counter + ". Username : " + sorted + " Score : " + sortingFunction(scoreBoard).get(sorted));
+            showScoreboardInThisGame.append(counter).append(". Username : ").append(sorted).append(" Score : ").append(sortingFunction(scoreBoard).get(sorted)).append("$");
             counter++;
         }
+        return String.valueOf(showScoreboardInThisGame);
     }
 
-    public static void showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
+    public static String showGameLogInThisGame(String userName, String gameName) throws InvalidGameNameException {
+        StringBuilder showGameLogInThisGame = new StringBuilder();
+
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
@@ -45,12 +49,12 @@ public class PlayerStatusInGame {
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
         int loses = player.getPlayerLog().get(index).getNumberOfLoses();
         int numberOfPlayed = player.getPlayerLog().get(index).getNumberOfGamePlayed();
-        System.out.println("Wins : " + wins);
-        System.out.println("Lose : " + loses);
-        System.out.println("Number of match : " + numberOfPlayed);
+
+        showGameLogInThisGame.append("Wins : ").append(wins).append("$").append("Lose : ").append(loses).append("$").append("Number of match : ").append(numberOfPlayed).append("$");
+        return String.valueOf(showGameLogInThisGame);
     }
 
-    public static void numberOfWinsInThisGame(String userName, String gameName) throws InvalidGameNameException {
+    public static String numberOfWinsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
@@ -62,10 +66,10 @@ public class PlayerStatusInGame {
 
         }
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
-        System.out.println("Wins : " + wins);
+        return "Wins : " + wins;
     }
 
-    public static void numberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
+    public static String numberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
@@ -77,10 +81,10 @@ public class PlayerStatusInGame {
 
         }
         int numberOfPlayed = player.getPlayerLog().get(index).getNumberOfGamePlayed();
-        System.out.println("Number of match : " + numberOfPlayed);
+        return "Number of match : " + numberOfPlayed;
     }
 
-    public static void showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
+    public static String showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         int index = 0;
         if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
@@ -92,7 +96,7 @@ public class PlayerStatusInGame {
 
         }
         long score = player.getPlayerLog().get(index).getTakenScore();
-        System.out.println("Level : " + score);
+        return "Point : " + score;
     }
 
     private static LinkedHashMap<String, Integer> sortingFunction(HashMap vorodi) {
