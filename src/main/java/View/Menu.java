@@ -4,7 +4,6 @@ import Controller.AdminController.*;
 import Controller.AdminController.Edit;
 import Controller.AdminController.Suggestion;
 import Controller.BattleSeaController.BattleSeaController;
-import Controller.GeneralController.UserController;
 import Controller.PlayerController.*;
 import Controller.RegisterController.Delete;
 import Controller.RegisterController.LogIn;
@@ -38,7 +37,6 @@ public abstract class Menu {
     protected static Delete processDeleteAccountController = new Delete();
     protected static LogIn processLoginController = new LogIn();
     protected static SignUp processSignupController = new SignUp();
-    protected static UserController userController = new UserController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static BattleSeaController battleSeaController = new BattleSeaController();

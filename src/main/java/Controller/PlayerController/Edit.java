@@ -18,37 +18,11 @@ public class Edit {
             editEmail(player, input);
         } else if (field.trim().equalsIgnoreCase("phonenumber")) {
             editPhoneNumber(player, input);
-        }
-//        else if (field.trim().equalsIgnoreCase("username")) {
-//            editUsername(player,input);
-//        }
-        else
+        } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
-        //Player.saveInJsonFile();
     }
 
-//    protected static void editUsername(Player player,String input) {
-//        boolean pass = false;
-//        pass = Validation.usernameIsValid(input);
-//        if (!pass)
-//            System.out.println("this format is invalid !");
-//
-//        if (pass) {
-//            pass = Existence.checkUserNameExistence(input);
-//            if (pass){
-//                System.out.println("Username is existence!");
-//                pass = false;
-//            }
-//            else {
-//                //player.setUserName(input);
-//                pass = true;
-//            }
-//
-//            if (pass)
-//                player.setUserName(input);
-//        }
-//    }
 
     protected static void editFirstName(Player player, String input) throws InvalidNameException {
 
@@ -78,7 +52,6 @@ public class Edit {
         Validation.passwordIsValid(newPassword);
 
         player.setPassword(newPassword);
-        //Player.saveInJsonFile();
 
 
     }

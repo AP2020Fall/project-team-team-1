@@ -23,7 +23,6 @@ public class AdminGeneralController {
         String[] strings = info.split("\\s");
         Edit.editField(strings[0], strings[1]);
         DataBase.save(Admin.getAdmins(), adminFile);
-        //DataBase.save(User.users,userFile);
     }
 
     public void editPassword(String info) throws InvalidPasswordException, ExistPlayerException, WrongPasswordException, IOException, StrongerPasswordException {

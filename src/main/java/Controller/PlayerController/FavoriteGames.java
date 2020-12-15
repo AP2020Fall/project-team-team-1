@@ -29,15 +29,17 @@ public class FavoriteGames {
 
     }
 
-    public static void showFavoritesGames(String userName) throws ExistFavoriteException {
+    public static String showFavoritesGames(String userName) throws ExistFavoriteException {
+        StringBuilder showFavoritesGames = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player.getFavoritesGamesName().size() == 0)
             throw new ExistFavoriteException("THE FAVORITE GAMES LIST IS EMPTY");
 
         for (String favorite : player.getFavoritesGamesName()) {
-            System.out.println(favorite);
+            showFavoritesGames.append(favorite).append("$");
         }
+        return String.valueOf(showFavoritesGames);
     }
 
     private static boolean checkFavoriteGameExistence(String userName, String gameName) {

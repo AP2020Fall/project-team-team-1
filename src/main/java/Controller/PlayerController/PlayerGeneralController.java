@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 public class PlayerGeneralController {
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
-    //private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
     /***********************************************EDIT***********************************************/
     public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException, IOException {
         String[]strings=input.split("\\s");
@@ -23,7 +22,6 @@ public class PlayerGeneralController {
         String[] inputSplit = input.split("\\s");
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
         DataBase.save(Player.players,playerFile);
-        //DataBase.save(User.users,userFile);
     }
 
 
@@ -38,9 +36,8 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
     }
 
-    public void showFavoritesGames(String userName) throws ExistFavoriteException, IOException {
-        FavoriteGames.showFavoritesGames(userName);
-        DataBase.save(Player.players,playerFile);
+    public String showFavoritesGames(String userName) throws ExistFavoriteException {
+        return FavoriteGames.showFavoritesGames(userName);
     }
 
 

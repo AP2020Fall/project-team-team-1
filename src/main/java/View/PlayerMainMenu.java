@@ -63,12 +63,13 @@ public class PlayerMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showFavoritesGames(username);
+                    String[] showEvent = playerGeneralController.showFavoritesGames(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
                 }
                 Menu nextMenu = null;
                 String num = scanner.nextLine();
