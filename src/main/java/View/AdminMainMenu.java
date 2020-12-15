@@ -1,6 +1,5 @@
 package View;
 
-import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
 
@@ -26,6 +25,7 @@ public class AdminMainMenu extends Menu {
         submenus.put(9, editGameName());
         submenus.put(10, gameOutOfServiceDueToUpdate());
         submenus.put(11, activeGameAfterUpdate());
+        submenus.put(12, setGameActivity());
         submenus.put(13, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
@@ -442,7 +442,7 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
-    private Menu SetGameActivity(){
+    private Menu setGameActivity(){
         return new Menu("Set Games Activity",this) {
             @Override
             public void show() {
