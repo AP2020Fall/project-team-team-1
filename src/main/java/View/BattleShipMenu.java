@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Exception.Plato.ExistFavoriteException;
+import Controller.Exception.Plato.InvalidGameID;
 import Controller.Exception.Plato.InvalidGameNameException;
 
 import java.io.IOException;
@@ -234,6 +235,21 @@ public class BattleShipMenu extends Menu {
 
             }
         };
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")){
+                System.out.println(adminGeneralController.firstGameNameGetter()+" Is Not Available Right now ): Try Again Later ...");
+            }else {
+                show();
+                execute();
+            }
+        } catch (InvalidGameID invalidGameID) {
+            System.out.println(invalidGameID.getMessage());
+        }
+
     }
 }
 
