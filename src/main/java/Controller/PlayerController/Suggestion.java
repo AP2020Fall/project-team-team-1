@@ -6,7 +6,8 @@ import Model.PlatoModel.Player;
 import static Controller.AdminController.Suggestion.findSuggestionBySuggestionID;
 
 public class Suggestion {
-    public static void showSuggestion(String username) throws ExistSuggestionException {
+    public static String showSuggestion(String username) throws ExistSuggestionException {
+        StringBuilder showSuggestion = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (player.getSuggestedGamesID().size() == 0)
@@ -14,8 +15,9 @@ public class Suggestion {
 
         for (Integer ID : player.getSuggestedGamesID()) {
             Model.PlatoModel.Suggestion suggestion = findSuggestionBySuggestionID(String.valueOf(ID));
-            System.out.println("suggestion Id : " + suggestion.getSuggestionID() + "suggested game :" + suggestion.getSuggestedGame());
+            showSuggestion.append("suggestion Id : ").append(suggestion.getSuggestionID()).append("suggested game :").append(suggestion.getSuggestedGame()).append("$");
         }
+        return String.valueOf(showSuggestion);
 
     }
 

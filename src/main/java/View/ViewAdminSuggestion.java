@@ -22,7 +22,10 @@ public class ViewAdminSuggestion extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showSuggestion(username);
+                    String[] showEvent =  playerGeneralController.showSuggestion(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                     System.out.println("Enter Anything To continue Or Enter Back! ");
                     String nextCommand = scanner.nextLine();
                     if (!nextCommand.equalsIgnoreCase("back")){

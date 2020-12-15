@@ -171,8 +171,8 @@ public class PlayerGeneralController {
     }
 
     /***********************************************SUGGESTION***********************************************/
-    public void showSuggestion(String username) throws ExistSuggestionException {
-        Suggestion.showSuggestion(username);
+    public String showSuggestion(String username) throws ExistSuggestionException {
+        return Suggestion.showSuggestion(username);
     }
 
     public void playSuggestedGame(String userName, String suggestionId) throws ExistSuggestionException {
@@ -181,8 +181,8 @@ public class PlayerGeneralController {
 
 
     /***********************************************MESSAGE***********************************************/
-    public void viewBotMessages() {
-        ViewPlatoBotMessages.viewBotMessages();
+    public String viewBotMessages() {
+        return ViewPlatoBotMessages.viewBotMessages();
     }
 
     /***********************************************Details***********************************************/

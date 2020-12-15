@@ -101,7 +101,10 @@ public class PlayerMainMenu extends Menu {
         return new Menu("PlatoBots Messages", this) {
             @Override
             public void execute() {
-                playerGeneralController.viewBotMessages();
+                String[] showEvent = playerGeneralController.viewBotMessages().split("\\$");
+                for (String out : showEvent) {
+                    System.out.println(out);
+                }
 
                 Menu nextMenu = null;
                 String num = scanner.nextLine();
