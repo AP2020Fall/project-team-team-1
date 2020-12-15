@@ -15,12 +15,6 @@ public class ViewPlatoBotMessages {
         return String.valueOf(viewBotMessages);
 
     }
-//    public static void showAdminSuggestions (String username){
-//        Player player = FindPlayerByInfo.findByUserName(username);
-//        for (Integer ID : player.getSuggestedGamesID()) {
-//            System.out.println(Suggestion.findSuggestionBySuggestionID(String.valueOf(ID)));
-//        }
-//    }
 
 
 }
