@@ -78,6 +78,26 @@ public class Game {
 
         game.setUpdate(false);
     }
+    public static String maintenanceStatus(String gameID) throws InvalidGameID {
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        return String.valueOf(game.isUpdate());
+    }
+    public static String activationStatus(String gameID) throws InvalidGameID {
+        if (Integer.parseInt(gameID) > Games.getGames().size())
+            throw new InvalidGameID("Invalid Game ID please Check it and try Again");
+
+        int indexOfGameInArrayList = Integer.parseInt(gameID) - 1;
+
+        Games game = Games.getGames().get(indexOfGameInArrayList);
+
+        return String.valueOf(game.isActivation());
+    }
 
     public static void setDetails(String gameName,String string) throws IOException {
         if (gameName.equalsIgnoreCase(Model.PlatoModel.Games.getGames().get(0).getGameName())){

@@ -130,8 +130,15 @@ public class AdminGeneralController {
         Game.deActiveMaintenanceMode(gameID);
         DataBase.save(Games.getGames(), gamesFile);
     }
+    public String maintenanceStatus(String gameID) throws InvalidGameID {
+        return Game.maintenanceStatus(gameID);
+    }
 
-    public void setDetails(String gameName, String string) throws IOException {
+    public static String activationStatus(String gameID) throws InvalidGameID {
+        return Game.activationStatus(gameID);
+    }
+
+        public void setDetails(String gameName, String string) throws IOException {
 
         Game.setDetails(gameName, string);
 
