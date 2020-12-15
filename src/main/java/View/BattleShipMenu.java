@@ -241,7 +241,10 @@ public class BattleShipMenu extends Menu {
     public void run() {
         try {
             if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")){
+                System.out.print(Color.RED);
                 System.out.println(adminGeneralController.firstGameNameGetter()+" Is Not Available Right now ): Try Again Later ...");
+                System.out.print(Color.RESET);
+                this.parentMenu.run();
             }else {
                 show();
                 execute();

@@ -238,7 +238,11 @@ public class DotsAndBoxesMenu extends Menu {
     public void run() {
         try {
             if (adminGeneralController.activationStatus("2").equalsIgnoreCase("false")){
+                System.out.print(Color.RED);
                 System.out.println(adminGeneralController.secondGameNameGetter()+" Is Not Available Right now ): Try Again Later ...");
+                System.out.print(Color.RESET);
+
+                this.parentMenu.run();
             }else {
                 show();
                 execute();
