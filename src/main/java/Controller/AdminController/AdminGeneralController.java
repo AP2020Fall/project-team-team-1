@@ -88,9 +88,10 @@ public class AdminGeneralController {
         DataBase.save(Model.PlatoModel.Suggestion.getAllSuggestions(), suggestionFile);
     }
 
-    public void showSuggestion() throws ExistSuggestionException {
-        Suggestion.showSuggestion();
+    public String showSuggestion() throws ExistSuggestionException {
+        return Suggestion.showSuggestion();
     }
+
 
     public void removeSuggestion(String suggestionID) throws ExistSuggestionException, IOException {
         Suggestion.removeSuggestion(suggestionID);

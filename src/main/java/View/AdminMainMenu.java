@@ -161,7 +161,11 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    adminGeneralController.showSuggestion();
+                    String[] showEvent = adminGeneralController.showSuggestion().split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                 } catch (ExistSuggestionException e) {
                     System.out.println(e.getMessage());
                 }

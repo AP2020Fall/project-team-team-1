@@ -19,13 +19,15 @@ public class Suggestion {
 
     }
 
-    public static void showSuggestion() throws ExistSuggestionException {
+    public static String showSuggestion() throws ExistSuggestionException {
+        StringBuilder showSuggestion = new StringBuilder();
         if (Model.PlatoModel.Suggestion.getAllSuggestions().size()==0)
             throw new ExistSuggestionException("There is no Suggestion for show");
 
         for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
-            System.out.println("Suggestion ID: "+allSuggestion.getSuggestionID()+" Suggested Player: "+allSuggestion.getPlayerName().getUserName()+" Suggested Game: "+allSuggestion.getSuggestedGame());
+            showSuggestion.append("Suggestion ID: ").append(allSuggestion.getSuggestionID()).append(" Suggested Player: ").append(allSuggestion.getPlayerName().getUserName()).append(" Suggested Game: ").append(allSuggestion.getSuggestedGame()).append("$");
         }
+        return String.valueOf(showSuggestion);
     }
 
     public static void removeSuggestion(String suggestionID) throws ExistSuggestionException {
@@ -33,7 +35,6 @@ public class Suggestion {
         if (suggestion == null)
             throw new ExistSuggestionException("There is no Suggestion for Delete with ID");
         Model.PlatoModel.Suggestion.getAllSuggestions().remove(suggestion);
-        //Model.PlatoModel.Suggestion.saveInJsonFile();
     }
     public static String suggestionGameName(String suggestionID) throws ExistSuggestionException {
         Model.PlatoModel.Suggestion suggestion = null;
