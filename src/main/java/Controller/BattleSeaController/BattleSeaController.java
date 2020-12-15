@@ -34,8 +34,7 @@ public class BattleSeaController {
                 int xForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
                 int yForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
                 run.changeShipPlayer2Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
-            } else
-                System.out.println("check you Username");
+            }
 
         } else if (inputSpilt[3].equalsIgnoreCase("coordinate")) {
             String[] coordinate = inputSpilt[5].split(",");
@@ -47,8 +46,7 @@ public class BattleSeaController {
                 run.changeShipPlayer1Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
             else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
                 run.changeShipPlayer2Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
-            else
-                System.out.println("check you Username");
+
 
         } else {
             throw new InvalidCommandException("Invalid command");
@@ -76,7 +74,8 @@ public class BattleSeaController {
         return "";
     }
 
-    public void showCommandProcessor(String username, String string) throws InvalidCommandException {
+    public String showCommandProcessor(String username, String string) throws InvalidCommandException {
+        StringBuilder output = new StringBuilder();
         String[] inputSpilt = string.split("\\s");
         int counter = 1;
 
@@ -91,42 +90,47 @@ public class BattleSeaController {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getPlayerBooms()) {
                 int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0))) + 1;
                 int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2))) + 1;
-                System.out.println(counter + ". X: " + xInput + " Y: " + yInput);
+                output.append(counter).append(". X: ").append(xInput).append(" Y: ").append(yInput).append("$");
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("correct")) {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getCorrectPlayerBooms()) {
                 int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0))) + 1;
                 int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2))) + 1;
-                System.out.println(counter + ". X: " + xInput + " Y: " + yInput);
+                output.append(counter).append(". X: ").append(xInput).append(" Y: ").append(yInput).append("$");
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("incorrect")) {
             for (String playerBoom : battleSeaPlayerFounder(inputSpilt[1]).getInCorrectPlayerBooms()) {
                 int xInput = Integer.parseInt(String.valueOf(playerBoom.charAt(0))) + 1;
                 int yInput = Integer.parseInt(String.valueOf(playerBoom.charAt(2))) + 1;
-                System.out.println(counter + ".X: " + xInput + " Y: " + yInput);
+                output.append(counter).append(".X: ").append(xInput).append(" Y: ").append(yInput).append("$");
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("boomed")) {
             for (Ship ship : battleSeaPlayerFounder(inputSpilt[1]).getBoomedPlayerShip()) {
-                System.out.println(counter + ". Boomed Ships: " + ship.getName());
+                output.append(counter).append(". Boomed Ships: ").append(ship.getName()).append("$");
                 counter++;
             }
         } else if (inputSpilt[2].equalsIgnoreCase("unboomed")) {
             for (Ship ship : battleSeaPlayerFounder(inputSpilt[1]).getUnBoomedPlayerShip()) {
-                System.out.println(counter + ". Un Boomed Ships: " + ship.getName());
+                output.append(counter).append(". Un Boomed Ships: ").append(ship.getName()).append("$");
+                counter++;
             }
 
-        } else if (inputSpilt[3].equalsIgnoreCase("plane")) {
-            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(inputSpilt[1]))
-                Board.displayBoard(run.game.getFirstPlayerEnemyBoard().getGameBoard());
-            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(inputSpilt[1]))
-                Board.displayBoard(run.game.getSecondPlayerOwnBoard().getGameBoard());
-
-        } else {
+        }        else {
             throw new InvalidCommandException("Invalid command");
         }
+        return String.valueOf(output);
+
+//        else if (inputSpilt[3].equalsIgnoreCase("plane")) {
+//            if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(inputSpilt[1]))
+//                Board.displayBoard(run.game.getFirstPlayerEnemyBoard().getGameBoard());
+//            else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(inputSpilt[1]))
+//                Board.displayBoard(run.game.getSecondPlayerOwnBoard().getGameBoard());
+//
+//        }
+
     }
 
     protected BattleSeaPlayer battleSeaPlayerFounder(String string) {

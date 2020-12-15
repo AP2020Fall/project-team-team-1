@@ -249,9 +249,13 @@ public class RunBattleShip extends Menu {
             }
             if (nexCommandSpilit[0].equalsIgnoreCase("show")){
                 try {
-                    battleSeaController1.showCommandProcessor(nexCommandSpilit[1],nexCommand);
+                    String[] showEvent = battleSeaController1.showCommandProcessor(nexCommandSpilit[1],nexCommand).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                 } catch (InvalidCommandException e) {
                     System.out.println(e.getMessage());
+
                 }
             }
 

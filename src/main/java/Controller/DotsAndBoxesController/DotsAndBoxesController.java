@@ -99,7 +99,6 @@ public class DotsAndBoxesController {
 
     public  void startDotsAndBoxes () throws NotEmptyString, WrongFormatInDots, ExistLineException, FindLineException {
         while (!isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
-            System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
             RunDotsAndBoxes.printBoard();
             String command = RunDotsAndBoxes.getNextCommand();
             if (command.isEmpty()){

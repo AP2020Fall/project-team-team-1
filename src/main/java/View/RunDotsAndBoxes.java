@@ -153,6 +153,7 @@ public class RunDotsAndBoxes extends Menu {
         System.out.println();
         while (true) {
             try {
+                System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
                 dotsAndBoxesController.startDotsAndBoxes();
                 if (dotsAndBoxesController.whoIsWinner().equals("blue")){
                     winnerAward(getUsername1(),getUsername2());

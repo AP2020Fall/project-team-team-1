@@ -1,7 +1,5 @@
 package Controller.CompetencyController;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.AdminController.Game;
 import Controller.Exception.Plato.*;
 import Model.PlatoModel.Games;
 
