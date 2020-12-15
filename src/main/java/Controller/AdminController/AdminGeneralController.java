@@ -134,7 +134,7 @@ public class AdminGeneralController {
         return Game.maintenanceStatus(gameID);
     }
 
-    public static String activationStatus(String gameID) throws InvalidGameID {
+    public String activationStatus(String gameID) throws InvalidGameID {
         return Game.activationStatus(gameID);
     }
 

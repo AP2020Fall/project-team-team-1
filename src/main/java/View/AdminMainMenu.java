@@ -23,7 +23,10 @@ public class AdminMainMenu extends Menu {
         submenus.put(6, viewUsers());
         submenus.put(7, new BanMenu(this));
         submenus.put(8, sendMessageAsPlatoBot());
-        submenus.put(9, new UserMenuForAdmin(username, this));
+        submenus.put(9, editGameName());
+        submenus.put(10, gameOutOfServiceDueToUpdate());
+        submenus.put(11, activeGameAfterUpdate());
+        submenus.put(13, new UserMenuForAdmin(username, this));
         this.setSubmenus(submenus);
         this.username = username;
     }
@@ -251,7 +254,7 @@ public class AdminMainMenu extends Menu {
         return new Menu("Add Details", this) {
             @Override
             public void show() {
-                System.out.println("Which Game Do You Want to Add Details to?"+ adminGeneralController.firstGameNameGetter()+" OR "+ adminGeneralController.secondGameNameGetter());
+                System.out.println("Which Game Do You Want to Add Details to?" + adminGeneralController.firstGameNameGetter() + " OR " + adminGeneralController.secondGameNameGetter());
             }
 
             @Override
@@ -291,7 +294,7 @@ public class AdminMainMenu extends Menu {
     }
 
     private Menu editBattleShipDetails() {
-        return new Menu("Edit "+ adminGeneralController.firstGameNameGetter() +" Details", this) {
+        return new Menu("Edit " + adminGeneralController.firstGameNameGetter() + " Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.battleDetails());
@@ -311,7 +314,7 @@ public class AdminMainMenu extends Menu {
     }
 
     private Menu editDotsAndBoxesDetails() {
-        return new Menu("Edit "+ adminGeneralController.secondGameNameGetter() +" Details", this) {
+        return new Menu("Edit " + adminGeneralController.secondGameNameGetter() + " Details", this) {
             @Override
             public void show() {
                 System.out.println(playerGeneralController.dotsDetails());
@@ -329,6 +332,210 @@ public class AdminMainMenu extends Menu {
             }
         };
     }
+
+    private Menu editGameName() {
+        return new Menu("edit Game Name", this) {
+            @Override
+            public void show() {
+                System.out.println("which Game You Want to Edit : ");
+                System.out.println(adminGeneralController.firstGameNameGetter());
+                System.out.println(adminGeneralController.secondGameNameGetter());
+            }
+
+            @Override
+            public void execute() {
+                String game = scanner.nextLine();
+                if (game.equals(adminGeneralController.firstGameNameGetter())) {
+                    try {
+                        adminGeneralController.changeGameName("1", scanner.nextLine());
+                        System.out.println("GameName changed Successfully");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID invalidGameID) {
+                        invalidGameID.printStackTrace();
+                        this.run();
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                        this.run();
+                    }
+                } else if (game.equals(adminGeneralController.secondGameNameGetter())) {
+                    try {
+                        adminGeneralController.changeGameName("2", scanner.nextLine());
+                        System.out.println("gameName Changed Successfully");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID invalidGameID) {
+                        invalidGameID.printStackTrace();
+                        this.run();
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                        this.run();
+                    }
+                }
+            }
+        };
+    }
+
+    private Menu gameOutOfServiceDueToUpdate() {
+        return new Menu("Disable Game For Update", this) {
+            @Override
+            public void show() {
+                System.out.println("Which game You Want To Update ?");
+                System.out.println(adminGeneralController.firstGameNameGetter());
+                System.out.println(adminGeneralController.secondGameNameGetter());
+            }
+
+            @Override
+            public void execute() {
+                if (scanner.nextLine().equals(adminGeneralController.firstGameNameGetter())) {
+                    try {
+                        adminGeneralController.activeMaintenanceMode("1");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID | GameMaintenance | IOException invalidGameID) {
+                        System.out.println(invalidGameID.getMessage());
+                        this.run();
+                    }
+                } else if (scanner.nextLine().equals(adminGeneralController.secondGameNameGetter())) {
+                    try {
+                        adminGeneralController.activeMaintenanceMode("2");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID | GameMaintenance | IOException invalidGameID) {
+                        System.out.println(invalidGameID.getMessage());
+                        this.run();
+                    }
+                } else {
+                    System.out.println("Try Again");
+                    this.run();
+                }
+            }
+        };
+    }
+
+    private Menu activeGameAfterUpdate() {
+        return new Menu("Active Game After Update", this) {
+            @Override
+            public void show() {
+                System.out.println("which Game You Want To Active ? ");
+                System.out.println(adminGeneralController.firstGameNameGetter());
+                System.out.println(adminGeneralController.secondGameNameGetter());
+            }
+
+            @Override
+            public void execute() {
+                if (scanner.nextLine().equals(adminGeneralController.firstGameNameGetter())) {
+                    try {
+                        adminGeneralController.deActiveMaintenanceMode("1");
+                        System.out.println("This Game Activated Successfully");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID | IOException | GameMaintenance invalidGameID) {
+                        System.out.println(invalidGameID.getMessage());
+                        this.run();
+                    }
+                } else if (scanner.nextLine().equals(adminGeneralController.secondGameNameGetter())) {
+                    try {
+                        adminGeneralController.deActiveGame("2");
+                        System.out.println("This Game Activated Successfully");
+                        this.parentMenu.run();
+                    } catch (InvalidGameID | GameActivation | IOException invalidGameID) {
+                        System.out.println(invalidGameID.getMessage());
+                        this.run();
+                    }
+                }
+            }
+        };
+    }
+    private Menu SetGameActivity(){
+        return new Menu("Set Games Activity",this) {
+            @Override
+            public void show() {
+                System.out.println("Active/DeActive");
+            }
+
+            @Override
+            public void execute() {
+                if (setActivity().equalsIgnoreCase("active")){
+                    if (!checkIfGameIsActive(adminGeneralController.firstGameNameGetter())){
+                        System.out.println(adminGeneralController.firstGameNameGetter());
+                        if (!checkIfGameIsActive(adminGeneralController.secondGameNameGetter())){
+                            System.out.println(adminGeneralController.secondGameNameGetter());
+                        }
+                    }
+                    System.out.println("Which Game You Want to Active ?  ");
+                    if (scanner.nextLine().equalsIgnoreCase(adminGeneralController.firstGameNameGetter())){
+                        try {
+                            adminGeneralController.activeGame("1");
+                            this.parentMenu.run();
+                        } catch (InvalidGameID | GameActivation | IOException invalidGameID) {
+                            System.out.println(invalidGameID.getMessage());
+                            this.run();
+                        }
+                    }else if (scanner.nextLine().equalsIgnoreCase(adminGeneralController.secondGameNameGetter())){
+                        try {
+                            adminGeneralController.activationStatus("2");
+                            this.parentMenu.run();
+                        } catch (InvalidGameID invalidGameID) {
+                            System.out.println(invalidGameID.getMessage());
+                            this.run();
+                        }
+                    }else this.parentMenu.run();
+                }else if (setActivity().equalsIgnoreCase("deActive")){
+                    if (checkIfGameIsActive(adminGeneralController.firstGameNameGetter())){
+                        System.out.println(adminGeneralController.firstGameNameGetter());
+                        if (checkIfGameIsActive(adminGeneralController.secondGameNameGetter())){
+                            System.out.println(adminGeneralController.secondGameNameGetter());
+                        }
+                    }
+                    System.out.println("Which Game You Want To DeActive");
+                    if (scanner.nextLine().equalsIgnoreCase(adminGeneralController.firstGameNameGetter())){
+                        try {
+                            adminGeneralController.deActiveGame("1");
+                            this.parentMenu.run();
+                        } catch (InvalidGameID | IOException | GameActivation invalidGameID) {
+                            System.out.println(invalidGameID.getMessage());
+                            this.run();
+                        }
+                    }else if (scanner.nextLine().equalsIgnoreCase(adminGeneralController.secondGameNameGetter())){
+                        try {
+                            adminGeneralController.deActiveGame("2");
+                            this.parentMenu.run();
+                        } catch (InvalidGameID | GameActivation | IOException invalidGameID) {
+                            System.out.println(invalidGameID.getMessage());
+                            this.run();
+                        }
+                    }else this.parentMenu.run();
+                    //todo sout kon dada successfully re mrc aqa amir soltani be mola ro dastet nis be vallah
+                }
+            }
+        };
+    }
+    private String setActivity(){
+        if (scanner.nextLine().equalsIgnoreCase("active")){
+            return "active";
+        }else if (scanner.nextLine().equalsIgnoreCase("deActive")){
+            return "deActive";
+        }
+        return "active";
+    }
+    private boolean checkIfGameIsActive(String game){
+        if (game.equals(adminGeneralController.firstGameNameGetter())){
+            try {
+                if (adminGeneralController.activationStatus("1").equalsIgnoreCase("true")){
+                    return true;
+                }else return false;
+            } catch (InvalidGameID invalidGameID) {
+                System.out.println(invalidGameID.getMessage());
+                this.run();
+            }
+        }else if (game.equals(adminGeneralController.secondGameNameGetter())){
+            try {
+                if (adminGeneralController.activationStatus("2").equalsIgnoreCase("true")){
+                    return true;
+                }else return false;
+            } catch (InvalidGameID invalidGameID) {
+                System.out.println(invalidGameID.getMessage());
+            }
+        }
+        return false;
+    }
+
 
     public static String arrayListToString(ArrayList<String> arrayList) {
         String output = "";
