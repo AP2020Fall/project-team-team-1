@@ -13,16 +13,12 @@ public class Message {
         }
     }
 
-    public static void showPlayerMassage() {
+    public static String showPlayerMassage() {
+        StringBuilder showMessage = new StringBuilder();
         for (Model.PlatoModel.Message message : Model.PlatoModel.Message.getMessages()) {
-            System.out.println("Message Id : " + message.getMassageID() +" Text : " + message.getText());
+            showMessage.append("Message Id : ").append(message.getMassageID()).append(" Text : ").append(message.getText()).append("$");
         }
-//        Player player = FindPlayerByInfo.findByUserName(username);
-//        if (player == null)
-//            throw new ExistPlayerException(username + " Is Invalid");
-//        for (Model.PlatoModel.Message playerReceivedMessage : player.getReceivedMessages()) {
-//            System.out.println(playerReceivedMessage);
-//        }
+        return String.valueOf(showMessage);
     }
 
 }

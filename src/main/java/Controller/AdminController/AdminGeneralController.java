@@ -61,25 +61,24 @@ public class AdminGeneralController {
     /***********************************************MESSAGE***********************************************/
     public void sendMassageString(String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
-        //DataBase.save(Model.PlatoModel.Message.getMessages(),messageFile);
         Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(), messageFile);
     }
 
-    public void showPlayerMassage() throws ExistPlayerException {
-        Message.showPlayerMassage();
+    public String showPlayerMassage() throws ExistPlayerException {
+        return Message.showPlayerMassage();
     }
 
     /***********************************************USERS***********************************************/
-    public void showAllUsers() throws ExistPlayerException {
-        PlayerLists.showAllUsers();
+    public String showAllUsers() throws ExistPlayerException {
+       return PlayerLists.showAllUsers();
     }
 
-    public void showUsersByUserName(String userName) throws ExistPlayerException {
-        PlayerLists.showUsersByUserName(userName);
+    public String showUsersByUserName(String userName) throws ExistPlayerException {
+        return PlayerLists.showUsersByUserName(userName);
     }
 
-    public void showAdminInfo() {
-        PlayerLists.showAdminInfo();
+    public String showAdminInfo() {
+       return PlayerLists.showAdminInfo();
     }
 
     /**********************************************SUGGESTION**********************************************/

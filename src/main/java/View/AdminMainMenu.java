@@ -198,7 +198,10 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    adminGeneralController.showAllUsers();
+                    String[] showEvent = adminGeneralController.showAllUsers().split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getMessage());
                     this.run();
@@ -209,7 +212,10 @@ public class AdminMainMenu extends Menu {
                     this.parentMenu.run();
                 } else if (nextCommand.equalsIgnoreCase("continue")) {
                     try {
-                        adminGeneralController.showUsersByUserName(getUsernameInformation());
+                        String[] showEvent = adminGeneralController.showUsersByUserName(getUsernameInformation()).split("\\$");
+                        for (String out : showEvent) {
+                            System.out.println(out);
+                        }
                     } catch (ExistPlayerException e) {
                         System.out.println(e.getPlayerName() + e.getMessage());
                         this.run();

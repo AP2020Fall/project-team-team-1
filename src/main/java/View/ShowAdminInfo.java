@@ -86,7 +86,10 @@ public class ShowAdminInfo extends Menu {
 
     @Override
     public void execute() {
-        adminGeneralController.showAdminInfo();
+        String[] showEvent = adminGeneralController.showAdminInfo().split("\\$");
+        for (String out : showEvent) {
+            System.out.println(out);
+        }
         Menu nextMenu = null;
         String num = scanner.nextLine();
         if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){

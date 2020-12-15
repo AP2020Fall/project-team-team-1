@@ -7,24 +7,31 @@ import Model.PlatoModel.Player;
 
 public class PlayerLists {
 
-    public static void showAllUsers() throws ExistPlayerException {
+    public static String showAllUsers() throws ExistPlayerException {
+        StringBuilder showAllUsers = new StringBuilder();
         if (Player.players.size() == 0)
             throw new ExistPlayerException("There is no Player for Show");
         for (Player player : Player.players) {
-            System.out.println(player.getUserName());
+            showAllUsers.append(player.getUserName()).append("$");
         }
+        return String.valueOf(showAllUsers);
     }
 
-    public static void showUsersByUserName(String userName) throws ExistPlayerException {
+    public static String showUsersByUserName(String userName) throws ExistPlayerException {
+        StringBuilder showUsersByUserName = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player == null)
             throw new ExistPlayerException(userName + " Is Invalid");
-        System.out.println("getUserID: " + player.getUserID() + " Username: " + player.getUserName() + " Name: " + player.getName() + " LastName: " + player.getLastName() + " Email: " + player.getEmail() + " Phone Number: " + player.getPhoneNum());
+
+        showUsersByUserName.append("getUserID: ").append(player.getUserID()).append(" |Username: ").append(player.getUserName()).append(" |Name: ").append(player.getName()).append(" |LastName: ").append(player.getLastName()).append(" |Email: ").append(player.getEmail()).append(" |Phone Number: ").append(player.getPhoneNum()).append("$");
+        return String.valueOf(showUsersByUserName);
     }
 
-    public static void showAdminInfo() {
+    public static String showAdminInfo() {
+        StringBuilder showAdminInfo = new StringBuilder();
         Admin admin = Admin.getAdmins().get(0);
-        System.out.println("getUserID: " + admin.getUserID() + " Username: " + admin.getUserName() + " Name: " + admin.getName() + " LastName: " + admin.getLastName() + " Email: " + admin.getEmail() + " Phone Number: " + admin.getPhoneNum());
+        showAdminInfo.append("getUserID: ").append(admin.getUserID()).append(" |Username: ").append(admin.getUserName()).append(" |Name: ").append(admin.getName()).append(" |LastName: ").append(admin.getLastName()).append(" |Email: ").append(admin.getEmail()).append(" |Phone Number: ").append(admin.getPhoneNum()).append("$");
+        return String.valueOf(showAdminInfo);
     }
 
 
