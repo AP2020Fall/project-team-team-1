@@ -83,7 +83,11 @@ public class ShowPlayerInfo extends Menu {
     @Override
     public void execute() {
         try {
-            playerGeneralController.showBasicInformation(username);
+            String[] showEvent = playerGeneralController.showBasicInformation(username).split("\\$");
+            for (String out : showEvent) {
+                System.out.println(out);
+            }
+
         } catch (ExistPlayerException e) {
             System.out.println(e.getPlayerName() + e.getMessage());
         }

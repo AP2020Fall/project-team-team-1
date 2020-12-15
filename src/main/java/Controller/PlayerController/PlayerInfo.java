@@ -9,19 +9,19 @@ import java.time.temporal.ChronoUnit;
 
 public class PlayerInfo {
 
-    public static void showBasicInformation(String userName) throws ExistPlayerException {
+    public static String showBasicInformation(String userName) throws ExistPlayerException {
+        StringBuilder showBasicInformation = new StringBuilder();
+
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        System.out.println("Email : " + player.getEmail());
-        System.out.println("Name : " + player.getName());
-        System.out.println("Last name : " + player.getLastName());
-        System.out.println("User name : " + player.getUserName());
-        System.out.println("Phone number : " + player.getPhoneNum());
+        showBasicInformation.append("Email : ").append(player.getEmail()).append('\n').append("Name : ").append(player.getName()).append('\n').append("Last name : ").append(player.getLastName()).append('\n').append("User name : ").append(player.getUserName()).append('\n').append("Phone number : ").append(player.getPhoneNum()).append("$");
+        return String.valueOf(showBasicInformation);
     }
-    public static void showUserAge(String userName) throws ExistPlayerException {
+
+    public static String userAge(String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
@@ -29,10 +29,12 @@ public class PlayerInfo {
         LocalDate registerDate = player.getRegisterDate();
         LocalDate now = LocalDate.now();
         Long age = ChronoUnit.DAYS.between(registerDate,now);
-        System.out.println(age);
+        return String.valueOf(age);
 
     }
-    public static void showUserGamesStatistics(String userName) throws ExistPlayerException {
+
+    public static String showUserGamesStatistics(String userName) throws ExistPlayerException {
+        StringBuilder showUserGamesStatistics = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(userName);
 
         if (player == null)
@@ -43,16 +45,10 @@ public class PlayerInfo {
         float numberOfPlayed = player.getPlayerLog().get(0).getNumberOfGamePlayed()+player.getPlayerLog().get(1).getNumberOfGamePlayed();
         float winPercentage = (wins/numberOfPlayed)*100;
 
-        System.out.print("Your age in plato : ");
-        showUserAge(userName);
-
-        System.out.println("Number of Friends: "+ player.getFriends().size());
-        System.out.println("Wins : " + wins);
-        System.out.println("Lose : " + loses);
-        System.out.println("Number of match : " + numberOfPlayed);
-        System.out.println("Win Percentage : %"+ winPercentage);
-
+        showUserGamesStatistics.append("Your age in plato : ").append(userAge(userName)).append('\n').append("Number of Friends: ").append(player.getFriends().size()).append('\n').append("Wins : ").append(wins).append('\n').append("Lose : ").append(loses).append('\n').append("Number of match : ").append(numberOfPlayed).append('\n').append("Win Percentage : %").append(winPercentage).append("$");
+        return String.valueOf(showUserGamesStatistics);
     }
+
     public static String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player.getLastPlayed().isEmpty()){
@@ -63,7 +59,8 @@ public class PlayerInfo {
 
         return player.getLastPlayed().get(player.getLastPlayed().size()-1);
     }
-    public static void showPoint (String userName) throws ExistPlayerException {
+
+    public static String showPoint (String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
@@ -71,9 +68,11 @@ public class PlayerInfo {
         long level = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
         level = level/10 ;
 
-        System.out.println("Level : " + level);
+        return "Level : " + level;
     }
-    public static void showHistory (String userName) throws ExistPlayerException, ExistPlayerLogException {
+    public static String showHistory (String userName) throws ExistPlayerException, ExistPlayerLogException {
+        StringBuilder showHistory = new StringBuilder();
+
         Player player = FindPlayerByInfo.findByUserName(userName);
         if (player.getLastPlayed().isEmpty()){
             throw new ExistPlayerLogException("There is no history for this player yet!");
@@ -83,24 +82,27 @@ public class PlayerInfo {
 
         int counter = player.getLastPlayed().size();
         for (int i = player.getLastPlayed().size() -1 ; 0 <= i; i--) {
-            System.out.println(counter+". "+player.getLastPlayed().get(i));
+            showHistory.append(counter).append(". ").append(player.getLastPlayed().get(i)).append("$");
             counter--;
         }
+        return String.valueOf(showHistory);
     }
 
-    public static void showReportsList(String username) throws EmptyReportsList {
+    public static String showReportsList(String username) throws EmptyReportsList {
+        StringBuilder showReportsList = new StringBuilder();
+
         Player player = FindPlayerByInfo.findByUserName(username);
         if (player.getPlayersWhoReportMe().isEmpty())
             throw new EmptyReportsList("No one Reports this Username");
 
-        System.out.println("Players who reported "+username+" :");
+        showReportsList.append("Players who reported \"").append(username).append("\" :").append("$");
         int counter = 1;
 
         for (String reports : player.getPlayersWhoReportMe()) {
-            System.out.println(counter+". "+reports);
+            showReportsList.append(counter).append(". ").append(reports).append("$");
             counter++;
         }
-
+        return String.valueOf(showReportsList);
     }
 
     public static void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException {
@@ -120,20 +122,19 @@ public class PlayerInfo {
 
         player.setActivation(false);
     }
-    public static void showBanPlayers(){
+    public static String showBanPlayers(){
+        StringBuilder showBanPlayers = new StringBuilder();
         for (Player player : Player.getPlayers()) {
             if (!player.isActivation()){
-                System.out.print("players who reports ");
-                System.out.print(Color.RED);
-                System.out.print(player.getUserName());
-                System.out.println(Color.RESET);
+                showBanPlayers.append("players who reports \"").append(player.getUserName()).append("\" : 👇").append("$");
                 int counter = 1;
                 for (String reports : player.getPlayersWhoReportMe()) {
-                    System.out.println(counter+". "+reports);
+                    showBanPlayers.append(counter).append(". ").append(reports).append("$");
                     counter ++;
                 }
             }
         }
+        return String.valueOf(showBanPlayers);
     }
 
     public static void unBanPlayer(String username) throws ItsNotBan {

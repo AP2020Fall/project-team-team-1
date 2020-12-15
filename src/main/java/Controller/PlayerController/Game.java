@@ -13,8 +13,8 @@ public class Game {
         Player winnerPlayer = FindPlayerByInfo.findByUserName(winner);
         Player loserPlayer = FindPlayerByInfo.findByUserName(loser);
 
-        winnerPlayer.getLastPlayed().add("Date: "+String.valueOf(localDate)+" "+winner+" wins "+ loser+" At: "+gameName);
-        loserPlayer.getLastPlayed().add("Date: "+String.valueOf(localDate)+" "+loser+" loser Against "+ winner +" At: "+gameName);
+        winnerPlayer.getLastPlayed().add("Date: "+ localDate +" "+winner+" wins "+ loser+" At: "+gameName);
+        loserPlayer.getLastPlayed().add("Date: "+ localDate +" "+loser+" loser Against "+ winner +" At: "+gameName);
     }
     public static void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput){
         Player winnerPlayer = FindPlayerByInfo.findByUserName(winnerPlayerInput);

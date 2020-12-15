@@ -30,7 +30,11 @@ public class UserMenuForPlayer extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showUserGamesStatistics(username);
+                    String[] showEvent = playerGeneralController.showUserGamesStatistics(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                 }
@@ -50,7 +54,10 @@ public class UserMenuForPlayer extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showHistory(username);
+                    String[] showEvent =playerGeneralController.showHistory(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();

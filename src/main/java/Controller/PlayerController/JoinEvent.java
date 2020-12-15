@@ -40,17 +40,19 @@ public class JoinEvent {
         }
         return String.valueOf(event.getScore());
     }
-    protected static void activeEvent(String username) throws ExistEventException, IOException {
+    protected static String activeEvent(String username) throws ExistEventException, IOException {
+        StringBuilder activeEvent = new StringBuilder();
         Controller.AdminController.Event.eventDateChecker();
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
             for (String playerEvent : event.getPlayersInThisEvent()) {
                 if (playerEvent.equals(username)){
                     if (findActivity(event.getStartDate())){
-                        System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore() + " Comment: " + event.getComment());
+                        activeEvent.append("EventId: ").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
                     }
                 }
             }
         }
+        return String.valueOf(activeEvent);
     }
     private static boolean findActivity(LocalDate localDate){
         return localDate.isAfter(LocalDate.now());

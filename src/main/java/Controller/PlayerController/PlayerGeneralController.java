@@ -94,8 +94,8 @@ public class PlayerGeneralController {
         JoinEvent.joinEvent(username,eventID);
     }
 
-    public void activeEvent(String username) throws ExistEventException, IOException {
-        JoinEvent.activeEvent(username);
+    public String activeEvent(String username) throws ExistEventException, IOException {
+        return JoinEvent.activeEvent(username);
     }
     public String eventGameName(String eventId) throws ExistEventException {
 
@@ -108,20 +108,20 @@ public class PlayerGeneralController {
     return Suggestion.suggestionGameName(suggestionID);
     }
         /***********************************************SHOW INFO***********************************************/
-    public void showBasicInformation(String userName) throws ExistPlayerException {
-        PlayerInfo.showBasicInformation(userName);
+    public String showBasicInformation(String userName) throws ExistPlayerException {
+       return PlayerInfo.showBasicInformation(userName);
     }
 
-    public void showUserAge(String userName) throws ExistPlayerException {
-        PlayerInfo.showUserAge(userName);
+    public String showUserAge(String userName) throws ExistPlayerException {
+        return PlayerInfo.userAge(userName);
     }
 
-    public void showUserGamesStatistics(String userName) throws ExistPlayerException {
-        PlayerInfo.showUserGamesStatistics(userName);
+    public String showUserGamesStatistics(String userName) throws ExistPlayerException {
+        return PlayerInfo.showUserGamesStatistics(userName);
     }
 
-    public void showHistory(String userName) throws ExistPlayerException, ExistPlayerLogException {
-        PlayerInfo.showHistory(userName);
+    public String showHistory(String userName) throws ExistPlayerException, ExistPlayerLogException {
+       return PlayerInfo.showHistory(userName);
     }
 
     public void historySaver(LocalDate localDate, String winner, String loser, String gameName) throws IOException {
@@ -133,8 +133,8 @@ public class PlayerGeneralController {
         return PlayerInfo.showUserLastPlayed(userName);
     }
 
-    public void showPoint(String userName) throws ExistPlayerException {
-        PlayerInfo.showPoint(userName);
+    public String showPoint(String userName) throws ExistPlayerException {
+        return PlayerInfo.showPoint(userName);
     }
 
 

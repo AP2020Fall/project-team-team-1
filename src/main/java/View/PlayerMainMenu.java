@@ -22,7 +22,7 @@ public class PlayerMainMenu extends Menu {
         submenus.put(8, joinEvent());
         submenus.put(9, new PlayEvent(username, this));
         submenus.put(10, new UserMenuForPlayer(username, this));
-        submenus.put(11,report());
+        submenus.put(11, report());
         this.setSubmenus(submenus);
     }
 
@@ -31,7 +31,11 @@ public class PlayerMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showPoint(username);
+                    String[] showEvent = playerGeneralController.showPoint(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
                     this.parentMenu.run();
@@ -237,7 +241,11 @@ public class PlayerMainMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.showHistory(username);
+                    String[] showEvent = playerGeneralController.showHistory(username).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
+
                     System.out.println("Enter Back To Exit This Menu");
                     if (scanner.nextLine().equals("back")) {
                         this.parentMenu.run();
@@ -264,9 +272,9 @@ public class PlayerMainMenu extends Menu {
                     this.parentMenu.run();
                 }
                 try {
-                    playerGeneralController.reportsPlayer(username,reportedUserName);
+                    playerGeneralController.reportsPlayer(username, reportedUserName);
                     System.out.print(Color.GREEN);
-                    System.out.println(reportedUserName +  " reported Successfully!");
+                    System.out.println(reportedUserName + " reported Successfully!");
                     System.out.print(Color.RESET);
 
                 } catch (ExistPlayerException | IOException e) {
