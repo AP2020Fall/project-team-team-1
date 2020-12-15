@@ -75,19 +75,22 @@ public class Friend {
     }
 
 
-    public static void showRequests(String username) throws ExistFriendException {
+    public static String showRequests(String username) throws ExistFriendException {
+        StringBuilder showRequests = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
         int counter =1;
         if (player.getFriendsRequests().size() == 0)
             throw new ExistFriendException(" THERE ARE NO REQUESTS TO SHOW");
 
         for (String playerFriendRequests : player.getFriendsRequests()) {
-            System.out.println(counter+". Username: "+ playerFriendRequests);
+            showRequests.append(counter).append(". Username: ").append(playerFriendRequests).append("$");
             counter++;
         }
+        return String.valueOf(showRequests);
     }
 
-    public static void showFriends(String username) throws ExistFriendException {
+    public static String showFriends(String username) throws ExistFriendException {
+        StringBuilder showFriends = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
         int counter =1;
 
@@ -95,12 +98,14 @@ public class Friend {
             throw new ExistFriendException(" YOU DON'T HAVE ANY FRIENDS ");
 
         for (String playerFriend : player.getFriends()) {
-            System.out.println(counter+". Username: "+ playerFriend);
+            showFriends.append(counter).append(". Username: ").append(playerFriend).append("$");
             counter++;
         }
+        return String.valueOf(showFriends);
     }
 
-    public static void showFriendProfile(String username, String friendUsername) throws ExistFriendException {
+    public static String showFriendProfile(String username, String friendUsername) throws ExistFriendException {
+        StringBuilder showFriendProfile = new StringBuilder();
 
         Player player = FindPlayerByInfo.findByUserName(username);
         Player friend = FindPlayerByInfo.findByUserName(friendUsername);
@@ -110,10 +115,11 @@ public class Friend {
 
         for (String playerFriend : player.getFriends()) {
             if (playerFriend.equals(friend.getUserName())) {
-                System.out.println("getUserID: " + friend.getUserID() + " Username: " + friend.getUserName() + " Name: " + friend.getName() + " LastName: " + friend.getLastName() + " Email: " + friend.getEmail() + " Phone Number: " + friend.getPhoneNum());
+                showFriendProfile.append("getUserID: ").append(friend.getUserID()).append(" Username: ").append(friend.getUserName()).append(" Name: ").append(friend.getName()).append(" LastName: ").append(friend.getLastName()).append(" Email: ").append(friend.getEmail()).append(" Phone Number: ").append(friend.getPhoneNum()).append("$");
                 break;
             }
         }
+        return String.valueOf(showFriendProfile);
 
     }
 

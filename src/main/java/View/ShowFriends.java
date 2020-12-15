@@ -42,7 +42,10 @@ public class ShowFriends extends Menu {
                 System.out.println("Please Enter The Friend You Want To View From Your Friends : ");
                 String friendUsername = scanner.nextLine();
                 try {
-                    playerGeneralController.showFriendProfile(username,friendUsername);
+                    String[] showEvent = playerGeneralController.showFriendProfile(username,friendUsername).split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                 } catch (ExistFriendException e) {
                     System.out.println(e.getName()+e.getMessage());
                     this.parentMenu.run();
@@ -72,7 +75,10 @@ public class ShowFriends extends Menu {
     @Override
     public void execute() {
         try {
-            playerGeneralController.showFriends(username);
+            String[] showEvent = playerGeneralController.showFriends(username).split("\\$");
+            for (String out : showEvent) {
+                System.out.println(out);
+            }
         } catch (ExistFriendException e) {
             System.out.println(e.getName()+e.getMessage());
         }

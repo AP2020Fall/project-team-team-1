@@ -76,16 +76,16 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
     }
 
-    public void showRequests(String username) throws ExistFriendException {
-        Friend.showRequests(username);
+    public String showRequests(String username) throws ExistFriendException {
+        return Friend.showRequests(username);
     }
 
-    public void showFriends(String username) throws ExistFriendException {
-        Friend.showFriends(username);
+    public String showFriends(String username) throws ExistFriendException {
+        return Friend.showFriends(username);
     }
 
-    public void showFriendProfile(String username, String friendUsername) throws ExistFriendException {
-        Friend.showFriendProfile(username, friendUsername);
+    public String showFriendProfile(String username, String friendUsername) throws ExistFriendException {
+        return Friend.showFriendProfile(username, friendUsername);
     }
 
 

@@ -63,7 +63,10 @@ public class ShowFriendsRequests extends Menu {
     @Override
     public void execute() {
         try {
-            playerGeneralController.showRequests(username);
+            String[] showEvent = playerGeneralController.showRequests(username).split("\\$");
+            for (String out : showEvent) {
+                System.out.println(out);
+            }
         } catch (ExistFriendException e) {
             System.out.println(e.getName()+e.getMessage());
         }
