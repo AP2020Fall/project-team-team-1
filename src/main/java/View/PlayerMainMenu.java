@@ -188,12 +188,17 @@ public class PlayerMainMenu extends Menu {
             @Override
             public void show() {
                 try {
-                    adminGeneralController.showEvent();
+                    String[] showEvent = adminGeneralController.showEvent().split("\\$");
+                    for (String out : showEvent) {
+                        System.out.println(out);
+                    }
                     System.out.println("Please Enter The Event You want To Join :");
                 } catch (ExistEventException e) {
                     System.out.println(e.getMessage());
+                    this.parentMenu.run();
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
+                    this.parentMenu.run();
                 }
             }
 

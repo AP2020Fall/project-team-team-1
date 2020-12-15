@@ -13,16 +13,11 @@ public class Edit {
             editLastName(input);
         } else if (field.trim().equalsIgnoreCase("email")) {
             editEmail(input);
-        } else if (field.trim().equalsIgnoreCase("phonenumber")) {
+        } else if (field.trim().equalsIgnoreCase("phoneNumber")) {
             editPhoneNumber(input);
-        }
-//        else if (field.trim().equalsIgnoreCase("username")) {
-//            editUsername(input);
-//        }
-        else
+        } else
             throw new InvalidFieldException("Field for Edit is Invalid");
 
-        //Admin.saveInJsonFile();
     }
 
     protected static void editName(String input) throws InvalidNameException {
@@ -34,14 +29,12 @@ public class Edit {
     protected static void editLastName(String input) throws InvalidNameException {
         Validation.nameOrLastNameIsValid(input);
 
-        System.out.println("Format is InValid !");
 
 
         Admin.getAdmins().get(0).setLastName(input);
     }
 
     protected static void editEmail(String input) throws InvalidEmailException, ExistEmailException {
-        boolean pass = false;
 
         Validation.emailIsValid(input);
 
@@ -53,26 +46,6 @@ public class Edit {
 
     }
 
-//    protected static void editUsername(String input) {
-//        boolean pass = false;
-//        pass = Validation.usernameIsValid(input);
-//        if (!pass)
-//            System.out.println("Format is InValid !");
-//
-//        if (pass) {
-//            pass = Existence.checkUserNameExistence(input);
-//            if (pass){
-//                System.out.println("Username is Existence!");
-//                pass = false;
-//            }else {
-//                pass = true;
-//            }
-//
-//            if (pass)
-//                Admin.getAdmins().get(0).setUserName(input);
-//        }
-//    }
-
     protected static void editPhoneNumber(String input) throws InvalidPhoneNumberException {
 
         Validation.phoneNumberIsValid(input);
@@ -82,7 +55,6 @@ public class Edit {
     }
 
     public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, StrongerPasswordException {
-        boolean pass = false;
 
         if (!Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword))
             throw new WrongPasswordException();

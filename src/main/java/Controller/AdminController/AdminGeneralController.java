@@ -40,8 +40,8 @@ public class AdminGeneralController {
         DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
 
-    public void showEvent() throws ExistEventException, IOException {
-        Event.showEvent();
+    public String showEvent() throws ExistEventException, IOException {
+         return Event.showEvent();
     }
 
     public void editEvent(String input) throws InvalidDateException, InvalidFieldException, StartDatesException, ExistEventException, IOException, NotNullMessageException, InvalidGameNameException {

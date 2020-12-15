@@ -87,7 +87,10 @@ public class ViewEvents extends Menu {
     @Override
     public void execute() {
         try {
-            adminGeneralController.showEvent();
+            String[] showEvent = adminGeneralController.showEvent().split("\\$");
+            for (String out : showEvent) {
+                System.out.println(out);
+            }
             Menu nextMenu = null;
             String num = scanner.nextLine();
             if ((!num.matches("\\d+")) || Integer.parseInt(num) > submenus.size() + 1){

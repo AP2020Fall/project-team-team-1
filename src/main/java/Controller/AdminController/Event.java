@@ -32,15 +32,15 @@ public class Event {
 
     }
 
-    public static void showEvent() throws ExistEventException, IOException {
+    public static String showEvent() throws ExistEventException, IOException {
+        StringBuilder output = new StringBuilder();
         eventDateChecker();
         if (Model.PlatoModel.Event.getEvents().size() == 0)
             throw new ExistEventException("There is no Event for show!");
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
-//            if (event.getStartDate().isBefore(LocalDate.now()) || event.getStartDate().equals(LocalDate.now()))
-            System.out.println("EventId: " + event.getEventID() + " Game name: " + event.getGameName() + " Start date: " + event.getStartDate() + " End date: " + event.getEndDate() + " Score: " + event.getScore() + " Comment: " + event.getComment());
-
+            output.append("EventId: ").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
         }
+        return String.valueOf(output);
     }
 
     public static void editEvent(String input) throws InvalidDateException, ExistEventException, InvalidFieldException, StartDatesException, NotNullMessageException, InvalidGameNameException, IOException {
@@ -48,9 +48,6 @@ public class Event {
         String[] inputSpilt = input.split("\\s");
         Model.PlatoModel.Event event = eventFinderByEventID(inputSpilt[0]);
 
-        if (event == null) {
-            throw new ExistEventException("There is no Event with this ID");
-        }
 
         if (!Existence.checkEventExistence(Integer.parseInt(inputSpilt[0]))) {
             throw new ExistEventException("There is no Event for show!");
@@ -69,13 +66,11 @@ public class Event {
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
-        //Model.PlatoModel.Event.saveInJsonFile();
 
     }
 
     public static void removeEventByAdminFromView(String eventID) throws ExistEventException, IOException {
         removeEvent(eventID);
-        //Model.PlatoModel.Event.saveInJsonFile();
 
     }
 
@@ -102,7 +97,6 @@ public class Event {
                 removeEvent(String.valueOf(eventForDelete.getEventID()));
             }
         }
-        //Model.PlatoModel.Event.saveInJsonFile();
 
     }
 
@@ -135,7 +129,6 @@ public class Event {
 
 
     protected static void editStartDate(Model.PlatoModel.Event event, String input) throws InvalidDateException, StartDatesException {
-        boolean pass = true;
         LocalDate startDate = LocalDate.parse(input);
 
 
@@ -153,7 +146,6 @@ public class Event {
     }
 
     protected static void editEndDate(Model.PlatoModel.Event event, String input) throws InvalidDateException, StartDatesException {
-        boolean pass = true;
         LocalDate endDate = LocalDate.parse(input);
 
 

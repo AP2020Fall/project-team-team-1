@@ -250,20 +250,20 @@ public class AdminMainMenu extends Menu {
         };
     }
 
-    private Menu addDetail() {
-        return new Menu("Add Details", this) {
-            @Override
-            public void show() {
-                System.out.println("Which Game Do You Want to Add Details to?" + adminGeneralController.firstGameNameGetter() + " OR " + adminGeneralController.secondGameNameGetter());
-            }
-
-            @Override
-            public void execute() {
-                String game = scanner.nextLine();
-                //todo ask hesam to add add details controller
-            }
-        };
-    }
+//    private Menu addDetail() {
+//        return new Menu("Add Details", this) {
+//            @Override
+//            public void show() {
+//                System.out.println("Which Game Do You Want to Add Details to?" + adminGeneralController.firstGameNameGetter() + " OR " + adminGeneralController.secondGameNameGetter());
+//            }
+//
+//            @Override
+//            public void execute() {
+//                String game = scanner.nextLine();
+//                //todo ask hesam to add add details controller
+//            }
+//        };
+//    }
 
     private String getText() {
         if (this.getName().equalsIgnoreCase("Add Details")) {
