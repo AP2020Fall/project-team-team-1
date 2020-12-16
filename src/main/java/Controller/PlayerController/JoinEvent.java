@@ -55,7 +55,7 @@ public class JoinEvent {
         return String.valueOf(activeEvent);
     }
     private static boolean findActivity(LocalDate localDate){
-        return localDate.isAfter(LocalDate.now());
+        return localDate.isBefore(LocalDate.now());
     }
 
 }
