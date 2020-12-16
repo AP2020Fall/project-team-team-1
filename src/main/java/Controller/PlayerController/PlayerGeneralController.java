@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 public class PlayerGeneralController {
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
+    private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
     /***********************************************EDIT***********************************************/
     public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException, IOException {
         String[]strings=input.split("\\s");
@@ -90,15 +91,15 @@ public class PlayerGeneralController {
 
 
     /***********************************************EVENT***********************************************/
-    public void joinEvent(String username , String eventID) throws ExistEventException {
+    public void joinEvent(String username , String eventID) throws ExistEventException, IOException {
         JoinEvent.joinEvent(username,eventID);
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
 
     public String activeEvent(String username) throws ExistEventException, IOException {
         return JoinEvent.activeEvent(username);
     }
     public String eventGameName(String eventId) throws ExistEventException {
-
         return JoinEvent.eventGameName(eventId);
     }
     public String eventScore(String eventId) throws ExistEventException {
