@@ -97,11 +97,12 @@ public class RunBattleShip extends Menu {
         int counter = 1;
         int counterForRandom = 1;
         boolean endGame = true;
+        boolean pass = true;
         while (endGame) {
-            if (counter == 1) {
+            if (counter == 1 && pass ) {
                 battleSeaController1.addPlayersToArrayList();
 
-                while (true) {
+                while (true && pass ) {
                     if (counterForRandom == 1) {
                        String[] show = battleSeaController1.randomShipPlaceForPlayer1().split("\\$");
                         for (String out : show) {
@@ -137,7 +138,7 @@ public class RunBattleShip extends Menu {
                     counterForRandom++;
                 }
                 counterForRandom = 1;
-                while (true) {
+                while (true && pass) {
                     if (counterForRandom == 1) {
                        String[] show = battleSeaController1.randomShipPlaceForPlayer2().split("\\$");
                         for (String out : show) {
@@ -173,7 +174,7 @@ public class RunBattleShip extends Menu {
                     counterForRandom++;
                 }
             }
-
+            pass = false;
             if (counter % 2 == 1) {
                 System.out.println(player1 + "'s Turn ");
             } else {
