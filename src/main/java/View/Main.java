@@ -16,5 +16,8 @@ public class Main {
         Menu currentMenu = new MainMenu();
         currentMenu.run();
 
+//        Timer timer = new Timer();
+//        timer.start();
+
     }
 }
