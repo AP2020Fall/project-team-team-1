@@ -48,11 +48,11 @@ public class BattleSeaController {
                 return run.changeShipPlayer2Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
 
 
-        } else {
-            throw new InvalidCommandException("Invalid command");
         }
+            throw new InvalidCommandException("Invalid command");
 
-        return "";
+
+
     }
 
 
@@ -67,11 +67,11 @@ public class BattleSeaController {
             else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
                 return run.boomPlayer1Ships(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]));
 
-        } else {
-            throw new InvalidCommandException("Invalid command");
         }
+            throw new InvalidCommandException("Invalid command");
 
-        return "";
+
+
     }
 
     public String showCommandProcessor(String username, String string) throws InvalidCommandException {
