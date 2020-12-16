@@ -36,9 +36,9 @@ public class PlayEvent extends Menu {
     public void execute() {
         String eventID = scanner.nextLine();
         try {
-            if (playerGeneralController.eventGameName(eventID).startsWith("dotsAndBoxes")){
+            if (playerGeneralController.eventGameName(eventID).startsWith("d")||playerGeneralController.eventGameName(eventID).startsWith("D")){
                 new RunDotsAndBoxes(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),dotsAndBoxesController,this);
-            }else if (playerGeneralController.eventGameName(eventID).equalsIgnoreCase("battleship")){
+            }else if (playerGeneralController.eventGameName(eventID).startsWith("b")||playerGeneralController.eventGameName(eventID).startsWith("B")){
                 new RunBattleShip(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),this);
             }
         } catch (ExistEventException e) {
