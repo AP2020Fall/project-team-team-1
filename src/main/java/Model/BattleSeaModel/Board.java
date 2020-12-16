@@ -25,22 +25,25 @@ public class Board {
         }
     }
 
-    public static void displayBoard(String[][] strings) {
-        System.out.println("     1   2   3   4   5   6   7   8   9   10");
+    public static String displayBoard(String[][] strings) {
+        StringBuilder board = new StringBuilder();
+        board.append("     1   2   3   4   5   6   7   8   9   10$");
         for (int i = 0; i < 10 ; i++) {
             int rows= i+1;
             if (rows == 10){
-                System.out.print(rows+" | ");
+                board.append(rows).append(" | ");
             }
             if (rows < 10){
-                System.out.print(rows+"  | ");
+                board.append(rows).append("  | ");
 
             }
             for (int j = 0; j < 10; j++) {
-                System.out.print(strings[j][i]+" | ");
+                board.append(strings[j][i]).append(" | ");
             }
-            System.out.println("");
+            board.append("$");
         }
+        board.append("»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»$");
+        return String.valueOf(board);
     }
 
     public String[][] getGameBoard() {

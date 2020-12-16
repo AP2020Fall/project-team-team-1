@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -80,23 +81,21 @@ public class Games {
     }
 
 
-    public static void loadFromJsonFile() {
+    public static void loadFromJsonFile() throws FileNotFoundException {
 
         if (!gamesFile.exists())
             return;
 
         StringBuilder read = new StringBuilder();
 
-        try {
+
             Scanner myReader = new Scanner(gamesFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 read.append(data);
             }
             myReader.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+
 
         Type type = new TypeToken<ArrayList<Games>>() {
         }.getType();

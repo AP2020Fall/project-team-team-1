@@ -16,7 +16,7 @@ public class BattleSeaController {
     }
 
 
-    public void changeCoordinateProcessor(String username, String string) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException, InvalidCommandException {
+    public String changeCoordinateProcessor(String username, String string) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException, InvalidCommandException {
         String[] inputSpilt = string.split("\\s");
 
         if (inputSpilt[3].equalsIgnoreCase("direction")) {
@@ -28,12 +28,12 @@ public class BattleSeaController {
 
                 int xForInput = run.player1.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
                 int yForInput = run.player1.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
-                run.changeShipPlayer1Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
+                return run.changeShipPlayer1Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
             } else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username)) {
 
                 int xForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getxStart() + 1;
                 int yForInput = run.player2.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
-                run.changeShipPlayer2Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
+                return run.changeShipPlayer2Direction(xForInput, yForInput, Integer.parseInt(inputSpilt[2]), direction);
             }
 
         } else if (inputSpilt[3].equalsIgnoreCase("coordinate")) {
@@ -43,16 +43,16 @@ public class BattleSeaController {
 //            int yForInput = Run.player1.getPlayerShip().get(ship).getCoordinate().getyStart() + 1;
 
             if (BattleSeaPlayer.battleSeaPlayers.get(0).getPlayer().equals(username))
-                run.changeShipPlayer1Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
+                return run.changeShipPlayer1Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
             else if (BattleSeaPlayer.battleSeaPlayers.get(1).getPlayer().equals(username))
-                run.changeShipPlayer2Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
+                return run.changeShipPlayer2Coordinate(Integer.parseInt(coordinate[0]), Integer.parseInt(coordinate[1]), Integer.parseInt(inputSpilt[2]), Direction.VERTICAL);
 
 
         } else {
             throw new InvalidCommandException("Invalid command");
         }
 
-
+        return "";
     }
 
 
@@ -144,12 +144,16 @@ public class BattleSeaController {
         return player;
     }
 
-    public void randomShipPlaceForPlayer1() {
-        run.randomShipPlaceForPlayer1();
+    public String showPlayerEnemyBoard(String player) {
+        return Run.showPlayerEnemyBoard(player);
     }
 
-    public void randomShipPlaceForPlayer2() {
-        run.randomShipPlaceForPlayer2();
+        public String randomShipPlaceForPlayer1() {
+        return run.randomShipPlaceForPlayer1();
+    }
+
+    public String randomShipPlaceForPlayer2() {
+        return run.randomShipPlaceForPlayer2();
     }
 
     public void addPlayersToArrayList() {

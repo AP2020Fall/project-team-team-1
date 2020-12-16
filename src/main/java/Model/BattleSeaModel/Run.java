@@ -55,7 +55,6 @@ public class Run {
 
     /*************************** Put For First Time ***************************/
     public static boolean putShipPlayer1(int x, int y, int ship, Direction direction) {
-        boolean pass = true;
         ship--;
         x--;
         y--;
@@ -105,7 +104,6 @@ public class Run {
     }
 
     public static boolean putShipPlayer2(int x, int y, int ship, Direction direction) {
-        boolean pass = true;
         ship--;
         x--;
         y--;
@@ -156,7 +154,7 @@ public class Run {
 
     /*************************** Random Pick Ships ***************************/
 
-    public static void randomShipPlaceForPlayer1() {
+    public static String randomShipPlaceForPlayer1() {
         for (int i = 1; i <= 5; i++) {
             while (true) {
                 int x = randomMessageId(1, 10);
@@ -173,11 +171,11 @@ public class Run {
             }
 
         }
-        Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+        return Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
+
     }
 
-    public static void randomShipPlaceForPlayer2() {
+    public static String randomShipPlaceForPlayer2() {
         for (int i = 1; i <= 5; i++) {
             while (true) {
                 int x = randomMessageId(1, 10);
@@ -194,13 +192,11 @@ public class Run {
             }
 
         }
-        Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-
+        return Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
     }
 
     /************************** Edit Ship Corrdinate **************************/
-    public static void changeShipPlayer1Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
+    public static String changeShipPlayer1Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
@@ -261,12 +257,10 @@ public class Run {
 
         putShipPlayer1(x, y, ship, direction);
 
-        Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-
+        return Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
     }
 
-    public static void changeShipPlayer2Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
+    public static String changeShipPlayer2Coordinate(int x, int y, int ship, Direction direction) throws PlacedShipException, NewCoordinateForShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
@@ -327,14 +321,13 @@ public class Run {
 
         putShipPlayer2(x, y, ship, direction);
 
-        Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+        return Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
 
     }
 
     /************************** Edit Ship Direction **************************/
 
-    public static void changeShipPlayer1Direction(int x, int y, int ship, Direction direction) throws PlacedShipException, CorrectCoordinateForShipException, ExistOtherShipException {
+    public static String changeShipPlayer1Direction(int x, int y, int ship, Direction direction) throws PlacedShipException, CorrectCoordinateForShipException, ExistOtherShipException {
         ship--;
         x--;
         y--;
@@ -392,19 +385,17 @@ public class Run {
 
         putShipPlayer1(x, y, ship, direction);
 
-        Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+       return Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard());
 
     }
 
-    public static void changeShipPlayer2Direction(int x, int y, int ship, Direction direction) throws ExistOtherShipException, CorrectCoordinateForShipException {
+    public static String changeShipPlayer2Direction(int x, int y, int ship, Direction direction) throws ExistOtherShipException, CorrectCoordinateForShipException, PlacedShipException {
         ship--;
         x--;
         y--;
 
         if (!player2.getPlayerShip().get(ship).isAlreadyPlaced()) {
-            System.out.println("you should place ship first");
-            return;
+            throw new PlacedShipException("You should place ship first");
         }
 
 
@@ -455,8 +446,7 @@ public class Run {
 
         putShipPlayer2(x, y, ship, direction);
 
-        Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
+        return Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard());
 
     }
 
@@ -514,9 +504,6 @@ public class Run {
             }
         }
 
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-        Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
         if (winPlayer2Checker())
             throw new BattleShipWinner(player2.getPlayer());
 
@@ -574,10 +561,6 @@ public class Run {
 
             }
         }
-
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
-        Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
         if (winPlayer1Checker())
             throw new BattleShipWinner(player1.getPlayer());
 
@@ -603,6 +586,14 @@ public class Run {
             }
         }
         return true;
+    }
+
+    public static String showPlayerEnemyBoard(String player){
+        if (player.equalsIgnoreCase("player2")){
+            return Board.displayBoard(game.getFirstPlayerEnemyBoard().getGameBoard());
+        }else
+            return Board.displayBoard(game.getSecondPlayerEnemyBoard().getGameBoard());
+
     }
 
 

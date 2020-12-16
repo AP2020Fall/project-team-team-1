@@ -103,7 +103,10 @@ public class RunBattleShip extends Menu {
 
                 while (true) {
                     if (counterForRandom == 1) {
-                        battleSeaController1.randomShipPlaceForPlayer1();
+                       String[] show = battleSeaController1.randomShipPlaceForPlayer1().split("\\$");
+                        for (String out : show) {
+                            System.out.println(out);
+                        }
                     }
                     System.out.println(player1 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
                     System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
@@ -121,7 +124,10 @@ public class RunBattleShip extends Menu {
                     }
                     if (input.startsWith("change")) {
                         try {
-                            battleSeaController1.changeCoordinateProcessor("player1", input);
+                            String[] show = battleSeaController1.changeCoordinateProcessor("player1", input).split("\\$");
+                            for (String out : show) {
+                                System.out.println(out);
+                            }
                         } catch (PlacedShipException | NewCoordinateForShipException | CorrectCoordinateForShipException | ExistOtherShipException | InvalidCommandException e) {
                             System.out.println(e.getMessage());
                         }
@@ -133,7 +139,10 @@ public class RunBattleShip extends Menu {
                 counterForRandom = 1;
                 while (true) {
                     if (counterForRandom == 1) {
-                        battleSeaController1.randomShipPlaceForPlayer2();
+                       String[] show = battleSeaController1.randomShipPlaceForPlayer2().split("\\$");
+                        for (String out : show) {
+                            System.out.println(out);
+                        }
                     }
                     System.out.println(player2 + "'s Board \nIf you want to change the map for random Board please Enter \" Randomize \" ");
                     System.out.println("If you want to change ship Coordinate please enter Command \" change ship < ship Number > coordinate to < X,Y > \" and for Direction please enter \" Change ship < ship Number > direction \"");
@@ -151,7 +160,10 @@ public class RunBattleShip extends Menu {
                     }
                     if (input.startsWith("change")) {
                         try {
-                            battleSeaController1.changeCoordinateProcessor("player2", input);
+                            String[] show = battleSeaController1.changeCoordinateProcessor("player2", input).split("\\$");
+                            for (String out : show) {
+                                System.out.println(out);
+                            }
                         } catch (PlacedShipException | NewCoordinateForShipException | CorrectCoordinateForShipException | ExistOtherShipException | InvalidCommandException e) {
                             System.out.println(e.getMessage());
                         }
@@ -167,6 +179,7 @@ public class RunBattleShip extends Menu {
             } else {
                 System.out.println(player2 + "'s Turn ");
             }
+
             System.out.println("Game instructions: \n" +
                     "boom X,Y\n" +
                     "Show <player1 or player2> all booms\n" +
@@ -175,9 +188,12 @@ public class RunBattleShip extends Menu {
                     "show <player1 or player2> boomed ships\n" +
                     "show <player1 or player2> unboomed ships\n" +
                     "show <player1 or player2> coordinate plane");
+
             String nexCommand = scanner.nextLine();
+
             String[] nexCommandSpilit = nexCommand.split("\\s");
             //battleSeaController.mainCommandProcessor(player1, player2);
+
             if (nexCommand.equalsIgnoreCase("Surrender")) {
                 if (counter % 2 == 1) {
                     System.out.println(player2 + " Wins the Game !");
@@ -200,12 +216,14 @@ public class RunBattleShip extends Menu {
 
                 }
             }
+
             if (nexCommandSpilit[0].equalsIgnoreCase("boom")) {
                 if (counter % 2 == 1) {
                     try {
-                        if (battleSeaController1.boomProcessor("player1", nexCommand).equalsIgnoreCase("Correct Boom"))
+                        if (battleSeaController1.boomProcessor("player1", nexCommand).equalsIgnoreCase("Correct Boom")){
                             counter++;
 
+                        }
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player2);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
@@ -222,10 +240,16 @@ public class RunBattleShip extends Menu {
                         System.out.println(e.getMessage());
                         counter++;
                     }
+                    String[] show = battleSeaController1.showPlayerEnemyBoard("player2").split("\\$");
+                    for (String out : show) {
+                        System.out.println(out);
+                    }
+
                 } else {
                     try {
-                        if (battleSeaController1.boomProcessor("player2", nexCommand).equalsIgnoreCase("Correct Boom"))
+                        if (battleSeaController1.boomProcessor("player2", nexCommand).equalsIgnoreCase("Correct Boom")){
                             counter++;
+                        }
                     } catch (BattleShipWinner battleShipWinner) {
                         battleShipWinner.setPlayerName(player1);
                         System.out.println(battleShipWinner.getPlayerName() + battleShipWinner.getMessage());
@@ -241,6 +265,10 @@ public class RunBattleShip extends Menu {
                     } catch (BoomCheckException | CorrectCoordinateForShipException e) {
                         System.out.println(e.getMessage());
                         counter++;
+                    }
+                    String[] show = battleSeaController1.showPlayerEnemyBoard("player1").split("\\$");
+                    for (String out : show) {
+                        System.out.println(out);
                     }
                 }
 
