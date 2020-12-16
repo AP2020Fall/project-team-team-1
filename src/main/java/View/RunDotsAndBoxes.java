@@ -175,8 +175,11 @@ public class RunDotsAndBoxes extends Menu {
             public void show() {
                 System.out.println("Login As One Of These Players");
                 try {
-                    String[] showEvent = adminGeneralController.showAllUsers().split("\\$");
-                    for (String out : showEvent) {
+                    String[] showPlayer = adminGeneralController.showAllUsers().split("\\$");
+                    for (String out : showPlayer) {
+                        if (out.equals(getUsername1())){
+                            continue;
+                        }
                         System.out.println(out);
                     }
                 } catch (ExistPlayerException e) {

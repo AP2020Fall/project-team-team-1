@@ -37,12 +37,13 @@ public class PlayEvent extends Menu {
         String eventID = scanner.nextLine();
         try {
             if (playerGeneralController.eventGameName(eventID).startsWith("d")||playerGeneralController.eventGameName(eventID).startsWith("D")){
-                new RunDotsAndBoxes(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),dotsAndBoxesController,this);
+                new RunDotsAndBoxes(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),dotsAndBoxesController,this).run();
             }else if (playerGeneralController.eventGameName(eventID).startsWith("b")||playerGeneralController.eventGameName(eventID).startsWith("B")){
-                new RunBattleShip(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),this);
+                new RunBattleShip(username,null,Integer.parseInt(playerGeneralController.eventScore(eventID)),this).run();
             }
         } catch (ExistEventException e) {
             System.out.println(e.getMessage());
+            this.parentMenu.run();
         }
         this.parentMenu.run();
     }
