@@ -32,10 +32,13 @@ public class ShowAdminInfo extends Menu {
                     this.run();
                 } catch (WrongPasswordException | StrongerPasswordException e) {
                     System.out.println(e.getMessage());
+                    this.run();
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());
+                    this.run();
                 } catch (IOException e) {
                     System.err.println(e.getMessage());
+                    this.run();
                 }
 
             }
@@ -64,6 +67,7 @@ public class ShowAdminInfo extends Menu {
                     this.run();
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
+                    this.run();
                 }
             }
         };
