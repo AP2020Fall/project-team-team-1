@@ -38,7 +38,7 @@ public class Event {
         if (Model.PlatoModel.Event.getEvents().size() == 0)
             throw new ExistEventException("There is no Event for show!");
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
-            output.append("EventId: ").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
+            output.append("EventId:").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
         }
         return String.valueOf(output);
     }
@@ -53,16 +53,17 @@ public class Event {
             throw new ExistEventException("There is no Event for show!");
         }
 
-        if (inputSpilt[1].trim().equalsIgnoreCase("GameName")) {
+        if (inputSpilt[1].trim().equalsIgnoreCase("Game Name")) {
             editGameName(event, inputSpilt[2]);
-        } else if (inputSpilt[1].trim().equalsIgnoreCase("StartDate")) {
+        } else if (inputSpilt[1].trim().equalsIgnoreCase("Start Date")) {
             editStartDate(event, inputSpilt[2]);
-        } else if (inputSpilt[1].trim().equalsIgnoreCase("EndDate")) {
+        } else if (inputSpilt[1].trim().equalsIgnoreCase("End Date")) {
             editEndDate(event, inputSpilt[2]);
         } else if (inputSpilt[1].trim().equalsIgnoreCase("Score")) {
             editScore(event, inputSpilt[2]);
         } else if (inputSpilt[1].trim().equalsIgnoreCase("Comment")) {
-            editComment(event, inputSpilt[4]);
+            //editComment(event, inputSpilt[2].concat(" ").concat(inputSpilt[3].concat(" ").concat(inputSpilt[4].concat(" ").concat(inputSpilt[5]))));
+            editComment(event,input);
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
@@ -122,6 +123,7 @@ public class Event {
     }
 
     protected static void editComment(Model.PlatoModel.Event event, String input) throws NotNullMessageException {
+        event.setComment(input);
         if (input.isEmpty()) {
             throw new NotNullMessageException("It is empty, Please enter a comment! ");
         }

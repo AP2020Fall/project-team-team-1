@@ -88,10 +88,13 @@ public class PlayerInfo {
         return String.valueOf(showHistory);
     }
 
-    public static String showReportsList(String username) throws EmptyReportsList {
+    public static String showReportsList(String username) throws EmptyReportsList, InvalidUserNameException {
         StringBuilder showReportsList = new StringBuilder();
 
         Player player = FindPlayerByInfo.findByUserName(username);
+        if (player==null){
+            throw new InvalidUserNameException("This user name is not exist! ");
+        }
         if (player.getPlayersWhoReportMe().isEmpty())
             throw new EmptyReportsList("No one Reports this Username");
 
