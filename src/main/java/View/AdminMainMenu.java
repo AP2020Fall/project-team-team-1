@@ -242,12 +242,17 @@ public class AdminMainMenu extends Menu {
         return new Menu("Send Message", this) {
             @Override
             public void show() {
+                System.out.println("Enter your message : (for exit enter back! )");
             }
 
             @Override
             public void execute() {
                 try {
-                    adminGeneralController.sendMassageString(getText());
+                    String message = scanner.nextLine();
+                    if (message.equalsIgnoreCase("back")){
+                        this.parentMenu.run();
+                    }
+                    adminGeneralController.sendMassageString(message);
                     System.out.println("Message Delivered!");
                     this.parentMenu.run();
                 } catch (IOException e) {
@@ -355,8 +360,10 @@ public class AdminMainMenu extends Menu {
             @Override
             public void execute() {
                 String game = scanner.nextLine();
-                if (game.equals(adminGeneralController.firstGameNameGetter())) {
+
+                if (game.equalsIgnoreCase(adminGeneralController.firstGameNameGetter())) {
                     try {
+                        System.out.println("Please enter new name : ");
                         adminGeneralController.changeGameName("1", scanner.nextLine());
                         System.out.println("GameName changed Successfully");
                         this.parentMenu.run();
@@ -367,8 +374,9 @@ public class AdminMainMenu extends Menu {
                         System.out.println(e.getMessage());
                         this.run();
                     }
-                } else if (game.equals(adminGeneralController.secondGameNameGetter())) {
+                } else if (game.equalsIgnoreCase(adminGeneralController.secondGameNameGetter())) {
                     try {
+                        System.out.println("Please enter new name : ");
                         adminGeneralController.changeGameName("2", scanner.nextLine());
                         System.out.println("gameName Changed Successfully");
                         this.parentMenu.run();
@@ -489,7 +497,7 @@ public class AdminMainMenu extends Menu {
                     if (!checkIfGameIsActive(adminGeneralController.secondGameNameGetter())) {
                         System.out.println(adminGeneralController.secondGameNameGetter());
                     }
-                    System.out.println("Which Game You Want to Active ?  ( For Exit enter Back)");
+                    System.out.println("Which Game You Want to Active from above list ?  ( For Exit enter Back)");
                     String gameName = scanner.nextLine();
 
                     if (gameName.equalsIgnoreCase(adminGeneralController.firstGameNameGetter())) {
@@ -523,7 +531,7 @@ public class AdminMainMenu extends Menu {
                     if (checkIfGameIsActive(adminGeneralController.secondGameNameGetter())) {
                         System.out.println(adminGeneralController.secondGameNameGetter());
                     }
-                    System.out.println("Which Game You Want To DeActive?  ( For Exit enter Back)");
+                    System.out.println("Which Game You Want To DeActive from above list ?  ( For Exit enter Back)");
                     String gameName = scanner.nextLine();
 
                     if (gameName.equalsIgnoreCase(adminGeneralController.firstGameNameGetter())) {
