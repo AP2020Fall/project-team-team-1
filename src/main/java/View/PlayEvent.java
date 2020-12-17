@@ -45,6 +45,6 @@ public class PlayEvent extends Menu {
             System.out.println(e.getMessage());
             this.parentMenu.run();
         }
-        this.parentMenu.run();
+        this.parentMenu.parentMenu.run();
     }
 }

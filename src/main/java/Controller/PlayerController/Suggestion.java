@@ -15,7 +15,7 @@ public class Suggestion {
 
         for (Integer ID : player.getSuggestedGamesID()) {
             Model.PlatoModel.Suggestion suggestion = findSuggestionBySuggestionID(String.valueOf(ID));
-            showSuggestion.append("suggestion Id : ").append(suggestion.getSuggestionID()).append("suggested game :").append(suggestion.getSuggestedGame()).append("$");
+            showSuggestion.append("suggestion Id : ").append(suggestion.getSuggestionID()).append(" suggested game : ").append(suggestion.getSuggestedGame()).append("$");
         }
         return String.valueOf(showSuggestion);
 
@@ -35,7 +35,7 @@ public class Suggestion {
         Model.PlatoModel.Suggestion suggestion = null;
         suggestion = findSuggestionBySuggestionID(suggestionID);
         if (suggestion == null)
-            throw new ExistSuggestionException("there is no Suggestion with this ID");
+            throw new ExistSuggestionException("There is no Suggestion with this ID");
 
         return suggestion.getSuggestedGame();
     }

@@ -26,7 +26,7 @@ public class ViewAdminSuggestion extends Menu {
                     for (String out : showEvent) {
                         System.out.println(out);
                     }
-                    System.out.println("Enter Anything To continue Or Enter Back! ");
+                    System.out.println("Enter To continue Or Enter Back! ");
                     String nextCommand = scanner.nextLine();
                     if (!nextCommand.equalsIgnoreCase("back")){
                         String suggestionID = scanner.nextLine();
