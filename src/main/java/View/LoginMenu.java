@@ -112,7 +112,7 @@ public class LoginMenu extends Menu {
 //            try {
                 //Validation.passwordIsValid(password);
                 playerInput.add(password);
-                LogIn.setPassword(password);
+//                LogIn.setPassword(password);
                 break;
 
 //            } catch (StrongerPasswordException e) {
