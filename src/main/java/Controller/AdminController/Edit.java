@@ -56,7 +56,7 @@ public class Edit {
 
     public static void editPassword(String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, StrongerPasswordException {
 
-        if (!Existence.checkPassword(Admin.getAdmins().get(0).getUserName(), oldPassword))
+        if (!Existence.checkPasswordForAdmin(oldPassword))
             throw new WrongPasswordException();
 
         if (oldPassword.equals(newPassword))
