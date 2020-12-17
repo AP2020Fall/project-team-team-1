@@ -28,6 +28,7 @@ public class LogIn {
         if (!(Existence.checkPassword(inputSplit[0],inputSplit[1]))) {
             throw new WrongPasswordException();
         }
+        LogIn.setPassword(inputSplit[1]);
 
     }
 

@@ -3,6 +3,7 @@ package Controller.PlayerController;
 import Controller.CompetencyController.Existence;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
+import Controller.RegisterController.LogIn;
 import Model.PlatoModel.Player;
 
 public class Edit {
@@ -53,6 +54,7 @@ public class Edit {
 
         player.setPassword(newPassword);
 
+        LogIn.setPassword(newPassword);
 
     }
 
