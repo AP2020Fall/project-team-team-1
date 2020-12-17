@@ -144,7 +144,7 @@ public class AdminGeneralController {
     }
 
     /**********************************************Reports**********************************************/
-    public void showReportListOfPlayer(String username) throws EmptyReportsList {
+    public void showReportListOfPlayer(String username) throws EmptyReportsList, InvalidUserNameException {
         PlayerInfo.showReportsList(username);
 
     }

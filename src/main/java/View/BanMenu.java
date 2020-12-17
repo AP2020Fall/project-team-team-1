@@ -1,9 +1,6 @@
 package View;
 
-import Controller.Exception.Plato.AlreadyBan;
-import Controller.Exception.Plato.EmptyReportsList;
-import Controller.Exception.Plato.ItsNotBan;
-import Controller.Exception.Plato.StartDatesException;
+import Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -102,8 +99,10 @@ public class BanMenu extends Menu {
                 } catch (EmptyReportsList emptyReportsList) {
                     System.out.println(emptyReportsList.getMessage());
                     this.run();
+                } catch (InvalidUserNameException e) {
+                    System.out.println(e.getMessage());
+                    this.run();
                 }
-
 
 
             }
