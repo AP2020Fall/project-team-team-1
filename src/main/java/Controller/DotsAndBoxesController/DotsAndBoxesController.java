@@ -5,10 +5,9 @@ import Controller.Exception.DotsAndBoxes.FindLineException;
 import Controller.Exception.DotsAndBoxes.NotEmptyString;
 import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Model.DotsAndBoxesModel.*;
-import View.RunDotsAndBoxes;
+import OldView.RunDotsAndBoxes;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DotsAndBoxesController {
     GameBoard gameBoard = new GameBoard(8,8);

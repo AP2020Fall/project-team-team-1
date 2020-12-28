@@ -1,4 +1,4 @@
-package View;
+package OldView;
 
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.ExistPlayerException;

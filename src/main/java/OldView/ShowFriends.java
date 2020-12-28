@@ -1,4 +1,4 @@
-package View;
+package OldView;
 
 import Controller.Exception.Plato.ExistFriendException;
 import Controller.Exception.Plato.ExistPlayerException;

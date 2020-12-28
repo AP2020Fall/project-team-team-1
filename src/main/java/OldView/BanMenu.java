@@ -1,11 +1,9 @@
-package View;
+package OldView;
 
 import Controller.Exception.Plato.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class BanMenu extends Menu {
     public BanMenu(Menu parentMenu) {

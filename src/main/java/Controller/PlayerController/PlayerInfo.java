@@ -2,7 +2,6 @@ package Controller.PlayerController;
 
 import Controller.Exception.Plato.*;
 import Model.PlatoModel.Player;
-import View.Color;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

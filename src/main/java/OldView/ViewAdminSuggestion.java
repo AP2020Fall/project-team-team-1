@@ -1,4 +1,4 @@
-package View;
+package OldView;
 
 import Controller.Exception.Plato.ExistSuggestionException;
 
