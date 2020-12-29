@@ -6,10 +6,9 @@
     -fx-font-family:Plato;
 }
 .label {
-    -fx-font-family: 'Plato';
-    -fx-font-size: 20;
+    -fx-font-family: Plato;
 }
 
 .button .text {
-    -fx-font-family: 'Plato';
+    -fx-font-family: Plato;
 }
