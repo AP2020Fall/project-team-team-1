@@ -175,4 +175,9 @@ public class AdminGeneralController {
     public String secondGameNameGetter(){
         return Games.getGames().get(1).getGameName();
     }
+    /************************************************************************************************************/
+    public String getAdminUserName(){
+        return Admin.getAdmins().get(0).getUserName();
+    }
 }
+
