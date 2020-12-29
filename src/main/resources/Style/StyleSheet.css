@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "Plato";
+    src: url("Fonts/Regular.ttf");
+}
+.text{
+    -fx-font-family:Plato;
+}
+.label {
+    -fx-font-family: 'Plato';
+    -fx-font-size: 20;
+}
+
+.button .text {
+    -fx-font-family: 'Plato';
+}

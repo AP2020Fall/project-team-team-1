@@ -35,6 +35,7 @@ public class Main extends Application {
         try {
 
             URL url = new File("src/main/resources/FXML/login.fxml").toURI().toURL();
+
             AnchorPane root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
             primaryStage.initStyle(StageStyle.UNDECORATED);
