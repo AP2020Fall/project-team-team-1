@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="233.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/BackGroundSign-in.jpg" />
+            <Image url="@../Images/BackGroundSign-in.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="258.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
@@ -39,7 +39,7 @@
       <Label accessibleRole="HYPERLINK" layoutX="313.0" layoutY="305.0" prefHeight="17.0" prefWidth="149.0" text="Sign Up Now !" textFill="#00acea" underline="true" />
       <ImageView fitHeight="47.0" fitWidth="225.0" layoutX="276.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/User-Login.gif" />
+            <Image url="@../Images/User-Login.gif" />
          </image>
       </ImageView>
       <JFXTextField focusColor="#00acea" labelFloat="true" layoutX="321.0" layoutY="154.0" promptText="Username" style="-fx-text-fill: white;" />
