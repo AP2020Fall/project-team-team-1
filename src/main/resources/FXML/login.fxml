@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="233.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/BackGround Sign-in.jpg" />
+            <Image url="@../Images/Sign.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="310.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
