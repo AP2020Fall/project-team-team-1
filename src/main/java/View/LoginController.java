@@ -16,10 +16,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -54,18 +57,38 @@ public class LoginController {
         window.show();
     }
     @FXML
-    private void login(ActionEvent event){
+    private void login(ActionEvent event) throws IOException {
         try {
             if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())){
                 processLoginController.loginAsAdmin(getInfo(txtUsername.getText(),txtPassword.getText()));
                 System.out.println("khube");
             }else
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
-            System.out.println("khube");
+            goToPlayerMenu();
         } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
-            System.out.println(e.getMessage());
+            showError();
         }
 
+    }
+    private void showError() throws IOException {
+        URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
+
+        AnchorPane root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+    }
+    private void goToPlayerMenu() throws IOException {
+        URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage window = new Stage();
+        window.initStyle(StageStyle.UNDECORATED);
+        window.setScene(message);
+        window.show();
     }
     private String getInfo(String txtUsername,String txtPassword){
         return txtUsername+" "+txtPassword;
