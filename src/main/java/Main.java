@@ -1,11 +1,10 @@
-package OldView;
-
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -33,10 +32,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
-            URL url = new File("src/main/resources/View/Test.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/FXML/login.fxml").toURI().toURL();
             AnchorPane root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
-
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
             primaryStage.show();
         }
