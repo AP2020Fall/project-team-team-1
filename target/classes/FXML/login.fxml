@@ -27,7 +27,7 @@
             <Image url="@../Icons/143-padlock-2.png" />
          </image>
       </ImageView>
-      <Button layoutX="369.0" layoutY="269.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Login">
+      <Button fx:id="btnSubmit" layoutX="369.0" layoutY="269.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Login">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -40,8 +40,8 @@
             <Image url="@../Images/User-Login.gif" />
          </image>
       </ImageView>
-      <JFXTextField focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Username" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" unFocusColor="#808b96" />
-      <JFXPasswordField focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="200.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" unFocusColor="#808b96">
+      <JFXTextField fx:id="txtUsername" focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Username" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" unFocusColor="#808b96" />
+      <JFXPasswordField fx:id="txtPassword" focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="200.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" unFocusColor="#808b96">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="333.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparensy; -fx-text-fill: #00acea;" text="Register Now!" underline="true" />
+      <Button fx:id="btnRegister" layoutX="333.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToRegisterMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparensy; -fx-text-fill: #00acea;" text="Register Now!" underline="true" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />
