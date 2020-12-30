@@ -24,3 +24,6 @@ url('Fonts/josefin-sans-v16-latin-regular.svg#JosefinSans') format('svg');
 .button .text {
     -fx-font-family: "Josefin Sans";
 }
+.button:hover{
+    -fx-background-color: red;
+}
