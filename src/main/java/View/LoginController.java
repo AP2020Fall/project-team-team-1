@@ -31,6 +31,16 @@ public class LoginController {
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static String username = "";
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        LoginController.username = username;
+    }
+
     @FXML
     Button btnExit;
     @FXML
@@ -62,9 +72,11 @@ public class LoginController {
             if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())){
                 processLoginController.loginAsAdmin(getInfo(txtUsername.getText(),txtPassword.getText()));
                 System.out.println("khube");
+                setUsername(txtUsername.getText());
             }else
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
             goToPlayerMenu();
+            setUsername(txtUsername.getText());
         } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
             showError();
         }
