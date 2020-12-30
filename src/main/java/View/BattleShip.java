@@ -71,39 +71,39 @@ public class BattleShip {
     @FXML
     private void goDetails(ActionEvent actionEvent) throws IOException {
 
-//        URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
-//        Parent register = FXMLLoader.load(url);
-//        Scene message = new Scene(register);
-//        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        window.setScene(message);
-//        window.show();
-
         URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
-        AnchorPane root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.show();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
+//        URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
+//        AnchorPane root = FXMLLoader.load(url);
+//        Scene scene = new Scene(root);
+//        Stage stage = new Stage();
+//        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.setScene(scene);
+//        stage.show();
         setPieChart();
     }
     @FXML
     private void goHistory(ActionEvent actionEvent) throws IOException {
 
-//        URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
-//        Parent register = FXMLLoader.load(url);
-//        Scene message = new Scene(register);
-//        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//        window.setScene(message);
-//        window.show();
-
         URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
-        AnchorPane root = FXMLLoader.load(url);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.show();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
+//        URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
+//        AnchorPane root = FXMLLoader.load(url);
+//        Scene scene = new Scene(root);
+//        Stage stage = new Stage();
+//        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.setScene(scene);
+//        stage.show();
         setDetail();
     }
 
