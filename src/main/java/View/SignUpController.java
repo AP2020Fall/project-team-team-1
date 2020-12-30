@@ -1,13 +1,14 @@
 package View;
 
+import Controller.Exception.Plato.*;
+import Controller.RegisterController.SignUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import java.awt.event.MouseEvent;
-
 public class SignUpController {
+    protected SignUp processSignUp = new SignUp();
     @FXML
     Button btnExit;
     @FXML
@@ -32,11 +33,12 @@ public class SignUpController {
         System.exit(1);
     }
     @FXML
-    private void SignUp(ActionEvent event){
+    private void signUp(ActionEvent event) throws EmptyExceptionForLastName, ExistEmailException, EmptyExceptionForUserName, EmptyExceptionForName, EmptyExceptionForEmail, ExistUserNameException {
+        processSignUp.addPlayer(getInfo(txtName.getText(),txtLastname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(),txtPhoneNum.getText()));
 
     }
     @FXML
-    private void getInfo(String name,String lastName,String username,String password , String email , String phoneNum){
-
+    private String getInfo(String name,String lastName,String username,String password , String email , String phoneNum){
+        return name+" "+lastName+" "+username+" "+email+" "+password+" "+phoneNum;
     }
 }
