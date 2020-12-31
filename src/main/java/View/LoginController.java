@@ -76,8 +76,14 @@ public class LoginController {
                 setUsername(txtUsername.getText());
             }else
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
-            goToPlayerMenu();
             setUsername(txtUsername.getText());
+            URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            window.initStyle(StageStyle.UNDECORATED);
+            window.setScene(message);
+            window.show();
         } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
             showError();
         }
@@ -92,16 +98,6 @@ public class LoginController {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-    }
-    private void goToPlayerMenu() throws IOException {
-        URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
-        Parent register = FXMLLoader.load(url);
-        Scene message = new Scene(register);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Stage window = new Stage();
-        window.initStyle(StageStyle.UNDECORATED);
-        window.setScene(message);
-        window.show();
     }
     private String getInfo(String txtUsername,String txtPassword){
         return txtUsername+" "+txtPassword;
