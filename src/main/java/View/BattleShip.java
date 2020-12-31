@@ -6,6 +6,8 @@ import Controller.Exception.Plato.ExistPlayerException;
 import Controller.Exception.Plato.ExistPlayerLogException;
 import Controller.Exception.Plato.InvalidGameNameException;
 import Controller.PlayerController.PlayerGeneralController;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,8 +90,23 @@ public class BattleShip {
 
     @FXML
     private void setDetail() {
-        detail.setText(playerGeneralController.battleDetails());
+        //detail.setText(playerGeneralController.battleDetails());
         topic.setText(adminGeneralController.firstGameNameGetter() + "'s Details");
+        final String content = playerGeneralController.battleDetails();
+
+        final Animation animation = new Transition() {
+            {
+                setCycleDuration(Duration.millis(2000));
+            }
+
+            protected void interpolate(double frac) {
+                final int length = content.length();
+                final int n = Math.round(length * (float) frac);
+                detail.setText(content.substring(0, n));
+            }
+        };
+
+        animation.play();
     }
 
     @FXML
@@ -184,6 +202,7 @@ public class BattleShip {
         for (String out : showEvent) {
             //String build = "⁕"+out;
             listView.getItems().add(out);
+
             //System.out.println(out);
         }
 }
