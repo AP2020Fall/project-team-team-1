@@ -11,12 +11,12 @@
    <children>
       <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="480.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../3072h/122.png" />
+            <Image url="@../Images/Flag.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../3072h/122.png" />
+            <Image url="@../Images/Flag.png" />
          </image>
       </ImageView>
       <ListView id="space" fx:id="listView" layoutX="125.0" layoutY="17.0" onMouseClicked="#setListView" prefHeight="340.0" prefWidth="350.0" style="-fx-background-color: transparency;" stylesheets="@../Style/StyleOfListView.css" />
@@ -26,12 +26,12 @@
          </cursor></Button>
       <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../3072h/Asset%2012.png" />
+            <Image url="@../Images/Warrior.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="479.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../3072h/Asset%2012.png" />
+            <Image url="@../Images/Warrior.png" />
          </image>
       </ImageView>
    </children>
