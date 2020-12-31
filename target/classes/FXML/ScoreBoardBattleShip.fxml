@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleShip">
+   <children>
+      <ListView fx:id="listView" layoutX="14.0" layoutY="17.0" onMouseClicked="#setListView" prefHeight="376.0" prefWidth="409.0" style="-fx-background-color: transparency;" stylesheets="@../Style/StyleOfListView.css" />
+      <Button layoutX="539.0" layoutY="2.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-font-size: 15px; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+   </children>
+</AnchorPane>
