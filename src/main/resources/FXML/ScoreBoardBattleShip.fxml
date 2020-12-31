@@ -9,14 +9,29 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleShip">
    <children>
-      <ListView fx:id="listView" layoutX="150.0" layoutY="12.0" onMouseClicked="#setListView" prefHeight="376.0" prefWidth="409.0" style="-fx-background-color: transparency;" stylesheets="@../Style/StyleOfListView.css" />
-      <Button layoutX="539.0" layoutY="2.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-font-size: 15px; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
+      <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="480.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../3072h/122.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../3072h/122.png" />
+         </image>
+      </ImageView>
+      <ListView id="space" fx:id="listView" layoutX="125.0" layoutY="17.0" onMouseClicked="#setListView" prefHeight="340.0" prefWidth="350.0" style="-fx-background-color: transparency;" stylesheets="@../Style/StyleOfListView.css" />
+      <Button layoutX="268.0" layoutY="353.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-font-size: 15px; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ImageView fitHeight="107.0" fitWidth="128.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/high-score-neon-text-high-score-neon-sign-vector-22430904.jpg" />
+            <Image url="@../../../../../../../../3072h/Asset%2012.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="479.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../3072h/Asset%2012.png" />
          </image>
       </ImageView>
    </children>
