@@ -67,7 +67,7 @@ public class PlayerInfo {
         long level = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
         level = level/10 ;
 
-        return "Level : " + level;
+        return String.valueOf(level);
     }
     public static String showHistory (String userName) throws ExistPlayerException, ExistPlayerLogException {
         StringBuilder showHistory = new StringBuilder();
