@@ -170,7 +170,7 @@ public class AdminGeneralController {
         return Games.getGames().get(0).getGameName();
     }
 
-    // second -----> BattleShip
+    // second -----> Dots
     // index ----> 1
     public String secondGameNameGetter(){
         return Games.getGames().get(1).getGameName();

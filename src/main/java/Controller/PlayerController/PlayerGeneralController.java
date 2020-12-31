@@ -128,8 +128,8 @@ public class PlayerGeneralController {
     public void historySaver(LocalDate localDate, String winner, String loser, String gameName) throws IOException {
         Game.historySaver(localDate, winner, loser, gameName);
         DataBase.save(Player.players,playerFile);
-
     }
+
     public String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         return PlayerInfo.showUserLastPlayed(userName);
     }
@@ -150,6 +150,9 @@ public class PlayerGeneralController {
 
     public String showNumberOFWins(String userName, String gameName) throws InvalidGameNameException {
        return PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
+    }
+    public String numberOfLossesInThisGame(String userName, String gameName) throws InvalidGameNameException {
+       return PlayerStatusInGame.numberOfLossesInThisGame(userName, gameName);
     }
 
     public String showNumberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {

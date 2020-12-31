@@ -38,7 +38,11 @@ button {
 .button {
     -fx-font-family: "Josefin Sans";
 }
-
-button:hover {
-    -fx-background-color: #ff0000;
+.list-view .list-cell:even {
+    -fx-background-color:  transparency;
+    -fx-text-fill: white;
+}
+.list-view .list-cell:odd {
+    -fx-background-color:  transparency;
+    -fx-text-fill: white;
 }

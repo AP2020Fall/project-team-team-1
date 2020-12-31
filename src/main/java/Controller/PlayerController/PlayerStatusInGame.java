@@ -66,7 +66,21 @@ public class PlayerStatusInGame {
 
         }
         int wins = player.getPlayerLog().get(index).getNumberOfWins();
-        return "Wins : " + wins;
+        return String.valueOf(wins);
+    }
+    public static String numberOfLossesInThisGame(String userName, String gameName) throws InvalidGameNameException {
+        Player player = FindPlayerByInfo.findByUserName(userName);
+        int index = 0;
+        if (gameName.equalsIgnoreCase(Games.getGames().get(1).getGameName())) {
+            index = 0;
+        } else if (gameName.equalsIgnoreCase(Games.getGames().get(0).getGameName())) {
+            index = 1;
+        } else {
+            throw new InvalidGameNameException(gameName);
+
+        }
+        int loses = player.getPlayerLog().get(index).getNumberOfLoses();
+        return String.valueOf(loses);
     }
 
     public static String numberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
@@ -81,8 +95,7 @@ public class PlayerStatusInGame {
 
         }
         int numberOfPlayed = player.getPlayerLog().get(index).getNumberOfGamePlayed();
-        return "Number of match : " + numberOfPlayed;
-    }
+        return String.valueOf(numberOfPlayed);    }
 
     public static String showPlayerPointsInThisGame(String userName, String gameName) throws InvalidGameNameException {
         Player player = FindPlayerByInfo.findByUserName(userName);
@@ -96,7 +109,7 @@ public class PlayerStatusInGame {
 
         }
         long score = player.getPlayerLog().get(index).getTakenScore();
-        return "Point : " + score;
+        return String.valueOf(score);
     }
 
     private static LinkedHashMap<String, Integer> sortingFunction(HashMap vorodi) {
