@@ -41,8 +41,31 @@ button {
 .list-view .list-cell:even {
     -fx-background-color:  transparency;
     -fx-text-fill: white;
+    animation: animated-text 3s steps(29,end) 1s 1 normal both,
+    animated-cursor 600ms steps(29,end) 9 normal both;
 }
 .list-view .list-cell:odd {
     -fx-background-color:  transparency;
     -fx-text-fill: white;
+    animation: animated-text 3s steps(29,end) 1s 1 normal both,
+    animated-cursor 600ms steps(29,end) 9 normal both;
+}
+/* Animation */
+.space {
+    animation: animated-text 3s steps(29,end) 1s 1 normal both,
+    animated-cursor 600ms steps(29,end) 9 normal both;
+}
+
+/* text animation */
+
+@keyframes animated-text{
+    from{width: 0;}
+    to{width: 44vmax;}
+
+}
+
+/* cursor animations */
+@keyframes animated-cursor{
+    from{border-right-color: rgba(0,255,0,.75);}
+    to{border-right-color: transparent;}
 }

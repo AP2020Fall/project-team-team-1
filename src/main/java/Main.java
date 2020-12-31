@@ -26,6 +26,8 @@ public class Main extends Application {
 
 //        Timer timer = new Timer();
 //        timer.start();
+        //  hesam khare
+
         launch(args);
 
     }
