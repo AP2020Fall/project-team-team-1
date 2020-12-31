@@ -54,8 +54,8 @@ public class BattleShip {
     @FXML
     ImageView btnfavImage;
 
-//    @FXML
-//    ListView<String> listView;
+    @FXML
+    ListView<String> listView;
 
     /********************Loaders********************/
     @FXML
@@ -175,18 +175,18 @@ public class BattleShip {
 
     }
 
-//    @FXML
-//    private void setListView() throws ExistPlayerLogException, ExistPlayerException {
-//        ObservableList<String> list = FXCollections.observableArrayList();
-//
-//        listView.setItems(list);
-//        String[] showEvent = playerGeneralController.showHistory(LoginController.getUsername()).split("\\$");
-//        for (String out : showEvent) {
-//            //String build = "⁕"+out;
-//            listView.getItems().add("⁕"+out);
-//            //System.out.println(out);
-//        }
-//}
+    @FXML
+    private void setListView() throws ExistPlayerLogException, ExistPlayerException, InvalidGameNameException {
+        ObservableList<String> list = FXCollections.observableArrayList();
+
+        listView.setItems(list);
+        String[] showEvent = playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter()).split("\\$");
+        for (String out : showEvent) {
+            //String build = "⁕"+out;
+            listView.getItems().add(out);
+            //System.out.println(out);
+        }
+}
 
     /********************Go To Menus********************/
     @FXML
@@ -256,6 +256,16 @@ public class BattleShip {
     private void goBattleShipMainMenu(ActionEvent actionEvent) throws IOException {
 
         URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private void goToScoreBoard(ActionEvent actionEvent) throws IOException {
+
+        URL url = new File("src/main/resources/FXML/ScoreBoardBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

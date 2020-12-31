@@ -27,7 +27,7 @@ public class PlayerStatusInGame {
             scoreBoard.put(player.getUserName(), player.getPlayerLog().get(index).getTakenScore());
         }
         for (String sorted : sortingFunction(scoreBoard).keySet()) {
-            showScoreboardInThisGame.append(counter).append(". Username : ").append(sorted).append(" Score : ").append(sortingFunction(scoreBoard).get(sorted)).append("$");
+            showScoreboardInThisGame.append(counter).append(". Username : ").append(sorted).append("  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Score : ").append(sortingFunction(scoreBoard).get(sorted)).append("$");
             counter++;
         }
         return String.valueOf(showScoreboardInThisGame);
