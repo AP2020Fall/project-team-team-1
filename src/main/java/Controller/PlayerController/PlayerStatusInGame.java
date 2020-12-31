@@ -109,7 +109,7 @@ public class PlayerStatusInGame {
 
         }
         long score = player.getPlayerLog().get(index).getTakenScore();
-        return "Point : " + score;
+        return String.valueOf(score);
     }
 
     private static LinkedHashMap<String, Integer> sortingFunction(HashMap vorodi) {
