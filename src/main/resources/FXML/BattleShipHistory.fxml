@@ -29,24 +29,24 @@
             <Image url="@../Icons/plato.png" />
          </image>
       </ImageView>
-      <PieChart fx:id="pieChart" labelLineLength="12.0" layoutX="217.0" layoutY="33.0" prefHeight="239.0" prefWidth="369.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-fill: white;" titleSide="BOTTOM">
+      <PieChart fx:id="pieChart" labelLineLength="12.0" layoutX="217.0" layoutY="50.0" prefHeight="239.0" prefWidth="369.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-fill: white;" titleSide="BOTTOM">
          <stylesheets>
             <URL value="@../Style/StyleOfPieChart.css" />
             <URL value="@../Style/StyleOfPieChart.css" />
          </stylesheets></PieChart>
-      <Label fx:id="numberofplayed" contentDisplay="CENTER" layoutX="266.0" layoutY="278.0" prefHeight="39.0" prefWidth="304.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 17px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleOfPieChart.css" text="You have played this Game for ⏳ Times" textAlignment="CENTER" />
+      <Label fx:id="numberofplayed" contentDisplay="CENTER" layoutX="266.0" layoutY="295.0" prefHeight="39.0" prefWidth="304.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 17px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleOfPieChart.css" text="You have played this Game for ⏳ Times" textAlignment="CENTER" />
       <Button layoutX="570.0" layoutY="2.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: Bold; -fx-font-size: 15px;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="imageViewOfLevel" fitHeight="200.0" fitWidth="198.0" layoutX="16.0" layoutY="44.0">
+      <ImageView fx:id="imageViewOfLevel" fitHeight="200.0" fitWidth="198.0" layoutX="16.0" layoutY="61.0">
          <image>
             <Image url="@../Images/level3.png">
 
                   </Image>
          </image>
       </ImageView>
-      <Label fx:id="point" layoutX="69.0" layoutY="273.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 20px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" text="Points: ⏳" />
+      <Label fx:id="point" layoutX="69.0" layoutY="290.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 20px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" text="Points: ⏳" />
    </children>
 </AnchorPane>
