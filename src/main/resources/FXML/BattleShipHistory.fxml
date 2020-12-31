@@ -28,12 +28,12 @@
             <URL value="@../Style/StyleOfPieChart.css" />
          </stylesheets></PieChart>
       <Label fx:id="numberofplayed" contentDisplay="CENTER" layoutX="254.0" layoutY="295.0" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 17px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleOfPieChart.css" text="You have played this Game for ⏳ Times" textAlignment="CENTER" />
-      <Button layoutX="570.0" layoutY="2.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-font-size: 15px; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
+      <Button layoutX="544.0" layoutY="7.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-font-size: 15px; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="imageViewOfLevel" fitHeight="200.0" fitWidth="198.0" layoutX="14.0" layoutY="14.0">
+      <ImageView fx:id="imageViewOfLevel" fitHeight="200.0" fitWidth="198.0" layoutX="20.0" layoutY="62.0">
          <image>
             <Image url="@../Images/level3.png">
 
