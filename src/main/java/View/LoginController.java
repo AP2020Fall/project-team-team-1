@@ -31,7 +31,8 @@ public class LoginController {
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static String username = "";
+
+    public static String username = "player";
 
     public static String getUsername() {
         return username;

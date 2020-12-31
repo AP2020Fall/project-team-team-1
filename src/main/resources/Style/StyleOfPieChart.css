@@ -42,3 +42,12 @@ button {
 button:hover {
     -fx-background-color: #ff0000;
 }
+
+.chart-pie-label {-fx-fill: white;}
+
+.data0.chart-pie{
+    -fx-pie-color: #12e312;
+}
+.data1.chart-pie{
+    -fx-pie-color: #c40a0a;
+}

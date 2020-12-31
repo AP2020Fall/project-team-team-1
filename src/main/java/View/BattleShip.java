@@ -1,6 +1,7 @@
 package View;
 
 import Controller.AdminController.AdminGeneralController;
+import Controller.Exception.Plato.InvalidGameNameException;
 import Controller.PlayerController.PlayerGeneralController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -45,11 +46,11 @@ public class BattleShip {
     }
 
     @FXML
-    private void setPieChart() {
+    private void setPieChart() throws InvalidGameNameException {
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                new PieChart.Data("Wins", 10.00),
-                new PieChart.Data("Losses", 22.1));
+                new PieChart.Data("Wins",Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(),adminGeneralController.firstGameNameGetter()))),
+                new PieChart.Data("Losses", Integer.parseInt(playerGeneralController.numberOfLossesInThisGame(LoginController.getUsername(),adminGeneralController.firstGameNameGetter()))));
         pieChartData.forEach(data ->
                 data.nameProperty().bind(
                         Bindings.concat(
@@ -57,8 +58,8 @@ public class BattleShip {
                         )
                 )
         );
+        pieChart.setLegendVisible(false);
         pieChart.setData(pieChartData);
-
         pieChart.setStartAngle(90);
     }
 
@@ -85,7 +86,11 @@ public class BattleShip {
 //        stage.initStyle(StageStyle.UNDECORATED);
 //        stage.setScene(scene);
 //        stage.show();
-        setPieChart();
+        try {
+            setPieChart();
+        } catch (InvalidGameNameException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     private void goHistory(ActionEvent actionEvent) throws IOException {

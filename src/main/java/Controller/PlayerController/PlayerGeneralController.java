@@ -151,6 +151,9 @@ public class PlayerGeneralController {
     public String showNumberOFWins(String userName, String gameName) throws InvalidGameNameException {
        return PlayerStatusInGame.numberOfWinsInThisGame(userName, gameName);
     }
+    public String numberOfLossesInThisGame(String userName, String gameName) throws InvalidGameNameException {
+       return PlayerStatusInGame.numberOfLossesInThisGame(userName, gameName);
+    }
 
     public String showNumberOfGamePlayedInThisGame(String userName, String gameName) throws InvalidGameNameException {
         return PlayerStatusInGame.numberOfGamePlayedInThisGame(userName, gameName);
