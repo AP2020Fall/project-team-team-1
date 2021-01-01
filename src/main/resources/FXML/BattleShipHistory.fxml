@@ -27,7 +27,7 @@
             <URL value="@../Style/StyleOfPieChart.css" />
             <URL value="@../Style/StyleOfPieChart.css" />
          </stylesheets></PieChart>
-      <Label fx:id="numberofplayed" contentDisplay="CENTER" layoutX="254.0" layoutY="295.0" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 17px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleOfPieChart.css" text="You have played this Game for ⏳ Times" textAlignment="CENTER" />
+      <Label fx:id="numberofplayed" contentDisplay="CENTER" layoutX="254.0" layoutY="297.0" prefHeight="39.0" prefWidth="316.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-size: 17px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleOfPieChart.css" text="You have played this Game for ⏳ Times" textAlignment="CENTER" />
       <Button layoutX="544.0" layoutY="7.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-font-size: 15px; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -40,6 +40,6 @@
                   </Image>
          </image>
       </ImageView>
-      <Label fx:id="point" layoutX="75.0" layoutY="295.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 20px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/StyleSheet.css" text="Points: ⏳" />
+      <Label fx:id="point" layoutX="75.0" layoutY="295.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-style: bold; -fx-font-size: 20px; -fx-border-color: e6c267; -fx-border-width: 0 0 3px; -fx-padding: 5px;" stylesheets="@../Style/Fonts/Fonts.css" text="Points: ⏳" />
    </children>
 </AnchorPane>
