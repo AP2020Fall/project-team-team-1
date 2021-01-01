@@ -46,6 +46,8 @@ public class BattleShipMainMenuController implements Initializable {
     Button btnFav;
     @FXML
     ImageView btnfavImage;
+    @FXML
+    Button backToGameMenu ;
 
 
     /********************Loaders********************/
@@ -97,6 +99,16 @@ public class BattleShipMainMenuController implements Initializable {
 
 
 
+    }
+    @FXML
+    private void goGameMenu(ActionEvent actionEvent) throws IOException {
+
+        URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
 
