@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameMenu">
+   <children>
+      <Button fx:id="btnBattle" layoutX="235.0" layoutY="120.0" mnemonicParsing="false" onAction="#goBattleShipMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: transparency; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Battle ship">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnDots" layoutX="235.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Dots and boxes" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button layoutX="235.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back to plato" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="470.0" layoutY="249.0" opacity="0.73" pickOnBounds="true" preserveRatio="true" rotate="173.1">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="368.0" layoutY="48.0" opacity="0.77" pickOnBounds="true" preserveRatio="true" rotate="64.5">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="98.0" layoutY="26.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" rotate="50.9">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="526.0" layoutY="81.0" opacity="0.69" pickOnBounds="true" preserveRatio="true" rotate="-97.2">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="29.0" layoutY="326.0" opacity="0.74" pickOnBounds="true" preserveRatio="true" rotate="56.6">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="51.0" layoutX="315.0" layoutY="299.0" opacity="0.57" pickOnBounds="true" preserveRatio="true" rotate="83.9">
+         <image>
+            <Image url="@../Icons/plato.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

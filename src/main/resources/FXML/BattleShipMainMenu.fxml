@@ -9,23 +9,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadFavStatus" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleShipMainMenuController">
    <children>
-      <Button layoutX="250.0" layoutY="90.0" mnemonicParsing="false" onAction="#goDetails" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Details">
+      <Button layoutX="230.0" layoutY="90.0" mnemonicParsing="false" onAction="#goDetails" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Details">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="250.0" layoutY="150.0" mnemonicParsing="false" onAction="#goToHistory" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="History">
+      <Button layoutX="230.0" layoutY="150.0" mnemonicParsing="false" onAction="#goToHistory" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="History">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="250.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
+      <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="250.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToScoreBoard" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Score Board">
+      <Button layoutX="230.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToScoreBoard" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Score Board">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="250.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Back to the plato">
+      <Button fx:id="backToGameMenu" layoutX="230.0" layoutY="330.0" mnemonicParsing="false" onAction="#goGameMenu" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Back to game menu">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
