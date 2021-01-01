@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -17,6 +18,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerMainMenuController implements Initializable {
+    @FXML
+    public Label lblName;
     @FXML
     public JFXButton BtnClose;
     @FXML
@@ -82,7 +85,7 @@ public class PlayerMainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        lblName.setText("Welcome "+LoginController.getUsername().toUpperCase());
     }
 
 }
