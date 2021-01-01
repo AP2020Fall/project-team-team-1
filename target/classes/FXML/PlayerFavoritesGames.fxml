@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerFavoritesGamesController">
+    <children>
+        <Pane prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);">
+            <children>
+                <JFXButton fx:id="btnEvents" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" onAction="#goToPlayerEvents" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Events" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Icons/playstation-cross-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnSearchFriends" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="180.0" onAction="#goToPlayerSearchFriends" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Search Friends" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Icons/playstation-triangle-dark-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnFavoritesGames" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="240.0" onAction="#goToPlayerFavoritesGames" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Favorites Games" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Icons/playstation-square-dark-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnPlatoBotsMessages" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="300.0" onAction="#goToPlayerPlatoBotsMessages" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="PlatoBot Messages" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Icons/playstation-circle-dark-icon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnBack" layoutY="2.0" onAction="#back" style="-fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Back" textFill="WHITE" />
+            </children>
+        </Pane>
+        <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
+    </children>
+
+</AnchorPane>
