@@ -81,7 +81,6 @@ public class LoginController {
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            window.initStyle(StageStyle.UNDECORATED);
             window.setScene(message);
             window.show();
         } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
