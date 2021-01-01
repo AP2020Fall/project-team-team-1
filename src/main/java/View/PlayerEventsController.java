@@ -41,6 +41,7 @@ public class PlayerEventsController implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
     private void goToPlayerEvents(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/PlayerEvents.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -49,6 +50,7 @@ public class PlayerEventsController implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/PlayerFavoritesGames.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -57,6 +59,7 @@ public class PlayerEventsController implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
     private void goToPlayerSearchFriends(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/PlayerSearchFriends.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -65,6 +68,7 @@ public class PlayerEventsController implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
     private void goToPlayerPlatoBotsMessages(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/PlayerPlatoBotsMessages.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
