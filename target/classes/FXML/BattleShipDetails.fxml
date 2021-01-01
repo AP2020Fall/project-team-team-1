@@ -9,20 +9,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleShip">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleShipDetailsController">
    <children>
       <ImageView fitHeight="202.0" fitWidth="221.0" layoutX="381.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/GamesDetails.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="topic" layoutX="22.0" layoutY="24.0" onMouseMoved="#setDetail" prefHeight="53.0" prefWidth="558.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato; -fx-font-size: 20px;" stylesheets="@../Style/StyleSheet.css" text="Details" />
-      <Text fx:id="detail" fill="WHITE" layoutX="45.0" layoutY="101.0" onMouseMoved="#setDetail" strokeType="OUTSIDE" strokeWidth="0.0" text="This is battle ship details" wrappingWidth="337.6708984375">
+      <Label fx:id="topic" layoutX="22.0" layoutY="24.0" prefHeight="53.0" prefWidth="558.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato; -fx-font-size: 20px;" stylesheets="@../Style/StyleSheet.css" text="Details" />
+      <Text fx:id="detail" fill="WHITE" layoutX="45.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is battle ship details" wrappingWidth="337.6708984375">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <AnchorPane layoutX="-83.0" layoutY="8.0" onMouseMoved="#setDetail" prefHeight="373.0" prefWidth="574.0" />
       <Button layoutX="543.0" layoutY="8.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-font-size: 15px;" stylesheets="@../Style/StyleSheet.css" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
