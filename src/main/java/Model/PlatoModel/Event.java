@@ -25,8 +25,9 @@ public class Event {
     private int eventID;
     private String comment;
 
-    public Event(String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
-        this.eventID = makeEventID();
+    public Event(int eventID,String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
+//        this.eventID = makeEventID();
+        this.eventID=eventID;
         this.gameName = gameName;
         this.startDate = startDate;
         this.endDate = endDate;

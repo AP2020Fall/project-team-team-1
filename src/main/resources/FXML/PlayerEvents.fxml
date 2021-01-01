@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -63,6 +65,20 @@
             </children>
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
+      <TableView fx:id="tableView" layoutX="187.0" layoutY="42.0" prefHeight="309.0" prefWidth="411.0">
+        <columns>
+          <TableColumn fx:id="game" text="Game" />
+            <TableColumn fx:id="id" prefWidth="38.3333740234375" text="ID" />
+            <TableColumn prefWidth="176.6666259765625" resizable="false" text="Date">
+               <columns>
+                  <TableColumn fx:id="start" prefWidth="75.0" text="Start" />
+                  <TableColumn fx:id="end" prefWidth="75.0" text="End" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="points" prefWidth="44.0" text="Points" />
+          <TableColumn fx:id="comment" minWidth="8.0" prefWidth="96.33331298828125" text="Comment" />
+        </columns>
+      </TableView>
     </children>
 
 </AnchorPane>
