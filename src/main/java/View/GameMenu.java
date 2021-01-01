@@ -90,7 +90,7 @@ public class GameMenu implements Initializable {
 
 
     private void showError() throws IOException {
-        URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/UpdateError.fxml").toURI().toURL();
 
         AnchorPane root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
