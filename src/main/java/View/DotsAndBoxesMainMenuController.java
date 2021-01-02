@@ -146,7 +146,7 @@ public class DotsAndBoxesMainMenuController implements Initializable {
     @FXML
     private void goToScoreBoard(ActionEvent actionEvent) throws IOException {
 
-        URL url = new File("src/main/resources/FXML/ScoreBoardBattleShip.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/BattleShipScoreBoard.fxml").toURI().toURL();
 
         Parent root = FXMLLoader.load(url);
         Scene message = new Scene(root);
