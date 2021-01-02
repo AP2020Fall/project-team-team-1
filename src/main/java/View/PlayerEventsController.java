@@ -1,6 +1,8 @@
 package View;
 
 import Controller.AdminController.AdminGeneralController;
+import Controller.Exception.Plato.ExistEventException;
+import Controller.PlayerController.PlayerGeneralController;
 import Model.PlatoModel.Event;
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,6 +29,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class PlayerEventsController implements Initializable {
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
     public JFXButton BtnClose;
     @FXML
@@ -52,6 +56,8 @@ public class PlayerEventsController implements Initializable {
     public TableColumn<Event, LocalDate> end = new TableColumn<>();
     @FXML
     public TableColumn<Event,Integer> id = new TableColumn<>();
+    @FXML
+    public Button btnJoin;
     @FXML
     private void closeApp(ActionEvent event){
         System.exit(1);
@@ -125,4 +131,8 @@ public class PlayerEventsController implements Initializable {
 //            new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"bye")
 
     );
+    @FXML
+    private void joinEvent(ActionEvent event) throws IOException, ExistEventException {
+        playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
+    }
 }
