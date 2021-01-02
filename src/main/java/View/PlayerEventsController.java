@@ -1,6 +1,8 @@
 package View;
 
+import Controller.AdminController.AdminGeneralController;
 import Model.PlatoModel.Event;
+import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,9 +47,9 @@ public class PlayerEventsController implements Initializable {
     @FXML
     public TableColumn<Event, Integer> points = new TableColumn<>();
     @FXML
-    public TableColumn<Event, Date> start = new TableColumn<>();
+    public TableColumn<Event, LocalDate> start = new TableColumn<>();
     @FXML
-    public TableColumn<Event, Date> end = new TableColumn<>();
+    public TableColumn<Event, LocalDate> end = new TableColumn<>();
     @FXML
     public TableColumn<Event,Integer> id = new TableColumn<>();
     @FXML
@@ -103,18 +105,25 @@ public class PlayerEventsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        game.setCellValueFactory(new PropertyValueFactory<>("Game"));
-        start.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        end.setCellValueFactory(new PropertyValueFactory<>("End"));
-        points.setCellValueFactory(new PropertyValueFactory<>("Points"));
+        id.setCellValueFactory(cellData->cellData.getValue().eventIDProperty().asObject());
+        game.setCellValueFactory(new PropertyValueFactory<>("GameName"));
+        start.setCellValueFactory(cellData->cellData.getValue().startDateProperty());
+        end.setCellValueFactory(cellData->cellData.getValue().endDateProperty());
+        points.setCellValueFactory(cellData->cellData.getValue().scoreProperty().asObject());
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
+        String string = new Gson().toJson(events);
+        System.out.println(string);
+//        Event.addNewEvent(new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"));
         tableView.setItems(events);
+        for (Event event : Event.getEvents()) {
+            tableView.getItems().add(event);
+        }
 
     }
     @FXML
     private final ObservableList<Event> events = FXCollections.observableArrayList(
-            new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"),
-            new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"bye")
+//            Event.getEvents().get(0)
+//            new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"bye")
+
     );
 }

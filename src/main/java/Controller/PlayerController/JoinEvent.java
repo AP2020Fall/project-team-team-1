@@ -46,8 +46,9 @@ public class JoinEvent {
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
             for (String playerEvent : event.getPlayersInThisEvent()) {
                 if (playerEvent.equals(username)){
-                    if (findActivity(event.getStartDate())){
-                        activeEvent.append("EventId: ").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
+                    LocalDate start = LocalDate.parse(event.startDateProperty().toString());
+                    if (findActivity(start)){
+                        activeEvent.append("EventId: ").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.startDateProperty()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
                     }
                 }
             }
