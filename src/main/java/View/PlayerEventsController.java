@@ -111,8 +111,7 @@ public class PlayerEventsController implements Initializable {
         end.setCellValueFactory(cellData->cellData.getValue().endDateProperty());
         points.setCellValueFactory(cellData->cellData.getValue().scoreProperty().asObject());
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
-        String string = new Gson().toJson(events);
-        System.out.println(string);
+
 //        Event.addNewEvent(new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"));
         tableView.setItems(events);
         for (Event event : Event.getEvents()) {
