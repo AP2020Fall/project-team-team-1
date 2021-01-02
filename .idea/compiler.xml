@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="plato" />
-        <module name="untitled" />
         <module name="project-team-team-1" />
+        <module name="untitled" />
       </profile>
     </annotationProcessing>
   </component>

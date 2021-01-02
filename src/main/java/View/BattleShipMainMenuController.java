@@ -146,7 +146,7 @@ public class BattleShipMainMenuController implements Initializable {
     @FXML
     private void goToScoreBoard(ActionEvent actionEvent) throws IOException {
 
-        URL url = new File("src/main/resources/FXML/ScoreBoardBattleShip.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/BattleShipScoreBoard.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
