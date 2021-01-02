@@ -5,6 +5,9 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -18,78 +21,85 @@ public class Event {
 
     public static ArrayList<Event> events = new ArrayList<Event>();
     private ArrayList<String> playersInThisEvent;
-    private String gameName;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private int score;
-    private int eventID;
-    private String comment;
+//    private String gameName;
+//    private LocalDate startDate;
+//    private LocalDate endDate;
+//    private int score;
+//    private int eventID;
+//    private String comment;
+    private SimpleStringProperty gameName;
+    private SimpleStringProperty comment;
+    private SimpleIntegerProperty eventID;
+    private SimpleIntegerProperty score;
+    private SimpleObjectProperty<LocalDate> startDate;
+    private SimpleObjectProperty<LocalDate> endDate;
 
-    public Event(String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
-        this.eventID = makeEventID();
-        this.gameName = gameName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.score = score;
-        this.comment = comment;
+    public Event(int eventID,String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
+//        this.eventID = makeEventID();
+        this.eventID=new SimpleIntegerProperty(eventID);
+        this.gameName =new SimpleStringProperty(gameName);
+        this.startDate =new SimpleObjectProperty<>(startDate);
+        this.endDate =new SimpleObjectProperty<>(endDate);
+        this.score =new SimpleIntegerProperty(score);
+        this.comment = new SimpleStringProperty(comment);
         playersInThisEvent = new ArrayList<String>();
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public static ArrayList<Event> getEvents() {
-        return events;
-    }
-
-    public static void setEvents(ArrayList<Event> events) {
-        Event.events = events;
-    }
-
-    public String getGameName() {
-        return gameName;
-    }
-
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public long getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getEventID() {
-        return eventID;
-    }
-
-    public void setEventID(int eventID) {
-        this.eventID = eventID;
-    }
+//    public String getComment() {
+//        return comment;
+//    }
+//
+//    public void setComment(String comment) {
+//        this.comment = comment;
+//    }
+//
+//    public static ArrayList<Event> getEvents() {
+//        return events;
+//    }
+//
+//    public static void setEvents(ArrayList<Event> events) {
+//        Event.events = events;
+//    }
+//
+//    public String getGameName() {
+//        return gameName;
+//    }
+//
+//    public void setGameName(String gameName) {
+//        this.gameName = gameName;
+//    }
+//
+//    public LocalDate getStartDate() {
+//        return startDate;
+//    }
+//
+//    public void setStartDate(LocalDate startDate) {
+//        this.startDate = startDate;
+//    }
+//
+//    public LocalDate getEndDate() {
+//        return endDate;
+//    }
+//
+//    public void setEndDate(LocalDate endDate) {
+//        this.endDate = endDate;
+//    }
+//
+//    public long getScore() {
+//        return score;
+//    }
+//
+//    public void setScore(int score) {
+//        this.score = score;
+//    }
+//
+//    public int getEventID() {
+//        return eventID;
+//    }
+//
+//    public void setEventID(int eventID) {
+//        this.eventID = eventID;
+//    }
 
     public ArrayList<String> getPlayersInThisEvent() {
         return playersInThisEvent;
@@ -109,15 +119,98 @@ public class Event {
         }
     }
 
-    private int makeEventID() {
-        int id = 1;
-        if (events.size() == 0) {
-            return id;
-        } else
-            id = events.get(events.size() - 1).getEventID();
-        id += 1;
-        return id;
+    public static File getEventFile() {
+        return eventFile;
     }
+
+    public static ArrayList<Event> getEvents() {
+        return events;
+    }
+
+    public static void setEvents(ArrayList<Event> events) {
+        Event.events = events;
+    }
+
+    public String getGameName() {
+        return gameName.get();
+    }
+
+    public SimpleStringProperty gameNameProperty() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName.set(gameName);
+    }
+
+    public String getComment() {
+        return comment.get();
+    }
+
+    public SimpleStringProperty commentProperty() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment.set(comment);
+    }
+
+    public int getEventID() {
+        return eventID.get();
+    }
+
+    public SimpleIntegerProperty eventIDProperty() {
+        return eventID;
+    }
+
+    public void setEventID(int eventID) {
+        this.eventID.set(eventID);
+    }
+
+    public int getScore() {
+        return score.get();
+    }
+
+    public SimpleIntegerProperty scoreProperty() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score.set(score);
+    }
+
+
+
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate.set(endDate);
+    }
+
+    public Object getEndDate() {
+        return endDate.get();
+    }
+
+    public SimpleObjectProperty<LocalDate> endDateProperty() {
+        return endDate;
+    }
+
+
+    //    private int makeEventID() {
+//        int id = 1;
+//        if (events.size() == 0) {
+//            return id;
+//        } else
+//            id = events.get(events.size() - 1).getEventID();
+//        id += 1;
+//        return id;
+//    }
 
     public static void saveInJsonFile() {
         try {
