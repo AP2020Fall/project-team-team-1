@@ -1,5 +1,6 @@
 package View;
 
+import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
 import Controller.RegisterController.SignUp;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import java.net.URL;
 
 public class SignUpController {
     protected SignUp processSignUp = new SignUp();
+    protected static Validation validation = new Validation();
     @FXML
     Button btnExit;
     @FXML
@@ -62,6 +64,11 @@ public class SignUpController {
 
 
         try {
+            Validation.nameOrLastNameIsValid(txtName.getText());
+            Validation.nameOrLastNameIsValid(txtLastname.getText());
+            Validation.gameNameIsValid(txtUsername.getText());
+            Validation.emailIsValid(txtPassword.getText());
+            Validation.phoneNumberIsValid(txtPhoneNum.getText());
             processSignUp.addPlayer(getInfo(txtName.getText(),txtLastname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(),txtPhoneNum.getText()));
             URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
@@ -83,6 +90,11 @@ public class SignUpController {
             imgNameError.setImage(image);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (InvalidEmailException | InvalidNameException | InvalidGameNameException | InvalidPhoneNumberException e) {
+            System.err.println(e.getMessage());
+            File file = new File("src\\main\\resources\\Images\\Error copy.png");
+            Image image = new Image(file.toURI().toString());
+            imgNameError.setImage(image);
         }
 
     }
