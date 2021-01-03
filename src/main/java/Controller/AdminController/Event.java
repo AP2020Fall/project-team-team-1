@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Event {
     private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
 
-    public static void addEvent(String input) throws StartDatesException {
+    public static void addEvent(String input) throws StartDatesException, ExistEventException {
 
         String[] inputSpilt = input.split("\\s");
         LocalDate startDate = LocalDate.parse(inputSpilt[2]);
@@ -26,6 +26,9 @@ public class Event {
         }
         if (startDate.isAfter(endDate)) {
             throw new StartDatesException("Start Date Must be before than End Date");
+        }
+        if (eventIDChecker(inputSpilt[0])!=null){
+            throw new ExistEventException("ID exist");
         }
 
         Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(Integer.parseInt(inputSpilt[0]),inputSpilt[1], startDate, endDate, Integer.parseInt(inputSpilt[4]), inputSpilt[5]));
@@ -116,6 +119,17 @@ public class Event {
         }
         if (resultEvent == null)
             throw new ExistEventException("There is no Event with this ID");
+
+        return resultEvent;
+    }
+    public static Model.PlatoModel.Event eventIDChecker(String eventID)  {
+        Model.PlatoModel.Event resultEvent = null;
+        for (Model.PlatoModel.Event event : Model.PlatoModel.Event.getEvents()) {
+            if (event.getEventID() == Integer.parseInt(eventID)) {
+                resultEvent = event;
+                break;
+            }
+        }
 
         return resultEvent;
     }

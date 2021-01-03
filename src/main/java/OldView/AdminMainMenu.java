@@ -51,6 +51,8 @@ public class AdminMainMenu extends Menu {
                     this.run();
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
+                } catch (ExistEventException e) {
+                    System.out.println(e.getMessage());
                 }
 
             }

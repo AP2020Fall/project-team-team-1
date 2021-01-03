@@ -32,7 +32,7 @@ public class AdminGeneralController {
     }
 
     /***********************************************EVENT***********************************************/
-    public void addEvent(String input) throws StartDatesException, IOException {
+    public void addEvent(String input) throws StartDatesException, IOException, ExistEventException {
         Event.addEvent(input);
         DataBase.save(Admin.getAdmins(), adminFile);
         DataBase.save(Player.getPlayers(), playerFile);
