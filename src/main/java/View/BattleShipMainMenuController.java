@@ -39,6 +39,8 @@ import java.util.ResourceBundle;
 public class BattleShipMainMenuController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    String firsGame = adminGeneralController.firstGameNameGetter();
+    String secondGame = adminGeneralController.secondGameNameGetter();
 
     @FXML
     Button btnExit;
@@ -48,6 +50,8 @@ public class BattleShipMainMenuController implements Initializable {
     ImageView btnfavImage;
     @FXML
     Button backToGameMenu ;
+    @FXML
+    Label labelBattle ;
 
 
     /********************Loaders********************/
@@ -158,6 +162,7 @@ public class BattleShipMainMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             loadFavStatus();
+            labelBattle.setText("WELCOME TO ".concat(firsGame));
         } catch (ExistFavoriteException e) {
             e.printStackTrace();
         }

@@ -86,6 +86,19 @@ public class GameMenu implements Initializable {
             window.setScene(message);
             window.show();
     }
+    @FXML
+    private void goDotsAndBoxesMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
+        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false") || adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
+            showError();
+            return;
+        }
+        URL url = new File("src/main/resources/FXML/DotsAndBoxesMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
 
 
 
