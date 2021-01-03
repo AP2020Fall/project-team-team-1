@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminMainMenu">
+    <children>
+        <ImageView fitHeight="313.0" fitWidth="176.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/Sign.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="331.0" fitWidth="176.0" layoutX="424.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/Sign.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="btnEvents" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Events">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnGames" layoutX="230.0" layoutY="165.0" mnemonicParsing="false" onAction="#gotoGamesMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Games">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnUsers" layoutX="230.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Users">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnLogout" layoutX="230.0" layoutY="325.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Log Out">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="btnProfile" layoutX="230.0" layoutY="255.0" mnemonicParsing="false" onAction="#goToProfile" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Profile">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X" />
+    </children>
+</AnchorPane>

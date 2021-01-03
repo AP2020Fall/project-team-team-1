@@ -55,7 +55,7 @@ public class BattleShipScoreBoardController implements Initializable {
         try {
             setListView();
         } catch (ExistPlayerLogException | ExistPlayerException | InvalidGameNameException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }

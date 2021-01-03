@@ -2,15 +2,8 @@ package View;
 
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.ExistFavoriteException;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.ExistPlayerLogException;
 import Controller.Exception.Plato.InvalidGameNameException;
 import Controller.PlayerController.PlayerGeneralController;
-import javafx.animation.Animation;
-import javafx.animation.Transition;
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,21 +11,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
+
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,7 +28,6 @@ public class BattleShipMainMenuController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     String firsGame = adminGeneralController.firstGameNameGetter();
-    String secondGame = adminGeneralController.secondGameNameGetter();
 
     @FXML
     Button btnExit;
@@ -49,19 +36,26 @@ public class BattleShipMainMenuController implements Initializable {
     @FXML
     ImageView btnfavImage;
     @FXML
-    Button backToGameMenu ;
+    Button backToGameMenu;
     @FXML
-    Label labelBattle ;
+    Label labelBattle;
 
 
     /********************Loaders********************/
 
     @FXML
-        private void loadFavStatus() throws ExistFavoriteException {
-        String[] fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+    private void loadFavStatus() {
+
+        String[] fav = new String[0];
+        try {
+            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+        } catch (ExistFavoriteException e) {
+            System.err.println(e.getMessage());
+            return;
+        }
 
         for (String gameName : fav) {
-            if (gameName.startsWith("B")||gameName.startsWith("b")){
+            if (gameName.startsWith("B") || gameName.startsWith("b")) {
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
                 btnfavImage.setImage(image);
@@ -73,13 +67,23 @@ public class BattleShipMainMenuController implements Initializable {
 
     /********************Methods********************/
     @FXML
-    private void setBtnFav(ActionEvent actionEvent) throws ExistFavoriteException, IOException, InvalidGameNameException {
-        String[] fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+    private void setBtnFav(ActionEvent actionEvent) throws IOException, InvalidGameNameException, ExistFavoriteException {
+        String[] fav = new String[0];
+        try {
+            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+        } catch (ExistFavoriteException e) {
+            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.firstGameNameGetter());
+            File file = new File("src\\main\\resources\\Icons\\addfav.png");
+            Image image = new Image(file.toURI().toString());
+            btnfavImage.setImage(image);
+            return;
+
+        }
 
         String gameNameForFav = "nothing";
 
         for (String gameName : fav) {
-            if (gameName.startsWith("B")||gameName.startsWith("b")){
+            if (gameName.startsWith("B") || gameName.startsWith("b")) {
 
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
@@ -88,22 +92,22 @@ public class BattleShipMainMenuController implements Initializable {
 
             }
         }
-        if (gameNameForFav.equalsIgnoreCase("nothing")){
-            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(),adminGeneralController.firstGameNameGetter());
+        if (gameNameForFav.equalsIgnoreCase("nothing")) {
+            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.firstGameNameGetter());
             File file = new File("src\\main\\resources\\Icons\\addfav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
             return;
-        }else {
-            playerGeneralController.RemoveFavoritesGames(LoginController.getUsername(),gameNameForFav);
+        } else {
+            playerGeneralController.RemoveFavoritesGames(LoginController.getUsername(), gameNameForFav);
             File file = new File("src\\main\\resources\\Icons\\removefav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
         }
 
 
-
     }
+
     @FXML
     private void goGameMenu(ActionEvent actionEvent) throws IOException {
 
@@ -114,7 +118,6 @@ public class BattleShipMainMenuController implements Initializable {
         window.setScene(message);
         window.show();
     }
-
 
 
     /********************Go To Menus********************/
@@ -135,6 +138,7 @@ public class BattleShipMainMenuController implements Initializable {
 
 
     }
+
     @FXML
     private void goToHistory(ActionEvent actionEvent) throws IOException {
 
@@ -172,11 +176,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            loadFavStatus();
-            labelBattle.setText("WELCOME TO ".concat(firsGame));
-        } catch (ExistFavoriteException e) {
-            e.printStackTrace();
-        }
+        loadFavStatus();
+        labelBattle.setText("WELCOME TO ".concat(firsGame));
     }
 }

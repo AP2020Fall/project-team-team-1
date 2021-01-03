@@ -72,8 +72,13 @@ public class LoginController {
         try {
             if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())){
                 processLoginController.loginAsAdmin(getInfo(txtUsername.getText(),txtPassword.getText()));
-                System.out.println("khube");
                 setUsername(txtUsername.getText());
+                URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
+                Parent register = FXMLLoader.load(url);
+                Scene message = new Scene(register);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(message);
+                window.show();
             }else
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
             setUsername(txtUsername.getText());
