@@ -79,7 +79,7 @@ public class LoginController {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(message);
                 window.show();
-            }else
+            }else{
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
             setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
@@ -87,7 +87,7 @@ public class LoginController {
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
-            window.show();
+            window.show();}
         } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
             showError();
         }
