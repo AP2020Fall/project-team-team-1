@@ -78,13 +78,11 @@ public class Friend {
     public static String showRequests(String username) throws ExistFriendException {
         StringBuilder showRequests = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
-        int counter =1;
         if (player.getFriendsRequests().size() == 0)
             throw new ExistFriendException(" THERE ARE NO REQUESTS TO SHOW");
 
         for (String playerFriendRequests : player.getFriendsRequests()) {
-            showRequests.append(counter).append(". Username: ").append(playerFriendRequests).append("$");
-            counter++;
+            showRequests.append(playerFriendRequests).append("$");
         }
         return String.valueOf(showRequests);
     }
@@ -92,14 +90,12 @@ public class Friend {
     public static String showFriends(String username) throws ExistFriendException {
         StringBuilder showFriends = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
-        int counter =1;
 
         if (player.getFriends().size() == 0)
             throw new ExistFriendException(" YOU DON'T HAVE ANY FRIENDS ");
 
         for (String playerFriend : player.getFriends()) {
-            showFriends.append(counter).append(". Username: ").append(playerFriend).append("$");
-            counter++;
+            showFriends.append(playerFriend).append("$");
         }
         return String.valueOf(showFriends);
     }
@@ -115,7 +111,8 @@ public class Friend {
 
         for (String playerFriend : player.getFriends()) {
             if (playerFriend.equals(friend.getUserName())) {
-                showFriendProfile.append("getUserID: ").append(friend.getUserID()).append(" Username: ").append(friend.getUserName()).append(" Name: ").append(friend.getName()).append(" LastName: ").append(friend.getLastName()).append(" Email: ").append(friend.getEmail()).append(" Phone Number: ").append(friend.getPhoneNum()).append("$");
+//                showFriendProfile.append("getUserID: ").append(friend.getUserID()).append(" Username: ").append(friend.getUserName()).append(" Name: ").append(friend.getName()).append(" LastName: ").append(friend.getLastName()).append(" Email: ").append(friend.getEmail()).append(" Phone Number: ").append(friend.getPhoneNum()).append("$");
+                showFriendProfile.append(friend.getUserID()).append("$").append(friend.getUserName()).append("$").append(friend.getName()).append("$").append(friend.getLastName()).append("$").append(friend.getEmail()).append("$").append(friend.getPhoneNum()).append("$");
                 break;
             }
         }

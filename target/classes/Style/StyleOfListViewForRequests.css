@@ -38,34 +38,31 @@ button {
 .button {
     -fx-font-family: "Josefin Sans";
 }
-.list-view .list-cell:even {
-    -fx-background-color:  transparency;
+.list-view{
+    -fx-border-color: linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    -fx-border-radius: 10px;
+
+}
+
+.list-cell:even {
+    -fx-alignment: center;
+    -fx-background-color: #1a1b20;
     -fx-text-fill: white;
-    -fx-animation: animated-text 3s steps(29,end) 1s 1 normal both,
-    -fx-animated-cursor 600ms steps(29,end) 9 normal both;
+
 }
-.list-view .list-cell:odd {
-    -fx-background-color:  transparency;
+.list-cell:odd {
+    -fx-alignment: center;
+    -fx-background-color: #1a1b20;
     -fx-text-fill: white;
-    -fx-animation: animated-text 3s steps(29,end) 1s 1 normal both,
-    -fx-animated-cursor 600ms steps(29,end) 9 normal both;
-}
-/* Animation */
-.space {
-    -fx-animation: animated-text 3s steps(29,end) 1s 1 normal both,
-    -fx-animated-cursor 600ms steps(29,end) 9 normal both;
-}
-
-/* text animation */
-
-@keyframes animated-text{
-    -fx-from{width: 0;}
-    -fx-to{width: 44vmax;}
 
 }
-
-/* cursor animations */
-@keyframes animated-cursor{
-    -fx-from{border-right-color: rgba(0,255,0,.75);}
-    -fx-3to{border-right-color: transparent;}
+.list-cell:filled:hover {
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-text-fill: red;
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-radius: 10px;
+    -fx-background-color: white;
+    -fx-text-fill: red;
 }
