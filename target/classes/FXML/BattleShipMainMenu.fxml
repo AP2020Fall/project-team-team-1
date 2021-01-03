@@ -17,7 +17,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" onAction="#runGame" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
+      <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" onAction="#runGame" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -93,6 +93,6 @@
          </cursor>
       </Button>
       <Label layoutX="501.0" layoutY="366.0" stylesheets="@../Style/StyleSheet.css" text="Favorite" textFill="#00acea" />
-      <Label fx:id="labelBattle" layoutX="20.0" layoutY="18.0" prefHeight="17.0" prefWidth="162.0" text="WELCOME TO BATTLE SEA" textFill="#00acea" />
+      <Label fx:id="labelBattle" layoutX="20.0" layoutY="18.0" prefHeight="17.0" prefWidth="198.0" stylesheets="@../Style/StyleSheet.css" text="WELCOME TO BATTLE SEA" textFill="#00acea" />
    </children>
 </AnchorPane>
