@@ -30,7 +30,7 @@ public class DotsAndBoxesScoreBoardController implements Initializable {
     ListView<String> listView;
 
     @FXML
-    private void setListView() throws ExistPlayerLogException, ExistPlayerException, InvalidGameNameException {
+    private void setListView() throws  InvalidGameNameException {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
@@ -54,8 +54,8 @@ public class DotsAndBoxesScoreBoardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setListView();
-        } catch (ExistPlayerLogException | ExistPlayerException | InvalidGameNameException e) {
-            System.out.println(e.getMessage());
+        } catch (InvalidGameNameException e) {
+            System.err.println(e.getMessage());
         }
     }
 }

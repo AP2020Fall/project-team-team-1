@@ -1,0 +1,4 @@
+.image{
+    -fx-border-image-width: 20px;
+    -fx-border-color: white;
+}
