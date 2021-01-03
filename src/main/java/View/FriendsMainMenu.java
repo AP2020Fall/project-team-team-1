@@ -1,33 +1,55 @@
 package View;
 
+import Controller.AdminController.AdminGeneralController;
+import Controller.Exception.Plato.ExistFriendException;
+import Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class FriendsMainMenu {
+public class FriendsMainMenu implements Initializable {
+    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+    @FXML
+    JFXButton btnFriendRequests;
+    @FXML
+    JFXButton btnFriends;
+    @FXML
+    Pane paneForward;
+    @FXML
+    Pane paneAcc;
+    @FXML
+    Pane paneFriend;
     @FXML
     JFXButton btnBack;
     @FXML
-    JFXButton BtnClose;
+    ListView<String> listViewForRequests;
     @FXML
-    TableView table;
+    ListView<String> listViewFriends;
+    @FXML
+    Button btnAcceptOrDecline;
+    @FXML
+    Button btnShowOrRemove;
+
 
 
 
@@ -46,9 +68,104 @@ public class FriendsMainMenu {
         window.show();
     }
     @FXML
-    private void colore(){
+    private void setBtnAcceptOrDecline(ActionEvent event) throws IOException {
+        if (FriendRequests.getUsernameForAcceptOrDecline().equalsIgnoreCase("null")){
+            return;
+        }
+        URL url = new File("src/main/resources/FXML/FriendRequests.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private void setBtnShowOrRemove(ActionEvent event) throws IOException {
+        if (FriendProfileController.getUsernameOfFriend().equalsIgnoreCase("null")){
+            return;
+        }
+
+        URL url = new File("src/main/resources/FXML/FriendProfile.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
+    }
+
+    @FXML
+    private void setListViewForRequests()  {
+        paneAcc.toFront();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        listViewForRequests.setItems(list);
+        String[] showEvent = new String[0];
+        try {
+            showEvent = playerGeneralController.showRequests(LoginController.getUsername()).split("\\$");
+        } catch (ExistFriendException e) {
+            System.err.println(e.getMessage());
+            return;
+        }
+        for (String out : showEvent) {
+            listViewForRequests.getItems().add(out);
+        }
+        initActionsForRequests();
+    }
+    @FXML
+    public void initActionsForRequests(){
+        listViewForRequests.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent arg0) {
+                String name = listViewForRequests.getSelectionModel().getSelectedItem();
+                FriendRequests.setUsernameForAcceptOrDecline(name);
+            }
+
+        });
+    }
+
+
+    @FXML
+    private void setListViewForFriends(){
+        paneFriend.toFront();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        listViewFriends.setItems(list);
+        String[] showEvent = new String[0];
+        try {
+            showEvent = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
+        } catch (ExistFriendException e) {
+            System.err.println(e.getMessage());
+            return;
+        }
+
+        for (String out : showEvent) {
+            listViewFriends.getItems().add(out);
+        }
+        initActionsForFriends();
+    }
+    @FXML
+    public void initActionsForFriends(){
+        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent arg0) {
+                String name = listViewFriends.getSelectionModel().getSelectedItem();
+                FriendProfileController.setUsernameOfFriend(name);
+            }
+
+        });
     }
 
 
 
+
+    @FXML
+    public void close(ActionEvent event){
+        System.exit(1);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        try {
+//            setListView();
+//        } catch (ExistFriendException e) {
+//            System.err.println("There is no Friend to show");
+//        }
+    }
 }

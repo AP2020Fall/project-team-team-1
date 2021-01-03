@@ -65,7 +65,7 @@ public class PlayerInfo {
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
         long level = player.getPlayerLog().get(0).getTakenScore()+player.getPlayerLog().get(1).getTakenScore();
-        level = level/10 ;
+//        level = level/10 ;
 
         return String.valueOf(level);
     }

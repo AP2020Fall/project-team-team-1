@@ -67,5 +67,5 @@ button {
 /* cursor animations */
 @keyframes animated-cursor{
     -fx-from{border-right-color: rgba(0,255,0,.75);}
-    -fx-to{border-right-color: transparent;}
+    -fx-3to{border-right-color: transparent;}
 }
