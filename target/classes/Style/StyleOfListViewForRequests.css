@@ -39,7 +39,7 @@ button {
     -fx-font-family: "Josefin Sans";
 }
 .list-view{
-    -fx-border-color: linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);
     -fx-border-radius: 10px;
 
 }

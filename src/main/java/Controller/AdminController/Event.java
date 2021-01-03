@@ -18,8 +18,8 @@ public class Event {
     public static void addEvent(String input) throws StartDatesException {
 
         String[] inputSpilt = input.split("\\s");
-        LocalDate startDate = LocalDate.parse(inputSpilt[1]);
-        LocalDate endDate = LocalDate.parse(inputSpilt[2]);
+        LocalDate startDate = LocalDate.parse(inputSpilt[2]);
+        LocalDate endDate = LocalDate.parse(inputSpilt[3]);
         if (startDate.isBefore(LocalDate.now())) {
             throw new StartDatesException("Start Date Must be after than Today");
 
@@ -28,7 +28,7 @@ public class Event {
             throw new StartDatesException("Start Date Must be before than End Date");
         }
 
-//        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(inputSpilt[0], startDate, endDate, Integer.parseInt(inputSpilt[3]), inputSpilt[4]));
+        Model.PlatoModel.Event.addNewEvent(new Model.PlatoModel.Event(Integer.parseInt(inputSpilt[0]),inputSpilt[1], startDate, endDate, Integer.parseInt(inputSpilt[4]), inputSpilt[5]));
 
 
     }
