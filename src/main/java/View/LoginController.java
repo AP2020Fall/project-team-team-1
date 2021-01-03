@@ -32,7 +32,7 @@ public class LoginController {
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
 
-    public static String username = "player";
+    public static String username = "player2";
 
     public static String getUsername() {
         return username;
