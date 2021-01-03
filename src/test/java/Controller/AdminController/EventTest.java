@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class EventTest extends TestCase {
     Event event = new Event();
 
-    public void testAddEvent() throws StartDatesException {
+    public void testAddEvent() throws StartDatesException, ExistEventException {
         String string = "BattleSea 2021-12-07 2022-12-08 50";
         event.addEvent(string);
         assertEquals(string,"BattleSea 2021-12-07 2022-12-08 50");

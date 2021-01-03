@@ -1,6 +1,7 @@
 package View;
 
 import Controller.AdminController.AdminGeneralController;
+import Controller.Exception.Plato.ExistEventException;
 import Controller.Exception.Plato.StartDatesException;
 import Model.PlatoModel.Event;
 import com.jfoenix.controls.JFXButton;
@@ -16,7 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +52,7 @@ public class AdminEvents implements Initializable {
     @FXML
     public JFXButton btnBack;
     @FXML
-    public void addEvent(ActionEvent event) {
+    public void addEvent(ActionEvent event) throws IOException {
         try {
             adminGeneralController.addEvent(txtID.getText()+" "+txtGame.getText()+" "+dateStart.getValue().toString()+" "+dateEnd.getValue().toString()+" "+txtScore.getText()+" "+txtComment.getText());
             LoginController.setUsername(null);
@@ -60,10 +63,29 @@ public class AdminEvents implements Initializable {
             window.setScene(message);
             window.show();
         } catch (StartDatesException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            UpdateError.setError(e.getMessage());
+            showError();
+            return;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+        } catch (ExistEventException e) {
+            System.err.println(e.getMessage());
+            UpdateError.setError(e.getMessage());
+            showError();
+            return;
         }
+    }
+
+    private void showError() throws IOException {
+        URL url = new File("src/main/resources/FXML/EventError.fxml").toURI().toURL();
+
+        AnchorPane root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private final ObservableList<Event>events= FXCollections.observableArrayList();
