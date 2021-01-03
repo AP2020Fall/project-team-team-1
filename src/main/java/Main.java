@@ -38,7 +38,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
 
-            URL url = new File("src/main/resources/FXML/DotsAndBoxesMainMenu.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
 
             AnchorPane root = FXMLLoader.load(url);
             Scene scene = new Scene(root);

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -63,6 +66,12 @@
             </children>
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
+      <TableView fx:id="tableView" layoutX="235.0" layoutY="72.0" prefHeight="257.0" prefWidth="304.0" stylesheets="@../Style/PlayerSearchFriends.css" AnchorPane.rightAnchor="61.0">
+        <columns>
+          <TableColumn fx:id="tblFriends" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="304.0" resizable="false" text="Friends" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtSearch" layoutX="235.0" layoutY="26.0" prefHeight="25.0" prefWidth="183.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-radius: 5px; -fx-border-width: 2px; -fx-text-fill: whitesmoke;" />
     </children>
 
 </AnchorPane>
