@@ -52,8 +52,13 @@ public class PlayerMenu {
         window.show();
     }
     @FXML
-    public void goToFriendsMenu(ActionEvent event) {
-
+    public void goToFriendsMenu(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/FriendsMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
     @FXML
     public void close(ActionEvent event){
