@@ -55,7 +55,13 @@ public class AdminMainMenu {
         //todo link
     }
     @FXML
-    public void goToEvents(ActionEvent event){
-        //todo link
+    public void goToEvents(ActionEvent event) throws IOException {
+        LoginController.setUsername(null);
+        URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 }
