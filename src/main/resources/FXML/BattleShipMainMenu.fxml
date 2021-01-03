@@ -17,7 +17,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
+      <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" onAction="#runGame" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
