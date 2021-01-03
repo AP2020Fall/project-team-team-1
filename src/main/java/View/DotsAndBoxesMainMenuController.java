@@ -159,6 +159,17 @@ public class DotsAndBoxesMainMenuController implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
+    private void runGame(ActionEvent actionEvent) throws IOException {
+
+        URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
