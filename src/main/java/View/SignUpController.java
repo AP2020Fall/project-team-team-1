@@ -15,14 +15,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SignUpController {
+public class SignUpController implements Initializable {
     protected SignUp processSignUp = new SignUp();
     protected static Validation validation = new Validation();
     @FXML
@@ -64,6 +67,10 @@ public class SignUpController {
 
 
         try {
+            File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+            Media media = new Media(file.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+
             Validation.nameOrLastNameIsValid(txtName.getText());
             Validation.nameOrLastNameIsValid(txtLastname.getText());
             Validation.gameNameIsValid(txtUsername.getText());
@@ -76,6 +83,7 @@ public class SignUpController {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();
+            mediaPlayer.stop();
         } catch (ExistUserNameException | EmptyExceptionForUserName e) {
             File file = new File("src\\main\\resources\\Images\\Error copy.png");
             Image image = new Image(file.toURI().toString());
@@ -110,5 +118,13 @@ public class SignUpController {
 
     private String getInfo(String name,String lastName,String username,String password , String email , String phoneNum){
         return name+" "+lastName+" "+username+" "+email+" "+password+" "+phoneNum;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }
