@@ -59,31 +59,33 @@ public class SignUpController implements Initializable {
 
 
     @FXML
-    private void appExit(ActionEvent event){
+    private void appExit(ActionEvent event) {
         System.exit(1);
     }
+
     @FXML
     private void signUp(ActionEvent event) {
 
 
         try {
-            File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-            Media media = new Media(file.toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
+//            File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+//            Media media = new Media(file.toURI().toString());
+//            MediaPlayer mediaPlayer = new MediaPlayer(media);
 
             Validation.nameOrLastNameIsValid(txtName.getText());
             Validation.nameOrLastNameIsValid(txtLastname.getText());
             Validation.gameNameIsValid(txtUsername.getText());
             Validation.emailIsValid(txtPassword.getText());
             Validation.phoneNumberIsValid(txtPhoneNum.getText());
-            processSignUp.addPlayer(getInfo(txtName.getText(),txtLastname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(),txtPhoneNum.getText()));
+            processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
             URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
+            LoginController.mediaPlayer.stop();
+//            mediaPlayer.stop();
             window.show();
-            mediaPlayer.stop();
         } catch (ExistUserNameException | EmptyExceptionForUserName e) {
             File file = new File("src\\main\\resources\\Images\\Error copy.png");
             Image image = new Image(file.toURI().toString());
@@ -106,6 +108,7 @@ public class SignUpController implements Initializable {
         }
 
     }
+
     @FXML
     private void goToRegisterMenu(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
@@ -116,15 +119,16 @@ public class SignUpController implements Initializable {
         window.show();
     }
 
-    private String getInfo(String name,String lastName,String username,String password , String email , String phoneNum){
-        return name+" "+lastName+" "+username+" "+email+" "+password+" "+phoneNum;
+    private String getInfo(String name, String lastName, String username, String password, String email, String phoneNum) {
+        return name + " " + lastName + " " + username + " " + email + " " + password + " " + phoneNum;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+//        Media media = new Media(file.toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.play();
+
     }
 }

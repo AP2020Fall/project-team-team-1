@@ -36,6 +36,9 @@ public class LoginController implements Initializable {
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static Existence existence = new Existence();
+    private static final File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+    protected static Media media = new Media(file.toURI().toString());
+    protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
 
     public static String username = "player2";
 
@@ -59,9 +62,10 @@ public class LoginController implements Initializable {
     Button btnRegister;
 
     @FXML
-    private void appExit(ActionEvent event){
+    private void appExit(ActionEvent event) {
         System.exit(1);
     }
+
     @FXML
     private void goToRegisterMenu(ActionEvent event) throws IOException {
 
@@ -72,39 +76,41 @@ public class LoginController implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void login(ActionEvent event) throws IOException {
-        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+//        Media media = new Media(file.toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
         try {
-            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())){
-                processLoginController.loginAsAdmin(getInfo(txtUsername.getText(),txtPassword.getText()));
+            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())) {
+                processLoginController.loginAsAdmin(getInfo(txtUsername.getText(), txtPassword.getText()));
                 setUsername(txtUsername.getText());
                 URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
                 Parent register = FXMLLoader.load(url);
                 Scene message = new Scene(register);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(message);
-                window.show();
                 mediaPlayer.stop();
-            }else{
-            processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
-            setUsername(txtUsername.getText());
-            URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(message);
-            window.show();}
-            mediaPlayer.stop();
+                window.show();
+            } else {
+                processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
+                setUsername(txtUsername.getText());
+                URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
+                Parent register = FXMLLoader.load(url);
+                Scene message = new Scene(register);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(message);
+                window.show();
+            }
         } catch (InvalidUserNameException | WrongPasswordException | ExistAdminException e) {
             showError();
-        } catch (BanExceptionForLogin e){
+        } catch (BanExceptionForLogin e) {
             showBanError();
         }
 
     }
+
     private void showError() throws IOException {
         URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
 
@@ -127,15 +133,15 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    private String getInfo(String txtUsername,String txtPassword){
-        return txtUsername+" "+txtPassword;
+    private String getInfo(String txtUsername, String txtPassword) {
+        return txtUsername + " " + txtPassword;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+//        Media media = new Media(file.toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
 }
