@@ -23,30 +23,30 @@
                </font>
             </Text>
             <Label fx:id="lblID" layoutX="174.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
-            <Text layoutX="240.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Game" wrappingWidth="52.80340576171875">
+            <Text layoutX="250.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Game" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="320.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Start" wrappingWidth="52.80340576171875">
+            <Text layoutX="340.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Start" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="410.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="End" wrappingWidth="52.80340576171875">
+            <Text layoutX="430.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="End" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="500.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Score" wrappingWidth="52.80340576171875">
+            <Text layoutX="520.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Score" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Label fx:id="lblGame" layoutX="240.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblEnd" layoutX="410.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblScore" layoutX="500.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblStart" layoutX="320.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblGame" layoutX="250.0" layoutY="163.0" prefHeight="17.0" prefWidth="87.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblEnd" layoutX="430.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblScore" layoutX="520.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblStart" layoutX="340.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
             <Button layoutY="2.0" mnemonicParsing="false" onAction="#backToPrevious" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="back" />
             <Button layoutX="568.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="19.0" prefWidth="36.0" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14;" text="X" />
          </children>
@@ -69,11 +69,11 @@
          </children>
       </Pane>
       <Pane fx:id="simplePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="277.0" />
-      <Text layoutX="164.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Comment" wrappingWidth="78.13671875">
+      <Text layoutX="174.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Comment" wrappingWidth="78.13671875">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblComment" layoutX="164.0" layoutY="226.0" prefHeight="30.0" prefWidth="158.0" style="-fx-text-fill: white;" text="Label" />
+      <Label fx:id="lblComment" layoutX="174.0" layoutY="226.0" prefHeight="30.0" prefWidth="158.0" style="-fx-text-fill: white;" text="Label" />
    </children>
 </AnchorPane>
