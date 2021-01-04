@@ -10,6 +10,7 @@ import Controller.RegisterController.SignUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -24,10 +27,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 
-
-public class LoginController {
+public class LoginController implements Initializable {
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
@@ -105,5 +108,13 @@ public class LoginController {
     }
     private String getInfo(String txtUsername,String txtPassword){
         return txtUsername+" "+txtPassword;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }
