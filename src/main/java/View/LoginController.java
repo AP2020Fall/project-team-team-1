@@ -128,9 +128,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-        Media media = new Media(file.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
+//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+//        Media media = new Media(file.toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.play();
     }
 }
