@@ -4,11 +4,13 @@ import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.ExistEventException;
 import Controller.Exception.Plato.StartDatesException;
 import Model.PlatoModel.Event;
+import Model.PlatoModel.Player;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,12 +19,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,6 +56,9 @@ public class AdminEvents implements Initializable {
     public TableView<Event> table;
     @FXML
     public JFXButton btnBack;
+    @FXML
+    public Button btnSelectedEvent;
+
     @FXML
     public void addEvent(ActionEvent event) throws IOException {
         try {
@@ -87,6 +95,28 @@ public class AdminEvents implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    private void goToEventInfo(ActionEvent event) throws IOException {
+        if (EventInfo.getId().equalsIgnoreCase("null")){
+            return;
+        }
+        URL url = new File("src/main/resources/FXML/EventInfo.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Stage window = new Stage();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    public void initActions(){
+        table.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent arg0) {
+                String id = table.getSelectionModel().getSelectedItem().eventIDProperty().getValue().toString();
+                EventInfo.setId(id);
+            }
+        });
+    }
 
     private final ObservableList<Event>events= FXCollections.observableArrayList();
 
@@ -99,5 +129,26 @@ public class AdminEvents implements Initializable {
         for (Event event : Event.getEvents()) {
             table.getItems().add(event);
         }
+        initActions();
+//        table.setRowFactory(tv->{
+//            TableRow<Event> row = new TableRow<>();
+//            row.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent event) {
+//                    if (event.getClickCount()==2&&(!row.isEmpty())){
+//                        String rowData = row.getItem().eventIDProperty().toString();
+//                        EventInfo.setId(rowData);
+//                        try {
+//                            goToEventInfo();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                }
+//            });
+//
+//            return row;
+//        });
     }
 }
