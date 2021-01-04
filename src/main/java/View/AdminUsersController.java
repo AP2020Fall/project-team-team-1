@@ -82,8 +82,8 @@ public class AdminUsersController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblPlayerNum.setText(String.valueOf(Player.getPlayers().size()));
-//        lblGamesNum.setText();
-//        lblMVP.setText();
+        lblGamesNum.setText(adminGeneralController.numberOfTotalPlayed());
+        lblMVP.setText(adminGeneralController.getMVPUser());
         tblID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
         tblUsername.setCellValueFactory(new PropertyValueFactory<>("userName"));
         table.setItems(players);
