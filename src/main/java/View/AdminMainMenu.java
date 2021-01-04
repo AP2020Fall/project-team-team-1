@@ -56,7 +56,6 @@ public class AdminMainMenu {
     }
     @FXML
     public void goToEvents(ActionEvent event) throws IOException {
-        LoginController.setUsername(null);
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
