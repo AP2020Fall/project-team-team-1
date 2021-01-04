@@ -71,7 +71,7 @@
           <TableColumn fx:id="tblFriends" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="304.0" resizable="false" text="Friends" />
         </columns>
       </TableView>
-      <TextField fx:id="txtSearch" layoutX="235.0" layoutY="26.0" prefHeight="25.0" prefWidth="183.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-radius: 5px; -fx-border-width: 2px; -fx-text-fill: whitesmoke;" />
+      <TextField fx:id="txtSearch" layoutX="235.0" layoutY="26.0" prefHeight="25.0" prefWidth="183.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-radius: 5px; -fx-border-width: 2px; -fx-text-fill: whitesmoke;" />
     </children>
 
 </AnchorPane>
