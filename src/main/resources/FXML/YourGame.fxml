@@ -111,7 +111,12 @@
       <Pane fx:id="pane1" layoutX="216.0" layoutY="60.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
       <Pane fx:id="pane3" layoutX="399.0" layoutY="60.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
       <Pane fx:id="pane4" layoutX="399.0" layoutY="265.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
-      <Pane fx:id="pane2" layoutX="216.0" layoutY="265.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane2" layoutX="217.0" layoutY="265.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Button layoutX="507.0" layoutY="362.0" mnemonicParsing="false" onAction="#goGameLog" style="-fx-background-color: #1a1b20; -fx-text-fill: #e0d855;" stylesheets="@../Style/StyleSheet.css" text="Play Now">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 
 </AnchorPane>
