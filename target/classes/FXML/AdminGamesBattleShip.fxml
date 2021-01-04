@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminGamesBattleShip">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="200.0" style="-fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-width: 0px 2px 0px 0px;" AnchorPane.rightAnchor="400.0">
+         <children>
+            <Button fx:id="btnGoToAdminBattleShipGame" graphicTextGap="30.0" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToBattleGame" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="BattleShip     ">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/battleShipIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnGoToAdminDotsGame" graphicTextGap="30.0" layoutX="7.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToAdminDotsGame" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="Dots &amp; Boxes">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/DotsAndBoxesIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutY="2.0" mnemonicParsing="false" onAction="#goToLastMenu" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
+         </children>
+      </Pane>
+      <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/battleShipIcon.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="177.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size: 26;" text="BattleShip" wrappingWidth="138.8033447265625">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+         </children>
+      </Pane>
+      <Button fx:id="btnDeActive" layoutX="401.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
+      <Button fx:id="btnActive" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
+      <Text layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblNumbers" layoutX="346.0" layoutY="202.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text layoutX="219.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="MVP :" wrappingWidth="51.333312541246414">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblMVP" layoutX="280.0" layoutY="232.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtDetails" layoutX="457.0" layoutY="201.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="btnEdit" layoutX="492.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.rightAnchor="23.0" />
+      <Text layoutX="219.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="219.0" layoutY="299.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
+   </children>
+</AnchorPane>
