@@ -17,63 +17,63 @@
       <Pane prefHeight="185.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);;">
          <children>
             <ImageView fx:id="imgGame" fitHeight="150.0" fitWidth="150.0" layoutX="14.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
-            <Text layoutX="174.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="EventID" wrappingWidth="52.80340576171875">
+            <Text layoutX="174.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="EventID" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Label fx:id="lblID" layoutX="174.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
-            <Text layoutX="250.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Game" wrappingWidth="52.80340576171875">
+            <Label fx:id="lblID" layoutX="174.0" layoutY="152.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
+            <Text layoutX="250.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Game" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="340.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Start" wrappingWidth="52.80340576171875">
+            <Text layoutX="340.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Start" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="430.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="End" wrappingWidth="52.80340576171875">
+            <Text layoutX="430.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="End" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text layoutX="520.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Score" wrappingWidth="52.80340576171875">
+            <Text layoutX="520.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Score" wrappingWidth="52.80340576171875">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Label fx:id="lblGame" layoutX="250.0" layoutY="163.0" prefHeight="17.0" prefWidth="87.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblEnd" layoutX="430.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblScore" layoutX="520.0" layoutY="163.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
-            <Label fx:id="lblStart" layoutX="340.0" layoutY="163.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblGame" layoutX="250.0" layoutY="152.0" prefHeight="17.0" prefWidth="87.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblEnd" layoutX="430.0" layoutY="152.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblScore" layoutX="520.0" layoutY="152.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
+            <Label fx:id="lblStart" layoutX="340.0" layoutY="152.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
             <Button layoutY="2.0" mnemonicParsing="false" onAction="#backToPrevious" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="back" />
             <Button layoutX="568.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="19.0" prefWidth="36.0" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
       <Button fx:id="btnDelete" layoutX="23.0" layoutY="280.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Event" />
       <Button fx:id="btnGoToEditPane" layoutX="23.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Event" />
-      <Pane fx:id="EditPane" layoutX="203.0" layoutY="277.0" prefHeight="90.0" prefWidth="387.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="277.0">
+      <Pane fx:id="EditPane" layoutX="203.0" layoutY="277.0" prefHeight="90.0" prefWidth="387.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0">
          <children>
-            <Button fx:id="btnEdit" layoutX="281.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
+            <Button fx:id="btnEdit" layoutX="281.0" layoutY="51.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
             <MenuButton fx:id="btnField" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: transparency; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" text="Edit Field" textFill="WHITE">
               <items>
-                <MenuItem mnemonicParsing="false" text="StartDate" />
+                <MenuItem mnemonicParsing="false" text="Start Date" />
                   <MenuItem mnemonicParsing="false" text="End Date" />
                   <MenuItem mnemonicParsing="false" text="score" />
                   <MenuItem mnemonicParsing="false" text="Comment" />
               </items>
             </MenuButton>
             <TextField fx:id="txtNewValue" layoutX="123.0" layoutY="51.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: transparncy; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
-            <Button fx:id="btnCancel" layoutX="323.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
+            <Button fx:id="btnCancel" layoutX="323.0" layoutY="51.0" mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
          </children>
       </Pane>
-      <Pane fx:id="simplePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="277.0" />
-      <Text layoutX="174.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Comment" wrappingWidth="78.13671875">
+      <Pane fx:id="simplePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0" />
+      <Text layoutX="174.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Comment" wrappingWidth="78.13671875">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblComment" layoutX="174.0" layoutY="226.0" prefHeight="30.0" prefWidth="158.0" style="-fx-text-fill: white;" text="Label" />
+      <Label fx:id="lblComment" layoutX="180.0" layoutY="215.0" prefHeight="30.0" prefWidth="158.0" style="-fx-text-fill: white;" text="Label" />
    </children>
 </AnchorPane>

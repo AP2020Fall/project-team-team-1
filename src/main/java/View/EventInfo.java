@@ -2,7 +2,7 @@ package View;
 
 import Controller.AdminController.AdminGeneralController;
 import Controller.AdminController.Event;
-import Controller.Exception.Plato.ExistEventException;
+import Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 public class EventInfo implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static String id = "null" ;
+    protected static String editField = "null";
 
     public static String getId() {
         return id;
@@ -115,6 +116,28 @@ public class EventInfo implements Initializable {
     private void closeApp(ActionEvent event){
         System.exit(1);
     }
+    @FXML
+    private void cancelEdit(ActionEvent event){
+        simplePane.toFront();
+    }
+    @FXML
+    private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
+        if (btnField.showingProperty().getValue().toString().toLowerCase().equals("start")){
+            adminGeneralController.editEvent(id+" "+"Start Date"+" "+txtNewValue.getText());
+        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("end")){
+            adminGeneralController.editEvent(id+" "+"end Date"+" "+txtNewValue.getText());
+        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("score")){
+            adminGeneralController.editEvent(id+" "+"score"+" "+txtNewValue.getText());
+        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("comment")){
+            adminGeneralController.editEvent(id+" "+"comment"+" "+txtNewValue.getText());
+        }
+        URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
 
 
     @Override
@@ -130,11 +153,11 @@ public class EventInfo implements Initializable {
             System.err.println(e.getMessage());
         }
         try {
-            if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().toString().toLowerCase().startsWith("b")){
+            if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().getValue().toLowerCase().startsWith("b")){
                 File file = new File("src\\main\\resources\\Icons\\battleShipIcon.png");
                 Image image = new Image(file.toURI().toString());
                 imgGame.setImage(image);
-            }else if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().toString().toLowerCase().startsWith("d")){
+            }else if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().getValue().toLowerCase().startsWith("d")){
                 File file = new File("src\\main\\resources\\Icons\\DotsAndBoxesIcon.png");
                 Image image = new Image(file.toURI().toString());
                 imgGame.setImage(image);

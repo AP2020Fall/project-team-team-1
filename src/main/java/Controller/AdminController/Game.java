@@ -5,8 +5,10 @@ import Controller.Exception.Plato.GameMaintenance;
 import Controller.Exception.Plato.InvalidGameID;
 import Model.BattleSeaModel.Details;
 import Model.PlatoModel.Games;
+import Model.PlatoModel.Player;
 
 import java.io.IOException;
+import java.util.*;
 
 public class Game {
     public static void changeGameName(String gameID,String name) throws InvalidGameID {
@@ -107,6 +109,44 @@ public class Game {
             Model.DotsAndBoxesModel.Details.setDetails(string);
             Model.DotsAndBoxesModel.Details.saveInJsonFile();
         }
+
+    }
+    
+    public static String getMVPUser(){
+        HashMap<String, Long> mvp = new HashMap<>();
+
+        for (Player player : Player.getPlayers()) {
+            long scores = player.getPlayerLog().get(0).getTakenScore() + player.getPlayerLog().get(1).getTakenScore();
+            mvp.put(player.getUserName(),scores);
+        }
+        String mvpUser = "null";
+        for (String sorted : sortingFunction(mvp).keySet()) {
+            mvpUser = sorted;
+            break;
+        }
+
+        return mvpUser;
+    }
+
+    public static String numberOfTotalPlayed(){
+        long number = 0;
+        for (Player player : Player.getPlayers()) {
+            number = player.getPlayerLog().get(0).getNumberOfGamePlayed() + player.getPlayerLog().get(1).getNumberOfGamePlayed();
+        }
+        return String.valueOf(number);
+    }
+    
+    private static LinkedHashMap<String, Integer> sortingFunction(HashMap vorodi) {
+
+        TreeMap<String, Integer> sortedAlphabet = new TreeMap<>(vorodi);
+
+        Map<String, Integer> unSortedMap = sortedAlphabet;
+
+        LinkedHashMap<String, Integer> SortedMapNumber = new LinkedHashMap<>();
+        unSortedMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> SortedMapNumber.put(x.getKey(), x.getValue()));
+
+        return SortedMapNumber;
 
     }
 }
