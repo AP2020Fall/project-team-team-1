@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlayerFavoritesGamesController implements Initializable {
+public class YourGameController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
@@ -68,7 +68,7 @@ public class PlayerFavoritesGamesController implements Initializable {
     }
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
-        URL url = new File("src/main/resources/FXML/PlayerFavoritesGames.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/YourGame.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -173,6 +173,15 @@ public class PlayerFavoritesGamesController implements Initializable {
     @FXML
     private void playDots(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private void goGameLog(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/GameLog.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
