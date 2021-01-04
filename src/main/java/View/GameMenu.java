@@ -108,6 +108,15 @@ public class GameMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
+    @FXML
+    public void goToGameLog(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/GameLog.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
 
 
 

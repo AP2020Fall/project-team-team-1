@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminUsersController">
+   <children>
+      <TableView fx:id="table" layoutX="235.0" layoutY="72.0" prefHeight="257.0" prefWidth="313.0" stylesheets="@../Style/AdminUser.css">
+        <columns>
+            <TableColumn fx:id="tblID" prefWidth="91.66668701171875" text="ID" />
+          <TableColumn fx:id="tblUsername" prefWidth="216.0" style="text-fill: white;" text="Username" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtSearch" layoutX="238.0" layoutY="33.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-width: 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-radius: 7px; -fx-text-fill: white;" />
+      <Button fx:id="btnGoToPlayer" layoutX="238.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #1a1b20; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);; -fx-border-width: 2px; -fx-border-radius: 7px; -fx-text-fill: white;" text="Go To Player" />
+      <Pane layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text layoutX="14.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #25dce7;" text="Players :" wrappingWidth="87.66665595769882">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #25dce7;" text="Games played :" wrappingWidth="130.99996894598007">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #25dce7;" text="MVP :" wrappingWidth="75.66665595769882">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblPlayerNum" layoutX="145.0" layoutY="105.0" prefHeight="17.0" prefWidth="56.0" style="-fx-font-weight: bold;" text="12" textFill="#e0d855">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblGamesNum" layoutX="145.0" layoutY="145.0" prefHeight="17.0" prefWidth="47.0" style="-fx-font-weight: bold;" text="12" textFill="#e0d855">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblMVP" layoutX="104.0" layoutY="185.0" prefHeight="20.0" prefWidth="88.0" style="-fx-font-weight: bold;" text="Username" textFill="#e0d855">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+         </children>
+      </Pane>
+      <Button fx:id="btnExit" layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#exitApp" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-text-fill: white;" text="X" />
+   </children>
+</AnchorPane>

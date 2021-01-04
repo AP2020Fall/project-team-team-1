@@ -58,6 +58,22 @@ public class PlayerInfo {
 
         return player.getLastPlayed().get(player.getLastPlayed().size()-1);
     }
+    public static String showUserLog(String userName) throws ExistPlayerException, ExistPlayerLogException {
+        StringBuilder show = new StringBuilder();
+
+        Player player = FindPlayerByInfo.findByUserName(userName);
+        if (player.getLastPlayed().isEmpty()){
+            throw new ExistPlayerLogException("There is no log for this player yet!");
+        }
+        if (player == null)
+            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
+
+        for (String s : player.getLastPlayed()) {
+            show.append(s).append("$");
+        }
+
+        return String.valueOf(show);
+    }
 
     public static String showPoint (String userName) throws ExistPlayerException {
         Player player = FindPlayerByInfo.findByUserName(userName);

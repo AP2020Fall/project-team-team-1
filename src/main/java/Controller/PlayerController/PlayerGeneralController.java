@@ -137,9 +137,12 @@ public class PlayerGeneralController {
     public String showPoint(String userName) throws ExistPlayerException {
         return PlayerInfo.showPoint(userName);
     }
+    public String showUserLog(String userName) throws ExistPlayerLogException, ExistPlayerException {
+        return PlayerInfo.showUserLog(userName);
+    }
 
 
-    /***********************************************SHOW LOG***********************************************/
+        /***********************************************SHOW LOG***********************************************/
     public String showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         return PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
@@ -182,9 +185,12 @@ public class PlayerGeneralController {
     public void playSuggestedGame(String userName, String suggestionId) throws ExistSuggestionException {
         Suggestion.playSuggestedGame(userName, suggestionId);
     }
+    public String findSuggestionBySuggestionIDForGameName(String suggestionID) {
+        return Suggestion.findSuggestionBySuggestionIDForGameName(suggestionID);
+    }
 
 
-    /***********************************************MESSAGE***********************************************/
+        /***********************************************MESSAGE***********************************************/
     public String viewBotMessages() {
         return ViewPlatoBotMessages.viewBotMessages();
     }

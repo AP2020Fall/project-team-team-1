@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileController">
+   <children>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imgStatus" fitHeight="99.0" fitWidth="100.0" layoutX="16.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/default-profile.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameAndLastname" layoutX="120.0" layoutY="63.0" prefHeight="21.0" prefWidth="150.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
+      <Button fx:id="btnRemove" layoutX="265.0" layoutY="142.0" mnemonicParsing="false" onAction="#setBtnRemove" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="UnFollow Friend">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cross.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imgMedal" fitHeight="161.0" fitWidth="163.0" layoutX="407.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/levelKing.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winsLabel" layoutX="418.0" layoutY="207.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="425.0" layoutY="247.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Wins" />
+      <Label fx:id="loseLabel" layoutX="504.0" layoutY="206.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="502.0" layoutY="247.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
+      <Label fx:id="numberOfPlayedLabel" layoutX="461.0" layoutY="281.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
+      <Label layoutX="418.0" layoutY="327.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Played" />
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="138.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/phone.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="137.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/email.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
+      <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
+      <Label fx:id="battleLabel" layoutX="280.0" layoutY="323.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
+         <graphic>
+            <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/removefav.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label fx:id="dotsLabel" layoutX="279.0" layoutY="358.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
+         <graphic>
+            <ImageView fx:id="favDots" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/removefav.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label layoutX="150.0" layoutY="292.0" prefHeight="26.0" prefWidth="148.0" style="-fx-text-fill: white; -fx-alignment: center;" text="Favorite Games :" />
+      <Button fx:id="closeApp" layoutX="569.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Pane fx:id="EditPane" layoutX="160.0" layoutY="277.0" prefHeight="90.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0">
+         <children>
+            <Button fx:id="btnEdit" layoutX="317.0" layoutY="52.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
+            <MenuButton fx:id="btnField" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: transparency; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" text="Edit Field" textFill="WHITE">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Start Date" />
+                  <MenuItem mnemonicParsing="false" text="End Date" />
+                  <MenuItem mnemonicParsing="false" text="score" />
+                  <MenuItem mnemonicParsing="false" text="Comment" />
+               </items>
+            </MenuButton>
+            <TextField fx:id="txtNewValue" layoutX="123.0" layoutY="51.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: transparncy; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
+            <Button fx:id="btnCancel" layoutX="359.0" layoutY="52.0" mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
