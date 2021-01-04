@@ -138,11 +138,20 @@ public class PlayerFavoritesGamesController implements Initializable {
             if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes")){
                 favoriteDots();
             }
-            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
-                suggestedDots();
-            }
-            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
-                suggestedBattle();
+//            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
+//                suggestedDots();
+//            }
+//            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
+//                suggestedBattle();
+//            }
+            for (Integer integer : playerGeneralController.findByUserName(LoginController.getUsername()).getSuggestedGamesID()) {
+                String gameName = playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer));
+                if (gameName.toLowerCase().startsWith("b")){
+                    suggestedBattle();
+                }
+                if (gameName.toLowerCase().startsWith("d")){
+                    suggestedDots();
+                }
             }
 
         } catch (ExistFavoriteException e) {
