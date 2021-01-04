@@ -56,8 +56,11 @@ public class AdminGeneralController {
         DataBase.save(Player.getPlayers(), playerFile);
         DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
     }
+    public Model.PlatoModel.Event eventFinderByEventID(String eventID) throws ExistEventException {
+        return Event.eventFinderByEventID(eventID);
+    }
 
-    /***********************************************MESSAGE***********************************************/
+        /***********************************************MESSAGE***********************************************/
     public void sendMassageString(String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
         Model.PlatoModel.Message.saveInJsonFile(Model.PlatoModel.Message.getMessages(), messageFile);
