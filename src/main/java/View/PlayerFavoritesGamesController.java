@@ -138,11 +138,20 @@ public class PlayerFavoritesGamesController implements Initializable {
             if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes")){
                 favoriteDots();
             }
-            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
-                suggestedDots();
-            }
-            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
-                suggestedBattle();
+//            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
+//                suggestedDots();
+//            }
+//            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
+//                suggestedBattle();
+//            }
+            for (Integer integer : playerGeneralController.findByUserName(LoginController.getUsername()).getSuggestedGamesID()) {
+                String gameName = playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer));
+                if (gameName.toLowerCase().startsWith("b")){
+                    suggestedBattle();
+                }
+                if (gameName.toLowerCase().startsWith("d")){
+                    suggestedDots();
+                }
             }
 
         } catch (ExistFavoriteException e) {
@@ -151,6 +160,24 @@ public class PlayerFavoritesGamesController implements Initializable {
             System.err.println(e.getMessage());
         }
 
+    }
+    @FXML
+    private void playBattle(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private void playDots(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
 

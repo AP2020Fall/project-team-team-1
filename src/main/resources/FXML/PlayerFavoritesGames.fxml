@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -66,35 +67,51 @@
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
       <Label layoutX="217.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" stylesheets="@../Style/PlatoMessage.css" text="Your favorite games :" textFill="WHITE" />
-      <Button layoutX="241.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="446.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="237.0" layoutY="132.0" mnemonicParsing="false" onAction="#playBattle" style="-fx-text-fill: #e0d855; -fx-background-color: #1a1b20;" stylesheets="@../Style/StyleSheet.css" text="Play Now">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="420.0" layoutY="132.0" mnemonicParsing="false" onAction="#playDots" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Play Now">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <Label layoutX="219.0" layoutY="228.0" prefHeight="17.0" prefWidth="150.0" stylesheets="@../Style/StyleSheet.css" text="Your Suggested games :" textFill="WHITE" />
-      <Button layoutX="242.0" layoutY="310.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="446.0" layoutY="310.0" mnemonicParsing="false" text="Button" />
-      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="192.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="237.0" layoutY="337.0" mnemonicParsing="false" onAction="#playBattle" style="-fx-background-color: #1a1b20; -fx-text-fill: #e0d855;" stylesheets="@../Style/StyleSheet.css" text="Play Now">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="420.0" layoutY="337.0" mnemonicParsing="false" onAction="#playDots" style="-fx-background-color: #1a1b20;" text="Play Now" textFill="#00acea">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="245.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/battleShipIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="400.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="429.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/DotsAndBoxesIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="203.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="245.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/battleShipIcon.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="390.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="429.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/DotsAndBoxesIcon.png" />
          </image>
       </ImageView>
-      <Pane fx:id="pane1" layoutX="194.0" layoutY="73.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
-      <Pane fx:id="pane3" layoutX="390.0" layoutY="73.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
-      <Pane fx:id="pane4" layoutX="392.0" layoutY="299.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
-      <Pane fx:id="pane2" layoutX="187.0" layoutY="298.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane1" layoutX="216.0" layoutY="60.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane3" layoutX="399.0" layoutY="60.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane4" layoutX="399.0" layoutY="265.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane2" layoutX="216.0" layoutY="265.0" prefHeight="97.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
     </children>
 
 </AnchorPane>

@@ -17,8 +17,8 @@
             <Image url="@../Images/default-profile.png" />
          </image>
       </ImageView>
-      <Label fx:id="nameAndLastname" layoutX="139.0" layoutY="91.0" prefHeight="21.0" prefWidth="150.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
-      <Button fx:id="btnRemove" layoutX="272.0" layoutY="182.0" mnemonicParsing="false" onAction="#setBtnRemove" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="UnFollow Friend">
+      <Label fx:id="nameAndLastname" layoutX="120.0" layoutY="63.0" prefHeight="21.0" prefWidth="150.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
+      <Button fx:id="btnRemove" layoutX="265.0" layoutY="142.0" mnemonicParsing="false" onAction="#setBtnRemove" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="UnFollow Friend">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -41,18 +41,18 @@
       <Label layoutX="502.0" layoutY="247.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
       <Label fx:id="numberOfPlayedLabel" layoutX="461.0" layoutY="281.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
       <Label layoutX="418.0" layoutY="327.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Played" />
-      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="20.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="138.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/phone.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="19.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="137.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/email.png" />
          </image>
       </ImageView>
-      <Label fx:id="email" layoutX="46.0" layoutY="195.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
-      <Label fx:id="phoneNumber" layoutX="46.0" layoutY="224.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
+      <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
+      <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
       <Label fx:id="battleLabel" layoutX="280.0" layoutY="323.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
          <graphic>
             <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
