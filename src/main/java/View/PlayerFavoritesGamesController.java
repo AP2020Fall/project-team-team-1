@@ -161,6 +161,24 @@ public class PlayerFavoritesGamesController implements Initializable {
         }
 
     }
+    @FXML
+    private void playBattle(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private void playDots(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
 
 
     @Override
