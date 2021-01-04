@@ -74,6 +74,9 @@ public class LoginController implements Initializable {
     }
     @FXML
     private void login(ActionEvent event) throws IOException {
+        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
         try {
             if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())){
                 processLoginController.loginAsAdmin(getInfo(txtUsername.getText(),txtPassword.getText()));
@@ -84,6 +87,7 @@ public class LoginController implements Initializable {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(message);
                 window.show();
+                mediaPlayer.stop();
             }else{
             processLoginController.loginAsPlayer(getInfo(txtUsername.getText(),txtPassword.getText()));
             setUsername(txtUsername.getText());
@@ -93,6 +97,7 @@ public class LoginController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();}
+            mediaPlayer.stop();
         } catch (InvalidUserNameException | WrongPasswordException | ExistAdminException e) {
             showError();
         } catch (BanExceptionForLogin e){
@@ -128,9 +133,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-//        Media media = new Media(file.toURI().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-//        mediaPlayer.play();
+        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }
