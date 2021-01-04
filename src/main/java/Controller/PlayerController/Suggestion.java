@@ -39,4 +39,14 @@ public class Suggestion {
 
         return suggestion.getSuggestedGame();
     }
+    public static String findSuggestionBySuggestionIDForGameName(String suggestionID){
+        Model.PlatoModel.Suggestion suggestion = null;
+        for (Model.PlatoModel.Suggestion allSuggestion : Model.PlatoModel.Suggestion.getAllSuggestions()) {
+            if (allSuggestion.getSuggestionID() == Integer.parseInt(suggestionID)){
+                suggestion = allSuggestion;
+                break;
+            }
+        }
+        return suggestion.getSuggestedGame();
+    }
 }
