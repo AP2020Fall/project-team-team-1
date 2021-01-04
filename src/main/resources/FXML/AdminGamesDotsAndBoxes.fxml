@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-
-
-<?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminGamesDotsAndBoxes">
     <children>
@@ -45,7 +39,57 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
             </children>
         </Pane>
+      <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/DotsAndBoxesIcon.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="179.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size: 26;" text="Dots &amp; Boxes" wrappingWidth="187.00000941753387">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="370.0" layoutY="-4.0" mnemonicParsing="false" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+         </children>
+      </Pane>
+      <Button fx:id="btnDelete" layoutX="382.0" layoutY="140.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" />
+      <Button fx:id="btnGoToEditPane" layoutX="496.0" layoutY="140.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" />
+      <Text layoutX="229.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Text layoutX="229.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="MVP :" wrappingWidth="51.333312541246414">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label layoutX="290.0" layoutY="242.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="467.0" layoutY="211.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="btnDelete1" layoutX="502.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" />
+      <Text layoutX="229.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="229.0" layoutY="309.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
     </children>
 </AnchorPane>
