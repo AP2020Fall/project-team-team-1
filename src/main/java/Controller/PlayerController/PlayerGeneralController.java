@@ -137,9 +137,12 @@ public class PlayerGeneralController {
     public String showPoint(String userName) throws ExistPlayerException {
         return PlayerInfo.showPoint(userName);
     }
+    public String showUserLog(String userName) throws ExistPlayerLogException, ExistPlayerException {
+        return PlayerInfo.showUserLog(userName);
+    }
 
 
-    /***********************************************SHOW LOG***********************************************/
+        /***********************************************SHOW LOG***********************************************/
     public String showScoreboardInThisGame(String gameName) throws InvalidGameNameException {
         return PlayerStatusInGame.showScoreboardInThisGame(gameName);
     }
