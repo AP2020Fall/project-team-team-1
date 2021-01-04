@@ -65,7 +65,7 @@
             </children>
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
-      <ListView fx:id="listView" layoutX="219.0" layoutY="83.0" prefHeight="292.0" prefWidth="354.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
+      <ListView fx:id="listView" layoutX="219.0" layoutY="83.0" prefHeight="292.0" prefWidth="354.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/PlatoMessage.css" />
       <Label layoutX="218.0" layoutY="34.0" prefHeight="17.0" prefWidth="183.0" text="Your messages :" textFill="WHITE" />
     </children>
 
