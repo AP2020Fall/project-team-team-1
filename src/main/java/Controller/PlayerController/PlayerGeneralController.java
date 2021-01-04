@@ -182,9 +182,12 @@ public class PlayerGeneralController {
     public void playSuggestedGame(String userName, String suggestionId) throws ExistSuggestionException {
         Suggestion.playSuggestedGame(userName, suggestionId);
     }
+    public String findSuggestionBySuggestionIDForGameName(String suggestionID) {
+        return Suggestion.findSuggestionBySuggestionIDForGameName(suggestionID);
+    }
 
 
-    /***********************************************MESSAGE***********************************************/
+        /***********************************************MESSAGE***********************************************/
     public String viewBotMessages() {
         return ViewPlatoBotMessages.viewBotMessages();
     }

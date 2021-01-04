@@ -10,17 +10,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminUsersController">
    <children>
-      <TableView fx:id="table" layoutX="238.0" layoutY="72.0" prefHeight="257.0" prefWidth="313.0" stylesheets="@../Style/PlayerSearchFriends.css">
+      <TableView fx:id="table" layoutX="235.0" layoutY="72.0" prefHeight="257.0" prefWidth="313.0" stylesheets="@../Style/AdminUser.css">
         <columns>
-          <TableColumn fx:id="tblID" prefWidth="59.0" text="ID" />
-          <TableColumn fx:id="tblUsername" prefWidth="143.33331298828125" text="Username" />
-            <TableColumn fx:id="tblPoints" prefWidth="107.66668701171875" text="Points" />
+            <TableColumn fx:id="tblID" prefWidth="91.66668701171875" text="ID" />
+          <TableColumn fx:id="tblUsername" prefWidth="216.0" style="text-fill: white;" text="Username" />
         </columns>
       </TableView>
-      <TextField fx:id="txtSearch" layoutX="238.0" layoutY="33.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-width: 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);; -fx-border-radius: 7px;" />
+      <TextField fx:id="txtSearch" layoutX="238.0" layoutY="33.0" promptText="Search..." style="-fx-background-color: #1a1b20; -fx-border-width: 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-radius: 7px; -fx-text-fill: white;" />
       <Button fx:id="btnGoToPlayer" layoutX="238.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #1a1b20; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);; -fx-border-width: 2px; -fx-border-radius: 7px; -fx-text-fill: white;" text="Go To Player" />
       <Pane layoutX="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #05373E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -54,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
          </children>
       </Pane>
       <Button fx:id="btnExit" layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#exitApp" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-text-fill: white;" text="X" />
