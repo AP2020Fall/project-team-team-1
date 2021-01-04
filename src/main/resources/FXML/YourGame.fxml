@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerFavoritesGamesController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.YourGameController">
     <children>
         <Pane prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);">
             <children>

@@ -82,7 +82,7 @@ public class PlayerEventsController implements Initializable {
     }
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
-        URL url = new File("src/main/resources/FXML/PlayerFavoritesGames.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/YourGame.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
