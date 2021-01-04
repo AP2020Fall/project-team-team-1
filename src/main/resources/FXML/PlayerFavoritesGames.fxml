@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +13,7 @@
     <children>
         <Pane prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);">
             <children>
-                <JFXButton fx:id="btnEvents" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" onAction="#goToPlayerEvents" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Events" textFill="WHITE">
+                <JFXButton fx:id="btnEvents" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" onAction="#goToPlayerEvents" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Events" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -23,7 +25,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnSearchFriends" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="180.0" onAction="#goToPlayerSearchFriends" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Search Friends" textFill="WHITE">
+                <JFXButton fx:id="btnSearchFriends" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="180.0" onAction="#goToPlayerSearchFriends" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Search Friends" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -35,7 +37,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnFavoritesGames" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="240.0" onAction="#goToPlayerFavoritesGames" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Favorites Games" textFill="WHITE">
+                <JFXButton fx:id="btnFavoritesGames" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="240.0" onAction="#goToPlayerFavoritesGames" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Your games" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -47,7 +49,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnPlatoBotsMessages" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="300.0" onAction="#goToPlayerPlatoBotsMessages" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="PlatoBot Messages" textFill="WHITE">
+                <JFXButton fx:id="btnPlatoBotsMessages" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="300.0" onAction="#goToPlayerPlatoBotsMessages" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Plato Messages" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -63,6 +65,36 @@
             </children>
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
+      <Label layoutX="217.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" stylesheets="@../Style/PlatoMessage.css" text="Your favorite games :" textFill="WHITE" />
+      <Button layoutX="241.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="446.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="219.0" layoutY="228.0" prefHeight="17.0" prefWidth="150.0" stylesheets="@../Style/StyleSheet.css" text="Your Suggested games :" textFill="WHITE" />
+      <Button layoutX="242.0" layoutY="310.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="446.0" layoutY="310.0" mnemonicParsing="false" text="Button" />
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="192.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/battleShipIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="400.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/DotsAndBoxesIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="203.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/battleShipIcon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="390.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/DotsAndBoxesIcon.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pane1" layoutX="194.0" layoutY="73.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane3" layoutX="390.0" layoutY="73.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane4" layoutX="392.0" layoutY="299.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
+      <Pane fx:id="pane2" layoutX="187.0" layoutY="298.0" prefHeight="49.0" prefWidth="108.0" style="-fx-background-color: #1a1b20;" />
     </children>
 
 </AnchorPane>

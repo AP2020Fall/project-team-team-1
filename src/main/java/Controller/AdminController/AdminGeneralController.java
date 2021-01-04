@@ -145,10 +145,10 @@ public class AdminGeneralController {
         Game.setDetails(gameName, string);
 
     }
-    public static String getMVPUser() {
+    public  String getMVPUser() {
         return Game.getMVPUser();
     }
-    public static String numberOfTotalPlayed() {
+    public  String numberOfTotalPlayed() {
         return Game.numberOfTotalPlayed();
     }
 
