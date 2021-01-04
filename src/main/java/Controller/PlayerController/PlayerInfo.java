@@ -16,7 +16,7 @@ public class PlayerInfo {
         if (player == null)
             throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
 
-        showBasicInformation.append("Email : ").append(player.getEmail()).append('\n').append("Name : ").append(player.getName()).append('\n').append("Last name : ").append(player.getLastName()).append('\n').append("User name : ").append(player.getUserName()).append('\n').append("Phone number : ").append(player.getPhoneNum()).append("$");
+        showBasicInformation.append(player.getEmail()).append("$").append(player.getName()).append("$").append(player.getLastName()).append("$").append(player.getUserName()).append("$").append(player.getPhoneNum()).append("$");
         return String.valueOf(showBasicInformation);
     }
 
