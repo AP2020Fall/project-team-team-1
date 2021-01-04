@@ -55,10 +55,10 @@
       <Button fx:id="btnGoToEditPane" layoutX="23.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Event" />
       <Pane fx:id="EditPane" layoutX="203.0" layoutY="277.0" prefHeight="90.0" prefWidth="387.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0">
          <children>
-            <Button fx:id="btnEdit" layoutX="281.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
+            <Button fx:id="btnEdit" layoutX="281.0" layoutY="51.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
             <MenuButton fx:id="btnField" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-radius: 5px; -fx-background-color: transparency; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" text="Edit Field" textFill="WHITE">
               <items>
-                <MenuItem mnemonicParsing="false" text="StartDate" />
+                <MenuItem mnemonicParsing="false" text="Start Date" />
                   <MenuItem mnemonicParsing="false" text="End Date" />
                   <MenuItem mnemonicParsing="false" text="score" />
                   <MenuItem mnemonicParsing="false" text="Comment" />

@@ -1,6 +1,7 @@
 package View;
 
 import Controller.AdminController.AdminGeneralController;
+import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistAdminException;
 import Controller.Exception.Plato.InvalidUserNameException;
@@ -31,6 +32,7 @@ public class LoginController {
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static Existence existence = new Existence();
 
     public static String username = "player2";
 
@@ -88,8 +90,10 @@ public class LoginController {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();}
-        } catch (InvalidUserNameException | WrongPasswordException | BanExceptionForLogin | ExistAdminException e) {
+        } catch (InvalidUserNameException | WrongPasswordException | ExistAdminException e) {
             showError();
+        } catch (BanExceptionForLogin e){
+            showBanError();
         }
 
     }
@@ -103,6 +107,18 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
+
+    private void showBanError() throws IOException {
+        URL url = new File("src/main/resources/FXML/ErrorBan.fxml").toURI().toURL();
+
+        AnchorPane root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     private String getInfo(String txtUsername,String txtPassword){
         return txtUsername+" "+txtPassword;
     }
