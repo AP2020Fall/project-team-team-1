@@ -43,8 +43,13 @@ public class AdminMainMenu {
         window.show();
     }
     @FXML
-    public void goToProfile(ActionEvent event) {
-        //todo link
+    public void goToProfile(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/AdminProfile.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
     @FXML
     public void gotoGamesMenu(ActionEvent event) throws IOException {

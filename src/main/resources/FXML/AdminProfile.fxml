@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminProfile">
+   <children>
+      <Pane prefHeight="152.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);">
+         <children>
+            <ImageView fx:id="imgProfile" fitHeight="120.0" fitWidth="120.0" layoutX="20.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <image>
+                  <Image url="@../Images/default-profile.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="160.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="119.99999284744263">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="320.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="119.99999284744263">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="450.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="119.99999284744263">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Label fx:id="lblFirsName" alignment="TOP_LEFT" layoutX="160.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="Amir" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblLastName" alignment="TOP_LEFT" layoutX="320.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="ghasemi" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblID" alignment="TOP_LEFT" layoutX="450.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="15" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToLastMenuAdminProfile" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="back" />
+            <Button fx:id="btnExit" layoutX="573.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+         </children>
+      </Pane>
+      <Text fill="WHITE" layoutX="160.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="131.99999284744263">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblPhone" alignment="TOP_LEFT" layoutX="162.0" layoutY="185.0" prefHeight="25.0" prefWidth="120.0" text="09392425665" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="320.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email " wrappingWidth="131.99999284744263">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblEmail" alignment="TOP_LEFT" layoutX="320.0" layoutY="185.0" prefHeight="25.0" prefWidth="193.0" text="Amirgh@5665@gmail.com" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnEdit" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToEditPanel" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #14A6B8;" text="Edit Profile" />
+      <Pane fx:id="editPane" layoutX="19.0" layoutY="267.0" prefHeight="120.0" prefWidth="573.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0">
+         <children>
+             <ComboBox fx:id="comboField" layoutX="14.0" layoutY="48.0" prefHeight="27.0" prefWidth="132.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
+                 <items>
+                     <FXCollections fx:factory="observableArrayList">
+                         <String fx:value="Email" />
+                         <String fx:value="Phone" />
+                     </FXCollections>
+                 </items>
+                 <cursor>
+                     <Cursor fx:constant="HAND" />
+                 </cursor>
+             </ComboBox>
+            <TextField fx:id="txtNewValue" layoutX="194.0" layoutY="48.0" promptText="New Value ..." style="-fx-background-color: #1a1b20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white;" />
+            <Button fx:id="btnSubmitEdit" layoutX="399.0" layoutY="48.0" mnemonicParsing="false" onAction="#editAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #808B96;" text="Edit" />
+         </children>
+      </Pane>
+      <Pane fx:id="simplePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0" />
+   </children>
+</AnchorPane>
