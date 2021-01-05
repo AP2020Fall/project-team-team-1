@@ -15,7 +15,7 @@
     <children>
         <Pane prefHeight="400.0" prefWidth="200.0" style="-fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-width: 0px 2px 0px 0px;">
             <children>
-                <Button graphicTextGap="30.0" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="BattleShip     ">
+                <Button graphicTextGap="30.0" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToAdminBattleShip" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="BattleShip     ">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -27,7 +27,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button graphicTextGap="30.0" layoutX="7.0" layoutY="200.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="Dots &amp; Boxes">
+                <Button graphicTextGap="30.0" layoutX="7.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToAdminDots" prefHeight="43.0" prefWidth="187.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-border-width: 0px 0px 0px 2px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" text="Dots &amp; Boxes">
                     <graphic>
                         <ImageView fitHeight="35.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
+            <Button mnemonicParsing="false" onAction="#goToLastMenu" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
             </children>
         </Pane>
       <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);">
@@ -54,17 +54,17 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="370.0" layoutY="-4.0" mnemonicParsing="false" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+            <Button layoutX="370.0" layoutY="-4.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDelete" layoutX="382.0" layoutY="140.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" />
-      <Button fx:id="btnGoToEditPane" layoutX="496.0" layoutY="140.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" />
+      <Button fx:id="btnDeactivateDots" layoutX="382.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActiveDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" />
+      <Button fx:id="btnActivateDots" layoutX="496.0" layoutY="140.0" mnemonicParsing="false" onAction="#activateDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" />
       <Text layoutX="229.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+      <Label fx:id="lblDotsNumber" layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -74,22 +74,22 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label layoutX="290.0" layoutY="242.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblDotsMvp" layoutX="290.0" layoutY="242.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="467.0" layoutY="211.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
+      <TextArea fx:id="txtDetails" layoutX="467.0" layoutY="211.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
          <font>
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Button fx:id="btnDelete1" layoutX="502.0" layoutY="309.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" />
+      <Button fx:id="btnEditDotsDetails" layoutX="502.0" layoutY="309.0" mnemonicParsing="false" onAction="#editDotsDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" />
       <Text layoutX="229.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="229.0" layoutY="309.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
+      <Label fx:id="lblDotsDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="229.0" layoutY="309.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
     </children>
 </AnchorPane>

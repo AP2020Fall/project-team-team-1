@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminGamesBattleShip">
    <children>
       <Pane prefHeight="400.0" prefWidth="200.0" style="-fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855); -fx-border-width: 0px 2px 0px 0px;" AnchorPane.rightAnchor="400.0">
@@ -58,14 +57,14 @@
             <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDeActive" layoutX="401.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
-      <Button fx:id="btnActive" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
+      <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="130.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
+      <Button fx:id="btnActiveBattle" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" onAction="#activateBattle" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
       <Text layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblNumbers" layoutX="346.0" layoutY="202.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+      <Label fx:id="lblBattleNumbers" layoutX="346.0" layoutY="202.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -75,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblMVP" layoutX="280.0" layoutY="232.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblBattleMVP" layoutX="280.0" layoutY="232.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -85,12 +84,12 @@
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Button fx:id="btnEdit" layoutX="492.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.rightAnchor="23.0" />
+      <Button fx:id="btnEditBattle" layoutX="492.0" layoutY="299.0" mnemonicParsing="false" onAction="#editBattleDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.rightAnchor="23.0" />
       <Text layoutX="219.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="219.0" layoutY="299.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
+      <Label fx:id="lblBattleDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="219.0" layoutY="299.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
    </children>
 </AnchorPane>

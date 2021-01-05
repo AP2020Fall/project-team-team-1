@@ -151,4 +151,13 @@ public class AdminEvents implements Initializable {
 //            return row;
 //        });
     }
+    @FXML
+    public void backToLastMenu(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
 }
