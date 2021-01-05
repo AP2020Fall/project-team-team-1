@@ -47,6 +47,23 @@ public class Existence {
 
         return result;
     }
+    public static String checkPasswordForView (String username, String password) {
+        boolean result = false;
+        Player userByUsername = null;
+        for (Player user : Player.players) {
+            if (user.getUserName().equals(username)) {
+                userByUsername = user;
+                break;
+            }
+        }
+        if (userByUsername != null) {
+            if (userByUsername.getPassword().equals(password)) {
+                result = true;
+            }
+        }
+
+        return String.valueOf(result);
+    }
 
     public static boolean checkPasswordForAdmin(String password) {
         boolean result = false;

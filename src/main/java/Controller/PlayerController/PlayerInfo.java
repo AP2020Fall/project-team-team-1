@@ -1,8 +1,12 @@
 package Controller.PlayerController;
 
+import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.*;
+import Model.DataBase.DataBase;
 import Model.PlatoModel.Player;
+import Model.PlatoModel.User;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -164,12 +168,14 @@ public class PlayerInfo {
         player.setActivation(true);
     }
 
-//    public static void addHistory (String userName,String history) throws ExistPlayerException, ExistPlayerLogException {
-//        Player player = FindPlayerByInfo.findByUserName(userName);
-//
-//        if (player == null)
-//            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
-//
-//        player.getLastPlayed().add(history);
-//    }
+    public static void deleteUser(String input)  {
+        Player player = FindPlayerByInfo.findByUserName(input);
+        Player.players.remove(player);
+        User.users.remove(player);
+
+
+//        User.saveInJsonFile();
+//        Player.saveInJsonFile();
+    }
+
 }

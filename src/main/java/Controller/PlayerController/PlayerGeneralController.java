@@ -4,6 +4,7 @@ import Controller.Exception.Plato.*;
 import Model.DataBase.DataBase;
 import Model.DotsAndBoxesModel.Details;
 import Model.PlatoModel.Player;
+import Model.PlatoModel.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 public class PlayerGeneralController {
     private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
     private static final File eventFile = new File("src\\main\\java\\Model\\Database\\Event.json");
+    private static final File userFile = new File("src\\main\\java\\Model\\Database\\User.json");
+
     /***********************************************EDIT***********************************************/
     public void editField(String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException, IOException {
         String[]strings=input.split("\\s");
@@ -88,9 +91,14 @@ public class PlayerGeneralController {
     public String showFriendProfile(String username, String friendUsername) throws ExistFriendException {
         return Friend.showFriendProfile(username, friendUsername);
     }
+    public void deleteUser(String input) throws IOException {
+        PlayerInfo.deleteUser(input);
+        DataBase.save(Player.players,playerFile);
+        DataBase.save(User.users,userFile);
+    }
 
 
-    /***********************************************EVENT***********************************************/
+        /***********************************************EVENT***********************************************/
     public void joinEvent(String username , String eventID) throws ExistEventException, IOException {
         JoinEvent.joinEvent(username,eventID);
         DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
