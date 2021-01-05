@@ -68,8 +68,12 @@ public class Edit {
 
         Admin.getAdmins().get(0).setPassword(newPassword);
 
+    }
 
-
-
+    public static void editBio (String input){
+        Admin.getAdmins().get(0).setBio(input);
+    }
+    public static void editProfileURL(String input){
+        Admin.getAdmins().get(0).setProfileURL(input);
     }
 }

@@ -30,8 +30,14 @@ public class AdminGeneralController {
         Edit.editPassword(strings[1], strings[2]);
         DataBase.save(Admin.getAdmins(), adminFile);
     }
+    public void editBio (String input) {
+        Edit.editBio(input);
+    }
+    public void editProfileURL(String input) {
+        Edit.editProfileURL(input);
+    }
 
-    /***********************************************EVENT***********************************************/
+        /***********************************************EVENT***********************************************/
     public void addEvent(String input) throws StartDatesException, IOException, ExistEventException {
         Event.addEvent(input);
         DataBase.save(Admin.getAdmins(), adminFile);

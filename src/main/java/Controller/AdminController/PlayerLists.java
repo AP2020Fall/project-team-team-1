@@ -30,7 +30,7 @@ public class PlayerLists {
     public static String showAdminInfo() {
         StringBuilder showAdminInfo = new StringBuilder();
         Admin admin = Admin.getAdmins().get(0);
-        showAdminInfo.append(admin.getUserID()).append("$").append(admin.getUserName()).append("$").append(admin.getName()).append("$").append(admin.getLastName()).append("$").append(admin.getEmail()).append("$").append(admin.getPhoneNum()).append("$");
+        showAdminInfo.append(admin.getUserID()).append("$").append(admin.getUserName()).append("$").append(admin.getName()).append("$").append(admin.getLastName()).append("$").append(admin.getEmail()).append("$").append(admin.getPhoneNum()).append("$").append(admin.getBio()).append("$").append(admin.getProfileURL()).append("$");
         return String.valueOf(showAdminInfo);
     }
 
