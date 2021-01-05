@@ -89,6 +89,8 @@
                      <FXCollections fx:factory="observableArrayList">
                          <String fx:value="Email" />
                          <String fx:value="Phone" />
+                        <String fx:value="First Name" />
+                        <String fx:value="Last Name" />
                      </FXCollections>
                  </items>
                  <cursor>
