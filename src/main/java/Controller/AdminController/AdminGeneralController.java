@@ -157,6 +157,21 @@ public class AdminGeneralController {
         return Game.numberOfTotalPlayed();
     }
 
+    //BattleShip
+    public String numberOfTotalPlayedFirstGame() {
+        return Game.numberOfTotalPlayedFirstGame();
+    }
+    public String getMVPUserFirstGame() {
+        return Game.getMVPUserFirstGame();
+    }
+        //Dots
+    public String numberOfTotalPlayedSecondGame() {
+        return Game.numberOfTotalPlayedSecondGame();
+    }
+    public String getMVPUserSecondGame() {
+        return Game.getMVPUserSecondGame();
+    }
+
         /**********************************************Reports**********************************************/
     public void showReportListOfPlayer(String username) throws EmptyReportsList, InvalidUserNameException {
         PlayerInfo.showReportsList(username);

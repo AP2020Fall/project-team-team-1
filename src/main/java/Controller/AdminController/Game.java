@@ -127,11 +127,61 @@ public class Game {
 
         return mvpUser;
     }
+    public static String getMVPUserFirstGame(){
+        HashMap<String, Long> mvp = new HashMap<>();
+
+        for (Player player : Player.getPlayers()) {
+            long scores = player.getPlayerLog().get(1).getTakenScore();
+            mvp.put(player.getUserName(),scores);
+        }
+        String mvpUser = "null";
+        String mvpScore = "null";
+        for (String sorted : sortingFunction(mvp).keySet()) {
+            mvpUser = sorted;
+            mvpScore = String.valueOf(sortingFunction(mvp).get(sorted));
+            break;
+        }
+
+        return mvpUser.concat("$").concat(mvpScore).concat("$");
+    }
+    public static String getMVPUserSecondGame(){
+        HashMap<String, Long> mvp = new HashMap<>();
+
+        for (Player player : Player.getPlayers()) {
+            long scores = player.getPlayerLog().get(0).getTakenScore() ;
+            mvp.put(player.getUserName(),scores);
+        }
+        String mvpUser = "null";
+        String mvpScore = "null";
+        for (String sorted : sortingFunction(mvp).keySet()) {
+            mvpUser = sorted;
+            mvpScore = String.valueOf(sortingFunction(mvp).get(sorted));
+            break;
+        }
+
+        return mvpUser.concat("$").concat(mvpScore).concat("$");
+    }
 
     public static String numberOfTotalPlayed(){
         long number = 0;
         for (Player player : Player.getPlayers()) {
             number = player.getPlayerLog().get(0).getNumberOfGamePlayed() + player.getPlayerLog().get(1).getNumberOfGamePlayed();
+        }
+        return String.valueOf(number);
+    }
+    //BattleShip
+    public static String numberOfTotalPlayedFirstGame(){
+        long number = 0;
+        for (Player player : Player.getPlayers()) {
+            number = player.getPlayerLog().get(1).getNumberOfGamePlayed();
+        }
+        return String.valueOf(number);
+    }
+    //Dots
+    public static String numberOfTotalPlayedSecondGame(){
+        long number = 0;
+        for (Player player : Player.getPlayers()) {
+            number = player.getPlayerLog().get(0).getNumberOfGamePlayed();
         }
         return String.valueOf(number);
     }
