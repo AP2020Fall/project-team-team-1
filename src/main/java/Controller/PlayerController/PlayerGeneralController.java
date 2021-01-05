@@ -27,6 +27,9 @@ public class PlayerGeneralController {
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
         DataBase.save(Player.players,playerFile);
     }
+    public void editBio(String player, String input){
+        Edit.editBio(player,input);
+    }
 
 
     /***********************************************Favorite***********************************************/

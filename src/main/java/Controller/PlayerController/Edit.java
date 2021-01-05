@@ -19,6 +19,8 @@ public class Edit {
             editEmail(player, input);
         } else if (field.trim().equalsIgnoreCase("phonenumber")) {
             editPhoneNumber(player, input);
+        } else if (field.trim().equalsIgnoreCase("ProfileURL")) {
+            editProfileURL(player, input);
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
@@ -78,4 +80,12 @@ public class Edit {
         player.setPhoneNum(input);
 
     }
+    public static void editBio(String Username, String input){
+        Player player = FindPlayerByInfo.findByUserName(Username);
+        player.setBio(input);
+    }
+    public static void editProfileURL(Player player, String input){
+        player.setProfileURL(input);
+    }
+
 }
