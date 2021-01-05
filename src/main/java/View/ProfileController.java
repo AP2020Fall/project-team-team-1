@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerGeneralController;
+import Controller.RegisterController.Delete;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,14 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,13 +75,17 @@ public class ProfileController implements Initializable {
     @FXML
     public Button btnCancel;
     @FXML
-    public MenuButton btnField;
+    public ComboBox<String> btnField;
     @FXML
     public Button btnGoToEditPane;
     @FXML
     public Button btnDelete;
     @FXML
+    public Button btnEditBio;
+    @FXML
     public TextField txtNewValue;
+    @FXML
+    TextArea bio;
 
 
     @FXML
@@ -91,7 +95,8 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void goToEdit(ActionEvent event) {
-        EditPane.toFront();
+//        EditPane.toFront();
+        simplePane.toBack();
     }
 
     @FXML
@@ -103,42 +108,53 @@ public class ProfileController implements Initializable {
 
 
     @FXML
-    private void deleteAccount(){
+    private void deleteAccount() throws IOException {
+        showConfirmPasswordPopUp();
         //todo make popup because need password
+    }
+
+    private void showConfirmPasswordPopUp() throws IOException {
+        URL url = new File("src/main/resources/FXML/ConfirmPasswordForDeleteAccount.fxml").toURI().toURL();
+        AnchorPane root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void editEvent(ActionEvent event) throws IOException {
-//        try {
-//            if (btnField.showingProperty().getValue().toString().toLowerCase().equals("name")) {
-//                playerGeneralController.editField(LoginController.getUsername() + " " + "name" + " " + txtNewValue.getText());
-//            } else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("lastname")) {
-//                playerGeneralController.editField(LoginController.getUsername() + " " + "lastname" + " " + txtNewValue.getText());
-//            } else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("email")) {
-//                playerGeneralController.editField(LoginController.getUsername() + " " + "email" + " " + txtNewValue.getText());
-//            } else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("phonenumber")) {
-//                playerGeneralController.editField(LoginController.getUsername() + " " + "phonenumber" + " " + txtNewValue.getText());
-//            }
-//        } catch (InvalidNameException e) {
-//            e.printStackTrace();
-//        } catch (InvalidEmailException e) {
-//            e.printStackTrace();
-//        } catch (InvalidPhoneNumberException e) {
-//            e.printStackTrace();
-//        } catch (ExistEmailException e) {
-//            e.printStackTrace();
-//        } catch (InvalidFieldException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
-//        Parent register = FXMLLoader.load(url);
-//        Scene message = new Scene(register);
-//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        window.setScene(message);
-//        window.show();
+        try {
+            if (btnField.getValue().toLowerCase().equals("name")) {
+                playerGeneralController.editField(LoginController.getUsername() + " " + "name" + " " + txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("lastname")) {
+                playerGeneralController.editField(LoginController.getUsername() + " " + "lastname" + " " + txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("email")) {
+                playerGeneralController.editField(LoginController.getUsername() + " " + "email" + " " + txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("phonenumber")) {
+                playerGeneralController.editField(LoginController.getUsername() + " " + "phonenumber" + " " + txtNewValue.getText());
+            }
+        } catch (InvalidNameException e) {
+            e.printStackTrace();
+        } catch (InvalidEmailException e) {
+            e.printStackTrace();
+        } catch (InvalidPhoneNumberException e) {
+            e.printStackTrace();
+        } catch (ExistEmailException e) {
+            e.printStackTrace();
+        } catch (InvalidFieldException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
     @FXML
@@ -147,7 +163,10 @@ public class ProfileController implements Initializable {
         Image image = new Image(file.toURI().toString());
 //        imgStatus.setImage(image);
     }
-
+    @FXML
+    private void setBtnEditBio(ActionEvent event){
+        //todo after Model
+    }
     @FXML
     private void setImgStatusToProfile() {
         File file = new File("src\\main\\resources\\Images\\default-profile.png");
@@ -236,7 +255,7 @@ public class ProfileController implements Initializable {
     }
     @FXML
     private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername())+" Days in plato ");
+        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername())+" Days in Plato ");
     }
     @FXML
     private void setProfilesLabels() throws ExistPlayerException {
@@ -244,6 +263,9 @@ public class ProfileController implements Initializable {
         nameAndLastname.setText(userData[1]+" "+userData[2]+"'s Profile");
         email.setText("Email: "+ userData[0]);
         phoneNumber.setText("Phone number: "+ userData[4]);
+        //todo to add in model
+        bio.setText(userData[4]);
+
     }
 
     @FXML

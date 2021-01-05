@@ -57,8 +57,8 @@
             <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="130.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
-      <Button fx:id="btnActiveBattle" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" onAction="#activateBattle" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
+      <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
+      <Button fx:id="btnActiveBattle" layoutX="486.0" layoutY="140.0" mnemonicParsing="false" onAction="#activateBattle" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
       <Text layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516" AnchorPane.bottomAnchor="181.486328125" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="261.00000044703484" AnchorPane.topAnchor="199.892578125">
          <font>
             <Font size="14.0" />

@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerGeneralController;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -68,6 +70,11 @@ public class FriendProfileController implements Initializable {
     Label battleLabel;
     @FXML
     Label dotsLabel;
+    @FXML
+    Label platoAgeLabel;
+    @FXML
+    JFXTextArea bio;
+
 
 
     @FXML
@@ -123,6 +130,10 @@ public class FriendProfileController implements Initializable {
         loseLabel.setText(String.valueOf(lose));
         numberOfPlayedLabel.setText(String.valueOf(all));
     }
+    @FXML
+    private void setPlatoAgeLabel() throws ExistPlayerException {
+        platoAgeLabel.setText(playerGeneralController.showUserAge(getUsernameOfFriend())+" Days in Plato ");
+    }
 
     @FXML
     private void setProfilesLabels() throws ExistFriendException {
@@ -131,6 +142,7 @@ public class FriendProfileController implements Initializable {
         email.setText("Email: "+ userData[4]);
         phoneNumber.setText("Phone number: "+ userData[5]);
         btnRemove.setText("Remove "+userData[1]);
+        bio.setText(userData[5]);
     }
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
@@ -197,6 +209,7 @@ public class FriendProfileController implements Initializable {
             setGameStatus();
             setGameStatus();
             setFavoriteGames();
+            setPlatoAgeLabel();
         } catch (ExistPlayerException | ExistFriendException | InvalidGameNameException | ExistFavoriteException e) {
             System.err.println(e.getMessage());
         }
