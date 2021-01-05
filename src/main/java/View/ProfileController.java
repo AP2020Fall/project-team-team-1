@@ -104,8 +104,6 @@ public class ProfileController implements Initializable {
         simplePane.toFront();
     }
 
-    //todo make popup and button for change pass
-
 
     @FXML
     private void deleteAccount() throws IOException {
@@ -165,11 +163,13 @@ public class ProfileController implements Initializable {
     }
     @FXML
     private void setBtnEditBio(ActionEvent event){
-        //todo after Model
+        playerGeneralController.editBio(getUsername(),bio.getText());
     }
     @FXML
-    private void setImgStatusToProfile() {
-        File file = new File("src\\main\\resources\\Images\\default-profile.png");
+    private void setImgStatusToProfile() throws ExistPlayerException {
+        String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+
+        File file = new File(userData[6]);
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
     }
@@ -263,8 +263,7 @@ public class ProfileController implements Initializable {
         nameAndLastname.setText(userData[1]+" "+userData[2]+"'s Profile");
         email.setText("Email: "+ userData[0]);
         phoneNumber.setText("Phone number: "+ userData[4]);
-        //todo to add in model
-        bio.setText(userData[4]);
+        bio.setText(userData[5]);
 
     }
 

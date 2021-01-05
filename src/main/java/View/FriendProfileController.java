@@ -89,8 +89,10 @@ public class FriendProfileController implements Initializable {
 //        imgStatus.setImage(image);
     }
     @FXML
-    private void setImgStatusToProfile(){
-        File file = new File("src\\main\\resources\\Images\\default-profile.png");
+    private void setImgStatusToProfile() throws ExistFriendException {
+        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(),getUsernameOfFriend()).split("\\$");
+        //todo watch out
+        File file = new File(userData[8]);
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
     }
@@ -142,7 +144,7 @@ public class FriendProfileController implements Initializable {
         email.setText("Email: "+ userData[4]);
         phoneNumber.setText("Phone number: "+ userData[5]);
         btnRemove.setText("Remove "+userData[1]);
-        bio.setText(userData[5]);
+        bio.setText(userData[7]);
     }
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
@@ -205,6 +207,7 @@ public class FriendProfileController implements Initializable {
     private void loadUserData(){
         try {
             setImgMedal();
+            setImgStatusToProfile();
             setProfilesLabels();
             setGameStatus();
             setGameStatus();
