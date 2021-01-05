@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-            <Button mnemonicParsing="false" onAction="#goToLastMenu" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
+            <Button layoutY="2.0" mnemonicParsing="false" onAction="#goToLastMenu" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
             </children>
         </Pane>
       <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);">
@@ -49,47 +49,47 @@
                   <Image url="@../Icons/DotsAndBoxesIcon.png" />
                </image>
             </ImageView>
-            <Text layoutX="179.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size: 26;" text="Dots &amp; Boxes" wrappingWidth="187.00000941753387">
+            <Text layoutX="179.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-fill: white; -fx-font-size: 26;" text="Dots &amp; Boxes" wrappingWidth="187.00000941753387">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="370.0" layoutY="-4.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+            <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDeactivateDots" layoutX="382.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActiveDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" />
-      <Button fx:id="btnActivateDots" layoutX="496.0" layoutY="140.0" mnemonicParsing="false" onAction="#activateDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" />
-      <Text layoutX="229.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
+      <Button fx:id="btnDeactivateDots" layoutX="382.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActiveDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
+      <Button fx:id="btnActivateDots" layoutX="496.0" layoutY="140.0" mnemonicParsing="false" onAction="#activateDots" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
+      <Text layoutX="229.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516" AnchorPane.bottomAnchor="181.486328125" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="261.00000044703484" AnchorPane.topAnchor="199.892578125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsNumber" layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+      <Label fx:id="lblDotsNumber" layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="202.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Text layoutX="229.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="MVP :" wrappingWidth="51.333312541246414">
+      <Text layoutX="219.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="MVP :" wrappingWidth="51.333312541246414">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsMvp" layoutX="290.0" layoutY="242.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblDotsMvp" layoutX="280.0" layoutY="232.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDetails" layoutX="467.0" layoutY="211.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
+      <TextArea fx:id="txtDetails" layoutX="467.0" layoutY="211.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="457.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="201.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Button fx:id="btnEditDotsDetails" layoutX="502.0" layoutY="309.0" mnemonicParsing="false" onAction="#editDotsDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" />
-      <Text layoutX="229.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
+      <Button fx:id="btnEditDotsDetails" layoutX="502.0" layoutY="309.0" mnemonicParsing="false" onAction="#editDotsDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="496.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="299.0" />
+      <Text layoutX="219.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="229.0" layoutY="309.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
+      <Label fx:id="lblDotsDetails" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="219.0" layoutY="299.0" prefHeight="83.0" prefWidth="217.0" text="This Game Is Very Good" textFill="WHITE" />
     </children>
 </AnchorPane>
