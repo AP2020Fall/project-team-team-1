@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -77,7 +74,7 @@ public class EventInfo implements Initializable {
     public Button btnEdit;
 
     @FXML
-    public MenuButton btnField;
+    public ComboBox<String> btnField;
 
     @FXML
     public TextField txtNewValue;
@@ -89,7 +86,7 @@ public class EventInfo implements Initializable {
     public Pane simplePane;
 
     @FXML
-    private void goToEdit(ActionEvent event){
+    private void goToEditPane(ActionEvent event){
         EditPane.toFront();
     }
     @FXML
@@ -122,13 +119,13 @@ public class EventInfo implements Initializable {
     }
     @FXML
     private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
-        if (btnField.showingProperty().getValue().toString().toLowerCase().equals("start")){
+        if (btnField.getValue().toLowerCase().equals("start")){
             adminGeneralController.editEvent(id+" "+"Start Date"+" "+txtNewValue.getText());
-        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("end")){
+        }else if (btnField.getValue().toLowerCase().equals("end")){
             adminGeneralController.editEvent(id+" "+"end Date"+" "+txtNewValue.getText());
-        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("score")){
+        }else if (btnField.getValue().toLowerCase().equals("score")){
             adminGeneralController.editEvent(id+" "+"score"+" "+txtNewValue.getText());
-        }else if (btnField.showingProperty().getValue().toString().toLowerCase().equals("comment")){
+        }else if (btnField.getValue().toLowerCase().equals("comment")){
             adminGeneralController.editEvent(id+" "+"comment"+" "+txtNewValue.getText());
         }
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
