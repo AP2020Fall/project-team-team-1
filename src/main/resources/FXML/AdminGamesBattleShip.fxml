@@ -57,14 +57,14 @@
             <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="130.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
-      <Button fx:id="btnActiveBattle" layoutX="486.0" layoutY="130.0" mnemonicParsing="false" onAction="#activateBattle" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
-      <Text layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516">
+      <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
+      <Button fx:id="btnActiveBattle" layoutX="486.0" layoutY="140.0" mnemonicParsing="false" onAction="#activateBattle" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Activate" AnchorPane.leftAnchor="486.0" />
+      <Text layoutX="219.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Number Of Plays :" wrappingWidth="119.99999955296516" AnchorPane.bottomAnchor="181.486328125" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="261.00000044703484" AnchorPane.topAnchor="199.892578125">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblBattleNumbers" layoutX="346.0" layoutY="202.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE">
+      <Label fx:id="lblBattleNumbers" layoutX="346.0" layoutY="202.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="202.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -79,12 +79,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtDetails" layoutX="457.0" layoutY="201.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;">
+      <TextArea fx:id="txtDetails" layoutX="457.0" layoutY="201.0" prefHeight="83.0" prefWidth="120.0" promptText="Details" style="text-area-background: #1a1b20;" AnchorPane.bottomAnchor="116.0" AnchorPane.leftAnchor="457.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="201.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextArea>
-      <Button fx:id="btnEditBattle" layoutX="492.0" layoutY="299.0" mnemonicParsing="false" onAction="#editBattleDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.rightAnchor="23.0" />
+      <Button fx:id="btnEditBattle" layoutX="492.0" layoutY="299.0" mnemonicParsing="false" onAction="#editBattleDetails" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Details" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="496.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="299.0" />
       <Text layoutX="219.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Details :" wrappingWidth="59.333312541246414">
          <font>
             <Font size="14.0" />
