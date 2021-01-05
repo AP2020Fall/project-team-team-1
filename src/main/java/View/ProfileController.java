@@ -156,15 +156,10 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setImgStatusToCross() {
-        File file = new File("src\\main\\resources\\Images\\cross.png");
-        Image image = new Image(file.toURI().toString());
-//        imgStatus.setImage(image);
+    private void setBtnEditBio(ActionEvent event) {
+        playerGeneralController.editBio(getUsername(), bio.getText());
     }
-    @FXML
-    private void setBtnEditBio(ActionEvent event){
-        playerGeneralController.editBio(getUsername(),bio.getText());
-    }
+
     @FXML
     private void setImgStatusToProfile() throws ExistPlayerException {
         String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
@@ -253,16 +248,18 @@ public class ProfileController implements Initializable {
             imgMedal.setImage(image);
         }
     }
+
     @FXML
     private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername())+" Days in Plato ");
+        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername()) + " Days in Plato ");
     }
+
     @FXML
     private void setProfilesLabels() throws ExistPlayerException {
         String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
-        nameAndLastname.setText(userData[1]+" "+userData[2]+"'s Profile");
-        email.setText("Email: "+ userData[0]);
-        phoneNumber.setText("Phone number: "+ userData[4]);
+        nameAndLastname.setText(userData[1] + " " + userData[2] + "'s Profile");
+        email.setText("Email: " + userData[0]);
+        phoneNumber.setText("Phone number: " + userData[4]);
         bio.setText(userData[5]);
 
     }

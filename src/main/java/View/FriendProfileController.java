@@ -76,21 +76,15 @@ public class FriendProfileController implements Initializable {
     JFXTextArea bio;
 
 
-
     @FXML
-    private void closeApp(){
+    private void closeApp() {
         System.exit(1);
     }
 
-    @FXML
-    private void setImgStatusToCross(){
-        File file = new File("src\\main\\resources\\Images\\cross.png");
-        Image image = new Image(file.toURI().toString());
-//        imgStatus.setImage(image);
-    }
+
     @FXML
     private void setImgStatusToProfile() throws ExistFriendException {
-        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(),getUsernameOfFriend()).split("\\$");
+        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(), getUsernameOfFriend()).split("\\$");
         //todo watch out
         File file = new File(userData[8]);
         Image image = new Image(file.toURI().toString());
@@ -99,7 +93,7 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void setBtnRemove(ActionEvent event) throws IOException, ExistFriendException, ExistPlayerException {
-        playerGeneralController.removeFriend(LoginController.getUsername(),getUsernameOfFriend());
+        playerGeneralController.removeFriend(LoginController.getUsername(), getUsernameOfFriend());
         setUsernameOfFriend("null");
 
         {
@@ -125,27 +119,29 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void setGameStatus() throws InvalidGameNameException {
-        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(),adminGeneralController.secondGameNameGetter()))+ Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(),adminGeneralController.firstGameNameGetter()));
-        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(),adminGeneralController.secondGameNameGetter()))+ Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(),adminGeneralController.firstGameNameGetter()));
+        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
         numberOfPlayedLabel.setText(String.valueOf(all));
     }
+
     @FXML
     private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(getUsernameOfFriend())+" Days in Plato ");
+        platoAgeLabel.setText(playerGeneralController.showUserAge(getUsernameOfFriend()) + " Days in Plato ");
     }
 
     @FXML
     private void setProfilesLabels() throws ExistFriendException {
-        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(),getUsernameOfFriend()).split("\\$");
-        nameAndLastname.setText(userData[2]+" "+userData[3]+"'s Profile");
-        email.setText("Email: "+ userData[4]);
-        phoneNumber.setText("Phone number: "+ userData[5]);
-        btnRemove.setText("Remove "+userData[1]);
+        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(), getUsernameOfFriend()).split("\\$");
+        nameAndLastname.setText(userData[2] + " " + userData[3] + "'s Profile");
+        email.setText("Email: " + userData[4]);
+        phoneNumber.setText("Phone number: " + userData[5]);
+        btnRemove.setText("Remove " + userData[1]);
         bio.setText(userData[7]);
     }
+
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
         battleLabel.setText(adminGeneralController.firstGameNameGetter());
@@ -154,7 +150,7 @@ public class FriendProfileController implements Initializable {
         String[] fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
 
         for (String gameName : fav) {
-            if (gameName.startsWith("B")||gameName.startsWith("b")){
+            if (gameName.startsWith("B") || gameName.startsWith("b")) {
 
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
@@ -163,7 +159,7 @@ public class FriendProfileController implements Initializable {
             }
         }
         for (String gameName : fav) {
-            if (gameName.startsWith("D")||gameName.startsWith("d")){
+            if (gameName.startsWith("D") || gameName.startsWith("d")) {
 
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
@@ -204,7 +200,7 @@ public class FriendProfileController implements Initializable {
     }
 
     @FXML
-    private void loadUserData(){
+    private void loadUserData() {
         try {
             setImgMedal();
             setImgStatusToProfile();
@@ -218,8 +214,9 @@ public class FriendProfileController implements Initializable {
         }
 
     }
+
     @FXML
-    public void close(ActionEvent event){
+    public void close(ActionEvent event) {
         System.exit(1);
     }
 
