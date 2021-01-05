@@ -1,5 +1,6 @@
 package Controller.AdminController;
 
+import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerInfo;
 import Model.DataBase.DataBase;
@@ -191,6 +192,10 @@ public class AdminGeneralController {
     /************************************************************************************************************/
     public String getAdminUserName(){
         return Admin.getAdmins().get(0).getUserName();
+    }
+
+    public String adminExistence(){
+        return String.valueOf(Existence.adminExistence());
     }
 }
 
