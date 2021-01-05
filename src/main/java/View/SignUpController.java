@@ -1,5 +1,6 @@
 package View;
 
+import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
 import Controller.RegisterController.SignUp;
@@ -28,6 +29,7 @@ import java.util.ResourceBundle;
 public class SignUpController implements Initializable {
     protected SignUp processSignUp = new SignUp();
     protected static Validation validation = new Validation();
+    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     @FXML
     Button btnExit;
     @FXML
@@ -77,7 +79,12 @@ public class SignUpController implements Initializable {
             Validation.gameNameIsValid(txtUsername.getText());
             Validation.emailIsValid(txtPassword.getText());
             Validation.phoneNumberIsValid(txtPhoneNum.getText());
-            processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+            if (adminGeneralController.adminExistence().equalsIgnoreCase("true")){
+                processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+            }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
+                processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+
+            }
             URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
@@ -98,7 +105,7 @@ public class SignUpController implements Initializable {
             File file = new File("src\\main\\resources\\Images\\Error copy.png");
             Image image = new Image(file.toURI().toString());
             imgNameError.setImage(image);
-        } catch (IOException e) {
+        } catch (IOException | ExistAdminException e) {
             e.printStackTrace();
         } catch (InvalidEmailException | InvalidNameException | InvalidGameNameException | InvalidPhoneNumberException e) {
             System.err.println(e.getMessage());
