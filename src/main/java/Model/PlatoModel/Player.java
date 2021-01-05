@@ -28,6 +28,8 @@ public class Player extends User {
     private ArrayList<String> lastPlayed;
     private ArrayList<String> playersWhoReportMe;
     private boolean activation;
+    private String profileURL;
+    private String bio;
 
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
@@ -41,6 +43,8 @@ public class Player extends User {
         this.playerLog = new ArrayList<>();
         this.playersWhoReportMe = new ArrayList<>();
         this.activation = true;
+        this.profileURL = "src\\main\\resources\\Images\\default-profile.png";
+        this.bio = "Its Simple Bio ...";
     }
 
     public static void AddNewPlayer(Player player) {
@@ -64,6 +68,22 @@ public class Player extends User {
 
     public void setFriends(ArrayList<String> friends) {
         this.friends = friends;
+    }
+
+    public String getProfileURL() {
+        return profileURL;
+    }
+
+    public void setProfileURL(String profileURL) {
+        this.profileURL = profileURL;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public ArrayList<String> getFriendsRequests() {
