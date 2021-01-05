@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.GameActivation;
 import Controller.Exception.Plato.InvalidGameID;
+import Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class AdminGamesDotsAndBoxes implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
     @FXML
     public Button btnDeactivateDots;
@@ -45,29 +47,25 @@ public class AdminGamesDotsAndBoxes implements Initializable {
     public Label lblDotsDetails;
 
     @FXML
-    void activateDots(ActionEvent event) {
-        try {
-            adminGeneralController.activeGame("2");
-        } catch (InvalidGameID invalidGameID) {
-            invalidGameID.printStackTrace();
-        } catch (GameActivation gameActivation) {
-            gameActivation.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void activateDots(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+        adminGeneralController.activeGame("2");
+        URL url = new File("src/main/resources/FXML/AdminGamesDotsAndBoxes.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
     @FXML
-    void deActiveDots(ActionEvent event) {
-        try {
-            adminGeneralController.deActiveGame("2");
-        } catch (InvalidGameID invalidGameID) {
-            invalidGameID.printStackTrace();
-        } catch (GameActivation gameActivation) {
-            gameActivation.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void deActiveDots(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+        adminGeneralController.deActiveGame("2");
+        URL url = new File("src/main/resources/FXML/AdminGamesDotsAndBoxes.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
     @FXML
@@ -117,9 +115,24 @@ public class AdminGamesDotsAndBoxes implements Initializable {
     public void appExit(ActionEvent event) {
         System.exit(1);
     }
+    @FXML
+    private void btnIsActive() throws InvalidGameID {
+        if (adminGeneralController.activationStatus("2").equalsIgnoreCase("false")) {
+            btnActivateDots.setDisable(false);
+            btnDeactivateDots.setDisable(true);
+        } else {
+            btnActivateDots.setDisable(true);
+            btnDeactivateDots.setDisable(false);
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        try {
+            btnIsActive();
+        } catch (InvalidGameID invalidGameID) {
+            invalidGameID.printStackTrace();
+        }
+        lblDotsDetails.setText(playerGeneralController.dotsDetails());
     }
 }

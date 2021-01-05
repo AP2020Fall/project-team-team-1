@@ -140,10 +140,8 @@ public class AdminGeneralController {
         return Game.activationStatus(gameID);
     }
 
-        public void setDetails(String gameName, String string) throws IOException {
-
+    public void setDetails(String gameName, String string) throws IOException {
         Game.setDetails(gameName, string);
-
     }
     public  String getMVPUser() {
         return Game.getMVPUser();

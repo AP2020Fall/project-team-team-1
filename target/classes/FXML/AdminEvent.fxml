@@ -18,7 +18,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnBack" layoutY="2.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" textFill="#fbfbfb" />
+      <JFXButton fx:id="btnBack" layoutY="2.0" onAction="#backToLastMenu" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" textFill="#fbfbfb" />
       <TableView fx:id="table" layoutX="300.0" layoutY="60.0" prefHeight="338.0" prefWidth="297.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="42.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="49.0" text="ID" />

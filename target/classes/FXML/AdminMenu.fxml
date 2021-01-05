@@ -18,27 +18,27 @@
                 <Image url="@../Images/Sign.jpg" />
             </image>
         </ImageView>
-        <Button fx:id="btnEvents" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" onAction="#goToEvents" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Events">
+        <Button fx:id="btnEvents" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" onAction="#goToEvents" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Events">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnGames" layoutX="230.0" layoutY="165.0" mnemonicParsing="false" onAction="#gotoGamesMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Games">
+        <Button fx:id="btnGames" layoutX="230.0" layoutY="165.0" mnemonicParsing="false" onAction="#gotoGamesMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Games">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnUsers" layoutX="230.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Users">
+        <Button fx:id="btnUsers" layoutX="230.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToUsers" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Users">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnLogout" layoutX="230.0" layoutY="325.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Log Out">
+        <Button fx:id="btnLogout" layoutX="230.0" layoutY="325.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Log Out">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button fx:id="btnProfile" layoutX="230.0" layoutY="255.0" mnemonicParsing="false" onAction="#goToProfile" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: #808B96; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Profile">
+        <Button fx:id="btnProfile" layoutX="230.0" layoutY="255.0" mnemonicParsing="false" onAction="#goToProfile" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Profile">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

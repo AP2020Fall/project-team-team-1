@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.GameActivation;
 import Controller.Exception.Plato.InvalidGameID;
+import Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class AdminGamesBattleShip implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
     public Button btnGoToAdminBattleShipGame;
     @FXML
@@ -73,7 +75,7 @@ public class AdminGamesBattleShip implements Initializable {
     private void appExit(ActionEvent event){
         System.exit(1);
     }
-
+    @FXML
     public void editBattleDetails(ActionEvent event) throws IOException {
         adminGeneralController.setDetails("BattleShip",txtDetails.getText());
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
@@ -83,44 +85,45 @@ public class AdminGamesBattleShip implements Initializable {
         window.setScene(message);
         window.show();
     }
-
+    @FXML
     public void activateBattle(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
-
         adminGeneralController.activeGame("1");
-
+        URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
-
+    @FXML
     public void deActivateBattleShip(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
          adminGeneralController.deActiveGame("1");
+        URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
+    @FXML
+    private void btnIsActive() throws InvalidGameID {
+        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")) {
+            btnActiveBattle.setDisable(false);
+            btnDeActiveBattle.setDisable(true);
+        } else {
+            btnActiveBattle.setDisable(true);
+            btnDeActiveBattle.setDisable(false);
+        }
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            if (adminGeneralController.activationStatus("1").equalsIgnoreCase("Game is Already Activate")){
-                btnActiveBattle.setDisable(false);
-                btnDeActiveBattle.setDisable(true);
-            }else {
-                btnActiveBattle.setDisable(true);
-                btnDeActiveBattle.setDisable(false);
-            }
+            btnIsActive();
         } catch (InvalidGameID invalidGameID) {
-            System.err.println(invalidGameID.getMessage());
+            invalidGameID.printStackTrace();
         }
-
-        //Up Or Down ?
-
-//        try {
-//            if (adminGeneralController.activationStatus("1").equalsIgnoreCase("Game is Already Activate")){
-//                btnActiveBattle.setOnMouseClicked(event -> {
-//                    if (event.getClickCount()>1){
-//                        System.out.println("Already Active");
-//                    }
-//                });
-//            }
-//        } catch (InvalidGameID invalidGameID) {
-//            invalidGameID.printStackTrace();
-//        }
-
+        lblBattleDetails.setText(playerGeneralController.battleDetails());
     }
 }
