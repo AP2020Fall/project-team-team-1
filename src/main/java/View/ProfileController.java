@@ -120,6 +120,19 @@ public class ProfileController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    private void changePassword() throws IOException {
+        showChangePasswordPopUp();
+    }
+    private void showChangePasswordPopUp() throws IOException {
+        URL url = new File("src/main/resources/FXML/ChangePassword.fxml").toURI().toURL();
+        AnchorPane root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     private void editEvent(ActionEvent event) throws IOException {

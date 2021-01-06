@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ProfileController">
    <children>
       <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
          <cursor>
@@ -89,11 +95,11 @@
             </ComboBox>
          </children>
       </Pane>
-      <Button fx:id="btnDelete" layoutX="16.0" layoutY="289.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Account">
+      <Button fx:id="btnDelete" layoutX="16.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Account">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnGoToEditPane" layoutX="16.0" layoutY="331.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Account">
+      <Button fx:id="btnGoToEditPane" layoutX="16.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Account">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -116,5 +122,10 @@
                </cursor></Button>
          </children>
       </Pane>
+      <Button layoutX="16.0" layoutY="359.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Change password">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
