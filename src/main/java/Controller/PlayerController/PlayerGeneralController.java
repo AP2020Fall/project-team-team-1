@@ -229,4 +229,9 @@ public class PlayerGeneralController {
         Player player = FindPlayerByInfo.findByUserName(uername);
         player.setRemember(Boolean.parseBoolean(bool));
     }
+    public String getUsernamePassword(String uername){
+        Player player = FindPlayerByInfo.findByUserName(uername);
+        return player.getPassword();
+    }
+
 }
