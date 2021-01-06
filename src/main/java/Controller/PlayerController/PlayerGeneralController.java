@@ -221,16 +221,17 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
 
     }
-    public String rememberPasswordStatus(String uername){
-        Player player = FindPlayerByInfo.findByUserName(uername);
+    public String rememberPasswordStatus(String userName){
+        Player player = FindPlayerByInfo.findByUserName(userName);
         return String.valueOf(player.isRemember());
     }
-    public void setrememberPasswordStatus(String uername,String bool){
-        Player player = FindPlayerByInfo.findByUserName(uername);
+    public void setRememberPasswordStatus(String userName, String bool) throws IOException {
+        Player player = FindPlayerByInfo.findByUserName(userName);
         player.setRemember(Boolean.parseBoolean(bool));
+        DataBase.save(Player.players,playerFile);
     }
-    public String getUsernamePassword(String uername){
-        Player player = FindPlayerByInfo.findByUserName(uername);
+    public String getUsernamePassword(String userName){
+        Player player = FindPlayerByInfo.findByUserName(userName);
         return player.getPassword();
     }
 

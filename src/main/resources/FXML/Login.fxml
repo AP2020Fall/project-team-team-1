@@ -31,7 +31,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <CheckBox layoutX="369.0" layoutY="238.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" stylesheets="@../Style/StyleSheet.css" text="Remember Me" textFill="WHITE">
+      <CheckBox fx:id="checkBox" layoutX="369.0" layoutY="238.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="149.0" stylesheets="@../Style/StyleSheet.css" text="Remember Me" textFill="WHITE">
          <effect>
             <Blend />
          </effect></CheckBox>

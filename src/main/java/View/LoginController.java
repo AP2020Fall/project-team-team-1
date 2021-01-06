@@ -6,6 +6,7 @@ import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistAdminException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
+import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import Controller.RegisterController.SignUp;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -26,12 +28,12 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
@@ -60,6 +62,9 @@ public class LoginController implements Initializable {
     Button btnSubmit;
     @FXML
     Button btnRegister;
+    @FXML
+    CheckBox checkBox;
+
 
     @FXML
     private void appExit(ActionEvent event) {
@@ -96,7 +101,11 @@ public class LoginController implements Initializable {
                 mediaPlayer.stop();
                 window.show();
             } else {
+                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
+                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
+                }
                 processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
+                remember(checkBox);
                 setUsername(txtUsername.getText());
                 URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
                 Parent register = FXMLLoader.load(url);
@@ -144,6 +153,22 @@ public class LoginController implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
+    private void remember(CheckBox checkBox){
+        if (checkBox.mnemonicParsingProperty().getValue().equals(false)){
+            try {
+                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(),"true");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (checkBox.mnemonicParsingProperty().getValue().equals(true)){
+            try {
+                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(),"false");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -151,5 +176,9 @@ public class LoginController implements Initializable {
 //        Media media = new Media(file.toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-    }
+//        txtUsername.setText("amir");
+//        if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
+//            txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
+//        }
+   }
 }
