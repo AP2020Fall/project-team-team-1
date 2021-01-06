@@ -221,4 +221,8 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
 
     }
+    public String rememberPasswordStatus(String uername){
+        Player player = FindPlayerByInfo.findByUserName(uername);
+        return String.valueOf(player.isRemember());
+    }
 }

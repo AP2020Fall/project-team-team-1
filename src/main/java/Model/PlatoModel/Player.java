@@ -28,6 +28,7 @@ public class Player extends User {
     private ArrayList<String> lastPlayed;
     private ArrayList<String> playersWhoReportMe;
     private boolean activation;
+    private boolean remember;
     private String profileURL;
     private String bio;
 
@@ -43,6 +44,7 @@ public class Player extends User {
         this.playerLog = new ArrayList<>();
         this.playersWhoReportMe = new ArrayList<>();
         this.activation = true;
+        this.remember = false;
         this.profileURL = "src\\main\\resources\\Images\\default-profile.png";
         this.bio = "Its Simple Bio ...";
     }
@@ -60,6 +62,14 @@ public class Player extends User {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isRemember() {
+        return remember;
+    }
+
+    public void setRemember(boolean remember) {
+        this.remember = remember;
     }
 
     public ArrayList<String> getFriends() {
