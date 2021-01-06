@@ -225,4 +225,8 @@ public class PlayerGeneralController {
         Player player = FindPlayerByInfo.findByUserName(uername);
         return String.valueOf(player.isRemember());
     }
+    public void setrememberPasswordStatus(String uername,String bool){
+        Player player = FindPlayerByInfo.findByUserName(uername);
+        player.setRemember(Boolean.parseBoolean(bool));
+    }
 }
