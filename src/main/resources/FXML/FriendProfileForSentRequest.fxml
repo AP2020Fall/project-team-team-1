@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FriendProfileForSentRequestController">
+   <children>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imgStatus" fitHeight="116.0" fitWidth="120.0" layoutX="9.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/default-profile.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameAndLastname" layoutX="133.0" layoutY="47.0" prefHeight="27.0" prefWidth="277.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
+      <Button fx:id="btnSentRequest" layoutX="134.0" layoutY="131.0" mnemonicParsing="false" onAction="#setBtnSentRequest" prefHeight="33.0" prefWidth="163.0" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="Sent Request">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Back-Arrow.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imgMedal" fitHeight="161.0" fitWidth="163.0" layoutX="416.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/levelKing.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winsLabel" layoutX="423.0" layoutY="207.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="430.0" layoutY="247.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Wins" />
+      <Label fx:id="loseLabel" layoutX="509.0" layoutY="206.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="507.0" layoutY="247.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
+      <Label fx:id="numberOfPlayedLabel" layoutX="466.0" layoutY="281.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
+      <Label layoutX="423.0" layoutY="327.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Played" />
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="20.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/phone.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="19.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/email.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="email" layoutX="46.0" layoutY="195.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
+      <Label fx:id="phoneNumber" layoutX="46.0" layoutY="226.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: red;" text="* Only For Friends *" />
+      <Label fx:id="battleLabel" layoutX="168.0" layoutY="322.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
+         <graphic>
+            <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/removefav.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label fx:id="dotsLabel" layoutX="167.0" layoutY="357.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
+         <graphic>
+            <ImageView fx:id="favDots" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/removefav.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+      <Label layoutX="38.0" layoutY="291.0" prefHeight="26.0" prefWidth="148.0" style="-fx-text-fill: white; -fx-alignment: center;" text="Favorite Games :" />
+      <Button fx:id="closeApp" layoutX="569.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="20.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/icons8-name-52.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="platoAgeLabel" layoutX="46.0" layoutY="256.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days In plato" />
+      <JFXTextArea fx:id="bio" editable="false" focusColor="WHITE" layoutX="136.0" layoutY="78.0" prefHeight="48.0" prefWidth="275.0" stylesheets="@../Style/TextAreaBio.css" text="Bio ..." unFocusColor="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </JFXTextArea>
+   </children>
+</AnchorPane>
