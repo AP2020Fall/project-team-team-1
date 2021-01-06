@@ -119,8 +119,8 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void setGameStatus() throws InvalidGameNameException {
-        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
-        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(getUsernameOfFriend(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(getUsernameOfFriend(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
@@ -147,7 +147,7 @@ public class FriendProfileController implements Initializable {
         battleLabel.setText(adminGeneralController.firstGameNameGetter());
         dotsLabel.setText(adminGeneralController.secondGameNameGetter());
 
-        String[] fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+        String[] fav = playerGeneralController.showFavoritesGames(getUsernameOfFriend()).split("\\$");
 
         for (String gameName : fav) {
             if (gameName.startsWith("B") || gameName.startsWith("b")) {
