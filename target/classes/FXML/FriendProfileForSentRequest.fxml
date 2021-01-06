@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FriendProfileController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.FriendProfileForSentRequestController">
    <children>
       <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
          <cursor>
@@ -22,11 +22,11 @@
          </image>
       </ImageView>
       <Label fx:id="nameAndLastname" layoutX="133.0" layoutY="47.0" prefHeight="27.0" prefWidth="277.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
-      <Button fx:id="btnRemove" layoutX="134.0" layoutY="131.0" mnemonicParsing="false" onAction="#setBtnRemove" prefHeight="33.0" prefWidth="163.0" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="UnFollow Friend">
+      <Button fx:id="btnSentRequest" layoutX="134.0" layoutY="131.0" mnemonicParsing="false" onAction="#setBtnSentRequest" prefHeight="33.0" prefWidth="163.0" style="-fx-background-radius: 10px; -fx-background-color: treanparenty; -fx-text-fill: whitesmoke; -fx-border-color: whitesmoke; -fx-border-radius: 5px;" text="Sent Request">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/cross.png" />
+                  <Image url="@../Images/Back-Arrow.png" />
                </image>
             </ImageView>
          </graphic>
@@ -56,7 +56,7 @@
          </image>
       </ImageView>
       <Label fx:id="email" layoutX="46.0" layoutY="195.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
-      <Label fx:id="phoneNumber" layoutX="46.0" layoutY="226.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
+      <Label fx:id="phoneNumber" layoutX="46.0" layoutY="226.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: red;" text="* Only For Friends *" />
       <Label fx:id="battleLabel" layoutX="168.0" layoutY="322.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
          <graphic>
             <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -86,7 +86,7 @@
             <Image url="@../Icons/icons8-name-52.png" />
          </image>
       </ImageView>
-      <Label fx:id="platoAgeLabel" layoutX="46.0" layoutY="256.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days" />
+      <Label fx:id="platoAgeLabel" layoutX="46.0" layoutY="256.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days In plato" />
       <JFXTextArea fx:id="bio" editable="false" focusColor="WHITE" layoutX="136.0" layoutY="78.0" prefHeight="48.0" prefWidth="275.0" stylesheets="@../Style/TextAreaBio.css" text="Bio ..." unFocusColor="WHITE">
          <font>
             <Font size="12.0" />
