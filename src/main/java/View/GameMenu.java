@@ -12,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -75,6 +77,7 @@ public class GameMenu implements Initializable {
 
     @FXML
     private void goBattleShipMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
+        playMouseSound();
         if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false") || adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
             showError();
             return;
@@ -88,6 +91,7 @@ public class GameMenu implements Initializable {
     }
     @FXML
     private void goDotsAndBoxesMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
+        playMouseSound();
         if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false") || adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
             showError();
             return;
@@ -101,6 +105,7 @@ public class GameMenu implements Initializable {
     }
     @FXML
     public void goToPlayerMenu(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -110,6 +115,7 @@ public class GameMenu implements Initializable {
     }
     @FXML
     public void goToGameLog(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/GameLog.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -129,6 +135,12 @@ public class GameMenu implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @Override
