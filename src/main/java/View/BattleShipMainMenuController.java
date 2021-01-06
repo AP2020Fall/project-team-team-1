@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 
@@ -45,6 +47,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void loadFavStatus() {
+        playMouseSound();
 
         String[] fav = new String[0];
         try {
@@ -69,6 +72,7 @@ public class BattleShipMainMenuController implements Initializable {
     @FXML
     private void setBtnFav(ActionEvent actionEvent) throws IOException, InvalidGameNameException, ExistFavoriteException {
         String[] fav = new String[0];
+        playMouseSound();
         try {
             fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
         } catch (ExistFavoriteException e) {
@@ -110,6 +114,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void goGameMenu(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -128,6 +133,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void goDetails(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/BattleShipDetails.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -141,6 +147,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void goToHistory(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/BattleShipHistory.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -153,6 +160,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void goToScoreBoard(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/BattleShipScoreBoard.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -164,6 +172,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void runGame(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -172,6 +181,12 @@ public class BattleShipMainMenuController implements Initializable {
         window.setScene(message);
         window.show();
 
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @Override
