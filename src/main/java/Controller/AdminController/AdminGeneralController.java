@@ -173,9 +173,8 @@ public class AdminGeneralController {
     }
 
         /**********************************************Reports**********************************************/
-    public void showReportListOfPlayer(String username) throws EmptyReportsList, InvalidUserNameException {
-        PlayerInfo.showReportsList(username);
-
+    public String showReportListOfPlayer(String username) throws EmptyReportsList, InvalidUserNameException {
+        return PlayerInfo.showReportsList(username);
     }
 
     public void banPlayer(String username) throws AlreadyBan, IOException {
@@ -192,7 +191,10 @@ public class AdminGeneralController {
     public void showBanPlayers() {
         PlayerInfo.showBanPlayers();
     }
-        /*******************************************GameName************************************************/
+    public String playerActivation(String username) {
+        return PlayerInfo.playerActivation(username);
+    }
+    /*******************************************GameName************************************************/
     // first -----> BattleShip
     // index ----> 0
     public String firstGameNameGetter(){
