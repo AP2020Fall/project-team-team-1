@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class AdminGamesDotsAndBoxes implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    String[] strings = adminGeneralController.getMVPUserSecondGame().split("\\$");
 
     @FXML
     public Button btnDeactivateDots;
@@ -134,5 +135,7 @@ public class AdminGamesDotsAndBoxes implements Initializable {
             invalidGameID.printStackTrace();
         }
         lblDotsDetails.setText(playerGeneralController.dotsDetails());
+        lblDotsMvp.setText(strings[0]+" "+strings[1]+"PTS");
+        lblDotsNumber.setText(adminGeneralController.numberOfTotalPlayedSecondGame());
     }
 }

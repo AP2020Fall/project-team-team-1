@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class AdminGamesBattleShip implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    String[] strings = adminGeneralController.getMVPUserFirstGame().split("\\$");
     @FXML
     public Button btnGoToAdminBattleShipGame;
     @FXML
@@ -125,5 +126,7 @@ public class AdminGamesBattleShip implements Initializable {
             invalidGameID.printStackTrace();
         }
         lblBattleDetails.setText(playerGeneralController.battleDetails());
+        lblBattleMVP.setText(strings[0]+" "+strings[1]+"PTS");
+        lblBattleNumbers.setText(adminGeneralController.numberOfTotalPlayedFirstGame());
     }
 }

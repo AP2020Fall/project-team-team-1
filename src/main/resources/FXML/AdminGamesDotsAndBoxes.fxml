@@ -42,7 +42,7 @@
             <Button layoutY="2.0" mnemonicParsing="false" onAction="#goToLastMenu" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="Back" />
             </children>
         </Pane>
-      <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);">
+      <Pane layoutX="200.0" prefHeight="124.0" prefWidth="399.0" style="-fx-background-color: linear-gradient(to bottom, #158c93, #1f6c7e, #284e61, #263341, #1a1b20);" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0">
          <children>
             <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="14.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsMvp" layoutX="280.0" layoutY="232.0" prefHeight="17.0" prefWidth="68.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblDotsMvp" alignment="TOP_LEFT" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="90.0" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
