@@ -118,11 +118,10 @@ public class PlayerInfo {
             throw new EmptyReportsList("No one Reports this Username");
 
         showReportsList.append("Players who reported \"").append(username).append("\" :").append("$");
-        int counter = 1;
+
 
         for (String reports : player.getPlayersWhoReportMe()) {
-            showReportsList.append(counter).append(". ").append(reports).append("$");
-            counter++;
+            showReportsList.append(reports).append("$");
         }
         return String.valueOf(showReportsList);
     }
@@ -166,6 +165,9 @@ public class PlayerInfo {
             throw new ItsNotBan("this Username isn't ban , its already active");
 
         player.setActivation(true);
+    }
+    public static String playerActivation(String username){
+        return String.valueOf(Existence.checkPlayerActivation(username));
     }
 
     public static void deleteUser(String input)  {

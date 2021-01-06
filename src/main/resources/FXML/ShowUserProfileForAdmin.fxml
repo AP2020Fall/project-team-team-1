@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowUserProfileForAdminController">
+   <children>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imgStatus" fitHeight="99.0" fitWidth="100.0" layoutX="16.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/default-profile.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameAndLastname" layoutX="125.0" layoutY="63.0" prefHeight="27.0" prefWidth="288.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
+      <ImageView fx:id="imgMedal" fitHeight="125.0" fitWidth="128.0" layoutX="445.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/levelKing.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winsLabel" layoutX="441.0" layoutY="158.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="448.0" layoutY="198.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Wins" />
+      <Label fx:id="loseLabel" layoutX="527.0" layoutY="157.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
+      <Label layoutX="523.0" layoutY="198.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
+      <Label fx:id="numberOfPlayedLabel" layoutX="479.0" layoutY="211.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
+      <Label layoutX="436.0" layoutY="257.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Played" />
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="17.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/phone.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="16.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/email.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="email" layoutX="43.0" layoutY="176.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
+      <Label fx:id="phoneNumber" layoutX="43.0" layoutY="205.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
+      <Button fx:id="closeApp" layoutX="569.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btnDeleteAccount" layoutX="16.0" layoutY="271.0" mnemonicParsing="false" onAction="#setBtnDeleteAccount" prefHeight="31.0" prefWidth="179.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Account">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="btnBanAccount" layoutX="16.0" layoutY="313.0" mnemonicParsing="false" onAction="#banAccount" prefHeight="31.0" prefWidth="179.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Ban Account">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="17.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Icons/icons8-name-52.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="platoAgeLabel" layoutX="43.0" layoutY="233.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days" />
+      <Button fx:id="btnGoToSuggestionPane" layoutX="16.0" layoutY="356.0" mnemonicParsing="false" onAction="#makeSuggestionGoToPane" prefHeight="31.0" prefWidth="179.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 5px;" text="Make Suggestion">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <JFXTextArea fx:id="bio" editable="false" focusColor="WHITE" layoutX="126.0" layoutY="88.0" prefHeight="62.0" prefWidth="275.0" stylesheets="@../Style/TextAreaBio.css" text="Bio ..." unFocusColor="WHITE">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </JFXTextArea>
+      <Pane layoutX="204.0" layoutY="350.0" prefHeight="44.0" prefWidth="314.0">
+         <children>
+            <ComboBox fx:id="suggestionCombo" layoutX="43.0" layoutY="4.0" prefHeight="33.0" prefWidth="127.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <Button fx:id="btnMakeSuggestion" layoutX="187.0" layoutY="6.0" mnemonicParsing="false" onAction="#makeSuggestion" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 5px;" text="Make">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <Label fx:id="numberOfReports" layoutX="224.0" layoutY="318.0" text="10" textFill="WHITE" />
+      <Label layoutX="251.0" layoutY="318.0" style="-fx-text-fill: white;" text="Report this Plsyer" />
+      <Pane fx:id="frontOfMakeSuggestion" layoutX="219.0" layoutY="351.0" prefHeight="42.0" prefWidth="296.0" style="-fx-background-color: #1a1b20;" />
+   </children>
+</AnchorPane>

@@ -87,7 +87,7 @@
          </image>
       </ImageView>
       <Label fx:id="platoAgeLabel" layoutX="46.0" layoutY="256.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days" />
-      <JFXTextArea fx:id="bio" focusColor="WHITE" layoutX="136.0" layoutY="78.0" prefHeight="48.0" prefWidth="275.0" stylesheets="@../Style/TextAreaBio.css" text="Bio ..." unFocusColor="WHITE">
+      <JFXTextArea fx:id="bio" editable="false" focusColor="WHITE" layoutX="136.0" layoutY="78.0" prefHeight="48.0" prefWidth="275.0" stylesheets="@../Style/TextAreaBio.css" text="Bio ..." unFocusColor="WHITE">
          <font>
             <Font size="12.0" />
          </font>

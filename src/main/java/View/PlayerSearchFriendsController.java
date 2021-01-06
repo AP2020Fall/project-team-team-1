@@ -14,10 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -25,10 +22,19 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class PlayerSearchFriendsController implements Initializable {
+    private static String searchedFriendUsername = "null";
+
+    public static String getSearchedFriendUsername() {
+        return searchedFriendUsername;
+    }
+
+    public static void setSearchedFriendUsername(String searchedFriendUsername) {
+        PlayerSearchFriendsController.searchedFriendUsername = searchedFriendUsername;
+    }
+
     @FXML
     public JFXButton BtnClose;
     @FXML
@@ -47,6 +53,8 @@ public class PlayerSearchFriendsController implements Initializable {
     public TableColumn<Player,String> tblFriends;
     @FXML
     public TextField txtSearch;
+    @FXML
+    public Button btnSent;
 
     @FXML
     private void closeApp(ActionEvent event){
@@ -97,9 +105,25 @@ public class PlayerSearchFriendsController implements Initializable {
         window.setScene(message);
         window.show();
     }
-    private final ObservableList<Player> friends = FXCollections.observableArrayList(
+    @FXML
+    private void setBtnSent(ActionEvent event) throws IOException {
+        if (getSearchedFriendUsername().equalsIgnoreCase("null")){
+            return;
+        }
+        FriendProfileForSentRequestController.setUsernameOfFriendForSentRequest(getSearchedFriendUsername());
+        {
+            URL url = new File("src/main/resources/FXML/FriendProfileForSentRequest.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+        }
 
-    );
+
+    }
+    private final ObservableList<Player> friends = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -139,9 +163,9 @@ public class PlayerSearchFriendsController implements Initializable {
             row.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
-                    if (event.getClickCount()==2&&(!row.isEmpty())){
+                    if (!row.isEmpty()){
                         String rowData = row.getItem().getUserName();
-                        System.out.println(rowData);
+                        setSearchedFriendUsername(rowData);
                     }
                 }
             });

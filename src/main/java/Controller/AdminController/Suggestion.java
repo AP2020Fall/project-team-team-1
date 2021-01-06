@@ -14,7 +14,7 @@ public class Suggestion {
         if (player == null)
             throw new ExistPlayerException(inputSpilt[0]," Is not Exist in Players List");
 
-        Model.PlatoModel.Suggestion suggestion = new Model.PlatoModel.Suggestion(randomUserId(10000,10100),player,inputSpilt[1]);
+        Model.PlatoModel.Suggestion suggestion = new Model.PlatoModel.Suggestion(randomUserId(10000,10400),player,inputSpilt[1]);
         Model.PlatoModel.Suggestion.addNewSuggestion(suggestion);
 
     }
