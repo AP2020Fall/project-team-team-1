@@ -118,12 +118,19 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void goToRegisterMenu(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     private String getInfo(String name, String lastName, String username, String password, String email, String phoneNum) {

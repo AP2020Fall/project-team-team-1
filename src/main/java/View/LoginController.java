@@ -68,6 +68,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void goToRegisterMenu(ActionEvent event) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/SignUpMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -79,6 +80,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
+        playMouseSound();
 //        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
 //        Media media = new Media(file.toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -135,6 +137,12 @@ public class LoginController implements Initializable {
 
     private String getInfo(String txtUsername, String txtPassword) {
         return txtUsername + " " + txtPassword;
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @Override
