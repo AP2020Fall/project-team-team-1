@@ -56,7 +56,7 @@ public class ProfileController implements Initializable {
     @FXML
     Label phoneNumber;
     @FXML
-    Label numberOfPlayedLabel;
+    Label numberOfFriendsLabel;
     @FXML
     Label winsLabel;
     @FXML
@@ -181,7 +181,6 @@ public class ProfileController implements Initializable {
     @FXML
     private void setImgStatusToProfile() throws ExistPlayerException, MalformedURLException {
         String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
-
         File file = new File(userData[6]);
         URL url = file.toURI().toURL();
         System.out.println(url);
@@ -208,9 +207,21 @@ public class ProfileController implements Initializable {
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
-        numberOfPlayedLabel.setText(String.valueOf(all));
+//        numberOfPlayedLabel.setText(String.valueOf(all));
     }
+    @FXML
+    private void editProfile(ActionEvent event) throws IOException {
 
+
+        {
+            URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+        }
+    }
 
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
@@ -281,7 +292,13 @@ public class ProfileController implements Initializable {
         email.setText("Email: " + userData[0]);
         phoneNumber.setText("Phone number: " + userData[4]);
         bio.setText(userData[5]);
-
+        String[] playerFriend = new String[0];
+        try {
+             playerFriend = playerGeneralController.showFriends(getUsername()).split("\\$");
+        } catch (ExistFriendException e) {
+            System.err.println(e.getMessage());
+        }
+        numberOfFriendsLabel.setText(String.valueOf(playerFriend.length));
     }
 
     @FXML

@@ -219,9 +219,8 @@ public class FriendProfileForSentRequestController implements Initializable {
             setImgStatusToProfile();
             setProfilesLabels();
             setGameStatus();
-            setGameStatus();
-            setFavoriteGames();
             setPlatoAgeLabel();
+            setFavoriteGames();
         } catch (ExistPlayerException | InvalidGameNameException | ExistFavoriteException e) {
             System.err.println(e.getMessage());
         }
