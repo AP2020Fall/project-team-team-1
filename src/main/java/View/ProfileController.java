@@ -86,6 +86,10 @@ public class ProfileController implements Initializable {
     public TextField txtNewValue;
     @FXML
     TextArea bio;
+    @FXML
+    Label friendNumber;
+    @FXML
+    Pane friendPane;
 
 
     @FXML
@@ -290,6 +294,17 @@ public class ProfileController implements Initializable {
         }
 
     }
+    private void friendNumber() throws ExistFriendException {
+        String[] friendList = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
+        if (friendList.length!= 0){
+            friendPane.toBack();
+            friendNumber.setText("Number of friends : " + friendList.length);
+        }
+//        else{
+//            friendNumber.setText("You have no friend :( ");
+//            System.out.println("annnnnnnnnnnnnnnnnnnn");
+//        }
+    }
 
     @FXML
     public void close(ActionEvent event) {
@@ -299,6 +314,11 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadUserData();
+        try {
+            friendNumber();
+        } catch (ExistFriendException e) {
+            e.printStackTrace();
+        }
     }
 
 }

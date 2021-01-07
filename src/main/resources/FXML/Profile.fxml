@@ -50,7 +50,7 @@
       </ImageView>
       <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
       <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
-      <Label fx:id="battleLabel" layoutX="137.0" layoutY="195.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
+      <Label fx:id="battleLabel" layoutX="137.0" layoutY="190.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
          <graphic>
             <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,7 +59,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label fx:id="dotsLabel" layoutX="136.0" layoutY="230.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
+      <Label fx:id="dotsLabel" layoutX="219.0" layoutY="190.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
          <graphic>
             <ImageView fx:id="favDots" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -127,5 +127,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="friendNumber" layoutX="28.0" layoutY="242.0" prefHeight="17.0" prefWidth="206.0" stylesheets="@../Style/StyleSheet.css" text="Label" textFill="WHITE" />
+      <Pane fx:id="friendPane" layoutX="11.0" layoutY="227.0" prefHeight="55.0" prefWidth="288.0" style="-fx-background-color: #1a1b20;" />
    </children>
 </AnchorPane>
