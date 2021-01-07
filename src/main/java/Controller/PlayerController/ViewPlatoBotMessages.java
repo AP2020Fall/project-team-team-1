@@ -6,11 +6,9 @@ public class ViewPlatoBotMessages {
 
     public static String viewBotMessages ()  {
         StringBuilder viewBotMessages = new StringBuilder();
-        int counter = 1;
 
         for (Message message : Message.getMessages()) {
-            viewBotMessages.append(counter).append(". Message ID : ").append(message.getMassageID()).append(" Text: ").append(message.getText()).append("$");
-            counter++;
+            viewBotMessages.append(message.getMassageID()).append("$").append(message.getText()).append("$").append(message.getDate()).append("$").append(message.getTime()).append("&");
         }
         return String.valueOf(viewBotMessages);
 
