@@ -2,10 +2,7 @@ package View;
 
 import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Existence;
-import Controller.Exception.Plato.BanExceptionForLogin;
-import Controller.Exception.Plato.ExistAdminException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import Controller.RegisterController.SignUp;
@@ -101,9 +98,9 @@ public class LoginController implements Initializable {
                 mediaPlayer.stop();
                 window.show();
             } else {
-                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
-                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
-                }
+//                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
+//                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
+//                }
                 processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
                 remember(checkBox);
                 setUsername(txtUsername.getText());
@@ -114,7 +111,7 @@ public class LoginController implements Initializable {
                 window.setScene(message);
                 window.show();
             }
-        } catch (InvalidUserNameException | WrongPasswordException | ExistAdminException e) {
+        } catch (InvalidUserNameException | WrongPasswordException  | ExistAdminException e) {
             showError();
         } catch (BanExceptionForLogin e) {
             showBanError();
