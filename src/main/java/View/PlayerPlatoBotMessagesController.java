@@ -52,10 +52,22 @@ public class PlayerPlatoBotMessagesController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
-        String[] showMessage = playerGeneralController.viewBotMessages().split("\\$");
+        String[] showMessage = playerGeneralController.viewBotMessages().split("\\&");
         for (String out : showMessage) {
             listView.getItems().add(out);
         }
+//        listView.getItems().add("====================================");
+//        for (String s : showMessage) {
+//            String[] forShow = s.split("\\$");
+//            listView.getItems().add(forShow[2]);
+//            for (String s1 : showMessage) {
+//                String[] forShow1 = s1.split("\\$");
+//                if (forShow[2].equalsIgnoreCase(forShow1[2])){
+//                    listView.getItems().add(forShow1[0]+". "+forShow1[1]);
+//                }
+//            }
+//        }
+
     }
     @FXML
     private void back(ActionEvent event) throws IOException {

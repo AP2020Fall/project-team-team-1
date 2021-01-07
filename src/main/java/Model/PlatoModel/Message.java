@@ -7,6 +7,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,10 +20,22 @@ public class Message {
     private static ArrayList<Message> messages = new ArrayList<>();
     private int massageID ;
     private String text;
+    private LocalDate date;
+    private LocalTime time;
 
     public Message(String text) {
         this.text = text;
         this.massageID = randomMessageId(2000,2500);
+        this.date = LocalDate.now();
+        this.time = LocalTime.now();
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
     }
 
 
