@@ -90,13 +90,13 @@ public class SignUpController implements Initializable {
             Validation.emailIsValid(txtEmail.getText());
             Validation.phoneNumberIsValid(txtPhoneNum.getText());
             if (adminGeneralController.adminExistence().equalsIgnoreCase("true")){
-                processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+                processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());
                 copy(file,image);
                 URL url1 =image.toURI().toURL();
                 playerGeneralController.editProfileURL(txtUsername.getText(),String.valueOf(url1));
             }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
-                processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+                processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());
                 copy(file,image);
             }
