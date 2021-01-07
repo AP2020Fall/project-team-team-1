@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
+import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.SignUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +34,7 @@ public class SignUpController implements Initializable {
     protected SignUp processSignUp = new SignUp();
     protected static Validation validation = new Validation();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
     private File file;
 
@@ -91,6 +93,8 @@ public class SignUpController implements Initializable {
                 processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());
                 copy(file,image);
+                URL url1 =image.toURI().toURL();
+                playerGeneralController.editProfileURL(txtUsername.getText(),String.valueOf(url1));
             }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
                 processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());

@@ -21,6 +21,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -178,11 +179,13 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setImgStatusToProfile() throws ExistPlayerException {
+    private void setImgStatusToProfile() throws ExistPlayerException, MalformedURLException {
         String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
 
         File file = new File(userData[6]);
-        Image image = new Image(file.toURI().toString());
+        URL url = file.toURI().toURL();
+        System.out.println(url);
+        Image image = new Image(url.toExternalForm());
         imgStatus.setImage(image);
     }
 
@@ -284,12 +287,13 @@ public class ProfileController implements Initializable {
     @FXML
     private void loadUserData() {
         try {
+            setImgStatusToProfile();
             setImgMedal();
             setPlatoAgeLabel();
             setProfilesLabels();
             setGameStatus();
             setFavoriteGames();
-        } catch (ExistPlayerException | InvalidGameNameException | ExistFavoriteException e) {
+        } catch (ExistPlayerException | InvalidGameNameException | ExistFavoriteException | MalformedURLException e) {
             System.err.println(e.getMessage());
         }
 
@@ -314,11 +318,11 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadUserData();
-        try {
-            friendNumber();
-        } catch (ExistFriendException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            friendNumber();
+//        } catch (ExistFriendException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
