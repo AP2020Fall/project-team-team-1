@@ -36,8 +36,8 @@
       <Label layoutX="422.0" layoutY="198.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Wins" />
       <Label fx:id="loseLabel" layoutX="501.0" layoutY="157.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
       <Label layoutX="499.0" layoutY="198.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
-      <Label fx:id="numberOfPlayedLabel" layoutX="453.0" layoutY="211.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
-      <Label layoutX="410.0" layoutY="257.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Played" />
+      <Label fx:id="numberOfFriendsLabel" layoutX="456.0" layoutY="211.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
+      <Label layoutX="413.0" layoutY="257.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Friends" />
       <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="138.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/phone.png" />
@@ -50,7 +50,7 @@
       </ImageView>
       <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
       <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
-      <Label fx:id="battleLabel" layoutX="137.0" layoutY="190.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
+      <Label fx:id="battleLabel" layoutX="137.0" layoutY="201.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
          <graphic>
             <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,7 +59,7 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label fx:id="dotsLabel" layoutX="219.0" layoutY="190.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
+      <Label fx:id="dotsLabel" layoutX="226.0" layoutY="201.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: ce1nter; -fx-text-fill: white;" text="Dots And Boxes">
          <graphic>
             <ImageView fx:id="favDots" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,17 +68,18 @@
             </ImageView>
          </graphic>
       </Label>
-      <Label layoutX="-1.0" layoutY="189.0" prefHeight="26.0" prefWidth="148.0" style="-fx-text-fill: white; -fx-alignment: center;" text="Favorite Games :" />
+      <Label layoutX="-1.0" layoutY="200.0" prefHeight="26.0" prefWidth="148.0" style="-fx-text-fill: white; -fx-alignment: center;" text="Favorite Games :" />
       <Button fx:id="closeApp" layoutX="569.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="22.0" layoutY="168.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="26.0" prefWidth="87.0" style="-fx-background-radius: 5px; -fx-background-color: green; -fx-text-fill: white;" text="Edit Profile" />
       <Pane fx:id="EditPane" layoutX="169.0" layoutY="286.0" prefHeight="66.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="286.0">
          <children>
-            <Button fx:id="btnEdit" layoutX="303.0" layoutY="41.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
-            <TextField fx:id="txtNewValue" layoutX="109.0" layoutY="40.0" prefHeight="33.0" prefWidth="170.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: transparncy; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
-            <Button fx:id="btnCancel" layoutX="356.0" layoutY="41.0" mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
+            <Button fx:id="btnEdit" layoutX="303.0" layoutY="34.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
+            <TextField fx:id="txtNewValue" layoutX="109.0" layoutY="33.0" prefHeight="33.0" prefWidth="170.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: transparncy; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
+            <Button fx:id="btnCancel" layoutX="356.0" layoutY="34.0" mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
             <ComboBox fx:id="btnField" layoutX="9.0" layoutY="39.0" prefHeight="25.0" prefWidth="87.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
                <items>
                   <FXCollections fx:factory="observableArrayList">
@@ -109,7 +110,7 @@
          </image>
       </ImageView>
       <Label fx:id="platoAgeLabel" layoutX="164.0" layoutY="153.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days" />
-      <Pane fx:id="simplePane" layoutX="164.0" layoutY="281.0" prefHeight="90.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;">
+      <Pane fx:id="simplePane" layoutX="160.0" layoutY="286.0" prefHeight="90.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;">
          <children>
             <TextArea fx:id="bio" layoutX="14.0" layoutY="8.0" prefHeight="74.0" prefWidth="299.0" promptText="Details">
                <font>
@@ -127,7 +128,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="friendNumber" layoutX="28.0" layoutY="242.0" prefHeight="17.0" prefWidth="206.0" stylesheets="@../Style/StyleSheet.css" text="Label" textFill="WHITE" />
-      <Pane fx:id="friendPane" layoutX="11.0" layoutY="227.0" prefHeight="55.0" prefWidth="288.0" style="-fx-background-color: #1a1b20;" />
+      <Label fx:id="friendLabel" layoutX="21.0" layoutY="245.0" prefHeight="15.0" prefWidth="163.0" style="-fx-font: 17px;" stylesheets="@../Style/StyleSheet.css" text="Label" textFill="WHITE" />
+      <Pane fx:id="friendPane" layoutX="11.0" layoutY="232.0" prefHeight="42.0" prefWidth="191.0" style="-fx-background-color: #1a1b20;" />
    </children>
 </AnchorPane>
