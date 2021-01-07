@@ -42,7 +42,7 @@ public class LoginController implements Initializable {
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-    public static String username = "player2";
+    private static String username = "null";
 
     public static String getUsername() {
         return username;

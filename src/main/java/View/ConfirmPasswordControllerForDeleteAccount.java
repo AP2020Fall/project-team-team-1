@@ -1,7 +1,9 @@
 package View;
 
 import Controller.CompetencyController.Existence;
+import Controller.Exception.Plato.ExistPlayerException;
 import Controller.PlayerController.PlayerGeneralController;
+import Model.PlatoModel.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,13 +58,16 @@ public class ConfirmPasswordControllerForDeleteAccount {
         stage.close();
     }
     @FXML
-    private void setBtnConfirm(ActionEvent event) throws IOException {
+    private void setBtnConfirm(ActionEvent event) throws IOException, ExistPlayerException {
         String password = txtPassword.getText();
         setConfirm(Existence.checkPasswordForView(getUsername(),password));
         if (getConfirm().equalsIgnoreCase("false")){
             showError();
         }
         else {
+            String[] user = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+            File file = new File(user[6]);
+            file.delete();
             playerGeneralController.deleteUser(getUsername());
             setConfirm("false");
             System.exit(1);

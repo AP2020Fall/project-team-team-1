@@ -73,7 +73,7 @@ public class FriendProfileController implements Initializable {
     @FXML
     Label platoAgeLabel;
     @FXML
-    JFXTextArea bio;
+    TextArea bio;
 
 
     @FXML
@@ -108,7 +108,7 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-
+        setUsernameOfFriend("null");
         URL url = new File("src/main/resources/FXML/FriendsMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -135,6 +135,9 @@ public class FriendProfileController implements Initializable {
     @FXML
     private void setProfilesLabels() throws ExistFriendException {
         String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(), getUsernameOfFriend()).split("\\$");
+        for (String userDatum : userData) {
+            System.out.println(userDatum);
+        }
         nameAndLastname.setText(userData[2] + " " + userData[3] + "'s Profile");
         email.setText("Email: " + userData[4]);
         phoneNumber.setText("Phone number: " + userData[5]);

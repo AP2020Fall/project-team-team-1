@@ -112,7 +112,7 @@ public class Friend {
         for (String playerFriend : player.getFriends()) {
             if (playerFriend.equals(friend.getUserName())) {
 //                showFriendProfile.append("getUserID: ").append(friend.getUserID()).append(" Username: ").append(friend.getUserName()).append(" Name: ").append(friend.getName()).append(" LastName: ").append(friend.getLastName()).append(" Email: ").append(friend.getEmail()).append(" Phone Number: ").append(friend.getPhoneNum()).append("$");
-                showFriendProfile.append(friend.getUserID()).append("$").append(friend.getUserName()).append("$").append(friend.getName()).append("$").append(friend.getLastName()).append("$").append(friend.getEmail()).append("$").append(friend.getPhoneNum()).append("$").append("$").append(player.getBio()).append("$").append(player.getProfileURL()).append("$");
+                showFriendProfile.append(friend.getUserID()).append("$").append(friend.getUserName()).append("$").append(friend.getName()).append("$").append(friend.getLastName()).append("$").append(friend.getEmail()).append("$").append(friend.getPhoneNum()).append("$").append("$").append(friend.getBio()).append("$").append(friend.getProfileURL()).append("$");
                 break;
             }
         }

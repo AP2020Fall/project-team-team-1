@@ -26,6 +26,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -93,8 +94,7 @@ public class SignUpController implements Initializable {
                 processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());
                 copy(file,image);
-                URL url1 =image.toURI().toURL();
-                playerGeneralController.editProfileURL(txtUsername.getText(),String.valueOf(url1));
+                playerGeneralController.editProfileURL(txtUsername.getText(),String.valueOf(image.toPath()));
             }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
                 processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
                 File image = createProfileFile(txtUsername.getText());
@@ -159,14 +159,14 @@ public class SignUpController implements Initializable {
 
     @FXML
     private File chooseProfilePick(FileChooser fileChooser){
-        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg","*.png");
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
         fileChooser.getExtensionFilters().add(images);
         return fileChooser.showOpenDialog(new Stage());
     }
     @FXML
     private File createProfileFile(String username){
         String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
-                "Users"+File.separator+username+File.separator+username;
+                "Users"+File.separator+username+File.separator+username+".jpg";
         return new File(path);
     }
     @FXML

@@ -2,7 +2,6 @@ package View;
 
 import Controller.AdminController.AdminGeneralController;
 import Model.PlatoModel.Player;
-import Model.PlatoModel.PlayerLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -69,7 +68,7 @@ public class AdminUsersController implements Initializable {
     }
     @FXML
     private void goToPlayer(ActionEvent event) throws IOException {
-        if (ShowUserProfileForAdminController.getUsername().equalsIgnoreCase("null")){
+        if (ShowUserProfileForAdminController.getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
 
@@ -85,6 +84,15 @@ public class AdminUsersController implements Initializable {
     @FXML
     private void exitApp(ActionEvent event) {
         System.exit(1);
+    }
+    @FXML
+    public void initActions(){
+        table.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent arg0) {
+                String usernameForShow = table.getSelectionModel().getSelectedItem().getUserName();
+                ShowUserProfileForAdminController.setUsernameProfileForShowToAdmin(usernameForShow);
+            }
+        });
     }
 
     private final ObservableList<Player> players = FXCollections.observableArrayList();
@@ -120,20 +128,22 @@ public class AdminUsersController implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
 
         table.setItems(filteredList);
+        initActions();
 
         //------------setDoubleClick---------//
-        table.setRowFactory(tv->{
-            TableRow<Player> row = new TableRow<>();
-            row.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    if (!row.isEmpty()){
-                        String rowData = row.getItem().getUserName();
-                        ShowUserProfileForAdminController.setUsername(rowData);
-                    }
-                }
-            });
-            return row;
-        });
+//        table.setRowFactory(tv->{
+//            TableRow<Player> row = new TableRow<>();
+//            row.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//                @Override
+//                public void handle(MouseEvent event) {
+//                    if (!row.isEmpty()){
+//                        String rowData = row.getItem().getUserName();
+//                        ShowUserProfileForAdminController.setUsername(rowData);
+//                    }
+//                }
+//            });
+//            return row;
+//        });
+
     }
 }

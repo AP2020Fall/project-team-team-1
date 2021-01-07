@@ -49,6 +49,8 @@ public class PlayerMenu {
     @FXML
     public void goToProfile(ActionEvent event) throws IOException {
         playMouseSound();
+        ProfileController.setUsernameForShowProfile(LoginController.getUsername());
+//        System.out.println(LoginController.getUsername());
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -59,7 +61,7 @@ public class PlayerMenu {
     @FXML
     public void logOut(ActionEvent event) throws IOException {
         playMouseSound();
-        LoginController.setUsername(null);
+        LoginController.setUsername("null");
         URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

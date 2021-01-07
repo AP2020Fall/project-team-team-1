@@ -13,11 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,14 +26,14 @@ public class ShowUserProfileForAdminController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
-    private static String username = "null";
+    private static String usernameProfileForShowToAdmin = "null";
 
-    public static String getUsername() {
-        return username;
+    public static String getUsernameProfileForShowToAdmin() {
+        return usernameProfileForShowToAdmin;
     }
 
-    public static void setUsername(String username) {
-        ShowUserProfileForAdminController.username = username;
+    public static void setUsernameProfileForShowToAdmin(String usernameProfileForShowToAdmin) {
+        ShowUserProfileForAdminController.usernameProfileForShowToAdmin = usernameProfileForShowToAdmin;
     }
 
     @FXML
@@ -85,7 +83,7 @@ public class ShowUserProfileForAdminController implements Initializable {
     private void setNumberOfReports() throws InvalidUserNameException{
         String[] numberOfReport;
         try {
-            numberOfReport = adminGeneralController.showReportListOfPlayer(getUsername()).split("\\$");
+            numberOfReport = adminGeneralController.showReportListOfPlayer(getUsernameProfileForShowToAdmin()).split("\\$");
         } catch (EmptyReportsList emptyReportsList) {
             System.err.println(emptyReportsList.getMessage());
             numberOfReports.setText("0");
@@ -102,7 +100,7 @@ public class ShowUserProfileForAdminController implements Initializable {
     }
     @FXML
     private void setBtnBanAccount(){
-        if (adminGeneralController.playerActivation(getUsername()).equalsIgnoreCase("false")){
+        if (adminGeneralController.playerActivation(getUsernameProfileForShowToAdmin()).equalsIgnoreCase("false")){
             btnBanAccount.setText("UnBan Account");
         }else
             btnBanAccount.setText("ban Account");
@@ -111,11 +109,11 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setBtnDeleteAccount(ActionEvent event) throws IOException {
-        if (getUsername().equalsIgnoreCase("null")){
+        if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
-        playerGeneralController.deleteUser(getUsername());
-        setUsername("null");
+        playerGeneralController.deleteUser(getUsernameProfileForShowToAdmin());
+        setUsernameProfileForShowToAdmin("null");
         {
             URL url = new File("src/main/resources/FXML/AdminMainMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
@@ -128,17 +126,17 @@ public class ShowUserProfileForAdminController implements Initializable {
     }
     @FXML
     private void banAccount() throws AlreadyBan, IOException, ItsNotBan {
-        if (getUsername().equalsIgnoreCase("null")){
+        if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
 
         if (btnBanAccount.getText().equalsIgnoreCase("UnBan Account")){
 
-            adminGeneralController.unBanPlayer(getUsername());
+            adminGeneralController.unBanPlayer(getUsernameProfileForShowToAdmin());
 
         }else {
 
-            adminGeneralController.banPlayer(getUsername());
+            adminGeneralController.banPlayer(getUsernameProfileForShowToAdmin());
 
         }
 
@@ -150,11 +148,11 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void makeSuggestion(ActionEvent event) throws IOException, ExistPlayerException {
-        if (getUsername().equalsIgnoreCase("null")){
+        if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
         StringBuilder string = new StringBuilder();
-        string.append(getUsername()).append(" ").append(suggestionCombo.getValue());
+        string.append(getUsernameProfileForShowToAdmin()).append(" ").append(suggestionCombo.getValue());
         adminGeneralController.addSuggestion(String.valueOf(string));
 
 
@@ -176,7 +174,7 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setImgStatusToProfile() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+        String[] userData = playerGeneralController.showBasicInformation(getUsernameProfileForShowToAdmin()).split("\\$");
         File file = new File(userData[6]);
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
@@ -196,8 +194,8 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setGameStatus() throws InvalidGameNameException {
-        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
-        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(getUsernameProfileForShowToAdmin(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(getUsernameProfileForShowToAdmin(), adminGeneralController.firstGameNameGetter()));
+        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(getUsernameProfileForShowToAdmin(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(getUsernameProfileForShowToAdmin(), adminGeneralController.firstGameNameGetter()));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
@@ -207,7 +205,7 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setImgMedal() throws ExistPlayerException {
-        int level = Integer.parseInt(playerGeneralController.showPoint(getUsername()));
+        int level = Integer.parseInt(playerGeneralController.showPoint(getUsernameProfileForShowToAdmin()));
 
         if (level >= 200) {
             File file = new File("src\\main\\resources\\Images\\levelKing.png");
@@ -237,12 +235,16 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername()) + " Days in Plato ");
+        platoAgeLabel.setText(playerGeneralController.showUserAge(getUsernameProfileForShowToAdmin()) + " Days in Plato ");
     }
 
     @FXML
     private void setProfilesLabels() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+        String[] userData = playerGeneralController.showBasicInformation(getUsernameProfileForShowToAdmin()).split("\\$");
+
+        for (String s : userData) {
+            System.out.println(s);
+        }
         nameAndLastname.setText(userData[1] + " " + userData[2] + "'s Profile");
         email.setText("Email: " + userData[0]);
         phoneNumber.setText("Phone number: " + userData[4]);
@@ -261,8 +263,12 @@ public class ShowUserProfileForAdminController implements Initializable {
             setBtnBanAccount();
             setImgStatusToProfile();
             setNumberOfReports();
-        } catch (ExistPlayerException | InvalidGameNameException | InvalidUserNameException e) {
-            System.err.println(e.getMessage());
+        } catch ( InvalidUserNameException e) {
+            System.err.println(e.getMessage()+"1");
+        } catch (InvalidGameNameException e) {
+            System.err.println(e.getMessage()+"2");
+        } catch (ExistPlayerException e) {
+            e.printStackTrace();
         }
 
     }

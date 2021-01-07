@@ -3,7 +3,6 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerGeneralController;
-import Controller.RegisterController.Delete;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,14 +28,14 @@ public class ProfileController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
-    protected static String username = LoginController.getUsername();
+    protected static String usernameForShowProfile = "null";
 
-    public static String getUsername() {
-        return username;
+    public static String getUsernameForShowProfile() {
+        return usernameForShowProfile;
     }
 
-    public static void setUsername(String username) {
-        ProfileController.username = username;
+    public static void setUsernameForShowProfile(String usernameForShowProfile) {
+        ProfileController.usernameForShowProfile = usernameForShowProfile;
     }
 
     @FXML
@@ -175,23 +174,23 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setBtnEditBio(ActionEvent event) throws IOException {
-        playerGeneralController.editBio(getUsername(), bio.getText());
+        playerGeneralController.editBio(getUsernameForShowProfile(), bio.getText());
     }
 
     @FXML
     private void setImgStatusToProfile() throws ExistPlayerException, MalformedURLException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+        String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
         File file = new File(userData[6]);
         URL url = file.toURI().toURL();
-        System.out.println(url);
         Image image = new Image(url.toExternalForm());
+        System.out.println(image.getHeight());
         imgStatus.setImage(image);
     }
 
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-
+        setUsernameForShowProfile("null");
         URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -252,7 +251,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setImgMedal() throws ExistPlayerException {
-        int level = Integer.parseInt(playerGeneralController.showPoint(getUsername()));
+        int level = Integer.parseInt(playerGeneralController.showPoint(getUsernameForShowProfile()));
 
         if (level >= 200) {
             File file = new File("src\\main\\resources\\Images\\levelKing.png");
@@ -287,14 +286,14 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setProfilesLabels() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
+        String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
         nameAndLastname.setText(userData[1] + " " + userData[2] + "'s Profile");
         email.setText("Email: " + userData[0]);
         phoneNumber.setText("Phone number: " + userData[4]);
         bio.setText(userData[5]);
         String[] playerFriend = new String[0];
         try {
-             playerFriend = playerGeneralController.showFriends(getUsername()).split("\\$");
+             playerFriend = playerGeneralController.showFriends(getUsernameForShowProfile()).split("\\$");
         } catch (ExistFriendException e) {
             System.err.println(e.getMessage());
         }
