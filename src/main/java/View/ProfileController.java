@@ -173,7 +173,7 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setBtnEditBio(ActionEvent event) {
+    private void setBtnEditBio(ActionEvent event) throws IOException {
         playerGeneralController.editBio(getUsername(), bio.getText());
     }
 

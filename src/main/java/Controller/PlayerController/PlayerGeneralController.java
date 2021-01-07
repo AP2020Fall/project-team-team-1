@@ -27,8 +27,14 @@ public class PlayerGeneralController {
         Edit.editPassword(inputSplit[0], inputSplit[1], inputSplit[2]);
         DataBase.save(Player.players,playerFile);
     }
-    public void editBio(String player, String input){
+    public void editBio(String player, String input) throws IOException {
         Edit.editBio(player,input);
+        DataBase.save(Player.players,playerFile);
+    }
+    public void editProfileURL(String username, String input) throws IOException {
+        Edit.editProfileURL(username, input);
+        DataBase.save(Player.players,playerFile);
+
     }
 
 
