@@ -112,7 +112,7 @@ public class AdminEvents implements Initializable {
     public void initActions(){
         table.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent arg0) {
-                String id = table.getSelectionModel().getSelectedItem().eventIDProperty().getValue().toString();
+                String id = String.valueOf(table.getSelectionModel().getSelectedItem().getEventID());
                 EventInfo.setId(id);
             }
         });
@@ -122,7 +122,7 @@ public class AdminEvents implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(cellData->cellData.getValue().eventIDProperty().asObject());
+        id.setCellValueFactory(new PropertyValueFactory<>("eventID"));
         game.setCellValueFactory(new PropertyValueFactory<>("GameName"));
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
         table.setItems(events);

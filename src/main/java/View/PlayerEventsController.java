@@ -111,11 +111,11 @@ public class PlayerEventsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        id.setCellValueFactory(cellData->cellData.getValue().eventIDProperty().asObject());
+        id.setCellValueFactory(new PropertyValueFactory<>("eventID"));
         game.setCellValueFactory(new PropertyValueFactory<>("GameName"));
-        start.setCellValueFactory(cellData->cellData.getValue().startDateProperty());
-        end.setCellValueFactory(cellData->cellData.getValue().endDateProperty());
-        points.setCellValueFactory(cellData->cellData.getValue().scoreProperty().asObject());
+        start.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        end.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        points.setCellValueFactory(new PropertyValueFactory<>("score"));
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
 
 //        Event.addNewEvent(new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"));

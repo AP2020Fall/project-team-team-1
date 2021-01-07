@@ -141,20 +141,20 @@ public class EventInfo implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         lblID.setText(id);
         try {
-            lblGame.setText(adminGeneralController.eventFinderByEventID(id).gameNameProperty().getValue());
-            lblStart.setText(adminGeneralController.eventFinderByEventID(id).startDateProperty().getValue().toString());
-            lblEnd.setText(adminGeneralController.eventFinderByEventID(id).endDateProperty().getValue().toString());
-            lblScore.setText(adminGeneralController.eventFinderByEventID(id).scoreProperty().getValue().toString());
-            lblComment.setText(adminGeneralController.eventFinderByEventID(id).commentProperty().getValue().toString());
+            lblGame.setText(adminGeneralController.eventFinderByEventID(id).getGameName());
+            lblStart.setText(adminGeneralController.eventFinderByEventID(id).getStartDate().toString());
+            lblEnd.setText(adminGeneralController.eventFinderByEventID(id).getEndDate().toString());
+            lblScore.setText(String.valueOf(adminGeneralController.eventFinderByEventID(id).getScore()));
+            lblComment.setText(adminGeneralController.eventFinderByEventID(id).getComment());
         } catch (ExistEventException e) {
             System.err.println(e.getMessage());
         }
         try {
-            if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().getValue().toLowerCase().startsWith("b")){
+            if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("b")){
                 File file = new File("src\\main\\resources\\Icons\\battleShipIcon.png");
                 Image image = new Image(file.toURI().toString());
                 imgGame.setImage(image);
-            }else if (adminGeneralController.eventFinderByEventID(id).gameNameProperty().getValue().toLowerCase().startsWith("d")){
+            }else if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("d")){
                 File file = new File("src\\main\\resources\\Icons\\DotsAndBoxesIcon.png");
                 Image image = new Image(file.toURI().toString());
                 imgGame.setImage(image);

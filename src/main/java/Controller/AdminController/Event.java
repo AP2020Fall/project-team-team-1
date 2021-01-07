@@ -42,7 +42,7 @@ public class Event {
         if (Model.PlatoModel.Event.getEvents().size() == 0)
             throw new ExistEventException("There is no Event for show!");
         for (Model.PlatoModel.Event event : Model.PlatoModel.Event.events) {
-            output.append("EventId:").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.startDateProperty()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
+            output.append("EventId:").append(event.getEventID()).append(" Game name: ").append(event.getGameName()).append(" Start date: ").append(event.getStartDate()).append(" End date: ").append(event.getEndDate()).append(" Score: ").append(event.getScore()).append(" Comment: ").append(event.getComment()).append("$");
         }
         return String.valueOf(output);
     }
@@ -159,7 +159,7 @@ public class Event {
             throw new StartDatesException("Start Date Must be After now You cant Start Event in pass");
 
 
-        if (startDate.isAfter((ChronoLocalDate) event.getEndDate()))
+        if (startDate.isAfter(event.getEndDate()))
             throw new StartDatesException("Start Date Must be Before than EndDate");
 
         event.setStartDate(startDate);
@@ -173,7 +173,7 @@ public class Event {
         Validation.dateIsValid(input);
 
 
-        if (endDate.isBefore((ChronoLocalDate) event.startDateProperty()))
+        if (endDate.isBefore(event.getStartDate()))
             throw new StartDatesException("EndDate Must be After than StartDate");
 
         event.setEndDate(endDate);
