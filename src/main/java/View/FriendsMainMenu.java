@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -49,6 +50,10 @@ public class FriendsMainMenu implements Initializable {
     Button btnAcceptOrDecline;
     @FXML
     Button btnShowOrRemove;
+    @FXML
+    Label friendLabel;
+    @FXML
+    Pane friendPane;
 
 
 
@@ -151,6 +156,13 @@ public class FriendsMainMenu implements Initializable {
 
         });
     }
+    private void friendNumber() throws ExistFriendException {
+        String[] friendList = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
+        if (friendList.length != 0) {
+            friendPane.toBack();
+            friendLabel.setText("You have " + friendList.length + " friends");
+        }
+    }
 
 
 
@@ -162,6 +174,11 @@ public class FriendsMainMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            friendNumber();
+        } catch (ExistFriendException e) {
+            e.printStackTrace();
+        }
 //        try {
 //            setListView();
 //        } catch (ExistFriendException e) {
