@@ -18,7 +18,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,9 +29,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
+
     protected SignUp processSignUp = new SignUp();
     protected static Validation validation = new Validation();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+
+    private File file;
+
+    @FXML
+    public Button btnProfile;
     @FXML
     Button btnExit;
     @FXML
@@ -76,14 +84,17 @@ public class SignUpController implements Initializable {
 
             Validation.nameOrLastNameIsValid(txtName.getText());
             Validation.nameOrLastNameIsValid(txtLastname.getText());
-            Validation.gameNameIsValid(txtUsername.getText());
-            Validation.emailIsValid(txtPassword.getText());
+            Validation.usernameIsValid(txtUsername.getText());
+            Validation.emailIsValid(txtEmail.getText());
             Validation.phoneNumberIsValid(txtPhoneNum.getText());
             if (adminGeneralController.adminExistence().equalsIgnoreCase("true")){
                 processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
+                File image = createProfileFile(txtUsername.getText());
+                copy(file,image);
             }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
                 processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtEmail.getText(), txtPassword.getText(), txtPhoneNum.getText()));
-
+                File image = createProfileFile(txtUsername.getText());
+                copy(file,image);
             }
             URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
@@ -107,11 +118,16 @@ public class SignUpController implements Initializable {
             imgNameError.setImage(image);
         } catch (IOException | ExistAdminException e) {
             e.printStackTrace();
-        } catch (InvalidEmailException | InvalidNameException | InvalidGameNameException | InvalidPhoneNumberException e) {
+        } catch (InvalidEmailException | InvalidNameException | InvalidPhoneNumberException e) {
             System.err.println(e.getMessage());
             File file = new File("src\\main\\resources\\Images\\Error copy.png");
             Image image = new Image(file.toURI().toString());
             imgNameError.setImage(image);
+        } catch (InvalidUserNameException e) {
+            System.err.println(e.getMessage());
+            File file = new File("src\\main\\resources\\Images\\Error copy.png");
+            Image image = new Image(file.toURI().toString());
+            imgUsernameError.setImage(image);
         }
 
     }
@@ -137,6 +153,27 @@ public class SignUpController implements Initializable {
         return name + " " + lastName + " " + username + " " + email + " " + password + " " + phoneNum;
     }
 
+    @FXML
+    private File chooseProfilePick(FileChooser fileChooser){
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg","*.png");
+        fileChooser.getExtensionFilters().add(images);
+        return fileChooser.showOpenDialog(new Stage());
+    }
+    @FXML
+    private File createProfileFile(String username){
+        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                "Users"+File.separator+username+File.separator+username;
+        return new File(path);
+    }
+    @FXML
+    private void copy(File pic , File dest) throws IOException {
+        FileUtils.copyFile(pic,dest);
+    }
+    @FXML
+    public void selectProfilePic(ActionEvent event) {
+        file = chooseProfilePick(new FileChooser());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 //        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
@@ -145,4 +182,6 @@ public class SignUpController implements Initializable {
 //        mediaPlayer.play();
 
     }
+
+
 }

@@ -44,7 +44,7 @@
             <Image url="@../Images/Sign-Up.gif" />
          </image>
       </ImageView>
-      <Button fx:id="btnSubmit" layoutX="354.0" layoutY="320.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: transparency; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Register">
+      <Button fx:id="btnSubmit" layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: transparency; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Register">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -87,5 +87,10 @@
       <ImageView fx:id="imgPhoneNumError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgPasswordError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgNameError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btnProfile" layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onAction="#selectProfilePic" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: transparency; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Select Profile">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
