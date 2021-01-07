@@ -35,4 +35,16 @@ public class FindPlayerByInfo {
         }
         return player;
     }
+
+    public static User findByUserByUsername(String username){
+        User user1 = null;
+//        Player player = null;
+        for (User wantedPlayer : User.getUsers()) {
+            if (wantedPlayer.getUserName().equals(username)) {
+                user1 = wantedPlayer ;
+                break;
+            }
+        }
+        return user1;
+    }
 }

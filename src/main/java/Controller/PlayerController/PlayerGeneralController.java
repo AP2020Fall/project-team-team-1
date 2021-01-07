@@ -67,8 +67,11 @@ public class PlayerGeneralController {
         return FindPlayerByInfo.findByUserEmail(userEmail);
     }
 
+    public User findByUserByUsername(String username) {
+        return FindPlayerByInfo.findByUserByUsername(username);
+    }
 
-    /***********************************************FRIEND***********************************************/
+        /***********************************************FRIEND***********************************************/
     public void addFriends(String username, String friendUsername) throws ExistFriendException, ExistPlayerException, IOException {
         Friend.addFriends(username, friendUsername);
         DataBase.save(Player.players,playerFile);

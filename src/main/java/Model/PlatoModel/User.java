@@ -32,6 +32,14 @@ public class User {
         this.phoneNum = phoneNum;
     }
 
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        User.users = users;
+    }
+
     public String getName() {
         return name;
     }
