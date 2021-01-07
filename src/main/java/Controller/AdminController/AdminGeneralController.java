@@ -31,11 +31,14 @@ public class AdminGeneralController {
         Edit.editPassword(strings[1], strings[2]);
         DataBase.save(Admin.getAdmins(), adminFile);
     }
-    public void editBio (String input) {
+    public void editBio (String input) throws IOException {
         Edit.editBio(input);
+        DataBase.save(Admin.getAdmins(), adminFile);
+
     }
-    public void editProfileURL(String input) {
+    public void editProfileURL(String input) throws IOException {
         Edit.editProfileURL(input);
+        DataBase.save(Admin.getAdmins(), adminFile);
     }
 
         /***********************************************EVENT***********************************************/
