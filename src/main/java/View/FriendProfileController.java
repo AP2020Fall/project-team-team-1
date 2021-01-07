@@ -206,9 +206,8 @@ public class FriendProfileController implements Initializable {
             setImgStatusToProfile();
             setProfilesLabels();
             setGameStatus();
-            setGameStatus();
-            setFavoriteGames();
             setPlatoAgeLabel();
+            setFavoriteGames();
         } catch (ExistPlayerException | ExistFriendException | InvalidGameNameException | ExistFavoriteException e) {
             System.err.println(e.getMessage());
         }
