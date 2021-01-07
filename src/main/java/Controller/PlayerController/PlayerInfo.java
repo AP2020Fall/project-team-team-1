@@ -172,8 +172,10 @@ public class PlayerInfo {
 
     public static void deleteUser(String input)  {
         Player player = FindPlayerByInfo.findByUserName(input);
+        User user = FindPlayerByInfo.findByUserByUsername(input);
         Player.players.remove(player);
-        User.users.remove(player);
+        User.users.remove(user);
+
 
 
 //        User.saveInJsonFile();
