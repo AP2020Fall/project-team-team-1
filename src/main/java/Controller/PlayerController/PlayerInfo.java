@@ -9,6 +9,7 @@ import Model.PlatoModel.User;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 public class PlayerInfo {
 
@@ -172,6 +173,19 @@ public class PlayerInfo {
 
     public static void deleteUser(String input)  {
         Player player = FindPlayerByInfo.findByUserName(input);
+        ArrayList<String> forDelete = new ArrayList<>();
+        for (String friend : player.getFriends()) {
+            forDelete.add(friend);
+        }
+        for (String s : forDelete) {
+            try {
+                Friend.removeFriend(player.getUserName(),s);
+            } catch (ExistFriendException e) {
+                e.printStackTrace();
+            } catch (ExistPlayerException e) {
+                e.printStackTrace();
+            }
+        }
         User user = FindPlayerByInfo.findByUserByUsername(input);
         Player.players.remove(player);
         User.users.remove(user);
