@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 public class SendMessageAsPlatoBotController implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    String[] messages = playerGeneralController.viewBotMessages().split("//$");
+    String[] messages = playerGeneralController.viewBotMessages().split("\\$");
 
     @FXML
     public Button btnSend;
@@ -50,6 +51,8 @@ public class SendMessageAsPlatoBotController implements Initializable {
         for (int i = 0; i < messages.length; i++) {
             Label label = new Label();
             label.setText(messages[i]);
+            label.setTextFill(Color.WHITE);
+            label.setPrefWidth(360);
             vbox.getChildren().add(label);
 
         }
