@@ -27,7 +27,8 @@ public class AdminMainMenu {
     public Button btnEvents;
     @FXML
     public Button btnProfile;
-
+    @FXML
+    public Button btnMessages;
 
 
     @FXML
@@ -92,5 +93,8 @@ public class AdminMainMenu {
          Media media = new Media(file.toURI().toString());
          MediaPlayer mediaPlayer = new MediaPlayer(media);
          mediaPlayer.play();
+    }
+
+    public void goMessages(ActionEvent event) {
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,14 +67,18 @@ public class ConfirmPasswordControllerForDeleteAccount {
         }
         else {
             String[] user = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
-            File file = new File(user[6]);
-            file.delete();
+//            File file = new File(user[6]);
+            deleteDirectory(new File("src"+File.separator+"main"+File.separator+"resources"+File.separator+"Users"+File.separator+getUsername()));
             playerGeneralController.deleteUser(getUsername());
             setConfirm("false");
             System.exit(1);
             //todo Check this
         }
 
+    }
+    @FXML
+    private void deleteDirectory(File fileForDelete) throws IOException {
+        FileUtils.deleteDirectory(fileForDelete);
     }
 
     private void showError() throws IOException {
