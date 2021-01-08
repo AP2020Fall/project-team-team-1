@@ -30,7 +30,7 @@
       </ImageView>
       <VBox fx:id="vbox" alignment="TOP_RIGHT" layoutX="225.0" layoutY="25.0" prefHeight="300.0" prefWidth="360.0" style="-fx-background-radius: 5px; -fx-border-radius: 5px; -fx-border-width: 4px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="25.0">
          <children>
-            <ScrollBar orientation="VERTICAL" prefHeight="390.0" prefWidth="14.0" style="-fx-background-color: #1a1b20;" />
+            <ScrollBar orientation="VERTICAL" prefHeight="295.0" prefWidth="14.0" style="-fx-background-color: #1a1b20;" />
          </children>
       </VBox>
    </children>

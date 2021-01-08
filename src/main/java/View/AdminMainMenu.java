@@ -94,7 +94,13 @@ public class AdminMainMenu {
          MediaPlayer mediaPlayer = new MediaPlayer(media);
          mediaPlayer.play();
     }
-
-    public void goMessages(ActionEvent event) {
+    @FXML
+    public void goMessages(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 }
