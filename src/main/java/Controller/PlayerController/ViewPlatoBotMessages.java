@@ -8,7 +8,7 @@ public class ViewPlatoBotMessages {
         StringBuilder viewBotMessages = new StringBuilder();
 
         for (Message message : Message.getMessages()) {
-            viewBotMessages.append(message.getMassageID()).append("$").append(message.getText()).append("$").append(message.getDate()).append("$").append(message.getTime()).append("&");
+            viewBotMessages.append(message.getMassageID()).append(" : ").append(message.getText()).append("    ,").append(message.getDate()).append(" , ").append(message.getTime().getHour()).append(":").append(message.getTime().getMinute()).append("$");
         }
         return String.valueOf(viewBotMessages);
 
