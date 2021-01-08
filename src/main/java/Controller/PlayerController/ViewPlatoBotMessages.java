@@ -13,6 +13,4 @@ public class ViewPlatoBotMessages {
         return String.valueOf(viewBotMessages);
 
     }
-
-
 }
