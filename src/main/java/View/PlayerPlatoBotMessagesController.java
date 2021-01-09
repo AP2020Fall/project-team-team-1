@@ -52,7 +52,7 @@ public class PlayerPlatoBotMessagesController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
-        String[] showMessage = playerGeneralController.viewBotMessages().split("\\&");
+        String[] showMessage = playerGeneralController.viewBotMessages().split("\\$");
         for (String out : showMessage) {
             listView.getItems().add(out);
         }
