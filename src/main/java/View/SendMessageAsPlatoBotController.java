@@ -83,7 +83,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
             Label text = new Label();
             text.setText(dates[0].substring(6));
             text.setTextFill(Color.WHITE);
-            text.setPrefWidth(310);
+            text.setPrefWidth(300);
             text.setPrefHeight(20);
             Label time = new Label();
             time.setText(dates[2]);
