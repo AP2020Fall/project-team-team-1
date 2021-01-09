@@ -15,6 +15,8 @@
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutY="2.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+            <Button layoutX="14.0" layoutY="121.0" mnemonicParsing="false" onAction="#goToBotsMessages" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white;" text="PlatoBot Messages" />
+            <Button layoutX="15.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToSuggestions" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white;" text="Suggestios" />
          </children></Pane>
       <Button fx:id="btnSend" layoutX="213.0" layoutY="360.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: #1a1b20;">
          <graphic>
