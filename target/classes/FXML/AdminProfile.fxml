@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -23,9 +22,6 @@
                <viewport>
                   <Rectangle2D />
                </viewport>
-               <image>
-                  <Image url="@../Images/default-profile.png" />
-               </image>
             </ImageView>
             <Text fill="WHITE" layoutX="160.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="119.99999284744263">
                <font>
@@ -81,7 +77,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnEdit" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToEditPanel" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #14A6B8;" text="Edit Profile" />
+      <Button fx:id="btnEdit" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToEditPanel" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #14A6B8; -fx-font-weight: bold;" text="Edit Profile" />
       <Pane fx:id="editPane" layoutX="19.0" layoutY="267.0" prefHeight="120.0" prefWidth="573.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0">
          <children>
              <ComboBox fx:id="comboField" layoutX="14.0" layoutY="48.0" prefHeight="27.0" prefWidth="132.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
@@ -101,6 +97,7 @@
             <Button fx:id="btnSubmitEdit" layoutX="399.0" layoutY="48.0" mnemonicParsing="false" onAction="#editAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #808B96;" text="Edit" />
          </children>
       </Pane>
-      <Pane fx:id="simplePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0" />
+      <Pane fx:id="simplePane" layoutY="280.0" prefHeight="120.0" prefWidth="562.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0" />
+      <Button layoutX="22.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeProfilePicAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #B1F21B; -fx-font-weight: bold;" text="Edit Profile Pic" />
    </children>
 </AnchorPane>

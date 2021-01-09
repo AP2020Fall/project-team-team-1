@@ -13,12 +13,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,6 +30,7 @@ import java.util.ResourceBundle;
 public class AdminProfile implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     String[] strings = adminGeneralController.showAdminInfo().split("\\$");
+    private File file;
 
     @FXML
     public ImageView imgProfile;
@@ -101,6 +106,19 @@ public class AdminProfile implements Initializable {
         lblEmail.setText(strings[4]);
         lblID.setText(strings[0]);
         lblPhone.setText(strings[5]);
+        try {
+            showAdminImage();
+        } catch (MalformedURLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    @FXML
+    private void showAdminImage() throws MalformedURLException {
+        String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator
+                +"Users"+File.separator+"admin"+File.separator
+                +"admin.jpg";
+        URL url = new File(path).toURI().toURL();
+        imgProfile.setImage(new Image(url.toExternalForm()));
     }
     @FXML
     public void editAdmin(ActionEvent event) throws InvalidEmailException, InvalidNameException, ExistEmailException, InvalidFieldException, InvalidPhoneNumberException, IOException {
@@ -120,4 +138,33 @@ public class AdminProfile implements Initializable {
         window.setScene(message);
         window.show();
     }
+
+    public void changeProfilePicAdmin(ActionEvent event) throws IOException {
+        file = chooseProfilePick(new FileChooser());
+        copy(file,createProfileFile("admin"));
+        URL url = new File("src/main/resources/FXML/AdminProfile.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
+    }
+    @FXML
+    private File chooseProfilePick(FileChooser fileChooser){
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
+        fileChooser.getExtensionFilters().add(images);
+        return fileChooser.showOpenDialog(new Stage());
+    }
+    @FXML
+    private File createProfileFile(String username){
+        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                "Users"+File.separator+username+File.separator+username+".jpg";
+        return new File(path);
+    }
+    @FXML
+    private void copy(File pic , File dest) throws IOException {
+        FileUtils.copyFile(pic,dest);
+    }
+
 }
