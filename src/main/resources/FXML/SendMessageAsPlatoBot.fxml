@@ -12,7 +12,10 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/ChatBox.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SendMessageAsPlatoBotController">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutY="2.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+         </children></Pane>
       <Button fx:id="btnSend" layoutX="213.0" layoutY="360.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: #1a1b20;">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -34,5 +37,6 @@
             <VBox fx:id="vbox" alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="360.0" style="-fx-background-color: #1a1b20;" />
          </content>
       </ScrollPane>
+      <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#exit" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold;" text="X" />
    </children>
 </AnchorPane>

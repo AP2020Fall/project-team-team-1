@@ -52,32 +52,22 @@ public class SendMessageAsPlatoBotController implements Initializable {
 
     @FXML
     private void showMessages(){
-        for (int i = 0; i < messages.length; i++) {
+        for (String s : messages) {
 
-            String[] dates = messages[i].split(",");
+            String[] dates = s.split(",");
             Label date = new Label();
 
 
-            if (!temp.equals(checkDate(dates[1].substring(0,10)))){
-                date.setText(checkDate(dates[1].substring(0,10)));
-            }else {
+            if (!temp.equals(checkDate(dates[1].substring(0, 10)))) {
+                date.setText(checkDate(dates[1].substring(0, 10)));
+            } else {
                 date.setText(" ");
             }
             date.setTextFill(Color.web("#00acea"));
             date.setAlignment(Pos.CENTER);
             date.setPrefWidth(360);
             date.setPrefHeight(10);
-            temp=checkDate(dates[1].substring(0,10));
-            //**********************//
-
-//            Label label = new Label();
-//            label.setText(dates[0].substring(6));
-//            label.setTextFill(Color.WHITE);
-//            label.setPrefWidth(360);
-//            label.setPrefHeight(20);
-//            vbox.getChildren().addAll(date,label);
-
-            //*********************//
+            temp = checkDate(dates[1].substring(0, 10));
 
             HBox message = new HBox();
             Label text = new Label();
@@ -88,10 +78,9 @@ public class SendMessageAsPlatoBotController implements Initializable {
             Label time = new Label();
             time.setText(dates[2]);
             time.setTextFill(Color.GRAY);
-//            time.setPrefWidth(20);
             time.setPrefHeight(20);
-            message.getChildren().addAll(text,time);
-            vbox.getChildren().addAll(date,message);
+            message.getChildren().addAll(text, time);
+            vbox.getChildren().addAll(date, message);
 
         }
     }
@@ -108,5 +97,18 @@ public class SendMessageAsPlatoBotController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         vbox.setSpacing(10);
         showMessages();
+    }
+    @FXML
+    public void exit(ActionEvent event) {
+        System.exit(1);
+    }
+    @FXML
+    public void back(ActionEvent event) throws IOException {
+        URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 }
