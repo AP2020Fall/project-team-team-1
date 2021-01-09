@@ -15,8 +15,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -208,19 +210,6 @@ public class ProfileController implements Initializable {
         loseLabel.setText(String.valueOf(lose));
 //        numberOfPlayedLabel.setText(String.valueOf(all));
     }
-    @FXML
-    private void editProfile(ActionEvent event) throws IOException {
-
-
-        {
-            URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(message);
-            window.show();
-        }
-    }
 
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
@@ -341,4 +330,30 @@ public class ProfileController implements Initializable {
         }
     }
 
+    public void editProfilePic(ActionEvent event) throws IOException {
+        File file = chooseProfilePick(new FileChooser());
+        copy(file,createProfileFile(getUsernameForShowProfile()));
+        URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+    @FXML
+    private File chooseProfilePick(FileChooser fileChooser){
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
+        fileChooser.getExtensionFilters().add(images);
+        return fileChooser.showOpenDialog(new Stage());
+    }
+    @FXML
+    private File createProfileFile(String username){
+        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                "Users"+File.separator+username+File.separator+username+".jpg";
+        return new File(path);
+    }
+    @FXML
+    private void copy(File pic , File dest) throws IOException {
+        FileUtils.copyFile(pic,dest);
+    }
 }

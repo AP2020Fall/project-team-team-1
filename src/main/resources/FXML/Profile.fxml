@@ -21,11 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="imgStatus" fitHeight="99.0" fitWidth="100.0" layoutX="16.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/default-profile.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="imgStatus" fitHeight="99.0" fitWidth="100.0" layoutX="16.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nameAndLastname" layoutX="125.0" layoutY="63.0" prefHeight="27.0" prefWidth="288.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
       <ImageView fx:id="imgMedal" fitHeight="125.0" fitWidth="128.0" layoutX="419.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -74,7 +70,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="22.0" layoutY="168.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="26.0" prefWidth="87.0" style="-fx-background-radius: 5px; -fx-background-color: green; -fx-text-fill: white;" text="Edit Profile" />
+      <Button layoutX="22.0" layoutY="168.0" mnemonicParsing="false" onAction="#editProfilePic" prefHeight="26.0" prefWidth="87.0" style="-fx-background-radius: 5px; -fx-background-color: green; -fx-text-fill: white;" text="Edit Profile" />
       <Pane fx:id="EditPane" layoutX="169.0" layoutY="286.0" prefHeight="66.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="286.0">
          <children>
             <Button fx:id="btnEdit" layoutX="303.0" layoutY="34.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
