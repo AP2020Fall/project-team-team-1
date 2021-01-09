@@ -89,6 +89,7 @@ public class FriendsMainMenu implements Initializable {
         if (FriendProfileController.getUsernameOfFriend().equalsIgnoreCase("null")){
             return;
         }
+        System.out.println(FriendProfileController.getUsernameOfFriend());
 
         URL url = new File("src/main/resources/FXML/FriendProfile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);

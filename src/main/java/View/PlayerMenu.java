@@ -50,7 +50,6 @@ public class PlayerMenu {
     public void goToProfile(ActionEvent event) throws IOException {
         playMouseSound();
         ProfileController.setUsernameForShowProfile(LoginController.getUsername());
-//        System.out.println(LoginController.getUsername());
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
