@@ -185,7 +185,6 @@ public class ProfileController implements Initializable {
         File file = new File(userData[6]);
         URL url = file.toURI().toURL();
         Image image = new Image(url.toExternalForm());
-        System.out.println(image.getHeight());
         imgStatus.setImage(image);
     }
 
@@ -333,6 +332,8 @@ public class ProfileController implements Initializable {
     public void editProfilePic(ActionEvent event) throws IOException {
         File file = chooseProfilePick(new FileChooser());
         copy(file,createProfileFile(getUsernameForShowProfile()));
+
+        playerGeneralController.editProfileURL(LoginController.getUsername(),createProfileFile(getUsernameForShowProfile()).getPath());
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
