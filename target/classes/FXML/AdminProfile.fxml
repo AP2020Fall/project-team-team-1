@@ -53,8 +53,8 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToLastMenuAdminProfile" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="back" />
-            <Button fx:id="btnExit" layoutX="573.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToLastMenuAdminProfile" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="back" />
+            <Button fx:id="btnExit" layoutX="573.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
       <Text fill="WHITE" layoutX="160.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="131.99999284744263">

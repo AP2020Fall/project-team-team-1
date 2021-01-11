@@ -15,27 +15,27 @@
             <Image url="@../Images/Sign.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="txtName" layoutX="281.0" layoutY="120.0" prefHeight="25.0" prefWidth="94.0" promptText="Name" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <TextField fx:id="txtName" layoutX="281.0" layoutY="120.0" prefHeight="25.0" prefWidth="94.0" promptText="Name" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField fx:id="txtLastname" layoutX="401.0" layoutY="120.0" prefHeight="29.0" prefWidth="118.0" promptText="Last name" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <TextField fx:id="txtLastname" layoutX="401.0" layoutY="120.0" prefHeight="29.0" prefWidth="118.0" promptText="Last name" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField fx:id="txtUsername" layoutX="281.0" layoutY="160.0" prefHeight="29.0" prefWidth="240.0" promptText="Username" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <TextField fx:id="txtUsername" layoutX="281.0" layoutY="160.0" prefHeight="29.0" prefWidth="240.0" promptText="Username" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField fx:id="txtEmail" layoutX="281.0" layoutY="200.0" prefHeight="29.0" prefWidth="240.0" promptText="Email" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <TextField fx:id="txtEmail" layoutX="281.0" layoutY="200.0" prefHeight="29.0" prefWidth="240.0" promptText="Email" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <TextField fx:id="txtPhoneNum" layoutX="281.0" layoutY="240.0" prefHeight="29.0" prefWidth="240.0" promptText="Phone number" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <TextField fx:id="txtPhoneNum" layoutX="281.0" layoutY="240.0" prefHeight="29.0" prefWidth="240.0" promptText="Phone number" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <PasswordField fx:id="txtPassword" layoutX="281.0" layoutY="280.0" prefHeight="29.0" prefWidth="240.0" promptText="Password" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
+      <PasswordField fx:id="txtPassword" layoutX="281.0" layoutY="280.0" prefHeight="29.0" prefWidth="240.0" promptText="Password" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #808B96; -fx-text-fill: white; -fx-prompt-text-fill: #808B96;">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
@@ -44,15 +44,15 @@
             <Image url="@../Images/Sign-Up.gif" />
          </image>
       </ImageView>
-      <Button fx:id="btnSubmit" layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: transparency; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Register">
+      <Button fx:id="btnSubmit" layoutX="412.0" layoutY="321.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #1a1b20; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Register">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnBack" layoutX="275.0" layoutY="360.0" mnemonicParsing="false" onAction="#goToRegisterMenu" style="-fx-background-color: transparency; -fx-text-fill: #808B96;" text="Already has an Account? log-in!" underline="true">
+      <Button fx:id="btnBack" layoutX="275.0" layoutY="360.0" mnemonicParsing="false" onAction="#goToRegisterMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: #808B96;" text="Already has an Account? log-in!" underline="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnExit" layoutX="570.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: Bold; -fx-font-size: 15px;" text="X">
+      <Button fx:id="btnExit" layoutX="570.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: Bold; -fx-font-size: 15px;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -87,7 +87,7 @@
       <ImageView fx:id="imgPhoneNumError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgPasswordError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgNameError" fitHeight="25.0" fitWidth="25.0" layoutX="529.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnProfile" layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onAction="#selectProfilePic" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: transparency; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Select Profile">
+      <Button fx:id="btnProfile" layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onAction="#selectProfilePic" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #1a1b20; -fx-text-fill: #808B96; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Select Profile">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

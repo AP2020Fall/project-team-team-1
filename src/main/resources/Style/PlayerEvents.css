@@ -1,3 +1,43 @@
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url('Fonts/josefin-sans-v16-latin-regular.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/josefin-sans-v16-latin-regular.woff2') format('woff2'),
+    url('Fonts/josefin-sans-v16-latin-regular.woff') format('woff'),
+    url('Fonts/josefin-sans-v16-latin-regular.ttf') format('truetype'),
+    url('Fonts/josefin-sans-v16-latin-regular.svg#JosefinSans') format('svg');
+}
+
+@font-face {
+    font-family: "Plato";
+    src: url("Fonts/Regular.ttf");
+}
+
+text {
+    -fx-font-family: "Josefin Sans";
+}
+
+label {
+    -fx-font-family: "Josefin Sans";
+}
+
+button {
+    -fx-font-family: "Josefin Sans";
+}
+
+.text {
+    -fx-font-family: "Josefin Sans";
+}
+
+.label {
+    -fx-font-family: "Josefin Sans";
+}
+
+.button {
+    -fx-font-family: "Josefin Sans";
+}
 .table-view{
     -fx-background-color: #1a1b20;
 }
