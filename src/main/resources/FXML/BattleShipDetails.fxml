@@ -16,13 +16,13 @@
             <Image url="@../Images/GamesDetails.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="topic" layoutX="22.0" layoutY="24.0" prefHeight="53.0" prefWidth="558.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato; -fx-font-size: 20px;" stylesheets="@../Style/StyleSheet.css" text="Details" />
+      <Label fx:id="topic" layoutX="22.0" layoutY="24.0" prefHeight="53.0" prefWidth="558.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato; -fx-font-size: 20px;" stylesheets="@../Style/StyleSheet.css" text="Details" />
       <Text fx:id="detail" fill="WHITE" layoutX="45.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is battle ship details" wrappingWidth="337.6708984375">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button layoutX="543.0" layoutY="8.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-font-size: 15px;" stylesheets="@../Style/StyleSheet.css" text="Back">
+      <Button layoutX="543.0" layoutY="8.0" mnemonicParsing="false" onAction="#goBattleShipMainMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-font-size: 15px;" stylesheets="@../Style/StyleSheet.css" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

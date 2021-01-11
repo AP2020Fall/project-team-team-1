@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #1a1e36;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ErrorBanController">
    <children>
-      <Button fx:id="btnOk" layoutX="100.0" layoutY="203.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #f13050; -fx-font-family: plato; -fx-cursor: hand; -fx-font-weight: Bold; -fx-font-size: 17px;" styleClass="..\Style\StyleSheet.css" text="OK" textFill="#f13050" />
+      <Button fx:id="btnOk" layoutX="100.0" layoutY="203.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #1a1e36; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #f13050; -fx-font-family: plato; -fx-cursor: hand; -fx-font-weight: Bold; -fx-font-size: 17px;" styleClass="..\Style\StyleSheet.css" text="OK" textFill="#f13050" />
       <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="68.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/jail.png" />

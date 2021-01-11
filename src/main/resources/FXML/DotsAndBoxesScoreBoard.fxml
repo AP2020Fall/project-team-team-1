@@ -19,8 +19,8 @@
                 <Image url="@../Images/Flag.png" />
             </image>
         </ImageView>
-        <ListView id="space" fx:id="listView" layoutX="125.0" layoutY="17.0" prefHeight="340.0" prefWidth="350.0" style="-fx-background-color: transparency;" stylesheets="@../Style/StyleOfListView.css" />
-        <Button layoutX="268.0" layoutY="353.0" mnemonicParsing="false" onAction="#goDotsAndBoxesMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-font-size: 15px; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
+        <ListView id="space" fx:id="listView" layoutX="125.0" layoutY="17.0" prefHeight="340.0" prefWidth="350.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListView.css" />
+        <Button layoutX="268.0" layoutY="353.0" mnemonicParsing="false" onAction="#goDotsAndBoxesMainMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea; -fx-font-size: 15px; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>

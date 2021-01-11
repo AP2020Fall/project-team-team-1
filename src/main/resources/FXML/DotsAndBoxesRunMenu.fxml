@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DotsAndBoxesRunMenu">
     <children>
-        <ListView fx:id="listViewFriends" layoutX="263.0" layoutY="73.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: transparency; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
+        <ListView fx:id="listViewFriends" layoutX="263.0" layoutY="73.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: #1a1b20; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
         <JFXTextField fx:id="txtUsername" focusColor="#00acea" labelFloat="true" layoutX="55.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Username" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" stylesheets="@../Style/StyleSheet.css" unFocusColor="#808b96" />
         <JFXPasswordField fx:id="txtPassword" focusColor="#00acea" labelFloat="true" layoutX="57.0" layoutY="203.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" stylesheets="@../Style/StyleSheet.css" unFocusColor="#808b96">
             <cursor>
@@ -29,12 +29,12 @@
                 <Image url="@../Icons/143-padlock-2.png" />
             </image>
         </ImageView>
-        <Button fx:id="btnSubmit" layoutX="57.0" layoutY="265.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Start">
+        <Button fx:id="btnSubmit" layoutX="57.0" layoutY="265.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Start">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
         <Label layoutX="400.0" layoutY="50.0" prefHeight="17.0" prefWidth="66.0" style="-fx-text-fill: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Friend List" />
-        <Button layoutX="552.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToDotsAndBoxesMainMenu" style="-fx-background-color: transparency; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Back">
+        <Button layoutX="552.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToDotsAndBoxesMainMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Back">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>

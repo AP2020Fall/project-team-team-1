@@ -52,7 +52,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
          </children>
       </Pane>
       <Button fx:id="btnExit" layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#exitApp" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-text-fill: white;" text="X" />
