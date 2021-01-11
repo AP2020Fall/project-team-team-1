@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsMvp" alignment="TOP_LEFT" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="90.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblDotsMvp" alignment="TOP_LEFT" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="90.0" stylesheets="@../Style/StyleSheet.css" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
