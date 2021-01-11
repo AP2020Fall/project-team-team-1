@@ -35,7 +35,7 @@ public class LoginController implements Initializable {
     protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static Existence existence = new Existence();
-    private static final File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+    private static final File file = new File("src\\main\\resources\\Sound\\dream.mp3");
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
 
@@ -173,6 +173,7 @@ public class LoginController implements Initializable {
 //        Media media = new Media(file.toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        AdminMainMenu.mediaPlayerAdmin.stop();
 //        txtUsername.setText("amir");
 //        if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
 //            txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));

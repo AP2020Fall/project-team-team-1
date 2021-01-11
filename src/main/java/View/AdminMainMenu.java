@@ -3,6 +3,7 @@ package View;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +15,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminMainMenu {
+public class AdminMainMenu implements Initializable {
+    private static final File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+    protected static Media media = new Media(file.toURI().toString());
+    protected static MediaPlayer mediaPlayerAdmin = new MediaPlayer(media);
 
     @FXML
     public Button btnLogout;
@@ -102,5 +107,10 @@ public class AdminMainMenu {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        mediaPlayerAdmin.play();
     }
 }

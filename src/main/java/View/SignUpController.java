@@ -184,6 +184,7 @@ public class SignUpController implements Initializable {
 //        Media media = new Media(file.toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
 //        mediaPlayer.play();
+        AdminMainMenu.mediaPlayerAdmin.stop();
 
     }
 
