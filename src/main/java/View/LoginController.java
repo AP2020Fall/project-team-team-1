@@ -144,6 +144,7 @@ public class LoginController implements Initializable {
     private String getInfo(String txtUsername, String txtPassword) {
         return txtUsername + " " + txtPassword;
     }
+
     public void playMouseSound(){
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());

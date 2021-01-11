@@ -12,6 +12,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -32,6 +34,7 @@ public class DotsAndBoxesDetailsController implements Initializable {
 
     @FXML
     private void setDetail() {
+        playMouseSound();
         //detail.setText(playerGeneralController.battleDetails());
         topic.setText(adminGeneralController.secondGameNameGetter() + "'s Details");
         final String content = playerGeneralController.dotsDetails();
@@ -52,6 +55,7 @@ public class DotsAndBoxesDetailsController implements Initializable {
     }
     @FXML
     private void goDotsAndBoxesMainMenu(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/DotsAndBoxesMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -64,5 +68,11 @@ public class DotsAndBoxesDetailsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setDetail();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }

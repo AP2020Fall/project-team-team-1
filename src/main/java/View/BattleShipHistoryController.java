@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -105,6 +107,7 @@ public class BattleShipHistoryController implements Initializable {
     }
     @FXML
     private void goBattleShipMainMenu(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -112,6 +115,12 @@ public class BattleShipHistoryController implements Initializable {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
 

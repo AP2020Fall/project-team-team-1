@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -53,6 +55,7 @@ public class DotsAndBoxesHistoryController implements Initializable {
 
     @FXML
     private void setPieChart() throws InvalidGameNameException {
+        playMouseSound();
 
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
@@ -105,6 +108,7 @@ public class DotsAndBoxesHistoryController implements Initializable {
     }
     @FXML
     private void goDotsAndBoxesMainMenu(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
 
         URL url = new File("src/main/resources/FXML/DotsAndBoxesMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -113,7 +117,12 @@ public class DotsAndBoxesHistoryController implements Initializable {
         window.setScene(message);
         window.show();
     }
-
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

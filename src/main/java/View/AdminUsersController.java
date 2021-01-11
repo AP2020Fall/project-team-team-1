@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,6 +61,7 @@ public class AdminUsersController implements Initializable {
 
     @FXML
     private void backToAdminMenu(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -68,6 +71,7 @@ public class AdminUsersController implements Initializable {
     }
     @FXML
     private void goToPlayer(ActionEvent event) throws IOException {
+        playMouseSound();
         if (ShowUserProfileForAdminController.getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
@@ -87,6 +91,7 @@ public class AdminUsersController implements Initializable {
     }
     @FXML
     public void initActions(){
+        playMouseSound();
         table.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent arg0) {
                 String usernameForShow = table.getSelectionModel().getSelectedItem().getUserName();
@@ -145,5 +150,11 @@ public class AdminUsersController implements Initializable {
 //            return row;
 //        });
 
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }

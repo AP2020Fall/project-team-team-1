@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -65,6 +67,7 @@ public class FriendsMainMenu implements Initializable {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -74,6 +77,7 @@ public class FriendsMainMenu implements Initializable {
     }
     @FXML
     private void setBtnAcceptOrDecline(ActionEvent event) throws IOException {
+        playMouseSound();
         if (FriendRequests.getUsernameForAcceptOrDecline().equalsIgnoreCase("null")){
             return;
         }
@@ -86,6 +90,7 @@ public class FriendsMainMenu implements Initializable {
     }
     @FXML
     private void setBtnShowOrRemove(ActionEvent event) throws IOException {
+        playMouseSound();
         if (FriendProfileController.getUsernameOfFriend().equalsIgnoreCase("null")){
             return;
         }
@@ -164,7 +169,12 @@ public class FriendsMainMenu implements Initializable {
             friendLabel.setText("You have " + friendList.length + " friends");
         }
     }
-
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
 
 
 

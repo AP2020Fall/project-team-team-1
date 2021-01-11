@@ -15,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -107,17 +109,20 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void cancelEdit(ActionEvent event) {
+        playMouseSound();
         simplePane.toFront();
     }
 
 
     @FXML
     private void deleteAccount() throws IOException {
+        playMouseSound();
         showConfirmPasswordPopUp();
         //todo make popup because need password
     }
 
     private void showConfirmPasswordPopUp() throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/ConfirmPasswordForDeleteAccount.fxml").toURI().toURL();
         AnchorPane root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
@@ -128,9 +133,11 @@ public class ProfileController implements Initializable {
     }
     @FXML
     private void changePassword() throws IOException {
+        playMouseSound();
         showChangePasswordPopUp();
     }
     private void showChangePasswordPopUp() throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/ChangePassword.fxml").toURI().toURL();
         AnchorPane root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
@@ -142,6 +149,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void editEvent(ActionEvent event) throws IOException {
+        playMouseSound();
         try {
             if (btnField.getValue().toLowerCase().equals("name")) {
                 playerGeneralController.editField(LoginController.getUsername() + " " + "name" + " " + txtNewValue.getText());
@@ -176,11 +184,13 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setBtnEditBio(ActionEvent event) throws IOException {
+        playMouseSound();
         playerGeneralController.editBio(getUsernameForShowProfile(), bio.getText());
     }
 
     @FXML
     private void setImgStatusToProfile() throws ExistPlayerException, MalformedURLException {
+        playMouseSound();
         String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
         File file = new File(userData[6]);
         URL url = file.toURI().toURL();
@@ -191,6 +201,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
+        playMouseSound();
         setUsernameForShowProfile("null");
         URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -212,6 +223,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
+        playMouseSound();
         battleLabel.setText(adminGeneralController.firstGameNameGetter());
         dotsLabel.setText(adminGeneralController.secondGameNameGetter());
 
@@ -330,9 +342,10 @@ public class ProfileController implements Initializable {
     }
 
     public void editProfilePic(ActionEvent event) throws IOException {
+
         File file = chooseProfilePick(new FileChooser());
         copy(file,createProfileFile(getUsernameForShowProfile()));
-
+        playMouseSound();
         playerGeneralController.editProfileURL(LoginController.getUsername(),createProfileFile(getUsernameForShowProfile()).getPath());
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -343,6 +356,7 @@ public class ProfileController implements Initializable {
     }
     @FXML
     private File chooseProfilePick(FileChooser fileChooser){
+        playMouseSound();
         FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
         fileChooser.getExtensionFilters().add(images);
         return fileChooser.showOpenDialog(new Stage());
@@ -356,5 +370,11 @@ public class ProfileController implements Initializable {
     @FXML
     private void copy(File pic , File dest) throws IOException {
         FileUtils.copyFile(pic,dest);
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }

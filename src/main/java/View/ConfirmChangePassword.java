@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -60,12 +62,13 @@ public class ConfirmChangePassword {
 
     @FXML
     private void close(ActionEvent event){
+        playMouseSound();
         Stage stage = (Stage)btnBack.getScene().getWindow();
         stage.close();
     }
     @FXML
     private void setBtnConfirm(ActionEvent event) throws IOException, StrongerPasswordException, InvalidPasswordException, WrongPasswordException, SamePasswordException {
-
+        playMouseSound();
         String password = txtPassword.getText();
         String newPassword = txtNewPassword.getText();
         setConfirm(Existence.checkPasswordForView(getUsername(),password));
@@ -82,6 +85,12 @@ public class ConfirmChangePassword {
             //todo Check this
         }
 
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     private void showError() throws IOException {

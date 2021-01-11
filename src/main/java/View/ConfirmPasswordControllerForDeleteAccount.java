@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.commons.io.FileUtils;
@@ -60,6 +62,7 @@ public class ConfirmPasswordControllerForDeleteAccount {
     }
     @FXML
     private void setBtnConfirm(ActionEvent event) throws IOException, ExistPlayerException {
+        playMouseSound();
         String password = txtPassword.getText();
         setConfirm(Existence.checkPasswordForView(getUsername(),password));
         if (getConfirm().equalsIgnoreCase("false")){
@@ -78,6 +81,7 @@ public class ConfirmPasswordControllerForDeleteAccount {
     }
     @FXML
     private void deleteDirectory(File fileForDelete) throws IOException {
+        playMouseSound();
         FileUtils.deleteDirectory(fileForDelete);
     }
 
@@ -90,5 +94,11 @@ public class ConfirmPasswordControllerForDeleteAccount {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }

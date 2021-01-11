@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -41,6 +43,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
 
     @FXML
     public void sendMessage(ActionEvent event) throws IOException, NotNullMessageException {
+        playMouseSound();
         adminGeneralController.sendMassageString(txtMessage.getText());
         URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -104,6 +107,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
     }
     @FXML
     public void back(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -113,6 +117,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
     }
 
     public void goToBotsMessages(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -122,11 +127,18 @@ public class SendMessageAsPlatoBotController implements Initializable {
     }
 
     public void goToSuggestions(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminEditSuggestion.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 }

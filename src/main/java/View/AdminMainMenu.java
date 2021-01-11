@@ -101,6 +101,7 @@ public class AdminMainMenu implements Initializable {
     }
     @FXML
     public void goMessages(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

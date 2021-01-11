@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -47,6 +49,7 @@ public class AdminGamesBattleShip implements Initializable {
 
     @FXML
     private void goToAdminDotsGame(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminGamesDotsAndBoxes.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -56,6 +59,7 @@ public class AdminGamesBattleShip implements Initializable {
     }
     @FXML
     private void goToBattleGame(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -65,6 +69,7 @@ public class AdminGamesBattleShip implements Initializable {
     }
     @FXML
     private void goToLastMenu(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -78,6 +83,7 @@ public class AdminGamesBattleShip implements Initializable {
     }
     @FXML
     public void editBattleDetails(ActionEvent event) throws IOException {
+        playMouseSound();
         adminGeneralController.setDetails("BattleShip",txtDetails.getText());
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -88,6 +94,7 @@ public class AdminGamesBattleShip implements Initializable {
     }
     @FXML
     public void activateBattle(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+        playMouseSound();
         adminGeneralController.activeGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -98,6 +105,7 @@ public class AdminGamesBattleShip implements Initializable {
     }
     @FXML
     public void deActivateBattleShip(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+        playMouseSound();
          adminGeneralController.deActiveGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -115,6 +123,12 @@ public class AdminGamesBattleShip implements Initializable {
             btnActiveBattle.setDisable(true);
             btnDeActiveBattle.setDisable(false);
         }
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
 

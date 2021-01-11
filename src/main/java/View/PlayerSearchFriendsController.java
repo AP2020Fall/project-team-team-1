@@ -17,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -62,6 +64,7 @@ public class PlayerSearchFriendsController implements Initializable {
     }
     @FXML
     private void back(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -71,6 +74,7 @@ public class PlayerSearchFriendsController implements Initializable {
     }
     @FXML
     private void goToPlayerEvents(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerEvents.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -80,6 +84,7 @@ public class PlayerSearchFriendsController implements Initializable {
     }
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/YourGame.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -89,6 +94,7 @@ public class PlayerSearchFriendsController implements Initializable {
     }
     @FXML
     private void goToPlayerSearchFriends(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerSearchFriends.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -98,6 +104,7 @@ public class PlayerSearchFriendsController implements Initializable {
     }
     @FXML
     private void goToPlayerPlatoBotsMessages(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/PlayerPlatoBotsMessages.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -123,7 +130,12 @@ public class PlayerSearchFriendsController implements Initializable {
 
     }
     private final ObservableList<Player> friends = FXCollections.observableArrayList();
-
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

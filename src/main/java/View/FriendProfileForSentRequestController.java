@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -93,6 +95,7 @@ public class FriendProfileForSentRequestController implements Initializable {
 
     @FXML
     private void setBtnSentRequest(ActionEvent event) throws IOException {
+        playMouseSound();
         if (getUsernameOfFriendForSentRequest().equalsIgnoreCase("null")){
             return;
         }
@@ -157,6 +160,7 @@ public class FriendProfileForSentRequestController implements Initializable {
 
     @FXML
     private void setFavoriteGames() throws ExistFavoriteException {
+        playMouseSound();
         battleLabel.setText(adminGeneralController.firstGameNameGetter());
         dotsLabel.setText(adminGeneralController.secondGameNameGetter());
 
@@ -210,6 +214,12 @@ public class FriendProfileForSentRequestController implements Initializable {
             Image image = new Image(file.toURI().toString());
             imgMedal.setImage(image);
         }
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @FXML
