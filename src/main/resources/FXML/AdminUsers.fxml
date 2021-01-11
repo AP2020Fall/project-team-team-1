@@ -47,12 +47,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblMVP" layoutX="104.0" layoutY="185.0" prefHeight="20.0" prefWidth="88.0" style="-fx-font-weight: bold;" text="Username" textFill="#e0d855">
+            <Label fx:id="lblMVP" layoutX="104.0" layoutY="185.0" prefHeight="20.0" prefWidth="88.0" style="-fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Username" textFill="#e0d855">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Back" />
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToAdminMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Back" />
          </children>
       </Pane>
       <Button fx:id="btnExit" layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#exitApp" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-text-fill: white;" text="X" />

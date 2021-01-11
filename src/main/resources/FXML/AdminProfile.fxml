@@ -38,22 +38,22 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Label fx:id="lblFirsName" alignment="TOP_LEFT" layoutX="160.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="Amir" textFill="WHITE">
+            <Label fx:id="lblFirsName" alignment="TOP_LEFT" layoutX="160.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" stylesheets="@../Style/StyleSheet.css" text="Amir" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblLastName" alignment="TOP_LEFT" layoutX="320.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="ghasemi" textFill="WHITE">
+            <Label fx:id="lblLastName" alignment="TOP_LEFT" layoutX="320.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" stylesheets="@../Style/StyleSheet.css" text="ghasemi" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblID" alignment="TOP_LEFT" layoutX="450.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" text="15" textFill="WHITE">
+            <Label fx:id="lblID" alignment="TOP_LEFT" layoutX="450.0" layoutY="110.0" prefHeight="17.0" prefWidth="76.0" stylesheets="@../Style/StyleSheet.css" text="15" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToLastMenuAdminProfile" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" text="back" />
+            <Button fx:id="btnBack" layoutY="2.0" mnemonicParsing="false" onAction="#backToLastMenuAdminProfile" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Back" />
             <Button fx:id="btnExit" layoutX="573.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
@@ -62,7 +62,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Label fx:id="lblPhone" alignment="TOP_LEFT" layoutX="162.0" layoutY="185.0" prefHeight="25.0" prefWidth="120.0" text="09392425665" textFill="WHITE">
+      <Label fx:id="lblPhone" alignment="TOP_LEFT" layoutX="162.0" layoutY="185.0" prefHeight="25.0" prefWidth="120.0" stylesheets="@../Style/StyleSheet.css" text="09392425665" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
@@ -72,12 +72,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Label fx:id="lblEmail" alignment="TOP_LEFT" layoutX="320.0" layoutY="185.0" prefHeight="25.0" prefWidth="193.0" text="Amirgh@5665@gmail.com" textFill="WHITE">
+      <Label fx:id="lblEmail" alignment="TOP_LEFT" layoutX="320.0" layoutY="185.0" prefHeight="25.0" prefWidth="193.0" stylesheets="@../Style/StyleSheet.css" text="Amirgh@5665@gmail.com" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnEdit" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToEditPanel" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #14A6B8; -fx-font-weight: bold;" text="Edit Profile" />
+      <Button fx:id="btnEdit" layoutX="22.0" layoutY="216.0" mnemonicParsing="false" onAction="#goToEditPanel" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #14A6B8; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Edit Profile" />
       <Pane fx:id="editPane" layoutX="19.0" layoutY="267.0" prefHeight="120.0" prefWidth="573.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0">
          <children>
              <ComboBox fx:id="comboField" layoutX="14.0" layoutY="48.0" prefHeight="27.0" prefWidth="132.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
@@ -97,7 +97,7 @@
             <Button fx:id="btnSubmitEdit" layoutX="399.0" layoutY="48.0" mnemonicParsing="false" onAction="#editAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #808B96;" text="Edit" />
          </children>
       </Pane>
-      <Pane fx:id="simplePane" layoutY="280.0" prefHeight="120.0" prefWidth="562.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0" />
-      <Button layoutX="22.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeProfilePicAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #B1F21B; -fx-font-weight: bold;" text="Edit Profile Pic" />
+      <Pane fx:id="simplePane" layoutY="280.0" prefHeight="120.0" prefWidth="562.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="270.0" />
+      <Button layoutX="22.0" layoutY="245.0" mnemonicParsing="false" onAction="#changeProfilePicAdmin" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #B1F21B; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Edit Profile Pic" />
    </children>
 </AnchorPane>
