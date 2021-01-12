@@ -1,6 +1,7 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,13 +17,16 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGame implements Initializable {
     protected static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
     public AnchorPane board;
     @FXML
@@ -44,7 +48,15 @@ public class DotsAndBoxesGame implements Initializable {
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =125;
+    private int point = 30;
 
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
 
     public String getFirstPlayer() {
         return firstPlayer;
@@ -117,7 +129,7 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     @FXML
-    private void setOnMouseClicked(MouseEvent mouseEvent){
+    private void setOnMouseClicked(MouseEvent mouseEvent) throws IOException {
         Circle circle = (Circle) mouseEvent.getTarget();
         hover(circle.getId());
         click(circle.getId());
@@ -128,7 +140,7 @@ public class DotsAndBoxesGame implements Initializable {
         dots[index].setFill(Color.rgb(39, 55, 70));
     }
     @FXML
-    private void click(String id){
+    private void click(String id) throws IOException {
         int n = findCircleNumber(id);
         if (n % 8 == 0) {
             drawLine(n, n + 1);
@@ -147,7 +159,7 @@ public class DotsAndBoxesGame implements Initializable {
             drawLine(n, n + 1);
         }
     }
-    private void drawLine(int first , int second){
+    private void drawLine(int first , int second) throws IOException {
         Line line = new Line();
         line.setStrokeWidth(2);
         line.setId(whoseTurnIsIt());
@@ -198,6 +210,7 @@ public class DotsAndBoxesGame implements Initializable {
             lblPlayer2Points.setText(String.valueOf(dotsAndBoxesController.getBluePoints()));
             lblPlayer2Points.setTextFill(Color.rgb(41, 128, 185));
             if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
+                awardTheWinner();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Game Is Over");
                 alert.show();
@@ -222,6 +235,17 @@ public class DotsAndBoxesGame implements Initializable {
             return secondPlayer;
         }else{
             return firstPlayer;
+        }
+    }
+
+    private void awardTheWinner() throws IOException {
+        if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("blue")){
+            //todo ask hesam about name
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
+        }else if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("red")){
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
         }
     }
 
