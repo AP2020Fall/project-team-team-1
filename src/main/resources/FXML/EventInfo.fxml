@@ -48,16 +48,16 @@
             <Label fx:id="lblEnd" layoutX="430.0" layoutY="152.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
             <Label fx:id="lblScore" layoutX="520.0" layoutY="152.0" prefHeight="17.0" prefWidth="53.0" style="-fx-text-fill: white;" text="Label" />
             <Label fx:id="lblStart" layoutX="340.0" layoutY="152.0" prefHeight="17.0" prefWidth="78.0" style="-fx-text-fill: white;" text="Label" />
-            <Button layoutY="2.0" mnemonicParsing="false" onAction="#backToPrevious" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="back" />
-            <Button layoutX="568.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="19.0" prefWidth="36.0" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14;" text="X" />
+            <Button layoutY="2.0" mnemonicParsing="false" onAction="#backToPrevious" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="back" />
+            <Button layoutX="568.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="19.0" prefWidth="36.0" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
-      <Button fx:id="btnDelete" layoutX="23.0" layoutY="280.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Event" />
-      <Button fx:id="btnGoToEditPane" layoutX="23.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEditPane" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Event" />
+      <Button fx:id="btnDelete" layoutX="23.0" layoutY="280.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Delete Event" />
+      <Button fx:id="btnGoToEditPane" layoutX="23.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEditPane" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Edit Event" />
       <Pane fx:id="EditPane" layoutX="160.0" layoutY="277.0" prefHeight="90.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="267.0">
          <children>
             <Button fx:id="btnEdit" layoutX="317.0" layoutY="52.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
-            <TextField fx:id="txtNewValue" layoutX="123.0" layoutY="51.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: transparncy; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
+            <TextField fx:id="txtNewValue" layoutX="123.0" layoutY="51.0" promptText="New Value" style="-fx-background-radius: 5px; -fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #14A6B8;" />
             <Button fx:id="btnCancel" layoutX="359.0" layoutY="52.0" mnemonicParsing="false" onAction="#cancelEdit" style="-fx-background-radius: 5px; -fx-background-color: #C70039; -fx-text-fill: white;" text="Cancel" />
             <ComboBox fx:id="btnField" layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="87.0" promptText="Select" style="-fx-background-color: #1a1c20; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
                <items>

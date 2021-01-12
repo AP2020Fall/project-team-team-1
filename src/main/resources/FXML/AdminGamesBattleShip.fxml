@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
+            <Button layoutX="373.0" layoutY="2.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: #1a1b20; -fx-font-weight: bold; -fx-font-size: 14;" text="X" />
          </children>
       </Pane>
       <Button fx:id="btnDeActiveBattle" layoutX="401.0" layoutY="140.0" mnemonicParsing="false" onAction="#deActivateBattleShip" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="DeActivate" AnchorPane.leftAnchor="380.0" />
@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblBattleMVP" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="100.0" text="Player1" textFill="WHITE">
+      <Label fx:id="lblBattleMVP" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="100.0" stylesheets="@../Style/StyleSheet.css" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

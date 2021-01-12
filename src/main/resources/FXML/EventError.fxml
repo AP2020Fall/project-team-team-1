@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: #1a1e36;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.UpdateError">
    <children>
-      <Button fx:id="btnOk" layoutX="109.0" layoutY="210.0" mnemonicParsing="false" onAction="#close" style="-fx-border-width: 0px 0px 2px 0px; -fx-background-color: transparency; -fx-border-color: #f13050; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Ok" textFill="#f13050">
+      <Button fx:id="btnOk" layoutX="109.0" layoutY="210.0" mnemonicParsing="false" onAction="#close" style="-fx-border-width: 0px 0px 2px 0px; -fx-background-color: #1a1e36; -fx-border-color: #f13050; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Ok" textFill="#f13050">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

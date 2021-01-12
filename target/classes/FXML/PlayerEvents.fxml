@@ -67,7 +67,7 @@
             </children>
         </Pane>
         <JFXButton fx:id="BtnClose" layoutX="574.0" layoutY="1.0" onAction="#closeApp" style="-fx-font-weight: bold;" text="X" textFill="WHITE" />
-      <TableView fx:id="tableView" layoutX="187.0" layoutY="42.0" prefHeight="309.0" prefWidth="411.0" style="-fx-background-color: transparency; -fx-text-fill: #00acea;" stylesheets="@../Style/PlayerEvents.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tableView" layoutX="187.0" layoutY="42.0" prefHeight="309.0" prefWidth="411.0" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea;" stylesheets="@../Style/PlayerEvents.css" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="0.0">
         <columns>
           <TableColumn fx:id="game" resizable="false" text="Game" />
             <TableColumn fx:id="id" prefWidth="38.3333740234375" resizable="false" text="ID" />

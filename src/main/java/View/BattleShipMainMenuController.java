@@ -47,7 +47,7 @@ public class BattleShipMainMenuController implements Initializable {
 
     @FXML
     private void loadFavStatus() {
-        playMouseSound();
+        //playMouseSound();
 
         String[] fav = new String[0];
         try {

@@ -21,6 +21,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
@@ -61,6 +63,7 @@ public class AdminEvents implements Initializable {
 
     @FXML
     public void addEvent(ActionEvent event) throws IOException {
+        playMouseSound();
         try {
             adminGeneralController.addEvent(txtID.getText()+" "+txtGame.getText()+" "+dateStart.getValue().toString()+" "+dateEnd.getValue().toString()+" "+txtScore.getText()+" "+txtComment.getText());
             LoginController.setUsername(null);
@@ -86,6 +89,7 @@ public class AdminEvents implements Initializable {
     }
 
     private void showError() throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/EventError.fxml").toURI().toURL();
 
         AnchorPane root = FXMLLoader.load(url);
@@ -97,6 +101,7 @@ public class AdminEvents implements Initializable {
     }
     @FXML
     private void goToEventInfo(ActionEvent event) throws IOException {
+        playMouseSound();
         if (EventInfo.getId().equalsIgnoreCase("null")){
             return;
         }
@@ -150,7 +155,15 @@ public class AdminEvents implements Initializable {
 //
 //            return row;
 //        });
+
     }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+
     @FXML
     public void backToLastMenu(ActionEvent event) throws IOException {
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();

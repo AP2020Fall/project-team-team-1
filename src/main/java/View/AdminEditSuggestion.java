@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -43,6 +45,7 @@ public class AdminEditSuggestion implements Initializable {
 
     @FXML
     void back(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -53,6 +56,7 @@ public class AdminEditSuggestion implements Initializable {
 
     @FXML
     void deleteSuggestion(ActionEvent event) throws IOException, ExistSuggestionException {
+        playMouseSound();
         adminGeneralController.removeSuggestion(String.valueOf(chosenID));
         chosenID=0;
         URL url = new File("src/main/resources/FXML/AdminEditSuggestion.fxml").toURI().toURL();
@@ -70,6 +74,7 @@ public class AdminEditSuggestion implements Initializable {
 
     @FXML
     void goToBotsMessages(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -80,6 +85,7 @@ public class AdminEditSuggestion implements Initializable {
 
     @FXML
     void goToSuggestions(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminEditSuggestion.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -96,6 +102,12 @@ public class AdminEditSuggestion implements Initializable {
         tblPlayer.setCellValueFactory(new PropertyValueFactory<>("playerName"));
         suggestions.addAll(Suggestion.getAllSuggestions());
         table.setItems(suggestions);
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @Override

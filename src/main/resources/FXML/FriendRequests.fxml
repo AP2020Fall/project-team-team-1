@@ -44,23 +44,23 @@
             <Image url="@../Images/check.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnAccept" layoutX="225.0" layoutY="216.0" mnemonicParsing="false" onAction="#setBtnAccept" onMouseEntered="#setImgStatusToCheck" prefHeight="33.0" prefWidth="150.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: transparency; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Accept Request">
+      <Button fx:id="btnAccept" layoutX="225.0" layoutY="216.0" mnemonicParsing="false" onAction="#setBtnAccept" onMouseEntered="#setImgStatusToCheck" prefHeight="33.0" prefWidth="150.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Accept Request">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnDecline" layoutX="225.0" layoutY="277.0" mnemonicParsing="false" onAction="#setBtnDecline" onMouseEntered="#setImgStatusToCross" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Decline Request" textFill="WHITE">
+      <Button fx:id="btnDecline" layoutX="225.0" layoutY="277.0" mnemonicParsing="false" onAction="#setBtnDecline" onMouseEntered="#setImgStatusToCross" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Decline Request" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnBack" layoutX="225.0" layoutY="331.0" mnemonicParsing="false" onAction="#back" onMouseEntered="#setImgStatusToBackArrow" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
+      <Button fx:id="btnBack" layoutX="225.0" layoutY="331.0" mnemonicParsing="false" onAction="#back" onMouseEntered="#setImgStatusToBackArrow" prefHeight="33.0" prefWidth="150.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
       <Label fx:id="name" layoutX="140.0" layoutY="167.0" prefHeight="21.0" prefWidth="320.0" style="-fx-alignment: center; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" stylesheets="@../Style/StyleSheet.css" text="{ Username } sent you request" />
-      <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
+      <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

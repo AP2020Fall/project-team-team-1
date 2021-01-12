@@ -27,7 +27,7 @@
             <Image url="@../Icons/143-padlock-2.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSubmit" layoutX="369.0" layoutY="269.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Login">
+      <Button fx:id="btnSubmit" layoutX="369.0" layoutY="269.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Login">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -46,12 +46,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </JFXPasswordField>
-      <Button fx:id="btnExit" layoutX="571.0" layoutY="-1.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px;" text="X">
+      <Button fx:id="btnExit" layoutX="571.0" layoutY="-1.0" mnemonicParsing="false" onAction="#appExit" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnRegister" layoutX="333.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToRegisterMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: transparensy; -fx-text-fill: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Register Now!" underline="true" />
+      <Button fx:id="btnRegister" layoutX="333.0" layoutY="309.0" mnemonicParsing="false" onAction="#goToRegisterMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Register Now!" underline="true" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />

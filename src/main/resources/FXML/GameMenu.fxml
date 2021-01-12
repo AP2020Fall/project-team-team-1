@@ -8,15 +8,15 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameMenu">
    <children>
-      <Button fx:id="btnBattle" layoutX="235.0" layoutY="120.0" mnemonicParsing="false" onAction="#goBattleShipMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: transparency; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Battle ship">
+      <Button fx:id="btnBattle" layoutX="235.0" layoutY="120.0" mnemonicParsing="false" onAction="#goBattleShipMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Battle ship">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnDots" layoutX="235.0" layoutY="180.0" mnemonicParsing="false" onAction="#goDotsAndBoxesMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Dots and boxes" textFill="WHITE">
+      <Button fx:id="btnDots" layoutX="235.0" layoutY="180.0" mnemonicParsing="false" onAction="#goDotsAndBoxesMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Dots and boxes" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="235.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back to plato" textFill="WHITE">
+      <Button layoutX="235.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToPlayerMenu" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back to plato" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -50,7 +50,7 @@
             <Image url="@../Icons/plato.png" />
          </image>
       </ImageView>
-      <Button layoutX="235.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToGameLog" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Game log" textFill="WHITE">
+      <Button layoutX="235.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToGameLog" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Game log" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

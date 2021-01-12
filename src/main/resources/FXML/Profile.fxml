@@ -22,18 +22,18 @@
          </cursor>
       </Button>
       <ImageView fx:id="imgStatus" fitHeight="99.0" fitWidth="100.0" layoutX="16.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nameAndLastname" layoutX="125.0" layoutY="63.0" prefHeight="27.0" prefWidth="288.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" text="Hesam Asnaashri" />
+      <Label fx:id="nameAndLastname" layoutX="125.0" layoutY="63.0" prefHeight="27.0" prefWidth="288.0" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px;" stylesheets="@../Style/StyleSheet.css" text="Hesam Asnaashri" />
       <ImageView fx:id="imgMedal" fitHeight="125.0" fitWidth="128.0" layoutX="419.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/levelKing.png" />
          </image>
       </ImageView>
       <Label fx:id="winsLabel" layoutX="415.0" layoutY="158.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
-      <Label layoutX="422.0" layoutY="198.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Wins" />
+      <Label layoutX="422.0" layoutY="198.0" prefHeight="18.0" prefWidth="37.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Wins" />
       <Label fx:id="loseLabel" layoutX="501.0" layoutY="157.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="5" />
-      <Label layoutX="499.0" layoutY="198.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Losses" />
+      <Label layoutX="499.0" layoutY="198.0" prefHeight="21.0" prefWidth="57.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Losses" />
       <Label fx:id="numberOfFriendsLabel" layoutX="456.0" layoutY="211.0" prefHeight="55.0" prefWidth="50.0" style="-fx-alignment: center; -fx-text-fill: red; -fx-font-weight: Bold; -fx-font-size: 25px;" text="10" />
-      <Label layoutX="413.0" layoutY="257.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" text="Number Of Friends" />
+      <Label layoutX="413.0" layoutY="257.0" prefHeight="21.0" prefWidth="142.0" style="-fx-text-fill: white; -fx-alignment: center; -fx-font-size: 15px; -fx-font-weight: bold;" stylesheets="@../Style/StyleSheet.css" text="Number Of Friends" />
       <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="138.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Icons/phone.png" />
@@ -44,8 +44,8 @@
             <Image url="@../Icons/email.png" />
          </image>
       </ImageView>
-      <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="HesamAsna@yahoo.com" />
-      <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="09121111212" />
+      <Label fx:id="email" layoutX="164.0" layoutY="96.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="HesamAsna@yahoo.com" />
+      <Label fx:id="phoneNumber" layoutX="164.0" layoutY="125.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="09121111212" />
       <Label fx:id="battleLabel" layoutX="137.0" layoutY="201.0" prefHeight="21.0" prefWidth="148.0" style="-fx-alignment: cen1ter; -fx-text-fill: white;" text="BattleShip">
          <graphic>
             <ImageView fx:id="favBattle" fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -70,7 +70,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="22.0" layoutY="168.0" mnemonicParsing="false" onAction="#editProfilePic" prefHeight="26.0" prefWidth="87.0" style="-fx-background-radius: 5px; -fx-background-color: green; -fx-text-fill: white;" text="Edit Profile" />
+      <Button layoutX="22.0" layoutY="168.0" mnemonicParsing="false" onAction="#editProfilePic" prefHeight="26.0" prefWidth="87.0" style="-fx-background-radius: 5px; -fx-background-color: green; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Edit Profile" />
       <Pane fx:id="EditPane" layoutX="169.0" layoutY="286.0" prefHeight="66.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="286.0">
          <children>
             <Button fx:id="btnEdit" layoutX="303.0" layoutY="34.0" mnemonicParsing="false" onAction="#editEvent" style="-fx-background-radius: 5px; -fx-background-color: #14A6B8; -fx-text-fill: white;" text="Edit" />
@@ -92,11 +92,11 @@
             </ComboBox>
          </children>
       </Pane>
-      <Button fx:id="btnDelete" layoutX="16.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Delete Account">
+      <Button fx:id="btnDelete" layoutX="16.0" layoutY="285.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Delete Account">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btnGoToEditPane" layoutX="16.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Account">
+      <Button fx:id="btnGoToEditPane" layoutX="16.0" layoutY="322.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #14A6B8; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Edit Account">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -105,7 +105,7 @@
             <Image url="@../Icons/icons8-name-52.png" />
          </image>
       </ImageView>
-      <Label fx:id="platoAgeLabel" layoutX="164.0" layoutY="153.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" text="1 Days" />
+      <Label fx:id="platoAgeLabel" layoutX="164.0" layoutY="153.0" prefHeight="21.0" prefWidth="277.0" style="-fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="1 Days" />
       <Pane fx:id="simplePane" layoutX="160.0" layoutY="286.0" prefHeight="90.0" prefWidth="425.0" style="-fx-background-color: #1a1b20;">
          <children>
             <TextArea fx:id="bio" layoutX="14.0" layoutY="8.0" prefHeight="74.0" prefWidth="299.0" promptText="Details">
@@ -113,13 +113,13 @@
                   <Font size="16.0" />
                </font>
             </TextArea>
-            <Button fx:id="btnEditBio" layoutX="319.0" layoutY="30.0" mnemonicParsing="false" onAction="#setBtnEditBio" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" text="Edit Bio">
+            <Button fx:id="btnEditBio" layoutX="319.0" layoutY="30.0" mnemonicParsing="false" onAction="#setBtnEditBio" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: #808B96; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Edit Bio">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
          </children>
       </Pane>
-      <Button layoutX="16.0" layoutY="359.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" text="Change password">
+      <Button layoutX="16.0" layoutY="359.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #C70039; -fx-text-fill: white; -fx-background-radius: 5px;" stylesheets="@../Style/StyleSheet.css" text="Change password">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
@@ -88,6 +90,7 @@ public class AdminProfile implements Initializable {
 
     @FXML
     public void backToLastMenuAdminProfile(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -114,6 +117,7 @@ public class AdminProfile implements Initializable {
     }
     @FXML
     private void showAdminImage() throws MalformedURLException {
+        playMouseSound();
         String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator
                 +"Users"+File.separator+"admin"+File.separator
                 +"admin.jpg";
@@ -122,6 +126,7 @@ public class AdminProfile implements Initializable {
     }
     @FXML
     public void editAdmin(ActionEvent event) throws InvalidEmailException, InvalidNameException, ExistEmailException, InvalidFieldException, InvalidPhoneNumberException, IOException {
+        playMouseSound();
         if (comboField.getValue().equalsIgnoreCase("Email")){
             adminGeneralController.editField("email"+" "+txtNewValue.getText());
         }else if (comboField.getValue().equalsIgnoreCase("Phone")){
@@ -140,6 +145,7 @@ public class AdminProfile implements Initializable {
     }
 
     public void changeProfilePicAdmin(ActionEvent event) throws IOException {
+        playMouseSound();
         file = chooseProfilePick(new FileChooser());
         copy(file,createProfileFile("admin"));
         URL url = new File("src/main/resources/FXML/AdminProfile.fxml").toURI().toURL();
@@ -150,6 +156,13 @@ public class AdminProfile implements Initializable {
         window.show();
 
     }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+
     @FXML
     private File chooseProfilePick(FileChooser fileChooser){
         FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");

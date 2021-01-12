@@ -20,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -93,6 +95,7 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void setBtnRemove(ActionEvent event) throws IOException, ExistFriendException, ExistPlayerException {
+        playMouseSound();
         playerGeneralController.removeFriend(LoginController.getUsername(), getUsernameOfFriend());
         setUsernameOfFriend("null");
 
@@ -200,6 +203,12 @@ public class FriendProfileController implements Initializable {
             Image image = new Image(file.toURI().toString());
             imgMedal.setImage(image);
         }
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @FXML

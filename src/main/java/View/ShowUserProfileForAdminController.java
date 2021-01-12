@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -100,6 +102,7 @@ public class ShowUserProfileForAdminController implements Initializable {
     }
     @FXML
     private void setBtnBanAccount(){
+        playMouseSound();
         if (adminGeneralController.playerActivation(getUsernameProfileForShowToAdmin()).equalsIgnoreCase("false")){
             btnBanAccount.setText("UnBan Account");
         }else
@@ -109,6 +112,7 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void setBtnDeleteAccount(ActionEvent event) throws IOException {
+        playMouseSound();
         if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
@@ -126,6 +130,7 @@ public class ShowUserProfileForAdminController implements Initializable {
     }
     @FXML
     private void banAccount() throws AlreadyBan, IOException, ItsNotBan {
+        playMouseSound();
         if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
@@ -148,6 +153,7 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     @FXML
     private void makeSuggestion(ActionEvent event) throws IOException, ExistPlayerException {
+        playMouseSound();
         if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
         }
@@ -282,5 +288,10 @@ public class ShowUserProfileForAdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadUserData();
     }
-
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
 }

@@ -13,29 +13,29 @@
    <children>
       <Pane layoutX="6.0" layoutY="5.0" prefHeight="400.0" prefWidth="183.0" style="-fx-background-color: #1a1b20;">
          <children>
-            <JFXButton fx:id="btnFriendRequests" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="180.0" onAction="#setListViewForRequests" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Friends Requests" textFill="WHITE">
+            <JFXButton fx:id="btnFriendRequests" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="180.0" onAction="#setListViewForRequests" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Friends Requests" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnFriends" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="240.0" onAction="#setListViewForFriends" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Friends" textFill="WHITE">
+            <JFXButton fx:id="btnFriends" alignment="BOTTOM_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="240.0" onAction="#setListViewForFriends" prefHeight="32.0" prefWidth="163.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Friends" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnBack" layoutY="2.0" onAction="#back" style="-fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Back" textFill="WHITE" />
+            <JFXButton fx:id="btnBack" layoutY="2.0" onAction="#back" style="-fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE" />
             <Label fx:id="friendLabel" layoutX="4.0" layoutY="319.0" prefHeight="15.0" prefWidth="163.0" style="-fx-font: 17px;" stylesheets="@../Style/StyleSheet.css" text="Label" textFill="WHITE" />
             <Pane fx:id="friendPane" layoutX="-6.0" layoutY="306.0" prefHeight="42.0" prefWidth="191.0" style="-fx-background-color: #1a1b20;" />
          </children>
       </Pane>
-      <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: transparency; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
+      <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold;" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <Pane fx:id="paneAcc" layoutX="190.0" layoutY="18.0" prefHeight="380.0" prefWidth="380.0" style="-fx-background-color: #1a1b20;">
          <children>
-            <ListView fx:id="listViewForRequests" layoutX="39.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: transparency; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
-            <Button fx:id="btnAcceptOrDecline" layoutX="126.0" layoutY="328.0" mnemonicParsing="false" onAction="#setBtnAcceptOrDecline" prefHeight="33.0" prefWidth="150.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: transparency; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Accept Or Decline">
+            <ListView fx:id="listViewForRequests" layoutX="39.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: #1a1b20; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
+            <Button fx:id="btnAcceptOrDecline" layoutX="126.0" layoutY="328.0" mnemonicParsing="false" onAction="#setBtnAcceptOrDecline" prefHeight="33.0" prefWidth="150.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Accept Or Decline">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -44,8 +44,8 @@
       </Pane>
       <Pane fx:id="paneFriend" layoutX="190.0" layoutY="18.0" prefHeight="380.0" prefWidth="380.0" style="-fx-background-color: #1a1b20;">
          <children>
-            <ListView fx:id="listViewFriends" layoutX="39.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: transparency; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
-            <Button fx:id="btnShowOrRemove" layoutX="92.0" layoutY="333.0" mnemonicParsing="false" onAction="#setBtnShowOrRemove" prefHeight="33.0" prefWidth="218.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: transparency; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Show Or Remove Friend">
+            <ListView fx:id="listViewFriends" layoutX="39.0" prefHeight="311.0" prefWidth="323.0" style="-fx-background-color: #1a1b20; -fx-alignment: center;" stylesheets="@../Style/StyleOfListViewForRequests.css" />
+            <Button fx:id="btnShowOrRemove" layoutX="92.0" layoutY="333.0" mnemonicParsing="false" onAction="#setBtnShowOrRemove" prefHeight="33.0" prefWidth="218.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" stylesheets="@../Style/StyleSheet.css" text="Show Or Remove Friend">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

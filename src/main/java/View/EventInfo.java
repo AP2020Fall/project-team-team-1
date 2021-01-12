@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -87,10 +89,12 @@ public class EventInfo implements Initializable {
 
     @FXML
     private void goToEditPane(ActionEvent event){
+        playMouseSound();
         EditPane.toFront();
     }
     @FXML
     private void deleteEvent(ActionEvent event) throws IOException, ExistEventException {
+        playMouseSound();
         adminGeneralController.removeEventByAdminFromView(id);
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -102,6 +106,7 @@ public class EventInfo implements Initializable {
     @FXML
 
     private void backToPrevious(ActionEvent event) throws IOException {
+        playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -115,10 +120,12 @@ public class EventInfo implements Initializable {
     }
     @FXML
     private void cancelEdit(ActionEvent event){
+        playMouseSound();
         simplePane.toFront();
     }
     @FXML
     private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
+        playMouseSound();
         if (btnField.getValue().toLowerCase().equals("start")){
             adminGeneralController.editEvent(id+" "+"Start Date"+" "+txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("end")){
@@ -163,6 +170,12 @@ public class EventInfo implements Initializable {
             System.err.println(e.getMessage());
         }
 
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
 

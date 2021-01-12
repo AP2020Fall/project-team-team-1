@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -68,7 +70,7 @@ public class FriendRequests implements Initializable {
 
     @FXML
     private void setBtnAccept(ActionEvent event) throws IOException, ExistPlayerException, AcceptAndDeclineFriendException {
-
+        playMouseSound();
         playerGeneralController.acceptRequest(LoginController.getUsername(),getUsernameForAcceptOrDecline());
         setUsernameForAcceptOrDecline("null");
 
@@ -83,7 +85,7 @@ public class FriendRequests implements Initializable {
     }
     @FXML
     private void setBtnDecline(ActionEvent event) throws IOException, ExistPlayerException, AcceptAndDeclineFriendException {
-
+        playMouseSound();
         playerGeneralController.declineRequest(LoginController.getUsername(),getUsernameForAcceptOrDecline());
         setUsernameForAcceptOrDecline("null");
 
@@ -105,6 +107,12 @@ public class FriendRequests implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     @FXML
