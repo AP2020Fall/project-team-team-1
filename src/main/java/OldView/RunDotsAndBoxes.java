@@ -62,7 +62,7 @@ public class RunDotsAndBoxes extends Menu {
     @Override
     public void execute() {
         if (this.Username2 != null) {
-            startTheGame();
+//            startTheGame();
         } else {
             temporaryLogin().run();
             this.run();
@@ -148,26 +148,26 @@ public class RunDotsAndBoxes extends Menu {
         }
     }
 
-    public void startTheGame() {
-        System.out.println("Blue Represents " + this.Username1 + " And Red Represent " + this.Username2);
-        System.out.println();
-        while (true) {
-            try {
-                System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
-                dotsAndBoxesController.startDotsAndBoxes();
-                if (dotsAndBoxesController.whoIsWinner().equals("blue")){
-                    winnerAward(getUsername1(),getUsername2());
-                }else if (dotsAndBoxesController.whoIsWinner().equals("red")){
-                    winnerAward(getUsername2(),getUsername1());
-                }
-                break;
-            } catch (NotEmptyString | WrongFormatInDots | ExistLineException | FindLineException notEmptyString) {
-                System.out.println(notEmptyString.getMessage());
-            }
-        }
-        setUsername2(null);
-        new DotsAndBoxesMenu(getUsername1(),this.parentMenu.parentMenu).run();
-    }
+//    public void startTheGame() {
+//        System.out.println("Blue Represents " + this.Username1 + " And Red Represent " + this.Username2);
+//        System.out.println();
+//        while (true) {
+//            try {
+//                System.out.println("Please Enter Tow Dots In this Format 2-3,2-4 ");
+//                dotsAndBoxesController.startDotsAndBoxes();
+//                if (dotsAndBoxesController.whoIsWinner().equals("blue")){
+//                    winnerAward(getUsername1(),getUsername2());
+//                }else if (dotsAndBoxesController.whoIsWinner().equals("red")){
+//                    winnerAward(getUsername2(),getUsername1());
+//                }
+//                break;
+//            } catch (NotEmptyString | WrongFormatInDots | ExistLineException | FindLineException notEmptyString) {
+//                System.out.println(notEmptyString.getMessage());
+//            }
+//        }
+//        setUsername2(null);
+//        new DotsAndBoxesMenu(getUsername1(),this.parentMenu.parentMenu).run();
+//    }
 
     private Menu temporaryLogin() {
         return new Menu("login", this) {

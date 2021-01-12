@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="board" onMouseClicked="#setOnMouseClicked" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DotsAndBoxesGame">
+   <children>
+      <ImageView fx:id="imgFirst" fitHeight="99.0" fitWidth="122.0" layoutX="14.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" />
+      <ImageView fx:id="imgSecond" fitHeight="99.0" fitWidth="122.0" layoutX="464.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" />
+      <Label fx:id="lblPlayer1" layoutX="31.0" layoutY="267.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.leftAnchor="14.0" />
+      <Label fx:id="lblPlayer2" layoutX="478.0" layoutY="267.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.rightAnchor="14.0" />
+      <Label fx:id="lblPlayer1Points" layoutX="14.0" layoutY="301.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.leftAnchor="14.0" />
+      <Label fx:id="lblPlayer2Points" layoutX="464.0" layoutY="301.0" prefHeight="34.0" prefWidth="122.0" text="Label" />
+      <Label fx:id="lblTurn" alignment="CENTER" layoutX="181.0" layoutY="461.0" prefHeight="93.0" prefWidth="238.0" text="Label" />
+   </children>
+</AnchorPane>
