@@ -49,7 +49,7 @@ public class DotsAndBoxesGame implements Initializable {
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
-    private int point = 30;
+    private static int point = 30;
 
     public int getPoint() {
         return point;

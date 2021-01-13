@@ -104,7 +104,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
             System.out.println(this.username);
             dotsAndBoxesGame.setSecondPlayer(txtUsername.getText());
             System.out.println(txtUsername.getText());
-
+            dotsAndBoxesGame.setPoint(10);
             URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
