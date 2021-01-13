@@ -13,17 +13,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PlayerPlatoBotMessagesController implements Initializable {
@@ -43,33 +49,79 @@ public class PlayerPlatoBotMessagesController implements Initializable {
     @FXML
     public JFXButton btnFavoritesGames;
     @FXML
+    VBox vbox;
+    @FXML
     private void closeApp(ActionEvent event){
         System.exit(1);
     }
-    @FXML
-    ListView<String> listView;
+    String[] messages = playerGeneralController.viewBotMessages().split("\\$");
+    String temp = " " ;
+//    @FXML
+//    ListView<String> listView;
 
-    @FXML
-    private void setListView() throws ExistPlayerLogException, IOException, NotNullMessageException {
-        ObservableList<String> list = FXCollections.observableArrayList();
-
-        listView.setItems(list);
-        String[] showMessage = playerGeneralController.viewBotMessages().split("\\$");
-        for (String out : showMessage) {
-            listView.getItems().add(out);
-        }
-//        listView.getItems().add("====================================");
-//        for (String s : showMessage) {
-//            String[] forShow = s.split("\\$");
-//            listView.getItems().add(forShow[2]);
-//            for (String s1 : showMessage) {
-//                String[] forShow1 = s1.split("\\$");
-//                if (forShow[2].equalsIgnoreCase(forShow1[2])){
-//                    listView.getItems().add(forShow1[0]+". "+forShow1[1]);
-//                }
-//            }
+//    @FXML
+//    private void setListView() throws ExistPlayerLogException, IOException, NotNullMessageException {
+//        ObservableList<String> list = FXCollections.observableArrayList();
+//
+//        listView.setItems(list);
+//        String[] showMessage = playerGeneralController.viewBotMessages().split("\\$");
+//        for (String out : showMessage) {
+//            listView.getItems().add(out);
 //        }
+////        listView.getItems().add("====================================");
+////        for (String s : showMessage) {
+////            String[] forShow = s.split("\\$");
+////            listView.getItems().add(forShow[2]);
+////            for (String s1 : showMessage) {
+////                String[] forShow1 = s1.split("\\$");
+////                if (forShow[2].equalsIgnoreCase(forShow1[2])){
+////                    listView.getItems().add(forShow1[0]+". "+forShow1[1]);
+////                }
+////            }
+////        }
+//
+//    }
+@FXML
+private void showMessages(){
+    for (String s : messages) {
 
+        String[] dates = s.split(",");
+        Label date = new Label();
+
+
+        if (!temp.equals(checkDate(dates[1].substring(0, 10)))) {
+            date.setText(checkDate(dates[1].substring(0, 10)));
+        } else {
+            date.setText(" ");
+        }
+        date.setTextFill(Color.web("#00acea"));
+        date.setAlignment(Pos.CENTER);
+        date.setPrefWidth(360);
+        date.setPrefHeight(10);
+        temp = checkDate(dates[1].substring(0, 10));
+
+        HBox message = new HBox();
+        Label text = new Label();
+        text.setText(dates[0].substring(6));
+        text.setTextFill(Color.WHITE);
+        text.setPrefWidth(300);
+        text.setPrefHeight(20);
+        Label time = new Label();
+        time.setText(dates[2]);
+        time.setTextFill(Color.GRAY);
+        time.setPrefHeight(20);
+        message.getChildren().addAll(text, time);
+        vbox.getChildren().addAll(date, message);
+
+    }
+}
+    private String checkDate(String string){
+        LocalDate time = LocalDate.parse(string);
+        if (time.equals(LocalDate.now())){
+            return "Today";
+        }else if (time.isEqual(LocalDate.now().minusDays(1))){
+            return "Yesterday";
+        }else return string;
     }
     @FXML
     private void back(ActionEvent event) throws IOException {
@@ -131,15 +183,17 @@ public class PlayerPlatoBotMessagesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-        setListView();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NotNullMessageException e) {
-            e.printStackTrace();
-        } catch (ExistPlayerLogException e) {
-            e.printStackTrace();
-        }
+    vbox.setSpacing(10);
+    showMessages();
+//        try {
+//        setListView();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (NotNullMessageException e) {
+//            e.printStackTrace();
+//        } catch (ExistPlayerLogException e) {
+//            e.printStackTrace();
+//        }
     }
 }
