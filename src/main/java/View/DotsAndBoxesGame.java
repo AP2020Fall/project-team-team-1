@@ -3,6 +3,7 @@ package View;
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -47,7 +48,7 @@ public class DotsAndBoxesGame implements Initializable {
     private String secondPlayer = "player";
     private Circle[] dots = new Circle[64];
     private double valueX =165;
-    private double valueY =125;
+    private double valueY =165;
     private int point = 30;
 
     public int getPoint() {
@@ -129,10 +130,14 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     @FXML
-    private void setOnMouseClicked(MouseEvent mouseEvent) throws IOException {
+    private void setOnMouseClicked(MouseEvent mouseEvent){
         Circle circle = (Circle) mouseEvent.getTarget();
         hover(circle.getId());
-        click(circle.getId());
+        try {
+            click(circle.getId());
+        } catch (IOException ignored) {
+            System.out.println(ignored.getMessage());
+        }
     }
     @FXML
     private void hover(String id){
@@ -276,5 +281,17 @@ public class DotsAndBoxesGame implements Initializable {
                 +getSecondPlayer()+".jpg";
         URL url1 = new File(path1).toURI().toURL();
         imgSecond.setImage(new Image(url1.toExternalForm()));
+    }
+
+    public void forfeit(ActionEvent event) throws IOException {
+        if (whoseTurnIsIt().equals(secondPlayer)){
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
+            //todo change scene
+        }else if (whoseTurnIsIt().equals(firstPlayer)){
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
+            //todo change scene
+        }
     }
 }
