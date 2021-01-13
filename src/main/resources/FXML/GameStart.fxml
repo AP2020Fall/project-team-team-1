@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameStartController">
+   <children>
+      <Pane fx:id="player2GamePane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <GridPane fx:id="gridPlayerPlayer2Enemy" gridLinesVisible="true" layoutX="22.0" layoutY="129.0" prefHeight="359.0" prefWidth="399.0" style="-fx-background-color: lightBlue;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="23.0" layoutY="109.0" prefHeight="21.0" prefWidth="397.0" text="   1        2        3        4        5        6       7       8       9       10" textFill="WHITE" />
+            <Label layoutX="-173.0" layoutY="299.0" prefHeight="21.0" prefWidth="369.0" style="-fx-rotate: 90;" text="   1       2        3       4        5      6      7      8       9       10" textFill="WHITE" />
+            <Label layoutX="482.0" layoutY="166.0" text="Boooom Place :" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="496.0" layoutY="212.0" text="X" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="602.0" layoutY="211.0" text="Y" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="player2X" alignment="CENTER" layoutX="468.0" layoutY="250.0" prefHeight="31.0" prefWidth="69.0" promptText="2" />
+            <TextField fx:id="player2Y" alignment="CENTER" layoutX="573.0" layoutY="249.0" prefHeight="31.0" prefWidth="69.0" promptText="2" />
+            <Button layoutX="525.0" layoutY="301.0" mnemonicParsing="false" onAction="#player2Attack" text="Attack" />
+            <Label fx:id="player2Error" alignment="CENTER" layoutX="470.0" layoutY="344.0" prefHeight="21.0" prefWidth="175.0" text="Error" textAlignment="CENTER" textFill="RED" />
+            <ImageView fx:id="player2Stat" fitHeight="25.0" fitWidth="25.0" layoutX="491.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cross.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="469.0" layoutY="376.0" mnemonicParsing="false" onAction="#player2NexttTurn" prefHeight="31.0" prefWidth="185.0" text="Next Turn" />
+            <Button layoutX="470.0" layoutY="451.0" mnemonicParsing="false" onAction="#player2OwnBoardView" prefHeight="31.0" prefWidth="185.0" text="Go to Own Board" />
+            <Label layoutX="484.0" layoutY="135.0" text="Player Two Turns" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="player1GamePane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <GridPane fx:id="gridPlayerPlayer1Enemy" gridLinesVisible="true" layoutX="22.0" layoutY="129.0" prefHeight="359.0" prefWidth="399.0" style="-fx-background-color: lightBlue;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="23.0" layoutY="109.0" prefHeight="21.0" prefWidth="397.0" text="   1        2        3        4        5        6       7       8       9       10" textFill="WHITE" />
+            <Label layoutX="-169.0" layoutY="296.0" prefHeight="21.0" prefWidth="360.0" style="-fx-rotate: 90;" text="   1       2        3       4        5      6      7      8       9       10" textFill="WHITE" />
+            <Label layoutX="482.0" layoutY="166.0" text="Boooom Place :" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="496.0" layoutY="212.0" text="X" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="602.0" layoutY="211.0" text="Y" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="player1X" alignment="CENTER" layoutX="468.0" layoutY="250.0" prefHeight="31.0" prefWidth="69.0" promptText="2" />
+            <TextField fx:id="player1Y" alignment="CENTER" layoutX="573.0" layoutY="249.0" prefHeight="31.0" prefWidth="69.0" promptText="2" />
+            <Button layoutX="525.0" layoutY="301.0" mnemonicParsing="false" onAction="#player1Attack" text="Attack" />
+            <Label fx:id="player1Error" alignment="CENTER" layoutX="470.0" layoutY="344.0" prefHeight="21.0" prefWidth="175.0" text="Error" textAlignment="CENTER" textFill="RED" />
+            <ImageView fx:id="player1Stat" fitHeight="25.0" fitWidth="25.0" layoutX="491.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cross.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="469.0" layoutY="376.0" mnemonicParsing="false" onAction="#player1NexttTurn" prefHeight="31.0" prefWidth="185.0" text="Next Turn" />
+            <Button layoutX="470.0" layoutY="451.0" mnemonicParsing="false" onAction="#player1OwnBoardView" prefHeight="31.0" prefWidth="185.0" text="Go to Own Board" />
+            <Label layoutX="484.0" layoutY="126.0" text="Player one Turns" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <ImageView fx:id="player1Pro" fitHeight="82.0" fitWidth="110.0" layoutX="159.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player2Pro" fitHeight="84.0" fitWidth="112.0" layoutX="374.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="37.0" layoutY="65.0" mnemonicParsing="false" onAction="#SurrenderPlayer1" text="Surrender" />
+            <Label layoutX="302.0" layoutY="15.0" style="-fx-text-fill: red;" text="VS">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="39.0" layoutY="4.0" text="Player one" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="550.0" layoutY="3.0" text="Player two" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="player1User" alignment="CENTER" layoutX="2.0" layoutY="30.0" prefHeight="27.0" prefWidth="158.0" text="Player one" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="player2User" alignment="CENTER" layoutX="507.0" layoutY="28.0" prefHeight="27.0" prefWidth="168.0" text="Player two" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="290.0" layoutY="51.0" text="Fight for:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="point" layoutX="294.0" layoutY="71.0" style="-fx-text-fill: red;" text="50 PT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button layoutX="549.0" layoutY="66.0" mnemonicParsing="false" onAction="#SurrenderPlayer2" text="Surrender" />
+         </children>
+      </Pane>
+      <Pane fx:id="ownBoardPlayer1" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <GridPane fx:id="gridPlayerPlayer1Own" alignment="BASELINE_CENTER" gridLinesVisible="true" layoutX="146.0" layoutY="55.0" prefHeight="372.0" prefWidth="413.0" style="-fx-background-color: lightBlue;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="288.0" layoutY="4.0" text="Own Board" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="292.0" layoutY="452.0" mnemonicParsing="false" onAction="#ownBoardPlayer1Off" text="Back TO Game" />
+         </children>
+      </Pane>
+      <Pane fx:id="ownBoardPlayer2" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <GridPane fx:id="gridPlayerPlayer2Own" alignment="BASELINE_CENTER" gridLinesVisible="true" layoutX="146.0" layoutY="55.0" prefHeight="372.0" prefWidth="413.0" style="-fx-background-color: lightBlue;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Label layoutX="288.0" layoutY="4.0" text="Own Board" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="292.0" layoutY="452.0" mnemonicParsing="false" onAction="#ownBoardPlayer2Off" text="Back TO Game" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
