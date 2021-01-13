@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleTestController">
+    <children>
+      <Pane fx:id="player1Pane1" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <GridPane fx:id="gridPlayer2" gridLinesVisible="true" layoutX="30.0" layoutY="62.0" prefHeight="372.0" prefWidth="413.0" style="-fx-background-color: lightBlue;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <Button fx:id="process1" layoutX="503.0" layoutY="367.0" mnemonicParsing="false" onAction="#process1" prefHeight="31.0" prefWidth="160.0" text="Set Ship &amp; Update" />
+            <TextField fx:id="shipNum1" alignment="CENTER" editable="false" layoutX="462.0" layoutY="290.0" prefHeight="31.0" prefWidth="230.0" promptText="ShipId (Choose)" />
+            <TextField fx:id="coorOrDir1" alignment="CENTER" layoutX="462.0" layoutY="329.0" prefHeight="31.0" prefWidth="230.0" promptText="Direction or x,y" />
+            <ImageView fx:id="ship01" fitHeight="34.0" fitWidth="149.0" layoutX="506.0" layoutY="111.0" onMouseClicked="#setShip11" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/Ship1-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship11" fitHeight="43.0" fitWidth="137.0" layoutX="509.0" layoutY="60.0" onMouseClicked="#setShip01" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship2-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship21" fitHeight="43.0" fitWidth="117.0" layoutX="525.0" layoutY="154.0" onMouseClicked="#setShip21" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship4-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship41" fitHeight="29.0" fitWidth="129.0" layoutX="517.0" layoutY="251.0" onMouseClicked="#setShip41" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship5-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="stat1" fitHeight="19.0" fitWidth="19.0" layoutX="466.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cross.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship31" fitHeight="31.0" fitWidth="81.0" layoutX="543.0" layoutY="207.0" onMouseClicked="#setShip31" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship3-min.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="527.0" layoutY="32.0" style="-fx-text-fill: white;" text="Choose Your Ship" />
+            <Button layoutX="533.0" layoutY="455.0" mnemonicParsing="false" onAction="#next1" prefHeight="31.0" prefWidth="103.0" text="Done!" />
+            <Label fx:id="error1" alignment="CENTER" layoutX="466.0" layoutY="413.0" prefHeight="21.0" prefWidth="230.0" style="-fx-text-fill: red;" text="Error" />
+            <Label layoutX="34.0" layoutY="37.0" prefHeight="21.0" prefWidth="397.0" text="   1        2        3        4        5        6       7        8        9        10" textFill="WHITE" />
+            <Label layoutX="-182.0" layoutY="248.0" prefHeight="21.0" prefWidth="397.0" style="-fx-rotate: 90;" text="   1       2       3       4       5       6       7       8       9       10" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane fx:id="player2StartPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <Label fx:id="player2Username" layoutX="171.0" layoutY="90.0" prefHeight="40.0" prefWidth="371.0" style="-fx-alignment: center; -fx-text-fill: white;" text="hessamasna as  &quot;player2&quot;  Turn">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnStartPlayer2" layoutX="229.0" layoutY="184.0" mnemonicParsing="false" onAction="#bringPlayer2PaneToFront" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" text="Click to randomize Ships for Start ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="183.0" fitWidth="230.0" layoutX="258.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/loading.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="player1Pane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+              <GridPane fx:id="gridPlayer1" gridLinesVisible="true" layoutX="30.0" layoutY="62.0" prefHeight="372.0" prefWidth="413.0" style="-fx-background-color: lightBlue;">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+              </GridPane>
+            <Button fx:id="process" layoutX="503.0" layoutY="367.0" mnemonicParsing="false" onAction="#process" prefHeight="31.0" prefWidth="160.0" text="Set Ship &amp; Update" />
+            <TextField fx:id="shipNum" alignment="CENTER" editable="false" layoutX="462.0" layoutY="290.0" prefHeight="31.0" prefWidth="230.0" promptText="ShipId (Choose)" />
+            <TextField fx:id="coorOrDir" alignment="CENTER" layoutX="462.0" layoutY="329.0" prefHeight="31.0" prefWidth="230.0" promptText="Direction or x,y" />
+            <ImageView fx:id="ship0" fitHeight="34.0" fitWidth="149.0" layoutX="506.0" layoutY="111.0" onMouseClicked="#setShip1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/Ship1-min.png" />
+               </image></ImageView>
+            <ImageView fx:id="ship1" fitHeight="43.0" fitWidth="137.0" layoutX="509.0" layoutY="60.0" onMouseClicked="#setShip0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship2-min.png" />
+               </image></ImageView>
+            <ImageView fx:id="ship2" fitHeight="43.0" fitWidth="117.0" layoutX="525.0" layoutY="154.0" onMouseClicked="#setShip2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship4-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship4" fitHeight="29.0" fitWidth="129.0" layoutX="517.0" layoutY="251.0" onMouseClicked="#setShip4" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship5-min.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="stat" fitHeight="31.0" fitWidth="38.0" layoutX="466.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/cross.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ship3" fitHeight="31.0" fitWidth="81.0" layoutX="543.0" layoutY="207.0" onMouseClicked="#setShip3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/BattleShip/ship3-min.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="512.0" layoutY="32.0" style="-fx-text-fill: white;" text="Choose Your Ship" />
+            <Button layoutX="532.0" layoutY="454.0" mnemonicParsing="false" onAction="#next" prefHeight="31.0" prefWidth="103.0" text="Done!" />
+            <Label fx:id="error" alignment="CENTER" contentDisplay="TOP" layoutX="466.0" layoutY="413.0" prefHeight="21.0" prefWidth="230.0" style="-fx-text-fill: red;" text="Error" />
+            <Label layoutX="36.0" layoutY="39.0" prefHeight="21.0" prefWidth="397.0" text="   1        2        3        4        5        6       7        8        9        10" textFill="WHITE" />
+            <Label layoutX="-182.0" layoutY="250.0" prefHeight="21.0" prefWidth="397.0" style="-fx-rotate: 90;" text="   1       2       3       4       5       6       7       8       9       10" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane fx:id="player1StartPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
+         <children>
+            <Label fx:id="player1Username" layoutX="171.0" layoutY="90.0" prefHeight="40.0" prefWidth="371.0" style="-fx-alignment: center; -fx-text-fill: white;" text="hessamasna as  &quot;player1&quot;  Turn">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnStartPlayer1" layoutX="229.0" layoutY="184.0" mnemonicParsing="false" onAction="#bringPlayer1PaneToFront" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-background-color: #1a1b20; -fx-text-fill: white;" text="Click to randomize Ships for Start ">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="183.0" fitWidth="230.0" layoutX="258.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/loading.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

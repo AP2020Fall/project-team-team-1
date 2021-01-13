@@ -596,7 +596,11 @@ public class Run {
 
     }
 
-
+    public static void showHel(){
+        System.out.println(Board.displayBoard(game.getFirstPlayerOwnBoard().getGameBoard()));
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(Board.displayBoard(game.getSecondPlayerOwnBoard().getGameBoard()));
+    }
 
     private static int randomMessageId(int min, int max) {
         Random random = new Random();

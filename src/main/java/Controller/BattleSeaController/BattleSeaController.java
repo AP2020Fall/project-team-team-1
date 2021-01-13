@@ -164,5 +164,38 @@ public class BattleSeaController {
         run.deletePlayer();
     }
 
+    public String stat(int index){
+        return String.valueOf(run.player1.getPlayerShip().get(index).getCoordinate().getDirection());
+    }
 
+    public String getPlayer1Coordinate(int index){
+        int xStart = run.player1.getPlayerShip().get(index).getCoordinate().getxStart();
+        int yStart = run.player1.getPlayerShip().get(index).getCoordinate().getyStart();
+        int xLast = run.player1.getPlayerShip().get(index).getCoordinate().getxLast();
+        int yLast = run.player1.getPlayerShip().get(index).getCoordinate().getyLast();
+        int size = run.player1.getPlayerShip().get(index).getSize();
+        String dir = String.valueOf(run.player1.getPlayerShip().get(index).getCoordinate().getDirection());
+        StringBuilder returnResult = new StringBuilder();
+
+        returnResult.append(xStart).append("$").append(yStart).append("$").append(xLast).append("$").append(yLast).append("$").append(size).append("$").append(dir).append("$");
+
+
+        return String.valueOf(returnResult);
+    }
+
+
+    public String getPlayer2Coordinate(int index) {
+        int xStart = run.player2.getPlayerShip().get(index).getCoordinate().getxStart();
+        int yStart = run.player2.getPlayerShip().get(index).getCoordinate().getyStart();
+        int xLast = run.player2.getPlayerShip().get(index).getCoordinate().getxLast();
+        int yLast = run.player2.getPlayerShip().get(index).getCoordinate().getyLast();
+        int size = run.player2.getPlayerShip().get(index).getSize();
+        String dir = String.valueOf(run.player2.getPlayerShip().get(index).getCoordinate().getDirection());
+        StringBuilder returnResult = new StringBuilder();
+
+        returnResult.append(xStart).append("$").append(yStart).append("$").append(xLast).append("$").append(yLast).append("$").append(size).append("$").append(dir).append("$");
+
+
+        return String.valueOf(returnResult);
+    }
 }
