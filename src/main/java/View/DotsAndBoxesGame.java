@@ -3,9 +3,14 @@ package View;
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,6 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,12 +49,12 @@ public class DotsAndBoxesGame implements Initializable {
     public Label lblPlayer2Points;
     @FXML
     public Label lblTurn;
-    private String firstPlayer = "Amirzgh1";
-    private String secondPlayer = "player";
+    private static String firstPlayer = "";
+    private static String secondPlayer = "";
     private Circle[] dots = new Circle[64];
     private double valueX =165;
-    private double valueY =125;
-    private int point = 30;
+    private double valueY =165;
+    private static int point = 30;
 
     public int getPoint() {
         return point;
@@ -129,10 +135,14 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     @FXML
-    private void setOnMouseClicked(MouseEvent mouseEvent) throws IOException {
+    private void setOnMouseClicked(MouseEvent mouseEvent){
         Circle circle = (Circle) mouseEvent.getTarget();
         hover(circle.getId());
-        click(circle.getId());
+        try {
+            click(circle.getId());
+        } catch (IOException ignored) {
+            System.out.println(ignored.getMessage());
+        }
     }
     @FXML
     private void hover(String id){
@@ -202,7 +212,6 @@ public class DotsAndBoxesGame implements Initializable {
 
             }
 
-
             board.getChildren().add(line);
             IntStream.range(0, 64).forEachOrdered(i -> dots[i].setFill(Color.rgb(189, 195, 199)));
             lblPlayer1Points.setText(String.valueOf(dotsAndBoxesController.getRedPoints()));
@@ -223,6 +232,7 @@ public class DotsAndBoxesGame implements Initializable {
             }
         }
     }
+    // todo popup winner
     private Color findColor(){
         if (dotsAndBoxesController.turn().equals(Player.BLUE)){
             return Color.rgb(41, 128, 185);
@@ -240,7 +250,6 @@ public class DotsAndBoxesGame implements Initializable {
 
     private void awardTheWinner() throws IOException {
         if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("blue")){
-            //todo ask hesam about name
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
         }else if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("red")){
@@ -254,6 +263,7 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         setLabels();
         try {
@@ -276,5 +286,29 @@ public class DotsAndBoxesGame implements Initializable {
                 +getSecondPlayer()+".jpg";
         URL url1 = new File(path1).toURI().toURL();
         imgSecond.setImage(new Image(url1.toExternalForm()));
+    }
+
+    public void forfeit(ActionEvent actionEvent) throws IOException {
+        if (whoseTurnIsIt().equals(secondPlayer)){
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
+            setSecondPlayer(" ");
+            URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+        }else if (whoseTurnIsIt().equals(firstPlayer)){
+            playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
+            playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
+            setSecondPlayer(" ");
+            URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+        }
     }
 }
