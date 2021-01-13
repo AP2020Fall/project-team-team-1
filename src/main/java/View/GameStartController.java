@@ -419,6 +419,7 @@ public class GameStartController implements Initializable {
     private void setProfiles() throws MalformedURLException {
         player1User.setText(BattleTestController.getPlayer1());
         player2User.setText(BattleTestController.getPlayer2());
+        point.setText(getScore()+"PT");
 
         String path = "src"+ File.separator+"main"+File.separator+"resources"+File.separator
                 +"Users"+File.separator+BattleTestController.getPlayer1()+File.separator

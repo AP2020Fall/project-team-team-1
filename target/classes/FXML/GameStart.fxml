@@ -144,32 +144,33 @@
          <children>
             <ImageView fx:id="player1Pro" fitHeight="82.0" fitWidth="110.0" layoutX="159.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="player2Pro" fitHeight="84.0" fitWidth="112.0" layoutX="374.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="302.0" layoutY="20.0" style="-fx-text-fill: red;" text="VS">
+            <Button layoutX="37.0" layoutY="65.0" mnemonicParsing="false" onAction="#SurrenderPlayer1" text="Surrender" />
+            <Label layoutX="302.0" layoutY="15.0" style="-fx-text-fill: red;" text="VS">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="36.0" layoutY="19.0" text="Player one" textFill="WHITE">
+            <Label layoutX="39.0" layoutY="4.0" text="Player one" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="541.0" layoutY="18.0" text="Player two" textFill="WHITE">
+            <Label layoutX="550.0" layoutY="3.0" text="Player two" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="player1User" alignment="CENTER" layoutX="2.0" layoutY="48.0" prefHeight="27.0" prefWidth="158.0" text="Player one" textFill="WHITE">
+            <Label fx:id="player1User" alignment="CENTER" layoutX="2.0" layoutY="30.0" prefHeight="27.0" prefWidth="158.0" text="Player one" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="player2User" alignment="CENTER" layoutX="506.0" layoutY="57.0" prefHeight="27.0" prefWidth="168.0" text="Player two" textFill="WHITE">
+            <Label fx:id="player2User" alignment="CENTER" layoutX="507.0" layoutY="28.0" prefHeight="27.0" prefWidth="168.0" text="Player two" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="290.0" layoutY="54.0" text="Fight for:" textFill="WHITE">
+            <Label layoutX="290.0" layoutY="51.0" text="Fight for:" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -179,6 +180,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Button layoutX="549.0" layoutY="66.0" mnemonicParsing="false" onAction="#SurrenderPlayer2" text="Surrender" />
          </children>
       </Pane>
       <Pane fx:id="ownBoardPlayer1" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">

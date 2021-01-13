@@ -34,7 +34,24 @@ import java.util.ResourceBundle;
 public class BattleTestController implements Initializable {
     private static String player1 = "player";
     private static String player2 = "player2";
-    BattleSeaController battleSeaController1 = new BattleSeaController();
+    private static int score ;
+    BattleSeaController battleSeaController1 ;
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score) {
+        BattleTestController.score = score;
+    }
+
+    public BattleSeaController getBattleSeaController1() {
+        return battleSeaController1;
+    }
+
+    public void setBattleSeaController1(BattleSeaController battleSeaController1) {
+        this.battleSeaController1 = battleSeaController1;
+    }
 
     public static String getPlayer1() {
         return player1;
@@ -426,7 +443,7 @@ public class BattleTestController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        battleSeaController1 = new BattleSeaController();
+        setBattleSeaController1(new BattleSeaController());
         battleSeaController1.addPlayersToArrayList();
         battleSeaController1.randomShipPlaceForPlayer1();
         battleSeaController1.randomShipPlaceForPlayer2();
