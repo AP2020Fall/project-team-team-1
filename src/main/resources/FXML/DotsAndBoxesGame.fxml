@@ -14,17 +14,17 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="lblPlayer2" layoutX="478.0" layoutY="275.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.rightAnchor="14.0">
+      <Label fx:id="lblPlayer2" alignment="CENTER_RIGHT" layoutX="478.0" layoutY="275.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.rightAnchor="14.0">
          <font>
             <Font size="14.0" />
          </font></Label>
       <Label fx:id="lblPlayer1Points" layoutX="14.0" layoutY="309.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.leftAnchor="14.0">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
-      <Label fx:id="lblPlayer2Points" layoutX="464.0" layoutY="309.0" prefHeight="34.0" prefWidth="122.0" text="Label">
+      <Label fx:id="lblPlayer2Points" alignment="CENTER_RIGHT" layoutX="471.0" layoutY="315.0" prefHeight="34.0" prefWidth="122.0" text="Label" AnchorPane.rightAnchor="14.0">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font></Label>
       <Label fx:id="lblTurn" alignment="CENTER" layoutX="181.0" layoutY="461.0" prefHeight="93.0" prefWidth="238.0" text="Label" />
       <Button layoutY="2.0" mnemonicParsing="false" onAction="#forfeit" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold;" text="Forfeit" />
