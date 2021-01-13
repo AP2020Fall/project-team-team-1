@@ -44,8 +44,8 @@ public class DotsAndBoxesGame implements Initializable {
     public Label lblPlayer2Points;
     @FXML
     public Label lblTurn;
-    private String firstPlayer = "Amirzgh1";
-    private String secondPlayer = "player";
+    private static String firstPlayer = "";
+    private static String secondPlayer = "";
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
@@ -259,6 +259,7 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         setLabels();
         try {

@@ -170,7 +170,7 @@ public class DotsAndBoxesMainMenuController implements Initializable {
     private void runGame(ActionEvent actionEvent) throws IOException {
         playMouseSound();
 
-        URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

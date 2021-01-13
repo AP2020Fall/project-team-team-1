@@ -29,7 +29,7 @@
                 <Image url="@../Icons/143-padlock-2.png" />
             </image>
         </ImageView>
-        <Button fx:id="btnSubmit" layoutX="57.0" layoutY="265.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Start">
+        <Button fx:id="btnSubmit" layoutX="57.0" layoutY="265.0" mnemonicParsing="false" onAction="#loginAsSecondPlayer" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Start">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
