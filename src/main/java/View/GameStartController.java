@@ -181,6 +181,8 @@ public class GameStartController implements Initializable {
             result = getBattleSeaController1().boomProcessor("player1",boom);
         } catch (BattleShipWinner battleShipWinner) {
             //todo Winner
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
+
             player1Error.setText("Empty Inputs");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
@@ -273,6 +275,8 @@ public class GameStartController implements Initializable {
             result = getBattleSeaController1().boomProcessor("player2",boom);
         } catch (BattleShipWinner battleShipWinner) {
             //todo Winner
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
+
             player2Error.setText("Empty Inputs");
             player2Stat.setVisible(true);
             player2Error.setVisible(true);
