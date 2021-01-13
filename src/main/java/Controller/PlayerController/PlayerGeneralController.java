@@ -228,7 +228,6 @@ public class PlayerGeneralController {
     public void reportsPlayer(String usernameWhoLogin,String usernameWhoReported) throws ExistPlayerException, IOException {
         PlayerInfo.reportsPlayer(usernameWhoLogin, usernameWhoReported);
         DataBase.save(Player.players,playerFile);
-
     }
     public String rememberPasswordStatus(String userName){
         Player player = FindPlayerByInfo.findByUserName(userName);
@@ -242,6 +241,12 @@ public class PlayerGeneralController {
     public String getUsernamePassword(String userName){
         Player player = FindPlayerByInfo.findByUserName(userName);
         return player.getPassword();
+    }
+    public String getUserProfileUrl(String userName){
+        System.out.println(userName);
+        Player player = FindPlayerByInfo.findByUserName(userName);
+        System.out.println(player.getProfileURL());
+        return player.getProfileURL();
     }
 
 }
