@@ -41,9 +41,12 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGame implements Initializable {
-    private static final File file = new File("src\\main\\resources\\Sound\\job.mp3");
+    private static final File file = new File("src\\main\\resources\\Sound\\chase.mp3");
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
+//    private static final File file2 = new File("src\\main\\resources\\Sound\\hesam.mp3");
+//    protected static Media media2 = new Media(file2.toURI().toString());
+//    protected static MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
     protected static DotsAndBoxesController dotsAndBoxesController;
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
@@ -209,6 +212,10 @@ public class DotsAndBoxesGame implements Initializable {
     }
     @FXML
     private void drawLine(int first , int second) {
+        File file2 = new File("src\\main\\resources\\Sound\\hesam.mp3");
+        Media media2 = new Media(file2.toURI().toString());
+        MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
+        mediaPlayer2.setVolume(0.5);
         if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
             try {
                 awardTheWinner();
@@ -233,6 +240,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
                     line.setStartY(dots[first].getCenterY());
                     line.setEndY(dots[second].getCenterY());
+
 //                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -249,6 +257,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
                     line.setStartY(dots[first].getCenterY());
                     line.setEndY(dots[second].getCenterY());
+
 //                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -265,6 +274,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX());
                     line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
                     line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
+
 //                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -281,13 +291,13 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX());
                     line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
                     line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
+
 //                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 }
-
             }
 
             board.getChildren().add(line);
@@ -303,7 +313,10 @@ public class DotsAndBoxesGame implements Initializable {
             }else if (whoseTurnIsIt().equals(secondPlayer)){
                 lblTurn.setTextFill(Color.rgb(41, 128, 185));
             }
+
         }
+
+        mediaPlayer2.play();
     }
     private Color findColor(){
         if (dotsAndBoxesController.turn().equals(Player.BLUE)){
@@ -338,6 +351,7 @@ public class DotsAndBoxesGame implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dotsAndBoxesController = new DotsAndBoxesController();
+        mediaPlayer.setVolume(0.5);
         mediaPlayer.play();
         hbox.setSpacing(20);
         hbox.alignmentProperty().set(Pos.CENTER);

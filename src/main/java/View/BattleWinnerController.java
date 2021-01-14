@@ -32,7 +32,7 @@ public class BattleWinnerController implements Initializable {
 
     @FXML
     private void backToMenu(ActionEvent event) throws IOException {
-
+        GameStartController.mediaPlayer.stop();
         URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

@@ -173,6 +173,7 @@ public class LoginController implements Initializable {
 //        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
 //        Media media = new Media(file.toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(0.2);
         mediaPlayer.play();
         AdminMainMenu.mediaPlayerAdmin.stop();
 //        txtUsername.setText("amir");

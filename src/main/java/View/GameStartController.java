@@ -36,6 +36,9 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class GameStartController implements Initializable {
+    private static final File file = new File("src\\main\\resources\\Sound\\medalion.mp3");
+    protected static Media media = new Media(file.toURI().toString());
+    protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
     private static PlayerGeneralController playerGeneralController;
     private static AdminGeneralController adminGeneralController = new AdminGeneralController();
     private static BattleSeaController battleSeaController1;
@@ -541,6 +544,8 @@ public class GameStartController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mediaPlayer.setVolume(0.5);
+        mediaPlayer.play();
         setErrorsOff();
         setOwnBoardsOff();
         forZoom.setVisible(false);
