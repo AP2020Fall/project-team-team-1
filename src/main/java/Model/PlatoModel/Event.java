@@ -27,6 +27,8 @@ public class Event {
     private int score;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String profileURL;
+
 
     public Event(int eventID,String gameName, LocalDate startDate, LocalDate endDate, int score ,String comment) {
 //        this.eventID = makeEventID();
@@ -37,6 +39,16 @@ public class Event {
         this.score =score;
         this.comment = comment;
         playersInThisEvent = new ArrayList<String>();
+        this.profileURL = "src\\main\\resources\\Images\\default-profile.png";
+
+    }
+
+    public String getProfileURL() {
+        return profileURL;
+    }
+
+    public void setProfileURL(String profileURL) {
+        this.profileURL = profileURL;
     }
 
     public String getComment() {

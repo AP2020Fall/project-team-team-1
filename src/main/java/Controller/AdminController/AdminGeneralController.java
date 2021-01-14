@@ -70,6 +70,16 @@ public class AdminGeneralController {
         return Event.eventFinderByEventID(eventID);
     }
 
+    public void editEventProfile(String eventID , String url) throws ExistEventException, IOException {
+        Event.editEventProfile(eventID, url);
+        DataBase.save(Admin.getAdmins(), adminFile);
+        DataBase.save(Player.getPlayers(), playerFile);
+        DataBase.save(Model.PlatoModel.Event.getEvents(), eventFile);
+    }
+    public String getEventProfileUrl(String eventID) throws ExistEventException {
+        return Event.getEventProfileUrl(eventID);
+    }
+
         /***********************************************MESSAGE***********************************************/
     public void sendMassageString(String text) throws IOException, NotNullMessageException {
         Message.sendMassage(text);
