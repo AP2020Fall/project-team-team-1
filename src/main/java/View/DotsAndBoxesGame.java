@@ -1,25 +1,33 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -28,9 +36,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGame implements Initializable {
+    private static final File file = new File("src\\main\\resources\\Sound\\job.mp3");
+    protected static Media media = new Media(file.toURI().toString());
+    protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
     protected static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
@@ -44,17 +56,29 @@ public class DotsAndBoxesGame implements Initializable {
     @FXML
     public Label lblPlayer2;
     @FXML
-    public Label lblPlayer1Points;
+    public Label lblPlayer1Points = new Label();
     @FXML
-    public Label lblPlayer2Points;
+    public Label lblPlayer2Points = new Label();
     @FXML
-    public Label lblTurn;
+    public Label lblTurn = new Label();
     private static String firstPlayer = "";
     private static String secondPlayer = "";
+    private static String winner = " ";
+    public Pane WinnerPane;
+    public Label lblWinner;
+    public HBox hbox;
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
     private static int point = 30;
+
+    public static String getWinner() {
+        return winner;
+    }
+
+    public static void setWinner(String winner) {
+        DotsAndBoxesGame.winner = winner;
+    }
 
     public int getPoint() {
         return point;
@@ -134,6 +158,17 @@ public class DotsAndBoxesGame implements Initializable {
         }
     }
 
+//    @FXML
+//    private void updateScoreBoard(){
+//        Label redPoint = new Label(String.valueOf(dotsAndBoxesController.getRedPoints()));
+//        redPoint.setTextFill(Color.rgb(192, 57, 43));
+//        Text text = new Text("-");
+//        text.setFill(Color.WHITE);
+//        Label bluePoint = new Label(String.valueOf(dotsAndBoxesController.getBluePoints()));
+//        bluePoint.setTextFill(Color.rgb(41, 128, 185));
+//        hbox.getChildren().addAll(redPoint,text,bluePoint);
+//    }
+
     @FXML
     private void setOnMouseClicked(MouseEvent mouseEvent){
         Circle circle = (Circle) mouseEvent.getTarget();
@@ -141,7 +176,7 @@ public class DotsAndBoxesGame implements Initializable {
         try {
             click(circle.getId());
         } catch (IOException ignored) {
-            System.out.println(ignored.getMessage());
+            return;
         }
     }
     @FXML
@@ -169,46 +204,86 @@ public class DotsAndBoxesGame implements Initializable {
             drawLine(n, n + 1);
         }
     }
-    private void drawLine(int first , int second) throws IOException {
+    @FXML
+    private void drawLine(int first , int second) {
+        if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
+            try {
+                awardTheWinner();
+            } catch (IOException e) {
+                return;
+            }
+            lblWinner.setText(getWinner());
+            WinnerPane.setVisible(true);
+            WinnerPane.toFront();
+        }
         Line line = new Line();
         line.setStrokeWidth(2);
         line.setId(whoseTurnIsIt());
         line.setStroke(findColor());
         if (dots[second].getFill().equals(Color.rgb(39, 55, 70))){
             if (first-second==1){
-                line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
-                line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
-                line.setStartY(dots[first].getCenterY());
-                line.setEndY(dots[second].getCenterY());
-                System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                    line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
+                    line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
+                    line.setStartY(dots[first].getCenterY());
+                    line.setEndY(dots[second].getCenterY());
+                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==-1){
-                line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
-                line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
-                line.setStartY(dots[first].getCenterY());
-                line.setEndY(dots[second].getCenterY());
-                System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                    line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
+                    line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
+                    line.setStartY(dots[first].getCenterY());
+                    line.setEndY(dots[second].getCenterY());
+                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==8){
-                line.setStartX(dots[first].getCenterX());
-                line.setEndX(dots[second].getCenterX());
-                line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
-                line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
-                System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                    line.setStartX(dots[first].getCenterX());
+                    line.setEndX(dots[second].getCenterX());
+                    line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
+                    line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
+                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==-8){
-                line.setStartX(dots[first].getCenterX());
-                line.setEndX(dots[second].getCenterX());
-                line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
-                line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
-                System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                    line.setStartX(dots[first].getCenterX());
+                    line.setEndX(dots[second].getCenterX());
+                    line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
+                    line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
+                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
 
@@ -218,12 +293,7 @@ public class DotsAndBoxesGame implements Initializable {
             lblPlayer1Points.setTextFill(Color.rgb(192, 57, 43));
             lblPlayer2Points.setText(String.valueOf(dotsAndBoxesController.getBluePoints()));
             lblPlayer2Points.setTextFill(Color.rgb(41, 128, 185));
-            if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
-                awardTheWinner();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Game Is Over");
-                alert.show();
-            }
+
             lblTurn.setText(whoseTurnIsIt());
             if (whoseTurnIsIt().equals(firstPlayer)){
                 lblTurn.setTextFill(Color.rgb(192, 57, 43));
@@ -232,7 +302,6 @@ public class DotsAndBoxesGame implements Initializable {
             }
         }
     }
-    // todo popup winner
     private Color findColor(){
         if (dotsAndBoxesController.turn().equals(Player.BLUE)){
             return Color.rgb(41, 128, 185);
@@ -250,9 +319,11 @@ public class DotsAndBoxesGame implements Initializable {
 
     private void awardTheWinner() throws IOException {
         if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("blue")){
+            setWinner(getSecondPlayer());
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
         }else if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("red")){
+            setWinner(getFirstPlayer());
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
         }
@@ -263,6 +334,13 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mediaPlayer.play();
+        hbox.setSpacing(20);
+        hbox.alignmentProperty().set(Pos.CENTER);
+//
+        hbox.getChildren().addAll(lblPlayer1Points,lblTurn,lblPlayer2Points);
+        board.toFront();
+        WinnerPane.setVisible(false);
         System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         setLabels();
@@ -289,6 +367,7 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     public void forfeit(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
         if (whoseTurnIsIt().equals(secondPlayer)){
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
@@ -310,5 +389,42 @@ public class DotsAndBoxesGame implements Initializable {
             window.setScene(message);
             window.show();
         }
+        mediaPlayer.stop();
+    }
+
+    public void backToPlato(ActionEvent actionEvent) throws IOException {
+        mediaPlayer.stop();
+        URL url = new File("src/main/resources/FXML/PlayerMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+    }
+
+    public void ViewProfilePlayer1(MouseEvent mouseEvent) throws IOException {
+        FriendProfileForSentRequestController.setUsernameOfFriendForSentRequest(getFirstPlayer());
+        URL url = new File("src/main/resources/FXML/FriendProfileForSentRequest.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Scene message = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(message);
+        stage.show();
+    }
+
+    public void ViewProfilePlayer2(MouseEvent mouseEvent) throws IOException {
+        FriendProfileForSentRequestController.setUsernameOfFriendForSentRequest(getSecondPlayer());
+        URL url = new File("src/main/resources/FXML/FriendProfileForSentRequest.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Scene message = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(message);
+        stage.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayerMouse = new MediaPlayer(media);
+        mediaPlayerMouse.play();
     }
 }

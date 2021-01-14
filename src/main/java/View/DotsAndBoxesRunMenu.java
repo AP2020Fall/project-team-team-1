@@ -82,7 +82,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Hello");
+         //System.out.println("Hello");
         try {
             addToList();
         } catch (ExistFriendException e) {
