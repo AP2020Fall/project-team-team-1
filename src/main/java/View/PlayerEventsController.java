@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +33,7 @@ import java.util.ResourceBundle;
 
 public class PlayerEventsController implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     @FXML
     public JFXButton BtnClose;
     @FXML
@@ -146,6 +148,30 @@ public class PlayerEventsController implements Initializable {
     );
     @FXML
     private void joinEvent(ActionEvent event) throws IOException, ExistEventException {
-        playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
+        if (playerGeneralController.eventActivation(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
+            playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
+            if (tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("b")||tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("B")){
+                BattleShipRunMenu.setScore(Long.parseLong(String.valueOf(tableView.getSelectionModel().getSelectedItem().getScore())));
+                URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+                Parent register = FXMLLoader.load(url);
+                Scene message = new Scene(register);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(message);
+                window.show();
+            }if (tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("d")||tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("D")){
+                DotsAndBoxesRunMenu.setPoint(Long.parseLong(String.valueOf(tableView.getSelectionModel().getSelectedItem().getScore())));
+                URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
+                Parent register = FXMLLoader.load(url);
+                Scene message = new Scene(register);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(message);
+                window.show();
+            }
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("NOT ACTIVE EVENT");
+            alert.setContentText("This Event Is Not Active Yet Wait Until "+tableView.getSelectionModel().getSelectedItem().getStartDate());
+            alert.showAndWait();
+        }
     }
 }
