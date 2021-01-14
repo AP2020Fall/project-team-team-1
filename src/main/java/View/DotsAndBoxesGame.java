@@ -326,8 +326,6 @@ public class DotsAndBoxesGame implements Initializable {
         }
     }
 
-
-
     @FXML
     private void setImages() throws MalformedURLException {
         String path = "src"+ File.separator+"main"+File.separator+"resources"+File.separator

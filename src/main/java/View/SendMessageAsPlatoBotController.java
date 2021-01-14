@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -24,6 +26,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -54,7 +57,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
     }
 
     @FXML
-    private void showMessages(){
+    private void showMessages() throws MalformedURLException {
         for (String s : messages) {
 
             String[] dates = s.split(",");
@@ -73,16 +76,25 @@ public class SendMessageAsPlatoBotController implements Initializable {
             temp = checkDate(dates[1].substring(0, 10));
 
             HBox message = new HBox();
+            String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator
+                    +"Users"+File.separator+"admin"+File.separator
+                    +"admin.jpg";
+            URL url = new File(path).toURI().toURL();
+
+            ImageView imageView = new ImageView();
+            imageView.setFitWidth(20);
+            imageView.setFitHeight(20);
+            imageView.setImage(new Image(url.toExternalForm()));
             Label text = new Label();
             text.setText(dates[0].substring(6));
             text.setTextFill(Color.WHITE);
-            text.setPrefWidth(300);
+            text.setPrefWidth(280);
             text.setPrefHeight(20);
             Label time = new Label();
             time.setText(dates[2]);
             time.setTextFill(Color.GRAY);
             time.setPrefHeight(20);
-            message.getChildren().addAll(text, time);
+            message.getChildren().addAll(imageView,text, time);
             vbox.getChildren().addAll(date, message);
 
         }
@@ -99,7 +111,11 @@ public class SendMessageAsPlatoBotController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         vbox.setSpacing(10);
-        showMessages();
+        try {
+            showMessages();
+        } catch (MalformedURLException e) {
+            return;
+        }
     }
     @FXML
     public void exit(ActionEvent event) {
