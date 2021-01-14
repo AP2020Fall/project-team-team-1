@@ -35,9 +35,23 @@ import java.util.ResourceBundle;
 public class BattleShipRunMenu implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static LogIn logIn = new LogIn();
+    private static long score = 10;
+
+    public static long getScore() {
+        return score;
+    }
+
+    public static void setScore(long score) {
+        BattleShipRunMenu.score = score;
+    }
+
+    @FXML
     public Button btnSubmit;
+    @FXML
     public JFXPasswordField txtPassword;
+    @FXML
     public JFXTextField txtUsername;
+
 
     String username =LoginController.getUsername();
 
@@ -103,7 +117,7 @@ public class BattleShipRunMenu implements Initializable {
             System.out.println(this.username);
             BattleTestController.setPlayer2(txtUsername.getText());
             System.out.println(txtUsername.getText());
-            BattleTestController.setScore(10);
+            BattleTestController.setScore(getScore());
             URL url = new File("src/main/resources/FXML/BattleTest.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);

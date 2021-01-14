@@ -34,14 +34,14 @@ import java.util.ResourceBundle;
 public class BattleTestController implements Initializable {
     private static String player1 = "player";
     private static String player2 = "player2";
-    private static int score ;
+    private static long score ;
     BattleSeaController battleSeaController1 ;
 
-    public static int getScore() {
+    public static long getScore() {
         return score;
     }
 
-    public static void setScore(int score) {
+    public static void setScore(long score) {
         BattleTestController.score = score;
     }
 
@@ -328,6 +328,7 @@ public class BattleTestController implements Initializable {
         GameStartController.setGridPanePlayer1(gridPlayer1);
         GameStartController.setGridPanePlayer2(gridPlayer2);
         GameStartController.setBattleSeaController1(battleSeaController1);
+        GameStartController.setScore(getScore());
         URL url = new File("src/main/resources/FXML/GameStart.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

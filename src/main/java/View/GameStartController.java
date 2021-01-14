@@ -10,19 +10,26 @@ import Controller.PlayerController.Game;
 import Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -34,13 +41,13 @@ public class GameStartController implements Initializable {
     private static GridPane gridPanePlayer2;
     private static Boolean passForNextTurnPlayer1 ;
     private static Boolean passForNextTurnPlayer2 ;
-    private static int score = 50 ;
+    private static long score = 10 ;
 
-    public static int getScore() {
+    public static long getScore() {
         return score;
     }
 
-    public static void setScore(int score) {
+    public static void setScore(long score) {
         GameStartController.score = score;
     }
 
@@ -149,10 +156,13 @@ public class GameStartController implements Initializable {
 
     @FXML
     Label point;
+
+    @FXML
+    Pane forZoom;
     /*********************************************************************************/
 
     @FXML
-    private void player1Attack(ActionEvent event) {
+    private void player1Attack(ActionEvent event) throws IOException {
 
         if (passForNextTurnPlayer1){
             player1Error.setText("You Already Attacked ! Push Next Turn ");
@@ -180,13 +190,16 @@ public class GameStartController implements Initializable {
         try {
             result = getBattleSeaController1().boomProcessor("player1",boom);
         } catch (BattleShipWinner battleShipWinner) {
-            //todo Winner
-            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore() );
+            Game.historySaver(LocalDate.now(),  BattleTestController.getPlayer1(),  BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
-            player1Error.setText("Empty Inputs");
-            player1Stat.setVisible(true);
-            player1Error.setVisible(true);
-            return;
+            BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
+            URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
 
         } catch (BoomCheckException e) {
             player1Error.setText(e.getMessage());
@@ -246,7 +259,7 @@ public class GameStartController implements Initializable {
 
 
     @FXML
-    private void player2Attack(ActionEvent event) {
+    private void player2Attack(ActionEvent event) throws IOException {
 
         if (passForNextTurnPlayer2){
             player2Error.setText("You Already Attacked ! Push Next Turn ");
@@ -274,13 +287,16 @@ public class GameStartController implements Initializable {
         try {
             result = getBattleSeaController1().boomProcessor("player2",boom);
         } catch (BattleShipWinner battleShipWinner) {
-            //todo Winner
             Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
+            Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
 
-            player2Error.setText("Empty Inputs");
-            player2Stat.setVisible(true);
-            player2Error.setVisible(true);
-            return;
+            BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer2());
+            URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
 
         } catch (BoomCheckException e) {
             player2Error.setText(e.getMessage());
@@ -390,13 +406,31 @@ public class GameStartController implements Initializable {
     /*********************************************************************************/
 
     @FXML
-    void SurrenderPlayer1(ActionEvent event) {
-        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
+    void SurrenderPlayer1(ActionEvent event) throws IOException {
+        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
+        Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
+
+        BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer2());
+        URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
     @FXML
-    void SurrenderPlayer2(ActionEvent event) {
-        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
+    void SurrenderPlayer2(ActionEvent event) throws IOException {
+        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore() );
+        Game.historySaver(LocalDate.now(),  BattleTestController.getPlayer1(),  BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
+
+        BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
+        URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 
 
@@ -435,12 +469,68 @@ public class GameStartController implements Initializable {
         player2Pro.setImage(new Image(url1.toExternalForm()));
 
     }
+
+    public void addMouseScrolling(Node node) {
+        node.setOnScroll((ScrollEvent event) -> {
+            // Adjust the zoom factor as per your requirement
+            double zoomFactor = 1.05;
+            double deltaY = event.getDeltaY();
+            if (deltaY < 0){
+                zoomFactor = 2.0 - zoomFactor;
+            }
+            node.setScaleX(node.getScaleX() * zoomFactor);
+            node.setScaleY(node.getScaleY() * zoomFactor);
+            if (node.getScaleX() > 1.5){
+                forZoom.setVisible(true);
+                node.toFront();
+                node.setLayoutX(280);
+                node.setLayoutY(250);
+
+            }
+            if (node.getScaleX() < 1.5){
+                forZoom.setVisible(false);
+                node.toBack();
+
+                node.setLayoutX(159);
+                node.setLayoutY(12);
+            }
+        });
+    }
+    public void addMouseScrolling2(Node node) {
+        node.setOnScroll((ScrollEvent event) -> {
+            // Adjust the zoom factor as per your requirement
+            double zoomFactor = 1.05;
+            double deltaY = event.getDeltaY();
+            if (deltaY < 0){
+                zoomFactor = 2.0 - zoomFactor;
+            }
+            node.setScaleX(node.getScaleX() * zoomFactor);
+            node.setScaleY(node.getScaleY() * zoomFactor);
+            if (node.getScaleX() > 1.5){
+                forZoom.setVisible(true);
+                node.toFront();
+                node.setLayoutX(280);
+                node.setLayoutY(250);
+
+            }
+            if (node.getScaleX() < 1.5){
+                forZoom.setVisible(false);
+                node.toBack();
+
+                node.setLayoutX(374);
+                node.setLayoutY(12);
+            }
+        });
+    }
+
     /*********************************************************************************/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setErrorsOff();
         setOwnBoardsOff();
+        forZoom.setVisible(false);
+
         try {
             setProfiles();
         } catch (MalformedURLException e) {
@@ -454,5 +544,7 @@ public class GameStartController implements Initializable {
 
         setPassForNextTurnPlayer1(false);
         setPassForNextTurnPlayer2(false);
+        addMouseScrolling(player1Pro);
+        addMouseScrolling2(player2Pro);
     }
 }
