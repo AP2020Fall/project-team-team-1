@@ -8,6 +8,7 @@ import Controller.Exception.BattleShip.CorrectCoordinateForShipException;
 import Controller.Exception.BattleShip.InvalidCommandException;
 import Controller.PlayerController.Game;
 import Controller.PlayerController.PlayerGeneralController;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -168,7 +170,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     private void player1Attack(ActionEvent event) throws IOException {
-
+        playMouseSound();
         if (passForNextTurnPlayer1){
             player1Error.setText("You Already Attacked ! Push Next Turn ");
             player1Stat.setVisible(true);
@@ -238,6 +240,11 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player1X.getText())-1;
             int y = Integer.parseInt(player1Y.getText())-1;
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
             gridPlayerPlayer1Enemy.add(image, x, y);
             gridPlayerPlayer2Own.add(image1,x,y);
             setPassForNextTurnPlayer1(true);
@@ -254,8 +261,34 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player1X.getText())-1;
             int y = Integer.parseInt(player1Y.getText())-1;
+//            TranslateTransition translateTransition = new TranslateTransition();
+//            translateTransition.setDuration(Duration.seconds(3));
+//            translateTransition.setToX(500);
+//            translateTransition.setToY(500);
+//            translateTransition.setAutoReverse(false);
+//            translateTransition.setCycleCount(Animation.INDEFINITE);
+//            translateTransition.setNode(image);
+//            translateTransition.play();
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
+//            ScaleTransition scaleTransition = new ScaleTransition();
+//            scaleTransition.setCycleCount(Animation.INDEFINITE);
+//            scaleTransition.setAutoReverse(false);
+//            scaleTransition.setToX(200);
+//            scaleTransition.setToY(200);
+//            scaleTransition.play();
+//            FillTransition fillTransition = new FillTransition();
+//            fillTransition.setCycleCount(Animation.INDEFINITE);
+//            fillTransition.setAutoReverse(true);
+//            fillTransition.play();
+
             gridPlayerPlayer1Enemy.add(image, x, y);
             gridPlayerPlayer2Own.add(image1,x,y);
+
+            //gridPlayerPlayer1Enemy.getChildren(image);
 
         }
         setErrorsOff();
@@ -265,7 +298,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     private void player2Attack(ActionEvent event) throws IOException {
-
+        playMouseSound();
         if (passForNextTurnPlayer2){
             player2Error.setText("You Already Attacked ! Push Next Turn ");
             player2Stat.setVisible(true);
@@ -335,6 +368,11 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player2X.getText())-1;
             int y = Integer.parseInt(player2Y.getText())-1;
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
             gridPlayerPlayer1Own.add(image1,x,y);
             setPassForNextTurnPlayer2(true);
@@ -350,6 +388,11 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player2X.getText())-1;
             int y = Integer.parseInt(player2Y.getText())-1;
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
             gridPlayerPlayer1Own.add(image1,x,y);
 
@@ -362,6 +405,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     private void player1NexttTurn(ActionEvent event) {
+        playMouseSound();
         if (!passForNextTurnPlayer1){
             player1Error.setText("Attack First");
             player1Stat.setVisible(true);
@@ -376,6 +420,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     private void player2NexttTurn(ActionEvent event) {
+        playMouseSound();
         if (!passForNextTurnPlayer2){
             player2Error.setText("Attack First");
             player2Stat.setVisible(true);
@@ -390,21 +435,25 @@ public class GameStartController implements Initializable {
     /*********************************************************************************/
     @FXML
     private void player1OwnBoardView(ActionEvent event) {
+        playMouseSound();
         ownBoardPlayer1.setVisible(true);
     }
 
     @FXML
     private void player2OwnBoardView(ActionEvent event) {
+        playMouseSound();
         ownBoardPlayer2.setVisible(true);
     }
 
     @FXML
     void ownBoardPlayer1Off(ActionEvent event) {
+        playMouseSound();
         ownBoardPlayer1.setVisible(false);
     }
 
     @FXML
     void ownBoardPlayer2Off(ActionEvent event) {
+        playMouseSound();
         ownBoardPlayer2.setVisible(false);
     }
 
@@ -412,6 +461,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     void SurrenderPlayer1(ActionEvent event) throws IOException {
+        playMouseSound();
         Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
         Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
 
@@ -426,6 +476,7 @@ public class GameStartController implements Initializable {
 
     @FXML
     void SurrenderPlayer2(ActionEvent event) throws IOException {
+        playMouseSound();
         Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore() );
         Game.historySaver(LocalDate.now(),  BattleTestController.getPlayer1(),  BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
@@ -539,12 +590,18 @@ public class GameStartController implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
 
     /*********************************************************************************/
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mediaPlayer.setVolume(0.5);
+        mediaPlayer.setVolume(0.02);
         mediaPlayer.play();
         setErrorsOff();
         setOwnBoardsOff();

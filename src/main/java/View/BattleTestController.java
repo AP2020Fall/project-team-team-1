@@ -188,6 +188,7 @@ public class BattleTestController implements Initializable {
 
     @FXML
     private void process() {
+        playMouseSound();
         if (coorOrDir.getText().isEmpty() || shipNum.getText().isEmpty()) {
             error.setText("Inputs are Empty");
             stat.setVisible(true);
@@ -255,6 +256,7 @@ public class BattleTestController implements Initializable {
     }
     @FXML
     private void process1() {
+        playMouseSound();
         if (coorOrDir1.getText().isEmpty() || shipNum1.getText().isEmpty()) {
             error1.setText("Inputs are Empty");
             stat1.setVisible(true);
@@ -319,12 +321,14 @@ public class BattleTestController implements Initializable {
 
     @FXML
     private void next() {
+        playMouseSound();
         player1Pane.setVisible(false);
 
     }
 
     @FXML
     private void next1(ActionEvent event) throws IOException {
+        playMouseSound();
         GameStartController.setGridPanePlayer1(gridPlayer1);
         GameStartController.setGridPanePlayer2(gridPlayer2);
         GameStartController.setBattleSeaController1(battleSeaController1);
@@ -439,6 +443,12 @@ public class BattleTestController implements Initializable {
 
             }
         }
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
 
