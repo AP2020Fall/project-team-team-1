@@ -1,6 +1,7 @@
 package View;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
 import javafx.event.ActionEvent;
@@ -12,11 +13,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -51,10 +54,21 @@ public class DotsAndBoxesGame implements Initializable {
     public Label lblTurn;
     private static String firstPlayer = "";
     private static String secondPlayer = "";
+    private static String winner = " ";
+    public Pane WinnerPane;
+    public Label lblWinner;
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
     private static int point = 30;
+
+    public static String getWinner() {
+        return winner;
+    }
+
+    public static void setWinner(String winner) {
+        DotsAndBoxesGame.winner = winner;
+    }
 
     public int getPoint() {
         return point;
@@ -141,7 +155,7 @@ public class DotsAndBoxesGame implements Initializable {
         try {
             click(circle.getId());
         } catch (IOException ignored) {
-            System.out.println(ignored.getMessage());
+            return;
         }
     }
     @FXML
@@ -169,46 +183,86 @@ public class DotsAndBoxesGame implements Initializable {
             drawLine(n, n + 1);
         }
     }
-    private void drawLine(int first , int second) throws IOException {
+    @FXML
+    private void drawLine(int first , int second) {
+        if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
+            try {
+                awardTheWinner();
+            } catch (IOException e) {
+                return;
+            }
+            lblWinner.setText(getWinner());
+            WinnerPane.setVisible(true);
+            WinnerPane.toFront();
+        }
         Line line = new Line();
         line.setStrokeWidth(2);
         line.setId(whoseTurnIsIt());
         line.setStroke(findColor());
         if (dots[second].getFill().equals(Color.rgb(39, 55, 70))){
             if (first-second==1){
-                line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
-                line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
-                line.setStartY(dots[first].getCenterY());
-                line.setEndY(dots[second].getCenterY());
-                System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                    line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
+                    line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
+                    line.setStartY(dots[first].getCenterY());
+                    line.setEndY(dots[second].getCenterY());
+                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==-1){
-                line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
-                line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
-                line.setStartY(dots[first].getCenterY());
-                line.setEndY(dots[second].getCenterY());
-                System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                    line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
+                    line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
+                    line.setStartY(dots[first].getCenterY());
+                    line.setEndY(dots[second].getCenterY());
+                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==8){
-                line.setStartX(dots[first].getCenterX());
-                line.setEndX(dots[second].getCenterX());
-                line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
-                line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
-                System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                    line.setStartX(dots[first].getCenterX());
+                    line.setEndX(dots[second].getCenterX());
+                    line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
+                    line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
+                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
             if (first-second==-8){
-                line.setStartX(dots[first].getCenterX());
-                line.setEndX(dots[second].getCenterX());
-                line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
-                line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
-                System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
-                dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+
+                try {
+                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                    line.setStartX(dots[first].getCenterX());
+                    line.setEndX(dots[second].getCenterX());
+                    line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
+                    line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
+                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+                } catch (ExistLineException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
 
             }
 
@@ -218,12 +272,7 @@ public class DotsAndBoxesGame implements Initializable {
             lblPlayer1Points.setTextFill(Color.rgb(192, 57, 43));
             lblPlayer2Points.setText(String.valueOf(dotsAndBoxesController.getBluePoints()));
             lblPlayer2Points.setTextFill(Color.rgb(41, 128, 185));
-            if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
-                awardTheWinner();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Game Is Over");
-                alert.show();
-            }
+
             lblTurn.setText(whoseTurnIsIt());
             if (whoseTurnIsIt().equals(firstPlayer)){
                 lblTurn.setTextFill(Color.rgb(192, 57, 43));
@@ -232,7 +281,6 @@ public class DotsAndBoxesGame implements Initializable {
             }
         }
     }
-    // todo popup winner
     private Color findColor(){
         if (dotsAndBoxesController.turn().equals(Player.BLUE)){
             return Color.rgb(41, 128, 185);
@@ -250,9 +298,11 @@ public class DotsAndBoxesGame implements Initializable {
 
     private void awardTheWinner() throws IOException {
         if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("blue")){
+            setWinner(getSecondPlayer());
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getSecondPlayer(),getFirstPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getSecondPlayer(),getFirstPlayer(),"DotsAndBoxes");
         }else if (dotsAndBoxesController.whoIsWinner().equalsIgnoreCase("red")){
+            setWinner(getFirstPlayer());
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
         }
@@ -263,6 +313,8 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        board.toFront();
+        WinnerPane.setVisible(false);
         System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         setLabels();
@@ -310,5 +362,14 @@ public class DotsAndBoxesGame implements Initializable {
             window.setScene(message);
             window.show();
         }
+    }
+
+    public void backToPlato(ActionEvent actionEvent) throws IOException {
+        URL url = new File("src/main/resources/FXML/DotsAndBoxesScoreBoard.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
 }

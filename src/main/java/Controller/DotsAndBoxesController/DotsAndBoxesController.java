@@ -112,9 +112,7 @@ public class DotsAndBoxesController {
 //            if (findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])).size() == 0){
 //                throw new FindLineException("This Line could not be find! Or directions of dots is not correct! Try again");
 //            }
-//            if (getLine(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])).hasOwner()){
-//                throw new ExistLineException("This line is already taken, Try again!");
-//            }
+
 //            move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
 //        }
 //        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
@@ -148,10 +146,13 @@ public class DotsAndBoxesController {
     public Player getRedPlayer(){
         return Player.RED;
     }
-    public void doTheCommands(String command){
+    public void doTheCommands(String command) throws ExistLineException {
         String[] dots = command.split(",");
         String[] firstDot = dots[0].split("-");
         String[] secondDot = dots[1].split("-");
+        if (getLine(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])).hasOwner()){
+            throw new ExistLineException("This line is already taken, Try again!");
+        }
         move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
     }
     public String checkGameIsOver(){
