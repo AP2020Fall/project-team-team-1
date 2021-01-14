@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerMenu">
+<AnchorPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PlayerMenu">
    <children>
       <ImageView fitHeight="313.0" fitWidth="176.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -43,6 +43,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+
       <Button layoutX="574.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-font-weight: bold;" text="X" />
+      <Button layoutX="302.0" layoutY="17.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#xAnimation" prefHeight="31.0" prefWidth="26.0" style="-fx-background-color: #1a1b20; -fx-text-fill: red; -fx-font-weight: bold;" text="X" fx:id="xButton" />
+      <Button fx:id="oButton" layoutX="334.0" layoutY="19.0" mnemonicParsing="false" onAction="#oAnimation" style="-fx-background-color: #1a1b20; -fx-text-fill: green; -fx-font-weight: bold;" text="O" />
+      <Button fx:id="sButton" layoutX="280.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sAnimation" prefHeight="8.0" prefWidth="8.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea;" />
+      <Button fx:id="tButton" layoutX="242.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tAnimation" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 0px 0px;">
+         <graphic>
+            <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/triangle.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

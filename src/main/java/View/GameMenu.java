@@ -3,6 +3,7 @@ package View;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.InvalidGameID;
 import Controller.PlayerController.PlayerGeneralController;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 
 import java.io.File;
@@ -29,6 +31,14 @@ public class GameMenu implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     String firsGame = adminGeneralController.firstGameNameGetter();
     String secondGame = adminGeneralController.secondGameNameGetter();
+    @FXML
+    Button xButton;
+    @FXML
+    Button oButton;
+    @FXML
+    Button tButton;
+    @FXML
+    Button sButton;
     @FXML
     Button btnBattle;
     @FXML
@@ -145,9 +155,41 @@ public class GameMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        xAnimation();
+        sAnimation();
+        oAnimation();
+        tAnimation();
         btnBattle.setText(firsGame);
         btnDots.setText(secondGame);
 
+    }
+
+    public void xAnimation(){
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), xButton);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setRate(10);
+        rotateTransition.setCycleCount(10);
+        rotateTransition.play();
+    }
+    public void oAnimation(){
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), oButton);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setRate(10);
+        rotateTransition.setCycleCount(10);
+        rotateTransition.play();
+    }
+    public void sAnimation(){
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), sButton);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setRate(10);
+        rotateTransition.setCycleCount(10);
+        rotateTransition.play();
+    }
+    public void tAnimation(){
+        RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), tButton);
+        rotateTransition.setByAngle(360);
+        rotateTransition.setRate(10);
+        rotateTransition.setCycleCount(10);
+        rotateTransition.play();
     }
 }
