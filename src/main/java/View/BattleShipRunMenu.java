@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -99,6 +101,7 @@ public class BattleShipRunMenu implements Initializable {
         System.out.println("Hello");
         try {
             addToList();
+            initActions();
         } catch (ExistFriendException e) {
             e.printStackTrace();
         }
@@ -111,12 +114,14 @@ public class BattleShipRunMenu implements Initializable {
     }
 
     public void loginAsSecondPlayer(ActionEvent event) throws IOException {
+        if (txtUsername.getText().equals(LoginController.getUsername())){
+            showError();
+            return;
+        }
         try {
             logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
             BattleTestController.setPlayer1(this.username);
-            System.out.println(this.username);
             BattleTestController.setPlayer2(txtUsername.getText());
-            System.out.println(txtUsername.getText());
             BattleTestController.setScore(getScore());
             URL url = new File("src/main/resources/FXML/BattleTest.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
@@ -150,5 +155,15 @@ public class BattleShipRunMenu implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+    }
+    @FXML
+    public void initActions(){
+        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent arg0) {
+                String name = listViewFriends.getSelectionModel().getSelectedItem();
+                txtUsername.setText(name);
+            }
+
+        });
     }
 }
