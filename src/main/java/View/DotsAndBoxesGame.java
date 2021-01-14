@@ -22,6 +22,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -38,6 +40,9 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGame implements Initializable {
+    private static final File file = new File("src\\main\\resources\\Sound\\job.mp3");
+    protected static Media media = new Media(file.toURI().toString());
+    protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
     protected static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
@@ -329,6 +334,7 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        mediaPlayer.play();
         hbox.setSpacing(20);
         hbox.alignmentProperty().set(Pos.CENTER);
 //
@@ -361,6 +367,7 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     public void forfeit(ActionEvent actionEvent) throws IOException {
+        playMouseSound();
         if (whoseTurnIsIt().equals(secondPlayer)){
             playerGeneralController.giveScoreAndEditPlayerLog("DotsAndBoxes",getFirstPlayer(),getSecondPlayer(),getPoint());
             playerGeneralController.historySaver(LocalDate.now(),getFirstPlayer(),getSecondPlayer(),"DotsAndBoxes");
@@ -382,9 +389,11 @@ public class DotsAndBoxesGame implements Initializable {
             window.setScene(message);
             window.show();
         }
+        mediaPlayer.stop();
     }
 
     public void backToPlato(ActionEvent actionEvent) throws IOException {
+        mediaPlayer.stop();
         URL url = new File("src/main/resources/FXML/PlayerMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -411,5 +420,11 @@ public class DotsAndBoxesGame implements Initializable {
         Stage stage = new Stage();
         stage.setScene(message);
         stage.show();
+    }
+    public void playMouseSound(){
+        File file = new File("src\\main\\resources\\Sound\\Click.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayerMouse = new MediaPlayer(media);
+        mediaPlayerMouse.play();
     }
 }
