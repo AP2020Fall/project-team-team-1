@@ -43,7 +43,7 @@ public class DotsAndBoxesGame implements Initializable {
     private static final File file = new File("src\\main\\resources\\Sound\\job.mp3");
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
-    protected static DotsAndBoxesController dotsAndBoxesController = new DotsAndBoxesController();
+    protected static DotsAndBoxesController dotsAndBoxesController;
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     @FXML
     public AnchorPane board;
@@ -70,7 +70,7 @@ public class DotsAndBoxesGame implements Initializable {
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
-    private static int point = 30;
+    private static long point = 30;
 
     public static String getWinner() {
         return winner;
@@ -80,11 +80,11 @@ public class DotsAndBoxesGame implements Initializable {
         DotsAndBoxesGame.winner = winner;
     }
 
-    public int getPoint() {
+    public long getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(long point) {
         this.point = point;
     }
 
@@ -334,6 +334,7 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dotsAndBoxesController = new DotsAndBoxesController();
         mediaPlayer.play();
         hbox.setSpacing(20);
         hbox.alignmentProperty().set(Pos.CENTER);
