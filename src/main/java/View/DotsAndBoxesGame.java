@@ -31,6 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGame implements Initializable {
@@ -325,6 +326,8 @@ public class DotsAndBoxesGame implements Initializable {
         }
     }
 
+
+
     @FXML
     private void setImages() throws MalformedURLException {
         String path = "src"+ File.separator+"main"+File.separator+"resources"+File.separator
@@ -371,5 +374,25 @@ public class DotsAndBoxesGame implements Initializable {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+
+    public void ViewProfilePlayer1(MouseEvent mouseEvent) throws IOException {
+        FriendProfileForSentRequestController.setUsernameOfFriendForSentRequest(getFirstPlayer());
+        URL url = new File("src/main/resources/FXML/FriendProfileForSentRequest.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Scene message = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(message);
+        stage.show();
+    }
+
+    public void ViewProfilePlayer2(MouseEvent mouseEvent) throws IOException {
+        FriendProfileForSentRequestController.setUsernameOfFriendForSentRequest(getSecondPlayer());
+        URL url = new File("src/main/resources/FXML/FriendProfileForSentRequest.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Scene message = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(message);
+        stage.show();
     }
 }
