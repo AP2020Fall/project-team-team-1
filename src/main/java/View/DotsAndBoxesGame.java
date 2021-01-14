@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,10 +20,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -48,16 +51,17 @@ public class DotsAndBoxesGame implements Initializable {
     @FXML
     public Label lblPlayer2;
     @FXML
-    public Label lblPlayer1Points;
+    public Label lblPlayer1Points = new Label();
     @FXML
-    public Label lblPlayer2Points;
+    public Label lblPlayer2Points = new Label();
     @FXML
-    public Label lblTurn;
+    public Label lblTurn = new Label();
     private static String firstPlayer = "";
     private static String secondPlayer = "";
     private static String winner = " ";
     public Pane WinnerPane;
     public Label lblWinner;
+    public HBox hbox;
     private Circle[] dots = new Circle[64];
     private double valueX =165;
     private double valueY =165;
@@ -148,6 +152,17 @@ public class DotsAndBoxesGame implements Initializable {
             lblTurn.setTextFill(Color.rgb(41, 128, 185));
         }
     }
+
+//    @FXML
+//    private void updateScoreBoard(){
+//        Label redPoint = new Label(String.valueOf(dotsAndBoxesController.getRedPoints()));
+//        redPoint.setTextFill(Color.rgb(192, 57, 43));
+//        Text text = new Text("-");
+//        text.setFill(Color.WHITE);
+//        Label bluePoint = new Label(String.valueOf(dotsAndBoxesController.getBluePoints()));
+//        bluePoint.setTextFill(Color.rgb(41, 128, 185));
+//        hbox.getChildren().addAll(redPoint,text,bluePoint);
+//    }
 
     @FXML
     private void setOnMouseClicked(MouseEvent mouseEvent){
@@ -314,6 +329,10 @@ public class DotsAndBoxesGame implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        hbox.setSpacing(20);
+        hbox.alignmentProperty().set(Pos.CENTER);
+//
+        hbox.getChildren().addAll(lblPlayer1Points,lblTurn,lblPlayer2Points);
         board.toFront();
         WinnerPane.setVisible(false);
         System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
@@ -366,7 +385,7 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     public void backToPlato(ActionEvent actionEvent) throws IOException {
-        URL url = new File("src/main/resources/FXML/DotsAndBoxesScoreBoard.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/PlayerMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
