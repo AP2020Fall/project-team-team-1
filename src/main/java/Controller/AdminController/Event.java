@@ -183,5 +183,15 @@ public class Event {
         event.setScore(Integer.parseInt(input));
     }
 
+    public static void editEventProfile(String eventID , String url) throws ExistEventException {
+        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+        event.setProfileURL(url);
+    }
+    public static String getEventProfileUrl(String eventID) throws ExistEventException {
+        Model.PlatoModel.Event event = eventFinderByEventID(eventID);
+        return event.getProfileURL();
+    }
+
+
 
 }
