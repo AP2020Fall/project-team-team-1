@@ -40,6 +40,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
     public Button btnSubmit;
     public JFXPasswordField txtPassword;
     public JFXTextField txtUsername;
+    private static long point=10;
 
     String username =LoginController.getUsername();
 
@@ -54,7 +55,13 @@ public class DotsAndBoxesRunMenu implements Initializable {
     @FXML
     ListView<String> listViewFriends;
 
+    public static long getPoint() {
+        return point;
+    }
 
+    public static void setPoint(long point) {
+        DotsAndBoxesRunMenu.point = point;
+    }
 
     @FXML
     private void goToDotsAndBoxesMainMenu(ActionEvent actionEvent) throws IOException {
@@ -106,7 +113,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
             System.out.println(this.username);
             dotsAndBoxesGame.setSecondPlayer(txtUsername.getText());
             System.out.println(txtUsername.getText());
-            dotsAndBoxesGame.setPoint(10);
+            dotsAndBoxesGame.setPoint(getPoint());
             URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
