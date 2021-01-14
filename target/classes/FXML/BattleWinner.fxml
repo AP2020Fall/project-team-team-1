@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.BattleWinnerController">
+   <children>
+      <ImageView fitHeight="197.0" fitWidth="520.0" layoutX="60.0" layoutY="273.0" opacity="0.46" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/BattleShip/FireWork.gif" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="172.0" fitWidth="145.0" layoutX="234.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/BattleShip/1stMedal.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="winnerPlayer" alignment="CENTER" layoutX="46.0" layoutY="181.0" prefHeight="38.0" prefWidth="505.0" text="Player 1 Wins" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="227.0" layoutY="242.0" mnemonicParsing="false" onAction="#backToMenu" text="Back to MainMenu" />
+   </children>
+</AnchorPane>
