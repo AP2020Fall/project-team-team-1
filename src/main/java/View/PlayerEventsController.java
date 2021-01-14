@@ -148,10 +148,7 @@ public class PlayerEventsController implements Initializable {
     );
     @FXML
     private void joinEvent(ActionEvent event) throws IOException, ExistEventException {
-        System.out.println("ridi");
-        System.out.println(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
-        System.out.println(playerGeneralController.activeEvent(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())));
-        if (playerGeneralController.activeEvent(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
+        if (playerGeneralController.eventActivation(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
             playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
             if (tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("b")||tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("B")){
                 BattleShipRunMenu.setScore(Long.parseLong(String.valueOf(tableView.getSelectionModel().getSelectedItem().getScore())));
@@ -171,7 +168,6 @@ public class PlayerEventsController implements Initializable {
                 window.show();
             }
         }else {
-            System.out.println("amin");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("NOT ACTIVE EVENT");
             alert.setContentText("This Event Is Not Active Yet Wait Until "+tableView.getSelectionModel().getSelectedItem().getStartDate());

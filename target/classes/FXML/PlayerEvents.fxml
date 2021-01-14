@@ -85,7 +85,7 @@
             <String fx:value="table-cell" />
          </styleClass>
       </TableView>
-      <Button fx:id="btnJoin" layoutX="187.0" layoutY="361.0" mnemonicParsing="false" onAction="#joinEvent" style="-fx-background-color: #00acea; -fx-font-weight: bold;" text="Join Event" />
+      <Button fx:id="btnJoin" layoutX="187.0" layoutY="361.0" mnemonicParsing="false" onAction="#joinEvent" style="-fx-background-color: #00acea; -fx-font-weight: bold;" text="Join Event And Play" />
     </children>
 
 </AnchorPane>

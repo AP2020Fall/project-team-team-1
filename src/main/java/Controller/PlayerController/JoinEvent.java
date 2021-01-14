@@ -4,6 +4,7 @@ import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.ExistEventException;
 import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
+import sun.awt.LightweightFrame;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -30,6 +31,18 @@ public class JoinEvent {
             throw new ExistEventException("There is no event for show");
         }
         return event.getGameName();
+    }
+    protected static String eventActivation(String eventId) throws ExistEventException {
+        Event event = null;
+        event = Controller.AdminController.Event.eventFinderByEventID(eventId);
+        if (event == null){
+            throw new ExistEventException("There is no event for show");
+        }
+
+        if (event.getStartDate().isBefore(LocalDate.now()) && event.getEndDate().isAfter(LocalDate.now())){
+            return "true";
+        }
+        return "false";
     }
 
     protected static String eventScore(String eventId) throws ExistEventException {
