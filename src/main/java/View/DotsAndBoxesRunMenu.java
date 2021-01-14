@@ -85,7 +85,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
     }
     private ArrayList<String>  addToList() throws ExistFriendException {
         String[] friends = playerGeneralController.showFriends(this.getUsername()).split("\\$");
-        System.out.println(friends);
+//        System.out.println(friends);
         return new ArrayList<>(Arrays.asList(friends));
     }
     @FXML
@@ -117,9 +117,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
             logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
             DotsAndBoxesGame dotsAndBoxesGame = new DotsAndBoxesGame();
             dotsAndBoxesGame.setFirstPlayer(this.username);
-            System.out.println(this.username);
             dotsAndBoxesGame.setSecondPlayer(txtUsername.getText());
-            System.out.println(txtUsername.getText());
             dotsAndBoxesGame.setPoint(getPoint());
             URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);

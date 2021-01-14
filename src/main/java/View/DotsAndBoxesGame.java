@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -45,6 +46,8 @@ public class DotsAndBoxesGame implements Initializable {
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
     protected static DotsAndBoxesController dotsAndBoxesController;
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    @FXML
+    Pane forZoom;
     @FXML
     public AnchorPane board;
     @FXML
@@ -230,7 +233,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
                     line.setStartY(dots[first].getCenterY());
                     line.setEndY(dots[second].getCenterY());
-                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+//                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText(e.getMessage());
@@ -246,7 +249,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
                     line.setStartY(dots[first].getCenterY());
                     line.setEndY(dots[second].getCenterY());
-                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+//                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText(e.getMessage());
@@ -262,7 +265,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX());
                     line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
                     line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
-                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+//                    System.out.println(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText(e.getMessage());
@@ -278,7 +281,7 @@ public class DotsAndBoxesGame implements Initializable {
                     line.setEndX(dots[second].getCenterX());
                     line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
                     line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
-                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+//                    System.out.println(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
                 } catch (ExistLineException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText(e.getMessage());
@@ -338,17 +341,19 @@ public class DotsAndBoxesGame implements Initializable {
         mediaPlayer.play();
         hbox.setSpacing(20);
         hbox.alignmentProperty().set(Pos.CENTER);
-//
+        forZoom.setVisible(false);
+        addMouseScrolling(imgFirst);
+        addMouseScrolling2(imgSecond);
         hbox.getChildren().addAll(lblPlayer1Points,lblTurn,lblPlayer2Points);
         board.toFront();
         WinnerPane.setVisible(false);
-        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
+//        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         setLabels();
         try {
             setImages();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -427,5 +432,57 @@ public class DotsAndBoxesGame implements Initializable {
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayerMouse = new MediaPlayer(media);
         mediaPlayerMouse.play();
+    }
+    public void addMouseScrolling(Node node) {
+        node.setOnScroll((ScrollEvent event) -> {
+            // Adjust the zoom factor as per your requirement
+            double zoomFactor = 1.05;
+            double deltaY = event.getDeltaY();
+            if (deltaY < 0){
+                zoomFactor = 2.0 - zoomFactor;
+            }
+            node.setScaleX(node.getScaleX() * zoomFactor);
+            node.setScaleY(node.getScaleY() * zoomFactor);
+            if (node.getScaleX() > 1.5){
+                forZoom.setVisible(true);
+                node.toFront();
+                node.setLayoutX(300);
+                node.setLayoutY(300);
+
+            }
+            if (node.getScaleX() < 1.5){
+                forZoom.setVisible(false);
+                node.toBack();
+
+                node.setLayoutX(14);
+                node.setLayoutY(160);
+            }
+        });
+    }
+    public void addMouseScrolling2(Node node) {
+        node.setOnScroll((ScrollEvent event) -> {
+            // Adjust the zoom factor as per your requirement
+            double zoomFactor = 1.05;
+            double deltaY = event.getDeltaY();
+            if (deltaY < 0){
+                zoomFactor = 2.0 - zoomFactor;
+            }
+            node.setScaleX(node.getScaleX() * zoomFactor);
+            node.setScaleY(node.getScaleY() * zoomFactor);
+            if (node.getScaleX() > 1.5){
+                forZoom.setVisible(true);
+                node.toFront();
+                node.setLayoutX(300);
+                node.setLayoutY(300);
+
+            }
+            if (node.getScaleX() < 1.5){
+                forZoom.setVisible(false);
+                node.toBack();
+
+                node.setLayoutX(464);
+                node.setLayoutY(160);
+            }
+        });
     }
 }

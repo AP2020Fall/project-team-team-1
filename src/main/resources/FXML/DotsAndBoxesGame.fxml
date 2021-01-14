@@ -32,6 +32,7 @@
          </font></Label>
       <Label fx:id="lblTurn" alignment="CENTER" layoutX="181.0" layoutY="461.0" prefHeight="93.0" prefWidth="238.0" text="Label" />
       <Button layoutY="2.0" mnemonicParsing="false" onAction="#forfeit" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold;" text="Forfeit" />
+      <Pane fx:id="forZoom" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" />
       <Pane fx:id="WinnerPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;">
          <children>
             <ImageView fitHeight="181.0" fitWidth="276.0" layoutX="210.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
