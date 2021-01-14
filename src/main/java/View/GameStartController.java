@@ -22,6 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -223,7 +225,7 @@ public class GameStartController implements Initializable {
 
 
         if (result.equals("InCorrect Boom")){
-
+            playWaterSound();
             File file = new File("src\\main\\resources\\Images\\cross.png");
             ImageView image = new ImageView(file.toURI().toString());
             ImageView image1 = new ImageView(file.toURI().toString());
@@ -239,7 +241,7 @@ public class GameStartController implements Initializable {
 
         } else {
 
-
+            playBoomSound();
             File file = new File("src\\main\\resources\\Images\\BattleShip\\explosion.png");
             ImageView image = new ImageView(file.toURI().toString());
             ImageView image1 = new ImageView(file.toURI().toString());
@@ -320,7 +322,7 @@ public class GameStartController implements Initializable {
 
 
         if (result.equals("InCorrect Boom")){
-
+            playWaterSound();
             File file = new File("src\\main\\resources\\Images\\cross.png");
             ImageView image = new ImageView(file.toURI().toString());
             ImageView image1 = new ImageView(file.toURI().toString());
@@ -335,7 +337,7 @@ public class GameStartController implements Initializable {
             setPassForNextTurnPlayer2(true);
 
         } else {
-
+            playBoomSound();
             File file = new File("src\\main\\resources\\Images\\BattleShip\\explosion.png");
             ImageView image = new ImageView(file.toURI().toString());
             ImageView image1 = new ImageView(file.toURI().toString());
@@ -521,6 +523,18 @@ public class GameStartController implements Initializable {
                 node.setLayoutY(12);
             }
         });
+    }
+    public void playWaterSound(){
+        File file = new File("src\\main\\resources\\Sound\\water.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+    public void playBoomSound(){
+        File file = new File("src\\main\\resources\\Sound\\boom.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
     }
 
     /*********************************************************************************/
