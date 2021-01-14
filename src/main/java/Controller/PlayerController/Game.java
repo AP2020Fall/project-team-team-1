@@ -1,11 +1,16 @@
 package Controller.PlayerController;
 
+import Model.DataBase.DataBase;
 import Model.PlatoModel.Games;
 import Model.PlatoModel.Player;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Game {
+    private static final File playerFile = new File("src\\main\\java\\Model\\Database\\Player.json");
+
     public static void findGameForRun(String playerUserName ,String gameName , String score){
 
     }
@@ -15,6 +20,13 @@ public class Game {
 
         winnerPlayer.getLastPlayed().add("Date: "+ localDate +" "+winner+" wins "+ loser+" At: "+gameName);
         loserPlayer.getLastPlayed().add("Date: "+ localDate +" "+loser+" loser Against "+ winner +" At: "+gameName);
+
+        try {
+            DataBase.save(Player.players,playerFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     public static void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput){
         Player winnerPlayer = FindPlayerByInfo.findByUserName(winnerPlayerInput);
@@ -40,6 +52,13 @@ public class Game {
         loserPlayer.getPlayerLog().get(index).setNumberOfGamePlayed(loserPlayer.getPlayerLog().get(index).getNumberOfGamePlayed()+1);
 
         loserPlayer.getPlayerLog().get(index).setNumberOfLoses(loserPlayer.getPlayerLog().get(index).getNumberOfLoses()+1);
+
+        try {
+            DataBase.save(Player.players,playerFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }

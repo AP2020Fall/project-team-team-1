@@ -150,7 +150,8 @@ public class PlayerGeneralController {
         DataBase.save(Player.players,playerFile);
     }
 
-    public String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
+
+        public String showUserLastPlayed(String userName) throws ExistPlayerException, ExistPlayerLogException {
         return PlayerInfo.showUserLastPlayed(userName);
     }
 
@@ -194,7 +195,6 @@ public class PlayerGeneralController {
     public void giveScoreAndEditPlayerLog(String gameName,String winnerPlayerInput,String loserPlayerInput,long scoreInput) throws IOException {
         Game.giveScoreAndEditPlayerLog(gameName, winnerPlayerInput, loserPlayerInput, scoreInput);
         DataBase.save(Player.players,playerFile);
-
     }
 
     /***********************************************SUGGESTION***********************************************/
