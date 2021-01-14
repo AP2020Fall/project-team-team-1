@@ -55,5 +55,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="321.0" layoutY="27.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#xAnimation" prefHeight="31.0" prefWidth="26.0" style="-fx-background-color: #1a1b20; -fx-text-fill: green; -fx-font-weight: bold;" text="X" fx:id="xButton" />
+      <Button fx:id="oButton" layoutX="241.0" layoutY="31.0" mnemonicParsing="false" onAction="#oAnimation" style="-fx-background-color: #1a1b20; -fx-text-fill: red; -fx-font-weight: bold;" text="O" />
+      <Button fx:id="sButton" layoutX="303.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sAnimation" prefHeight="8.0" prefWidth="8.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea;" />
+      <Button fx:id="tButton" layoutX="267.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tAnimation" prefHeight="25.0" prefWidth="24.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 0px 0px;">
+         <graphic>
+            <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/triangle.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
