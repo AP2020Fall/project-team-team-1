@@ -601,7 +601,7 @@ public class GameStartController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mediaPlayer.setVolume(0.02);
+        mediaPlayer.setVolume(0.08);
         mediaPlayer.play();
         setErrorsOff();
         setOwnBoardsOff();
