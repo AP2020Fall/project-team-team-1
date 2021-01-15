@@ -248,11 +248,18 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player1X.getText())-1;
             int y = Integer.parseInt(player1Y.getText())-1;
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
-            rotateTransition.setByAngle(360);
-            rotateTransition.setRate(5);
-            rotateTransition.setCycleCount(1);
-            rotateTransition.play();
+//            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+//            rotateTransition.setByAngle(360);
+//            rotateTransition.setRate(5);
+//            rotateTransition.setCycleCount(1);
+//            rotateTransition.play();
+            FadeTransition ft = new FadeTransition(Duration.millis(3000), image);
+            ft.setFromValue(1.0);
+            ft.setToValue(0.3);
+            ft.setCycleCount(2);
+            ft.setAutoReverse(true);
+
+            ft.play();
             gridPlayerPlayer1Enemy.add(image, x, y);
             gridPlayerPlayer2Own.add(image1,x,y);
             setPassForNextTurnPlayer1(true);
@@ -277,11 +284,11 @@ public class GameStartController implements Initializable {
 //            translateTransition.setCycleCount(Animation.INDEFINITE);
 //            translateTransition.setNode(image);
 //            translateTransition.play();
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
-            rotateTransition.setByAngle(360);
-            rotateTransition.setRate(5);
-            rotateTransition.setCycleCount(1);
-            rotateTransition.play();
+//            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+//            rotateTransition.setByAngle(360);
+//            rotateTransition.setRate(5);
+//            rotateTransition.setCycleCount(1);
+//            rotateTransition.play();
 //            ScaleTransition scaleTransition = new ScaleTransition();
 //            scaleTransition.setCycleCount(Animation.INDEFINITE);
 //            scaleTransition.setAutoReverse(false);
@@ -292,6 +299,13 @@ public class GameStartController implements Initializable {
 //            fillTransition.setCycleCount(Animation.INDEFINITE);
 //            fillTransition.setAutoReverse(true);
 //            fillTransition.play();
+            FadeTransition ft = new FadeTransition(Duration.millis(3000), image);
+            ft.setFromValue(1.0);
+            ft.setToValue(0.3);
+            ft.setCycleCount(2);
+            ft.setAutoReverse(true);
+
+            ft.play();
 
             gridPlayerPlayer1Enemy.add(image, x, y);
             gridPlayerPlayer2Own.add(image1,x,y);
@@ -376,11 +390,18 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player2X.getText())-1;
             int y = Integer.parseInt(player2Y.getText())-1;
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
-            rotateTransition.setByAngle(360);
-            rotateTransition.setRate(5);
-            rotateTransition.setCycleCount(1);
-            rotateTransition.play();
+//            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+//            rotateTransition.setByAngle(360);
+//            rotateTransition.setRate(5);
+//            rotateTransition.setCycleCount(1);
+//            rotateTransition.play();
+            FadeTransition ft = new FadeTransition(Duration.millis(3000), image);
+            ft.setFromValue(1.0);
+            ft.setToValue(0.3);
+            ft.setCycleCount(2);
+            ft.setAutoReverse(true);
+
+            ft.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
             gridPlayerPlayer1Own.add(image1,x,y);
             setPassForNextTurnPlayer2(true);
@@ -396,11 +417,18 @@ public class GameStartController implements Initializable {
             image1.setFitHeight(38);
             int x = Integer.parseInt(player2X.getText())-1;
             int y = Integer.parseInt(player2Y.getText())-1;
-            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
-            rotateTransition.setByAngle(360);
-            rotateTransition.setRate(5);
-            rotateTransition.setCycleCount(1);
-            rotateTransition.play();
+//            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
+//            rotateTransition.setByAngle(360);
+//            rotateTransition.setRate(5);
+//            rotateTransition.setCycleCount(1);
+//            rotateTransition.play();
+            FadeTransition ft = new FadeTransition(Duration.millis(3000), image);
+            ft.setFromValue(1.0);
+            ft.setToValue(0.3);
+            ft.setCycleCount(2);
+            ft.setAutoReverse(true);
+
+            ft.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
             gridPlayerPlayer1Own.add(image1,x,y);
 
@@ -561,7 +589,7 @@ public class GameStartController implements Initializable {
                 forZoom.setVisible(false);
                 node.toBack();
 
-                node.setLayoutX(159);
+                node.setLayoutX(140);
                 node.setLayoutY(12);
             }
         });
@@ -587,7 +615,7 @@ public class GameStartController implements Initializable {
                 forZoom.setVisible(false);
                 node.toBack();
 
-                node.setLayoutX(374);
+                node.setLayoutX(436);
                 node.setLayoutY(12);
             }
         });
