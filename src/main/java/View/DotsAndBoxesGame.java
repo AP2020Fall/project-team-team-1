@@ -84,6 +84,7 @@ public class DotsAndBoxesGame implements Initializable {
     private static long point = 30;
     private static ArrayList<Label> availableLabels = new ArrayList<>();
     private static String lastPlayed;
+    private static ArrayList<String> numberOfFillBoxes = new ArrayList<>();
 
     public static String getLastPlayed() {
         return lastPlayed;
@@ -353,7 +354,8 @@ public class DotsAndBoxesGame implements Initializable {
             }
 
         }
-        showCompletedBoxes(dotsAndBoxesController.completedBoxes());
+//        showCompletedBoxes(dotsAndBoxesController.completedBoxes());
+        findOwner1(dotsAndBoxesController.isBoxCompleted1());
         mediaPlayer2.play();
     }
     private Color findColor(){
@@ -426,6 +428,21 @@ public class DotsAndBoxesGame implements Initializable {
         }else if (dotsAndBoxesController.isThisBoxCompleted(id).equalsIgnoreCase("red")){
             setThisLabel(availableLabels.get(Integer.parseInt(id)),"red");
 //            System.out.println(id);
+        }
+    }
+    @FXML
+    private void findOwner1(String id){
+        String[] process = id.split("\\$");
+        for (String s : process) {
+            if (!numberOfFillBoxes.contains(s)){
+                numberOfFillBoxes.add(s);
+                int idOfLabel = Integer.parseInt(s);
+                if (whoseTurnIsIt().equals(firstPlayer)){
+                    setThisLabel(availableLabels.get(idOfLabel),"red");
+                }else
+                    setThisLabel(availableLabels.get(idOfLabel),"blue");
+
+            }
         }
     }
     private Label findLabelById(String id){
