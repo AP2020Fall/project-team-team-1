@@ -4,6 +4,8 @@ import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.DotsAndBoxes.ExistLineException;
 import Controller.PlayerController.PlayerGeneralController;
 import Model.DotsAndBoxesModel.Player;
+import javafx.animation.FadeTransition;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +32,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -460,10 +463,30 @@ public class DotsAndBoxesGame implements Initializable {
         if (color.equals("blue")){
             label.setText(getSecondPlayer().substring(0,1));
             label.setTextFill(Color.rgb(41, 128, 185));
+//            FadeTransition ft = new FadeTransition(Duration.millis(3000), label);
+//            ft.setFromValue(1.0);
+//            ft.setToValue(0.3);
+//            ft.setCycleCount(2);
+//            ft.setAutoReverse(true);
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5),label);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
         }
         if (color.equals("red")){
             label.setText(getFirstPlayer().substring(0,1));
             label.setTextFill(Color.rgb(192, 57, 43));
+//            FadeTransition ft = new FadeTransition(Duration.millis(3000), label);
+//            ft.setFromValue(1.0);
+//            ft.setToValue(0.3);
+//            ft.setCycleCount(2);
+//            ft.setAutoReverse(true);
+            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5),label);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setRate(5);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.play();
         }
     }
 
