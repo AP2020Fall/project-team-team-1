@@ -14,7 +14,7 @@ public class Box {
     private static ArrayList<Box> boxes = new ArrayList<>();
 
     public Box(int row, int column ,Lines lines) {
-        this.id = boxes.size()+1;
+//        this.id = boxes.size()+1;
         this.row = row;
         this.column = column;
         this.owner=Player.NONE;
@@ -26,6 +26,14 @@ public class Box {
         this.right.setBoxes(this);
         this.top =lines.getLine(row,column,row,column+1);
         this.top.setBoxes(this);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getRow() {

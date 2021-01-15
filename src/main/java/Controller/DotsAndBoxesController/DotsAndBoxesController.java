@@ -71,6 +71,7 @@ public class DotsAndBoxesController {
                     if (box.getLeft().hasOwner()) {
                         if (box.getBottom().hasOwner()) {
                             counter++;
+//                            System.out.println(box.getId());
                             forDelete.add(box);
                         }
                     }
@@ -81,14 +82,29 @@ public class DotsAndBoxesController {
 
         return counter;
     }
+    public ArrayList<String> completedBoxes(){
+        ArrayList<String> completed = new ArrayList<>();
+//        gameBoard.availableBoxes.get(0).setOwner(Player.RED);
+        for (Box box : gameBoard.availableBoxes) {
+            if (!box.getOwner().equals(Player.NONE)){
+                System.out.println(box.getId());
+                completed.add(String.valueOf(box.getId()));
+            }
+
+        }
+
+        return completed;
+    }
     public String isThisBoxCompleted(String input){
         int id = Integer.parseInt(input);
         String answer ="none";
-        if (gameBoard.boxes.get(id).getOwner()!=Player.NONE){
-            if (gameBoard.boxes.get(id).getOwner().equals(Player.BLUE)){
-                answer="blue";
-            }else if (gameBoard.boxes.get(id).getOwner().equals(Player.RED)){
-                answer="red";
+        for (Box box : gameBoard.availableBoxes) {
+            if (box.getId()==id){
+                if (box.getOwner().equals(Player.BLUE)){
+                    answer="blue";
+                }else if (box.getOwner().equals(Player.RED)){
+                    answer="red";
+                }
             }
         }
 

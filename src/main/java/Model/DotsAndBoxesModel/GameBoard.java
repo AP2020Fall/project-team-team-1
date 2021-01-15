@@ -57,10 +57,13 @@ public class GameBoard {
     }
     private ArrayList<Box> createBoxes(int rows, int columns, Lines lines) {
         ArrayList<Box> listOfBoxes = new ArrayList<>();
+        int counter = 0;
         for (int i = 0; i < rows - 1; i++) {
             for (int j = 0; j < columns - 1; j++) {
                 Box box = new Box(i, j, lines);
+                box.setId(counter);
                 listOfBoxes.add(box);
+                counter++;
             }
         }
         return listOfBoxes;

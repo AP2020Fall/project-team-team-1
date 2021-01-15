@@ -37,6 +37,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -81,6 +82,16 @@ public class DotsAndBoxesGame implements Initializable {
     private double valueLabelX = 178;
     private double valueLabelY = 172;
     private static long point = 30;
+    private static ArrayList<Label> availableLabels = new ArrayList<>();
+    private static String lastPlayed;
+
+    public static String getLastPlayed() {
+        return lastPlayed;
+    }
+
+    public static void setLastPlayed(String lastPlayed) {
+        DotsAndBoxesGame.lastPlayed = lastPlayed;
+    }
 
     public static String getWinner() {
         return winner;
@@ -131,6 +142,7 @@ public class DotsAndBoxesGame implements Initializable {
             }else {
                 valueLabelX+=37;
             }
+            availableLabels.add(labels[i]);
             board.getChildren().add(labels[i]);
         });
     }
@@ -341,7 +353,7 @@ public class DotsAndBoxesGame implements Initializable {
             }
 
         }
-        findOwner();
+        showCompletedBoxes(dotsAndBoxesController.completedBoxes());
         mediaPlayer2.play();
     }
     private Color findColor(){
@@ -390,7 +402,6 @@ public class DotsAndBoxesGame implements Initializable {
 //        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
         createLabels();
-        findOwner();
         setLabels();
         try {
             setImages();
@@ -400,12 +411,31 @@ public class DotsAndBoxesGame implements Initializable {
     }
 
     @FXML
-    private void findOwner(){
+    private void showCompletedBoxes(ArrayList<String> boxes){
+        for (String box : boxes) {
+            findOwner(box);
+//            System.out.println(box);
+        }
+    }
+
+    @FXML
+    private void findOwner(String id){
+        if (dotsAndBoxesController.isThisBoxCompleted(id).equalsIgnoreCase("blue")){
+            setThisLabel(availableLabels.get(Integer.parseInt(id)),"blue");
+//            System.out.println(id);
+        }else if (dotsAndBoxesController.isThisBoxCompleted(id).equalsIgnoreCase("red")){
+            setThisLabel(availableLabels.get(Integer.parseInt(id)),"red");
+//            System.out.println(id);
+        }
+    }
+    private Label findLabelById(String id){
         for (int i = 0; i < labels.length; i++) {
-            if (!dotsAndBoxesController.isThisBoxCompleted(String.valueOf(i)).equals("none")){
-                setThisLabel(labels[i], dotsAndBoxesController.isThisBoxCompleted(String.valueOf(i)));
+            if (labels[Integer.parseInt(id)].getId().equals(id)){
+//                System.out.println("hoy");
+                return labels[Integer.parseInt(id)];
             }
         }
+        return null;
     }
 
     @FXML
