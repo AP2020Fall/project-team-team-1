@@ -146,7 +146,7 @@
             <ImageView fx:id="player1Pro" fitHeight="82.0" fitWidth="110.0" layoutX="159.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="player2Pro" fitHeight="84.0" fitWidth="112.0" layoutX="374.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="37.0" layoutY="65.0" mnemonicParsing="false" onAction="#SurrenderPlayer1" text="Surrender" />
-            <Label layoutX="302.0" layoutY="15.0" style="-fx-text-fill: red;" text="VS">
+            <Label layoutX="303.0" layoutY="28.0" style="-fx-text-fill: red;" text="VS">
                <font>
                   <Font size="22.0" />
                </font>
@@ -171,7 +171,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="290.0" layoutY="51.0" text="Fight for:" textFill="WHITE">
+            <Label layoutX="290.0" layoutY="56.0" text="Fight for:" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -182,6 +182,11 @@
                </font>
             </Label>
             <Button layoutX="549.0" layoutY="66.0" mnemonicParsing="false" onAction="#SurrenderPlayer2" text="Surrender" />
+            <Label fx:id="timerView" alignment="CENTER" layoutX="263.0" layoutY="8.0" prefHeight="28.0" prefWidth="103.0" style="-fx-text-fill: green;" text="40">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="ownBoardPlayer1" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1b20;">
