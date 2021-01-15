@@ -52,9 +52,17 @@ public class GameStartController implements Initializable {
     private static Boolean passForNextTurnPlayer1 ;
     private static Boolean passForNextTurnPlayer2 ;
     private static long score = 10 ;
+    private static String timeForGame = "10";
     Timer timer1 = new Timer();
     Timer timer2 = new Timer();
 
+    public static String getTimeForGame() {
+        return timeForGame;
+    }
+
+    public static void setTimeForGame(String timeForGame) {
+        GameStartController.timeForGame = timeForGame;
+    }
 
     public static long getScore() {
         return score;
@@ -642,7 +650,7 @@ public class GameStartController implements Initializable {
     /*********************************************************************************/
     private void timer(Timer timer2){
         timer2.schedule(new TimerTask() {
-            int time = 40;
+            int time = Integer.parseInt(getTimeForGame());
             @Override
             public void run() {
                 time--;

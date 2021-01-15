@@ -4,6 +4,7 @@ import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistFriendException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
+import Controller.PlayerController.Game;
 import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import com.jfoenix.controls.JFXPasswordField;
@@ -19,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -53,7 +55,8 @@ public class BattleShipRunMenu implements Initializable {
     public JFXPasswordField txtPassword;
     @FXML
     public JFXTextField txtUsername;
-
+    @FXML
+    ComboBox<String> btnField;
 
     String username =LoginController.getUsername();
 
@@ -118,11 +121,16 @@ public class BattleShipRunMenu implements Initializable {
             showError();
             return;
         }
+        if (btnField.getValue().isEmpty()){
+            showError();
+            return;
+        }
         try {
             logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
             BattleTestController.setPlayer1(this.username);
             BattleTestController.setPlayer2(txtUsername.getText());
             BattleTestController.setScore(getScore());
+            GameStartController.setTimeForGame(btnField.getValue());
             URL url = new File("src/main/resources/FXML/BattleTest.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
