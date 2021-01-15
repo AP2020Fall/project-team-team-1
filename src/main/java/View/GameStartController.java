@@ -664,8 +664,7 @@ public class GameStartController implements Initializable {
             @Override
             public void run() {
                 time--;
-                System.out.println(time);
-//                timerView.setText(String.valueOf(time));
+//                System.out.println(time);
                 Platform.runLater(() -> timerView.setText(String.valueOf(time)));
                 if (time == 0) {
                     if (player1GamePane.isVisible()) {

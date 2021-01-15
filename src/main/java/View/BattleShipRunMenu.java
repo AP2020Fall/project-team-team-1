@@ -93,7 +93,6 @@ public class BattleShipRunMenu implements Initializable {
     }
     private ArrayList<String> addToList() throws ExistFriendException {
         String[] friends = playerGeneralController.showFriends(this.getUsername()).split("\\$");
-        System.out.println(friends);
         return new ArrayList<>(Arrays.asList(friends));
     }
     @FXML
@@ -101,7 +100,6 @@ public class BattleShipRunMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Hello");
         try {
             addToList();
             initActions();
