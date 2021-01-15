@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -158,16 +159,20 @@ public class EventInfo implements Initializable {
         }
         try {
             if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("b")){
-                File file = new File("src\\main\\resources\\Icons\\battleShipIcon.png");
-                Image image = new Image(file.toURI().toString());
-                imgGame.setImage(image);
+                String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                        "Events"+File.separator+getId()+File.separator+getId()+".jpg";
+                URL url = new File(path).toURI().toURL();
+                imgGame.setImage(new Image(url.toExternalForm()));
             }else if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("d")){
-                File file = new File("src\\main\\resources\\Icons\\DotsAndBoxesIcon.png");
-                Image image = new Image(file.toURI().toString());
-                imgGame.setImage(image);
+                String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                        "Events"+File.separator+getId()+File.separator+getId()+".jpg";
+                URL url = new File(path).toURI().toURL();
+                imgGame.setImage(new Image(url.toExternalForm()));
             }
         } catch (ExistEventException e) {
             System.err.println(e.getMessage());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
 
     }
