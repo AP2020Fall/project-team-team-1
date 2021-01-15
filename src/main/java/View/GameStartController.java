@@ -9,6 +9,7 @@ import Controller.Exception.BattleShip.InvalidCommandException;
 import Controller.PlayerController.Game;
 import Controller.PlayerController.PlayerGeneralController;
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class GameStartController implements Initializable {
@@ -49,6 +52,9 @@ public class GameStartController implements Initializable {
     private static Boolean passForNextTurnPlayer1 ;
     private static Boolean passForNextTurnPlayer2 ;
     private static long score = 10 ;
+    Timer timer1 = new Timer();
+    Timer timer2 = new Timer();
+
 
     public static long getScore() {
         return score;
@@ -163,6 +169,8 @@ public class GameStartController implements Initializable {
 
     @FXML
     Label point;
+    @FXML
+    Label timerView;
 
     @FXML
     Pane forZoom;
@@ -404,7 +412,9 @@ public class GameStartController implements Initializable {
 
 
     @FXML
-    private void player1NexttTurn(ActionEvent event) {
+    private void player1NexttTurn() {
+        timer1.cancel();
+        timer2 = new Timer();
         playMouseSound();
         if (!passForNextTurnPlayer1){
             player1Error.setText("Attack First");
@@ -415,11 +425,14 @@ public class GameStartController implements Initializable {
         setPassForNextTurnPlayer1(false);
         player1GamePane.setVisible(false);
         setErrorsOff();
+        timer(timer2);
 
     }
 
     @FXML
-    private void player2NexttTurn(ActionEvent event) {
+    private void player2NexttTurn() {
+        timer2.cancel();
+        timer1 = new Timer();
         playMouseSound();
         if (!passForNextTurnPlayer2){
             player2Error.setText("Attack First");
@@ -430,6 +443,7 @@ public class GameStartController implements Initializable {
         setPassForNextTurnPlayer2(false);
         player1GamePane.setVisible(true);
         setErrorsOff();
+        timer(timer1);
 
     }
     /*********************************************************************************/
@@ -598,6 +612,29 @@ public class GameStartController implements Initializable {
     }
 
     /*********************************************************************************/
+    private void timer(Timer timer2){
+        timer2.schedule(new TimerTask() {
+            int time = 40;
+            @Override
+            public void run() {
+                time--;
+                System.out.println(time);
+//                timerView.setText(String.valueOf(time));
+                Platform.runLater(()-> timerView.setText(String.valueOf(time)));
+                if (time == 0){
+                    if (player1GamePane.isVisible()){
+                        timer2.cancel();
+                        setPassForNextTurnPlayer1(true);
+                        player1NexttTurn();
+                    }else {
+                        timer2.cancel();
+                        setPassForNextTurnPlayer2(true);
+                        player2NexttTurn();
+                    }
+                }
+            }
+        },1000,1000);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -622,5 +659,6 @@ public class GameStartController implements Initializable {
         setPassForNextTurnPlayer2(false);
         addMouseScrolling(player1Pro);
         addMouseScrolling2(player2Pro);
+        timer(timer1);
     }
 }
