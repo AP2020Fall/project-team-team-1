@@ -33,6 +33,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -67,15 +68,18 @@ public class DotsAndBoxesGame implements Initializable {
     public Label lblPlayer2Points = new Label();
     @FXML
     public Label lblTurn = new Label();
-    private static String firstPlayer = "";
-    private static String secondPlayer = "";
+    private static String firstPlayer = "Amirzgh1";
+    private static String secondPlayer = "player";
     private static String winner = " ";
     public Pane WinnerPane;
     public Label lblWinner;
     public HBox hbox;
     private Circle[] dots = new Circle[64];
+    private Label[] labels = new Label[49];
     private double valueX =165;
     private double valueY =165;
+    private double valueLabelX = 178;
+    private double valueLabelY = 172;
     private static long point = 30;
 
     public static String getWinner() {
@@ -108,6 +112,27 @@ public class DotsAndBoxesGame implements Initializable {
 
     public void setSecondPlayer(String secondPlayer) {
         this.secondPlayer = secondPlayer;
+    }
+
+    @FXML
+    private void createLabels(){
+        IntStream.range(0,49).forEach(i->{
+            labels[i]=new Label();
+            labels[i].setId(String.valueOf(i));
+            labels[i].setPrefWidth(20);
+            labels[i].setPrefHeight(20);
+            labels[i].setLayoutX(valueLabelX);
+            labels[i].setLayoutY(valueLabelY);
+//            labels[i].setText(labels[i].getId());
+//            labels[i].setTextFill(Color.WHITE);
+            if ((i+1)%7==0 && i+1 !=49){
+                valueLabelY+=37;
+                valueLabelX=178;
+            }else {
+                valueLabelX+=37;
+            }
+            board.getChildren().add(labels[i]);
+        });
     }
 
     @FXML
@@ -216,6 +241,7 @@ public class DotsAndBoxesGame implements Initializable {
         Media media2 = new Media(file2.toURI().toString());
         MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
         mediaPlayer2.setVolume(0.5);
+
         if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
             try {
                 awardTheWinner();
@@ -315,7 +341,7 @@ public class DotsAndBoxesGame implements Initializable {
             }
 
         }
-
+        findOwner();
         mediaPlayer2.play();
     }
     private Color findColor(){
@@ -363,11 +389,34 @@ public class DotsAndBoxesGame implements Initializable {
         WinnerPane.setVisible(false);
 //        System.out.println("11"+getFirstPlayer()+" "+getSecondPlayer());
         drawCircles();
+        createLabels();
+        findOwner();
         setLabels();
         try {
             setImages();
         } catch (MalformedURLException e) {
             System.err.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void findOwner(){
+        for (int i = 0; i < labels.length; i++) {
+            if (!dotsAndBoxesController.isThisBoxCompleted(String.valueOf(i)).equals("none")){
+                setThisLabel(labels[i], dotsAndBoxesController.isThisBoxCompleted(String.valueOf(i)));
+            }
+        }
+    }
+
+    @FXML
+    private void setThisLabel(Label label,String color){
+        if (color.equals("blue")){
+            label.setText(getSecondPlayer().substring(0,1));
+            label.setTextFill(Color.rgb(41, 128, 185));
+        }
+        if (color.equals("red")){
+            label.setText(getFirstPlayer().substring(0,1));
+            label.setTextFill(Color.rgb(192, 57, 43));
         }
     }
 

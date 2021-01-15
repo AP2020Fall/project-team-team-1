@@ -81,6 +81,19 @@ public class DotsAndBoxesController {
 
         return counter;
     }
+    public String isThisBoxCompleted(String input){
+        int id = Integer.parseInt(input);
+        String answer ="none";
+        if (gameBoard.boxes.get(id).getOwner()!=Player.NONE){
+            if (gameBoard.boxes.get(id).getOwner().equals(Player.BLUE)){
+                answer="blue";
+            }else if (gameBoard.boxes.get(id).getOwner().equals(Player.RED)){
+                answer="red";
+            }
+        }
+
+        return answer;
+    }
     public Line getLine(int row1,int column1,int row2,int column2){
         Line finalLine = null;
         for(Line line : Lines.lines){
