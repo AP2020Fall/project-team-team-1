@@ -23,9 +23,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -60,12 +62,16 @@ public class AdminEvents implements Initializable {
     public JFXButton btnBack;
     @FXML
     public Button btnSelectedEvent;
+    public Button btnProfile;
+    private File file;
 
     @FXML
     public void addEvent(ActionEvent event) throws IOException {
         playMouseSound();
         try {
             adminGeneralController.addEvent(txtID.getText()+" "+txtGame.getText()+" "+dateStart.getValue().toString()+" "+dateEnd.getValue().toString()+" "+txtScore.getText()+" "+txtComment.getText());
+            File image = createProfileFile(txtID.getText());
+            copy(file,image);
             LoginController.setUsername(null);
             URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
@@ -172,5 +178,25 @@ public class AdminEvents implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(message);
         window.show();
+    }
+    @FXML
+    private File chooseProfilePick(FileChooser fileChooser){
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
+        fileChooser.getExtensionFilters().add(images);
+        return fileChooser.showOpenDialog(new Stage());
+    }
+    @FXML
+    private File createProfileFile(String username){
+        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
+                "Events"+File.separator+username+File.separator+username+".jpg";
+        return new File(path);
+    }
+    @FXML
+    private void copy(File pic , File dest) throws IOException {
+        FileUtils.copyFile(pic,dest);
+    }
+
+    public void addProfile(ActionEvent event) {
+        file=chooseProfilePick(new FileChooser());
     }
 }
