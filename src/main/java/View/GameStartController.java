@@ -318,7 +318,9 @@ public class GameStartController implements Initializable {
 
             gridPlayerPlayer1Enemy.add(image, x, y);
             gridPlayerPlayer2Own.add(image1, x, y);
-
+            timer1.cancel();
+            timer1 = new Timer();
+            timer(timer1);
             //gridPlayerPlayer1Enemy.getChildren(image);
 
         }
@@ -440,6 +442,9 @@ public class GameStartController implements Initializable {
             ft.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
             gridPlayerPlayer1Own.add(image1, x, y);
+            timer2.cancel();
+            timer2 = new Timer();
+            timer(timer2);
 
         }
 
@@ -460,6 +465,8 @@ public class GameStartController implements Initializable {
             player1Error.setVisible(true);
             return;
         }
+        player1Y.clear();
+        player1X.clear();
         setPassForNextTurnPlayer1(false);
         player1GamePane.setVisible(false);
         setErrorsOff();
@@ -471,6 +478,8 @@ public class GameStartController implements Initializable {
     private void player2NexttTurn() {
         timer2.cancel();
         timer1 = new Timer();
+        player2X.clear();
+        player2Y.clear();
         playMouseSound();
         if (!passForNextTurnPlayer2) {
             player2Error.setText("Attack First");
@@ -478,6 +487,7 @@ public class GameStartController implements Initializable {
             player2Error.setVisible(true);
             return;
         }
+
         setPassForNextTurnPlayer2(false);
         player1GamePane.setVisible(true);
         setErrorsOff();

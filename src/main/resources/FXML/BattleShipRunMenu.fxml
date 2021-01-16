@@ -42,12 +42,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ComboBox fx:id="btnField" layoutX="88.0" layoutY="316.0" prefHeight="25.0" prefWidth="87.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="Field">
+      <ComboBox fx:id="btnField" layoutX="88.0" layoutY="316.0" prefHeight="25.0" prefWidth="87.0" promptText="Select" style="-fx-background-color: white; -fx-border-color: #14A6B8; -fx-border-width: 0px 0px 2px 0px;" value="45">
          <items>
             <FXCollections fx:factory="observableArrayList">
-               <String fx:value="45" />
                <String fx:value="60" />
                <String fx:value="75" />
+                <String fx:value="90" />
             </FXCollections>
          </items>
          <cursor>
