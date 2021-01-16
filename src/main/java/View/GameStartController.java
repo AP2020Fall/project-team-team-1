@@ -49,12 +49,20 @@ public class GameStartController implements Initializable {
     private static BattleSeaController battleSeaController1;
     private static GridPane gridPanePlayer1;
     private static GridPane gridPanePlayer2;
-    private static Boolean passForNextTurnPlayer1 ;
-    private static Boolean passForNextTurnPlayer2 ;
-    private static long score = 10 ;
+    private static Boolean passForNextTurnPlayer1;
+    private static Boolean passForNextTurnPlayer2;
+    private static long score = 10;
+    private static String timeForGame = "10";
     Timer timer1 = new Timer();
     Timer timer2 = new Timer();
 
+    public static String getTimeForGame() {
+        return timeForGame;
+    }
+
+    public static void setTimeForGame(String timeForGame) {
+        GameStartController.timeForGame = timeForGame;
+    }
 
     public static long getScore() {
         return score;
@@ -174,39 +182,40 @@ public class GameStartController implements Initializable {
 
     @FXML
     Pane forZoom;
+
     /*********************************************************************************/
 
     @FXML
     private void player1Attack(ActionEvent event) throws IOException {
         playMouseSound();
-        if (passForNextTurnPlayer1){
+        if (passForNextTurnPlayer1) {
             player1Error.setText("You Already Attacked ! Push Next Turn ");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
             return;
         }
 
-        if (player1X.getText().isEmpty() || player1Y.getText().isEmpty()){
+        if (player1X.getText().isEmpty() || player1Y.getText().isEmpty()) {
             player1Error.setText("Empty Inputs");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
             return;
 
         }
-        if (!player1X.getText().matches("(^([1-9]|10)$)") || !player1Y.getText().matches("(^([1-9]|10)$)")){
+        if (!player1X.getText().matches("(^([1-9]|10)$)") || !player1Y.getText().matches("(^([1-9]|10)$)")) {
             player1Error.setText("Enter number Between 1 to 10");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
             return;
         }
 
-        String boom = "boom "+player1X.getText().trim()+","+player1Y.getText().trim();
+        String boom = "boom " + player1X.getText().trim() + "," + player1Y.getText().trim();
         String result = "";
         try {
-            result = getBattleSeaController1().boomProcessor("player1",boom);
+            result = getBattleSeaController1().boomProcessor("player1", boom);
         } catch (BattleShipWinner battleShipWinner) {
-            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore() );
-            Game.historySaver(LocalDate.now(),  BattleTestController.getPlayer1(),  BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
+            Game.historySaver(LocalDate.now(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
             BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
             URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
@@ -237,7 +246,7 @@ public class GameStartController implements Initializable {
         }
 
 
-        if (result.equals("InCorrect Boom")){
+        if (result.equals("InCorrect Boom")) {
             playWaterSound();
             File file = new File("src\\main\\resources\\Images\\cross.png");
             ImageView image = new ImageView(file.toURI().toString());
@@ -246,8 +255,8 @@ public class GameStartController implements Initializable {
             image.setFitHeight(38);
             image1.setFitWidth(38);
             image1.setFitHeight(38);
-            int x = Integer.parseInt(player1X.getText())-1;
-            int y = Integer.parseInt(player1Y.getText())-1;
+            int x = Integer.parseInt(player1X.getText()) - 1;
+            int y = Integer.parseInt(player1Y.getText()) - 1;
 //            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
 //            rotateTransition.setByAngle(360);
 //            rotateTransition.setRate(5);
@@ -261,7 +270,7 @@ public class GameStartController implements Initializable {
 
             ft.play();
             gridPlayerPlayer1Enemy.add(image, x, y);
-            gridPlayerPlayer2Own.add(image1,x,y);
+            gridPlayerPlayer2Own.add(image1, x, y);
             setPassForNextTurnPlayer1(true);
 
         } else {
@@ -274,8 +283,8 @@ public class GameStartController implements Initializable {
             image.setFitHeight(38);
             image1.setFitWidth(38);
             image1.setFitHeight(38);
-            int x = Integer.parseInt(player1X.getText())-1;
-            int y = Integer.parseInt(player1Y.getText())-1;
+            int x = Integer.parseInt(player1X.getText()) - 1;
+            int y = Integer.parseInt(player1Y.getText()) - 1;
 //            TranslateTransition translateTransition = new TranslateTransition();
 //            translateTransition.setDuration(Duration.seconds(3));
 //            translateTransition.setToX(500);
@@ -308,7 +317,7 @@ public class GameStartController implements Initializable {
             ft.play();
 
             gridPlayerPlayer1Enemy.add(image, x, y);
-            gridPlayerPlayer2Own.add(image1,x,y);
+            gridPlayerPlayer2Own.add(image1, x, y);
 
             //gridPlayerPlayer1Enemy.getChildren(image);
 
@@ -321,31 +330,31 @@ public class GameStartController implements Initializable {
     @FXML
     private void player2Attack(ActionEvent event) throws IOException {
         playMouseSound();
-        if (passForNextTurnPlayer2){
+        if (passForNextTurnPlayer2) {
             player2Error.setText("You Already Attacked ! Push Next Turn ");
             player2Stat.setVisible(true);
             player2Error.setVisible(true);
             return;
         }
 
-        if (player2X.getText().isEmpty() || player2Y.getText().isEmpty()){
+        if (player2X.getText().isEmpty() || player2Y.getText().isEmpty()) {
             player2Error.setText("Empty Inputs");
             player2Stat.setVisible(true);
             player2Error.setVisible(true);
             return;
 
         }
-        if (!player2X.getText().matches("(^([1-9]|10)$)") || !player2Y.getText().matches("(^([1-9]|10)$)")){
+        if (!player2X.getText().matches("(^([1-9]|10)$)") || !player2Y.getText().matches("(^([1-9]|10)$)")) {
             player2Error.setText("Enter number Between 1 to 10");
             player2Stat.setVisible(true);
             player2Error.setVisible(true);
             return;
         }
 
-        String boom = "boom "+player2X.getText().trim()+","+player2Y.getText().trim();
+        String boom = "boom " + player2X.getText().trim() + "," + player2Y.getText().trim();
         String result = "";
         try {
-            result = getBattleSeaController1().boomProcessor("player2",boom);
+            result = getBattleSeaController1().boomProcessor("player2", boom);
         } catch (BattleShipWinner battleShipWinner) {
             Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
             Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
@@ -379,7 +388,7 @@ public class GameStartController implements Initializable {
         }
 
 
-        if (result.equals("InCorrect Boom")){
+        if (result.equals("InCorrect Boom")) {
             playWaterSound();
             File file = new File("src\\main\\resources\\Images\\cross.png");
             ImageView image = new ImageView(file.toURI().toString());
@@ -388,8 +397,8 @@ public class GameStartController implements Initializable {
             image.setFitHeight(38);
             image1.setFitWidth(38);
             image1.setFitHeight(38);
-            int x = Integer.parseInt(player2X.getText())-1;
-            int y = Integer.parseInt(player2Y.getText())-1;
+            int x = Integer.parseInt(player2X.getText()) - 1;
+            int y = Integer.parseInt(player2Y.getText()) - 1;
 //            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
 //            rotateTransition.setByAngle(360);
 //            rotateTransition.setRate(5);
@@ -403,7 +412,7 @@ public class GameStartController implements Initializable {
 
             ft.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
-            gridPlayerPlayer1Own.add(image1,x,y);
+            gridPlayerPlayer1Own.add(image1, x, y);
             setPassForNextTurnPlayer2(true);
 
         } else {
@@ -415,8 +424,8 @@ public class GameStartController implements Initializable {
             image.setFitHeight(38);
             image1.setFitWidth(38);
             image1.setFitHeight(38);
-            int x = Integer.parseInt(player2X.getText())-1;
-            int y = Integer.parseInt(player2Y.getText())-1;
+            int x = Integer.parseInt(player2X.getText()) - 1;
+            int y = Integer.parseInt(player2Y.getText()) - 1;
 //            RotateTransition rotateTransition = new RotateTransition(Duration.seconds(5), image);
 //            rotateTransition.setByAngle(360);
 //            rotateTransition.setRate(5);
@@ -430,12 +439,13 @@ public class GameStartController implements Initializable {
 
             ft.play();
             gridPlayerPlayer2Enemy.add(image, x, y);
-            gridPlayerPlayer1Own.add(image1,x,y);
+            gridPlayerPlayer1Own.add(image1, x, y);
 
         }
 
         setErrorsOff();
     }
+
     /*********************************************************************************/
 
 
@@ -444,7 +454,7 @@ public class GameStartController implements Initializable {
         timer1.cancel();
         timer2 = new Timer();
         playMouseSound();
-        if (!passForNextTurnPlayer1){
+        if (!passForNextTurnPlayer1) {
             player1Error.setText("Attack First");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
@@ -462,7 +472,7 @@ public class GameStartController implements Initializable {
         timer2.cancel();
         timer1 = new Timer();
         playMouseSound();
-        if (!passForNextTurnPlayer2){
+        if (!passForNextTurnPlayer2) {
             player2Error.setText("Attack First");
             player2Stat.setVisible(true);
             player2Error.setVisible(true);
@@ -474,6 +484,7 @@ public class GameStartController implements Initializable {
         timer(timer1);
 
     }
+
     /*********************************************************************************/
     @FXML
     private void player1OwnBoardView(ActionEvent event) {
@@ -519,8 +530,8 @@ public class GameStartController implements Initializable {
     @FXML
     void SurrenderPlayer2(ActionEvent event) throws IOException {
         playMouseSound();
-        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore() );
-        Game.historySaver(LocalDate.now(),  BattleTestController.getPlayer1(),  BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
+        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
+        Game.historySaver(LocalDate.now(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
         BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
         URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
@@ -535,34 +546,36 @@ public class GameStartController implements Initializable {
     /*********************************************************************************/
 
     @FXML
-    private void setErrorsOff(){
+    private void setErrorsOff() {
         player1Stat.setVisible(false);
         player2Stat.setVisible(false);
 
         player1Error.setVisible(false);
         player2Error.setVisible(false);
     }
+
     @FXML
-    private void setOwnBoardsOff(){
+    private void setOwnBoardsOff() {
         ownBoardPlayer1.setVisible(false);
         ownBoardPlayer2.setVisible(false);
     }
+
     @FXML
     private void setProfiles() throws MalformedURLException {
         player1User.setText(BattleTestController.getPlayer1());
         player2User.setText(BattleTestController.getPlayer2());
-        point.setText(getScore()+"PT");
+        point.setText(getScore() + "PT");
 
-        String path = "src"+ File.separator+"main"+File.separator+"resources"+File.separator
-                +"Users"+File.separator+BattleTestController.getPlayer1()+File.separator
-                +BattleTestController.getPlayer1()+".jpg";
+        String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator
+                + "Users" + File.separator + BattleTestController.getPlayer1() + File.separator
+                + BattleTestController.getPlayer1() + ".jpg";
 
         URL url = new File(path).toURI().toURL();
         player1Pro.setImage(new Image(url.toExternalForm()));
 
-        String path1 = "src"+ File.separator+"main"+File.separator+"resources"+File.separator
-                +"Users"+File.separator+BattleTestController.getPlayer2()+File.separator
-                +BattleTestController.getPlayer2()+".jpg";
+        String path1 = "src" + File.separator + "main" + File.separator + "resources" + File.separator
+                + "Users" + File.separator + BattleTestController.getPlayer2() + File.separator
+                + BattleTestController.getPlayer2() + ".jpg";
         URL url1 = new File(path1).toURI().toURL();
         player2Pro.setImage(new Image(url1.toExternalForm()));
 
@@ -573,19 +586,19 @@ public class GameStartController implements Initializable {
             // Adjust the zoom factor as per your requirement
             double zoomFactor = 1.05;
             double deltaY = event.getDeltaY();
-            if (deltaY < 0){
+            if (deltaY < 0) {
                 zoomFactor = 2.0 - zoomFactor;
             }
             node.setScaleX(node.getScaleX() * zoomFactor);
             node.setScaleY(node.getScaleY() * zoomFactor);
-            if (node.getScaleX() > 1.5){
+            if (node.getScaleX() > 1.5) {
                 forZoom.setVisible(true);
                 node.toFront();
                 node.setLayoutX(280);
                 node.setLayoutY(250);
 
             }
-            if (node.getScaleX() < 1.5){
+            if (node.getScaleX() < 1.5) {
                 forZoom.setVisible(false);
                 node.toBack();
 
@@ -594,24 +607,25 @@ public class GameStartController implements Initializable {
             }
         });
     }
+
     public void addMouseScrolling2(Node node) {
         node.setOnScroll((ScrollEvent event) -> {
             // Adjust the zoom factor as per your requirement
             double zoomFactor = 1.05;
             double deltaY = event.getDeltaY();
-            if (deltaY < 0){
+            if (deltaY < 0) {
                 zoomFactor = 2.0 - zoomFactor;
             }
             node.setScaleX(node.getScaleX() * zoomFactor);
             node.setScaleY(node.getScaleY() * zoomFactor);
-            if (node.getScaleX() > 1.5){
+            if (node.getScaleX() > 1.5) {
                 forZoom.setVisible(true);
                 node.toFront();
                 node.setLayoutX(280);
                 node.setLayoutY(250);
 
             }
-            if (node.getScaleX() < 1.5){
+            if (node.getScaleX() < 1.5) {
                 forZoom.setVisible(false);
                 node.toBack();
 
@@ -620,19 +634,22 @@ public class GameStartController implements Initializable {
             }
         });
     }
-    public void playWaterSound(){
+
+    public void playWaterSound() {
         File file = new File("src\\main\\resources\\Sound\\water.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    public void playBoomSound(){
+
+    public void playBoomSound() {
         File file = new File("src\\main\\resources\\Sound\\boom.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -640,28 +657,28 @@ public class GameStartController implements Initializable {
     }
 
     /*********************************************************************************/
-    private void timer(Timer timer2){
+    private void timer(Timer timer2) {
         timer2.schedule(new TimerTask() {
-            int time = 40;
+            int time = Integer.parseInt(getTimeForGame());
+
             @Override
             public void run() {
                 time--;
-                System.out.println(time);
-//                timerView.setText(String.valueOf(time));
-                Platform.runLater(()-> timerView.setText(String.valueOf(time)));
-                if (time == 0){
-                    if (player1GamePane.isVisible()){
+//                System.out.println(time);
+                Platform.runLater(() -> timerView.setText(String.valueOf(time)));
+                if (time == 0) {
+                    if (player1GamePane.isVisible()) {
                         timer2.cancel();
                         setPassForNextTurnPlayer1(true);
                         player1NexttTurn();
-                    }else {
+                    } else {
                         timer2.cancel();
                         setPassForNextTurnPlayer2(true);
                         player2NexttTurn();
                     }
                 }
             }
-        },1000,1000);
+        }, 1000, 1000);
     }
 
     @Override

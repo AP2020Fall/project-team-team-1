@@ -82,6 +82,32 @@ public class DotsAndBoxesController {
 
         return counter;
     }
+    public String isBoxCompleted1() {
+        StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<Box> forDelete = new ArrayList<>();
+        for (Box box : gameBoard.boxes) {
+            if (box.getRight().hasOwner()) {
+                if (box.getTop().hasOwner()) {
+                    if (box.getLeft().hasOwner()) {
+                        if (box.getBottom().hasOwner()) {
+                                forDelete.add(box);
+                                stringBuilder.append(box.getId()).append("$");
+//                            System.out.println(box.getId());
+                        }
+                    }
+                }
+            }
+        }
+//        for (Box box : gameBoard.availableBoxes) {
+//            System.out.println(box.getOwner());
+//        }
+//        for (Box box : forDelete) {
+//            System.out.println(box.getId());
+//        }
+//        gameBoard.availableBoxes.removeAll(forDelete);
+//        System.out.println(gameBoard.availableBoxes.size());
+        return String.valueOf(stringBuilder);
+    }
     public ArrayList<String> completedBoxes(){
         ArrayList<String> completed = new ArrayList<>();
 //        gameBoard.availableBoxes.get(0).setOwner(Player.RED);
