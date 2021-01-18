@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class DataBase {
 
@@ -14,11 +15,11 @@ public class DataBase {
             file.delete();
 
         file.createNewFile();
-
+        Base64.Encoder encoder = Base64.getEncoder();
         String outForData = new Gson().toJson(arrayList);
         FileWriter fWrite = new FileWriter(file, true);
         BufferedWriter bWrite = new BufferedWriter(fWrite);
-        bWrite.write(outForData);
+        bWrite.write(encoder.encodeToString(outForData.getBytes()));
         bWrite.close();
 
     }

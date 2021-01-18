@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class Games {
@@ -82,6 +83,8 @@ public class Games {
 
 
     public static void loadFromJsonFile() throws FileNotFoundException {
+        Base64.Decoder decoder = Base64.getDecoder();
+
 
         if (!gamesFile.exists())
             return;
@@ -92,7 +95,8 @@ public class Games {
             Scanner myReader = new Scanner(gamesFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                read.append(data);
+                byte[] bytes = decoder.decode(data);
+                read.append(new String(bytes));
             }
             myReader.close();
 

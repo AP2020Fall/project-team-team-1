@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class User {
@@ -120,6 +121,8 @@ public class User {
     }
 
     public static void loadFromJsonFile() {
+        Base64.Decoder decoder = Base64.getDecoder();
+
         if (!userFile.exists())
             return;
         StringBuilder read = new StringBuilder();
@@ -127,7 +130,8 @@ public class User {
             Scanner myReader = new Scanner(userFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                read.append(data);
+                byte[] bytes = decoder.decode(data);
+                read.append(new String(bytes));
             }
             myReader.close();
         } catch (IOException e) {

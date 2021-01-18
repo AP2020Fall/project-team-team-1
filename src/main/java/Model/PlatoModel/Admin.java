@@ -8,6 +8,7 @@ import java.io.*;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Scanner;
 
 public class Admin extends User {
@@ -71,6 +72,8 @@ public class Admin extends User {
     }
 
     public static void loadFromJsonFile() {
+        Base64.Decoder decoder = Base64.getDecoder();
+
         if (!adminFile.exists())
             return;
         StringBuilder read = new StringBuilder();
@@ -78,7 +81,8 @@ public class Admin extends User {
             Scanner myReader = new Scanner(adminFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                read.append(data);
+                byte[] bytes = decoder.decode(data);
+                read.append(new String(bytes));
             }
             myReader.close();
         } catch (IOException e) {

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -181,6 +182,8 @@ public class Player extends User {
     }
 
     public static void loadFromJsonFile() {
+        Base64.Decoder decoder = Base64.getDecoder();
+
 
         if (!playerFile.exists())
             return;
@@ -189,7 +192,8 @@ public class Player extends User {
             Scanner myReader = new Scanner(playerFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                read.append(data);
+                byte[] bytes = decoder.decode(data);
+                read.append(new String(bytes));
             }
             myReader.close();
         } catch (IOException e) {

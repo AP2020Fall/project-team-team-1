@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -72,6 +73,8 @@ public class Message {
     }
 
     public static void loadFromJsonFile() {
+        Base64.Decoder decoder = Base64.getDecoder();
+
         if (!messageFile.exists())
             return;
         StringBuilder read = new StringBuilder();
@@ -79,7 +82,8 @@ public class Message {
             Scanner myReader = new Scanner(messageFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                read.append(data);
+                byte[] bytes = decoder.decode(data);
+                read.append(new String(bytes));
             }
             myReader.close();
         } catch (IOException e) {
