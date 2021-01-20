@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -114,8 +113,6 @@ public class PlayerLog {
     }
 
     public static void loadFromJsonFile() {
-        Base64.Decoder decoder = Base64.getDecoder();
-
         if (!playerLogsFile.exists())
             return;
         StringBuilder read = new StringBuilder();
@@ -123,8 +120,7 @@ public class PlayerLog {
             Scanner myReader = new Scanner(playerLogsFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                byte[] bytes = decoder.decode(data);
-                read.append(new String(bytes));
+                read.append(data);
             }
             myReader.close();
         } catch (IOException e) {

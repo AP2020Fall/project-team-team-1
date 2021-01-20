@@ -8,7 +8,6 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Scanner;
 
 public class Event {
@@ -152,8 +151,6 @@ public class Event {
     }
 
     public static void loadFromJsonFile() throws FileNotFoundException {
-        Base64.Decoder decoder = Base64.getDecoder();
-
         if (!eventFile.exists())
             return;
         StringBuilder read = new StringBuilder();
@@ -161,8 +158,7 @@ public class Event {
             Scanner myReader = new Scanner(eventFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                byte[] bytes = decoder.decode(data);
-                read.append(new String(bytes));
+                read.append(data);
             }
             myReader.close();
         } catch (IOException e) {
