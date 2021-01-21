@@ -1,6 +1,5 @@
-package OldView;
+package Client.OldView;
 
-import Controller.DotsAndBoxesController.DotsAndBoxesController;
 import Controller.Exception.Plato.ExistFavoriteException;
 import Controller.Exception.Plato.InvalidGameID;
 import Controller.Exception.Plato.InvalidGameNameException;
@@ -8,24 +7,22 @@ import Controller.Exception.Plato.InvalidGameNameException;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class DotsAndBoxesMenu extends Menu {
-    DotsAndBoxesController dotsAndBoxesController;
+public class BattleShipMenu extends Menu {
     private String username;
-
-    public DotsAndBoxesMenu(String username, Menu parentMenu) {
-        super(adminGeneralController.secondGameNameGetter() + " Menu", parentMenu);
-        this.dotsAndBoxesController = new DotsAndBoxesController();
-        HashMap<Integer, Menu> submenus = new HashMap<>();
+    //todo check line 12
+    public BattleShipMenu(String username, Menu parentMenu) {
+        super(adminGeneralController.firstGameNameGetter()+" Menu", parentMenu);
         this.username = username;
+        HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, showScoreBoard());
         submenus.put(2, showDetails());
         submenus.put(3, showLog());
         submenus.put(4, showWinsCount());
         submenus.put(5, showPlayedCount());
         submenus.put(6, addToFavorites());
-        submenus.put(7, removeFavorites());
+        submenus.put(7,removeFavorites());
         submenus.put(8, showPoints());
-        submenus.put(9, new RunDotsAndBoxes(username, null,10, dotsAndBoxesController, this));
+        submenus.put(9, new RunBattleShip(username, null,10, this));
         this.setSubmenus(submenus);
     }
 
@@ -42,10 +39,18 @@ public class DotsAndBoxesMenu extends Menu {
                     String[] showEvent = playerGeneralController.showScoreboardInThisGame(adminGeneralController.firstGameNameGetter()).split("\\$");
                     for (String out : showEvent) {
                         System.out.println(out);
-                    }                    this.parentMenu.run();
+                    }
+
+                    while (true) {
+                        String next = scanner.nextLine();
+                        if (next.equalsIgnoreCase("back")) {
+                            this.parentMenu.run();
+                            break;
+                        }
+                    }
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + e.getMessage());
-                    this.parentMenu.run();
+                    this.run();
                 }
             }
         };
@@ -60,7 +65,7 @@ public class DotsAndBoxesMenu extends Menu {
 
             @Override
             public void execute() {
-                System.out.println(playerGeneralController.dotsDetails());
+                System.out.println(playerGeneralController.battleDetails());
                 while (true) {
                     String next = scanner.nextLine();
                     if (next.equalsIgnoreCase("back")) {
@@ -73,7 +78,7 @@ public class DotsAndBoxesMenu extends Menu {
     }
 
     private Menu showLog() {
-        return new Menu("show " + this.username + "'s " + adminGeneralController.secondGameNameGetter() + " GameLog", this) {
+        return new Menu("show " + this.username + "'s "+adminGeneralController.firstGameNameGetter()+" GameLog", this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -82,7 +87,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    String[] showEvent = playerGeneralController.showGameLogInThisGame(username, adminGeneralController.secondGameNameGetter()).split("\\$");
+                    String[] showEvent = playerGeneralController.showGameLogInThisGame(username, adminGeneralController.firstGameNameGetter()).split("\\$");
                     for (String out : showEvent) {
                         System.out.println(out);
                     }
@@ -104,7 +109,7 @@ public class DotsAndBoxesMenu extends Menu {
     }
 
     private Menu showWinsCount() {
-        return new Menu("show " + this.username + " WinsCount in " + adminGeneralController.secondGameNameGetter(), this) {
+        return new Menu("show " + this.username + " WinsCount in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -113,7 +118,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    System.out.println(playerGeneralController.showNumberOFWins(username, adminGeneralController.secondGameNameGetter()));
+                    System.out.println(playerGeneralController.showNumberOFWins(username, adminGeneralController.firstGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -123,7 +128,6 @@ public class DotsAndBoxesMenu extends Menu {
                     }
                 } catch (InvalidGameNameException e) {
                     System.out.println(e.getGameName() + e.getMessage());
-                    this.run();
                 }
 
             }
@@ -131,7 +135,7 @@ public class DotsAndBoxesMenu extends Menu {
     }
 
     private Menu showPlayedCount() {
-        return new Menu("show " + this.username + " PlayedCount in " + adminGeneralController.secondGameNameGetter(), this) {
+        return new Menu("show " + this.username + " PlayedCount in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -140,7 +144,7 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    System.out.println(playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.secondGameNameGetter()));
+                    System.out.println(playerGeneralController.showNumberOfGamePlayedInThisGame(username, adminGeneralController.firstGameNameGetter()));
                     while (true) {
                         String next = scanner.nextLine();
                         if (next.equalsIgnoreCase("back")) {
@@ -149,8 +153,7 @@ public class DotsAndBoxesMenu extends Menu {
                         }
                     }
                 } catch (InvalidGameNameException e) {
-                    System.out.println(e.getGameName() + e.getMessage());
-                    this.run();
+                    System.out.println(e.getGameName()+e.getMessage());
                 }
 
             }
@@ -167,8 +170,8 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.addGameToFavoritesGames(username, adminGeneralController.secondGameNameGetter());
-                    System.out.println(adminGeneralController.secondGameNameGetter() + " added to Your Favorites Successfully!");
+                    playerGeneralController.addGameToFavoritesGames(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(adminGeneralController.firstGameNameGetter()+" added to Your Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName() + " " + e.getMessage());
                 } catch (InvalidGameNameException e) {
@@ -186,9 +189,8 @@ public class DotsAndBoxesMenu extends Menu {
             }
         };
     }
-
     private Menu removeFavorites() {
-        return new Menu("Remove from favorites", this) {
+        return new Menu("remove from favorites", this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -197,11 +199,13 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    playerGeneralController.RemoveFavoritesGames(username, adminGeneralController.secondGameNameGetter());
-                    System.out.println(adminGeneralController.secondGameNameGetter() + " removed from Your Favorites Successfully!");
+                    playerGeneralController.RemoveFavoritesGames(username, adminGeneralController.firstGameNameGetter());
+                    System.out.println(adminGeneralController.firstGameNameGetter()+" removed from Favorites Successfully!");
                 } catch (ExistFavoriteException e) {
                     System.out.println(e.getGameName() + " : " + e.getMessage());
-                } catch (IOException | InvalidGameNameException e) {
+                } catch (InvalidGameNameException e) {
+                    System.out.println(e.getGameName() + " " + e.getMessage());
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
                 while (true) {
@@ -216,7 +220,7 @@ public class DotsAndBoxesMenu extends Menu {
     }
 
     private Menu showPoints() {
-        return new Menu("show " + this.username + "'s points in " + adminGeneralController.secondGameNameGetter(), this) {
+        return new Menu("show " + this.username + "'s points in "+adminGeneralController.firstGameNameGetter(), this) {
             @Override
             public void show() {
                 System.out.println("Enter back to last Menu");
@@ -225,10 +229,9 @@ public class DotsAndBoxesMenu extends Menu {
             @Override
             public void execute() {
                 try {
-                    System.out.println(playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.secondGameNameGetter()));
+                    System.out.println(playerGeneralController.showPlayerPointsInThisGame(username, adminGeneralController.firstGameNameGetter()));
                 } catch (InvalidGameNameException e) {
-                    System.out.println(e.getGameName() + e.getMessage());
-                    this.run();
+                    System.out.println(e.getGameName());
                 }
                 while (true) {
                     String next = scanner.nextLine();
@@ -237,17 +240,18 @@ public class DotsAndBoxesMenu extends Menu {
                         break;
                     }
                 }
+
             }
         };
     }
+
     @Override
     public void run() {
         try {
-            if (adminGeneralController.activationStatus("2").equalsIgnoreCase("false")){
+            if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")){
                 System.out.print(Color.RED);
-                System.out.println(adminGeneralController.secondGameNameGetter()+" Is Not Available Right now ): Try Again Later ...");
+                System.out.println(adminGeneralController.firstGameNameGetter()+" Is Not Available Right now ): Try Again Later ...");
                 System.out.print(Color.RESET);
-
                 this.parentMenu.run();
             }else {
                 show();
@@ -259,3 +263,4 @@ public class DotsAndBoxesMenu extends Menu {
 
     }
 }
+

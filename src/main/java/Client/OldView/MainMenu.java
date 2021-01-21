@@ -1,4 +1,4 @@
-package OldView;
+package Client.OldView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

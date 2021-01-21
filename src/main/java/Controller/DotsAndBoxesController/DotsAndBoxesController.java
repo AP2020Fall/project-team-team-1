@@ -1,11 +1,7 @@
 package Controller.DotsAndBoxesController;
 
 import Controller.Exception.DotsAndBoxes.ExistLineException;
-import Controller.Exception.DotsAndBoxes.FindLineException;
-import Controller.Exception.DotsAndBoxes.NotEmptyString;
-import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Model.DotsAndBoxesModel.*;
-import OldView.RunDotsAndBoxes;
 
 import java.util.ArrayList;
 

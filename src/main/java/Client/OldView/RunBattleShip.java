@@ -1,4 +1,4 @@
-package OldView;
+package Client.OldView;
 
 import Controller.BattleSeaController.BattleSeaController;
 import Controller.Exception.BattleShip.*;

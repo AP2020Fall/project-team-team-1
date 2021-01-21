@@ -1,4 +1,4 @@
-package OldView;
+package Client.OldView;
 
 import Controller.Exception.Plato.AcceptAndDeclineFriendException;
 import Controller.Exception.Plato.ExistFriendException;

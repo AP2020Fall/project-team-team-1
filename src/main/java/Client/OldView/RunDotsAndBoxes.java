@@ -1,10 +1,6 @@
-package OldView;
+package Client.OldView;
 
 import Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Controller.Exception.DotsAndBoxes.ExistLineException;
-import Controller.Exception.DotsAndBoxes.FindLineException;
-import Controller.Exception.DotsAndBoxes.NotEmptyString;
-import Controller.Exception.DotsAndBoxes.WrongFormatInDots;
 import Controller.Exception.Plato.BanExceptionForLogin;
 import Controller.Exception.Plato.ExistPlayerException;
 import Controller.Exception.Plato.InvalidUserNameException;

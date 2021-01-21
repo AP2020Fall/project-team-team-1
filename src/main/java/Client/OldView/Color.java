@@ -1,4 +1,4 @@
-package OldView;
+package Client.OldView;
 
 public enum Color {
     //Color end string, color reset
