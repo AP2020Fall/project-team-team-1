@@ -1,15 +1,15 @@
 package Server;
 
 import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.BanExceptionForLogin;
-import Controller.Exception.Plato.ExistAdminException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Controller.Exception.Plato.*;
 import Controller.PlayerController.FindPlayerByInfo;
+import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
+import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
+import View.LoginController;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -19,6 +19,8 @@ import java.net.Socket;
 public class Server {
     protected static LogIn logIn = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
 
     public static void main(String[] args) throws IOException {
         try {
@@ -96,6 +98,14 @@ public class Server {
                 answer = login(input);
             else if (input.startsWith("data"))
                 answer = getData(input);
+            else if (input.startsWith("Event List"))
+                answer = getEvents();
+            else if (input.startsWith("Player List"))
+                answer = getPlayersList();
+            else if (input.startsWith("Player Favorite Games"))
+                answer = PlayerFavoriteGames(input);
+            else if (input.startsWith("Player Suggested Games"))
+                answer = PlayerSuggestedGames(input);
 
             return answer;
         }
@@ -135,10 +145,9 @@ public class Server {
 
             }
 
-
-
             return "Failure";
         }
+
         private String getData(String input){
             String[] process = input.split("\\s");
             Gson gson = new Gson();
@@ -147,6 +156,32 @@ public class Server {
             }else {
                 return gson.toJson(FindPlayerByInfo.findByUserName(process[2]));
             }
+        }
+
+        private String getEvents(){
+            return new Gson().toJson(Event.getEvents());
+        }
+
+        private String getPlayersList(){
+            return new Gson().toJson(Player.getPlayers());
+        }
+
+        private String PlayerFavoriteGames(String string){
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.showFavoritesGames(process[3]);
+            } catch (ExistFavoriteException e) {
+                return "There is no Favorite Games";
+            }
+        }
+
+        private String PlayerSuggestedGames(String string){
+            String[] process = string.split("\\s");
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Integer integer : playerGeneralController.findByUserName(process[3]).getSuggestedGamesID()) {
+                stringBuilder.append(playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer))).append(" ") ;
+            }
+            return String.valueOf(stringBuilder);
         }
 
 
