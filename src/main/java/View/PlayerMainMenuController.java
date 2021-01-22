@@ -98,7 +98,7 @@ public class PlayerMainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblName.setText("Welcome "+LoginController.getUsername().toUpperCase());
+        lblName.setText("Welcome "+LoginController.getPlayer().getUserName().toUpperCase());
     }
 
 }

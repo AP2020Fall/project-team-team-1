@@ -1,12 +1,16 @@
 package Server;
 
+import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.BanExceptionForLogin;
+import Controller.Exception.Plato.ExistAdminException;
 import Controller.Exception.Plato.InvalidUserNameException;
 import Controller.Exception.Plato.WrongPasswordException;
 import Controller.PlayerController.FindPlayerByInfo;
 import Controller.RegisterController.LogIn;
 import Model.DataBase.DataBase;
+import Model.PlatoModel.Admin;
 import Model.PlatoModel.Player;
+import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -14,6 +18,8 @@ import java.net.Socket;
 
 public class Server {
     protected static LogIn logIn = new LogIn();
+    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+
     public static void main(String[] args) throws IOException {
         try {
             DataBase.loadAllDataFromJsonFiles();
@@ -47,12 +53,14 @@ public class Server {
         DataOutputStream dataOutputStream;
         DataInputStream dataInputStream;
         Player player;
+        Admin admin;
 
         public ClientHandler(Socket clientSocket, DataOutputStream dataOutputStream, DataInputStream dataInputStream) {
             this.clientSocket = clientSocket;
             this.dataOutputStream = dataOutputStream;
             this.dataInputStream = dataInputStream;
             this.player = null;
+            this.admin = null;
         }
 
 
@@ -86,6 +94,8 @@ public class Server {
                 answer = "register(input)";
             else if (input.startsWith("login"))
                 answer = login(input);
+            else if (input.startsWith("data"))
+                answer = getData(input);
 
             return answer;
         }
@@ -95,20 +105,48 @@ public class Server {
             String username = input.substring(6, commaIndex);
             String password = input.substring(commaIndex + 1);
             String out = username + " " + password;
-            try {
-                logIn.loginAsPlayer(out);
-                player = FindPlayerByInfo.findByUserName(username);
-                return "Success";
 
-            } catch (InvalidUserNameException e) {
-                e.printStackTrace();
-            } catch (WrongPasswordException e) {
-                e.printStackTrace();
-            } catch (BanExceptionForLogin banExceptionForLogin) {
-                banExceptionForLogin.printStackTrace();
+            if (adminGeneralController.getAdminUserName().equals(username)){
+                try {
+                    logIn.loginAsAdmin(out);
+                    admin = Admin.getAdmins().get(0);
+                    return "Admin Success login";
+
+                } catch (InvalidUserNameException e) {
+                    e.printStackTrace();
+                } catch (ExistAdminException e) {
+                    e.printStackTrace();
+                } catch (WrongPasswordException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                try {
+                    logIn.loginAsPlayer(out);
+                    player = FindPlayerByInfo.findByUserName(username);
+                    return "Player Success login";
+
+                } catch (InvalidUserNameException e) {
+                    e.printStackTrace();
+                } catch (WrongPasswordException e) {
+                    e.printStackTrace();
+                } catch (BanExceptionForLogin banExceptionForLogin) {
+                    banExceptionForLogin.printStackTrace();
+                }
+
             }
 
+
+
             return "Failure";
+        }
+        private String getData(String input){
+            String[] process = input.split("\\s");
+            Gson gson = new Gson();
+            if (process[1].equalsIgnoreCase("admin")){
+                return gson.toJson(Admin.getAdmins().get(0));
+            }else {
+                return gson.toJson(FindPlayerByInfo.findByUserName(process[2]));
+            }
         }
 
 

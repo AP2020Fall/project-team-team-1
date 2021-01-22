@@ -1,11 +1,15 @@
 package View;
 
+import Client.Client;
 import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Existence;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import Controller.RegisterController.SignUp;
+import Model.PlatoModel.Admin;
+import Model.PlatoModel.Player;
+import com.google.gson.Gson;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +27,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,7 +43,18 @@ public class LoginController implements Initializable {
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
 
+    private static Socket socket = Client.getSocket();
+    private static Player player = null;
+    private static Admin admin = null;
     private static String username = "null";
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        LoginController.player = player;
+    }
 
     public static String getUsername() {
         return username;
@@ -83,39 +98,80 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         playMouseSound();
-//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-//        Media media = new Media(file.toURI().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        try {
-            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())) {
-                processLoginController.loginAsAdmin(getInfo(txtUsername.getText(), txtPassword.getText()));
-                setUsername(txtUsername.getText());
-                URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
-                Parent register = FXMLLoader.load(url);
-                Scene message = new Scene(register);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(message);
-                mediaPlayer.stop();
-                window.show();
-            } else {
-//                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
-//                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
-//                }
-                processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
-                remember(checkBox);
-                setUsername(txtUsername.getText());
-                URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
-                Parent register = FXMLLoader.load(url);
-                Scene message = new Scene(register);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(message);
-                window.show();
-            }
-        } catch (InvalidUserNameException | WrongPasswordException  | ExistAdminException e) {
-            showError();
-        } catch (BanExceptionForLogin e) {
-            showBanError();
+        Gson gson = new Gson();
+        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
+        Media media = new Media(file.toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        Client.getDataOutputStream().writeUTF("login "+txtUsername.getText()+","+txtPassword.getText());
+        Client.getDataOutputStream().flush();
+        String response = Client.getDataInputStream().readUTF();
+
+        if (response.startsWith("Admin")){
+            Client.getDataOutputStream().writeUTF("data admin "+txtUsername.getText());
+            Client.getDataOutputStream().flush();
+            admin = gson.fromJson(Client.getDataInputStream().readUTF(),Admin.class);
+            System.out.println(admin.getName());
+
+            URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            mediaPlayer.stop();
+            window.show();
+
+        }else if (response.startsWith("Player")){
+            Client.getDataOutputStream().writeUTF("data player "+txtUsername.getText());
+            Client.getDataOutputStream().flush();
+            player = gson.fromJson(Client.getDataInputStream().readUTF(),Player.class);
+            System.out.println(player.getName());
+
+            URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+
+
         }
+
+
+
+
+
+
+//        try {
+//            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())) {
+//                processLoginController.loginAsAdmin(getInfo(txtUsername.getText(), txtPassword.getText()));
+//                setUsername(txtUsername.getText());
+//                URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
+//                Parent register = FXMLLoader.load(url);
+//                Scene message = new Scene(register);
+//                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                window.setScene(message);
+//                mediaPlayer.stop();
+//                window.show();
+//            } else {
+////                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
+////                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
+////                }
+//                processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
+//                remember(checkBox);
+//                setUsername(txtUsername.getText());
+//                URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
+//                Parent register = FXMLLoader.load(url);
+//                Scene message = new Scene(register);
+//                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                window.setScene(message);
+//                window.show();
+//            }
+//        } catch (InvalidUserNameException | WrongPasswordException  | ExistAdminException e) {
+//            showError();
+//        } catch (BanExceptionForLogin e) {
+//            showBanError();
+//        }
 
     }
 

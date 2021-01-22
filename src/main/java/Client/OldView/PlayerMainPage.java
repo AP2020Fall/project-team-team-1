@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class PlayerMainPage extends Menu {
     private String username;
     public PlayerMainPage(String username,Menu parentMenu) {
-        super("Main Page", parentMenu);
+        super("Client.Main Page", parentMenu);
         this.username=username;
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,new PlayerMainMenu(this,username));

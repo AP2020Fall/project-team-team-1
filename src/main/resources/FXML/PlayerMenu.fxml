@@ -18,7 +18,7 @@
             <Image url="@../Images/Sign.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnMainMenu" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Main Menu">
+      <Button fx:id="btnMainMenu" layoutX="230.0" layoutY="120.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #1a1b20; -fx-border-width: 0px 0px 2px 0 px; -fx-border-color: #00acea; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-family: Plato;" stylesheets="@../Style/StyleSheet.css" text="Client.Main Menu">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

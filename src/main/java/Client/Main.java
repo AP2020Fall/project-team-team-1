@@ -1,3 +1,5 @@
+package Client;
+
 import Model.DataBase.DataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +37,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public  void start(Stage primaryStage) {
         try {
 
             URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();

@@ -11,7 +11,7 @@ public class AdminMainMenu extends Menu {
     String username;
 
     public AdminMainMenu(Menu parentMenu, String username) {
-        super("Admin Main Menu", parentMenu);
+        super("Admin Client.Main Menu", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, addEvent());
         submenus.put(2, new ViewEvents(this));

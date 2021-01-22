@@ -55,13 +55,13 @@ public class Client {
             dataOutputStream = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             String userInput = "";
             while (!userInput.equalsIgnoreCase("end")) {
-
-                System.out.println("here");
-                userInput = scanner.nextLine();
-                dataOutputStream.writeUTF(userInput);
-                dataOutputStream.flush();
-                String response = dataInputStream.readUTF();
-                System.out.println(response);
+                Main.main(new String[1]);
+//                System.out.println("here");
+//                userInput = scanner.nextLine();
+//                dataOutputStream.writeUTF(userInput);
+//                dataOutputStream.flush();
+//                String response = dataInputStream.readUTF();
+//                System.out.println(response);
                 if (userInput.equals("end"))
                     return;
             }
