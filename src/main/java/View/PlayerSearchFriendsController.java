@@ -24,10 +24,12 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PlayerSearchFriendsController implements Initializable {
     private static String searchedFriendUsername = "null";
+    private static ArrayList<Player> playerList;
 
     public static String getSearchedFriendUsername() {
         return searchedFriendUsername;
@@ -35,6 +37,14 @@ public class PlayerSearchFriendsController implements Initializable {
 
     public static void setSearchedFriendUsername(String searchedFriendUsername) {
         PlayerSearchFriendsController.searchedFriendUsername = searchedFriendUsername;
+    }
+
+    public static ArrayList<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public static void setPlayerList(ArrayList<Player> playerList) {
+        PlayerSearchFriendsController.playerList = playerList;
     }
 
     @FXML
@@ -141,7 +151,11 @@ public class PlayerSearchFriendsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tblFriends.setCellValueFactory(new PropertyValueFactory<>("userName"));
         tableView.setItems(friends);
-        for (Player player : Player.getPlayers()) {
+//        for (Player player : Player.getPlayers()) {
+//            tableView.getItems().add(player);
+//        }
+        //todo seems to have Bug
+        for (Player player : getPlayerList()) {
             tableView.getItems().add(player);
         }
 

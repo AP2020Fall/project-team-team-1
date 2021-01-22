@@ -3,7 +3,7 @@ package View;
 import Client.Client;
 import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Existence;
-import Controller.Exception.Plato.*;
+import Client.DataLoader;
 import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
 import Controller.RegisterController.SignUp;
@@ -34,6 +34,8 @@ import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
+    private static DataLoader dataLoader = new DataLoader();
+
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static SignUp processSignupController = new SignUp();
     protected static LogIn processLoginController = new LogIn();
@@ -43,7 +45,6 @@ public class LoginController implements Initializable {
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-    private static Socket socket = Client.getSocket();
     private static Player player = null;
     private static Admin admin = null;
     private static String username = "null";
@@ -54,6 +55,14 @@ public class LoginController implements Initializable {
 
     public static void setPlayer(Player player) {
         LoginController.player = player;
+    }
+
+    public static Admin getAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(Admin admin) {
+        LoginController.admin = admin;
     }
 
     public static String getUsername() {
@@ -108,11 +117,9 @@ public class LoginController implements Initializable {
         String response = Client.getDataInputStream().readUTF();
 
         if (response.startsWith("Admin")){
-            Client.getDataOutputStream().writeUTF("data admin "+txtUsername.getText());
-            Client.getDataOutputStream().flush();
-            admin = gson.fromJson(Client.getDataInputStream().readUTF(),Admin.class);
-            System.out.println(admin.getName());
 
+            admin = dataLoader.loadAdmin(txtUsername.getText());
+            setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
@@ -122,11 +129,9 @@ public class LoginController implements Initializable {
             window.show();
 
         }else if (response.startsWith("Player")){
-            Client.getDataOutputStream().writeUTF("data player "+txtUsername.getText());
-            Client.getDataOutputStream().flush();
-            player = gson.fromJson(Client.getDataInputStream().readUTF(),Player.class);
-            System.out.println(player.getName());
 
+            player = dataLoader.loadPlayer(txtUsername.getText());
+            setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
@@ -136,11 +141,6 @@ public class LoginController implements Initializable {
 
 
         }
-
-
-
-
-
 
 //        try {
 //            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())) {

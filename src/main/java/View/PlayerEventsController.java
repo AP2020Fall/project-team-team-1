@@ -28,12 +28,23 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 public class PlayerEventsController implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static ArrayList<Event> eventForShow ;
+
+    public static ArrayList<Event> getEventForShow() {
+        return eventForShow;
+    }
+
+    public static void setEventForShow(ArrayList<Event> eventForShow) {
+        PlayerEventsController.eventForShow = eventForShow;
+    }
+
     @FXML
     public JFXButton BtnClose;
     @FXML
@@ -135,7 +146,10 @@ public class PlayerEventsController implements Initializable {
 
 //        Event.addNewEvent(new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"));
         tableView.setItems(events);
-        for (Event event : Event.getEvents()) {
+//        for (Event event : Event.getEvents()) {
+//            tableView.getItems().add(event);
+//        }
+        for (Event event : eventForShow) {
             tableView.getItems().add(event);
         }
 

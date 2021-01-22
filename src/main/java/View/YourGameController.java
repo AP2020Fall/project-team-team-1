@@ -1,5 +1,6 @@
 package View;
 
+import Client.DataLoader;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.ExistFavoriteException;
 import Controller.Exception.Plato.ExistSuggestionException;
@@ -25,6 +26,8 @@ import java.util.ResourceBundle;
 public class YourGameController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
+
 
     @FXML
     Pane pane1;
@@ -119,30 +122,19 @@ public class YourGameController implements Initializable {
     @FXML
     private void setpanes(){
         try {
-            String[] favoriteGames = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-            String[] suggestionGames = playerGeneralController.showSuggestion(LoginController.getUsername()).split("\\$");
-//            for (String favoriteGame : favoriteGames) {
-//                if (favoriteGame.equals("B")){
-//                    favoriteBattle();
-//                    System.out.println("amir khare");
-//                }
-//                if (favoriteGame.toLowerCase().equals("d")){
-//                    favoriteDots();
-//                }
-//                System.out.println("amir gave");
-//            }
-//            for (String suggestionGame : suggestionGames) {
-//                if (!suggestionGame.equals("B")){
-//                    suggestedBattle();
-//                }
-//                if (suggestionGame.toLowerCase().equals("d")){
-//                    suggestedDots();
-//                }
-//            }
-            if (favoriteGames[0].equalsIgnoreCase("battlesea") || favoriteGames[1].equalsIgnoreCase("battlesea")){
+            //todo work on it
+            String[] favoriteGames = dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()).split("\\s");
+            String[] suggestionGames = dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()).split("\\s");
+
+
+//            String[] favoriteGames = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+//            String[] suggestionGames = playerGeneralController.showSuggestion(LoginController.getUsername()).split("\\$");
+
+
+            if (favoriteGames[0].equalsIgnoreCase("battlesea") || favoriteGames[1].equalsIgnoreCase("battlesea") || favoriteGames[0].startsWith("b") || favoriteGames[1].startsWith("b")){
                 favoriteBattle();
             }
-            if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes")){
+            if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[0].startsWith("d") || favoriteGames[1].startsWith("d")){
                 favoriteDots();
             }
 //            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
@@ -151,20 +143,26 @@ public class YourGameController implements Initializable {
 //            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
 //                suggestedBattle();
 //            }
-            for (Integer integer : playerGeneralController.findByUserName(LoginController.getUsername()).getSuggestedGamesID()) {
-                String gameName = playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer));
-                if (gameName.toLowerCase().startsWith("b")){
+//            for (Integer integer : playerGeneralController.findByUserName(LoginController.getUsername()).getSuggestedGamesID()) {
+//                String gameName = playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer));
+//                if (gameName.toLowerCase().startsWith("b")){
+//                    suggestedBattle();
+//                }
+//                if (gameName.toLowerCase().startsWith("d")){
+//                    suggestedDots();
+//                }
+//            }
+            for (String suggestionGame : suggestionGames) {
+                if (suggestionGame.toLowerCase().startsWith("b")) {
                     suggestedBattle();
                 }
-                if (gameName.toLowerCase().startsWith("d")){
+                if (suggestionGame.toLowerCase().startsWith("d")) {
                     suggestedDots();
                 }
             }
 
-        } catch (ExistFavoriteException e) {
-            System.err.println(e.getMessage());
-        } catch (ExistSuggestionException e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
