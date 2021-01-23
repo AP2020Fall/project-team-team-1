@@ -154,7 +154,7 @@ public class AdminMainMenu extends Menu {
     }
 
     private Menu viewSuggestion() {
-        return new Menu("View Suggestion", this) {
+        return new Menu("Client.View Suggestion", this) {
             @Override
             public void show() {
 

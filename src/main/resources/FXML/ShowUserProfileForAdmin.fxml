@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ShowUserProfileForAdminController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, #502575, #392763, #28254e,#1a1b20,#1a1b20, #1a1b20, #1a1b20);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.ShowUserProfileForAdminController">
    <children>
       <Button fx:id="btnBack" mnemonicParsing="false" onAction="#back" prefHeight="33.0" prefWidth="57.0" style="-fx-background-color: transparency; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
          <cursor>

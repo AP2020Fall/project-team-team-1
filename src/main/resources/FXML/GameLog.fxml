@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameLogController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.GameLogController">
    <children>
       <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="44.0" style="-fx-background-color: #1a1b20; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back" textFill="WHITE">
          <cursor>

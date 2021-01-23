@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/ChatBox.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.SendMessageAsPlatoBotController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/ChatBox.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.SendMessageAsPlatoBotController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0px 2px 0px 0px; -fx-border-color: linear-gradient(to right top, #25dce7, #3ae2c7, #72e49e, #a9e175, #e0d855);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0">
          <children>

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/AdminEvent.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AdminEvents">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/AdminEvent.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.AdminEvents">
    <children>
       <Label alignment="TOP_CENTER" layoutX="483.0" prefHeight="23.0" prefWidth="117.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" text="Events" textFill="#ffffff">
          <font>

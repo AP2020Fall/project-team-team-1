@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class ShowFriends extends Menu {
     private String username;
     public ShowFriends(String username, Menu parentMenu) {
-        super("View Friends List", parentMenu);
+        super("Client.View Friends List", parentMenu);
         HashMap<Integer,Menu> submenus = new HashMap<>();
         submenus.put(1,removeFriend());
         submenus.put(2,ViewFriendProfile());
@@ -36,10 +36,10 @@ public class ShowFriends extends Menu {
         };
     }
     private Menu ViewFriendProfile(){
-        return new Menu("View Friends Profile",this) {
+        return new Menu("Client.View Friends Profile",this) {
             @Override
             public void execute() {
-                System.out.println("Please Enter The Friend You Want To View From Your Friends : ");
+                System.out.println("Please Enter The Friend You Want To Client.View From Your Friends : ");
                 String friendUsername = scanner.nextLine();
                 try {
                     String[] showEvent = playerGeneralController.showFriendProfile(username,friendUsername).split("\\$");

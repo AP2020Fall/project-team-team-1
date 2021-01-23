@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class ViewEvents extends Menu {
     public ViewEvents(Menu parentMenu) {
-        super("View Events", parentMenu);
+        super("Client.View Events", parentMenu);
         HashMap<Integer, Menu> submenus = new HashMap<>();
         submenus.put(1, editEvent());
         submenus.put(2,removeEvent());

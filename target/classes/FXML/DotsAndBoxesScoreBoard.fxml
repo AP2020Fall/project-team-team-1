@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DotsAndBoxesScoreBoardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" stylesheets="@../Style/StyleOfListView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.DotsAndBoxesScoreBoardController">
     <children>
         <ImageView fitHeight="271.0" fitWidth="173.0" layoutX="480.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
             <image>

@@ -3,8 +3,8 @@ package Client;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Event;
 import Model.PlatoModel.Player;
-import View.PlayerEventsController;
-import View.PlayerSearchFriendsController;
+import Client.View.PlayerEventsController;
+import Client.View.PlayerSearchFriendsController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
