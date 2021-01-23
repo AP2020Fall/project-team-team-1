@@ -22,7 +22,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
     public String setUserProfile(String username,String path) throws IOException {
-        Client.getDataOutputStream().writeUTF("Edit Profile " + username + " " + path);
+        Client.getDataOutputStream().writeUTF("Edit Profile Picture " + username + " " + path);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String login(String username,String password) throws IOException {
+        Client.getDataOutputStream().writeUTF("login "+username+","+password);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
