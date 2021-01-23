@@ -27,7 +27,24 @@ public class YourGameController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     private static DataLoader dataLoader = new DataLoader();
+    private static String playerFavoriteGames ;
+    private static String playerSuggestionGames ;
 
+    public static String getPlayerFavoriteGames() {
+        return playerFavoriteGames;
+    }
+
+    public static void setPlayerFavoriteGames(String playerFavoriteGames) {
+        YourGameController.playerFavoriteGames = playerFavoriteGames;
+    }
+
+    public static String getPlayerSuggestionGames() {
+        return playerSuggestionGames;
+    }
+
+    public static void setPlayerSuggestionGames(String playerSuggestionGames) {
+        YourGameController.playerSuggestionGames = playerSuggestionGames;
+    }
 
     @FXML
     Pane pane1;
@@ -121,37 +138,26 @@ public class YourGameController implements Initializable {
     }
     @FXML
     private void setpanes(){
-        try {
+
             //todo work on it
-            String[] favoriteGames = dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()).split("\\s");
-            String[] suggestionGames = dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()).split("\\s");
+            String[] favoriteGames =getPlayerFavoriteGames().split("\\$");
+            String[] suggestionGames = getPlayerSuggestionGames().split("\\s");
 
+//            if (favoriteGames[0].equalsIgnoreCase("battlesea") || favoriteGames[1].equalsIgnoreCase("battlesea") || favoriteGames[0].startsWith("b") || favoriteGames[1].startsWith("b")){
+//                favoriteBattle();
+//            }
+//            if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[0].startsWith("d") || favoriteGames[1].startsWith("d")){
+//                favoriteDots();
+//            }
 
-//            String[] favoriteGames = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-//            String[] suggestionGames = playerGeneralController.showSuggestion(LoginController.getUsername()).split("\\$");
-
-
-            if (favoriteGames[0].equalsIgnoreCase("battlesea") || favoriteGames[1].equalsIgnoreCase("battlesea") || favoriteGames[0].startsWith("b") || favoriteGames[1].startsWith("b")){
+        for (String favoriteGame : favoriteGames) {
+            if (favoriteGame.toUpperCase().startsWith("b")){
                 favoriteBattle();
-            }
-            if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[0].startsWith("d") || favoriteGames[1].startsWith("d")){
+
+            }else if (favoriteGame.toLowerCase().startsWith("d")){
                 favoriteDots();
             }
-//            if (suggestionGames[0].equalsIgnoreCase("DotsAndBoxes") || suggestionGames[1].equalsIgnoreCase("DotsAndBoxes")){
-//                suggestedDots();
-//            }
-//            if (suggestionGames[0].equalsIgnoreCase("battlesea") || suggestionGames[1].equalsIgnoreCase("battlesea")){
-//                suggestedBattle();
-//            }
-//            for (Integer integer : playerGeneralController.findByUserName(LoginController.getUsername()).getSuggestedGamesID()) {
-//                String gameName = playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer));
-//                if (gameName.toLowerCase().startsWith("b")){
-//                    suggestedBattle();
-//                }
-//                if (gameName.toLowerCase().startsWith("d")){
-//                    suggestedDots();
-//                }
-//            }
+        }
             for (String suggestionGame : suggestionGames) {
                 if (suggestionGame.toLowerCase().startsWith("b")) {
                     suggestedBattle();
@@ -161,9 +167,6 @@ public class YourGameController implements Initializable {
                 }
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
     @FXML

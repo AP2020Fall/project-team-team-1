@@ -70,6 +70,8 @@ public class PlayerMainMenuController implements Initializable {
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
         playMouseSound();
+        YourGameController.setPlayerFavoriteGames(dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()));
+        YourGameController.setPlayerSuggestionGames(dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()));
         URL url = new File("src/main/resources/FXML/YourGame.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

@@ -103,9 +103,11 @@ public class Server {
             else if (input.startsWith("Player List"))
                 answer = getPlayersList();
             else if (input.startsWith("Player Favorite Games"))
-                answer = PlayerFavoriteGames(input);
+                answer = playerFavoriteGames(input);
             else if (input.startsWith("Player Suggested Games"))
-                answer = PlayerSuggestedGames(input);
+                answer = playerSuggestedGames(input);
+            else if (input.startsWith("Player Plato Message"))
+                answer = playerPlatoMessage();
 
             return answer;
         }
@@ -159,6 +161,13 @@ public class Server {
         }
 
         private String getEvents(){
+            try {
+                adminGeneralController.eventDateChecker();
+            } catch (ExistEventException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return new Gson().toJson(Event.getEvents());
         }
 
@@ -166,7 +175,7 @@ public class Server {
             return new Gson().toJson(Player.getPlayers());
         }
 
-        private String PlayerFavoriteGames(String string){
+        private String playerFavoriteGames(String string){
             String[] process = string.split("\\s");
             try {
                 return playerGeneralController.showFavoritesGames(process[3]);
@@ -175,13 +184,17 @@ public class Server {
             }
         }
 
-        private String PlayerSuggestedGames(String string){
+        private String playerSuggestedGames(String string){
             String[] process = string.split("\\s");
             StringBuilder stringBuilder = new StringBuilder();
             for (Integer integer : playerGeneralController.findByUserName(process[3]).getSuggestedGamesID()) {
                 stringBuilder.append(playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer))).append(" ") ;
             }
             return String.valueOf(stringBuilder);
+        }
+
+        private String playerPlatoMessage(){
+            return playerGeneralController.viewBotMessages();
         }
 
 

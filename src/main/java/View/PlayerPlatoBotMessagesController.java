@@ -1,5 +1,6 @@
 package View;
 
+import Client.DataLoader;
 import Controller.AdminController.AdminGeneralController;
 import Controller.Exception.Plato.ExistPlayerException;
 import Controller.Exception.Plato.ExistPlayerLogException;
@@ -38,6 +39,7 @@ import java.util.ResourceBundle;
 public class PlayerPlatoBotMessagesController implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
     @FXML
     public JFXButton BtnClose;
@@ -53,16 +55,17 @@ public class PlayerPlatoBotMessagesController implements Initializable {
     public JFXButton btnFavoritesGames;
     @FXML
     VBox vbox;
+
     @FXML
-    private void closeApp(ActionEvent event){
+    private void closeApp(ActionEvent event) {
         System.exit(1);
     }
-    String[] messages = playerGeneralController.viewBotMessages().split("\\$");
-    String temp = " " ;
+
+    String temp = " ";
 //    @FXML
 //    ListView<String> listView;
 
-//    @FXML
+    //    @FXML
 //    private void setListView() throws ExistPlayerLogException, IOException, NotNullMessageException {
 //        ObservableList<String> list = FXCollections.observableArrayList();
 //
@@ -84,63 +87,67 @@ public class PlayerPlatoBotMessagesController implements Initializable {
 ////        }
 //
 //    }
-@FXML
-private void showMessages(){
-    for (String s : messages) {
+    @FXML
+    private void showMessages() throws IOException {
+        String[] messages = dataLoader.loadPlayerPlatoMessage().split("\\$");
 
-        String[] dates = s.split(",");
-        Label date = new Label();
+        for (String s : messages) {
+
+            String[] dates = s.split(",");
+            Label date = new Label();
 
 
-        if (!temp.equals(checkDate(dates[1].substring(0, 10)))) {
-            date.setText(checkDate(dates[1].substring(0, 10)));
-        } else {
-            date.setText(" ");
+            if (!temp.equals(checkDate(dates[1].substring(0, 10)))) {
+                date.setText(checkDate(dates[1].substring(0, 10)));
+            } else {
+                date.setText(" ");
+            }
+            date.setTextFill(Color.web("#00acea"));
+            date.setAlignment(Pos.CENTER);
+            date.setPrefWidth(360);
+            date.setPrefHeight(10);
+            temp = checkDate(dates[1].substring(0, 10));
+
+            HBox message = new HBox();
+            String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator
+                    + "Users" + File.separator + "admin" + File.separator
+                    + "admin.jpg";
+            URL url = null;
+            try {
+                url = new File(path).toURI().toURL();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            ImageView imageView = new ImageView();
+            imageView.setFitWidth(20);
+            imageView.setFitHeight(20);
+            assert url != null;
+            imageView.setImage(new Image(url.toExternalForm()));
+            Label text = new Label();
+            text.setText(dates[0].substring(6));
+            text.setTextFill(Color.WHITE);
+            text.setPrefWidth(280);
+            text.setPrefHeight(20);
+            Label time = new Label();
+            time.setText(dates[2]);
+            time.setTextFill(Color.GRAY);
+            time.setPrefHeight(20);
+            message.getChildren().addAll(imageView, text, time);
+            vbox.getChildren().addAll(date, message);
+
         }
-        date.setTextFill(Color.web("#00acea"));
-        date.setAlignment(Pos.CENTER);
-        date.setPrefWidth(360);
-        date.setPrefHeight(10);
-        temp = checkDate(dates[1].substring(0, 10));
-
-        HBox message = new HBox();
-        String path = "src"+File.separator+"main"+File.separator+"resources"+File.separator
-                +"Users"+File.separator+"admin"+File.separator
-                +"admin.jpg";
-        URL url = null;
-        try {
-            url = new File(path).toURI().toURL();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        ImageView imageView = new ImageView();
-        imageView.setFitWidth(20);
-        imageView.setFitHeight(20);
-        assert url != null;
-        imageView.setImage(new Image(url.toExternalForm()));
-        Label text = new Label();
-        text.setText(dates[0].substring(6));
-        text.setTextFill(Color.WHITE);
-        text.setPrefWidth(280);
-        text.setPrefHeight(20);
-        Label time = new Label();
-        time.setText(dates[2]);
-        time.setTextFill(Color.GRAY);
-        time.setPrefHeight(20);
-        message.getChildren().addAll(imageView,text, time);
-        vbox.getChildren().addAll(date, message);
-
     }
-}
-    private String checkDate(String string){
+
+    private String checkDate(String string) {
         LocalDate time = LocalDate.parse(string);
-        if (time.equals(LocalDate.now())){
+        if (time.equals(LocalDate.now())) {
             return "Today";
-        }else if (time.isEqual(LocalDate.now().minusDays(1))){
+        } else if (time.isEqual(LocalDate.now().minusDays(1))) {
             return "Yesterday";
-        }else return string;
+        } else return string;
     }
+
     @FXML
     private void back(ActionEvent event) throws IOException {
         playMouseSound();
@@ -151,6 +158,7 @@ private void showMessages(){
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void goToPlayerEvents(ActionEvent event) throws IOException {
         playMouseSound();
@@ -161,6 +169,7 @@ private void showMessages(){
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
         playMouseSound();
@@ -171,6 +180,7 @@ private void showMessages(){
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void goToPlayerSearchFriends(ActionEvent event) throws IOException {
         playMouseSound();
@@ -181,6 +191,7 @@ private void showMessages(){
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void goToPlayerPlatoBotsMessages(ActionEvent event) throws IOException {
         playMouseSound();
@@ -191,7 +202,8 @@ private void showMessages(){
         window.setScene(message);
         window.show();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -201,8 +213,12 @@ private void showMessages(){
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    vbox.setSpacing(10);
-    showMessages();
+        vbox.setSpacing(10);
+        try {
+            showMessages();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
 //        try {
 //        setListView();
 //

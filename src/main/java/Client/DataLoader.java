@@ -43,12 +43,17 @@ public class DataLoader {
         PlayerSearchFriendsController.setPlayerList(output);
     }
     public String loadPlayerFavoriteGames(String username) throws IOException {
-        Client.getDataOutputStream().writeUTF("Player Favorite Games"+username);
+        Client.getDataOutputStream().writeUTF("Player Favorite Games "+username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
     public String loadPlayerSuggestedGames(String username) throws IOException {
-        Client.getDataOutputStream().writeUTF("Player Suggested Games"+username);
+        Client.getDataOutputStream().writeUTF("Player Suggested Games "+username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String loadPlayerPlatoMessage() throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Plato Message");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
