@@ -1,5 +1,6 @@
 package View;
 
+import Client.DataLoader;
 import Controller.AdminController.AdminGeneralController;
 import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
@@ -32,10 +33,11 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
 
-    protected SignUp processSignUp = new SignUp();
-    protected static Validation validation = new Validation();
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+//    protected SignUp processSignUp = new SignUp();
+//    protected static Validation validation = new Validation();
+//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
     private File file;
 
@@ -77,62 +79,80 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void signUp(ActionEvent event) {
+    private void signUp(ActionEvent event) throws IOException {
+        boolean validationPass = true;
+        turnOffErrors();
 
 
-        try {
-//            File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-//            Media media = new Media(file.toURI().toString());
-//            MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-            Validation.nameOrLastNameIsValid(txtName.getText());
-            Validation.nameOrLastNameIsValid(txtLastname.getText());
-            Validation.usernameIsValid(txtUsername.getText());
-            Validation.emailIsValid(txtEmail.getText());
-            Validation.phoneNumberIsValid(txtPhoneNum.getText());
-            if (adminGeneralController.adminExistence().equalsIgnoreCase("true")){
-                processSignUp.addPlayer(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
-                File image = createProfileFile(txtUsername.getText());
-                copy(file,image);
-                playerGeneralController.editProfileURL(txtUsername.getText(),String.valueOf(image.toPath()));
-            }else if (adminGeneralController.adminExistence().equalsIgnoreCase("false")){
-                processSignUp.addAdmin(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
-                File image = createProfileFile(txtUsername.getText());
-                copy(file,image);
-            }
-            URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(message);
-            LoginController.mediaPlayer.stop();
-//            mediaPlayer.stop();
-            window.show();
-        } catch (ExistUserNameException | EmptyExceptionForUserName e) {
-            File file = new File("src\\main\\resources\\Images\\Error copy.png");
-            Image image = new Image(file.toURI().toString());
-            imgUsernameError.setImage(image);
-        } catch (ExistEmailException | EmptyExceptionForEmail e) {
-            File file = new File("src\\main\\resources\\Images\\Error copy.png");
-            Image image = new Image(file.toURI().toString());
-            imgEmailError.setImage(image);
-        } catch (EmptyExceptionForName | EmptyExceptionForLastName emptyExceptionForName) {
-            File file = new File("src\\main\\resources\\Images\\Error copy.png");
-            Image image = new Image(file.toURI().toString());
-            imgNameError.setImage(image);
-        } catch (IOException | ExistAdminException e) {
-            e.printStackTrace();
-        } catch (InvalidEmailException | InvalidNameException | InvalidPhoneNumberException e) {
-            System.err.println(e.getMessage());
-            File file = new File("src\\main\\resources\\Images\\Error copy.png");
-            Image image = new Image(file.toURI().toString());
-            imgNameError.setImage(image);
-        } catch (InvalidUserNameException e) {
-            System.err.println(e.getMessage());
-            File file = new File("src\\main\\resources\\Images\\Error copy.png");
-            Image image = new Image(file.toURI().toString());
-            imgUsernameError.setImage(image);
+        if (txtName.getText().isEmpty() || !dataLoader.validationStatus("Name", txtName.getText()).equals("Valid Name")) {
+            System.err.println("Error in Name Validation");
+            imgNameError.setVisible(true);
+            validationPass = false;
         }
+        if (txtLastname.getText().isEmpty() || !dataLoader.validationStatus("LastName", txtLastname.getText()).equals("Valid LastName")) {
+            System.err.println("Error in LastName Validation");
+            imgNameError.setVisible(true);
+            validationPass = false;
+        }
+        if (txtUsername.getText().isEmpty() || !dataLoader.validationStatus("Username", txtUsername.getText()).equals("Valid Username")) {
+            System.err.println("Error in Username Validation");
+            imgUsernameError.setVisible(true);
+            validationPass = false;
+        }
+        if (txtEmail.getText().isEmpty() || !dataLoader.validationStatus("Email", txtEmail.getText()).equals("Valid Email")) {
+            System.err.println("Error in Email Validation");
+            imgEmailError.setVisible(true);
+            validationPass = false;
+        }
+        if (txtPhoneNum.getText().isEmpty() || !dataLoader.validationStatus("PhoneNumber", txtPhoneNum.getText()).equals("Valid PhoneNumber")) {
+            System.err.println("Error in PhoneNumber Validation");
+            imgPhoneNumError.setVisible(true);
+            validationPass = false;
+        }
+        if (txtPassword.getText().isEmpty() || !dataLoader.validationStatus("Password", txtPassword.getText()).equals("Valid Password")) {
+            System.err.println("Error in Password Validation");
+            imgPasswordError.setVisible(true);
+            validationPass = false;
+        }
+
+        if (!validationPass) {
+            return;
+        }
+
+        String result = dataLoader.register(getInfo(txtName.getText(), txtLastname.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhoneNum.getText()));
+
+        if (result.equals("THIS USERNAME ALREADY BELONGS TO A USER")) {
+            System.err.println(result);
+            imgUsernameError.setVisible(true);
+            return;
+        }
+        if (result.equals("THIS EMAIL ALREADY BELONGS TO A USER")) {
+            System.err.println(result);
+            imgEmailError.setVisible(true);
+            return;
+        }
+        if (result.equals("THE ADMIN ALREADY EXISTS!")) {
+            System.err.println(result);
+            imgUsernameError.setVisible(true);
+            return;
+        }
+
+        File image = createProfileFile(txtUsername.getText());
+        copy(file, image);
+        result = dataLoader.setUserProfile(txtUsername.getText(), String.valueOf(image.toPath()));
+
+        if (result.equals("Failure")) {
+            System.err.println("There is problem with Set Profile");
+            return;
+        }
+
+        URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        LoginController.mediaPlayer.stop();
+        window.show();
 
     }
 
@@ -146,7 +166,8 @@ public class SignUpController implements Initializable {
         window.setScene(message);
         window.show();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -154,25 +175,37 @@ public class SignUpController implements Initializable {
     }
 
     private String getInfo(String name, String lastName, String username, String password, String email, String phoneNum) {
-        return name + " " + lastName + " " + username + " " + email + " " + password + " " + phoneNum;
+        return name + " " + lastName + " " + username + " " + password + " " + email + " " + phoneNum;
     }
 
     @FXML
-    private File chooseProfilePick(FileChooser fileChooser){
-        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
+    private void turnOffErrors() {
+        imgNameError.setVisible(false);
+        imgUsernameError.setVisible(false);
+        imgEmailError.setVisible(false);
+        imgPhoneNumError.setVisible(false);
+        imgPasswordError.setVisible(false);
+    }
+
+    @FXML
+    private File chooseProfilePick(FileChooser fileChooser) {
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images", "*.Jpg");
         fileChooser.getExtensionFilters().add(images);
         return fileChooser.showOpenDialog(new Stage());
     }
+
     @FXML
-    private File createProfileFile(String username){
-        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
-                "Users"+File.separator+username+File.separator+username+".jpg";
+    private File createProfileFile(String username) {
+        String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator +
+                "Users" + File.separator + username + File.separator + username + ".jpg";
         return new File(path);
     }
+
     @FXML
-    private void copy(File pic , File dest) throws IOException {
-        FileUtils.copyFile(pic,dest);
+    private void copy(File pic, File dest) throws IOException {
+        FileUtils.copyFile(pic, dest);
     }
+
     @FXML
     public void selectProfilePic(ActionEvent event) {
         file = chooseProfilePick(new FileChooser());
@@ -180,11 +213,8 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-//        Media media = new Media(file.toURI().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-//        mediaPlayer.play();
         AdminMainMenu.mediaPlayerAdmin.stop();
+        turnOffErrors();
 
     }
 

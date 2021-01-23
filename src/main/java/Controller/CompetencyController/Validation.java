@@ -13,7 +13,7 @@ public class Validation {
         if (matcher.matches())
             return true;
         else
-            throw new InvalidEmailException(" Email is invalid");
+            throw new InvalidEmailException("Email is invalid");
     }
     public static boolean phoneNumberIsValid(String phoneNumber) throws InvalidPhoneNumberException {
         Pattern phonePattern = Pattern.compile("^(0)?9\\d{9}$");
@@ -21,7 +21,7 @@ public class Validation {
         if (matcher.matches())
             return true;
         else
-            throw new InvalidPhoneNumberException(" Phone number is invalid");
+            throw new InvalidPhoneNumberException("Phone number is invalid");
     }
     public static boolean nameOrLastNameIsValid(String nameOrLastName) throws InvalidNameException {
         Pattern namePattern = Pattern.compile("(^[a-zA-Z]*$)");

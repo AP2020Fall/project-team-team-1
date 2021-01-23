@@ -36,7 +36,7 @@ public class SignUpMenu extends Menu {
                 } catch (ExistAdminException e) {
                     System.out.println(e.getMessage());
                     this.parentMenu.run();
-                } catch (ExistUserNameException | ExistEmailException | EmptyExceptionForUserName | EmptyExceptionForLastName | EmptyExceptionForName | EmptyExceptionForEmail e) {
+                } catch (ExistUserNameException | ExistEmailException e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }
@@ -60,7 +60,7 @@ public class SignUpMenu extends Menu {
                     processSignupController.addPlayer(arrayListToString(playerInfo));
                     System.out.println("Player Registered Successfully");
                     this.parentMenu.parentMenu.submenus.get(1).run();
-                } catch (ExistUserNameException | ExistEmailException | EmptyExceptionForName | EmptyExceptionForLastName | EmptyExceptionForUserName | EmptyExceptionForEmail e) {
+                } catch (ExistUserNameException | ExistEmailException e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }

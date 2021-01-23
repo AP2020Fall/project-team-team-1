@@ -8,7 +8,7 @@ import Model.PlatoModel.Player;
 import java.util.Random;
 
 public class SignUp {
-    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForUserName, EmptyExceptionForEmail {
+    public void addAdmin(String adminInfo) throws ExistAdminException, ExistEmailException, ExistUserNameException{
 
         String[] adminInfoSplit = adminInfo.split("\\s");
 
@@ -24,27 +24,27 @@ public class SignUp {
             throw new ExistEmailException("THIS EMAIL ALREADY BELONGS TO A USER");
         }
 
-        if ((adminInfoSplit[0].isEmpty())) {
-            throw new EmptyExceptionForName("Name field can not be empty");
-        }
+//        if ((adminInfoSplit[0].isEmpty())) {
+//            throw new EmptyExceptionForName("Name field can not be empty");
+//        }
+//
+//        if (adminInfoSplit[1].isEmpty()){
+//            throw new EmptyExceptionForLastName("Last name field can not be empty");
+//        }
+//
+//        if (adminInfoSplit[2].isEmpty()){
+//            throw new EmptyExceptionForUserName("User name field can not be empty");
+//        }
+//
+//        if (adminInfoSplit[3].isEmpty()){
+//            throw new EmptyExceptionForEmail("Email field can not be empty");
+//        }
 
-        if (adminInfoSplit[1].isEmpty()){
-            throw new EmptyExceptionForLastName("Last name field can not be empty");
-        }
-
-        if (adminInfoSplit[2].isEmpty()){
-            throw new EmptyExceptionForUserName("User name field can not be empty");
-        }
-
-        if (adminInfoSplit[3].isEmpty()){
-            throw new EmptyExceptionForEmail("Email field can not be empty");
-        }
-
-        Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [4], adminInfoSplit[3], adminInfoSplit[5]));
+        Admin.AddNewAdmin( new Admin(adminInfoSplit[0], adminInfoSplit[1], 1000 , adminInfoSplit[2], adminInfoSplit [3], adminInfoSplit[4], adminInfoSplit[5]));
 
     }
 
-    public void addPlayer(String playerInfo) throws ExistUserNameException, ExistEmailException, EmptyExceptionForName, EmptyExceptionForLastName, EmptyExceptionForUserName, EmptyExceptionForEmail {
+    public void addPlayer(String playerInfo) throws ExistUserNameException, ExistEmailException {
 
         String[] playerInfoSplit = playerInfo.split("\\s");
 
@@ -56,24 +56,24 @@ public class SignUp {
             throw new ExistEmailException("THIS EMAIL ALREADY BELONGS TO A USER");
         }
 
-        if ((playerInfoSplit[0].isEmpty())) {
-            throw new EmptyExceptionForName("Name field can not be empty");
-        }
+//        if ((playerInfoSplit[0].isEmpty())) {
+//            throw new EmptyExceptionForName("Name field can not be empty");
+//        }
+//
+//        if (playerInfoSplit[1].isEmpty()){
+//            throw new EmptyExceptionForLastName("Last name field can not be empty");
+//        }
+//
+//        if (playerInfoSplit[2].isEmpty()){
+//            throw new EmptyExceptionForUserName("User name field can not be empty");
+//        }
+//
+//        if (playerInfoSplit[3].isEmpty()){
+//            throw new EmptyExceptionForEmail("Email field can not be empty");
+//        }
 
-        if (playerInfoSplit[1].isEmpty()){
-            throw new EmptyExceptionForLastName("Last name field can not be empty");
-        }
 
-        if (playerInfoSplit[2].isEmpty()){
-            throw new EmptyExceptionForUserName("User name field can not be empty");
-        }
-
-        if (playerInfoSplit[3].isEmpty()){
-            throw new EmptyExceptionForEmail("Email field can not be empty");
-        }
-
-
-        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[4], playerInfoSplit[3],playerInfoSplit[5]));
+        Player.AddNewPlayer(new Player(playerInfoSplit[0], playerInfoSplit[1], randomUserId(2000,2999), playerInfoSplit[2],playerInfoSplit[3], playerInfoSplit[4],playerInfoSplit[5]));
     }
 
     private int randomUserId(int min , int max){

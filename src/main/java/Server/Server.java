@@ -1,10 +1,12 @@
 package Server;
 
 import Controller.AdminController.AdminGeneralController;
+import Controller.CompetencyController.Validation;
 import Controller.Exception.Plato.*;
 import Controller.PlayerController.FindPlayerByInfo;
 import Controller.PlayerController.PlayerGeneralController;
 import Controller.RegisterController.LogIn;
+import Controller.RegisterController.SignUp;
 import Model.DataBase.DataBase;
 import Model.PlatoModel.Admin;
 import Model.PlatoModel.Event;
@@ -18,6 +20,7 @@ import java.net.Socket;
 
 public class Server {
     protected static LogIn logIn = new LogIn();
+    protected static SignUp signUp = new SignUp();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
@@ -92,8 +95,12 @@ public class Server {
 
         private String answerClient(String input) {
             String answer = "null";
-            if (input.startsWith("register"))
-                answer = "register(input)";
+            if (input.startsWith("Register"))
+                answer = register(input);
+            else if (input.startsWith("Validation"))
+                answer = validation(input);
+            else if (input.startsWith("Edit Profile"))
+                answer = editProfile(input);
             else if (input.startsWith("login"))
                 answer = login(input);
             else if (input.startsWith("data"))
@@ -112,13 +119,50 @@ public class Server {
             return answer;
         }
 
+        private String register(String input) {
+            try {
+
+                if (adminGeneralController.adminExistence().equalsIgnoreCase("true")) {
+                    signUp.addPlayer(input.substring(9));
+                    return "Sign Up Done";
+                } else {
+                    signUp.addAdmin(input.substring(9));
+                    return "Sign Up Done";
+                }
+            } catch (ExistUserNameException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistEmailException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistAdminException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+        }
+
+        private String editProfile(String string){
+            String[] process = string.split("\\s");
+
+            try {
+                playerGeneralController.editProfileURL(process[2],process[3]);
+                return "done";
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "Failure";
+        }
+
+
         private String login(String input) {
             int commaIndex = input.indexOf(",");
             String username = input.substring(6, commaIndex);
             String password = input.substring(commaIndex + 1);
             String out = username + " " + password;
 
-            if (adminGeneralController.getAdminUserName().equals(username)){
+            if (adminGeneralController.getAdminUserName().equals(username)) {
                 try {
                     logIn.loginAsAdmin(out);
                     admin = Admin.getAdmins().get(0);
@@ -131,7 +175,7 @@ public class Server {
                 } catch (WrongPasswordException e) {
                     e.printStackTrace();
                 }
-            }else {
+            } else {
                 try {
                     logIn.loginAsPlayer(out);
                     player = FindPlayerByInfo.findByUserName(username);
@@ -150,17 +194,17 @@ public class Server {
             return "Failure";
         }
 
-        private String getData(String input){
+        private String getData(String input) {
             String[] process = input.split("\\s");
             Gson gson = new Gson();
-            if (process[1].equalsIgnoreCase("admin")){
+            if (process[1].equalsIgnoreCase("admin")) {
                 return gson.toJson(Admin.getAdmins().get(0));
-            }else {
+            } else {
                 return gson.toJson(FindPlayerByInfo.findByUserName(process[2]));
             }
         }
 
-        private String getEvents(){
+        private String getEvents() {
             try {
                 adminGeneralController.eventDateChecker();
             } catch (ExistEventException e) {
@@ -171,11 +215,11 @@ public class Server {
             return new Gson().toJson(Event.getEvents());
         }
 
-        private String getPlayersList(){
+        private String getPlayersList() {
             return new Gson().toJson(Player.getPlayers());
         }
 
-        private String playerFavoriteGames(String string){
+        private String playerFavoriteGames(String string) {
             String[] process = string.split("\\s");
             try {
                 return playerGeneralController.showFavoritesGames(process[3]);
@@ -184,20 +228,96 @@ public class Server {
             }
         }
 
-        private String playerSuggestedGames(String string){
+        private String playerSuggestedGames(String string) {
             String[] process = string.split("\\s");
             StringBuilder stringBuilder = new StringBuilder();
             for (Integer integer : playerGeneralController.findByUserName(process[3]).getSuggestedGamesID()) {
-                stringBuilder.append(playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer))).append(" ") ;
+                stringBuilder.append(playerGeneralController.findSuggestionBySuggestionIDForGameName(String.valueOf(integer))).append(" ");
             }
             return String.valueOf(stringBuilder);
         }
 
-        private String playerPlatoMessage(){
+        private String playerPlatoMessage() {
             return playerGeneralController.viewBotMessages();
         }
 
+        private String validation(String string) {
+            String[] process = string.split("\\s");
+            if (process[1].equalsIgnoreCase("Email")) {
+                try {
+                    Validation.emailIsValid(process[2]);
+                    return "Valid Email";
+                } catch (InvalidEmailException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("PhoneNumber")) {
+                try {
+                    Validation.phoneNumberIsValid(process[2]);
+                    return "Valid PhoneNumber";
+                } catch (InvalidPhoneNumberException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Name")) {
+                try {
+                    Validation.nameOrLastNameIsValid(process[2]);
+                    return "Valid Name";
+                } catch (InvalidNameException e) {
+                    return e.getMessage();
+                }
 
+            } else if (process[1].equalsIgnoreCase("LastName")) {
+                try {
+                    Validation.nameOrLastNameIsValid(process[2]);
+                    return "Valid LastName";
+                } catch (InvalidNameException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Password")) {
+                try {
+                    Validation.passwordIsValid(process[2]);
+                    return "Valid Password";
+                } catch (StrongerPasswordException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Age")) {
+                try {
+                    Validation.ageIsValid(process[2]);
+                    return "Valid Age";
+                } catch (InvalidAgeException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Username")) {
+                try {
+                    Validation.usernameIsValid(process[2]);
+                    return "Valid Username";
+                } catch (InvalidUserNameException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("GameName")) {
+                try {
+                    Validation.gameNameIsValid(process[2]);
+                    return "Valid GameName";
+                } catch (InvalidGameNameException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Remember")) {
+                try {
+                    Validation.rememberInputValidation(process[2]);
+                    return "Valid Remember";
+                } catch (RememberMeException e) {
+                    return e.getMessage();
+                }
+            } else if (process[1].equalsIgnoreCase("Date")) {
+                try {
+                    Validation.dateIsValid(process[2]);
+                    return "Valid Date";
+                } catch (InvalidDateException e) {
+                    return e.getMessage();
+                }
+            }
+
+            return "InValid Input";
+        }
 
 
     }
