@@ -36,10 +36,8 @@ public class LoginController implements Initializable {
     private static DataLoader dataLoader = new DataLoader();
 
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static SignUp processSignupController = new SignUp();
-    protected static LogIn processLoginController = new LogIn();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static Existence existence = new Existence();
+
     private static final File file = new File("src\\main\\resources\\Sound\\Got.mp3");
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -106,16 +104,29 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         playMouseSound();
-        Gson gson = new Gson();
         File file = new File("src\\main\\resources\\Sound\\Time.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
 
-        Client.getDataOutputStream().writeUTF("login "+txtUsername.getText()+","+txtPassword.getText());
-        Client.getDataOutputStream().flush();
-        String response = Client.getDataInputStream().readUTF();
 
-        if (response.startsWith("Admin")){
+        if (txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
+            showError();
+            return;
+        }
+
+        String response = dataLoader.login(txtUsername.getText(), txtPassword.getText());
+        String[] split = response.split("\\s");
+
+        if (response.equals("This Username is Ban By Admin. ")){
+            showBanError();
+            return;
+        }
+        if (!split[1].equals("Success")){
+            showError();
+            return;
+        }
+
+        if (response.startsWith("Success Admin")) {
 
             admin = dataLoader.loadAdmin(txtUsername.getText());
             setUsername(txtUsername.getText());
@@ -127,7 +138,7 @@ public class LoginController implements Initializable {
             mediaPlayer.stop();
             window.show();
 
-        }else if (response.startsWith("Player")){
+        } else if (response.startsWith("Success Player")) {
 
             player = dataLoader.loadPlayer(txtUsername.getText());
             setUsername(txtUsername.getText());
@@ -141,36 +152,6 @@ public class LoginController implements Initializable {
 
         }
 
-//        try {
-//            if (adminGeneralController.getAdminUserName().equals(txtUsername.getText())) {
-//                processLoginController.loginAsAdmin(getInfo(txtUsername.getText(), txtPassword.getText()));
-//                setUsername(txtUsername.getText());
-//                URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
-//                Parent register = FXMLLoader.load(url);
-//                Scene message = new Scene(register);
-//                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                window.setScene(message);
-//                mediaPlayer.stop();
-//                window.show();
-//            } else {
-////                if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
-////                    txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
-////                }
-//                processLoginController.loginAsPlayer(getInfo(txtUsername.getText(), txtPassword.getText()));
-//                remember(checkBox);
-//                setUsername(txtUsername.getText());
-//                URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
-//                Parent register = FXMLLoader.load(url);
-//                Scene message = new Scene(register);
-//                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                window.setScene(message);
-//                window.show();
-//            }
-//        } catch (InvalidUserNameException | WrongPasswordException  | ExistAdminException e) {
-//            showError();
-//        } catch (BanExceptionForLogin e) {
-//            showBanError();
-//        }
 
     }
 
@@ -200,23 +181,24 @@ public class LoginController implements Initializable {
         return txtUsername + " " + txtPassword;
     }
 
-    public void playMouseSound(){
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    private void remember(CheckBox checkBox){
-        if (checkBox.mnemonicParsingProperty().getValue().equals(false)){
+
+    private void remember(CheckBox checkBox) {
+        //todo should fix this
+        if (checkBox.mnemonicParsingProperty().getValue().equals(false)) {
             try {
-                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(),"true");
+                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(), "true");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if (checkBox.mnemonicParsingProperty().getValue().equals(true)){
+        } else if (checkBox.mnemonicParsingProperty().getValue().equals(true)) {
             try {
-                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(),"false");
+                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(), "false");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -235,5 +217,5 @@ public class LoginController implements Initializable {
 //        if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
 //            txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
 //        }
-   }
+    }
 }

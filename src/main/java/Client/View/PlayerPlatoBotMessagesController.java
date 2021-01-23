@@ -30,8 +30,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PlayerPlatoBotMessagesController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
     private static DataLoader dataLoader = new DataLoader();
 
     @FXML

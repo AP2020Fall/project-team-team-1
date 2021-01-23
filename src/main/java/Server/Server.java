@@ -98,8 +98,8 @@ public class Server {
                 answer = register(input);
             else if (input.startsWith("Validation"))
                 answer = validation(input);
-            else if (input.startsWith("Edit Profile"))
-                answer = editProfile(input);
+            else if (input.startsWith("Edit Profile Picture"))
+                answer = editProfilePic(input);
             else if (input.startsWith("login"))
                 answer = login(input);
             else if (input.startsWith("data"))
@@ -141,11 +141,11 @@ public class Server {
 
         }
 
-        private String editProfile(String string){
+        private String editProfilePic(String string){
             String[] process = string.split("\\s");
 
             try {
-                playerGeneralController.editProfileURL(process[2],process[3]);
+                playerGeneralController.editProfileURL(process[3],process[4]);
                 return "done";
             } catch (IOException e) {
                 e.printStackTrace();
@@ -165,32 +165,38 @@ public class Server {
                 try {
                     logIn.loginAsAdmin(out);
                     admin = Admin.getAdmins().get(0);
-                    return "Admin Success login";
+                    return "Success Admin login";
 
                 } catch (InvalidUserNameException e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
                 } catch (ExistAdminException e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
                 } catch (WrongPasswordException e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
                 }
             } else {
                 try {
                     logIn.loginAsPlayer(out);
                     player = FindPlayerByInfo.findByUserName(username);
-                    return "Player Success login";
+                    OnlineUsers.addNewOnlineUser(new OnlineUsers(username,"Nothing"));
+                    return "Success Player login";
 
                 } catch (InvalidUserNameException e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
                 } catch (WrongPasswordException e) {
-                    e.printStackTrace();
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
                 } catch (BanExceptionForLogin banExceptionForLogin) {
-                    banExceptionForLogin.printStackTrace();
+                    System.err.println(banExceptionForLogin.getMessage());
+                    return banExceptionForLogin.getMessage();
                 }
 
             }
 
-            return "Failure";
         }
 
         private String getData(String input) {
