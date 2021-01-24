@@ -115,4 +115,25 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+    public String numberOfWins(String username , String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("win number "+ username +" "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String numberOfLoses(String username , String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("lose number "+ username +" "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String numberOfPlayThisGame(String username , String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("play number "+ username +" "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String pointsInThisGame(String username , String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("points number "+ username +" "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }

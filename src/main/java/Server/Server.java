@@ -71,6 +71,7 @@ public class Server {
 
         @Override
         public void run() {
+            //todo hal moshkel 2 bar darkhast
             try {
                 String input;
                 while (true) {
@@ -123,6 +124,14 @@ public class Server {
                 answer = playerFriends(input);
             else if (input.startsWith("Friends Requests"))
                 answer = playerRequests(input);
+            else if (input.startsWith("win number"))
+                answer = showNumberOfWins(input);
+            else if (input.startsWith("lose number"))
+                answer = showNumberOfLoses(input);
+            else if (input.startsWith("play number"))
+                answer = showNumberOfPlayed(input);
+            else if (input.startsWith("points number"))
+                answer = showNumberOfPointsInThisGame(input);
 
             return answer;
         }
@@ -360,6 +369,88 @@ public class Server {
         private String firstGameName() {
             return adminGeneralController.firstGameNameGetter();
         }
+
+        private String showNumberOfWins(String string) {
+            String[] process = string.split("\\s");
+            if (process[3].equalsIgnoreCase("first")){
+                try {
+                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            else if (process[3].equalsIgnoreCase("second")){
+                try {
+                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            return "invalid";
+        }
+        private String showNumberOfLoses(String string) {
+            String[] process = string.split("\\s");
+            if (process[3].equalsIgnoreCase("first")){
+                try {
+                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            else if (process[3].equalsIgnoreCase("second")){
+                try {
+                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            return "invalid";
+        }
+        private String showNumberOfPlayed(String string) {
+            String[] process = string.split("\\s");
+            if (process[3].equalsIgnoreCase("first")){
+                try {
+                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            else if (process[3].equalsIgnoreCase("second")){
+                try {
+                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            return "invalid";
+        }
+        private String showNumberOfPointsInThisGame(String string) {
+            String[] process = string.split("\\s");
+            if (process[3].equalsIgnoreCase("first")){
+                try {
+                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            else if (process[3].equalsIgnoreCase("second")){
+                try {
+                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }
+            return "invalid";
+        }
+
 
 
     }

@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.InvalidGameNameException;
 import Server.Controller.PlayerController.PlayerGeneralController;
@@ -27,9 +28,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BattleShipHistoryController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-
+//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
     @FXML
     ImageView imageViewOfLevel;
@@ -48,17 +49,19 @@ public class BattleShipHistoryController implements Initializable {
             setImageViewOfLevel();
         } catch (InvalidGameNameException e) {
             System.out.println(e.getMessage() + e.getGameName());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
 
     @FXML
-    private void setPieChart() throws InvalidGameNameException {
+    private void setPieChart() throws InvalidGameNameException, IOException {
 
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                new PieChart.Data("Wins", Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()))),
-                new PieChart.Data("Losses", Integer.parseInt(playerGeneralController.numberOfLossesInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()))));
+                new PieChart.Data("Wins", Integer.parseInt(dataLoader.numberOfWins(LoginController.getUsername(),"first"))),
+                new PieChart.Data("Losses", Integer.parseInt(dataLoader.numberOfLoses(LoginController.getUsername(),"first"))));
         pieChartData.forEach(data ->
                 data.nameProperty().bind(
                         Bindings.concat(
@@ -66,15 +69,15 @@ public class BattleShipHistoryController implements Initializable {
                         )
                 )
         );
-        numberofplayed.setText("You have played this Game for " + playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()) + " Times");
+        numberofplayed.setText("You have played this Game for " + dataLoader.numberOfPlayThisGame(LoginController.getUsername(),"first") + " Times");
         pieChart.setLegendVisible(false);
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(180);
     }
 
     @FXML
-    private void setImageViewOfLevel() throws InvalidGameNameException {
-        int level = Integer.parseInt(playerGeneralController.showPlayerPointsInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+    private void setImageViewOfLevel() throws InvalidGameNameException, IOException {
+        int level = Integer.parseInt(dataLoader.pointsInThisGame(LoginController.getUsername(),"first"));
         point.setText("Points: " + level);
 
 
@@ -130,6 +133,8 @@ public class BattleShipHistoryController implements Initializable {
             setPieChart();
         } catch (InvalidGameNameException e) {
             System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
