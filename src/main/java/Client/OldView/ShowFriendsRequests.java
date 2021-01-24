@@ -68,7 +68,7 @@ public class ShowFriendsRequests extends Menu {
                 System.out.println(out);
             }
         } catch (ExistFriendException e) {
-            System.out.println(e.getName()+e.getMessage());
+            System.out.println(e.getMessage());
         }
         Menu nextMenu = null;
         String num = scanner.nextLine();

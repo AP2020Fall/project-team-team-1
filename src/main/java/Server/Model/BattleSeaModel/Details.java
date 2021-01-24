@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 import java.util.Scanner;
 
 public class Details {
-    private static final File detailsBattleFile = new File("src\\main\\java\\Server.Model\\Database\\DetailsBattle.json");
+    private static final File detailsBattleFile = new File("src\\main\\resources\\DataBase\\DetailsBattle.json");
 
     private static String details ="Battle";
 

@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.Scanner;
 
 public class Details {
-    private static final File detailsDotsFile = new File("src\\main\\java\\Model\\Database\\DetailsDots.json");
+    private static final File detailsDotsFile = new File("src\\main\\resources\\DataBase\\DetailsDots.json");
 
     private static String details ="Dots";
 

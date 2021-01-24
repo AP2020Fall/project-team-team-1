@@ -115,12 +115,14 @@ public class Server {
                 answer = playerSuggestedGames(input);
             else if (input.startsWith("Player Plato Message"))
                 answer = playerPlatoMessage();
-            else if (input.startsWith("load battle details")){
+            else if (input.startsWith("load battle details"))
                 answer = showBattleDetails();
-            }
-            else if (input.startsWith("first game name")){
+            else if (input.startsWith("first game name"))
                 answer = firstGameName();
-            }
+            else if (input.startsWith("Friends List"))
+                answer = playerFriends(input);
+            else if (input.startsWith("Friends Requests"))
+                answer = playerRequests(input);
 
             return answer;
         }
@@ -148,11 +150,11 @@ public class Server {
 
         }
 
-        private String editProfilePic(String string){
+        private String editProfilePic(String string) {
             String[] process = string.split("\\s");
 
             try {
-                playerGeneralController.editProfileURL(process[3],process[4]);
+                playerGeneralController.editProfileURL(process[3], process[4]);
                 return "done";
             } catch (IOException e) {
                 e.printStackTrace();
@@ -188,7 +190,7 @@ public class Server {
                 try {
                     logIn.loginAsPlayer(out);
                     player = FindPlayerByInfo.findByUserName(username);
-                    OnlineUsers.addNewOnlineUser(new OnlineUsers(username,"Nothing"));
+                    OnlineUsers.addNewOnlineUser(new OnlineUsers(username, "Nothing"));
                     return "Success Player login";
 
                 } catch (InvalidUserNameException e) {
@@ -251,6 +253,26 @@ public class Server {
 
         private String playerPlatoMessage() {
             return playerGeneralController.viewBotMessages();
+        }
+
+        private String playerFriends(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.showFriends(process[2]);
+            } catch (ExistFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String playerRequests(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.showRequests(process[2]);
+            } catch (ExistFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
         }
 
         private String validation(String string) {
@@ -331,10 +353,11 @@ public class Server {
             return "InValid Input";
         }
 
-        private String showBattleDetails (){
+        private String showBattleDetails() {
             return playerGeneralController.battleDetails();
         }
-        private String firstGameName (){
+
+        private String firstGameName() {
             return adminGeneralController.firstGameNameGetter();
         }
 

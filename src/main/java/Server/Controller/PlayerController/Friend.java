@@ -50,7 +50,7 @@ public class Friend {
             throw new ExistPlayerException(friendUsername, "THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
         if (userNameIsFriendByUsername(username, friendUsername))
-            throw new ExistFriendException(friendUsername, " THIS USER ALREADY IN YOUR FRIEND LIST :) ");
+            throw new ExistFriendException("THIS USER ALREADY IN YOUR FRIEND LIST :) ");
 
         playerWhoReceivedRequests.getFriendsRequests().add(username);
 
@@ -66,7 +66,7 @@ public class Friend {
             throw new ExistPlayerException(friendUsername, " THIS PLAYER DOESN'T EXIST! PLEASE MAKE SURE THE USERNAME IS VALID. ");
 
         if (!userNameIsFriendByUsername(username, friendUsername))
-            throw new ExistFriendException(friendUsername, "THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
+            throw new ExistFriendException("THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
 
         player.getFriends().remove(friendUsername);
@@ -79,7 +79,7 @@ public class Friend {
         StringBuilder showRequests = new StringBuilder();
         Player player = FindPlayerByInfo.findByUserName(username);
         if (player.getFriendsRequests().size() == 0)
-            throw new ExistFriendException(" THERE ARE NO REQUESTS TO SHOW");
+            throw new ExistFriendException("THERE ARE NO REQUESTS TO SHOW");
 
         for (String playerFriendRequests : player.getFriendsRequests()) {
             showRequests.append(playerFriendRequests).append("$");
@@ -92,7 +92,7 @@ public class Friend {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (player.getFriends().size() == 0)
-            throw new ExistFriendException(" YOU DON'T HAVE ANY FRIENDS ");
+            throw new ExistFriendException("YOU DON'T HAVE ANY FRIENDS");
 
         for (String playerFriend : player.getFriends()) {
             showFriends.append(playerFriend).append("$");
@@ -107,7 +107,7 @@ public class Friend {
         Player friend = FindPlayerByInfo.findByUserName(friendUsername);
 
         if (!userNameIsFriendByUsername(username, friendUsername))
-            throw new ExistFriendException(friendUsername, " THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
+            throw new ExistFriendException("THIS PLAYER IS NOT IN YOU REQUEST LIST! PLEASE MAKE SURE THE USERNAME IS VALID ");
 
         for (String playerFriend : player.getFriends()) {
             if (playerFriend.equals(friend.getUserName())) {
@@ -126,7 +126,7 @@ public class Friend {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         for (String friend : player.getFriends()) {
-            if (friend.equals(friendUsername)){
+            if (friend.equals(friendUsername)) {
                 result = true;
                 break;
             }
@@ -141,7 +141,7 @@ public class Friend {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         for (String friendsRequest : player.getFriendsRequests()) {
-            if (friendsRequest.equals(friendsRequest)){
+            if (friendsRequest.equals(friendsRequest)) {
                 result = true;
                 break;
             }
