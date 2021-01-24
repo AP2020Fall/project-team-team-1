@@ -120,6 +120,8 @@ public class Server {
                 answer = showBattleDetails();
             else if (input.startsWith("first game name"))
                 answer = firstGameName();
+            else if (input.startsWith("second game name"))
+                answer = secondGameName();
             else if (input.startsWith("Friends List"))
                 answer = playerFriends(input);
             else if (input.startsWith("Friends Requests"))
@@ -134,6 +136,8 @@ public class Server {
                 answer = showNumberOfPointsInThisGame(input);
             else if (input.startsWith("battle scoreboard "))
                 answer = showScoreBoardBattleSea(input);
+            else if (input.startsWith("dots scoreboard "))
+                answer = showScoreBoardDotsAndBoxes(input);
 
             return answer;
         }
@@ -371,6 +375,9 @@ public class Server {
         private String firstGameName() {
             return adminGeneralController.firstGameNameGetter();
         }
+        private String secondGameName() {
+            return adminGeneralController.secondGameNameGetter();
+        }
 
         private String showNumberOfWins(String string) {
             String[] process = string.split("\\s");
@@ -453,6 +460,15 @@ public class Server {
             return "invalid";
         }
         private String showScoreBoardBattleSea (String string){
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.showScoreboardInThisGame(process[2]);
+            } catch (InvalidGameNameException e) {
+                e.printStackTrace();
+            }
+            return "invalid";
+        }
+        private String showScoreBoardDotsAndBoxes (String string){
             String[] process = string.split("\\s");
             try {
                 return playerGeneralController.showScoreboardInThisGame(process[2]);

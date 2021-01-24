@@ -115,28 +115,45 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String numberOfWins(String username , String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("win number "+ username +" "+ gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String numberOfLoses(String username , String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("lose number "+ username +" "+ gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String numberOfPlayThisGame(String username , String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("play number "+ username +" "+ gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String pointsInThisGame(String username , String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("points number "+ username +" "+ gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
-    public String scoreBoardInThisGame(String gameName) throws IOException {
+
+    public String scoreBoardInBattle(String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("battle scoreboard "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String scoreBoardInDots(String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("dots scoreboard "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String secondGameNameGetter() throws IOException {
+        Client.getDataOutputStream().writeUTF("second game name");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }

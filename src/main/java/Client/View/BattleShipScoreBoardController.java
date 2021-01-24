@@ -1,11 +1,9 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.ExistPlayerException;
 import Server.Controller.Exception.Plato.ExistPlayerLogException;
 import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +35,7 @@ public class BattleShipScoreBoardController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
-        String[] showEvent = dataLoader.scoreBoardInThisGame(dataLoader.firstGameNameGetter()).split("\\$");
+        String[] showEvent = dataLoader.scoreBoardInBattle(dataLoader.firstGameNameGetter()).split("\\$");
         for (String out : showEvent) {
             listView.getItems().add(out);
         }
