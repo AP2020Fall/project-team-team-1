@@ -397,7 +397,7 @@ public class Server {
             }
             else if (process[3].equalsIgnoreCase("second")){
                 try {
-                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -417,7 +417,7 @@ public class Server {
             }
             else if (process[3].equalsIgnoreCase("second")){
                 try {
-                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -437,7 +437,7 @@ public class Server {
             }
             else if (process[3].equalsIgnoreCase("second")){
                 try {
-                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -457,7 +457,7 @@ public class Server {
             }
             else if (process[3].equalsIgnoreCase("second")){
                 try {
-                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
