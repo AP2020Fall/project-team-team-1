@@ -1,8 +1,8 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.ExistFriendException;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.ExistFriendException;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,6 +1,6 @@
 package Client.OldView;
 
-import Controller.Exception.Plato.*;
+import Server.Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.util.HashMap;

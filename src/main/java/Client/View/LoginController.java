@@ -1,15 +1,10 @@
 package Client.View;
 
-import Client.Client;
-import Controller.AdminController.AdminGeneralController;
-import Controller.CompetencyController.Existence;
+import Server.Controller.AdminController.AdminGeneralController;
 import Client.DataLoader;
-import Controller.PlayerController.PlayerGeneralController;
-import Controller.RegisterController.LogIn;
-import Controller.RegisterController.SignUp;
-import Model.PlatoModel.Admin;
-import Model.PlatoModel.Player;
-import com.google.gson.Gson;
+import Server.Controller.PlayerController.PlayerGeneralController;
+import Server.Model.PlatoModel.Admin;
+import Server.Model.PlatoModel.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -121,7 +116,7 @@ public class LoginController implements Initializable {
             showBanError();
             return;
         }
-        if (!split[1].equals("Success")){
+        if (!split[0].equals("Success")){
             showError();
             return;
         }

@@ -1,11 +1,11 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.ExistFavoriteException;
-import Controller.Exception.Plato.ExistFriendException;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.InvalidGameNameException;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.ExistFavoriteException;
+import Server.Controller.Exception.Plato.ExistFriendException;
+import Server.Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.Exception.Plato.InvalidGameNameException;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,11 +1,11 @@
 package Client.View;
 
-import Controller.CompetencyController.Existence;
-import Controller.Exception.Plato.InvalidPasswordException;
-import Controller.Exception.Plato.SamePasswordException;
-import Controller.Exception.Plato.StrongerPasswordException;
-import Controller.Exception.Plato.WrongPasswordException;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.CompetencyController.Existence;
+import Server.Controller.Exception.Plato.InvalidPasswordException;
+import Server.Controller.Exception.Plato.SamePasswordException;
+import Server.Controller.Exception.Plato.StrongerPasswordException;
+import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

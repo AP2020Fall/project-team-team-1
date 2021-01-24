@@ -1,8 +1,8 @@
 package Client.View;
 
 import Client.DataLoader;
-import Controller.AdminController.AdminGeneralController;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

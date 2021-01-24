@@ -1,9 +1,9 @@
 package Client.View;
 
-import Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Controller.Exception.DotsAndBoxes.ExistLineException;
-import Controller.PlayerController.PlayerGeneralController;
-import Model.DotsAndBoxesModel.Player;
+import Server.Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Server.Controller.Exception.DotsAndBoxes.ExistLineException;
+import Server.Controller.PlayerController.PlayerGeneralController;
+import Server.Model.DotsAndBoxesModel.Player;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

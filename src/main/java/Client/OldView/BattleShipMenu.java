@@ -1,8 +1,8 @@
 package Client.OldView;
 
-import Controller.Exception.Plato.ExistFavoriteException;
-import Controller.Exception.Plato.InvalidGameID;
-import Controller.Exception.Plato.InvalidGameNameException;
+import Server.Controller.Exception.Plato.ExistFavoriteException;
+import Server.Controller.Exception.Plato.InvalidGameID;
+import Server.Controller.Exception.Plato.InvalidGameNameException;
 
 import java.io.IOException;
 import java.util.HashMap;

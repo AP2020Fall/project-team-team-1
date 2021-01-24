@@ -1,7 +1,5 @@
 package Server;
 
-import Model.PlatoModel.Player;
-
 import java.util.ArrayList;
 
 public class OnlineUsers {

@@ -1,7 +1,7 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Model.PlatoModel.Player;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Model.PlatoModel.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

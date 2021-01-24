@@ -1,9 +1,9 @@
 package Client.OldView;
 
-import Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Controller.Exception.Plato.ExistFavoriteException;
-import Controller.Exception.Plato.InvalidGameID;
-import Controller.Exception.Plato.InvalidGameNameException;
+import Server.Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Server.Controller.Exception.Plato.ExistFavoriteException;
+import Server.Controller.Exception.Plato.InvalidGameID;
+import Server.Controller.Exception.Plato.InvalidGameNameException;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,16 +1,16 @@
 package Server;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.CompetencyController.Validation;
-import Controller.Exception.Plato.*;
-import Controller.PlayerController.FindPlayerByInfo;
-import Controller.PlayerController.PlayerGeneralController;
-import Controller.RegisterController.LogIn;
-import Controller.RegisterController.SignUp;
-import Model.DataBase.DataBase;
-import Model.PlatoModel.Admin;
-import Model.PlatoModel.Event;
-import Model.PlatoModel.Player;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.Plato.*;
+import Server.Controller.PlayerController.FindPlayerByInfo;
+import Server.Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.RegisterController.LogIn;
+import Server.Controller.RegisterController.SignUp;
+import Server.Model.DataBase.DataBase;
+import Server.Model.PlatoModel.Admin;
+import Server.Model.PlatoModel.Event;
+import Server.Model.PlatoModel.Player;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -30,6 +30,7 @@ public class Server {
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }
+
 
         run();
     }

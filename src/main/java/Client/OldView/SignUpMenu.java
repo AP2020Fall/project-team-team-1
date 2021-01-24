@@ -1,7 +1,7 @@
 package Client.OldView;
 
-import Controller.CompetencyController.Validation;
-import Controller.Exception.Plato.*;
+import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.Plato.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,8 +1,8 @@
 package Client.View;
 
-import Controller.CompetencyController.Existence;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.CompetencyController.Existence;
+import Server.Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,10 +1,10 @@
 package RegisterController;
 
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
-import Controller.RegisterController.Delete;
-import Model.PlatoModel.Player;
-import Model.PlatoModel.User;
+import Server.Controller.Exception.Plato.InvalidUserNameException;
+import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.RegisterController.Delete;
+import Server.Model.PlatoModel.Player;
+import Server.Model.PlatoModel.User;
 import org.junit.Assert;
 import org.junit.Test;
 

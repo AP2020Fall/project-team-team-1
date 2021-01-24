@@ -1,7 +1,7 @@
 package Client.OldView;
 
-import Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Controller.Exception.Plato.ExistEventException;
+import Server.Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Server.Controller.Exception.Plato.ExistEventException;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,9 +1,9 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.GameActivation;
-import Controller.Exception.Plato.InvalidGameID;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.GameActivation;
+import Server.Controller.Exception.Plato.InvalidGameID;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

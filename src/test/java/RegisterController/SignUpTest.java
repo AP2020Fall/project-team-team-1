@@ -1,9 +1,9 @@
 package RegisterController;
 
-import Controller.Exception.Plato.*;
-import Controller.PlayerController.FindPlayerByInfo;
-import Controller.RegisterController.SignUp;
-import Model.PlatoModel.Player;
+import Server.Controller.Exception.Plato.*;
+import Server.Controller.PlayerController.FindPlayerByInfo;
+import Server.Controller.RegisterController.SignUp;
+import Server.Model.PlatoModel.Player;
 import org.junit.Assert;
 import org.junit.Test;
 

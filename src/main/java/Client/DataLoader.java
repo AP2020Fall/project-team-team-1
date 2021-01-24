@@ -1,8 +1,8 @@
 package Client;
 
-import Model.PlatoModel.Admin;
-import Model.PlatoModel.Event;
-import Model.PlatoModel.Player;
+import Server.Model.PlatoModel.Admin;
+import Server.Model.PlatoModel.Event;
+import Server.Model.PlatoModel.Player;
 import Client.View.PlayerEventsController;
 import Client.View.PlayerSearchFriendsController;
 import com.google.gson.Gson;

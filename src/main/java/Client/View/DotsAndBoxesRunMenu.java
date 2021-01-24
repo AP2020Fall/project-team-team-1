@@ -1,11 +1,11 @@
 package Client.View;
 
-import Controller.Exception.Plato.BanExceptionForLogin;
-import Controller.Exception.Plato.ExistFriendException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
-import Controller.PlayerController.PlayerGeneralController;
-import Controller.RegisterController.LogIn;
+import Server.Controller.Exception.Plato.BanExceptionForLogin;
+import Server.Controller.Exception.Plato.ExistFriendException;
+import Server.Controller.Exception.Plato.InvalidUserNameException;
+import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.RegisterController.LogIn;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;

@@ -1,9 +1,9 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.ExistPlayerLogException;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.Exception.Plato.ExistPlayerLogException;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

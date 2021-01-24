@@ -1,6 +1,6 @@
 package Client;
 
-import Model.DataBase.DataBase;
+import Server.Model.DataBase.DataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

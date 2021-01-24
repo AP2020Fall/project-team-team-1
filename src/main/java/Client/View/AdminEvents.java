@@ -1,9 +1,9 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.ExistEventException;
-import Controller.Exception.Plato.StartDatesException;
-import Model.PlatoModel.Event;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.ExistEventException;
+import Server.Controller.Exception.Plato.StartDatesException;
+import Server.Model.PlatoModel.Event;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

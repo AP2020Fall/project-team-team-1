@@ -1,13 +1,13 @@
 package Client.OldView;
 
-import Controller.AdminController.*;
-import Controller.AdminController.Edit;
-import Controller.AdminController.Suggestion;
-import Controller.BattleSeaController.BattleSeaController;
-import Controller.PlayerController.*;
-import Controller.RegisterController.Delete;
-import Controller.RegisterController.LogIn;
-import Controller.RegisterController.SignUp;
+import Server.Controller.AdminController.*;
+import Server.Controller.AdminController.Edit;
+import Server.Controller.AdminController.Suggestion;
+import Server.Controller.BattleSeaController.BattleSeaController;
+import Server.Controller.PlayerController.*;
+import Server.Controller.RegisterController.Delete;
+import Server.Controller.RegisterController.LogIn;
+import Server.Controller.RegisterController.SignUp;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,13 +17,13 @@ public abstract class Menu {
     protected HashMap<Integer,Menu> submenus = new HashMap<>();
     protected Menu parentMenu;
     public static Scanner scanner;
-//---------------------------------------Controller//-------------------------------------------
+//---------------------------------------Server.Controller//-------------------------------------------
   //  protected static Coin coinController = new Coin();
     protected static Edit adminEditController = new Edit();
     protected static Event adminEventController = new Event();
     protected static Message adminMessageController = new Message();
     protected static PlayerLists adminPlayerListController = new PlayerLists();
-    protected static Controller.PlayerController.Edit playerEditController = new Controller.PlayerController.Edit();
+    protected static Server.Controller.PlayerController.Edit playerEditController = new Server.Controller.PlayerController.Edit();
     protected static FavoriteGames playerFavoritesGame = new FavoriteGames();
     protected static FindPlayerByInfo playerFindPlayerByInfoController = new FindPlayerByInfo();
     protected static Friend playerFriendController = new Friend();
@@ -32,7 +32,7 @@ public abstract class Menu {
     protected static PlayerStatusInGame playerStatusInGameController = new PlayerStatusInGame();
     //protected static Game playerGameController = new Game();
     protected static Suggestion adminSuggestionController = new Suggestion();
-    protected static Controller.PlayerController.Suggestion playerSuggestionController = new Controller.PlayerController.Suggestion();
+    protected static Server.Controller.PlayerController.Suggestion playerSuggestionController = new Server.Controller.PlayerController.Suggestion();
     protected static ViewPlatoBotMessages playerViewPlatoBotsMassagesController = new ViewPlatoBotMessages();
     protected static Delete processDeleteAccountController = new Delete();
     protected static LogIn processLoginController = new LogIn();

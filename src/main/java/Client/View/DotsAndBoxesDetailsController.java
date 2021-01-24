@@ -1,7 +1,7 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;

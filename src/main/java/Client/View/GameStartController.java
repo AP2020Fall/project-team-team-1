@@ -1,13 +1,13 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.BattleSeaController.BattleSeaController;
-import Controller.Exception.BattleShip.BattleShipWinner;
-import Controller.Exception.BattleShip.BoomCheckException;
-import Controller.Exception.BattleShip.CorrectCoordinateForShipException;
-import Controller.Exception.BattleShip.InvalidCommandException;
-import Controller.PlayerController.Game;
-import Controller.PlayerController.PlayerGeneralController;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.BattleSeaController.BattleSeaController;
+import Server.Controller.Exception.BattleShip.BattleShipWinner;
+import Server.Controller.Exception.BattleShip.BoomCheckException;
+import Server.Controller.Exception.BattleShip.CorrectCoordinateForShipException;
+import Server.Controller.Exception.BattleShip.InvalidCommandException;
+import Server.Controller.PlayerController.Game;
+import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

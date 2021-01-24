@@ -1,7 +1,7 @@
 package Client.View;
 
-import Controller.BattleSeaController.BattleSeaController;
-import Controller.Exception.BattleShip.*;
+import Server.Controller.BattleSeaController.BattleSeaController;
+import Server.Controller.Exception.BattleShip.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

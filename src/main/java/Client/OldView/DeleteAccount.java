@@ -1,9 +1,9 @@
 package Client.OldView;
 
-import Controller.CompetencyController.Validation;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.StrongerPasswordException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.Plato.InvalidUserNameException;
+import Server.Controller.Exception.Plato.StrongerPasswordException;
+import Server.Controller.Exception.Plato.WrongPasswordException;
 
 import java.io.IOException;
 import java.util.ArrayList;

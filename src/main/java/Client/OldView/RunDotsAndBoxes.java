@@ -1,10 +1,10 @@
 package Client.OldView;
 
-import Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Controller.Exception.Plato.BanExceptionForLogin;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.InvalidUserNameException;
-import Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.DotsAndBoxesController.DotsAndBoxesController;
+import Server.Controller.Exception.Plato.BanExceptionForLogin;
+import Server.Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.Exception.Plato.InvalidUserNameException;
+import Server.Controller.Exception.Plato.WrongPasswordException;
 
 import java.io.IOException;
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package Client.View;
 
-import Model.PlatoModel.Player;
+import Server.Model.PlatoModel.Player;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

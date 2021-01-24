@@ -1,6 +1,6 @@
 package Client.OldView;
 
-import Controller.Exception.Plato.ExistSuggestionException;
+import Server.Controller.Exception.Plato.ExistSuggestionException;
 
 import java.util.HashMap;
 

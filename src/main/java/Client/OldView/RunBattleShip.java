@@ -1,9 +1,9 @@
 package Client.OldView;
 
-import Controller.BattleSeaController.BattleSeaController;
-import Controller.Exception.BattleShip.*;
-import Controller.Exception.Plato.*;
-import Controller.PlayerController.Game;
+import Server.Controller.BattleSeaController.BattleSeaController;
+import Server.Controller.Exception.BattleShip.*;
+import Server.Controller.Exception.Plato.*;
+import Server.Controller.PlayerController.Game;
 
 import java.io.IOException;
 import java.time.LocalDate;

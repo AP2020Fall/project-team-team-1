@@ -1,7 +1,7 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.*;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

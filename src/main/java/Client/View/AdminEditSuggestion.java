@@ -1,9 +1,9 @@
 package Client.View;
 
-import Controller.AdminController.AdminGeneralController;
-import Controller.Exception.Plato.ExistSuggestionException;
-import Model.PlatoModel.Player;
-import Model.PlatoModel.Suggestion;
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.ExistSuggestionException;
+import Server.Model.PlatoModel.Player;
+import Server.Model.PlatoModel.Suggestion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

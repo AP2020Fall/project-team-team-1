@@ -1,8 +1,8 @@
 package Client.OldView;
 
-import Controller.Exception.Plato.AcceptAndDeclineFriendException;
-import Controller.Exception.Plato.ExistFriendException;
-import Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.Exception.Plato.AcceptAndDeclineFriendException;
+import Server.Controller.Exception.Plato.ExistFriendException;
+import Server.Controller.Exception.Plato.ExistPlayerException;
 
 import java.io.IOException;
 import java.util.HashMap;

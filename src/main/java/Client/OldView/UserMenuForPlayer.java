@@ -1,9 +1,9 @@
 package Client.OldView;
 
-import Controller.CompetencyController.Validation;
-import Controller.Exception.Plato.ExistPlayerException;
-import Controller.Exception.Plato.ExistPlayerLogException;
-import Controller.Exception.Plato.InvalidGameNameException;
+import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.Plato.ExistPlayerException;
+import Server.Controller.Exception.Plato.ExistPlayerLogException;
+import Server.Controller.Exception.Plato.InvalidGameNameException;
 
 import java.util.HashMap;
 
