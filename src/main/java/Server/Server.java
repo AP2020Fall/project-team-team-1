@@ -132,6 +132,8 @@ public class Server {
                 answer = showNumberOfPlayed(input);
             else if (input.startsWith("points number"))
                 answer = showNumberOfPointsInThisGame(input);
+            else if (input.startsWith("battle scoreboard "))
+                answer = showScoreBoardBattleSea(input);
 
             return answer;
         }
@@ -447,6 +449,15 @@ public class Server {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
+            }
+            return "invalid";
+        }
+        private String showScoreBoardBattleSea (String string){
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.showScoreboardInThisGame(process[2]);
+            } catch (InvalidGameNameException e) {
+                e.printStackTrace();
             }
             return "invalid";
         }

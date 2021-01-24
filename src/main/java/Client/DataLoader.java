@@ -135,5 +135,10 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+    public String scoreBoardInThisGame(String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("battle scoreboard "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
 
 }

@@ -28,8 +28,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BattleShipHistoryController implements Initializable {
-//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
     private static DataLoader dataLoader = new DataLoader();
 
     @FXML
