@@ -118,6 +118,8 @@ public class Server {
                 answer = playerPlatoMessage();
             else if (input.startsWith("load battle details"))
                 answer = showBattleDetails();
+            else if (input.startsWith("load dots details"))
+                answer = showDotsDetails();
             else if (input.startsWith("first game name"))
                 answer = firstGameName();
             else if (input.startsWith("second game name"))
@@ -370,6 +372,10 @@ public class Server {
 
         private String showBattleDetails() {
             return playerGeneralController.battleDetails();
+        }
+
+        private String showDotsDetails() {
+            return playerGeneralController.dotsDetails();
         }
 
         private String firstGameName() {

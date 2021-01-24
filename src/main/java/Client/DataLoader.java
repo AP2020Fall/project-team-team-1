@@ -158,4 +158,10 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String dotsDetails() throws IOException {
+        Client.getDataOutputStream().writeUTF("load dots details");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }
