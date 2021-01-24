@@ -47,7 +47,7 @@ public class ShowFriends extends Menu {
                         System.out.println(out);
                     }
                 } catch (ExistFriendException e) {
-                    System.out.println(e.getName()+e.getMessage());
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 }
                 Menu nextMenu = null;
@@ -80,7 +80,7 @@ public class ShowFriends extends Menu {
                 System.out.println(out);
             }
         } catch (ExistFriendException e) {
-            System.out.println(e.getName()+e.getMessage());
+            System.out.println(e.getMessage());
         }
         Menu nextMenu = null;
         String num = scanner.nextLine();
