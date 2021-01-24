@@ -115,6 +115,12 @@ public class Server {
                 answer = playerSuggestedGames(input);
             else if (input.startsWith("Player Plato Message"))
                 answer = playerPlatoMessage();
+            else if (input.startsWith("load battle details")){
+                answer = showBattleDetails();
+            }
+            else if (input.startsWith("first game name")){
+                answer = firstGameName();
+            }
 
             return answer;
         }
@@ -323,6 +329,13 @@ public class Server {
             }
 
             return "InValid Input";
+        }
+
+        private String showBattleDetails (){
+            return playerGeneralController.battleDetails();
+        }
+        private String firstGameName (){
+            return adminGeneralController.firstGameNameGetter();
         }
 
 

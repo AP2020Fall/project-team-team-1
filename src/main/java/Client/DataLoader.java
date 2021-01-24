@@ -88,4 +88,14 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+    public String battleShipDetails() throws IOException {
+        Client.getDataOutputStream().writeUTF("load battle details");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String firstGameNameGetter() throws IOException {
+        Client.getDataOutputStream().writeUTF("first game name");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
 }
