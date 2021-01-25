@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.ExistEventException;
 import Server.Controller.Exception.Plato.StartDatesException;
@@ -32,7 +33,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminEvents implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
     public TextField txtID;
     @FXML
     public TextField txtComment;
@@ -47,11 +49,11 @@ public class AdminEvents implements Initializable {
     @FXML
     public TextField txtScore;
     @FXML
-    public TableColumn<Event,String> comment;
+    public TableColumn<Event, String> comment;
     @FXML
-    public TableColumn<Event,String> game;
+    public TableColumn<Event, String> game;
     @FXML
-    public TableColumn<Event,Integer> id;
+    public TableColumn<Event, Integer> id;
     @FXML
     public TableView<Event> table;
     @FXML
@@ -64,30 +66,54 @@ public class AdminEvents implements Initializable {
     @FXML
     public void addEvent(ActionEvent event) throws IOException {
         playMouseSound();
-        try {
-            adminGeneralController.addEvent(txtID.getText()+" "+txtGame.getText()+" "+dateStart.getValue().toString()+" "+dateEnd.getValue().toString()+" "+txtScore.getText()+" "+txtComment.getText());
-            File image = createProfileFile(txtID.getText());
-            copy(file,image);
-            LoginController.setUsername(null);
-            URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(message);
-            window.show();
-        } catch (StartDatesException e) {
-            System.err.println(e.getMessage());
-            UpdateError.setError(e.getMessage());
-            showError();
-            return;
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        } catch (ExistEventException e) {
-            System.err.println(e.getMessage());
-            UpdateError.setError(e.getMessage());
+        if (txtID.getText().isEmpty() ||txtGame.getText().isEmpty() || dateStart.getValue().toString().isEmpty() ||dateEnd.getValue().toString().isEmpty() ||txtScore.getText().isEmpty() ||txtComment.getText().isEmpty()){
+            UpdateError.setError("There is empty field");
             showError();
             return;
         }
+        String response = dataLoader.makeEvent(txtID.getText() + " " + txtGame.getText() + " " + dateStart.getValue().toString() + " " + dateEnd.getValue().toString() + " " + txtScore.getText() + " " + txtComment.getText());
+
+        if (response.equalsIgnoreCase("Start Date Must be after than Today")){
+            UpdateError.setError("Start Date Must be after than Today");
+            showError();
+            return;
+        }
+        if (response.equalsIgnoreCase("Start Date Must be before than End Date")){
+            UpdateError.setError("Start Date Must be before than End Date");
+            showError();
+            return;
+        }
+        if (response.equalsIgnoreCase("ID exist")){
+            UpdateError.setError("ID exist");
+            showError();
+            return;
+        }
+        if (!response.equalsIgnoreCase("done")){
+            UpdateError.setError("event error");
+            showError();
+            return;
+        }
+        File image = createProfileFile(txtID.getText());
+        copy(file, image);
+        LoginController.setUsername(null);
+        URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+//        } catch (StartDatesException e) {
+//            System.err.println(e.getMessage());
+
+//            return;
+//        } catch (IOException e) {
+//            System.err.println(e.getMessage());
+//        } catch (ExistEventException e) {
+//            System.err.println(e.getMessage());
+//            UpdateError.setError(e.getMessage());
+//            showError();
+//            return;
+//        }
     }
 
     private void showError() throws IOException {
@@ -101,10 +127,11 @@ public class AdminEvents implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     private void goToEventInfo(ActionEvent event) throws IOException {
         playMouseSound();
-        if (EventInfo.getId().equalsIgnoreCase("null")){
+        if (EventInfo.getId().equalsIgnoreCase("null")) {
             return;
         }
         URL url = new File("src/main/resources/FXML/EventInfo.fxml").toURI().toURL();
@@ -115,9 +142,10 @@ public class AdminEvents implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
-    public void initActions(){
-        table.setOnMouseClicked(new EventHandler<MouseEvent>(){
+    public void initActions() {
+        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent arg0) {
                 String id = String.valueOf(table.getSelectionModel().getSelectedItem().getEventID());
                 EventInfo.setId(id);
@@ -125,7 +153,7 @@ public class AdminEvents implements Initializable {
         });
     }
 
-    private final ObservableList<Event>events= FXCollections.observableArrayList();
+    private final ObservableList<Event> events = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -159,7 +187,8 @@ public class AdminEvents implements Initializable {
 //        });
 
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -175,24 +204,27 @@ public class AdminEvents implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
-    private File chooseProfilePick(FileChooser fileChooser){
-        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images","*.Jpg");
+    private File chooseProfilePick(FileChooser fileChooser) {
+        FileChooser.ExtensionFilter images = new FileChooser.ExtensionFilter("Images", "*.Jpg");
         fileChooser.getExtensionFilters().add(images);
         return fileChooser.showOpenDialog(new Stage());
     }
+
     @FXML
-    private File createProfileFile(String username){
-        String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
-                "Events"+File.separator+username+File.separator+username+".jpg";
+    private File createProfileFile(String username) {
+        String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator +
+                "Events" + File.separator + username + File.separator + username + ".jpg";
         return new File(path);
     }
+
     @FXML
-    private void copy(File pic , File dest) throws IOException {
-        FileUtils.copyFile(pic,dest);
+    private void copy(File pic, File dest) throws IOException {
+        FileUtils.copyFile(pic, dest);
     }
 
     public void addProfile(ActionEvent event) {
-        file=chooseProfilePick(new FileChooser());
+        file = chooseProfilePick(new FileChooser());
     }
 }

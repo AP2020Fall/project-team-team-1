@@ -176,6 +176,8 @@ public class Server {
                 answer = getSuggestion();
             else if (input.startsWith("remove suggestion"))
                 answer = removeSuggestionServer(input);
+            else if (input.startsWith("remove suggestion"))
+                answer = removeSuggestionServer(input);
 
             return answer;
         }
@@ -821,6 +823,23 @@ public class Server {
                 return e.getMessage();
             }
 
+        }
+
+        private String makeEvent(String string){
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.addEvent(string.substring(string.indexOf(process[2])));
+                return "done";
+            } catch (StartDatesException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
         }
 
 

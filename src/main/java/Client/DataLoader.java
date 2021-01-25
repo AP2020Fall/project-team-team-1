@@ -268,5 +268,10 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+    public String makeEvent(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("make event "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
 
 }
