@@ -149,6 +149,8 @@ public class Server {
                 answer = playerFriends(input);
             else if (input.startsWith("Friends Requests"))
                 answer = playerRequests(input);
+            else if (input.startsWith("Sent Friend Request"))
+                answer = sentFriendRequest(input);
             else if (input.startsWith("Accept Request"))
                 answer = acceptRequest(input);
             else if (input.startsWith("Decline Request"))
@@ -508,6 +510,25 @@ public class Server {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
+        }
+
+        private String sentFriendRequest(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                playerGeneralController.addFriends(process[3],process[4]);
+                return "done";
+            } catch (ExistFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
         }
 
         private String acceptRequest(String string) {

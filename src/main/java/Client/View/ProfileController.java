@@ -220,7 +220,7 @@ public class ProfileController implements Initializable {
     @FXML
     private void setGameStatus() throws IOException {
         int wins = Integer.parseInt(dataLoader.numberOfWins(getUsernameForShowProfile(),"first")) + Integer.parseInt(dataLoader.numberOfWins(getUsernameForShowProfile(),"second"));
-        int all = Integer.parseInt(dataLoader.numberOfLoses(getUsernameForShowProfile(),"first")) + Integer.parseInt(dataLoader.numberOfLoses(getUsernameForShowProfile(),"second"));
+        int all = Integer.parseInt(dataLoader.numberOfPlayThisGame(getUsernameForShowProfile(),"first")) + Integer.parseInt(dataLoader.numberOfPlayThisGame(getUsernameForShowProfile(),"second"));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
