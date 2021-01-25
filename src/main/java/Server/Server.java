@@ -140,7 +140,7 @@ public class Server {
                 answer = getPlayerGameLog(input);
             else if (input.startsWith("load battle details"))
                 answer = showBattleDetails();
-            else if (input.startsWith("load dots details"))
+            else if (input.startsWith("Load Dots Details"))
                 answer = showDotsDetails();
             else if (input.startsWith("first game name"))
                 answer = firstGameName();
@@ -174,23 +174,21 @@ public class Server {
                 answer = showScoreBoardDotsAndBoxes(input);
             else if (input.startsWith("suggestion list"))
                 answer = getSuggestion();
-            else if (input.startsWith("remove suggestion"))
+            else if (input.startsWith("Remove Suggestion"))
                 answer = removeSuggestionServer(input);
-            else if (input.startsWith("remove suggestion"))
-                answer = removeSuggestionServer(input);
-            else if (input.startsWith("make event "))
+            else if (input.startsWith("Make Event "))
                 answer = makeEvent(input);
             else if (input.startsWith("mvp battle "))
                 answer = battleMvp();
             else if (input.startsWith("admin battle detail"))
                 answer = battleDetail(input);
-            else if (input.startsWith("active battle "))
-                answer = gameActive(input);
-            else if (input.startsWith("deactive battle "))
-                answer = battleDeActive(input);
-            else if (input.startsWith("total battle "))
+            else if (input.startsWith("Active Game "))
+                answer = activeGame(input);
+            else if (input.startsWith("Deactivate Game "))
+                answer = deActiveGame(input);
+            else if (input.startsWith("Total Played Battle "))
                 answer = totalPlayFirstGame();
-            else if (input.startsWith("status active "))
+            else if (input.startsWith("Activation Status "))
                 answer = gameActivationStatus(input);
 
             return answer;
@@ -867,7 +865,7 @@ public class Server {
             }
         }
 
-        private String gameActive(String string) {
+        private String activeGame(String string) {
             String[] process = string.split("\\s");
 
             try {
@@ -883,7 +881,7 @@ public class Server {
             return "invalid";
         }
 
-        private String battleDeActive(String string) {
+        private String deActiveGame(String string) {
             String[] process = string.split("\\s");
             try {
                 adminGeneralController.deActiveGame(process[2]);

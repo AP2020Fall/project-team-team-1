@@ -258,19 +258,19 @@ public class DataLoader {
     }
 
     public String dotsDetails() throws IOException {
-        Client.getDataOutputStream().writeUTF("load dots details");
+        Client.getDataOutputStream().writeUTF("Load Dots Details");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String removeSuggestion(String suggestionId) throws IOException {
-        Client.getDataOutputStream().writeUTF("remove suggestion "+suggestionId);
+        Client.getDataOutputStream().writeUTF("Remove Suggestion "+suggestionId);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String makeEvent(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("make event "+string);
+        Client.getDataOutputStream().writeUTF("Make Event "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -288,25 +288,25 @@ public class DataLoader {
     }
 
     public String activeBattle(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("active battle "+string);
+        Client.getDataOutputStream().writeUTF("Active Game  "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String deActiveBattle(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("deactive battle "+string);
+        Client.getDataOutputStream().writeUTF("Deactivate Game "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String totalPlayedBattle() throws IOException {
-        Client.getDataOutputStream().writeUTF("total battle ");
+        Client.getDataOutputStream().writeUTF("Total Played Battle ");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String activeStatus(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("status active "+string);
+        Client.getDataOutputStream().writeUTF("Activation Status "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
