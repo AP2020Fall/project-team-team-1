@@ -155,6 +155,8 @@ public class Server {
                 answer = acceptRequest(input);
             else if (input.startsWith("Decline Request"))
                 answer = declineRequest(input);
+            else if (input.startsWith("Remove Friend"))
+                answer = removeFriend(input);
             else if (input.startsWith("win number"))
                 answer = showNumberOfWins(input);
             else if (input.startsWith("lose number"))
@@ -557,6 +559,23 @@ public class Server {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             } catch (AcceptAndDeclineFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String removeFriend(String string) {
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.removeFriend(process[2],process[3]);
+                return "done";
+            } catch (ExistFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistPlayerException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             } catch (IOException e) {

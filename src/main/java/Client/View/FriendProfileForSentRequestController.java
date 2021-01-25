@@ -30,9 +30,7 @@ import java.util.ResourceBundle;
 
 public class FriendProfileForSentRequestController implements Initializable {
 
-//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-private static DataLoader dataLoader = new DataLoader();
+    private static DataLoader dataLoader = new DataLoader();
 
 
     private static String usernameOfFriendForSentRequest = "null";
@@ -53,8 +51,6 @@ private static DataLoader dataLoader = new DataLoader();
     ImageView favBattle;
     @FXML
     ImageView favDots;
-//    @FXML
-//    Button btnRemove;
     @FXML
     Button btnSentRequest;
     @FXML
@@ -99,11 +95,11 @@ private static DataLoader dataLoader = new DataLoader();
     @FXML
     private void setBtnSentRequest(ActionEvent event) throws IOException {
         playMouseSound();
-        if (getUsernameOfFriendForSentRequest().equalsIgnoreCase("null")){
+        if (getUsernameOfFriendForSentRequest().equalsIgnoreCase("null")) {
             return;
         }
 
-        dataLoader.sentFriendRequest(LoginController.getUsername(),getUsernameOfFriendForSentRequest());
+        dataLoader.sentFriendRequest(LoginController.getUsername(), getUsernameOfFriendForSentRequest());
 
         setUsernameOfFriendForSentRequest("null");
 
@@ -210,7 +206,8 @@ private static DataLoader dataLoader = new DataLoader();
             imgMedal.setImage(image);
         }
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -230,7 +227,6 @@ private static DataLoader dataLoader = new DataLoader();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-
 
 
     }

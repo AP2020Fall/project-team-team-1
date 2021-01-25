@@ -83,6 +83,12 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
+    public String removeFriend(String username, String friendUsername) throws IOException {
+        Client.getDataOutputStream().writeUTF("Remove Friend " + username + " " + friendUsername);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
     /***********************************************************/
 
     public Player loadPlayer(String playerUsername) throws IOException {
