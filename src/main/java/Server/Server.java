@@ -178,6 +178,8 @@ public class Server {
                 answer = removeSuggestionServer(input);
             else if (input.startsWith("remove suggestion"))
                 answer = removeSuggestionServer(input);
+            else if (input.startsWith("make event "))
+                answer = makeEvent(input);
             else if (input.startsWith("mvp battle "))
                 answer = battleMvp();
             else if (input.startsWith("admin battle detail"))
