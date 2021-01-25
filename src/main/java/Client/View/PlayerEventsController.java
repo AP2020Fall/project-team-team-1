@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.ExistEventException;
 import Server.Controller.PlayerController.PlayerGeneralController;
@@ -33,6 +34,8 @@ import java.util.ResourceBundle;
 public class PlayerEventsController implements Initializable {
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
+
     private static ArrayList<Event> eventForShow ;
 
     public static ArrayList<Event> getEventForShow() {
@@ -135,6 +138,13 @@ public class PlayerEventsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            dataLoader.loadEventsList();
+            YourGameController.setPlayerFavoriteGames(dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()));
+            YourGameController.setPlayerSuggestionGames(dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         id.setCellValueFactory(new PropertyValueFactory<>("eventID"));
         game.setCellValueFactory(new PropertyValueFactory<>("GameName"));
         start.setCellValueFactory(new PropertyValueFactory<>("startDate"));
@@ -160,6 +170,7 @@ public class PlayerEventsController implements Initializable {
     );
     @FXML
     private void joinEvent(ActionEvent event) throws IOException, ExistEventException {
+        //todo Handel this
         if (playerGeneralController.eventActivation(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
             playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
             if (tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("b")||tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("B")){

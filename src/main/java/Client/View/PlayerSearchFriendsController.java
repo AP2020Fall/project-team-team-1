@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Model.PlatoModel.Player;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PlayerSearchFriendsController implements Initializable {
+    private static DataLoader dataLoader = new DataLoader();
+
     private static String searchedFriendUsername = "null";
     private static ArrayList<Player> playerList;
 
@@ -149,6 +152,12 @@ public class PlayerSearchFriendsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            dataLoader.loadPlayersList();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+
         tblFriends.setCellValueFactory(new PropertyValueFactory<>("userName"));
         tableView.setItems(friends);
 //        for (Player player : Player.getPlayers()) {

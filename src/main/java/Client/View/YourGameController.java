@@ -1,8 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class YourGameController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
     private static DataLoader dataLoader = new DataLoader();
     private static String playerFavoriteGames ;
     private static String playerSuggestionGames ;
@@ -141,12 +138,6 @@ public class YourGameController implements Initializable {
             String[] favoriteGames =getPlayerFavoriteGames().split("\\$");
             String[] suggestionGames = getPlayerSuggestionGames().split("\\s");
 
-//            if (favoriteGames[0].equalsIgnoreCase("battlesea") || favoriteGames[1].equalsIgnoreCase("battlesea") || favoriteGames[0].startsWith("b") || favoriteGames[1].startsWith("b")){
-//                favoriteBattle();
-//            }
-//            if (favoriteGames[0].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[1].equalsIgnoreCase("DotsAndBoxes") || favoriteGames[0].startsWith("d") || favoriteGames[1].startsWith("d")){
-//                favoriteDots();
-//            }
 
         for (String favoriteGame : favoriteGames) {
             if (favoriteGame.toUpperCase().startsWith("b")){
@@ -207,6 +198,12 @@ public class YourGameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            YourGameController.setPlayerFavoriteGames(dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()));
+            YourGameController.setPlayerSuggestionGames(dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     setpanes();
     }
 }

@@ -115,7 +115,7 @@ public class FriendsMainMenu implements Initializable {
             return;
         }
 
-        String[] showEvent = dataLoader.playerRequests(LoginController.getUsername()).split("\\$");
+        String[] showEvent = response.split("\\$");
         for (String out : showEvent) {
             listViewForRequests.getItems().add(out);
         }
@@ -147,7 +147,7 @@ public class FriendsMainMenu implements Initializable {
         }
 
 
-        String[] showEvent = dataLoader.playerFriends(LoginController.getUsername()).split("\\$");
+        String[] showEvent = response.split("\\$");
 
         for (String out : showEvent) {
             listViewFriends.getItems().add(out);

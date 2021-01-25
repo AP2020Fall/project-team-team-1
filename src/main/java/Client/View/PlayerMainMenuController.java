@@ -52,7 +52,6 @@ public class PlayerMainMenuController implements Initializable {
     @FXML
     private void goToPlayerEvents(ActionEvent event) throws IOException {
         playMouseSound();
-        dataLoader.loadEventsList();
         URL url = new File("src/main/resources/FXML/PlayerEvents.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -63,8 +62,6 @@ public class PlayerMainMenuController implements Initializable {
     @FXML
     private void goToPlayerFavoritesGames(ActionEvent event) throws IOException {
         playMouseSound();
-        YourGameController.setPlayerFavoriteGames(dataLoader.loadPlayerFavoriteGames(LoginController.getUsername()));
-        YourGameController.setPlayerSuggestionGames(dataLoader.loadPlayerSuggestedGames(LoginController.getUsername()));
         URL url = new File("src/main/resources/FXML/YourGame.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -75,8 +72,6 @@ public class PlayerMainMenuController implements Initializable {
     @FXML
     private void goToPlayerSearchFriends(ActionEvent event) throws IOException {
         playMouseSound();
-        dataLoader.loadPlayersList();
-
         URL url = new File("src/main/resources/FXML/PlayerSearchFriends.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
