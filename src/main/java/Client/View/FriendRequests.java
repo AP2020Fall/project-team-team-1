@@ -1,9 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.AcceptAndDeclineFriendException;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +22,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FriendRequests implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+    private static DataLoader dataLoader = new DataLoader();
 
     protected static String usernameForAcceptOrDecline = "null";
 
@@ -50,28 +47,34 @@ public class FriendRequests implements Initializable {
     Label name;
 
     @FXML
-    private void setImgStatusToCheck(){
+    private void setImgStatusToCheck() {
         File file = new File("src\\main\\resources\\Images\\check.png");
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
     }
+
     @FXML
-    private void setImgStatusToCross(){
+    private void setImgStatusToCross() {
         File file = new File("src\\main\\resources\\Images\\cross.png");
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
     }
+
     @FXML
-    private void setImgStatusToBackArrow(){
+    private void setImgStatusToBackArrow() {
         File file = new File("src\\main\\resources\\Images\\Nothing.png");
         Image image = new Image(file.toURI().toString());
         imgStatus.setImage(image);
     }
 
     @FXML
-    private void setBtnAccept(ActionEvent event) throws IOException, ExistPlayerException, AcceptAndDeclineFriendException {
+    private void setBtnAccept(ActionEvent event) throws IOException {
         playMouseSound();
-        playerGeneralController.acceptRequest(LoginController.getUsername(),getUsernameForAcceptOrDecline());
+        String response = dataLoader.acceptRequest(LoginController.getUsername(), getUsernameForAcceptOrDecline());
+        if (!response.equals("done")){
+            System.err.println(response);
+            return;
+        }
         setUsernameForAcceptOrDecline("null");
 
         {
@@ -83,10 +86,15 @@ public class FriendRequests implements Initializable {
             window.show();
         }
     }
+
     @FXML
-    private void setBtnDecline(ActionEvent event) throws IOException, ExistPlayerException, AcceptAndDeclineFriendException {
+    private void setBtnDecline(ActionEvent event) throws IOException {
         playMouseSound();
-        playerGeneralController.declineRequest(LoginController.getUsername(),getUsernameForAcceptOrDecline());
+        String response = dataLoader.declineRequest(LoginController.getUsername(), getUsernameForAcceptOrDecline());
+        if (!response.equals("done")){
+            System.err.println(response);
+            return;
+        }
         setUsernameForAcceptOrDecline("null");
 
         {
@@ -98,6 +106,7 @@ public class FriendRequests implements Initializable {
             window.show();
         }
     }
+
     @FXML
     private void back(ActionEvent event) throws IOException {
 
@@ -108,7 +117,8 @@ public class FriendRequests implements Initializable {
         window.setScene(message);
         window.show();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -116,11 +126,12 @@ public class FriendRequests implements Initializable {
     }
 
     @FXML
-    private void setName(){
-        name.setText(getUsernameForAcceptOrDecline()+" Sent you request !");
+    private void setName() {
+        name.setText(getUsernameForAcceptOrDecline() + " Sent you request !");
     }
+
     @FXML
-    public void close(ActionEvent event){
+    public void close(ActionEvent event) {
         System.exit(1);
     }
 

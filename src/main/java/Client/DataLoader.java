@@ -65,7 +65,25 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    /**********************************************************/
+    /*************************Friends***************************/
+    public String sentFriendRequest(String username, String friendUsername) throws IOException {
+        Client.getDataOutputStream().writeUTF("Sent Friend Request" + username + " " + friendUsername);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String declineRequest(String username, String friendUsername) throws IOException {
+        Client.getDataOutputStream().writeUTF("Decline Request " + username + " " + friendUsername);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String acceptRequest(String username, String friendUsername) throws IOException {
+        Client.getDataOutputStream().writeUTF("Accept Request " + username + " " + friendUsername);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    /***********************************************************/
 
     public Player loadPlayer(String playerUsername) throws IOException {
         Client.getDataOutputStream().writeUTF("data player " + playerUsername);

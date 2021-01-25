@@ -149,6 +149,10 @@ public class Server {
                 answer = playerFriends(input);
             else if (input.startsWith("Friends Requests"))
                 answer = playerRequests(input);
+            else if (input.startsWith("Accept Request"))
+                answer = acceptRequest(input);
+            else if (input.startsWith("Decline Request"))
+                answer = declineRequest(input);
             else if (input.startsWith("win number"))
                 answer = showNumberOfWins(input);
             else if (input.startsWith("lose number"))
@@ -501,6 +505,40 @@ public class Server {
             try {
                 return playerGeneralController.showRequests(process[2]);
             } catch (ExistFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String acceptRequest(String string) {
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.acceptRequest(process[2],process[3]);
+                return "done";
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (AcceptAndDeclineFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String declineRequest(String string) {
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.declineRequest(process[2],process[3]);
+                return "done";
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (AcceptAndDeclineFriendException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
