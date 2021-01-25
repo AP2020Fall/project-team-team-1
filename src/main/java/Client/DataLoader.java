@@ -23,14 +23,26 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String setUserProfile(String username, String path) throws IOException {
-        Client.getDataOutputStream().writeUTF("Edit Profile Picture " + username + " " + path);
+    public String login(String username, String password) throws IOException {
+        Client.getDataOutputStream().writeUTF("login " + username + "," + password);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String login(String username, String password) throws IOException {
-        Client.getDataOutputStream().writeUTF("login " + username + "," + password);
+    /***************************Profile edit******************/
+    public String editProfileDetails(String username,String kind, String input) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Profile Details " + username + " "+kind +" " + input);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String editProfileBio(String username, String input) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Profile Bio " + username + " " + input);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String setUserProfile(String username, String path) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Profile Picture " + username + " " + path);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -42,6 +54,19 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return new Gson().fromJson(Client.getDataInputStream().readUTF(), Player.class);
 
+    }
+
+    public String loadPlayerBasicInformation(String playerUsername) throws IOException {
+        Client.getDataOutputStream().writeUTF("Basic Information player " + playerUsername);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+
+    }
+
+    public String playerAge(String username ) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Age "+ username );
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
     }
 
     public Admin loadAdmin(String adminUsername) throws IOException {
@@ -152,6 +177,12 @@ public class DataLoader {
 
     public String pointsInThisGame(String username , String gameName) throws IOException {
         Client.getDataOutputStream().writeUTF("points number "+ username +" "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String playerPoints(String username ) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player ToTal Point "+ username );
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
