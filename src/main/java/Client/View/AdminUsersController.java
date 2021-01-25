@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Model.PlatoModel.Player;
 import javafx.collections.FXCollections;
@@ -27,7 +28,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminUsersController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
     @FXML
     public TableView<Player> table;
@@ -105,8 +107,16 @@ public class AdminUsersController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblPlayerNum.setText(String.valueOf(Player.getPlayers().size()));
-        lblGamesNum.setText(adminGeneralController.numberOfTotalPlayed());
-        lblMVP.setText(adminGeneralController.getMVPUser());
+        try {
+            lblGamesNum.setText(dataLoader.totalPlayedPlato());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            lblMVP.setText(dataLoader.mvpPlato());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         tblID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
         tblUsername.setCellValueFactory(new PropertyValueFactory<>("userName"));
         table.setItems(players);

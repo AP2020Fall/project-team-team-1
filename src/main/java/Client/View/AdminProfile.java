@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
@@ -31,7 +32,8 @@ import java.util.ResourceBundle;
 
 public class AdminProfile implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    String[] strings = adminGeneralController.showAdminInfo().split("\\$");
+    private static DataLoader dataLoader = new DataLoader();
+    String[] strings;
     private File file;
 
     @FXML
@@ -101,6 +103,11 @@ public class AdminProfile implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            strings = dataLoader.loadAdminInfo().split("\\$");
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         simplePane.toFront();
         btnSubmitEdit.setDisable(!txtNewValue.getText().isEmpty());
 

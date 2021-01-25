@@ -281,6 +281,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String mvpPlato() throws IOException {
+        Client.getDataOutputStream().writeUTF("Mvp plato ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     public String mvpDots() throws IOException {
         Client.getDataOutputStream().writeUTF("Mvp dots ");
         Client.getDataOutputStream().flush();
@@ -300,7 +306,7 @@ public class DataLoader {
     }
 
     public String activeGame(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Active Game  "+string);
+        Client.getDataOutputStream().writeUTF("Active Game "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -323,8 +329,20 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String totalPlayedPlato() throws IOException {
+        Client.getDataOutputStream().writeUTF("Total Played Plato ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     public String activeStatus(String string) throws IOException {
         Client.getDataOutputStream().writeUTF("Activation Status "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String loadAdminInfo() throws IOException {
+        Client.getDataOutputStream().writeUTF("Admin info ");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }

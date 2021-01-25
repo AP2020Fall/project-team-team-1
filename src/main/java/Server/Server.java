@@ -182,6 +182,8 @@ public class Server {
                 answer = battleMvp();
             else if (input.startsWith("Mvp dots "))
                 answer = dotsMvp();
+            else if (input.startsWith("Mvp plato "))
+                answer = platoMvp();
             else if (input.startsWith("Admin battle detail"))
                 answer = battleDetail(input);
             else if (input.startsWith("Admin dots detail"))
@@ -194,8 +196,12 @@ public class Server {
                 answer = totalPlayFirstGame();
             else if (input.startsWith("Total Played Dots "))
                 answer = totalPlaySecondGame();
+            else if (input.startsWith("Total Played Plato "))
+                answer = totalPlayPlatoGame();
             else if (input.startsWith("Activation Status "))
                 answer = gameActivationStatus(input);
+            else if (input.startsWith("Admin info "))
+                answer = showAdminInfo();
 
             return answer;
         }
@@ -862,6 +868,12 @@ public class Server {
         private String dotsMvp() {
             return adminGeneralController.getMVPUserSecondGame();
         }
+        private String showAdminInfo() {
+            return adminGeneralController.showAdminInfo();
+        }
+        private String platoMvp() {
+            return adminGeneralController.getMVPUserSecondGame();
+        }
 
         private String battleDetail(String string) {
             String[] process = string.split("\\s");
@@ -928,6 +940,10 @@ public class Server {
             return adminGeneralController.numberOfTotalPlayedSecondGame();
         }
 
+        private String totalPlayPlatoGame() {
+            return adminGeneralController.numberOfTotalPlayed();
+        }
+
         private String gameActivationStatus(String string){
             String[] process = string.split("\\s");
             try {
@@ -937,6 +953,7 @@ public class Server {
                 return e.getMessage();
             }
         }
+
     }
 
 
