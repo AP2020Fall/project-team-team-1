@@ -1,10 +1,12 @@
 package Client;
 
+import Client.View.AdminEditSuggestion;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
 import Client.View.PlayerEventsController;
 import Client.View.PlayerSearchFriendsController;
+import Server.Model.PlatoModel.Suggestion;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -134,6 +136,14 @@ public class DataLoader {
         ArrayList<Player> output = new Gson().fromJson(Client.getDataInputStream().readUTF(), type);
         PlayerSearchFriendsController.setPlayerList(output);
     }
+    public void loadSuggestion() throws IOException {
+        Client.getDataOutputStream().writeUTF("suggestion list");
+        Client.getDataOutputStream().flush();
+        Type type = new TypeToken<ArrayList<Suggestion>>() {
+        }.getType();
+        ArrayList<Suggestion> output = new Gson().fromJson(Client.getDataInputStream().readUTF(), type);
+        AdminEditSuggestion.setAllSuggestion(output);
+    }
 
     public String loadPlayerFavoriteGames(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("Player Favorite Games " + username);
@@ -249,6 +259,12 @@ public class DataLoader {
 
     public String dotsDetails() throws IOException {
         Client.getDataOutputStream().writeUTF("load dots details");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String removeSuggestion(String suggestionId) throws IOException {
+        Client.getDataOutputStream().writeUTF("remove suggestion "+suggestionId);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }

@@ -12,6 +12,7 @@ import Server.Model.DataBase.DataBase;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
+import Server.Model.PlatoModel.Suggestion;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -171,6 +172,10 @@ public class Server {
                 answer = showScoreBoardBattleSea(input);
             else if (input.startsWith("dots scoreboard "))
                 answer = showScoreBoardDotsAndBoxes(input);
+            else if (input.startsWith("suggestion list"))
+                answer = getSuggestion();
+            else if (input.startsWith("remove suggestion"))
+                answer = removeSuggestionServer(input);
 
             return answer;
         }
@@ -393,6 +398,10 @@ public class Server {
 
         private String getPlayersList() {
             return new Gson().toJson(Player.getPlayers());
+        }
+
+        private String getSuggestion() {
+            return new Gson().toJson(Suggestion.getAllSuggestions());
         }
 
         private String playerFavoriteGames(String string) {
@@ -769,9 +778,10 @@ public class Server {
                 return playerGeneralController.showPoint(process[3]);
             } catch (ExistPlayerException e) {
                 System.err.println(e.getMessage());
+                return e.getMessage();
             }
 
-            return "invalid";
+
         }
 
         private String showScoreBoardBattleSea (String string){
@@ -779,9 +789,10 @@ public class Server {
             try {
                 return playerGeneralController.showScoreboardInThisGame(process[2]);
             } catch (InvalidGameNameException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
-            return "invalid";
+
         }
 
         private String showScoreBoardDotsAndBoxes (String string){
@@ -789,9 +800,27 @@ public class Server {
             try {
                 return playerGeneralController.showScoreboardInThisGame(process[2]);
             } catch (InvalidGameNameException e) {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
-            return "invalid";
+
+        }
+
+        private String removeSuggestionServer(String string)  {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.removeSuggestion(process[2]);
+                return "done";
+            } catch (ExistSuggestionException e) {
+
+                System.err.println(e.getMessage());
+                return e.getMessage();
+
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
         }
 
 
