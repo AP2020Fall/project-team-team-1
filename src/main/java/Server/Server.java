@@ -102,6 +102,10 @@ public class Server {
                 answer = validation(input);
             else if (input.startsWith("Edit Profile Picture"))
                 answer = editProfilePic(input);
+            else if (input.startsWith("Edit Profile Details"))
+                answer = editProfileDetails(input);
+            else if (input.startsWith("Edit Profile Bio"))
+                answer = editProfileBio(input);
             else if (input.startsWith("login"))
                 answer = login(input);
             else if (input.startsWith("data"))
@@ -110,6 +114,10 @@ public class Server {
                 answer = getEvents();
             else if (input.startsWith("Player List"))
                 answer = getPlayersList();
+            else if (input.startsWith("Basic Information player"))
+                answer = getPlayersBasicInformation(input);
+            else if (input.startsWith("Player Age"))
+                answer = getPlayersAge(input);
             else if (input.startsWith("Player Favorite Games"))
                 answer = playerFavoriteGames(input);
             else if (input.startsWith("Add Player Favorite Games"))
@@ -140,6 +148,8 @@ public class Server {
                 answer = showNumberOfLoses(input);
             else if (input.startsWith("play number"))
                 answer = showNumberOfPlayed(input);
+            else if (input.startsWith("Player ToTal Point"))
+                answer = showNumberOfToTalPoints(input);
             else if (input.startsWith("points number"))
                 answer = showNumberOfPointsInThisGame(input);
             else if (input.startsWith("battle scoreboard "))
@@ -184,6 +194,47 @@ public class Server {
             }
 
             return "Failure";
+        }
+
+        private String editProfileBio(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                playerGeneralController.editProfileURL(process[3], string.substring(string.indexOf(process[4])));
+                return "done";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+
+            return "Failure";
+        }
+
+        private String editProfileDetails(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                playerGeneralController.editField(process[3]+ " "+ process[4] +" "+ process[5]);
+                return "done";
+            } catch (InvalidNameException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidEmailException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidPhoneNumberException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistEmailException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidFieldException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
         }
 
         private String login(String input) {
@@ -237,6 +288,26 @@ public class Server {
                 return gson.toJson(Admin.getAdmins().get(0));
             } else {
                 return gson.toJson(FindPlayerByInfo.findByUserName(process[2]));
+            }
+        }
+
+        private String getPlayersBasicInformation(String input) {
+            String[] process = input.split("\\s");
+            try {
+                return playerGeneralController.showBasicInformation(process[3]);
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String getPlayersAge(String input) {
+            String[] process = input.split("\\s");
+            try {
+                return playerGeneralController.showUserAge(process[2]);
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
         }
 
@@ -563,6 +634,18 @@ public class Server {
                     return e.getMessage();
                 }
             }
+            return "invalid";
+        }
+
+        private String showNumberOfToTalPoints(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                return playerGeneralController.showPoint(process[3]);
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+            }
+
             return "invalid";
         }
 
