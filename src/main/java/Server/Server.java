@@ -178,6 +178,18 @@ public class Server {
                 answer = removeSuggestionServer(input);
             else if (input.startsWith("remove suggestion"))
                 answer = removeSuggestionServer(input);
+            else if (input.startsWith("mvp battle "))
+                answer = battleMvp();
+            else if (input.startsWith("admin battle detail"))
+                answer = battleDetail(input);
+            else if (input.startsWith("active battle "))
+                answer = gameActive(input);
+            else if (input.startsWith("deactive battle "))
+                answer = battleDeActive(input);
+            else if (input.startsWith("total battle "))
+                answer = totalPlayFirstGame();
+            else if (input.startsWith("status active "))
+                answer = gameActivationStatus(input);
 
             return answer;
         }
@@ -235,7 +247,7 @@ public class Server {
             String[] process = string.split("\\s");
 
             try {
-                playerGeneralController.editField(process[3]+ " "+ process[4] +" "+ process[5]);
+                playerGeneralController.editField(process[3] + " " + process[4] + " " + process[5]);
                 return "done";
             } catch (InvalidNameException e) {
                 System.err.println(e.getMessage());
@@ -259,7 +271,7 @@ public class Server {
 
         }
 
-        private String editPassword(String string){
+        private String editPassword(String string) {
             String[] process = string.split("\\s");
 
             try {
@@ -284,12 +296,12 @@ public class Server {
 
         }
 
-        private String confirmPassword(String string){
+        private String confirmPassword(String string) {
             String[] process = string.split("\\s");
-            return Existence.checkPasswordForView(process[2],process[3]);
+            return Existence.checkPasswordForView(process[2], process[3]);
         }
 
-        private String deletePlayer(String string){
+        private String deletePlayer(String string) {
             String[] process = string.split("\\s");
             try {
                 playerGeneralController.deleteUser(process[2]);
@@ -418,9 +430,9 @@ public class Server {
         private String addPlayerFavoriteGames(String string) {
             String[] process = string.split("\\s");
 
-            if (process[5].equalsIgnoreCase("first")){
+            if (process[5].equalsIgnoreCase("first")) {
                 try {
-                    playerGeneralController.addGameToFavoritesGames(process[4],adminGeneralController.firstGameNameGetter());
+                    playerGeneralController.addGameToFavoritesGames(process[4], adminGeneralController.firstGameNameGetter());
                     return "done";
                 } catch (ExistFavoriteException e) {
                     System.err.println(e.getMessage());
@@ -433,10 +445,10 @@ public class Server {
                     return e.getMessage();
                 }
 
-            }else if (process[5].equalsIgnoreCase("second")){
+            } else if (process[5].equalsIgnoreCase("second")) {
 
                 try {
-                    playerGeneralController.addGameToFavoritesGames(process[4],adminGeneralController.secondGameNameGetter());
+                    playerGeneralController.addGameToFavoritesGames(process[4], adminGeneralController.secondGameNameGetter());
                     return "done";
                 } catch (ExistFavoriteException e) {
                     System.err.println(e.getMessage());
@@ -448,7 +460,7 @@ public class Server {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
-            }else {
+            } else {
                 return "Invalid input Game";
             }
         }
@@ -456,9 +468,9 @@ public class Server {
         private String removePlayerFavoriteGames(String string) {
             String[] process = string.split("\\s");
 
-            if (process[5].equalsIgnoreCase("first")){
+            if (process[5].equalsIgnoreCase("first")) {
                 try {
-                    playerGeneralController.RemoveFavoritesGames(process[4],adminGeneralController.firstGameNameGetter());
+                    playerGeneralController.RemoveFavoritesGames(process[4], adminGeneralController.firstGameNameGetter());
                     return "done";
                 } catch (ExistFavoriteException e) {
                     System.err.println(e.getMessage());
@@ -471,10 +483,10 @@ public class Server {
                     return e.getMessage();
                 }
 
-            }else if (process[5].equalsIgnoreCase("second")){
+            } else if (process[5].equalsIgnoreCase("second")) {
 
                 try {
-                    playerGeneralController.RemoveFavoritesGames(process[4],adminGeneralController.secondGameNameGetter());
+                    playerGeneralController.RemoveFavoritesGames(process[4], adminGeneralController.secondGameNameGetter());
                     return "done";
                 } catch (ExistFavoriteException e) {
                     System.err.println(e.getMessage());
@@ -487,7 +499,7 @@ public class Server {
                     return e.getMessage();
                 }
 
-            }else {
+            } else {
                 return "Invalid input Game";
             }
         }
@@ -529,7 +541,7 @@ public class Server {
             String[] process = string.split("\\s");
 
             try {
-                playerGeneralController.addFriends(process[3],process[4]);
+                playerGeneralController.addFriends(process[3], process[4]);
                 return "done";
             } catch (ExistFriendException e) {
                 System.err.println(e.getMessage());
@@ -547,7 +559,7 @@ public class Server {
         private String acceptRequest(String string) {
             String[] process = string.split("\\s");
             try {
-                playerGeneralController.acceptRequest(process[2],process[3]);
+                playerGeneralController.acceptRequest(process[2], process[3]);
                 return "done";
             } catch (ExistPlayerException e) {
                 System.err.println(e.getMessage());
@@ -564,7 +576,7 @@ public class Server {
         private String declineRequest(String string) {
             String[] process = string.split("\\s");
             try {
-                playerGeneralController.declineRequest(process[2],process[3]);
+                playerGeneralController.declineRequest(process[2], process[3]);
                 return "done";
             } catch (ExistPlayerException e) {
                 System.err.println(e.getMessage());
@@ -581,7 +593,7 @@ public class Server {
         private String removeFriend(String string) {
             String[] process = string.split("\\s");
             try {
-                playerGeneralController.removeFriend(process[2],process[3]);
+                playerGeneralController.removeFriend(process[2], process[3]);
                 return "done";
             } catch (ExistFriendException e) {
                 System.err.println(e.getMessage());
@@ -691,17 +703,16 @@ public class Server {
 
         private String showNumberOfWins(String string) {
             String[] process = string.split("\\s");
-            if (process[3].equalsIgnoreCase("first")){
+            if (process[3].equalsIgnoreCase("first")) {
                 try {
-                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showNumberOFWins(process[2], adminGeneralController.firstGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
-            }
-            else if (process[3].equalsIgnoreCase("second")){
+            } else if (process[3].equalsIgnoreCase("second")) {
                 try {
-                    return playerGeneralController.showNumberOFWins(process[2],adminGeneralController.secondGameNameGetter());
+                    return playerGeneralController.showNumberOFWins(process[2], adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -712,17 +723,16 @@ public class Server {
 
         private String showNumberOfLoses(String string) {
             String[] process = string.split("\\s");
-            if (process[3].equalsIgnoreCase("first")){
+            if (process[3].equalsIgnoreCase("first")) {
                 try {
-                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.numberOfLossesInThisGame(process[2], adminGeneralController.firstGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
-            }
-            else if (process[3].equalsIgnoreCase("second")){
+            } else if (process[3].equalsIgnoreCase("second")) {
                 try {
-                    return playerGeneralController.numberOfLossesInThisGame(process[2],adminGeneralController.secondGameNameGetter());
+                    return playerGeneralController.numberOfLossesInThisGame(process[2], adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -733,17 +743,16 @@ public class Server {
 
         private String showNumberOfPlayed(String string) {
             String[] process = string.split("\\s");
-            if (process[3].equalsIgnoreCase("first")){
+            if (process[3].equalsIgnoreCase("first")) {
                 try {
-                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2], adminGeneralController.firstGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
-            }
-            else if (process[3].equalsIgnoreCase("second")){
+            } else if (process[3].equalsIgnoreCase("second")) {
                 try {
-                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2],adminGeneralController.secondGameNameGetter());
+                    return playerGeneralController.showNumberOfGamePlayedInThisGame(process[2], adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -754,17 +763,16 @@ public class Server {
 
         private String showNumberOfPointsInThisGame(String string) {
             String[] process = string.split("\\s");
-            if (process[3].equalsIgnoreCase("first")){
+            if (process[3].equalsIgnoreCase("first")) {
                 try {
-                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.firstGameNameGetter());
+                    return playerGeneralController.showPlayerPointsInThisGame(process[2], adminGeneralController.firstGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
                 }
-            }
-            else if (process[3].equalsIgnoreCase("second")){
+            } else if (process[3].equalsIgnoreCase("second")) {
                 try {
-                    return playerGeneralController.showPlayerPointsInThisGame(process[2],adminGeneralController.secondGameNameGetter());
+                    return playerGeneralController.showPlayerPointsInThisGame(process[2], adminGeneralController.secondGameNameGetter());
                 } catch (InvalidGameNameException e) {
                     System.err.println(e.getMessage());
                     return e.getMessage();
@@ -786,7 +794,7 @@ public class Server {
 
         }
 
-        private String showScoreBoardBattleSea (String string){
+        private String showScoreBoardBattleSea(String string) {
             String[] process = string.split("\\s");
             try {
                 return playerGeneralController.showScoreboardInThisGame(process[2]);
@@ -797,7 +805,7 @@ public class Server {
 
         }
 
-        private String showScoreBoardDotsAndBoxes (String string){
+        private String showScoreBoardDotsAndBoxes(String string) {
             String[] process = string.split("\\s");
             try {
                 return playerGeneralController.showScoreboardInThisGame(process[2]);
@@ -808,7 +816,7 @@ public class Server {
 
         }
 
-        private String removeSuggestionServer(String string)  {
+        private String removeSuggestionServer(String string) {
             String[] process = string.split("\\s");
             try {
                 adminGeneralController.removeSuggestion(process[2]);
@@ -825,7 +833,7 @@ public class Server {
 
         }
 
-        private String makeEvent(String string){
+        private String makeEvent(String string) {
             String[] process = string.split("\\s");
             try {
                 adminGeneralController.addEvent(string.substring(string.indexOf(process[2])));
@@ -842,7 +850,64 @@ public class Server {
             }
         }
 
+        private String battleMvp() {
+            return adminGeneralController.getMVPUserFirstGame();
+        }
 
+        private String battleDetail(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.setDetails(process[3], process[4]);
+                return "done";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
 
+        private String gameActive(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                adminGeneralController.activeGame(process[2]);
+                return "done";
+            } catch (InvalidGameID invalidGameID) {
+                invalidGameID.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (GameActivation gameActivation) {
+                gameActivation.printStackTrace();
+            }
+            return "invalid";
+        }
+
+        private String battleDeActive(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.deActiveGame(process[2]);
+                return "done";
+            } catch (InvalidGameID invalidGameID) {
+                invalidGameID.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (GameActivation gameActivation) {
+                gameActivation.printStackTrace();
+            }
+            return "invalid";
+        }
+        private String totalPlayFirstGame() {
+            return adminGeneralController.numberOfTotalPlayedFirstGame();
+        }
+        private String gameActivationStatus(String string){
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.activationStatus(process[2]);
+            } catch (InvalidGameID invalidGameID) {
+                invalidGameID.printStackTrace();
+            }
+            return "invalid";
+        }
     }
+
+
 }

@@ -31,7 +31,7 @@ import java.util.ResourceBundle;
 
 public class AdminEditSuggestion implements Initializable {
 
-    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+
     private static DataLoader dataLoader = new DataLoader();
 
     int chosenID ;

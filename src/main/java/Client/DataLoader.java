@@ -268,8 +268,45 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String makeEvent(String string) throws IOException {
         Client.getDataOutputStream().writeUTF("make event "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String mvpBattle() throws IOException {
+        Client.getDataOutputStream().writeUTF("mvp battle ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String setDetail (String gameName , String text) throws IOException {
+        Client.getDataOutputStream().writeUTF("admin battle detail "+ gameName +" "+ text);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String activeBattle(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("active battle "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String deActiveBattle(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("deactive battle "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String totalPlayedBattle() throws IOException {
+        Client.getDataOutputStream().writeUTF("total battle ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String activeStatus(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("status active "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
