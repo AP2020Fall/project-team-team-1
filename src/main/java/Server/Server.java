@@ -116,6 +116,8 @@ public class Server {
                 answer = playerSuggestedGames(input);
             else if (input.startsWith("Player Plato Message"))
                 answer = playerPlatoMessage();
+            else if (input.startsWith("Player Game Log"))
+                answer = getPlayerGameLog(input);
             else if (input.startsWith("load battle details"))
                 answer = showBattleDetails();
             else if (input.startsWith("load dots details"))
@@ -180,7 +182,6 @@ public class Server {
             return "Failure";
         }
 
-
         private String login(String input) {
             int commaIndex = input.indexOf(",");
             String username = input.substring(6, commaIndex);
@@ -244,6 +245,20 @@ public class Server {
                 e.printStackTrace();
             }
             return new Gson().toJson(Event.getEvents());
+        }
+
+        private String getPlayerGameLog(String string) {
+            String[] process = string.split("\\s");
+
+            try {
+                return playerGeneralController.showUserLog(process[3]);
+            } catch (ExistPlayerLogException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistPlayerException e) {
+                System.err.println(e.getMessage());
+                return "No Player";
+            }
         }
 
         private String getPlayersList() {

@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.ExistPlayerException;
 import Server.Controller.Exception.Plato.ExistPlayerLogException;
@@ -24,8 +25,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameLogController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
     @FXML
     ListView<String> listView;
@@ -46,24 +46,30 @@ public class GameLogController implements Initializable {
         mediaPlayer.play();
     }
     @FXML
-    private void setListView() throws ExistPlayerLogException, ExistPlayerException {
+    private void setListView() throws IOException {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
-        String[] showLog = playerGeneralController.showUserLog(LoginController.getUsername()).split("\\$");
+        String response = dataLoader.loadPlayerGameLog(LoginController.getUsername());
+        if (response.equals("There is no log for this player yet!")){
+            System.err.println("There is no log for this player yet!");
+            return;
+        }
+        if (response.equals("No Player")){
+            System.err.println("No Player");
+            return;
+        }
+        String[] showLog = response.split("\\$");
         for (String out : showLog) {
             listView.getItems().add(out);
         }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         try {
             setListView();
-
-
-        } catch (ExistPlayerLogException e) {
-            e.printStackTrace();
-        } catch (ExistPlayerException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

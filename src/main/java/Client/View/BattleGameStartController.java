@@ -38,7 +38,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameStartController implements Initializable {
+public class BattleGameStartController implements Initializable {
     private static final File file = new File("src\\main\\resources\\Sound\\medalion.mp3");
     protected static Media media = new Media(file.toURI().toString());
     protected static MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -59,7 +59,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setTimeForGame(String timeForGame) {
-        GameStartController.timeForGame = timeForGame;
+        BattleGameStartController.timeForGame = timeForGame;
     }
 
     public static long getScore() {
@@ -67,7 +67,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setScore(long score) {
-        GameStartController.score = score;
+        BattleGameStartController.score = score;
     }
 
     public static Boolean getPassForNextTurnPlayer1() {
@@ -75,7 +75,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setPassForNextTurnPlayer1(Boolean passForNextTurnPlayer1) {
-        GameStartController.passForNextTurnPlayer1 = passForNextTurnPlayer1;
+        BattleGameStartController.passForNextTurnPlayer1 = passForNextTurnPlayer1;
     }
 
     public static Boolean getPassForNextTurnPlayer2() {
@@ -83,7 +83,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setPassForNextTurnPlayer2(Boolean passForNextTurnPlayer2) {
-        GameStartController.passForNextTurnPlayer2 = passForNextTurnPlayer2;
+        BattleGameStartController.passForNextTurnPlayer2 = passForNextTurnPlayer2;
     }
 
     public static GridPane getGridPanePlayer1() {
@@ -91,7 +91,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setGridPanePlayer1(GridPane gridPanePlayer1) {
-        GameStartController.gridPanePlayer1 = gridPanePlayer1;
+        BattleGameStartController.gridPanePlayer1 = gridPanePlayer1;
     }
 
     public static GridPane getGridPanePlayer2() {
@@ -99,7 +99,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setGridPanePlayer2(GridPane gridPanePlayer2) {
-        GameStartController.gridPanePlayer2 = gridPanePlayer2;
+        BattleGameStartController.gridPanePlayer2 = gridPanePlayer2;
     }
 
     public static BattleSeaController getBattleSeaController1() {
@@ -107,7 +107,7 @@ public class GameStartController implements Initializable {
     }
 
     public static void setBattleSeaController1(BattleSeaController battleSeaController1) {
-        GameStartController.battleSeaController1 = battleSeaController1;
+        BattleGameStartController.battleSeaController1 = battleSeaController1;
     }
 
     /***************************** Player1 *****************************/
@@ -212,10 +212,10 @@ public class GameStartController implements Initializable {
         try {
             result = getBattleSeaController1().boomProcessor("player1", boom);
         } catch (BattleShipWinner battleShipWinner) {
-            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
-            Game.historySaver(LocalDate.now(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattlePreparationController.getPlayer1(), BattlePreparationController.getPlayer2(), getScore());
+            Game.historySaver(LocalDate.now(), BattlePreparationController.getPlayer1(), BattlePreparationController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
-            BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
+            BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer1());
             URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
@@ -356,10 +356,10 @@ public class GameStartController implements Initializable {
         try {
             result = getBattleSeaController1().boomProcessor("player2", boom);
         } catch (BattleShipWinner battleShipWinner) {
-            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
-            Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
+            Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattlePreparationController.getPlayer2(), BattlePreparationController.getPlayer1(), getScore());
+            Game.historySaver(LocalDate.now(), BattlePreparationController.getPlayer2(), BattlePreparationController.getPlayer1(), adminGeneralController.firstGameNameGetter());
 
-            BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer2());
+            BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer2());
             URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
@@ -523,10 +523,10 @@ public class GameStartController implements Initializable {
     @FXML
     void SurrenderPlayer1(ActionEvent event) throws IOException {
         playMouseSound();
-        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), getScore());
-        Game.historySaver(LocalDate.now(), BattleTestController.getPlayer2(), BattleTestController.getPlayer1(), adminGeneralController.firstGameNameGetter());
+        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattlePreparationController.getPlayer2(), BattlePreparationController.getPlayer1(), getScore());
+        Game.historySaver(LocalDate.now(), BattlePreparationController.getPlayer2(), BattlePreparationController.getPlayer1(), adminGeneralController.firstGameNameGetter());
 
-        BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer2());
+        BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer2());
         URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -538,10 +538,10 @@ public class GameStartController implements Initializable {
     @FXML
     void SurrenderPlayer2(ActionEvent event) throws IOException {
         playMouseSound();
-        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), getScore());
-        Game.historySaver(LocalDate.now(), BattleTestController.getPlayer1(), BattleTestController.getPlayer2(), adminGeneralController.firstGameNameGetter());
+        Game.giveScoreAndEditPlayerLog(adminGeneralController.firstGameNameGetter(), BattlePreparationController.getPlayer1(), BattlePreparationController.getPlayer2(), getScore());
+        Game.historySaver(LocalDate.now(), BattlePreparationController.getPlayer1(), BattlePreparationController.getPlayer2(), adminGeneralController.firstGameNameGetter());
 
-        BattleWinnerController.setWinnerPlayerUsername(BattleTestController.getPlayer1());
+        BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer1());
         URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -570,20 +570,20 @@ public class GameStartController implements Initializable {
 
     @FXML
     private void setProfiles() throws MalformedURLException {
-        player1User.setText(BattleTestController.getPlayer1());
-        player2User.setText(BattleTestController.getPlayer2());
+        player1User.setText(BattlePreparationController.getPlayer1());
+        player2User.setText(BattlePreparationController.getPlayer2());
         point.setText(getScore() + "PT");
 
         String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator
-                + "Users" + File.separator + BattleTestController.getPlayer1() + File.separator
-                + BattleTestController.getPlayer1() + ".jpg";
+                + "Users" + File.separator + BattlePreparationController.getPlayer1() + File.separator
+                + BattlePreparationController.getPlayer1() + ".jpg";
 
         URL url = new File(path).toURI().toURL();
         player1Pro.setImage(new Image(url.toExternalForm()));
 
         String path1 = "src" + File.separator + "main" + File.separator + "resources" + File.separator
-                + "Users" + File.separator + BattleTestController.getPlayer2() + File.separator
-                + BattleTestController.getPlayer2() + ".jpg";
+                + "Users" + File.separator + BattlePreparationController.getPlayer2() + File.separator
+                + BattlePreparationController.getPlayer2() + ".jpg";
         URL url1 = new File(path1).toURI().toURL();
         player2Pro.setImage(new Image(url1.toExternalForm()));
 

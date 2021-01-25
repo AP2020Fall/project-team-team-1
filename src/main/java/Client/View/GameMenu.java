@@ -44,46 +44,6 @@ public class GameMenu implements Initializable {
     @FXML
     Button btnDots;
 
-//    @FXML
-//    private void goBattleShipMenu(ActionEvent actionEvent) throws IOException, InvalidGameID {
-//
-//        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")){
-//            showError();
-//            URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
-//            Parent register = FXMLLoader.load(url);
-//            Scene message = new Scene(register);
-//            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            window.setScene(message);
-//            window.show();
-//        }
-//        else if (adminGeneralController.activationStatus("1").equalsIgnoreCase("true")){
-//            URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
-//            Parent register = FXMLLoader.load(url);
-//            Scene message = new Scene(register);
-//            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            window.setScene(message);
-//            window.show();
-//        }
-//
-//
-//        if (adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
-//            showError();
-//            URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
-//            Parent register = FXMLLoader.load(url);
-//            Scene message = new Scene(register);
-//            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            window.setScene(message);
-//            window.show();
-//        } else if (adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("false")){
-//            URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
-//            Parent register = FXMLLoader.load(url);
-//            Scene message = new Scene(register);
-//            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-//            window.setScene(message);
-//            window.show();
-//        }
-//
-//    }
 
     @FXML
     private void goBattleShipMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
@@ -133,7 +93,6 @@ public class GameMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
-
 
 
     private void showError() throws IOException {

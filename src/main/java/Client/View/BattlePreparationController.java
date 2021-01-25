@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BattleTestController implements Initializable {
+public class BattlePreparationController implements Initializable {
     private static String player1 = "player";
     private static String player2 = "player2";
     private static long score ;
@@ -35,7 +35,7 @@ public class BattleTestController implements Initializable {
     }
 
     public static void setScore(long score) {
-        BattleTestController.score = score;
+        BattlePreparationController.score = score;
     }
 
     public BattleSeaController getBattleSeaController1() {
@@ -51,7 +51,7 @@ public class BattleTestController implements Initializable {
     }
 
     public static void setPlayer1(String player1) {
-        BattleTestController.player1 = player1;
+        BattlePreparationController.player1 = player1;
     }
 
     public static String getPlayer2() {
@@ -59,7 +59,7 @@ public class BattleTestController implements Initializable {
     }
 
     public static void setPlayer2(String player2) {
-        BattleTestController.player2 = player2;
+        BattlePreparationController.player2 = player2;
     }
 
     @FXML
@@ -322,11 +322,11 @@ public class BattleTestController implements Initializable {
     @FXML
     private void next1(ActionEvent event) throws IOException {
         playMouseSound();
-        GameStartController.setGridPanePlayer1(gridPlayer1);
-        GameStartController.setGridPanePlayer2(gridPlayer2);
-        GameStartController.setBattleSeaController1(battleSeaController1);
-        GameStartController.setScore(getScore());
-        URL url = new File("src/main/resources/FXML/GameStart.fxml").toURI().toURL();
+        BattleGameStartController.setGridPanePlayer1(gridPlayer1);
+        BattleGameStartController.setGridPanePlayer2(gridPlayer2);
+        BattleGameStartController.setBattleSeaController1(battleSeaController1);
+        BattleGameStartController.setScore(getScore());
+        URL url = new File("src/main/resources/FXML/BattleGameStart.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

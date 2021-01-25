@@ -73,6 +73,11 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+    public String loadPlayerGameLog(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Game Log " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
 
     public String loadPlayerSuggestedGames(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("Player Suggested Games " + username);

@@ -124,11 +124,11 @@ public class BattleShipRunMenu implements Initializable {
         }
         try {
             logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
-            BattleTestController.setPlayer1(this.username);
-            BattleTestController.setPlayer2(txtUsername.getText());
-            BattleTestController.setScore(getScore());
-            GameStartController.setTimeForGame(btnField.getValue());
-            URL url = new File("src/main/resources/FXML/BattleTest.fxml").toURI().toURL();
+            BattlePreparationController.setPlayer1(this.username);
+            BattlePreparationController.setPlayer2(txtUsername.getText());
+            BattlePreparationController.setScore(getScore());
+            BattleGameStartController.setTimeForGame(btnField.getValue());
+            URL url = new File("src/main/resources/FXML/BattlePreparation.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
