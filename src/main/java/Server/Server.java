@@ -112,6 +112,10 @@ public class Server {
                 answer = getPlayersList();
             else if (input.startsWith("Player Favorite Games"))
                 answer = playerFavoriteGames(input);
+            else if (input.startsWith("Add Player Favorite Games"))
+                answer = addPlayerFavoriteGames(input);
+            else if (input.startsWith("Remove Player Favorite Games"))
+                answer = removePlayerFavoriteGames(input);
             else if (input.startsWith("Player Suggested Games"))
                 answer = playerSuggestedGames(input);
             else if (input.startsWith("Player Plato Message"))
@@ -274,6 +278,83 @@ public class Server {
             }
         }
 
+        private String addPlayerFavoriteGames(String string) {
+            String[] process = string.split("\\s");
+
+            if (process[5].equalsIgnoreCase("first")){
+                try {
+                    playerGeneralController.addGameToFavoritesGames(process[4],adminGeneralController.firstGameNameGetter());
+                    return "done";
+                } catch (ExistFavoriteException e) {
+                    System.err.println(e.getMessage());
+                    return "THIS GAME ALREADY EXISTS";
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+
+            }else if (process[5].equalsIgnoreCase("second")){
+
+                try {
+                    playerGeneralController.addGameToFavoritesGames(process[4],adminGeneralController.secondGameNameGetter());
+                    return "done";
+                } catch (ExistFavoriteException e) {
+                    System.err.println(e.getMessage());
+                    return "THIS GAME ALREADY EXISTS";
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+            }else {
+                return "Invalid input Game";
+            }
+        }
+
+        private String removePlayerFavoriteGames(String string) {
+            String[] process = string.split("\\s");
+
+            if (process[5].equalsIgnoreCase("first")){
+                try {
+                    playerGeneralController.RemoveFavoritesGames(process[4],adminGeneralController.firstGameNameGetter());
+                    return "done";
+                } catch (ExistFavoriteException e) {
+                    System.err.println(e.getMessage());
+                    return "THIS GAME DOESN'T EXIST IN YOUR LIST";
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+
+            }else if (process[5].equalsIgnoreCase("second")){
+
+                try {
+                    playerGeneralController.RemoveFavoritesGames(process[4],adminGeneralController.secondGameNameGetter());
+                    return "done";
+                } catch (ExistFavoriteException e) {
+                    System.err.println(e.getMessage());
+                    return "THIS GAME DOESN'T EXIST IN YOUR LIST";
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                } catch (InvalidGameNameException e) {
+                    System.err.println(e.getMessage());
+                    return e.getMessage();
+                }
+
+            }else {
+                return "Invalid input Game";
+            }
+        }
+
         private String playerSuggestedGames(String string) {
             String[] process = string.split("\\s");
             StringBuilder stringBuilder = new StringBuilder();
@@ -396,6 +477,7 @@ public class Server {
         private String firstGameName() {
             return adminGeneralController.firstGameNameGetter();
         }
+
         private String secondGameName() {
             return adminGeneralController.secondGameNameGetter();
         }
@@ -420,6 +502,7 @@ public class Server {
             }
             return "invalid";
         }
+
         private String showNumberOfLoses(String string) {
             String[] process = string.split("\\s");
             if (process[3].equalsIgnoreCase("first")){
@@ -440,6 +523,7 @@ public class Server {
             }
             return "invalid";
         }
+
         private String showNumberOfPlayed(String string) {
             String[] process = string.split("\\s");
             if (process[3].equalsIgnoreCase("first")){
@@ -460,6 +544,7 @@ public class Server {
             }
             return "invalid";
         }
+
         private String showNumberOfPointsInThisGame(String string) {
             String[] process = string.split("\\s");
             if (process[3].equalsIgnoreCase("first")){
@@ -480,6 +565,7 @@ public class Server {
             }
             return "invalid";
         }
+
         private String showScoreBoardBattleSea (String string){
             String[] process = string.split("\\s");
             try {
@@ -489,6 +575,7 @@ public class Server {
             }
             return "invalid";
         }
+
         private String showScoreBoardDotsAndBoxes (String string){
             String[] process = string.split("\\s");
             try {
