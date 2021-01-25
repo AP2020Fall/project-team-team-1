@@ -41,6 +41,18 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String editPassWord(String username, String oldPassword,String newPassword) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Password " + username + " " + oldPassword +" "+ newPassword);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String confirmPassWord(String username, String password) throws IOException {
+        Client.getDataOutputStream().writeUTF("Confirm Password " + username + " " + password);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     public String setUserProfile(String username, String path) throws IOException {
         Client.getDataOutputStream().writeUTF("Edit Profile Picture " + username + " " + path);
         Client.getDataOutputStream().flush();

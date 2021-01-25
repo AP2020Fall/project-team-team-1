@@ -1,6 +1,7 @@
 package Server;
 
 import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.CompetencyController.Existence;
 import Server.Controller.CompetencyController.Validation;
 import Server.Controller.Exception.Plato.*;
 import Server.Controller.PlayerController.FindPlayerByInfo;
@@ -102,6 +103,10 @@ public class Server {
                 answer = validation(input);
             else if (input.startsWith("Edit Profile Picture"))
                 answer = editProfilePic(input);
+            else if (input.startsWith("Edit Password"))
+                answer = editPassword(input);
+            else if (input.startsWith("Confirm Password"))
+                answer = confirmPassword(input);
             else if (input.startsWith("Edit Profile Details"))
                 answer = editProfileDetails(input);
             else if (input.startsWith("Edit Profile Bio"))
@@ -235,6 +240,36 @@ public class Server {
                 return e.getMessage();
             }
 
+        }
+
+        private String editPassword(String string){
+            String[] process = string.split("\\s");
+
+            try {
+                playerGeneralController.editPassword(string.substring(string.indexOf(process[2])));
+                return "done";
+            } catch (InvalidPasswordException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (WrongPasswordException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (SamePasswordException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (StrongerPasswordException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+        }
+
+        private String confirmPassword(String string){
+            String[] process = string.split("\\s");
+            return Existence.checkPasswordForView(process[2],process[3]);
         }
 
         private String login(String input) {

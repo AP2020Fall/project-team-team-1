@@ -64,7 +64,7 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void goToProfile(ActionEvent event) throws IOException {
         playMouseSound();
-//        ProfileController.setUsernameForShowProfile(LoginController.getUsername());
+
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
