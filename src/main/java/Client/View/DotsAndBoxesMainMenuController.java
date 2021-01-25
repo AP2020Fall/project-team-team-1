@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.ExistFavoriteException;
 import Server.Controller.Exception.Plato.InvalidGameNameException;
@@ -25,10 +26,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DotsAndBoxesMainMenuController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    String secondGame = adminGeneralController.secondGameNameGetter();
 
+private static DataLoader dataLoader = new DataLoader();
+    Boolean isFav = false;
     @FXML
     Button btnExit;
     @FXML
@@ -44,21 +44,21 @@ public class DotsAndBoxesMainMenuController implements Initializable {
     /********************Loaders********************/
 
     @FXML
-    private void loadFavStatus() {
+    private void loadFavStatus() throws IOException {
         //playMouseSound();
-        String[] fav = new String[0];
-        try {
-            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-        } catch (ExistFavoriteException e) {
-            System.err.println(e.getMessage());
+        String response = dataLoader.loadPlayerFavoriteGames(LoginController.getUsername());
+        if (response.equals("There is no Favorite Games")) {
+            System.err.println("There is no Favorite Games");
             return;
         }
 
+        String[] fav = response.split("\\$");
         for (String gameName : fav) {
             if (gameName.startsWith("D") || gameName.startsWith("d")) {
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
                 btnfavImage.setImage(image);
+                isFav = true;
 
             }
         }
@@ -67,44 +67,24 @@ public class DotsAndBoxesMainMenuController implements Initializable {
 
     /********************Methods********************/
     @FXML
-    private void setBtnFav(ActionEvent actionEvent) throws IOException, InvalidGameNameException, ExistFavoriteException {
+    private void setBtnFav(ActionEvent actionEvent) throws IOException {
         playMouseSound();
-        String[] fav = new String[0];
-        try {
-            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-        } catch (ExistFavoriteException e) {
-            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.secondGameNameGetter());
-            File file = new File("src\\main\\resources\\Icons\\addfav.png");
-            Image image = new Image(file.toURI().toString());
-            btnfavImage.setImage(image);
-            return;
 
-        }
-
-        String gameNameForFav = "nothing";
-
-        for (String gameName : fav) {
-            if (gameName.startsWith("D") || gameName.startsWith("d")) {
-
-                File file = new File("src\\main\\resources\\Icons\\addfav.png");
-                Image image = new Image(file.toURI().toString());
-                btnfavImage.setImage(image);
-                gameNameForFav = gameName;
-
-            }
-        }
-        if (gameNameForFav.equalsIgnoreCase("nothing")) {
-            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.secondGameNameGetter());
+        if (!isFav) {
+            dataLoader.addPlayerFavoriteGames(LoginController.getUsername(), "second");
             File file = new File("src\\main\\resources\\Icons\\addfav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
             return;
         } else {
-            playerGeneralController.RemoveFavoritesGames(LoginController.getUsername(), gameNameForFav);
+            dataLoader.removePlayerFavoriteGames(LoginController.getUsername(), "second");
             File file = new File("src\\main\\resources\\Icons\\removefav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
         }
+        isFav = false;
+        loadFavStatus();
+
 
 
     }
@@ -187,8 +167,12 @@ public class DotsAndBoxesMainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadFavStatus();
-        labelDots.setText("WELCOME TO ".concat(secondGame));
+        try {
+            loadFavStatus();
+            labelDots.setText("WELCOME TO ".concat(dataLoader.secondGameNameGetter()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
 
     }
 }

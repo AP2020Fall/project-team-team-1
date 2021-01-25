@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#loadFavStatus" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.DotsAndBoxesMainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1a1b20;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.DotsAndBoxesMainMenuController">
     <children>
         <Button layoutX="230.0" layoutY="90.0" mnemonicParsing="false" onAction="#goDetails" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Details">
             <cursor>
@@ -17,7 +17,7 @@
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
-        <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" onAction="#runGame" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
+        <Button layoutX="230.0" layoutY="270.0" mnemonicParsing="false" onAction="#runGame" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #1a1b20; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Run game">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor></Button>
