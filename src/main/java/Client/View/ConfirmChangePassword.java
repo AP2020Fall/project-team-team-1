@@ -27,7 +27,7 @@ public class ConfirmChangePassword {
 
     private static DataLoader dataLoader = new DataLoader();
 
-    private  String username = LoginController.getUsername();
+    private String username = LoginController.getUsername();
 
     protected static String confirm = "false";
 
@@ -58,26 +58,26 @@ public class ConfirmChangePassword {
 
 
     @FXML
-    private void close(ActionEvent event){
+    private void close(ActionEvent event) {
         playMouseSound();
-        Stage stage = (Stage)btnBack.getScene().getWindow();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     private void setBtnConfirm(ActionEvent event) throws IOException {
         playMouseSound();
-        if (txtPassword.getText().isEmpty() || txtNewPassword.getText().isEmpty()){
+        if (txtPassword.getText().isEmpty() || txtNewPassword.getText().isEmpty()) {
             System.err.println("Fields are Empty");
             return;
         }
-        setConfirm(dataLoader.confirmPassWord(getUsername(),txtPassword.getText()));
-        if (getConfirm().equalsIgnoreCase("false")){
+        setConfirm(dataLoader.confirmPassWord(getUsername(), txtPassword.getText()));
+        if (getConfirm().equalsIgnoreCase("false")) {
             showError();
-        }
-        else {
+        } else {
 
-            String response = dataLoader.editPassWord(getUsername(),txtPassword.getText(),txtNewPassword.getText());
-            if (!response.equals("done")){
+            String response = dataLoader.editPassWord(getUsername(), txtPassword.getText(), txtNewPassword.getText());
+            if (!response.equals("done")) {
                 System.err.println("There is Problem");
                 return;
             }
@@ -87,7 +87,8 @@ public class ConfirmChangePassword {
         }
 
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);

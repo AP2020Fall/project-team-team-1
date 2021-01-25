@@ -107,6 +107,8 @@ public class Server {
                 answer = editPassword(input);
             else if (input.startsWith("Confirm Password"))
                 answer = confirmPassword(input);
+            else if (input.startsWith("Delete Player"))
+                answer = deletePlayer(input);
             else if (input.startsWith("Edit Profile Details"))
                 answer = editProfileDetails(input);
             else if (input.startsWith("Edit Profile Bio"))
@@ -270,6 +272,16 @@ public class Server {
         private String confirmPassword(String string){
             String[] process = string.split("\\s");
             return Existence.checkPasswordForView(process[2],process[3]);
+        }
+
+        private String deletePlayer(String string){
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.deleteUser(process[2]);
+                return "done";
+            } catch (IOException e) {
+                return "failure";
+            }
         }
 
         private String login(String input) {

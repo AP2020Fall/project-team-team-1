@@ -59,6 +59,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String deletePlayer(String username, String password) throws IOException {
+        Client.getDataOutputStream().writeUTF("Delete Player " + username + " " + password);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     /**********************************************************/
 
     public Player loadPlayer(String playerUsername) throws IOException {

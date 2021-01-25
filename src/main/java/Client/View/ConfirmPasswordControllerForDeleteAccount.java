@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.CompetencyController.Existence;
 import Server.Controller.Exception.Plato.ExistPlayerException;
 import Server.Controller.PlayerController.PlayerGeneralController;
@@ -21,10 +22,11 @@ import java.io.IOException;
 import java.net.URL;
 
 public class ConfirmPasswordControllerForDeleteAccount {
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    //    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
 
 
-    private  String username = LoginController.getUsername();
+    private String username = LoginController.getUsername();
 
     protected static String confirm = "false";
 
@@ -53,29 +55,31 @@ public class ConfirmPasswordControllerForDeleteAccount {
 
 
     @FXML
-    private void close(ActionEvent event){
-        Stage stage = (Stage)btnBack.getScene().getWindow();
+    private void close(ActionEvent event) {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     private void setBtnConfirm(ActionEvent event) throws IOException, ExistPlayerException {
         playMouseSound();
-        String password = txtPassword.getText();
-        setConfirm(Existence.checkPasswordForView(getUsername(),password));
-        if (getConfirm().equalsIgnoreCase("false")){
-            showError();
+        if (txtPassword.getText().isEmpty()){
+            System.err.println("Field is Empty");
+            return;
         }
-        else {
-            String[] user = playerGeneralController.showBasicInformation(getUsername()).split("\\$");
-//            File file = new File(user[6]);
-            deleteDirectory(new File("src"+File.separator+"main"+File.separator+"resources"+File.separator+"Users"+File.separator+getUsername()));
-            playerGeneralController.deleteUser(getUsername());
+        setConfirm(dataLoader.confirmPassWord(getUsername(),txtPassword.getText()));
+        if (getConfirm().equalsIgnoreCase("false")) {
+            showError();
+        } else {
+            deleteDirectory(new File("src" + File.separator + "main" + File.separator + "resources" + File.separator + "Users" + File.separator + getUsername()));
+            dataLoader.deletePlayer(getUsername(),txtPassword.getText());
             setConfirm("false");
             System.exit(1);
             //todo Check this
         }
 
     }
+
     @FXML
     private void deleteDirectory(File fileForDelete) throws IOException {
         playMouseSound();
@@ -92,7 +96,8 @@ public class ConfirmPasswordControllerForDeleteAccount {
         stage.setScene(scene);
         stage.show();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
