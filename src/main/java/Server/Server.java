@@ -178,16 +178,22 @@ public class Server {
                 answer = removeSuggestionServer(input);
             else if (input.startsWith("Make Event "))
                 answer = makeEvent(input);
-            else if (input.startsWith("mvp battle "))
+            else if (input.startsWith("Mvp battle "))
                 answer = battleMvp();
-            else if (input.startsWith("admin battle detail"))
+            else if (input.startsWith("Mvp dots "))
+                answer = dotsMvp();
+            else if (input.startsWith("Admin battle detail"))
                 answer = battleDetail(input);
+            else if (input.startsWith("Admin dots detail"))
+                answer = dotsDetail(input);
             else if (input.startsWith("Active Game "))
                 answer = activeGame(input);
             else if (input.startsWith("Deactivate Game "))
                 answer = deActiveGame(input);
             else if (input.startsWith("Total Played Battle "))
                 answer = totalPlayFirstGame();
+            else if (input.startsWith("Total Played Dots "))
+                answer = totalPlaySecondGame();
             else if (input.startsWith("Activation Status "))
                 answer = gameActivationStatus(input);
 
@@ -853,8 +859,22 @@ public class Server {
         private String battleMvp() {
             return adminGeneralController.getMVPUserFirstGame();
         }
+        private String dotsMvp() {
+            return adminGeneralController.getMVPUserSecondGame();
+        }
 
         private String battleDetail(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.setDetails(process[3], process[4]);
+                return "done";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String dotsDetail(String string) {
             String[] process = string.split("\\s");
             try {
                 adminGeneralController.setDetails(process[3], process[4]);
@@ -871,14 +891,16 @@ public class Server {
             try {
                 adminGeneralController.activeGame(process[2]);
                 return "done";
-            } catch (InvalidGameID invalidGameID) {
-                invalidGameID.printStackTrace();
+            } catch (InvalidGameID e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (GameActivation gameActivation) {
-                gameActivation.printStackTrace();
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (GameActivation e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
-            return "invalid";
         }
 
         private String deActiveGame(String string) {
@@ -886,26 +908,34 @@ public class Server {
             try {
                 adminGeneralController.deActiveGame(process[2]);
                 return "done";
-            } catch (InvalidGameID invalidGameID) {
-                invalidGameID.printStackTrace();
+            } catch (InvalidGameID e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (GameActivation gameActivation) {
-                gameActivation.printStackTrace();
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (GameActivation e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
-            return "invalid";
         }
+
         private String totalPlayFirstGame() {
             return adminGeneralController.numberOfTotalPlayedFirstGame();
         }
+
+        private String totalPlaySecondGame() {
+            return adminGeneralController.numberOfTotalPlayedSecondGame();
+        }
+
         private String gameActivationStatus(String string){
             String[] process = string.split("\\s");
             try {
                 return adminGeneralController.activationStatus(process[2]);
-            } catch (InvalidGameID invalidGameID) {
-                invalidGameID.printStackTrace();
+            } catch (InvalidGameID e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
             }
-            return "invalid";
         }
     }
 

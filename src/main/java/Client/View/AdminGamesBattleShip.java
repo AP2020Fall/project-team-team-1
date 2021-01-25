@@ -1,10 +1,8 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.GameActivation;
 import Server.Controller.Exception.Plato.InvalidGameID;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,7 +85,7 @@ public class AdminGamesBattleShip implements Initializable {
     @FXML
     public void editBattleDetails(ActionEvent event) throws IOException {
         playMouseSound();
-        dataLoader.setDetail("BattleShip",txtDetails.getText());
+        dataLoader.setDetailForBattle("BattleShip",txtDetails.getText());
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -98,7 +96,7 @@ public class AdminGamesBattleShip implements Initializable {
     @FXML
     public void activateBattle(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
         playMouseSound();
-        dataLoader.activeBattle("1");
+        dataLoader.activeGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -109,7 +107,7 @@ public class AdminGamesBattleShip implements Initializable {
     @FXML
     public void deActivateBattleShip(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
         playMouseSound();
-        dataLoader.deActiveBattle("1");
+        dataLoader.deActiveGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

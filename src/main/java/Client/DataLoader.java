@@ -276,24 +276,36 @@ public class DataLoader {
     }
 
     public String mvpBattle() throws IOException {
-        Client.getDataOutputStream().writeUTF("mvp battle ");
+        Client.getDataOutputStream().writeUTF("Mvp battle ");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String setDetail (String gameName , String text) throws IOException {
-        Client.getDataOutputStream().writeUTF("admin battle detail "+ gameName +" "+ text);
+    public String mvpDots() throws IOException {
+        Client.getDataOutputStream().writeUTF("Mvp dots ");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String activeBattle(String string) throws IOException {
+    public String setDetailForBattle(String gameName , String text) throws IOException {
+        Client.getDataOutputStream().writeUTF("Admin battle detail "+ gameName +" "+ text);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String setDetailForDots(String gameName , String text) throws IOException {
+        Client.getDataOutputStream().writeUTF("Admin dots detail "+ gameName +" "+ text);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String activeGame(String string) throws IOException {
         Client.getDataOutputStream().writeUTF("Active Game  "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String deActiveBattle(String string) throws IOException {
+    public String deActiveGame(String string) throws IOException {
         Client.getDataOutputStream().writeUTF("Deactivate Game "+string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
@@ -301,6 +313,12 @@ public class DataLoader {
 
     public String totalPlayedBattle() throws IOException {
         Client.getDataOutputStream().writeUTF("Total Played Battle ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String totalPlayedDots() throws IOException {
+        Client.getDataOutputStream().writeUTF("Total Played Dots ");
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
