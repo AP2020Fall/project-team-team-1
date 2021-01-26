@@ -1,6 +1,7 @@
 package Client;
 
 import Client.View.AdminEditSuggestion;
+import Client.View.AdminEvents;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
@@ -140,6 +141,7 @@ public class DataLoader {
         }.getType();
         ArrayList<Event> output = new Gson().fromJson(Client.getDataInputStream().readUTF(), type);
         PlayerEventsController.setEventForShow(output);
+        AdminEvents.setEventArrayList(output);
     }
 
     public void loadPlayersList() throws IOException {

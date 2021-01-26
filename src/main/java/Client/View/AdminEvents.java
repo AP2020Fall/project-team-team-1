@@ -30,10 +30,21 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminEvents implements Initializable {
     private static final DataLoader dataLoader = new DataLoader();
+    private static ArrayList<Event> eventArrayList ;
+
+    public static ArrayList<Event> getEventArrayList() {
+        return eventArrayList;
+    }
+
+    public static void setEventArrayList(ArrayList<Event> eventArrayList) {
+        AdminEvents.eventArrayList = eventArrayList;
+    }
+
     public TextField txtID;
     @FXML
     public TextField txtComment;
@@ -156,11 +167,16 @@ public class AdminEvents implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            dataLoader.loadEventsList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         id.setCellValueFactory(new PropertyValueFactory<>("eventID"));
         game.setCellValueFactory(new PropertyValueFactory<>("GameName"));
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
         table.setItems(events);
-        for (Event event : Event.getEvents()) {
+        for (Event event : eventArrayList) {
             table.getItems().add(event);
         }
         initActions();
