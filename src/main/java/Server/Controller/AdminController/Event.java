@@ -65,7 +65,7 @@ public class Event {
             editScore(event, inputSpilt[2]);
         } else if (inputSpilt[1].trim().equalsIgnoreCase("Comment")) {
             //editComment(event, inputSpilt[2].concat(" ").concat(inputSpilt[3].concat(" ").concat(inputSpilt[4].concat(" ").concat(inputSpilt[5]))));
-            editComment(event,input);
+            editComment(event,input.substring(input.indexOf(inputSpilt[2])));
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 
