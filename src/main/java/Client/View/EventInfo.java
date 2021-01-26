@@ -1,7 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EventInfo implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     private static DataLoader dataLoader = new DataLoader();
     protected static String id = "null" ;
     protected static String editField = "null";
@@ -157,29 +156,29 @@ public class EventInfo implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         lblID.setText(id);
         try {
-            lblGame.setText(adminGeneralController.eventFinderByEventID(id).getGameName());
-            lblStart.setText(adminGeneralController.eventFinderByEventID(id).getStartDate().toString());
-            lblEnd.setText(adminGeneralController.eventFinderByEventID(id).getEndDate().toString());
-            lblScore.setText(String.valueOf(adminGeneralController.eventFinderByEventID(id).getScore()));
-            lblComment.setText(adminGeneralController.eventFinderByEventID(id).getComment());
-        } catch (ExistEventException e) {
-            System.err.println(e.getMessage());
+            lblGame.setText(dataLoader.findEventName(id));
+            lblStart.setText(dataLoader.findEventDateStart(id));
+            lblEnd.setText(dataLoader.findEventDateEnd(id));
+            lblScore.setText(String.valueOf(dataLoader.findEventScore(id)));
+            lblComment.setText(dataLoader.findEventComment(id));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try {
-            if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("b")){
+            if (dataLoader.findEventName(id).toLowerCase().startsWith("b")){
                 String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
                         "Events"+File.separator+getId()+File.separator+getId()+".jpg";
                 URL url = new File(path).toURI().toURL();
                 imgGame.setImage(new Image(url.toExternalForm()));
-            }else if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("d")){
+            }else if (dataLoader.findEventName(id).toLowerCase().startsWith("b")){
                 String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
                         "Events"+File.separator+getId()+File.separator+getId()+".jpg";
                 URL url = new File(path).toURI().toURL();
                 imgGame.setImage(new Image(url.toExternalForm()));
             }
-        } catch (ExistEventException e) {
-            System.err.println(e.getMessage());
         } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

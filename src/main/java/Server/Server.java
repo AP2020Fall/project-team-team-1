@@ -224,6 +224,16 @@ public class Server {
                 answer = deleteEvent(input) ;
             else if (input.startsWith("Event Edit "))
                 answer = editEventDetails(input);
+            else if (input.startsWith("Event Score "))
+                answer = findEventScore(input);
+            else if (input.startsWith("Event Comment "))
+                answer = findEventComment(input);
+            else if (input.startsWith("Find Event name "))
+                answer = findEventName(input) ;
+            else if (input.startsWith("Date Event Start "))
+                answer = findEventDateStart(input) ;
+            else if (input.startsWith("Date Event End "))
+                answer = findEventDateEnd(input) ;
 
             return answer;
         }
@@ -1117,6 +1127,63 @@ public class Server {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String findEventName(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.eventFinderByEventID(process[3]).getGameName();
+                //return "name changed";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String findEventDateStart(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.eventFinderByEventID(process[3]).getStartDate().toString();
+                //return "date changed";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String findEventDateEnd(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.eventFinderByEventID(process[3]).getEndDate().toString();
+                //return "date changed";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String findEventScore(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return String.valueOf(adminGeneralController.eventFinderByEventID(process[2]).getScore());
+                //return "score changed";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String findEventComment(String string) {
+            String[] process = string.split("\\s");
+            try {
+                System.out.println(adminGeneralController.eventFinderByEventID(process[2]));
+                System.out.println(adminGeneralController.eventFinderByEventID(process[2]).getComment());
+                return adminGeneralController.eventFinderByEventID(process[2]).getComment();
+                //return "comment changed";
+            } catch (ExistEventException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
