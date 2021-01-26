@@ -1,7 +1,7 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.InvalidGameID;
+
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +46,7 @@ public class GameMenu implements Initializable {
 
 
     @FXML
-    private void goBattleShipMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
+    private void goBattleShipMenu(ActionEvent actionEvent) throws  IOException {
         playMouseSound();
         if (dataLoader.activeStatus("1").equalsIgnoreCase("false") || dataLoader.maintenanceStatus("1").equalsIgnoreCase("true")) {
             showError();
@@ -61,7 +61,7 @@ public class GameMenu implements Initializable {
     }
 
     @FXML
-    private void goDotsAndBoxesMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
+    private void goDotsAndBoxesMenu(ActionEvent actionEvent) throws  IOException {
         playMouseSound();
         if (dataLoader.activeStatus("2").equalsIgnoreCase("false") || dataLoader.maintenanceStatus("2").equalsIgnoreCase("true")) {
             showError();

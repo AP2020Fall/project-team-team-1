@@ -1,7 +1,7 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EventInfo implements Initializable {
-    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+
     private static DataLoader dataLoader = new DataLoader();
     protected static String id = "null" ;
     protected static String editField = "null";
@@ -94,7 +94,7 @@ public class EventInfo implements Initializable {
         EditPane.toFront();
     }
     @FXML
-    private void deleteEvent(ActionEvent event) throws IOException, ExistEventException {
+    private void deleteEvent(ActionEvent event) throws IOException {
         playMouseSound();
         dataLoader.deleteEvent(id);
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
@@ -125,7 +125,7 @@ public class EventInfo implements Initializable {
         simplePane.toFront();
     }
     @FXML
-    private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
+    private void editEvent(ActionEvent event) throws  IOException {
         playMouseSound();
         String response = "";
         if (txtNewValue.getText().isEmpty()||btnField.getValue().equalsIgnoreCase("field")){

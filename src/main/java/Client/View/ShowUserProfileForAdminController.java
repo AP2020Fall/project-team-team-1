@@ -1,9 +1,7 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
