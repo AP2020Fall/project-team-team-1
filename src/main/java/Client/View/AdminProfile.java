@@ -1,8 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +29,6 @@ import java.util.ResourceBundle;
 
 
 public class AdminProfile implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     private static DataLoader dataLoader = new DataLoader();
     String[] strings;
     private File file;
@@ -132,7 +129,7 @@ public class AdminProfile implements Initializable {
         imgProfile.setImage(new Image(url.toExternalForm()));
     }
     @FXML
-    public void editAdmin(ActionEvent event) throws InvalidEmailException, InvalidNameException, ExistEmailException, InvalidFieldException, InvalidPhoneNumberException, IOException {
+    public void editAdmin(ActionEvent event) throws  IOException {
         playMouseSound();
         String response = "";
         if (txtNewValue.getText().isEmpty()||comboField.getValue().equalsIgnoreCase("field")){

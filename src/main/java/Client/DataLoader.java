@@ -81,6 +81,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String loadAdminUsername() throws IOException {
+        Client.getDataOutputStream().writeUTF("Load Admin Username");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     /*************************Friends***************************/
     public String sentFriendRequest(String username, String friendUsername) throws IOException {
         Client.getDataOutputStream().writeUTF("Sent Friend Request" + username + " " + friendUsername);

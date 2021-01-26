@@ -116,6 +116,8 @@ public class Server {
                 answer = editProfileBio(input);
             else if (input.startsWith("login"))
                 answer = login(input);
+            else if (input.startsWith("Load Admin Username"))
+                answer = getAdminUsername();
             else if (input.startsWith("Set Remember Status"))
                 answer = setRememberStatus(input);
             else if (input.startsWith("Load Remember Status"))
@@ -406,6 +408,10 @@ public class Server {
         private String confirmPassword(String string) {
             String[] process = string.split("\\s");
             return Existence.checkPasswordForView(process[2], process[3]);
+        }
+
+        private String getAdminUsername(){
+            return Admin.getAdmins().get(0).getUserName();
         }
 
         private String deletePlayer(String string) {
