@@ -74,6 +74,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String editEventDetails(String eventId, String kind, String input) throws IOException {
+        Client.getDataOutputStream().writeUTF("Event Edit " + eventId + " " + kind + " " + input);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     /*************************Friends***************************/
     public String sentFriendRequest(String username, String friendUsername) throws IOException {
         Client.getDataOutputStream().writeUTF("Sent Friend Request" + username + " " + friendUsername);
@@ -402,6 +408,12 @@ public class DataLoader {
 
     public String playerJoinEvent(String username, String eventID) throws IOException {
         Client.getDataOutputStream().writeUTF("Player Join Event " + username + " " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String deleteEvent(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Delete Event " + eventID);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }

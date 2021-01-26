@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.*;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 
 public class EventInfo implements Initializable {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static DataLoader dataLoader = new DataLoader();
     protected static String id = "null" ;
     protected static String editField = "null";
 
@@ -95,7 +97,7 @@ public class EventInfo implements Initializable {
     @FXML
     private void deleteEvent(ActionEvent event) throws IOException, ExistEventException {
         playMouseSound();
-        adminGeneralController.removeEventByAdminFromView(id);
+        dataLoader.deleteEvent(id);
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -126,14 +128,21 @@ public class EventInfo implements Initializable {
     @FXML
     private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
         playMouseSound();
+        String response = "";
+        if (txtNewValue.getText().isEmpty()||btnField.getValue().equalsIgnoreCase("field")){
+            return;
+        }
         if (btnField.getValue().toLowerCase().equals("start")){
-            adminGeneralController.editEvent(id+" "+"Start Date"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"Start Date",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("end")){
-            adminGeneralController.editEvent(id+" "+"end Date"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"end Date",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("score")){
-            adminGeneralController.editEvent(id+" "+"score"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"score",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("comment")){
-            adminGeneralController.editEvent(id+" "+"comment"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"comment",txtNewValue.getText());
+        }
+        if (!response.equalsIgnoreCase("done")){
+            return;
         }
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);

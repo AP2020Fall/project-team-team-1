@@ -220,6 +220,10 @@ public class Server {
                 answer = sendMessageAdmin(input);
             else if (input.startsWith("Admin edit profile "))
                 answer = editAdminProfile(input) ;
+            else if (input.startsWith("Delete Event "))
+                answer = deleteEvent(input) ;
+            else if (input.startsWith("Event Edit "))
+                answer = editEventDetails(input);
 
             return answer;
         }
@@ -322,6 +326,35 @@ public class Server {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String editEventDetails(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.editEvent(process[2] + " " + process[3] + " " + process[4]);
+                return "done";
+            } catch (InvalidDateException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidFieldException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (StartDatesException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (NotNullMessageException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidGameNameException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
@@ -1070,6 +1103,20 @@ public class Server {
             try {
                 return playerGeneralController.eventActivation(process[3]);
             } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String deleteEvent(String string){
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.removeEventByAdminFromView(process[2]);
+                return "done";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
