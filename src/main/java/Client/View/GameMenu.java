@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.InvalidGameID;
 import Server.Controller.PlayerController.PlayerGeneralController;
@@ -27,10 +28,12 @@ import java.util.ResourceBundle;
 
 
 public class GameMenu implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    String firsGame = adminGeneralController.firstGameNameGetter();
-    String secondGame = adminGeneralController.secondGameNameGetter();
+//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static final DataLoader dataLoader = new DataLoader();
+
+    String firsGame;
+    String secondGame;
     @FXML
     Button xButton;
     @FXML
@@ -48,21 +51,22 @@ public class GameMenu implements Initializable {
     @FXML
     private void goBattleShipMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
         playMouseSound();
-        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false") || adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
+        if (dataLoader.activeStatus("1").equalsIgnoreCase("false") || dataLoader.maintenanceStatus("1").equalsIgnoreCase("true")) {
             showError();
             return;
         }
-            URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            window.setScene(message);
-            window.show();
+        URL url = new File("src/main/resources/FXML/BattleShipMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
     }
+
     @FXML
     private void goDotsAndBoxesMenu(ActionEvent actionEvent) throws InvalidGameID, IOException {
         playMouseSound();
-        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false") || adminGeneralController.maintenanceStatus("1").equalsIgnoreCase("true")){
+        if (dataLoader.activeStatus("2").equalsIgnoreCase("false") || dataLoader.maintenanceStatus("2").equalsIgnoreCase("true")) {
             showError();
             return;
         }
@@ -73,6 +77,7 @@ public class GameMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
     public void goToPlayerMenu(ActionEvent event) throws IOException {
         playMouseSound();
@@ -83,6 +88,7 @@ public class GameMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
     public void goToGameLog(ActionEvent event) throws IOException {
         playMouseSound();
@@ -105,7 +111,8 @@ public class GameMenu implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -114,6 +121,12 @@ public class GameMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            firsGame = dataLoader.firstGameNameGetter();
+            secondGame = dataLoader.secondGameNameGetter();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         xAnimation();
         sAnimation();
         oAnimation();
@@ -123,28 +136,31 @@ public class GameMenu implements Initializable {
 
     }
 
-    public void xAnimation(){
+    public void xAnimation() {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), xButton);
         rotateTransition.setByAngle(360);
         rotateTransition.setRate(10);
         rotateTransition.setCycleCount(10);
         rotateTransition.play();
     }
-    public void oAnimation(){
+
+    public void oAnimation() {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), oButton);
         rotateTransition.setByAngle(360);
         rotateTransition.setRate(10);
         rotateTransition.setCycleCount(10);
         rotateTransition.play();
     }
-    public void sAnimation(){
+
+    public void sAnimation() {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), sButton);
         rotateTransition.setByAngle(360);
         rotateTransition.setRate(10);
         rotateTransition.setCycleCount(10);
         rotateTransition.play();
     }
-    public void tAnimation(){
+
+    public void tAnimation() {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(10), tButton);
         rotateTransition.setByAngle(360);
         rotateTransition.setRate(10);

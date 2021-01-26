@@ -210,6 +210,8 @@ public class Server {
                 answer = totalPlayPlatoGame();
             else if (input.startsWith("Activation Status "))
                 answer = gameActivationStatus(input);
+            else if (input.startsWith("Maintenance Status "))
+                answer = getMaintenanceStatus(input);
             else if (input.startsWith("Admin info "))
                 answer = showAdminInfo();
             else if (input.startsWith("Message plato "))
@@ -968,6 +970,17 @@ public class Server {
             } catch (InvalidGameID e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
+            }
+        }
+
+        private String getMaintenanceStatus(String string){
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.maintenanceStatus(process[2]);
+                return "done";
+            } catch (InvalidGameID invalidGameID) {
+                System.err.println(invalidGameID.getMessage());
+                return invalidGameID.getMessage();
             }
         }
 

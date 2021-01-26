@@ -346,6 +346,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String maintenanceStatus(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("Maintenance Status " + string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     public String loadAdminInfo() throws IOException {
         Client.getDataOutputStream().writeUTF("Admin info ");
         Client.getDataOutputStream().flush();
