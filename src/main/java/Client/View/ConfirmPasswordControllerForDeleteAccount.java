@@ -66,7 +66,7 @@ public class ConfirmPasswordControllerForDeleteAccount {
             showError();
         } else {
             deleteDirectory(new File("src" + File.separator + "main" + File.separator + "resources" + File.separator + "Users" + File.separator + getUsername()));
-            dataLoader.deletePlayer(getUsername(),txtPassword.getText());
+            dataLoader.deletePlayer(getUsername());
             setConfirm("false");
             System.exit(1);
             //todo Check this

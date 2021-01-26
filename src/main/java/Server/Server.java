@@ -182,6 +182,8 @@ public class Server {
                 answer = getSuggestion();
             else if (input.startsWith("Remove Suggestion"))
                 answer = removeSuggestionServer(input);
+            else if (input.startsWith("Add Suggestion"))
+                answer = addSuggestionServer(input);
             else if (input.startsWith("Make Event "))
                 answer = makeEvent(input);
             else if (input.startsWith("Load Event Activation"))
@@ -926,6 +928,20 @@ public class Server {
                 return e.getMessage();
 
             } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+        }
+        private String addSuggestionServer(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.addSuggestion(process[2]);
+                return "done";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistPlayerException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }

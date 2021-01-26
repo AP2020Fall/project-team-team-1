@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     protected static String usernameForShowProfile = "null";
 

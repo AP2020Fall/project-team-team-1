@@ -63,8 +63,8 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String deletePlayer(String username, String password) throws IOException {
-        Client.getDataOutputStream().writeUTF("Delete Player " + username + " " + password);
+    public String deletePlayer(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Delete Player " + username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -284,6 +284,12 @@ public class DataLoader {
 
     public String removeSuggestion(String suggestionId) throws IOException {
         Client.getDataOutputStream().writeUTF("Remove Suggestion " + suggestionId);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String addSuggestion(String suggestionId) throws IOException {
+        Client.getDataOutputStream().writeUTF("Add Suggestion " + suggestionId);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
