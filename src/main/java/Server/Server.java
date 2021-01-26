@@ -244,6 +244,8 @@ public class Server {
                 answer =  playerBanStatus(input);
             else if (input.startsWith("Unban Player "))
                 answer =  playerUnbanStatus(input);
+            else if (input.startsWith("Report Player "))
+                answer = playerReportStatus(input)  ;
 
             return answer;
         }
@@ -1219,12 +1221,7 @@ public class Server {
 
         private String playerActivityStatus(String string){
             String[] process = string.split("\\s");
-            try {
-                return adminGeneralController.activationStatus(process[2]);
-            } catch (InvalidGameID e) {
-                System.err.println(e.getMessage());
-                return e.getMessage();
-            }
+            return adminGeneralController.playerActivation(process[2]);
         }
 
         private String playerBanStatus(String string) {
@@ -1253,6 +1250,19 @@ public class Server {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             } catch (ItsNotBan e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String playerReportStatus(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.showReportListOfPlayer(process[2]);
+            } catch (EmptyReportsList e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidUserNameException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }

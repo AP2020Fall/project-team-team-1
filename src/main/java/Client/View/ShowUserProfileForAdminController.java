@@ -86,8 +86,8 @@ public class ShowUserProfileForAdminController implements Initializable {
     private void setNumberOfReports() {
         String[] numberOfReport;
         try {
-            numberOfReport = adminGeneralController.showReportListOfPlayer(getUsernameProfileForShowToAdmin()).split("\\$");
-        } catch (EmptyReportsList emptyReportsList) {
+            numberOfReport = dataLoader.reportedPlayers(getUsernameProfileForShowToAdmin()).split("\\$");
+        } catch (IOException emptyReportsList) {
             System.err.println(emptyReportsList.getMessage());
             numberOfReports.setText("0");
             numberOfReports.setTextFill(Color.web("#00ff00"));
@@ -102,9 +102,9 @@ public class ShowUserProfileForAdminController implements Initializable {
         numberOfReports.setText(String.valueOf(numberOfReport.length));
     }
     @FXML
-    private void setBtnBanAccount(){
+    private void setBtnBanAccount() throws IOException {
         playMouseSound();
-        if (adminGeneralController.playerActivation(getUsernameProfileForShowToAdmin()).equalsIgnoreCase("false")){
+        if (dataLoader.playerActivityState(getUsernameProfileForShowToAdmin()).equalsIgnoreCase("false")){
             btnBanAccount.setText("UnBan Account");
         }else
             btnBanAccount.setText("ban Account");
@@ -130,7 +130,7 @@ public class ShowUserProfileForAdminController implements Initializable {
 
     }
     @FXML
-    private void banAccount()  {
+    private void banAccount(ActionEvent event) throws IOException {
         playMouseSound();
         if (getUsernameProfileForShowToAdmin().equalsIgnoreCase("null")){
             return;
@@ -138,13 +138,19 @@ public class ShowUserProfileForAdminController implements Initializable {
 
         if (btnBanAccount.getText().equalsIgnoreCase("UnBan Account")){
 
-            adminGeneralController.unBanPlayer(getUsernameProfileForShowToAdmin());
+            dataLoader.playerUnBanState(getUsernameProfileForShowToAdmin());
 
         }else {
 
-            adminGeneralController.banPlayer(getUsernameProfileForShowToAdmin());
+            dataLoader.playerBanState(getUsernameProfileForShowToAdmin());
 
         }
+        URL url = new File("src/main/resources/FXML/AdminMainMenu.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
 
     }
     @FXML

@@ -1,12 +1,9 @@
 package Client;
 
-import Client.View.AdminEditSuggestion;
-import Client.View.AdminEvents;
+import Client.View.*;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
-import Client.View.PlayerEventsController;
-import Client.View.PlayerSearchFriendsController;
 import Server.Model.PlatoModel.Suggestion;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -157,6 +154,7 @@ public class DataLoader {
         }.getType();
         ArrayList<Player> output = new Gson().fromJson(Client.getDataInputStream().readUTF(), type);
         PlayerSearchFriendsController.setPlayerList(output);
+        AdminUsersController.setPlayerArrayList(output);
     }
 
     public void loadSuggestion() throws IOException {
@@ -476,6 +474,11 @@ public class DataLoader {
 
     public String playerUnBanState(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("Unban Player " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+    public String reportedPlayers(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Report Player " + username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
