@@ -456,4 +456,22 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String playerActivityState(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Activity " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String playerBanState(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Ban Player " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String playerUnBanState(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Unban Player " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }

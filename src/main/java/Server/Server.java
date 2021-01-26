@@ -236,6 +236,12 @@ public class Server {
                 answer = findEventDateStart(input) ;
             else if (input.startsWith("Date Event End "))
                 answer = findEventDateEnd(input) ;
+            else if (input.startsWith("Player Activity "))
+                answer = playerActivityStatus(input) ;
+            else if (input.startsWith("Ban Player "))
+                answer =  playerBanStatus(input);
+            else if (input.startsWith("Unban Player "))
+                answer =  playerUnbanStatus(input);
 
             return answer;
         }
@@ -1200,6 +1206,47 @@ public class Server {
                 return adminGeneralController.eventFinderByEventID(process[2]).getComment();
                 //return "comment changed";
             } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String playerActivityStatus(String string){
+            String[] process = string.split("\\s");
+            try {
+                return adminGeneralController.activationStatus(process[2]);
+            } catch (InvalidGameID e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String playerBanStatus(String string) {
+            String[] process = string.split("\\s");
+            try {
+                 adminGeneralController.banPlayer(process[2]);
+                 return "done";
+            } catch (AlreadyBan e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String playerUnbanStatus(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.unBanPlayer(process[2]);
+                return "done";
+            } catch (AlreadyBan e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ItsNotBan e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
             }
