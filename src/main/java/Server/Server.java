@@ -218,6 +218,8 @@ public class Server {
                 answer = showMessageAdmin();
             else if (input.startsWith("Send message "))
                 answer = sendMessageAdmin(input);
+            else if (input.startsWith("Admin edit profile "))
+                answer = editAdminProfile(input) ;
 
             return answer;
         }
@@ -297,6 +299,32 @@ public class Server {
                 return e.getMessage();
             }
 
+        }
+
+        private String editAdminProfile(String string){
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.editField(process[3]+" "+process[4]);
+                return "done";
+            } catch (InvalidNameException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidEmailException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidPhoneNumberException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistEmailException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidFieldException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
         }
 
         private String editPassword(String string) {
@@ -897,7 +925,7 @@ public class Server {
         private String battleDetail(String string) {
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.setDetails(process[3], process[4]);
+                adminGeneralController.setDetails(process[3], string.substring(string.indexOf(process[4])));
                 return "done";
             } catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -908,7 +936,7 @@ public class Server {
         private String dotsDetail(String string) {
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.setDetails(process[3], process[4]);
+                adminGeneralController.setDetails(process[3], string.substring(string.indexOf(process[4])));
                 return "done";
             } catch (IOException e) {
                 System.err.println(e.getMessage());

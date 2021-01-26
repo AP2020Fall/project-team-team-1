@@ -41,7 +41,7 @@
          </image>
       </ImageView>
       <JFXTextField fx:id="txtUsername" focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="154.0" prefHeight="25.0" prefWidth="149.0" promptText="Username" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" stylesheets="@../Style/StyleSheet.css" unFocusColor="#808b96" />
-      <JFXPasswordField fx:id="txtPassword" focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="200.0" onMouseEntered="#remember" prefHeight="25.0" prefWidth="149.0" promptText="Password" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" stylesheets="@../Style/StyleSheet.css" unFocusColor="#808b96">
+      <JFXPasswordField fx:id="txtPassword" focusColor="#00acea" labelFloat="true" layoutX="369.0" layoutY="200.0"  prefHeight="25.0" prefWidth="149.0" promptText="Password" style="-fx-text-fill: white; fx-prompt-text-fill: #808b96;" stylesheets="@../Style/StyleSheet.css" unFocusColor="#808b96">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>

@@ -73,7 +73,7 @@ public class AdminGamesDotsAndBoxes implements Initializable {
     void editDotsDetails(ActionEvent event) {
         playMouseSound();
         try {
-            dataLoader.setDetailForDots("DotsAndBoxes", txtDetails.getText());
+            dataLoader.setDetailForDots(dataLoader.secondGameNameGetter(), txtDetails.getText());
             URL url = new File("src/main/resources/FXML/AdminGamesDotsAndBoxes.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);

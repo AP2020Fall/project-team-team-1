@@ -116,7 +116,7 @@ public class LoginController implements Initializable {
             return;
         }
 
-        dataLoader.setRememberStatus(txtUsername.getText(), String.valueOf(checkBox.isSelected()));
+
 
         if (response.startsWith("Success Admin")) {
 
@@ -131,7 +131,7 @@ public class LoginController implements Initializable {
             window.show();
 
         } else if (response.startsWith("Success Player")) {
-
+            dataLoader.setRememberStatus(txtUsername.getText(), String.valueOf(checkBox.isSelected()));
             player = dataLoader.loadPlayer(txtUsername.getText());
             setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();

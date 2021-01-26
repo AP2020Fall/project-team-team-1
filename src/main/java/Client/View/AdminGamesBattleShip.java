@@ -83,7 +83,7 @@ public class AdminGamesBattleShip implements Initializable {
     @FXML
     public void editBattleDetails(ActionEvent event) throws IOException {
         playMouseSound();
-        dataLoader.setDetailForBattle("BattleShip",txtDetails.getText());
+        dataLoader.setDetailForBattle(dataLoader.firstGameNameGetter(),txtDetails.getText());
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
