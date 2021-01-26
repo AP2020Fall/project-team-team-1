@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,13 +22,10 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
-//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     private static DataLoader dataLoader = new DataLoader();
 
     protected static String usernameForShowProfile = "null";

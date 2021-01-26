@@ -359,4 +359,22 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String setRememberStatus(String username , String bool) throws IOException {
+        Client.getDataOutputStream().writeUTF("Set Remember Status "+username+" "+ bool);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String loadRememberStatus(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Load Remember Status "+username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String loadDirectPassword(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Load Direct Password "+username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }

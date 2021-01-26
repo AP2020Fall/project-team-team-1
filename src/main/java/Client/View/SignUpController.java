@@ -25,10 +25,6 @@ import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
 
-//    protected SignUp processSignUp = new SignUp();
-//    protected static Validation validation = new Validation();
-//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     private static DataLoader dataLoader = new DataLoader();
 
     private File file;

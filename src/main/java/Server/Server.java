@@ -116,6 +116,12 @@ public class Server {
                 answer = editProfileBio(input);
             else if (input.startsWith("login"))
                 answer = login(input);
+            else if (input.startsWith("Set Remember Status"))
+                answer = setRememberStatus(input);
+            else if (input.startsWith("Load Remember Status"))
+                answer = getRememberStatus(input);
+            else if (input.startsWith("Load Direct Password"))
+                answer = getDirectPassword(input);
             else if (input.startsWith("data"))
                 answer = getData(input);
             else if (input.startsWith("Event List"))
@@ -203,7 +209,7 @@ public class Server {
             else if (input.startsWith("Admin info "))
                 answer = showAdminInfo();
             else if (input.startsWith("Message plato "))
-                answer = showMessageAdmin(input);
+                answer = showMessageAdmin();
             else if (input.startsWith("Send message "))
                 answer = sendMessageAdmin(input);
 
@@ -869,12 +875,15 @@ public class Server {
         private String battleMvp() {
             return adminGeneralController.getMVPUserFirstGame();
         }
+
         private String dotsMvp() {
             return adminGeneralController.getMVPUserSecondGame();
         }
+
         private String showAdminInfo() {
             return adminGeneralController.showAdminInfo();
         }
+
         private String platoMvp() {
             return adminGeneralController.getMVPUserSecondGame();
         }
@@ -957,15 +966,15 @@ public class Server {
                 return e.getMessage();
             }
         }
-        private String showMessageAdmin(String string) {
-            //String[] process = string.split("\\s");
+
+        private String showMessageAdmin() {
             return playerGeneralController.viewBotMessages();
         }
 
         private String sendMessageAdmin(String string) {
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.sendMassageString(process[2]);
+                adminGeneralController.sendMassageString(string.substring(string.indexOf(process[2])));
                 return "Message send!";
             } catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -975,6 +984,29 @@ public class Server {
                 return e.getMessage();
             }
         }
+
+        private String setRememberStatus(String string) {
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.setRememberPasswordStatus(process[3],process[4]);
+                return "done";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String getRememberStatus(String string) {
+            String[] process = string.split("\\s");
+            return playerGeneralController.rememberPasswordStatus(process[3]);
+        }
+
+        private String getDirectPassword(String string) {
+            String[] process = string.split("\\s");
+            return playerGeneralController.getUsernamePassword(process[3]);
+        }
+
+
     }
 
 
