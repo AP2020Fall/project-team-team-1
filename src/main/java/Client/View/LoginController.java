@@ -193,7 +193,7 @@ public class LoginController implements Initializable {
         }
         if (dataLoader.loadRememberStatus(txtUsername.getText()).equals("true")){
             txtPassword.setText(dataLoader.loadDirectPassword(txtUsername.getText()));
-            System.out.println("here");
+
         }
     }
 
