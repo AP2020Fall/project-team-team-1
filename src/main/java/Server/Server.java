@@ -202,6 +202,10 @@ public class Server {
                 answer = gameActivationStatus(input);
             else if (input.startsWith("Admin info "))
                 answer = showAdminInfo();
+            else if (input.startsWith("Message plato "))
+                answer = showMessageAdmin(input);
+            else if (input.startsWith("Send message "))
+                answer = sendMessageAdmin(input);
 
             return answer;
         }
@@ -953,7 +957,24 @@ public class Server {
                 return e.getMessage();
             }
         }
+        private String showMessageAdmin(String string) {
+            //String[] process = string.split("\\s");
+            return playerGeneralController.viewBotMessages();
+        }
 
+        private String sendMessageAdmin(String string) {
+            String[] process = string.split("\\s");
+            try {
+                adminGeneralController.sendMassageString(process[2]);
+                return "Message send!";
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (NotNullMessageException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
     }
 
 

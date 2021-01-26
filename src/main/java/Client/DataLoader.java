@@ -347,4 +347,16 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String showMessagesForAdmin() throws IOException {
+        Client.getDataOutputStream().writeUTF("Message plato ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String sendMessageByAdmin(String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("Send message "+string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }
