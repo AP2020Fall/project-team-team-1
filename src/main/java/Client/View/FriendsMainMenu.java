@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class FriendsMainMenu implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     JFXButton btnFriendRequests;

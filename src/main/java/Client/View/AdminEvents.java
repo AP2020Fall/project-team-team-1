@@ -33,8 +33,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminEvents implements Initializable {
-    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
     public TextField txtID;
     @FXML
     public TextField txtComment;

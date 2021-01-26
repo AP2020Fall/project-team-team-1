@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class FriendRequests implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     protected static String usernameForAcceptOrDecline = "null";
 

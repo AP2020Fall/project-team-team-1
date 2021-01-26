@@ -1,8 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
@@ -26,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class DotsAndBoxesDetailsController implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     Label topic;

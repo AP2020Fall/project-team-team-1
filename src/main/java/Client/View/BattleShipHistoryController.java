@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class BattleShipHistoryController implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     ImageView imageViewOfLevel;
@@ -46,8 +43,6 @@ public class BattleShipHistoryController implements Initializable {
         try {
             setPieChart();
             setImageViewOfLevel();
-        } catch (InvalidGameNameException e) {
-            System.out.println(e.getMessage() + e.getGameName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +50,7 @@ public class BattleShipHistoryController implements Initializable {
     }
 
     @FXML
-    private void setPieChart() throws InvalidGameNameException, IOException {
+    private void setPieChart() throws IOException {
 
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
@@ -75,7 +70,7 @@ public class BattleShipHistoryController implements Initializable {
     }
 
     @FXML
-    private void setImageViewOfLevel() throws InvalidGameNameException, IOException {
+    private void setImageViewOfLevel() throws IOException {
         int level = Integer.parseInt(dataLoader.pointsInThisGame(LoginController.getUsername(),"first"));
         point.setText("Points: " + level);
 
@@ -130,8 +125,6 @@ public class BattleShipHistoryController implements Initializable {
         try {
             setImageViewOfLevel();
             setPieChart();
-        } catch (InvalidGameNameException e) {
-            System.err.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

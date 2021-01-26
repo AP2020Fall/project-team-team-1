@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +24,7 @@ import java.util.ResourceBundle;
 
 public class FriendProfileController implements Initializable {
 
-    //    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     protected static String usernameOfFriend = "null";
 
@@ -83,7 +78,6 @@ public class FriendProfileController implements Initializable {
 
     @FXML
     private void setImgStatusToProfile() throws IOException {
-//        String[] userData = playerGeneralController.showFriendProfile(LoginController.getUsername(), getUsernameOfFriend()).split("\\$");
         String[] userData = dataLoader.loadPlayerBasicInformation(getUsernameOfFriend()).split("\\$");
         //todo watch out
         File file = new File(userData[6]);

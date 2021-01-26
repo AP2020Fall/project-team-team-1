@@ -1,10 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.Exception.Plato.ExistPlayerLogException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameLogController implements Initializable {
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     ListView<String> listView;

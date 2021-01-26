@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class BattleShipMainMenuController implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
     Boolean isFav = false;
 
     @FXML

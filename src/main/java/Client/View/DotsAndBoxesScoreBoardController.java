@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,13 +23,13 @@ import java.util.ResourceBundle;
 public class DotsAndBoxesScoreBoardController implements Initializable {
 
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     ListView<String> listView;
 
     @FXML
-    private void setListView() throws InvalidGameNameException, IOException {
+    private void setListView() throws IOException {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
@@ -63,8 +60,6 @@ public class DotsAndBoxesScoreBoardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setListView();
-        } catch (InvalidGameNameException e) {
-            System.err.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

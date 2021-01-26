@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.Exception.Plato.ExistPlayerLogException;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,13 +22,13 @@ import java.util.ResourceBundle;
 
 public class BattleShipScoreBoardController implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     ListView<String> listView;
 
     @FXML
-    private void setListView() throws ExistPlayerLogException, ExistPlayerException, InvalidGameNameException, IOException {
+    private void setListView() throws IOException {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
@@ -62,8 +59,6 @@ public class BattleShipScoreBoardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setListView();
-        } catch (ExistPlayerLogException | ExistPlayerException | InvalidGameNameException e) {
-            System.err.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }

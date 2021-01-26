@@ -1,7 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 import Server.Model.PlatoModel.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,8 +27,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminUsersController implements Initializable {
-    //protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     public TableView<Player> table;

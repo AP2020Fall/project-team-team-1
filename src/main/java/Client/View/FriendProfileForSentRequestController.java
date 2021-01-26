@@ -1,12 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistFavoriteException;
-import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class FriendProfileForSentRequestController implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
 
     private static String usernameOfFriendForSentRequest = "null";

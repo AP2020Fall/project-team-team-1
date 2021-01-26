@@ -1,10 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistFavoriteException;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class DotsAndBoxesMainMenuController implements Initializable {
 
-private static DataLoader dataLoader = new DataLoader();
+private static final DataLoader dataLoader = new DataLoader();
     Boolean isFav = false;
     @FXML
     Button btnExit;

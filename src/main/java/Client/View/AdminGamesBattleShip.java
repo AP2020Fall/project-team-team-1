@@ -1,8 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.GameActivation;
-import Server.Controller.Exception.Plato.InvalidGameID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class AdminGamesBattleShip implements Initializable {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
     String[] strings ;
 
 
@@ -94,7 +92,7 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    public void activateBattle(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+    public void activateBattle(ActionEvent event) throws IOException {
         playMouseSound();
         dataLoader.activeGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
@@ -105,7 +103,7 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    public void deActivateBattleShip(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+    public void deActivateBattleShip(ActionEvent event) throws IOException {
         playMouseSound();
         dataLoader.deActiveGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
@@ -116,7 +114,7 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    private void btnIsActive() throws InvalidGameID, IOException {
+    private void btnIsActive() throws IOException {
         if (dataLoader.activeStatus("1").equalsIgnoreCase("false")) {
             btnActiveBattle.setDisable(false);
             btnDeActiveBattle.setDisable(true);
@@ -137,14 +135,12 @@ public class AdminGamesBattleShip implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             strings = dataLoader.mvpBattle().split("\\$");
+            btnIsActive();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try {
-            btnIsActive();
-        } catch (InvalidGameID | IOException invalidGameID) {
-            invalidGameID.printStackTrace();
-        }
+
+
         try {
             lblBattleDetails.setText(dataLoader.battleShipDetails());
         } catch (IOException e) {

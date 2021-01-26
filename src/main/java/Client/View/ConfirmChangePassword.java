@@ -1,12 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.CompetencyController.Existence;
-import Server.Controller.Exception.Plato.InvalidPasswordException;
-import Server.Controller.Exception.Plato.SamePasswordException;
-import Server.Controller.Exception.Plato.StrongerPasswordException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +19,7 @@ import java.net.URL;
 
 public class ConfirmChangePassword {
 
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     private String username = LoginController.getUsername();
 

@@ -1,9 +1,7 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.Exception.Plato.InvalidGameID;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,8 +26,7 @@ import java.util.ResourceBundle;
 
 
 public class GameMenu implements Initializable {
-//    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
     private static final DataLoader dataLoader = new DataLoader();
 
     String firsGame;
