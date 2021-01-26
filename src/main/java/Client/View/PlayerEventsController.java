@@ -1,9 +1,6 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistEventException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Model.PlatoModel.Event;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -32,9 +29,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PlayerEventsController implements Initializable {
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    private static DataLoader dataLoader = new DataLoader();
+
+    private static final DataLoader dataLoader = new DataLoader();
 
     private static ArrayList<Event> eventForShow ;
 
@@ -152,27 +148,20 @@ public class PlayerEventsController implements Initializable {
         points.setCellValueFactory(new PropertyValueFactory<>("score"));
         comment.setCellValueFactory(new PropertyValueFactory<>("Comment"));
 
-//        Event.addNewEvent(new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"hi"));
         tableView.setItems(events);
-//        for (Event event : Event.getEvents()) {
-//            tableView.getItems().add(event);
-//        }
         for (Event event : eventForShow) {
             tableView.getItems().add(event);
         }
 
     }
     @FXML
-    private final ObservableList<Event> events = FXCollections.observableArrayList(
-//            Event.getEvents().get(0)
-//            new Event(1,"battleship",LocalDate.of(2021,2,2),LocalDate.of(2021,2,3),20,"bye")
+    private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-    );
     @FXML
-    private void joinEvent(ActionEvent event) throws IOException, ExistEventException {
+    private void joinEvent(ActionEvent event) throws IOException {
         //todo Handel this
-        if (playerGeneralController.eventActivation(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
-            playerGeneralController.joinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
+        if (dataLoader.loadEventActivation(String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID())).equals("true")){
+           dataLoader.playerJoinEvent(LoginController.getUsername(), String.valueOf(tableView.getSelectionModel().getSelectedItem().getEventID()));
             if (tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("b")||tableView.getSelectionModel().getSelectedItem().getGameName().startsWith("B")){
                 BattleShipRunMenu.setScore(Long.parseLong(String.valueOf(tableView.getSelectionModel().getSelectedItem().getScore())));
                 URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();

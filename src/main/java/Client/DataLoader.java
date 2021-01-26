@@ -32,19 +32,20 @@ public class DataLoader {
     }
 
     /***************************Profile edit******************/
-    public String editProfileDetails(String username,String kind, String input) throws IOException {
-        Client.getDataOutputStream().writeUTF("Edit Profile Details " + username + " "+kind +" " + input);
+    public String editProfileDetails(String username, String kind, String input) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Profile Details " + username + " " + kind + " " + input);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     public String editProfileBio(String username, String input) throws IOException {
         Client.getDataOutputStream().writeUTF("Edit Profile Bio " + username + " " + input);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String editPassWord(String username, String oldPassword,String newPassword) throws IOException {
-        Client.getDataOutputStream().writeUTF("Edit Password " + username + " " + oldPassword +" "+ newPassword);
+    public String editPassWord(String username, String oldPassword, String newPassword) throws IOException {
+        Client.getDataOutputStream().writeUTF("Edit Password " + username + " " + oldPassword + " " + newPassword);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -91,6 +92,7 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
+
     /***********************************************************/
 
     public Player loadPlayer(String playerUsername) throws IOException {
@@ -107,8 +109,8 @@ public class DataLoader {
 
     }
 
-    public String playerAge(String username ) throws IOException {
-        Client.getDataOutputStream().writeUTF("Player Age "+ username );
+    public String playerAge(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Age " + username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -136,6 +138,7 @@ public class DataLoader {
         ArrayList<Player> output = new Gson().fromJson(Client.getDataInputStream().readUTF(), type);
         PlayerSearchFriendsController.setPlayerList(output);
     }
+
     public void loadSuggestion() throws IOException {
         Client.getDataOutputStream().writeUTF("suggestion list");
         Client.getDataOutputStream().flush();
@@ -150,13 +153,15 @@ public class DataLoader {
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
-    public String addPlayerFavoriteGames(String username,String gameNumber) throws IOException {
-        Client.getDataOutputStream().writeUTF("Add Player Favorite Games " + username + " "+ gameNumber);
+
+    public String addPlayerFavoriteGames(String username, String gameNumber) throws IOException {
+        Client.getDataOutputStream().writeUTF("Add Player Favorite Games " + username + " " + gameNumber);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
-    public String removePlayerFavoriteGames(String username , String gameNumber) throws IOException {
-        Client.getDataOutputStream().writeUTF("Remove Player Favorite Games " + username + " "+ gameNumber);
+
+    public String removePlayerFavoriteGames(String username, String gameNumber) throws IOException {
+        Client.getDataOutputStream().writeUTF("Remove Player Favorite Games " + username + " " + gameNumber);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -209,44 +214,44 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String numberOfWins(String username , String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("win number "+ username +" "+ gameName);
+    public String numberOfWins(String username, String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("win number " + username + " " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String numberOfLoses(String username , String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("lose number "+ username +" "+ gameName);
+    public String numberOfLoses(String username, String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("lose number " + username + " " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String numberOfPlayThisGame(String username , String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("play number "+ username +" "+ gameName);
+    public String numberOfPlayThisGame(String username, String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("play number " + username + " " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String pointsInThisGame(String username , String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("points number "+ username +" "+ gameName);
+    public String pointsInThisGame(String username, String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("points number " + username + " " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String playerPoints(String username ) throws IOException {
-        Client.getDataOutputStream().writeUTF("Player ToTal Point "+ username );
+    public String playerPoints(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player ToTal Point " + username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String scoreBoardInBattle(String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("battle scoreboard "+ gameName);
+        Client.getDataOutputStream().writeUTF("battle scoreboard " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String scoreBoardInDots(String gameName) throws IOException {
-        Client.getDataOutputStream().writeUTF("dots scoreboard "+ gameName);
+        Client.getDataOutputStream().writeUTF("dots scoreboard " + gameName);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -264,13 +269,13 @@ public class DataLoader {
     }
 
     public String removeSuggestion(String suggestionId) throws IOException {
-        Client.getDataOutputStream().writeUTF("Remove Suggestion "+suggestionId);
+        Client.getDataOutputStream().writeUTF("Remove Suggestion " + suggestionId);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String makeEvent(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Make Event "+string);
+        Client.getDataOutputStream().writeUTF("Make Event " + string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -293,26 +298,26 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String setDetailForBattle(String gameName , String text) throws IOException {
-        Client.getDataOutputStream().writeUTF("Admin battle detail "+ gameName +" "+ text);
+    public String setDetailForBattle(String gameName, String text) throws IOException {
+        Client.getDataOutputStream().writeUTF("Admin battle detail " + gameName + " " + text);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String setDetailForDots(String gameName , String text) throws IOException {
-        Client.getDataOutputStream().writeUTF("Admin dots detail "+ gameName +" "+ text);
+    public String setDetailForDots(String gameName, String text) throws IOException {
+        Client.getDataOutputStream().writeUTF("Admin dots detail " + gameName + " " + text);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String activeGame(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Active Game "+string);
+        Client.getDataOutputStream().writeUTF("Active Game " + string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String deActiveGame(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Deactivate Game "+string);
+        Client.getDataOutputStream().writeUTF("Deactivate Game " + string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -336,7 +341,7 @@ public class DataLoader {
     }
 
     public String activeStatus(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Activation Status "+string);
+        Client.getDataOutputStream().writeUTF("Activation Status " + string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
@@ -354,25 +359,37 @@ public class DataLoader {
     }
 
     public String sendMessageByAdmin(String string) throws IOException {
-        Client.getDataOutputStream().writeUTF("Send message "+string);
+        Client.getDataOutputStream().writeUTF("Send message " + string);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
-    public String setRememberStatus(String username , String bool) throws IOException {
-        Client.getDataOutputStream().writeUTF("Set Remember Status "+username+" "+ bool);
+    public String setRememberStatus(String username, String bool) throws IOException {
+        Client.getDataOutputStream().writeUTF("Set Remember Status " + username + " " + bool);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String loadRememberStatus(String username) throws IOException {
-        Client.getDataOutputStream().writeUTF("Load Remember Status "+username);
+        Client.getDataOutputStream().writeUTF("Load Remember Status " + username);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String loadDirectPassword(String username) throws IOException {
-        Client.getDataOutputStream().writeUTF("Load Direct Password "+username);
+        Client.getDataOutputStream().writeUTF("Load Direct Password " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String loadEventActivation(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Load Event Activation " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String playerJoinEvent(String username, String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Player Join Event " + username + " " + eventID);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }

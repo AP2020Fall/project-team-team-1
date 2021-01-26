@@ -184,6 +184,10 @@ public class Server {
                 answer = removeSuggestionServer(input);
             else if (input.startsWith("Make Event "))
                 answer = makeEvent(input);
+            else if (input.startsWith("Load Event Activation"))
+                answer = getEventActivation(input);
+            else if (input.startsWith("Player Join Event "))
+                answer = joinEvent(input);
             else if (input.startsWith("Mvp battle "))
                 answer = battleMvp();
             else if (input.startsWith("Mvp dots "))
@@ -1005,6 +1009,32 @@ public class Server {
             String[] process = string.split("\\s");
             return playerGeneralController.getUsernamePassword(process[3]);
         }
+
+        private String joinEvent(String string) {
+            String[] process = string.split("\\s");
+            try {
+                playerGeneralController.joinEvent(process[3],process[4]);
+                return "done";
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+        private String getEventActivation(String string) {
+            String[] process = string.split("\\s");
+            try {
+                return playerGeneralController.eventActivation(process[3]);
+            } catch (ExistEventException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+        }
+
+
 
 
     }
