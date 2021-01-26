@@ -418,4 +418,34 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String findEventName(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Find Event name " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String findEventDateStart(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Date Event Start " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String findEventDateEnd(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Date Event End " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String findEventScore(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Event Score " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String findEventComment(String eventID) throws IOException {
+        Client.getDataOutputStream().writeUTF("Event Comment " + eventID);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 }
