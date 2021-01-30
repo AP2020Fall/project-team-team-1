@@ -32,7 +32,7 @@ public class UpdateError implements Initializable {
     }
     @FXML
     private void setErrorLabel(){
-        errorLabel.setText(getError());
+        errorLabel.setText("getError()");
     }
 
     @Override

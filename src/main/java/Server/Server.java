@@ -19,6 +19,8 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.ArrayList;
 
 public class Server {
     protected static LogIn logIn = new LogIn();
@@ -48,7 +50,10 @@ public class Server {
                 System.out.println("A client Connected!");
                 DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
                 DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
-                new ClientHandler(clientSocket, dataOutputStream, dataInputStream).start();
+//                new ClientHandler(clientSocket, dataOutputStream, dataInputStream).start();
+                ClientHandler clientHandler = new ClientHandler(clientSocket, dataOutputStream, dataInputStream);
+                ClientHandler.addNewClientHandler(clientHandler);
+                clientHandler.start();
             } catch (Exception e) {
                 System.err.println("Error in accepting client!");
                 break;
@@ -57,9 +62,11 @@ public class Server {
     }
 
     static class ClientHandler extends Thread {
+        public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
         Socket clientSocket;
         DataOutputStream dataOutputStream;
         DataInputStream dataInputStream;
+        String username;
         Player player;
         Admin admin;
 
@@ -67,8 +74,26 @@ public class Server {
             this.clientSocket = clientSocket;
             this.dataOutputStream = dataOutputStream;
             this.dataInputStream = dataInputStream;
+            this.username = "";
             this.player = null;
             this.admin = null;
+        }
+
+        public static void addNewClientHandler(ClientHandler clientHandler){
+            clientHandlers.add(clientHandler);
+        }
+
+        public static void removeClientHandler(ClientHandler clientHandler){
+            clientHandlers.remove(clientHandler);
+        }
+
+        public static ClientHandler clientHandlerFinder(String username){
+            for (Server.ClientHandler clientHandler : clientHandlers) {
+                if (clientHandler.username.equals(username)){
+                   return clientHandler;
+                }
+            }
+            return null;
         }
 
 
@@ -87,11 +112,16 @@ public class Server {
                     dataOutputStream.flush();
                     System.out.println("server answered : " + answer);
                     System.err.println(OnlineUsers.getOnlineUsers());
+                    System.err.println(ClientHandler.clientHandlers);
                     if (input.equals("end")) {
                         System.out.println("Connection closed!!!");
                         break;
                     }
                 }
+
+            } catch (SocketException e){
+                System.err.println(e.getMessage());
+                clientHandlers.remove(this);
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
@@ -256,8 +286,26 @@ public class Server {
                 answer =  playerUnbanStatus(input);
             else if (input.startsWith("Report Player "))
                 answer = playerReportStatus(input)  ;
+            else if (input.startsWith("playy with"))
+                answer = letsPLay(input)  ;
 
             return answer;
+        }
+
+        private String letsPLay(String string)  {
+            String[] process = string.split("\\s");
+            ClientHandler clientHandler = clientHandlerFinder(process[2]);
+            if (clientHandler == null){
+                return "Failure";
+            }
+
+            try {
+                clientHandler.dataOutputStream.writeUTF("ready to play?"+process[2]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "done";
+
         }
 
         private String makePlayerOnline(String string){
@@ -467,7 +515,8 @@ public class Server {
             if (adminGeneralController.getAdminUserName().equals(username)) {
                 try {
                     logIn.loginAsAdmin(out);
-                    admin = Admin.getAdmins().get(0);
+                    this.admin = Admin.getAdmins().get(0);
+                    this.username = Admin.getAdmins().get(0).getUserName();
                     return "Success Admin login";
 
                 } catch (InvalidUserNameException e) {
@@ -483,7 +532,8 @@ public class Server {
             } else {
                 try {
                     logIn.loginAsPlayer(out);
-                    player = FindPlayerByInfo.findByUserName(username);
+                    this.player = FindPlayerByInfo.findByUserName(username);
+                    this.username = FindPlayerByInfo.findByUserName(username).getUserName();
                     return "Success Player login";
 
                 } catch (InvalidUserNameException e) {
@@ -1299,8 +1349,17 @@ public class Server {
         }
 
 
-
-
+        @Override
+        public String toString() {
+            return "ClientHandler{" +
+                    "clientSocket=" + clientSocket +
+                    ", dataOutputStream=" + dataOutputStream +
+                    ", dataInputStream=" + dataInputStream +
+                    ", username='" + username + '\'' +
+                    ", player=" + player +
+                    ", admin=" + admin +
+                    '}';
+        }
     }
 
 

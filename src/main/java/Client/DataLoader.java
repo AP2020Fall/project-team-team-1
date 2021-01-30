@@ -15,7 +15,18 @@ import java.util.ArrayList;
 public class DataLoader {
     //todo add coder
     //todo add request watcher for lot requests
+    /***********************************/
+    public String waitingToConnect(){
+        return "string";
+    }
+    public String letsPlay(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("playy with "+username);
+        Client.getDataOutputStream().flush();
 
+        return Client.getDataInputStream().readUTF();
+    }
+
+    /***********************************/
     public String makePlayerOnline(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("Make Player Online "+ username);
         Client.getDataOutputStream().flush();
