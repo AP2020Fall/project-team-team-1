@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.Exception.Plato.BanExceptionForLogin;
 import Server.Controller.Exception.Plato.ExistFriendException;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
@@ -36,6 +37,8 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class BattleShipRunMenu implements Initializable {
+    private static final DataLoader dataLoader = new DataLoader();
+
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static LogIn logIn = new LogIn();
     private static long score = 10;
@@ -90,8 +93,12 @@ public class BattleShipRunMenu implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    private ArrayList<String> addToList() throws ExistFriendException {
-        String[] friends = playerGeneralController.showFriends(this.getUsername()).split("\\$");
+    private ArrayList<String> addToList() throws IOException {
+        String response = dataLoader.onlinePlayerInThisGame("BattleShip");
+        if (response.equals("No one Online For This Game")){
+            return null;
+        }
+        String[] friends = response.split("\\$");
         return new ArrayList<>(Arrays.asList(friends));
     }
     @FXML
@@ -102,13 +109,13 @@ public class BattleShipRunMenu implements Initializable {
         try {
             addToList();
             initActions();
-        } catch (ExistFriendException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         listViewFriends.setItems(observableList);
         try {
             listViewFriends.getItems().addAll(addToList());
-        } catch (ExistFriendException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

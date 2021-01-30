@@ -4,6 +4,7 @@ import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.CompetencyController.Existence;
 import Server.Controller.CompetencyController.Validation;
 import Server.Controller.Exception.Plato.*;
+import Server.Controller.OnlineUsersController;
 import Server.Controller.PlayerController.FindPlayerByInfo;
 import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
@@ -24,7 +25,7 @@ public class Server {
     protected static SignUp signUp = new SignUp();
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-
+    protected static OnlineUsersController onlineUsersController = new OnlineUsersController();
 
     public static void main(String[] args) throws IOException {
         try {
@@ -85,6 +86,7 @@ public class Server {
                     dataOutputStream.writeUTF(answer);
                     dataOutputStream.flush();
                     System.out.println("server answered : " + answer);
+                    System.err.println(OnlineUsers.getOnlineUsers());
                     if (input.equals("end")) {
                         System.out.println("Connection closed!!!");
                         break;
@@ -108,6 +110,14 @@ public class Server {
                 answer = editPassword(input);
             else if (input.startsWith("Confirm Password"))
                 answer = confirmPassword(input);
+            else if (input.startsWith("Make Player Online"))
+                answer = makePlayerOnline(input);
+            else if (input.startsWith("Make Player Offline"))
+                answer = makePlayerOffline(input);
+            else if (input.startsWith("Change Player Status"))
+                answer = changePlayerStatus(input);
+            else if (input.startsWith("Online Player In This Game"))
+                answer = onlinePlayerInThisGame(input);
             else if (input.startsWith("Delete Player"))
                 answer = deletePlayer(input);
             else if (input.startsWith("Edit Profile Details"))
@@ -250,6 +260,29 @@ public class Server {
             return answer;
         }
 
+        private String makePlayerOnline(String string){
+            String[] process = string.split("\\s");
+            OnlineUsers.addNewOnlineUser(new OnlineUsers(process[3],"Login"));
+            return "done";
+        }
+
+        private String makePlayerOffline(String string){
+            String[] process = string.split("\\s");
+            OnlineUsers.makePlayerOffline(process[3]);
+            return "done";
+        }
+
+        private String changePlayerStatus(String string){
+            String[] process = string.split("\\s");
+            OnlineUsers.changePlayerStatus(process[3],string.substring(string.indexOf(process[4])));
+            return "done";
+        }
+
+        private String onlinePlayerInThisGame(String string){
+            String[] process = string.split("\\s");
+            return onlineUsersController.onlineGameInThisGame(process[5]);
+        }
+
         private String register(String input) {
             try {
 
@@ -384,7 +417,6 @@ public class Server {
 
         private String editPassword(String string) {
             String[] process = string.split("\\s");
-
             try {
                 playerGeneralController.editPassword(string.substring(string.indexOf(process[2])));
                 return "done";
@@ -452,7 +484,6 @@ public class Server {
                 try {
                     logIn.loginAsPlayer(out);
                     player = FindPlayerByInfo.findByUserName(username);
-                    OnlineUsers.addNewOnlineUser(new OnlineUsers(username, "Nothing"));
                     return "Success Player login";
 
                 } catch (InvalidUserNameException e) {
@@ -1077,8 +1108,7 @@ public class Server {
         private String getMaintenanceStatus(String string){
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.maintenanceStatus(process[2]);
-                return "done";
+                return adminGeneralController.maintenanceStatus(process[2]);
             } catch (InvalidGameID invalidGameID) {
                 System.err.println(invalidGameID.getMessage());
                 return invalidGameID.getMessage();

@@ -16,6 +16,31 @@ public class DataLoader {
     //todo add coder
     //todo add request watcher for lot requests
 
+    public String makePlayerOnline(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Make Player Online "+ username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String makePlayerOffline(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Make Player Offline "+ username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String changePlayerStatus(String username ,String status) throws IOException {
+        Client.getDataOutputStream().writeUTF("Change Player Status "+ username+" "+ status);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String onlinePlayerInThisGame(String gameName) throws IOException {
+        //** GameName Should Be 'BattleShip' or 'DotsAndBoxes'
+        Client.getDataOutputStream().writeUTF("Online Player In This Game "+ gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     /***************************REGISTER***********************/
     public String register(String info) throws IOException {
         Client.getDataOutputStream().writeUTF("Register " + info);
