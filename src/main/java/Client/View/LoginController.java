@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
-    private static DataLoader dataLoader = new DataLoader();
+    private static final DataLoader dataLoader = new DataLoader();
 
     private static final File file = new File("src\\main\\resources\\Sound\\Got.mp3");
     protected static Media media = new Media(file.toURI().toString());
@@ -119,7 +119,6 @@ public class LoginController implements Initializable {
 
 
         if (response.startsWith("Success Admin")) {
-
             admin = dataLoader.loadAdmin(txtUsername.getText());
             setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
@@ -134,13 +133,13 @@ public class LoginController implements Initializable {
             dataLoader.setRememberStatus(txtUsername.getText(), String.valueOf(checkBox.isSelected()));
             player = dataLoader.loadPlayer(txtUsername.getText());
             setUsername(txtUsername.getText());
+            dataLoader.makePlayerOnline(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();
-
 
         }
 

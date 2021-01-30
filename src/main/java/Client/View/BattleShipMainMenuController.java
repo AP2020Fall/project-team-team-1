@@ -147,7 +147,7 @@ public class BattleShipMainMenuController implements Initializable {
     @FXML
     private void runGame(ActionEvent actionEvent) throws IOException {
         playMouseSound();
-
+        dataLoader.changePlayerStatus(LoginController.getUsername(),"BattleShip");
         URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
