@@ -248,6 +248,9 @@ public class PlayerGeneralController {
 
     public String rememberPasswordStatus(String userName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
+        if (player == null){
+            return "No player Found with this Username";
+        }
         return String.valueOf(player.isRemember());
     }
 
