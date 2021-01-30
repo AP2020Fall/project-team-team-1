@@ -1,7 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
@@ -24,19 +23,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BattleShipDetailsController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
+    private static final DataLoader dataLoader = new DataLoader();
     @FXML
     Label topic;
     @FXML
     Text detail;
 
     @FXML
-    private void setDetail() {
+    private void setDetail() throws IOException {
         //detail.setText(playerGeneralController.battleDetails());
-        topic.setText(adminGeneralController.firstGameNameGetter() + "'s Details");
-        final String content = playerGeneralController.battleDetails();
+        topic.setText(dataLoader.firstGameNameGetter() + "'s Details");
+        final String content = dataLoader.battleShipDetails();
 
         final Animation animation = new Transition() {
             {
@@ -72,6 +70,10 @@ public class BattleShipDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setDetail();
+        try {
+            setDetail();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

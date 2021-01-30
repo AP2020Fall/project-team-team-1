@@ -1,9 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.GameActivation;
-import Server.Controller.Exception.Plato.InvalidGameID;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +21,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminGamesBattleShip implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    String[] strings = adminGeneralController.getMVPUserFirstGame().split("\\$");
+
+    private static final DataLoader dataLoader = new DataLoader();
+    String[] strings ;
+
+
     @FXML
     public Button btnGoToAdminBattleShipGame;
     @FXML
@@ -84,7 +83,7 @@ public class AdminGamesBattleShip implements Initializable {
     @FXML
     public void editBattleDetails(ActionEvent event) throws IOException {
         playMouseSound();
-        adminGeneralController.setDetails("BattleShip",txtDetails.getText());
+        dataLoader.setDetailForBattle(dataLoader.firstGameNameGetter(),txtDetails.getText());
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -93,9 +92,9 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    public void activateBattle(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+    public void activateBattle(ActionEvent event) throws IOException {
         playMouseSound();
-        adminGeneralController.activeGame("1");
+        dataLoader.activeGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -104,9 +103,9 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    public void deActivateBattleShip(ActionEvent event) throws InvalidGameID, IOException, GameActivation {
+    public void deActivateBattleShip(ActionEvent event) throws IOException {
         playMouseSound();
-         adminGeneralController.deActiveGame("1");
+        dataLoader.deActiveGame("1");
         URL url = new File("src/main/resources/FXML/AdminGamesBattleShip.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -115,8 +114,8 @@ public class AdminGamesBattleShip implements Initializable {
         window.show();
     }
     @FXML
-    private void btnIsActive() throws InvalidGameID {
-        if (adminGeneralController.activationStatus("1").equalsIgnoreCase("false")) {
+    private void btnIsActive() throws IOException {
+        if (dataLoader.activeStatus("1").equalsIgnoreCase("false")) {
             btnActiveBattle.setDisable(false);
             btnDeActiveBattle.setDisable(true);
         } else {
@@ -135,12 +134,23 @@ public class AdminGamesBattleShip implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            strings = dataLoader.mvpBattle().split("\\$");
             btnIsActive();
-        } catch (InvalidGameID invalidGameID) {
-            invalidGameID.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        lblBattleDetails.setText(playerGeneralController.battleDetails());
+
+
+        try {
+            lblBattleDetails.setText(dataLoader.battleShipDetails());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         lblBattleMVP.setText(strings[0]+" "+strings[1]+"PTS");
-        lblBattleNumbers.setText(adminGeneralController.numberOfTotalPlayedFirstGame());
+        try {
+            lblBattleNumbers.setText(dataLoader.totalPlayedBattle());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -2,9 +2,11 @@ package Client;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Client {
+    public static ArrayList<Client> clients = new ArrayList<>();
     static Socket socket;
     Scanner scanner;
     static DataInputStream dataInputStream;
@@ -70,6 +72,8 @@ public class Client {
         }
     }
 
-
+    public static void addNewClient(Client client){
+        clients.add(client);
+    }
 
 }

@@ -1,8 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,18 +21,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DotsAndBoxesScoreBoardController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     ListView<String> listView;
 
     @FXML
-    private void setListView() throws  InvalidGameNameException {
+    private void setListView() throws IOException {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         listView.setItems(list);
-        String[] showEvent = playerGeneralController.showScoreboardInThisGame(adminGeneralController.secondGameNameGetter()).split("\\$");
+        String[] showEvent = dataLoader.scoreBoardInDots(dataLoader.secondGameNameGetter()).split("\\$");
         for (String out : showEvent) {
             listView.getItems().add(out);
         }
@@ -61,8 +60,8 @@ public class DotsAndBoxesScoreBoardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             setListView();
-        } catch (InvalidGameNameException e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

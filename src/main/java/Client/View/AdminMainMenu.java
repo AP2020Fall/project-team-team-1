@@ -112,6 +112,7 @@ public class AdminMainMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LoginController.mediaPlayer.stop();
         mediaPlayerAdmin.play();
     }
 }

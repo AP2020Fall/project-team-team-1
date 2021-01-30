@@ -1,5 +1,7 @@
 package Client.View;
 
+import Client.Client;
+import Client.DataLoader;
 import Server.Controller.Exception.Plato.BanExceptionForLogin;
 import Server.Controller.Exception.Plato.ExistFriendException;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
@@ -36,6 +38,8 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class BattleShipRunMenu implements Initializable {
+    private static final DataLoader dataLoader = new DataLoader();
+
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static LogIn logIn = new LogIn();
     private static long score = 10;
@@ -57,7 +61,7 @@ public class BattleShipRunMenu implements Initializable {
     @FXML
     ComboBox<String> btnField;
 
-    String username =LoginController.getUsername();
+    String username = LoginController.getUsername();
 
     public String getUsername() {
         return username;
@@ -69,7 +73,6 @@ public class BattleShipRunMenu implements Initializable {
 
     @FXML
     ListView<String> listViewFriends;
-
 
 
     @FXML
@@ -84,51 +87,58 @@ public class BattleShipRunMenu implements Initializable {
         window.show();
 
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    private ArrayList<String> addToList() throws ExistFriendException {
-        String[] friends = playerGeneralController.showFriends(this.getUsername()).split("\\$");
+
+    private ArrayList<String> addToList() throws IOException {
+        String response = dataLoader.onlinePlayerInThisGame("BattleShip");
+        if (response.equals("No one Online For This Game")) {
+            return null;
+        }
+        String[] friends = response.split("\\$");
         return new ArrayList<>(Arrays.asList(friends));
     }
+
     @FXML
-    private final ObservableList<String> observableList= FXCollections.observableArrayList();
+    private final ObservableList<String> observableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             addToList();
             initActions();
-        } catch (ExistFriendException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         listViewFriends.setItems(observableList);
         try {
             listViewFriends.getItems().addAll(addToList());
-        } catch (ExistFriendException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void loginAsSecondPlayer(ActionEvent event) throws IOException {
-        if (txtUsername.getText().equals(LoginController.getUsername())){
+        if (txtUsername.getText().equals(LoginController.getUsername())) {
             showError();
             return;
         }
-        if (btnField.getValue().isEmpty()){
+        if (btnField.getValue().isEmpty()) {
             showError();
             return;
         }
         try {
-            logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
-            BattleTestController.setPlayer1(this.username);
-            BattleTestController.setPlayer2(txtUsername.getText());
-            BattleTestController.setScore(getScore());
-            GameStartController.setTimeForGame(btnField.getValue());
-            URL url = new File("src/main/resources/FXML/BattleTest.fxml").toURI().toURL();
+            logIn.loginAsPlayer(txtUsername.getText() + " " + txtPassword.getText());
+            BattlePreparationController.setPlayer1(this.username);
+            BattlePreparationController.setPlayer2(txtUsername.getText());
+            BattlePreparationController.setScore(getScore());
+            BattleGameStartController.setTimeForGame(btnField.getValue());
+            URL url = new File("src/main/resources/FXML/BattlePreparation.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -140,6 +150,7 @@ public class BattleShipRunMenu implements Initializable {
             showBanError();
         }
     }
+
     private void showError() throws IOException {
         URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
 
@@ -161,12 +172,18 @@ public class BattleShipRunMenu implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void initActions(){
-        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>(){
+    public void initActions() {
+        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent arg0) {
                 String name = listViewFriends.getSelectionModel().getSelectedItem();
                 txtUsername.setText(name);
+                try {
+                    dataLoader.letsPlay(name);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         });

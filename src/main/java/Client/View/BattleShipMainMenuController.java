@@ -1,9 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistFavoriteException;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +24,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BattleShipMainMenuController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    String firsGame = adminGeneralController.firstGameNameGetter();
+
+    private static final DataLoader dataLoader = new DataLoader();
+    Boolean isFav = false;
 
     @FXML
     Button btnExit;
@@ -46,22 +43,21 @@ public class BattleShipMainMenuController implements Initializable {
     /********************Loaders********************/
 
     @FXML
-    private void loadFavStatus() {
+    private void loadFavStatus() throws IOException {
         //playMouseSound();
-
-        String[] fav = new String[0];
-        try {
-            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-        } catch (ExistFavoriteException e) {
-            System.err.println(e.getMessage());
+        String response = dataLoader.loadPlayerFavoriteGames(LoginController.getUsername());
+        if (response.equals("There is no Favorite Games")) {
+            System.err.println("There is no Favorite Games");
             return;
         }
 
+        String[] fav = response.split("\\$");
         for (String gameName : fav) {
             if (gameName.startsWith("B") || gameName.startsWith("b")) {
                 File file = new File("src\\main\\resources\\Icons\\addfav.png");
                 Image image = new Image(file.toURI().toString());
                 btnfavImage.setImage(image);
+                isFav = true;
 
             }
         }
@@ -70,44 +66,22 @@ public class BattleShipMainMenuController implements Initializable {
 
     /********************Methods********************/
     @FXML
-    private void setBtnFav(ActionEvent actionEvent) throws IOException, InvalidGameNameException, ExistFavoriteException {
-        String[] fav = new String[0];
-        playMouseSound();
-        try {
-            fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
-        } catch (ExistFavoriteException e) {
-            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.firstGameNameGetter());
-            File file = new File("src\\main\\resources\\Icons\\addfav.png");
-            Image image = new Image(file.toURI().toString());
-            btnfavImage.setImage(image);
-            return;
+    private void setBtnFav(ActionEvent actionEvent) throws IOException {
 
-        }
-
-        String gameNameForFav = "nothing";
-
-        for (String gameName : fav) {
-            if (gameName.startsWith("B") || gameName.startsWith("b")) {
-
-                File file = new File("src\\main\\resources\\Icons\\addfav.png");
-                Image image = new Image(file.toURI().toString());
-                btnfavImage.setImage(image);
-                gameNameForFav = gameName;
-
-            }
-        }
-        if (gameNameForFav.equalsIgnoreCase("nothing")) {
-            playerGeneralController.addGameToFavoritesGames(LoginController.getUsername(), adminGeneralController.firstGameNameGetter());
+        if (!isFav) {
+            dataLoader.addPlayerFavoriteGames(LoginController.getUsername(), "first");
             File file = new File("src\\main\\resources\\Icons\\addfav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
             return;
         } else {
-            playerGeneralController.RemoveFavoritesGames(LoginController.getUsername(), gameNameForFav);
+            dataLoader.removePlayerFavoriteGames(LoginController.getUsername(), "first");
             File file = new File("src\\main\\resources\\Icons\\removefav.png");
             Image image = new Image(file.toURI().toString());
             btnfavImage.setImage(image);
         }
+        isFav = false;
+        loadFavStatus();
 
 
     }
@@ -173,7 +147,7 @@ public class BattleShipMainMenuController implements Initializable {
     @FXML
     private void runGame(ActionEvent actionEvent) throws IOException {
         playMouseSound();
-
+        dataLoader.changePlayerStatus(LoginController.getUsername(),"BattleShip");
         URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -182,7 +156,8 @@ public class BattleShipMainMenuController implements Initializable {
         window.show();
 
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -191,7 +166,11 @@ public class BattleShipMainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadFavStatus();
-        labelBattle.setText("WELCOME TO ".concat(firsGame));
+        try {
+            loadFavStatus();
+            labelBattle.setText("WELCOME TO ".concat(dataLoader.firstGameNameGetter()));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

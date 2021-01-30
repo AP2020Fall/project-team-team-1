@@ -1,6 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
+import Client.DataLoader;
 import Server.Model.PlatoModel.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,10 +24,20 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminUsersController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static final DataLoader dataLoader = new DataLoader();
+    private static ArrayList<Player> playerArrayList ;
+
+    public static ArrayList<Player> getPlayerArrayList() {
+        return playerArrayList;
+    }
+
+    public static void setPlayerArrayList(ArrayList<Player> playerArrayList) {
+        AdminUsersController.playerArrayList = playerArrayList;
+    }
 
     @FXML
     public TableView<Player> table;
@@ -105,12 +115,20 @@ public class AdminUsersController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblPlayerNum.setText(String.valueOf(Player.getPlayers().size()));
-        lblGamesNum.setText(adminGeneralController.numberOfTotalPlayed());
-        lblMVP.setText(adminGeneralController.getMVPUser());
+        try {
+            lblGamesNum.setText(dataLoader.totalPlayedPlato());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            lblMVP.setText(dataLoader.mvpPlato().split("\\$")[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         tblID.setCellValueFactory(new PropertyValueFactory<>("UserID"));
         tblUsername.setCellValueFactory(new PropertyValueFactory<>("userName"));
         table.setItems(players);
-        for (Player player : Player.getPlayers()) {
+        for (Player player : playerArrayList) {
             table.getItems().add(player);
         }
         //-----------filter------------------//

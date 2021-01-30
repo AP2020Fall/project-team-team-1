@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PlayerMenu implements Initializable {
+    private static final DataLoader dataLoader = new DataLoader();
+
     @FXML
     Button tButton;
     @FXML
@@ -64,7 +67,7 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void goToProfile(ActionEvent event) throws IOException {
         playMouseSound();
-        ProfileController.setUsernameForShowProfile(LoginController.getUsername());
+
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -75,7 +78,9 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void logOut(ActionEvent event) throws IOException {
         playMouseSound();
+        dataLoader.makePlayerOffline(LoginController.getUsername());
         LoginController.setUsername("null");
+        LoginController.setPlayer(null);
         URL url = new File("src/main/resources/FXML/Login.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

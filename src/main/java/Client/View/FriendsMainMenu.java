@@ -1,8 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,8 +27,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class FriendsMainMenu implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     JFXButton btnFriendRequests;
@@ -58,10 +56,8 @@ public class FriendsMainMenu implements Initializable {
     Pane friendPane;
 
 
-
-
     @FXML
-    private void closeApp(){
+    private void closeApp() {
         System.exit(1);
     }
 
@@ -75,10 +71,11 @@ public class FriendsMainMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void setBtnAcceptOrDecline(ActionEvent event) throws IOException {
         playMouseSound();
-        if (FriendRequests.getUsernameForAcceptOrDecline().equalsIgnoreCase("null")){
+        if (FriendRequests.getUsernameForAcceptOrDecline().equalsIgnoreCase("null")) {
             return;
         }
         URL url = new File("src/main/resources/FXML/FriendRequests.fxml").toURI().toURL();
@@ -88,10 +85,11 @@ public class FriendsMainMenu implements Initializable {
         window.setScene(message);
         window.show();
     }
+
     @FXML
     private void setBtnShowOrRemove(ActionEvent event) throws IOException {
         playMouseSound();
-        if (FriendProfileController.getUsernameOfFriend().equalsIgnoreCase("null")){
+        if (FriendProfileController.getUsernameOfFriend().equalsIgnoreCase("null")) {
             return;
         }
         System.out.println(FriendProfileController.getUsernameOfFriend());
@@ -106,25 +104,27 @@ public class FriendsMainMenu implements Initializable {
     }
 
     @FXML
-    private void setListViewForRequests()  {
+    private void setListViewForRequests() throws IOException {
         paneAcc.toFront();
         ObservableList<String> list = FXCollections.observableArrayList();
         listViewForRequests.setItems(list);
-        String[] showEvent = new String[0];
-        try {
-            showEvent = playerGeneralController.showRequests(LoginController.getUsername()).split("\\$");
-        } catch (ExistFriendException e) {
-            System.err.println(e.getMessage());
+
+        String response = dataLoader.playerRequests(LoginController.getUsername());
+        if (response.equals("THERE ARE NO REQUESTS TO SHOW")) {
+            System.err.println("THERE ARE NO REQUESTS TO SHOW");
             return;
         }
+
+        String[] showEvent = response.split("\\$");
         for (String out : showEvent) {
             listViewForRequests.getItems().add(out);
         }
         initActionsForRequests();
     }
+
     @FXML
-    public void initActionsForRequests(){
-        listViewForRequests.setOnMouseClicked(new EventHandler<MouseEvent>(){
+    public void initActionsForRequests() {
+        listViewForRequests.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent arg0) {
                 String name = listViewForRequests.getSelectionModel().getSelectedItem();
                 FriendRequests.setUsernameForAcceptOrDecline(name);
@@ -135,26 +135,29 @@ public class FriendsMainMenu implements Initializable {
 
 
     @FXML
-    private void setListViewForFriends(){
+    private void setListViewForFriends() throws IOException {
         paneFriend.toFront();
         ObservableList<String> list = FXCollections.observableArrayList();
         listViewFriends.setItems(list);
-        String[] showEvent = new String[0];
-        try {
-            showEvent = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
-        } catch (ExistFriendException e) {
-            System.err.println(e.getMessage());
+
+        String response = dataLoader.playerFriends(LoginController.getUsername());
+        if (response.equals("YOU DON'T HAVE ANY FRIENDS")) {
+            System.err.println("YOU DON'T HAVE ANY FRIENDS");
             return;
         }
+
+
+        String[] showEvent = response.split("\\$");
 
         for (String out : showEvent) {
             listViewFriends.getItems().add(out);
         }
         initActionsForFriends();
     }
+
     @FXML
-    public void initActionsForFriends(){
-        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>(){
+    public void initActionsForFriends() {
+        listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent arg0) {
                 String name = listViewFriends.getSelectionModel().getSelectedItem();
                 FriendProfileController.setUsernameOfFriend(name);
@@ -162,14 +165,7 @@ public class FriendsMainMenu implements Initializable {
 
         });
     }
-    private void friendNumber() throws ExistFriendException {
-        String[] friendList = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
-        if (friendList.length != 0) {
-            friendPane.toBack();
-            friendLabel.setText("You have " + friendList.length + " friends");
-        }
-    }
-    public void playMouseSound(){
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -177,23 +173,13 @@ public class FriendsMainMenu implements Initializable {
     }
 
 
-
     @FXML
-    public void close(ActionEvent event){
+    public void close(ActionEvent event) {
         System.exit(1);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            friendNumber();
-        } catch (ExistFriendException e) {
-            e.printStackTrace();
-        }
-//        try {
-//            setListView();
-//        } catch (ExistFriendException e) {
-//            System.err.println("There is no Friend to show");
-//        }
+
     }
 }

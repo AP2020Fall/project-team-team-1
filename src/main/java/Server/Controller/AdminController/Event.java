@@ -29,7 +29,7 @@ public class Event {
             throw new ExistEventException("ID exist");
         }
 
-        Server.Model.PlatoModel.Event.addNewEvent(new Server.Model.PlatoModel.Event(Integer.parseInt(inputSpilt[0]),inputSpilt[1], startDate, endDate, Integer.parseInt(inputSpilt[4]), inputSpilt[5]));
+        Server.Model.PlatoModel.Event.addNewEvent(new Server.Model.PlatoModel.Event(Integer.parseInt(inputSpilt[0]),inputSpilt[1], startDate, endDate, Integer.parseInt(inputSpilt[4]), input.substring(input.indexOf(inputSpilt[5]))));
 
 
     }
@@ -65,7 +65,7 @@ public class Event {
             editScore(event, inputSpilt[2]);
         } else if (inputSpilt[1].trim().equalsIgnoreCase("Comment")) {
             //editComment(event, inputSpilt[2].concat(" ").concat(inputSpilt[3].concat(" ").concat(inputSpilt[4].concat(" ").concat(inputSpilt[5]))));
-            editComment(event,input);
+            editComment(event,input.substring(input.indexOf(inputSpilt[2])));
         } else
             throw new InvalidFieldException("Entered Field for change in Invalid");
 

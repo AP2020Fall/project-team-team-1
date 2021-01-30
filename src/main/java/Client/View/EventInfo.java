@@ -1,7 +1,7 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
+import Client.DataLoader;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EventInfo implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+
+    private static DataLoader dataLoader = new DataLoader();
     protected static String id = "null" ;
     protected static String editField = "null";
 
@@ -93,9 +94,9 @@ public class EventInfo implements Initializable {
         EditPane.toFront();
     }
     @FXML
-    private void deleteEvent(ActionEvent event) throws IOException, ExistEventException {
+    private void deleteEvent(ActionEvent event) throws IOException {
         playMouseSound();
-        adminGeneralController.removeEventByAdminFromView(id);
+        dataLoader.deleteEvent(id);
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -124,16 +125,23 @@ public class EventInfo implements Initializable {
         simplePane.toFront();
     }
     @FXML
-    private void editEvent(ActionEvent event) throws InvalidDateException, NotNullMessageException, InvalidFieldException, ExistEventException, StartDatesException, InvalidGameNameException, IOException {
+    private void editEvent(ActionEvent event) throws  IOException {
         playMouseSound();
+        String response = "";
+        if (txtNewValue.getText().isEmpty()||btnField.getValue().equalsIgnoreCase("field")){
+            return;
+        }
         if (btnField.getValue().toLowerCase().equals("start")){
-            adminGeneralController.editEvent(id+" "+"Start Date"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"Start Date",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("end")){
-            adminGeneralController.editEvent(id+" "+"end Date"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"end Date",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("score")){
-            adminGeneralController.editEvent(id+" "+"score"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"score",txtNewValue.getText());
         }else if (btnField.getValue().toLowerCase().equals("comment")){
-            adminGeneralController.editEvent(id+" "+"comment"+" "+txtNewValue.getText());
+            response = dataLoader.editEventDetails(id,"comment",txtNewValue.getText());
+        }
+        if (!response.equalsIgnoreCase("done")){
+            return;
         }
         URL url = new File("src/main/resources/FXML/AdminEvent.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -148,29 +156,29 @@ public class EventInfo implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         lblID.setText(id);
         try {
-            lblGame.setText(adminGeneralController.eventFinderByEventID(id).getGameName());
-            lblStart.setText(adminGeneralController.eventFinderByEventID(id).getStartDate().toString());
-            lblEnd.setText(adminGeneralController.eventFinderByEventID(id).getEndDate().toString());
-            lblScore.setText(String.valueOf(adminGeneralController.eventFinderByEventID(id).getScore()));
-            lblComment.setText(adminGeneralController.eventFinderByEventID(id).getComment());
-        } catch (ExistEventException e) {
-            System.err.println(e.getMessage());
+            lblGame.setText(dataLoader.findEventName(id));
+            lblStart.setText(dataLoader.findEventDateStart(id));
+            lblEnd.setText(dataLoader.findEventDateEnd(id));
+            lblScore.setText(String.valueOf(dataLoader.findEventScore(id)));
+            lblComment.setText(dataLoader.findEventComment(id));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         try {
-            if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("b")){
+            if (dataLoader.findEventName(id).toLowerCase().startsWith("b")){
                 String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
                         "Events"+File.separator+getId()+File.separator+getId()+".jpg";
                 URL url = new File(path).toURI().toURL();
                 imgGame.setImage(new Image(url.toExternalForm()));
-            }else if (adminGeneralController.eventFinderByEventID(id).getGameName().toLowerCase().startsWith("d")){
+            }else if (dataLoader.findEventName(id).toLowerCase().startsWith("b")){
                 String path ="src"+File.separator+"main"+File.separator+"resources"+File.separator+
                         "Events"+File.separator+getId()+File.separator+getId()+".jpg";
                 URL url = new File(path).toURI().toURL();
                 imgGame.setImage(new Image(url.toExternalForm()));
             }
-        } catch (ExistEventException e) {
-            System.err.println(e.getMessage());
         } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

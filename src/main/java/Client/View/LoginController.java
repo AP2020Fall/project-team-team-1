@@ -1,8 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
 import Client.DataLoader;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Player;
 import javafx.event.ActionEvent;
@@ -28,10 +26,7 @@ import java.util.ResourceBundle;
 
 
 public class LoginController implements Initializable {
-    private static DataLoader dataLoader = new DataLoader();
-
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
+    private static final DataLoader dataLoader = new DataLoader();
 
     private static final File file = new File("src\\main\\resources\\Sound\\Got.mp3");
     protected static Media media = new Media(file.toURI().toString());
@@ -121,8 +116,9 @@ public class LoginController implements Initializable {
             return;
         }
 
-        if (response.startsWith("Success Admin")) {
 
+
+        if (response.startsWith("Success Admin")) {
             admin = dataLoader.loadAdmin(txtUsername.getText());
             setUsername(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
@@ -134,16 +130,16 @@ public class LoginController implements Initializable {
             window.show();
 
         } else if (response.startsWith("Success Player")) {
-
+            dataLoader.setRememberStatus(txtUsername.getText(), String.valueOf(checkBox.isSelected()));
             player = dataLoader.loadPlayer(txtUsername.getText());
             setUsername(txtUsername.getText());
+            dataLoader.makePlayerOnline(txtUsername.getText());
             URL url = new File("src/main/resources/FXML/PlayerMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();
-
 
         }
 
@@ -183,34 +179,27 @@ public class LoginController implements Initializable {
         mediaPlayer.play();
     }
 
-    private void remember(CheckBox checkBox) {
-        //todo should fix this
-        if (checkBox.mnemonicParsingProperty().getValue().equals(false)) {
-            try {
-                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(), "true");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else if (checkBox.mnemonicParsingProperty().getValue().equals(true)) {
-            try {
-                playerGeneralController.setRememberPasswordStatus(txtUsername.getText(), "false");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    @FXML
+    private void remember() throws IOException {
+        if (!txtPassword.getText().isEmpty()){
+            return;
+        }
+        if (txtUsername.getText().isEmpty()){
+            return;
+        }
+        if (txtUsername.getText().equals(dataLoader.loadAdminUsername())){
+            return;
+        }
+        if (dataLoader.loadRememberStatus(txtUsername.getText()).equals("true")){
+            txtPassword.setText(dataLoader.loadDirectPassword(txtUsername.getText()));
+
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        File file = new File("src\\main\\resources\\Sound\\Time.mp3");
-//        Media media = new Media(file.toURI().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.setVolume(0.8);
         mediaPlayer.play();
         AdminMainMenu.mediaPlayerAdmin.stop();
-//        txtUsername.setText("amir");
-//        if (playerGeneralController.rememberPasswordStatus(txtUsername.getText()).equalsIgnoreCase("true")){
-//            txtPassword.setText(playerGeneralController.getUsernamePassword(txtUsername.getText()));
-//        }
     }
 }

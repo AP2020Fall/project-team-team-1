@@ -69,7 +69,7 @@ public class PlayerInfo {
             throw new ExistPlayerLogException("There is no log for this player yet!");
         }
         if (player == null)
-            throw new ExistPlayerException(userName," isn't exist please make sure about Username! ");
+            throw new ExistPlayerException(userName," isn't exist please make sure about Username!");
 
         for (String s : player.getLastPlayed()) {
             show.append(s).append("$");

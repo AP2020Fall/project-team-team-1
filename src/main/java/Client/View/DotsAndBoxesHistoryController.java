@@ -1,8 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,8 +25,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DotsAndBoxesHistoryController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+    private static final DataLoader dataLoader = new DataLoader();
 
 
     @FXML
@@ -46,20 +44,20 @@ public class DotsAndBoxesHistoryController implements Initializable {
         try {
             setPieChart();
             setImageViewOfLevel();
-        } catch (InvalidGameNameException e) {
-            System.out.println(e.getMessage() + e.getGameName());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
 
     @FXML
-    private void setPieChart() throws InvalidGameNameException {
+    private void setPieChart() throws IOException {
         playMouseSound();
 
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                new PieChart.Data("Wins", Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.secondGameNameGetter()))),
-                new PieChart.Data("Losses", Integer.parseInt(playerGeneralController.numberOfLossesInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter()))));
+                new PieChart.Data("Wins", Integer.parseInt(dataLoader.numberOfWins(LoginController.getUsername(),"second"))),
+                new PieChart.Data("Losses", Integer.parseInt(dataLoader.numberOfLoses(LoginController.getUsername(),"second"))));
         pieChartData.forEach(data ->
                 data.nameProperty().bind(
                         Bindings.concat(
@@ -67,15 +65,15 @@ public class DotsAndBoxesHistoryController implements Initializable {
                         )
                 )
         );
-        numberofplayed.setText("You have played this Game for " + playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter()) + " Times");
+        numberofplayed.setText("You have played this Game for " + dataLoader.numberOfPlayThisGame(LoginController.getUsername(),"second") + " Times");
         pieChart.setLegendVisible(false);
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(180);
     }
 
     @FXML
-    private void setImageViewOfLevel() throws InvalidGameNameException {
-        int level = Integer.parseInt(playerGeneralController.showPlayerPointsInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter()));
+    private void setImageViewOfLevel() throws IOException {
+        int level = Integer.parseInt(dataLoader.pointsInThisGame(LoginController.getUsername(),"second"));
         point.setText("Points: " + level);
 
 
@@ -128,8 +126,8 @@ public class DotsAndBoxesHistoryController implements Initializable {
         try {
             setImageViewOfLevel();
             setPieChart();
-        } catch (InvalidGameNameException e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

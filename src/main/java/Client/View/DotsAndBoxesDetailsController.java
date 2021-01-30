@@ -1,7 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.animation.Animation;
 import javafx.animation.Transition;
 import javafx.event.ActionEvent;
@@ -24,8 +23,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DotsAndBoxesDetailsController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+
+    private static final DataLoader dataLoader = new DataLoader();
 
     @FXML
     Label topic;
@@ -33,11 +32,11 @@ public class DotsAndBoxesDetailsController implements Initializable {
     Text detail;
 
     @FXML
-    private void setDetail() {
+    private void setDetail() throws IOException {
         playMouseSound();
         //detail.setText(playerGeneralController.battleDetails());
-        topic.setText(adminGeneralController.secondGameNameGetter() + "'s Details");
-        final String content = playerGeneralController.dotsDetails();
+        topic.setText(dataLoader.secondGameNameGetter() + "'s Details");
+        final String content = dataLoader.dotsDetails();
 
         final Animation animation = new Transition() {
             {
@@ -67,7 +66,11 @@ public class DotsAndBoxesDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setDetail();
+        try {
+            setDetail();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void playMouseSound(){
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");

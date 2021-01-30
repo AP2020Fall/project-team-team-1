@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class PlayerGeneralController {
-    private static final File playerFile = new File("src\\main\\resources\\DataBasePlayer.json");
+    private static final File playerFile = new File("src\\main\\resources\\DataBase\\Player.json");
     private static final File eventFile = new File("src\\main\\resources\\DataBase\\Event.json");
     private static final File userFile = new File("src\\main\\resources\\DataBase\\User.json");
 
@@ -248,6 +248,9 @@ public class PlayerGeneralController {
 
     public String rememberPasswordStatus(String userName) {
         Player player = FindPlayerByInfo.findByUserName(userName);
+        if (player == null){
+            return "No player Found with this Username";
+        }
         return String.valueOf(player.isRemember());
     }
 

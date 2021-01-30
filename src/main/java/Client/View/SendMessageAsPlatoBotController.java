@@ -1,8 +1,7 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
+import Client.DataLoader;
 import Server.Controller.Exception.Plato.NotNullMessageException;
-import Server.Controller.PlayerController.PlayerGeneralController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,9 +30,18 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SendMessageAsPlatoBotController implements Initializable {
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    String[] messages = playerGeneralController.viewBotMessages().split("\\$");
+
+    private static DataLoader dataLoader = new DataLoader();
+    String[] messages;
+
+    {
+        try {
+            messages = dataLoader.showMessagesForAdmin().split("\\$");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     String temp = " " ;
 
     @FXML
@@ -46,7 +54,7 @@ public class SendMessageAsPlatoBotController implements Initializable {
     @FXML
     public void sendMessage(ActionEvent event) throws IOException, NotNullMessageException {
         playMouseSound();
-        adminGeneralController.sendMassageString(txtMessage.getText());
+        dataLoader.sendMessageByAdmin(txtMessage.getText());
         URL url = new File("src/main/resources/FXML/SendMessageAsPlatoBot.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);

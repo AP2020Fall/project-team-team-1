@@ -1,7 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +29,8 @@ import java.util.ResourceBundle;
 
 
 public class AdminProfile implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    String[] strings = adminGeneralController.showAdminInfo().split("\\$");
+    private static DataLoader dataLoader = new DataLoader();
+    String[] strings;
     private File file;
 
     @FXML
@@ -101,6 +100,11 @@ public class AdminProfile implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            strings = dataLoader.loadAdminInfo().split("\\$");
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         simplePane.toFront();
         btnSubmitEdit.setDisable(!txtNewValue.getText().isEmpty());
 
@@ -125,16 +129,23 @@ public class AdminProfile implements Initializable {
         imgProfile.setImage(new Image(url.toExternalForm()));
     }
     @FXML
-    public void editAdmin(ActionEvent event) throws InvalidEmailException, InvalidNameException, ExistEmailException, InvalidFieldException, InvalidPhoneNumberException, IOException {
+    public void editAdmin(ActionEvent event) throws  IOException {
         playMouseSound();
+        String response = "";
+        if (txtNewValue.getText().isEmpty()||comboField.getValue().equalsIgnoreCase("field")){
+            return;
+        }
         if (comboField.getValue().equalsIgnoreCase("Email")){
-            adminGeneralController.editField("email"+" "+txtNewValue.getText());
+            response = dataLoader.editProfileAdmin("email",txtNewValue.getText());
         }else if (comboField.getValue().equalsIgnoreCase("Phone")){
-            adminGeneralController.editField("phoneNumber"+" "+txtNewValue.getText());
+            response = dataLoader.editProfileAdmin("phoneNumber",txtNewValue.getText());
         }else if (comboField.getValue().equalsIgnoreCase("First name")){
-            adminGeneralController.editField("name"+" "+txtNewValue.getText());
+            response =dataLoader.editProfileAdmin("name",txtNewValue.getText());
         }else if (comboField.getValue().equalsIgnoreCase("Last Name")){
-            adminGeneralController.editField("LastName"+" "+txtNewValue.getText());
+            response = dataLoader.editProfileAdmin("LastName",txtNewValue.getText());
+        }
+        if (!response.equalsIgnoreCase("done")){
+            return;
         }
         URL url = new File("src/main/resources/FXML/AdminProfile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);

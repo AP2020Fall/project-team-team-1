@@ -173,7 +173,7 @@ public class PlayerMainMenu extends Menu {
                     System.out.println("Friend Request to " + friendName + " is Pending.");
                     this.parentMenu.run();
                 } catch (ExistFriendException e) {
-                    System.out.println(e.getName() + e.getMessage());
+                    System.out.println(e.getMessage());
                     this.parentMenu.run();
                 } catch (ExistPlayerException e) {
                     System.out.println(e.getPlayerName() + e.getMessage());

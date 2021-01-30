@@ -31,18 +31,51 @@ public class OnlineUsers {
     public  void setStatus(String status) {
         this.status = status;
     }
+
     public static void addNewOnlineUser(OnlineUsers onlineUsers){
         getOnlineUsers().add(onlineUsers);
     }
-    public static void makePlayerOffline(String username){
-        OnlineUsers onlineUsers = null;
-        for (OnlineUsers onlineUser : onlineUsers.getOnlineUsers()) {
-            if (onlineUser.username.equals(username))
-                onlineUsers = onlineUser;
-        }
-        if (onlineUsers == null)
-            return;
 
-        getOnlineUsers().remove(onlineUsers);
+    public static void makePlayerOffline(String username) {
+        OnlineUsers onlineUser = onlineUsersFinder(username);
+        if (onlineUser == null)
+            return;
+        onlineUsers.remove(onlineUser);
+    }
+
+    public static void changePlayerStatus(String username,String status){
+        OnlineUsers onlineUser = onlineUsersFinder(username);
+        if (onlineUser == null){
+            return;
+        }
+        onlineUser.setStatus(status);
+
+    }
+
+    private static OnlineUsers onlineUsersFinder(String username){
+        for (OnlineUsers onlineUser : onlineUsers) {
+            if (onlineUser.username.equals(username)){
+                return onlineUser;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<String> onlineUsersInThisGame(String gameName){
+        ArrayList<String> usernames = new ArrayList<>();
+        for (OnlineUsers onlineUser : onlineUsers) {
+            if (onlineUser.status.equals(gameName)){
+                usernames.add(onlineUser.username);
+            }
+        }
+        return usernames;
+    }
+
+    @Override
+    public String toString() {
+        return "OnlineUsers{" +
+                "username='" + username + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

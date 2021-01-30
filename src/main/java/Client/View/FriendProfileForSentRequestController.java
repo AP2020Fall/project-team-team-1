@@ -1,11 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.ExistFavoriteException;
-import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.Exception.Plato.InvalidGameNameException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +24,8 @@ import java.util.ResourceBundle;
 
 public class FriendProfileForSentRequestController implements Initializable {
 
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static final DataLoader dataLoader = new DataLoader();
+
 
     private static String usernameOfFriendForSentRequest = "null";
 
@@ -50,8 +45,6 @@ public class FriendProfileForSentRequestController implements Initializable {
     ImageView favBattle;
     @FXML
     ImageView favDots;
-//    @FXML
-//    Button btnRemove;
     @FXML
     Button btnSentRequest;
     @FXML
@@ -85,8 +78,8 @@ public class FriendProfileForSentRequestController implements Initializable {
 
 
     @FXML
-    private void setImgStatusToProfile() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsernameOfFriendForSentRequest()).split("\\$");
+    private void setImgStatusToProfile() throws IOException {
+        String[] userData = dataLoader.loadPlayerBasicInformation(getUsernameOfFriendForSentRequest()).split("\\$");
         //todo watch out
         File file = new File(userData[6]);
         Image image = new Image(file.toURI().toString());
@@ -96,20 +89,12 @@ public class FriendProfileForSentRequestController implements Initializable {
     @FXML
     private void setBtnSentRequest(ActionEvent event) throws IOException {
         playMouseSound();
-        if (getUsernameOfFriendForSentRequest().equalsIgnoreCase("null")){
+        if (getUsernameOfFriendForSentRequest().equalsIgnoreCase("null")) {
             return;
         }
-        try {
-            playerGeneralController.addFriends(LoginController.getUsername(), getUsernameOfFriendForSentRequest());
-        } catch (ExistFriendException e) {
-            System.err.println(e.getMessage());
-            //todo add popup of error
-            return;
-        } catch (ExistPlayerException e) {
-            System.err.println(e.getMessage());
-            //todo add popup of error
-            return;
-        }
+
+        dataLoader.sentFriendRequest(LoginController.getUsername(), getUsernameOfFriendForSentRequest());
+
         setUsernameOfFriendForSentRequest("null");
 
         {
@@ -134,9 +119,9 @@ public class FriendProfileForSentRequestController implements Initializable {
     }
 
     @FXML
-    private void setGameStatus() throws InvalidGameNameException {
-        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(getUsernameOfFriendForSentRequest(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
-        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(getUsernameOfFriendForSentRequest(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+    private void setGameStatus() throws IOException {
+        int wins = Integer.parseInt(dataLoader.numberOfWins(getUsernameOfFriendForSentRequest(), "first")) + Integer.parseInt(dataLoader.numberOfWins(LoginController.getUsername(), "second"));
+        int all = Integer.parseInt(dataLoader.numberOfPlayThisGame(getUsernameOfFriendForSentRequest(), "first")) + Integer.parseInt(dataLoader.numberOfPlayThisGame(LoginController.getUsername(), "second"));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
@@ -144,13 +129,13 @@ public class FriendProfileForSentRequestController implements Initializable {
     }
 
     @FXML
-    private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(getUsernameOfFriendForSentRequest()) + " Days in Plato ");
+    private void setPlatoAgeLabel() throws IOException {
+        platoAgeLabel.setText(dataLoader.playerAge(getUsernameOfFriendForSentRequest()) + " Days in Plato ");
     }
 
     @FXML
-    private void setProfilesLabels() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsernameOfFriendForSentRequest()).split("\\$");
+    private void setProfilesLabels() throws IOException {
+        String[] userData = dataLoader.loadPlayerBasicInformation(getUsernameOfFriendForSentRequest()).split("\\$");
         nameAndLastname.setText(userData[1] + " " + userData[2] + "'s Profile");
         email.setText("Email: " + userData[0]);
         //phoneNumber.setText("Phone number: " + userData[5]);
@@ -159,12 +144,12 @@ public class FriendProfileForSentRequestController implements Initializable {
     }
 
     @FXML
-    private void setFavoriteGames() throws ExistFavoriteException {
+    private void setFavoriteGames() throws IOException {
         playMouseSound();
-        battleLabel.setText(adminGeneralController.firstGameNameGetter());
-        dotsLabel.setText(adminGeneralController.secondGameNameGetter());
+        battleLabel.setText(dataLoader.firstGameNameGetter());
+        dotsLabel.setText(dataLoader.secondGameNameGetter());
 
-        String[] fav = playerGeneralController.showFavoritesGames(getUsernameOfFriendForSentRequest()).split("\\$");
+        String[] fav = dataLoader.loadPlayerFavoriteGames(getUsernameOfFriendForSentRequest()).split("\\$");
 
         for (String gameName : fav) {
             if (gameName.startsWith("B") || gameName.startsWith("b")) {
@@ -187,8 +172,8 @@ public class FriendProfileForSentRequestController implements Initializable {
     }
 
     @FXML
-    private void setImgMedal() throws ExistPlayerException {
-        int level = Integer.parseInt(playerGeneralController.showPoint(getUsernameOfFriendForSentRequest()));
+    private void setImgMedal() throws IOException {
+        int level = Integer.parseInt(dataLoader.playerPoints(getUsernameOfFriendForSentRequest()));
 
         if (level >= 200) {
             File file = new File("src\\main\\resources\\Images\\levelKing.png");
@@ -215,7 +200,8 @@ public class FriendProfileForSentRequestController implements Initializable {
             imgMedal.setImage(image);
         }
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -224,6 +210,7 @@ public class FriendProfileForSentRequestController implements Initializable {
 
     @FXML
     private void loadUserData() {
+
         try {
             setImgMedal();
             setImgStatusToProfile();
@@ -231,9 +218,10 @@ public class FriendProfileForSentRequestController implements Initializable {
             setGameStatus();
             setPlatoAgeLabel();
             setFavoriteGames();
-        } catch (ExistPlayerException | InvalidGameNameException | ExistFavoriteException e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+
 
     }
 

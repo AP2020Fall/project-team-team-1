@@ -1,11 +1,6 @@
 package Client.View;
 
-import Server.Controller.CompetencyController.Existence;
-import Server.Controller.Exception.Plato.InvalidPasswordException;
-import Server.Controller.Exception.Plato.SamePasswordException;
-import Server.Controller.Exception.Plato.StrongerPasswordException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +19,9 @@ import java.net.URL;
 
 public class ConfirmChangePassword {
 
+    private static final DataLoader dataLoader = new DataLoader();
 
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-
-
-    private  String username = LoginController.getUsername();
+    private String username = LoginController.getUsername();
 
     protected static String confirm = "false";
 
@@ -59,32 +52,37 @@ public class ConfirmChangePassword {
 
 
     @FXML
-    private void close(ActionEvent event){
+    private void close(ActionEvent event) {
         playMouseSound();
-        Stage stage = (Stage)btnBack.getScene().getWindow();
+        Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
     }
-    @FXML
-    private void setBtnConfirm(ActionEvent event) throws IOException, StrongerPasswordException, InvalidPasswordException, WrongPasswordException, SamePasswordException {
-        playMouseSound();
-        String password = txtPassword.getText();
-        String newPassword = txtNewPassword.getText();
-        setConfirm(Existence.checkPasswordForView(getUsername(),password));
-        if (getConfirm().equalsIgnoreCase("false")){
-            showError();
-        }
-        else {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(getUsername()).append(" ").append(password).append(" ").append(newPassword);
-            playerGeneralController.editPassword(String.valueOf(stringBuilder));
 
+    @FXML
+    private void setBtnConfirm(ActionEvent event) throws IOException {
+        playMouseSound();
+        if (txtPassword.getText().isEmpty() || txtNewPassword.getText().isEmpty()) {
+            System.err.println("Fields are Empty");
+            return;
+        }
+        setConfirm(dataLoader.confirmPassWord(getUsername(), txtPassword.getText()));
+        if (getConfirm().equalsIgnoreCase("false")) {
+            showError();
+        } else {
+
+            String response = dataLoader.editPassWord(getUsername(), txtPassword.getText(), txtNewPassword.getText());
+            if (!response.equals("done")) {
+                System.err.println("There is Problem");
+                return;
+            }
             setConfirm("false");
             close(event);
             //todo Check this
         }
 
     }
-    public void playMouseSound(){
+
+    public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -93,7 +91,6 @@ public class ConfirmChangePassword {
 
     private void showError() throws IOException {
         URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
-
         AnchorPane root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         Stage stage = new Stage();

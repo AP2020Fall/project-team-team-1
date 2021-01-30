@@ -1,8 +1,6 @@
 package Client.View;
 
-import Server.Controller.AdminController.AdminGeneralController;
-import Server.Controller.Exception.Plato.*;
-import Server.Controller.PlayerController.PlayerGeneralController;
+import Client.DataLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,13 +22,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
-    protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+    private static final DataLoader dataLoader = new DataLoader();
 
     protected static String usernameForShowProfile = "null";
 
@@ -150,29 +146,31 @@ public class ProfileController implements Initializable {
     @FXML
     private void editEvent(ActionEvent event) throws IOException {
         playMouseSound();
-        try {
-            if (btnField.getValue().toLowerCase().equals("name")) {
-                playerGeneralController.editField(LoginController.getUsername() + " " + "name" + " " + txtNewValue.getText());
-            } else if (btnField.getValue().toLowerCase().equals("lastname")) {
-                playerGeneralController.editField(LoginController.getUsername() + " " + "lastname" + " " + txtNewValue.getText());
-            } else if (btnField.getValue().toLowerCase().equals("email")) {
-                playerGeneralController.editField(LoginController.getUsername() + " " + "email" + " " + txtNewValue.getText());
-            } else if (btnField.getValue().toLowerCase().equals("phonenumber")) {
-                playerGeneralController.editField(LoginController.getUsername() + " " + "phonenumber" + " " + txtNewValue.getText());
+        String response = "";
+            if (txtNewValue.getText().isEmpty()){
+                System.err.println("Value is Empty");
+                return;
             }
-        } catch (InvalidNameException e) {
-            e.printStackTrace();
-        } catch (InvalidEmailException e) {
-            e.printStackTrace();
-        } catch (InvalidPhoneNumberException e) {
-            e.printStackTrace();
-        } catch (ExistEmailException e) {
-            e.printStackTrace();
-        } catch (InvalidFieldException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            if (btnField.getValue().equals("Field")){
+                System.err.println("Field is Empty");
+                return;
+            }
+
+            if (btnField.getValue().toLowerCase().equals("name")) {
+                response = dataLoader.editProfileDetails(LoginController.getUsername() , "name" , txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("lastname")) {
+                response = dataLoader.editProfileDetails(LoginController.getUsername() , "lastname" , txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("email")) {
+                response = dataLoader.editProfileDetails(LoginController.getUsername() , "email" , txtNewValue.getText());
+            } else if (btnField.getValue().toLowerCase().equals("phonenumber")) {
+                response = dataLoader.editProfileDetails(LoginController.getUsername() , "phonenumber" , txtNewValue.getText());
+            }
+
+            if (!response.equals("done")){
+                System.err.println("There are Some Errors in Validation3");
+                return;
+            }
+
 
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -185,13 +183,15 @@ public class ProfileController implements Initializable {
     @FXML
     private void setBtnEditBio(ActionEvent event) throws IOException {
         playMouseSound();
-        playerGeneralController.editBio(getUsernameForShowProfile(), bio.getText());
+        dataLoader.editProfileBio(getUsernameForShowProfile(),bio.getText());
+//        playerGeneralController.editBio(getUsernameForShowProfile(), bio.getText());
     }
 
     @FXML
-    private void setImgStatusToProfile() throws ExistPlayerException, MalformedURLException {
+    private void setImgStatusToProfile() throws IOException {
         playMouseSound();
-        String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
+        String[] userData = dataLoader.loadPlayerBasicInformation(getUsernameForShowProfile()).split("\\$");
+//        String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
         File file = new File(userData[6]);
         URL url = file.toURI().toURL();
         Image image = new Image(url.toExternalForm());
@@ -212,9 +212,9 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setGameStatus() throws InvalidGameNameException {
-        int wins = Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOFWins(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
-        int all = Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.secondGameNameGetter())) + Integer.parseInt(playerGeneralController.showNumberOfGamePlayedInThisGame(LoginController.getUsername(), adminGeneralController.firstGameNameGetter()));
+    private void setGameStatus() throws IOException {
+        int wins = Integer.parseInt(dataLoader.numberOfWins(getUsernameForShowProfile(),"first")) + Integer.parseInt(dataLoader.numberOfWins(getUsernameForShowProfile(),"second"));
+        int all = Integer.parseInt(dataLoader.numberOfPlayThisGame(getUsernameForShowProfile(),"first")) + Integer.parseInt(dataLoader.numberOfPlayThisGame(getUsernameForShowProfile(),"second"));
         int lose = all - wins;
         winsLabel.setText(String.valueOf(wins));
         loseLabel.setText(String.valueOf(lose));
@@ -222,12 +222,12 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setFavoriteGames() throws ExistFavoriteException {
+    private void setFavoriteGames() throws IOException {
         playMouseSound();
-        battleLabel.setText(adminGeneralController.firstGameNameGetter());
-        dotsLabel.setText(adminGeneralController.secondGameNameGetter());
+        battleLabel.setText(dataLoader.firstGameNameGetter());
+        dotsLabel.setText(dataLoader.secondGameNameGetter());
 
-        String[] fav = playerGeneralController.showFavoritesGames(LoginController.getUsername()).split("\\$");
+        String[] fav = dataLoader.loadPlayerFavoriteGames(getUsernameForShowProfile()).split("\\$");
 
         for (String gameName : fav) {
             if (gameName.startsWith("B") || gameName.startsWith("b")) {
@@ -250,8 +250,8 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setImgMedal() throws ExistPlayerException {
-        int level = Integer.parseInt(playerGeneralController.showPoint(getUsernameForShowProfile()));
+    private void setImgMedal() throws IOException {
+        int level = Integer.parseInt(dataLoader.playerPoints(getUsernameForShowProfile()));
 
         if (level >= 200) {
             File file = new File("src\\main\\resources\\Images\\levelKing.png");
@@ -280,28 +280,25 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    private void setPlatoAgeLabel() throws ExistPlayerException {
-        platoAgeLabel.setText(playerGeneralController.showUserAge(LoginController.getUsername()) + " Days in Plato ");
+    private void setPlatoAgeLabel() throws IOException {
+        platoAgeLabel.setText(dataLoader.playerAge(getUsernameForShowProfile()) + " Days in Plato ");
     }
 
     @FXML
-    private void setProfilesLabels() throws ExistPlayerException {
-        String[] userData = playerGeneralController.showBasicInformation(getUsernameForShowProfile()).split("\\$");
+    private void setProfilesLabels() throws IOException {
+        String[] userData = dataLoader.loadPlayerBasicInformation(getUsernameForShowProfile()).split("\\$");
         nameAndLastname.setText(userData[1] + " " + userData[2] + "'s Profile");
         email.setText("Email: " + userData[0]);
         phoneNumber.setText("Phone number: " + userData[4]);
         bio.setText(userData[5]);
-        String[] playerFriend = new String[0];
-        try {
-             playerFriend = playerGeneralController.showFriends(getUsernameForShowProfile()).split("\\$");
-        } catch (ExistFriendException e) {
-            System.err.println(e.getMessage());
-        }
+        String[] playerFriend = dataLoader.playerFriends(getUsernameForShowProfile()).split("\\$");
+
         numberOfFriendsLabel.setText(String.valueOf(playerFriend.length));
     }
 
     @FXML
     private void loadUserData() {
+
         try {
             setImgStatusToProfile();
             setImgMedal();
@@ -309,21 +306,18 @@ public class ProfileController implements Initializable {
             setProfilesLabels();
             setGameStatus();
             setFavoriteGames();
-        } catch (ExistPlayerException | InvalidGameNameException | ExistFavoriteException | MalformedURLException e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+
     }
-    private void friendNumber() throws ExistFriendException {
-        String[] friendList = playerGeneralController.showFriends(LoginController.getUsername()).split("\\$");
+    private void friendNumber() throws IOException {
+        String[] friendList = dataLoader.playerFriends(getUsernameForShowProfile()).split("\\$");
         if (friendList.length!= 0){
             friendPane.toBack();
             friendLabel.setText("Number of friends : " + friendList.length);
         }
-//        else{
-//            friendNumber.setText("You have no friend :( ");
-//            System.out.println("annnnnnnnnnnnnnnnnnnn");
-//        }
     }
 
     @FXML
@@ -333,12 +327,15 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setUsernameForShowProfile(LoginController.getUsername());
         loadUserData();
+
         try {
             friendNumber();
-        } catch (ExistFriendException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void editProfilePic(ActionEvent event) throws IOException {
@@ -346,7 +343,7 @@ public class ProfileController implements Initializable {
         File file = chooseProfilePick(new FileChooser());
         copy(file,createProfileFile(getUsernameForShowProfile()));
         playMouseSound();
-        playerGeneralController.editProfileURL(LoginController.getUsername(),createProfileFile(getUsernameForShowProfile()).getPath());
+        dataLoader.setUserProfile(getUsernameForShowProfile(),createProfileFile(getUsernameForShowProfile()).getPath());
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
