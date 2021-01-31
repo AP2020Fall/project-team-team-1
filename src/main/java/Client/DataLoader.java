@@ -28,14 +28,6 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String removeXXX(String username) throws IOException {
-        Client.getDataOutputStream().writeUTF("removeXXX " + username);
-        Client.getDataOutputStream().flush();
-
-        return Client.getDataInputStream().readUTF();
-    }
-
-
     /***********************************/
     public String makePlayerOnline(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("Make Player Online " + username);
