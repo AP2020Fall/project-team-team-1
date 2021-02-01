@@ -101,7 +101,6 @@ public class Player extends User {
         this.friendsRequests = friendsRequests;
     }
 
-
     public ArrayList<String> getPlayersWhoReportMe() {
         return playersWhoReportMe;
     }
