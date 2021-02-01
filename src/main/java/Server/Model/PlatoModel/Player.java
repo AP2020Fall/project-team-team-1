@@ -28,6 +28,7 @@ public class Player extends User {
     private boolean remember;
     private String profileURL;
     private String bio;
+    private String requestForGame;
 
     public Player(String name, String lastName, int userID, String userName, String password, String email, String phoneNum) {
         super(name, lastName, userID, userName, password, email, phoneNum);
@@ -44,6 +45,7 @@ public class Player extends User {
         this.remember = false;
         this.profileURL = "src\\main\\resources\\Images\\default-profile.png";
         this.bio = "Its Simple Bio ...";
+        this.requestForGame = "NO";
     }
 
     public static void AddNewPlayer(Player player) {
@@ -101,6 +103,13 @@ public class Player extends User {
         this.friendsRequests = friendsRequests;
     }
 
+    public String getRequestForGame() {
+        return requestForGame;
+    }
+
+    public void setRequestForGame(String requestForGame) {
+        this.requestForGame = requestForGame;
+    }
 
     public ArrayList<String> getPlayersWhoReportMe() {
         return playersWhoReportMe;
