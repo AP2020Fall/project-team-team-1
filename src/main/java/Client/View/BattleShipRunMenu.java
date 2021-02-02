@@ -135,7 +135,9 @@ public class BattleShipRunMenu implements Initializable {
             return null;
         }
         String[] friends = response.split("\\$");
-        return new ArrayList<>(Arrays.asList(friends));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(friends));
+        list.remove(LoginController.getUsername());
+        return list;
     }
 
     @FXML
