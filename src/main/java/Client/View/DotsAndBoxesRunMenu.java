@@ -1,5 +1,6 @@
 package Client.View;
 
+import Client.DataLoader;
 import Server.Controller.Exception.Plato.BanExceptionForLogin;
 import Server.Controller.Exception.Plato.ExistFriendException;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
@@ -35,6 +36,8 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class DotsAndBoxesRunMenu implements Initializable {
+    private static final DataLoader dataLoader = new DataLoader();
+
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static LogIn logIn = new LogIn();
     public Button btnSubmit;
@@ -81,10 +84,15 @@ public class DotsAndBoxesRunMenu implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-    private ArrayList<String>  addToList() throws ExistFriendException {
-        String[] friends = playerGeneralController.showFriends(this.getUsername()).split("\\$");
-//        System.out.println(friends);
-        return new ArrayList<>(Arrays.asList(friends));
+    private ArrayList<String>  addToList() throws ExistFriendException, IOException {
+        String response = dataLoader.onlinePlayerInThisGame("DotsAndBoxes");
+        if (response.equals("No one Online For This Game")) {
+            return null;
+        }
+        String[] friends = response.split("\\$");
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(friends));
+        list.remove(LoginController.getUsername());
+        return list;
     }
     @FXML
     private final ObservableList<String> observableList=FXCollections.observableArrayList();
@@ -97,11 +105,15 @@ public class DotsAndBoxesRunMenu implements Initializable {
             initActions();
         } catch (ExistFriendException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         listViewFriends.setItems(observableList);
         try {
             listViewFriends.getItems().addAll(addToList());
         } catch (ExistFriendException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

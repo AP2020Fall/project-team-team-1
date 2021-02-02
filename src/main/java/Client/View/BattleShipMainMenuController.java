@@ -167,6 +167,7 @@ public class BattleShipMainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            dataLoader.changePlayerStatus(LoginController.getUsername(),"Login");
             loadFavStatus();
             labelBattle.setText("WELCOME TO ".concat(dataLoader.firstGameNameGetter()));
         } catch (IOException e) {

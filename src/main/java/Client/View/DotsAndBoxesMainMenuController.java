@@ -145,6 +145,7 @@ private static final DataLoader dataLoader = new DataLoader();
     @FXML
     private void runGame(ActionEvent actionEvent) throws IOException {
         playMouseSound();
+        dataLoader.changePlayerStatus(LoginController.getUsername(),"DotsAndBoxes");
 
         URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
