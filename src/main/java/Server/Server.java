@@ -15,6 +15,7 @@ import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
 import Server.Model.PlatoModel.Suggestion;
 import com.google.gson.Gson;
+import io.jsonwebtoken.Claims;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -507,9 +508,15 @@ public class Server {
         }
 
         private String login(String input) {
-            int commaIndex = input.indexOf(",");
-            String username = input.substring(6, commaIndex);
-            String password = input.substring(commaIndex + 1);
+            Jwt util = new Jwt();
+            String[] token = input.split("\\s");
+            Claims c = util.getClaims("ata",token[1]);
+
+            String username = c.getSubject();
+            String password = c.getId();
+//            int commaIndex = input.indexOf(",");
+//            String username = input.substring(6, commaIndex);
+//            String password = input.substring(commaIndex + 1);
             String out = username + " " + password;
 
             if (adminGeneralController.getAdminUserName().equals(username)) {
