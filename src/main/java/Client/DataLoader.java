@@ -145,6 +145,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String onlinePlayerStatus() throws IOException {
+        Client.getDataOutputStream().writeUTF("Online Player Status ");
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     /***************************REGISTER***********************/
     public String register(String info) throws IOException {
         //String token = util.generateToken(,,key)

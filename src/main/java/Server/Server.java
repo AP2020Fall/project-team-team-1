@@ -320,6 +320,8 @@ public class Server {
                 answer = historySaver(input);
             else if (input.startsWith("Enemy Username"))
                 answer = enemyUsername(input);
+            else if (input.startsWith("Online Player Status"))
+                answer = onlinePlayerStatus();
 
             return answer;
         }
@@ -510,6 +512,16 @@ public class Server {
             String[] process = string.split("\\s");
             OnlineUsers.changePlayerStatus(process[3], string.substring(string.indexOf(process[4])));
             return "done";
+        }
+
+        private String onlinePlayerStatus() {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            for (OnlineUsers user : OnlineUsers.getOnlineUsers()){
+                stringBuilder.append(user.getUsername()).append("~~~~~~").append(user.getStatus()).append("$");
+            }
+
+            return String.valueOf(stringBuilder);
         }
 
         private String onlinePlayerInThisGame(String string) {
