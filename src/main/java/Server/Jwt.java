@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Jwt {
 
-    public String generateToken(String id , String username , String key){
+    public String generateToken(String id , String subject , String key){
         return Jwts.builder()
                 .setId(id)
-                .setSubject(username)
+                .setSubject(subject)
                 .setIssuer("ata")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(10)))
