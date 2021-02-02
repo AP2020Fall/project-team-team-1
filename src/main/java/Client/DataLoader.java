@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DataLoader {
@@ -17,14 +18,99 @@ public class DataLoader {
     //todo add request watcher for lot requests
 
     /***********************************/
-    public String waitingToConnect() {
-        return "string";
+    public String waitingToPlay(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Waiting To Play " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String setPassForPlay(String username, String pass) throws IOException {
+        Client.getDataOutputStream().writeUTF("Set Pass For Play " + username + " " + pass);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
     }
 
     public String letsPlay(String username) throws IOException {
         Client.getDataOutputStream().writeUTF("playy with " + username);
         Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
 
+    public String playReq(String username, String usernameForSent) throws IOException {
+        Client.getDataOutputStream().writeUTF("play Req " + username + " " + usernameForSent);
+        Client.getDataOutputStream().flush();
+
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String gameMatcher(String p1, String p2, String score) throws IOException {
+        Client.getDataOutputStream().writeUTF("Game Matcher " + p1 + " " + p2 + " " + score);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String giveScoreAndEditPlayerLog(String gameName, String winner, String loser,long score) throws IOException {
+        Client.getDataOutputStream().writeUTF("Give Score And Edit PlayerLog " + gameName + " " + winner + " " + loser +" " + score);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String historySaver(LocalDate localDate,String winner,String loser,String gameName) throws IOException {
+        Client.getDataOutputStream().writeUTF("History Saver " + localDate + " " + winner + " " + loser+" "+gameName);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String enemyUsername(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Enemy Username " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    /*******************BATTLE********************************/
+
+    public String changeCoordinateProcessor(String player, String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("Change Coordinate Processor " + player + " " + string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String getPlayerShipCoordinate(String uername, String index) throws IOException {
+        Client.getDataOutputStream().writeUTF("Get Player Ship Coordinate " + uername + " " + index);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+
+    public String playerAttack(String player, String string) throws IOException {
+        Client.getDataOutputStream().writeUTF("BattleShip Player Attack " + player + " " + string);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String battleShipPlayerTurn(String player) throws IOException {
+        Client.getDataOutputStream().writeUTF("BattleShip Player Turn " + player);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String battleShipChangeTurn(String player) throws IOException {
+        Client.getDataOutputStream().writeUTF("BattleShip Change Turn " + player );
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+
+    public String battleShipPlayerCorrectBoom(String player) throws IOException {
+        Client.getDataOutputStream().writeUTF("BattleShip Player Correct Boom " + player );
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+
+    public String battleShipPlayerInCorrectBoom(String player) throws IOException {
+        Client.getDataOutputStream().writeUTF("BattleShip Player InCorrect Boom " + player );
+        Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 

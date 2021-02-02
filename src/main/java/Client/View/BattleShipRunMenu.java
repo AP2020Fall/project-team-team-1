@@ -6,10 +6,13 @@ import Server.Controller.Exception.Plato.BanExceptionForLogin;
 import Server.Controller.Exception.Plato.ExistFriendException;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
 import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.PlayerController.FindPlayerByInfo;
 import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
+import Server.Model.PlatoModel.Player;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,13 +32,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class BattleShipRunMenu implements Initializable {
     private static final DataLoader dataLoader = new DataLoader();
@@ -88,6 +90,38 @@ public class BattleShipRunMenu implements Initializable {
 
     }
 
+    //for change scene
+    @FXML
+    private void showGameRequests() {
+        Stage stage = new Stage();
+        Object root = null;
+        try {
+            URL url = new File("src/main/resources/FXML/GameRequests.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage.setScene(new Scene((Parent) root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage window = (Stage) listViewFriends.getScene().getWindow();
+        window.setScene(stage.getScene());
+        window.show();
+    }
+    @FXML
+    private void showGamePage() {
+        Stage stage = new Stage();
+        Object root = null;
+        try {
+            URL url = new File("src/main/resources/FXML/BattlePreparationTest.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage.setScene(new Scene((Parent) root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage window = (Stage) listViewFriends.getScene().getWindow();
+        window.setScene(stage.getScene());
+        window.show();
+    }
+
     public void playMouseSound() {
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
@@ -121,7 +155,53 @@ public class BattleShipRunMenu implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        requestGetterForPlay();
     }
+
+    @FXML
+    private void requestGetterForPlay() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                System.out.println("Timer");
+                String response ="";
+                String pass ="";
+                try {
+                    response = dataLoader.letsPlay(LoginController.getUsername());
+                    pass = dataLoader.waitingToPlay(LoginController.getUsername());
+                    System.out.println(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (pass.equalsIgnoreCase("true")){
+                    try {
+                        dataLoader.setPassForPlay(LoginController.getUsername(),"false");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("playyyyyyyyyyyyyyyyyyyyyyyy");
+                    Platform.runLater(() -> showGamePage());
+                    timer.cancel();
+                }
+
+                if (!response.equals("NO")) {
+                    GameRequests.setUsernameThatSentRequest(response);
+                    GameRequests.setGameNameForPlay("BattleShip");
+                    System.out.println("play Time");
+                    Platform.runLater(() -> showGameRequests());
+                    timer.cancel();
+                }
+
+            }
+        }, 0, 5000);
+
+
+    }
+
 
     public void loginAsSecondPlayer(ActionEvent event) throws IOException {
         if (txtUsername.getText().equals(LoginController.getUsername())) {
@@ -180,7 +260,7 @@ public class BattleShipRunMenu implements Initializable {
                 String name = listViewFriends.getSelectionModel().getSelectedItem();
                 txtUsername.setText(name);
                 try {
-                    dataLoader.letsPlay(name);
+                    dataLoader.playReq(LoginController.getUsername(),name);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

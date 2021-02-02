@@ -44,7 +44,7 @@ public class Main extends Application {
 
             AnchorPane root = FXMLLoader.load(url);
             Scene scene = new Scene(root);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
+//            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(scene);
             primaryStage.show();
         }

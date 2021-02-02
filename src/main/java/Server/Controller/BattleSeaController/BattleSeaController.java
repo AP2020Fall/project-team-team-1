@@ -7,6 +7,8 @@ import Server.Model.BattleSeaModel.Coordinate.Direction;
 import Server.Model.BattleSeaModel.Run;
 import Server.Model.BattleSeaModel.Ships.Ship;
 
+import java.util.ArrayList;
+
 
 public class BattleSeaController {
     Run run;
@@ -197,5 +199,20 @@ public class BattleSeaController {
 
 
         return String.valueOf(returnResult);
+    }
+
+    public ArrayList<String> getPlayer1CorrectBooms() {
+        return run.player1.getCorrectPlayerBooms();
+    }
+
+    public ArrayList<String> getPlayer1InCorrectBooms() {
+        return run.player1.getCorrectPlayerBooms();
+    }
+    public ArrayList<String> getPlayer2CorrectBooms() {
+        return run.player2.getCorrectPlayerBooms();
+    }
+
+    public ArrayList<String> getPlayer2InCorrectBooms() {
+        return run.player2.getCorrectPlayerBooms();
     }
 }

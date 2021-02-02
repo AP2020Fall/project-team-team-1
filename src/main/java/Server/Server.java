@@ -3,9 +3,11 @@ package Server;
 import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.CompetencyController.Existence;
 import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.BattleShip.*;
 import Server.Controller.Exception.Plato.*;
 import Server.Controller.OnlineUsersController;
 import Server.Controller.PlayerController.FindPlayerByInfo;
+import Server.Controller.PlayerController.Game;
 import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
 import Server.Controller.RegisterController.SignUp;
@@ -20,6 +22,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Server {
@@ -79,18 +82,18 @@ public class Server {
             this.admin = null;
         }
 
-        public static void addNewClientHandler(ClientHandler clientHandler){
+        public static void addNewClientHandler(ClientHandler clientHandler) {
             clientHandlers.add(clientHandler);
         }
 
-        public static void removeClientHandler(ClientHandler clientHandler){
+        public static void removeClientHandler(ClientHandler clientHandler) {
             clientHandlers.remove(clientHandler);
         }
 
-        public static ClientHandler clientHandlerFinder(String username){
+        public static ClientHandler clientHandlerFinder(String username) {
             for (Server.ClientHandler clientHandler : clientHandlers) {
-                if (clientHandler.username.equals(username)){
-                   return clientHandler;
+                if (clientHandler.username.equals(username)) {
+                    return clientHandler;
                 }
             }
             return null;
@@ -119,7 +122,7 @@ public class Server {
                     }
                 }
 
-            } catch (SocketException e){
+            } catch (SocketException e) {
                 System.err.println(e.getMessage());
                 clientHandlers.remove(this);
             } catch (IOException e) {
@@ -263,9 +266,9 @@ public class Server {
             else if (input.startsWith("Send message "))
                 answer = sendMessageAdmin(input);
             else if (input.startsWith("Admin edit profile "))
-                answer = editAdminProfile(input) ;
+                answer = editAdminProfile(input);
             else if (input.startsWith("Delete Event "))
-                answer = deleteEvent(input) ;
+                answer = deleteEvent(input);
             else if (input.startsWith("Event Edit "))
                 answer = editEventDetails(input);
             else if (input.startsWith("Event Score "))
@@ -273,60 +276,242 @@ public class Server {
             else if (input.startsWith("Event Comment "))
                 answer = findEventComment(input);
             else if (input.startsWith("Find Event name "))
-                answer = findEventName(input) ;
+                answer = findEventName(input);
             else if (input.startsWith("Date Event Start "))
-                answer = findEventDateStart(input) ;
+                answer = findEventDateStart(input);
             else if (input.startsWith("Date Event End "))
-                answer = findEventDateEnd(input) ;
+                answer = findEventDateEnd(input);
             else if (input.startsWith("Player Activity "))
-                answer = playerActivityStatus(input) ;
+                answer = playerActivityStatus(input);
             else if (input.startsWith("Ban Player "))
-                answer =  playerBanStatus(input);
+                answer = playerBanStatus(input);
             else if (input.startsWith("Unban Player "))
-                answer =  playerUnbanStatus(input);
+                answer = playerUnbanStatus(input);
             else if (input.startsWith("Report Player "))
-                answer = playerReportStatus(input)  ;
+                answer = playerReportStatus(input);
             else if (input.startsWith("playy with"))
-                answer = letsPLay(input)  ;
+                answer = letsPLay(input);
+            else if (input.startsWith("play Req"))
+                answer = playReq(input);
+            else if (input.startsWith("Waiting To Play"))
+                answer = waitingToPlay(input);
+            else if (input.startsWith("Set Pass For Play "))
+                answer = setPassForPlay(input);
+            else if (input.startsWith("Game Matcher "))
+                answer = gameMatcher(input);
+            else if (input.startsWith("Change Coordinate Processor "))
+                answer = changeCoordinateProcessor(input);
+            else if (input.startsWith("Get Player Ship Coordinate "))
+                answer = getPlayerShipCoordinate(input);
+            else if (input.startsWith("BattleShip Player Attack "))
+                answer = playerAttack(input);
+            else if (input.startsWith("BattleShip Player Turn"))
+                answer = battleShipPlayerTurn(input);
+            else if (input.startsWith("BattleShip Change Turn"))
+                answer = battleShipChangeTurn(input);
+            else if (input.startsWith("BattleShip Player Correct Boom"))
+                answer = battleShipPlayerCorrectBoom(input);
+            else if (input.startsWith("BattleShip Player InCorrect Boom"))
+                answer = battleShipPlayerInCorrectBoom(input);
+            else if (input.startsWith("Give Score And Edit PlayerLog"))
+                answer = giveScoreAndEditPlayerLog(input);
+            else if (input.startsWith("History Saver"))
+                answer = historySaver(input);
+            else if (input.startsWith("Enemy Username"))
+                answer = enemyUsername(input);
 
             return answer;
         }
 
-        private String letsPLay(String string)  {
-            String[] process = string.split("\\s");
-            ClientHandler clientHandler = clientHandlerFinder(process[2]);
-            if (clientHandler == null){
-                return "Failure";
-            }
+        /***************************************/
 
+        private String changeCoordinateProcessor(String string) {
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             try {
-                clientHandler.dataOutputStream.writeUTF("ready to play?"+process[2]);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                if (gameMatcher.getPlayer1().equals(process[3])) {
+
+                    gameMatcher.getBattleSeaController().changeCoordinateProcessor("player1", string.substring(string.indexOf(process[4])));
+                    return "done";
+
+                } else {
+                    gameMatcher.getBattleSeaController().changeCoordinateProcessor("player2", string.substring(string.indexOf(process[4])));
+                    return "done";
+                }
+
+
+            } catch (PlacedShipException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (NewCoordinateForShipException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (CorrectCoordinateForShipException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (ExistOtherShipException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidCommandException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+
+        }
+
+        private String getPlayerShipCoordinate(String string) {
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            if (gameMatcher.getPlayer1().equals(process[4])){
+                return gameMatcher.getBattleSeaController().getPlayer1Coordinate(Integer.parseInt(process[5]));
+            }else {
+                return gameMatcher.getBattleSeaController().getPlayer2Coordinate(Integer.parseInt(process[5]));
+            }
+        }
+
+        private String playerAttack(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            try {
+
+                if (gameMatcher.getPlayer1().equals(process[3])){
+                    return gameMatcher.getBattleSeaController().boomProcessor("player1",string.substring(string.indexOf(process[4])));
+
+            }else {
+                return gameMatcher.getBattleSeaController().boomProcessor("player1",string.substring(string.indexOf(process[4])));
+            }
+
+            } catch (BattleShipWinner battleShipWinner) {
+                System.err.println(battleShipWinner.getMessage());
+                return battleShipWinner.getMessage();
+            } catch (BoomCheckException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (InvalidCommandException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            } catch (CorrectCoordinateForShipException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+        }
+
+        private String battleShipPlayerTurn(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            if (gameMatcher.getWhoseTurn().equals("player1")){
+                return gameMatcher.getPlayer1();
+            }else {
+                return gameMatcher.getPlayer2();
+            }
+
+        }
+
+        private String battleShipChangeTurn(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            if (gameMatcher.getWhoseTurn().equals("player1")){
+                gameMatcher.setWhoseTurn("player2");
+            }else {
+                gameMatcher.setWhoseTurn("player1");
             }
             return "done";
-
         }
 
-        private String makePlayerOnline(String string){
+        private String battleShipPlayerCorrectBoom(String string){
             String[] process = string.split("\\s");
-            OnlineUsers.addNewOnlineUser(new OnlineUsers(process[3],"Login"));
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            if(gameMatcher.getPlayer1().equals(process[4])){
+                return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer1CorrectBooms());
+            }else {
+                return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer2CorrectBooms());
+            }
+        }
+
+        private String battleShipPlayerInCorrectBoom(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            if(gameMatcher.getPlayer1().equals(process[4])){
+                return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer1InCorrectBooms());
+            }else {
+                return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer2InCorrectBooms());
+            }
+        }
+
+        /***************************************/
+
+        private String letsPLay(String string) {
+            String[] process = string.split("\\s");
+            return OnlineUsers.onlineUsersFinder(process[2]).getRequestForGame();
+        }
+
+        private String setPassForPlay(String string) {
+            String[] process = string.split("\\s");
+            OnlineUsers.onlineUsersFinder(process[4]).setPassForPlay(Boolean.parseBoolean(process[5]));
             return "done";
         }
 
-        private String makePlayerOffline(String string){
+        private String waitingToPlay(String string) {
+            String[] process = string.split("\\s");
+            return String.valueOf(OnlineUsers.onlineUsersFinder(process[3]).getPassForPlay());
+        }
+
+        private String playReq(String string) {
+            String[] process = string.split("\\s");
+            OnlineUsers.onlineUsersFinder(process[3]).setRequestForGame(process[2]);
+            return "done";
+        }
+
+        private String gameMatcher(String string) {
+            String[] process = string.split("\\s");
+            GameMatcher.addNewGameMatcher(new GameMatcher(process[2], process[3], Integer.parseInt(process[4])));
+            return "done";
+        }
+
+        private String enemyUsername(String string) {
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[2]);
+            if (gameMatcher.getPlayer1().equals(process[2])){
+                return gameMatcher.getPlayer2();
+            }else {
+                return gameMatcher.getPlayer1();
+            }
+        }
+
+        private String giveScoreAndEditPlayerLog(String string) {
+            String[] process = string.split("\\s");
+            Game.giveScoreAndEditPlayerLog(process[5],process[6],process[7],Long.parseLong(process[8]));
+            return "done";
+        }
+
+        private String historySaver(String string) {
+            String[] process = string.split("\\s");
+            Game.historySaver(LocalDate.parse(process[2]),process[3],process[4],process[5]);
+            return "done";
+        }
+
+        private String makePlayerOnline(String string) {
+            String[] process = string.split("\\s");
+            OnlineUsers.addNewOnlineUser(new OnlineUsers(process[3], "Login"));
+            return "done";
+        }
+
+        private String makePlayerOffline(String string) {
             String[] process = string.split("\\s");
             OnlineUsers.makePlayerOffline(process[3]);
             return "done";
         }
 
-        private String changePlayerStatus(String string){
+        private String changePlayerStatus(String string) {
             String[] process = string.split("\\s");
-            OnlineUsers.changePlayerStatus(process[3],string.substring(string.indexOf(process[4])));
+            OnlineUsers.changePlayerStatus(process[3], string.substring(string.indexOf(process[4])));
             return "done";
         }
 
-        private String onlinePlayerInThisGame(String string){
+        private String onlinePlayerInThisGame(String string) {
             String[] process = string.split("\\s");
             return onlineUsersController.onlineGameInThisGame(process[5]);
         }
@@ -408,10 +593,10 @@ public class Server {
 
         }
 
-        private String editAdminProfile(String string){
+        private String editAdminProfile(String string) {
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.editField(process[3]+" "+process[4]);
+                adminGeneralController.editField(process[3] + " " + process[4]);
                 return "done";
             } catch (InvalidNameException e) {
                 System.err.println(e.getMessage());
@@ -492,7 +677,7 @@ public class Server {
             return Existence.checkPasswordForView(process[2], process[3]);
         }
 
-        private String getAdminUsername(){
+        private String getAdminUsername() {
             return Admin.getAdmins().get(0).getUserName();
         }
 
@@ -1028,6 +1213,7 @@ public class Server {
             }
 
         }
+
         private String addSuggestionServer(String string) {
             String[] process = string.split("\\s");
             try {
@@ -1145,7 +1331,7 @@ public class Server {
             return adminGeneralController.numberOfTotalPlayed();
         }
 
-        private String gameActivationStatus(String string){
+        private String gameActivationStatus(String string) {
             String[] process = string.split("\\s");
             try {
                 return adminGeneralController.activationStatus(process[2]);
@@ -1155,7 +1341,7 @@ public class Server {
             }
         }
 
-        private String getMaintenanceStatus(String string){
+        private String getMaintenanceStatus(String string) {
             String[] process = string.split("\\s");
             try {
                 return adminGeneralController.maintenanceStatus(process[2]);
@@ -1186,7 +1372,7 @@ public class Server {
         private String setRememberStatus(String string) {
             String[] process = string.split("\\s");
             try {
-                playerGeneralController.setRememberPasswordStatus(process[3],process[4]);
+                playerGeneralController.setRememberPasswordStatus(process[3], process[4]);
                 return "done";
             } catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -1207,7 +1393,7 @@ public class Server {
         private String joinEvent(String string) {
             String[] process = string.split("\\s");
             try {
-                playerGeneralController.joinEvent(process[3],process[4]);
+                playerGeneralController.joinEvent(process[3], process[4]);
                 return "done";
             } catch (ExistEventException e) {
                 System.err.println(e.getMessage());
@@ -1228,7 +1414,7 @@ public class Server {
             }
         }
 
-        private String deleteEvent(String string){
+        private String deleteEvent(String string) {
             String[] process = string.split("\\s");
             try {
                 adminGeneralController.removeEventByAdminFromView(process[2]);
@@ -1299,7 +1485,7 @@ public class Server {
             }
         }
 
-        private String playerActivityStatus(String string){
+        private String playerActivityStatus(String string) {
             String[] process = string.split("\\s");
             return adminGeneralController.playerActivation(process[2]);
         }
@@ -1307,8 +1493,8 @@ public class Server {
         private String playerBanStatus(String string) {
             String[] process = string.split("\\s");
             try {
-                 adminGeneralController.banPlayer(process[2]);
-                 return "done";
+                adminGeneralController.banPlayer(process[2]);
+                return "done";
             } catch (AlreadyBan e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
