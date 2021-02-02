@@ -1,6 +1,7 @@
 package Client;
 
 import Client.View.*;
+import Server.Jwt;
 import Server.Model.PlatoModel.Admin;
 import Server.Model.PlatoModel.Event;
 import Server.Model.PlatoModel.Player;
@@ -16,6 +17,10 @@ import java.util.ArrayList;
 public class DataLoader {
     //todo add coder
     //todo add request watcher for lot requests
+
+    String key = "ata";
+    Jwt util = new Jwt();
+
 
     /***********************************/
     public String waitingToPlay(String username) throws IOException {
@@ -142,13 +147,15 @@ public class DataLoader {
 
     /***************************REGISTER***********************/
     public String register(String info) throws IOException {
+        //String token = util.generateToken(,,key)
         Client.getDataOutputStream().writeUTF("Register " + info);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
 
     public String login(String username, String password) throws IOException {
-        Client.getDataOutputStream().writeUTF("login " + username + "," + password);
+        String token = util.generateToken(password,username,key);
+        Client.getDataOutputStream().writeUTF("login " + token);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();
     }
