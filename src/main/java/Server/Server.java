@@ -706,14 +706,18 @@ public class Server {
         private String login(String input) {
             Jwt util = new Jwt();
             String[] token = input.split("\\s");
-            Claims c = util.getClaims("ata",token[1]);
+            Claims c = util.getClaims("ata", token[1]);
 
             String username = c.getSubject();
             String password = c.getId();
 //            int commaIndex = input.indexOf(",");
 //            String username = input.substring(6, commaIndex);
 //            String password = input.substring(commaIndex + 1);
-            String out = username + " " + password;
+            if (util.isString(username) && util.isString(password)) {
+
+
+                String out = username + " " + password;
+
 
             if (adminGeneralController.getAdminUserName().equals(username)) {
                 try {
@@ -751,7 +755,10 @@ public class Server {
                 }
 
             }
-
+        }
+            else {
+                return "Sth is wrong";
+            }
         }
 
         private String getData(String input) {
@@ -1338,15 +1345,34 @@ public class Server {
         }
 
         private String totalPlayFirstGame() {
+//            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayedFirstGame())){
+//                return adminGeneralController.numberOfTotalPlayedFirstGame();
+//            }
+//            else {
+//                return "improper inputs";
+//            }
             return adminGeneralController.numberOfTotalPlayedFirstGame();
         }
 
         private String totalPlaySecondGame() {
-            return adminGeneralController.numberOfTotalPlayedSecondGame();
+            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayedSecondGame())){
+                return adminGeneralController.numberOfTotalPlayedSecondGame();
+            }
+            else {
+                return "improper inputs";
+            }
+
+            //return adminGeneralController.numberOfTotalPlayedSecondGame();
         }
 
         private String totalPlayPlatoGame() {
-            return adminGeneralController.numberOfTotalPlayed();
+            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayed())){
+                return adminGeneralController.numberOfTotalPlayed();
+            }
+            else {
+                return "improper inputs";
+            }
+
         }
 
         private String gameActivationStatus(String string) {

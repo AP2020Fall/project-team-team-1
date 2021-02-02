@@ -36,7 +36,7 @@
            <cursor>
                <Cursor fx:constant="HAND" />
            </cursor></Button>
-      <Label layoutX="400.0" layoutY="50.0" prefHeight="17.0" prefWidth="66.0" style="-fx-text-fill: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Friend List" />
+      <Label layoutX="400.0" layoutY="50.0" prefHeight="17.0" prefWidth="66.0" style="-fx-text-fill: #00acea;" stylesheets="@../Style/StyleSheet.css" text="Online Player" />
       <Button layoutX="552.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToBattleShipMainMenu" style="-fx-background-color: #1a1b20; -fx-text-fill: #00acea; -fx-border-color: #00acea; -fx-border-width: 0px 0px 2px 0px;" text="Back">
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -176,6 +176,7 @@ public class Game {
             number = player.getPlayerLog().get(1).getNumberOfGamePlayed();
         }
         return String.valueOf(number);
+        //return "85";
     }
     //Dots
     public static String numberOfTotalPlayedSecondGame(){

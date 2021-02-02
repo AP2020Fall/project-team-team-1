@@ -37,4 +37,39 @@ public class Jwt {
                 .getExpiration()
                 .after(new Date(System.currentTimeMillis()));
     }
+
+    public boolean isInteger(String input){
+        boolean isInteger = false ;
+        try{
+            int validInt = Integer.parseInt(input);
+            isInteger = true;
+        }catch (NumberFormatException numberFormatException){
+            System.out.println("This is not a valid number! ");
+        }
+        return isInteger;
+    }
+
+    public boolean isDouble(String input){
+        boolean isDouble = false ;
+        try{
+            double validDouble = Double.parseDouble(input);
+            isDouble = true;
+        }catch (NumberFormatException numberFormatException){
+            System.out.println("This is not a valid number! ");
+        }
+        return isDouble;
+    }
+
+    public boolean isString(String input){
+        boolean isString = false ;
+        try{
+            String validString = String.valueOf(input);
+            isString = true;
+        }catch (Exception numberFormatException){
+            System.out.println("This is not a String! ");
+        }
+        return isString;
+    }
+
+
 }
