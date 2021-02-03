@@ -382,7 +382,7 @@ public class Server {
                     return gameMatcher.getBattleSeaController().boomProcessor("player1",string.substring(string.indexOf(process[4])));
 
             }else {
-                return gameMatcher.getBattleSeaController().boomProcessor("player1",string.substring(string.indexOf(process[4])));
+                return gameMatcher.getBattleSeaController().boomProcessor("player2",string.substring(string.indexOf(process[4])));
             }
 
             } catch (BattleShipWinner battleShipWinner) {

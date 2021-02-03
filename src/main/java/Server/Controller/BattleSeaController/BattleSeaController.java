@@ -202,17 +202,18 @@ public class BattleSeaController {
     }
 
     public ArrayList<String> getPlayer1CorrectBooms() {
-        return run.player1.getCorrectPlayerBooms();
+        return run.getPlayer1CorrectBooms();
     }
 
     public ArrayList<String> getPlayer1InCorrectBooms() {
-        return run.player1.getCorrectPlayerBooms();
+        return run.getPlayer1InCorrectBooms();
     }
+
     public ArrayList<String> getPlayer2CorrectBooms() {
-        return run.player2.getCorrectPlayerBooms();
+        return run.getPlayer2CorrectBooms();
     }
 
     public ArrayList<String> getPlayer2InCorrectBooms() {
-        return run.player2.getCorrectPlayerBooms();
+        return run.getPlayer2InCorrectBooms();
     }
 }

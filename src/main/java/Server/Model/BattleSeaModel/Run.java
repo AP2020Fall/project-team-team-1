@@ -5,6 +5,7 @@ import Server.Model.BattleSeaModel.Coordinate.Coordinate;
 import Server.Model.BattleSeaModel.Coordinate.Direction;
 import Server.Model.BattleSeaModel.Ships.Ship;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -605,5 +606,21 @@ public class Run {
     private static int randomMessageId(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min) + min;
+    }
+
+    public ArrayList<String> getPlayer1CorrectBooms() {
+        return player1.getCorrectPlayerBooms();
+    }
+
+    public ArrayList<String> getPlayer1InCorrectBooms() {
+        return player1.getInCorrectPlayerBooms();
+    }
+
+    public ArrayList<String> getPlayer2CorrectBooms() {
+        return player2.getCorrectPlayerBooms();
+    }
+
+    public ArrayList<String> getPlayer2InCorrectBooms() {
+        return player2.getInCorrectPlayerBooms();
     }
 }

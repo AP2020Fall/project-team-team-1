@@ -208,7 +208,7 @@ public class BattleGameStartControllerTest implements Initializable {
     @FXML
     private void player1Attack(ActionEvent event) throws IOException {
         playMouseSound();
-        if (getTurn().equals(LoginController.getUsername())) {
+        if (getTurn().equals(dataLoader.enemyUsername(LoginController.getUsername()))) {
             player1Error.setText("Wait for Enemy");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
@@ -306,18 +306,28 @@ public class BattleGameStartControllerTest implements Initializable {
         Type type = new TypeToken<ArrayList<String>>() {
         }.getType();
 
-        ArrayList<String> outputCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerCorrectBoom(LoginController.getUsername()), type);
+        ArrayList<String> outputCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerCorrectBoom(dataLoader.enemyUsername(LoginController.getUsername())), type);
         ArrayList<String> correctBooms = new ArrayList<>(outputCorrectBooms);
 
-        ArrayList<String> outputInCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerInCorrectBoom(LoginController.getUsername()), type);
+        ArrayList<String> outputInCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerInCorrectBoom(dataLoader.enemyUsername(LoginController.getUsername())), type);
         ArrayList<String> inCorrectBooms = new ArrayList<>(outputInCorrectBooms);
 
         for (String correctBoom : correctBooms) {
-            System.out.println(correctBoom);
+            File file = new File("src\\main\\resources\\Images\\explosion.png");
+            ImageView image1 = new ImageView(file.toURI().toString());
+            image1.setFitWidth(38);
+            image1.setFitHeight(38);
+            String[] cordinate = correctBoom.split("\\s");
+            gridPlayerPlayer1Own.add(image1,Integer.parseInt(cordinate[0]),Integer.parseInt(cordinate[1]));
         }
-        System.out.println("++++++++++++++++");
+
         for (String inCorrectBoom : inCorrectBooms) {
-            System.out.println(inCorrectBoom);
+            File file = new File("src\\main\\resources\\Images\\cross.png");
+            ImageView image1 = new ImageView(file.toURI().toString());
+            image1.setFitWidth(38);
+            image1.setFitHeight(38);
+            String[] cordinate = inCorrectBoom.split("\\s");
+            gridPlayerPlayer1Own.add(image1,Integer.parseInt(cordinate[0]),Integer.parseInt(cordinate[1]));
         }
 
     }
@@ -609,9 +619,15 @@ public class BattleGameStartControllerTest implements Initializable {
                 try {
                     setTurn(dataLoader.battleShipPlayerTurn(LoginController.getUsername()));
                     Platform.runLater(() -> timerView.setText(getTurn()));
-//                    updateBoard();
+                    Platform.runLater(() -> {
+                        try {
+                            updateBoard();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")){
-                        BattleWinnerController.setWinnerPlayerUsername("LoginController.getUsername()");
+                        BattleWinnerController.setWinnerPlayerUsername(dataLoader.enemyUsername(LoginController.getUsername()));
 
                         timer.cancel();
                         pass = true;
