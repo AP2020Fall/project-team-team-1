@@ -86,6 +86,10 @@ public class GameMatcher {
         gameMatchers.add(gameMatcher);
     }
 
+    public static void removeGameMatcher(GameMatcher gameMatcher){
+        gameMatchers.remove(gameMatcher);
+    }
+
     public static GameMatcher gameMatcherFinder(String username){
         for (GameMatcher gameMatcher : gameMatchers) {
             if (gameMatcher.player1.equals(username) || gameMatcher.player2.equals(username)){
@@ -94,6 +98,7 @@ public class GameMatcher {
         }
         return null;
     }
+
 
     @Override
     public String toString() {

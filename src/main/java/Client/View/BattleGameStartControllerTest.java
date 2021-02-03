@@ -68,21 +68,21 @@ public class BattleGameStartControllerTest implements Initializable {
 //    private static AdminGeneralController adminGeneralController = new AdminGeneralController();
 //    private static BattleSeaController battleSeaController1;
     private static GridPane gridPanePlayer1;
-    private static GridPane gridPanePlayer2;
+//    private static GridPane gridPanePlayer2;
     private static Boolean passForNextTurnPlayer1;
-    private static Boolean passForNextTurnPlayer2;
+//    private static Boolean passForNextTurnPlayer2;
     private static long score = 10;
-    private static String timeForGame = "10";
+//    private static String timeForGame = "10";
     Timer timer1 = new Timer();
-    Timer timer2 = new Timer();
+//    Timer timer2 = new Timer();
 
-    public static String getTimeForGame() {
-        return timeForGame;
-    }
-
-    public static void setTimeForGame(String timeForGame) {
-        BattleGameStartControllerTest.timeForGame = timeForGame;
-    }
+//    public static String getTimeForGame() {
+//        return timeForGame;
+//    }
+//
+//    public static void setTimeForGame(String timeForGame) {
+//        BattleGameStartControllerTest.timeForGame = timeForGame;
+//    }
 
     public static long getScore() {
         return score;
@@ -100,13 +100,13 @@ public class BattleGameStartControllerTest implements Initializable {
         BattleGameStartControllerTest.passForNextTurnPlayer1 = passForNextTurnPlayer1;
     }
 
-    public static Boolean getPassForNextTurnPlayer2() {
-        return passForNextTurnPlayer2;
-    }
-
-    public static void setPassForNextTurnPlayer2(Boolean passForNextTurnPlayer2) {
-        BattleGameStartControllerTest.passForNextTurnPlayer2 = passForNextTurnPlayer2;
-    }
+//    public static Boolean getPassForNextTurnPlayer2() {
+//        return passForNextTurnPlayer2;
+//    }
+//
+//    public static void setPassForNextTurnPlayer2(Boolean passForNextTurnPlayer2) {
+//        BattleGameStartControllerTest.passForNextTurnPlayer2 = passForNextTurnPlayer2;
+//    }
 
     public static GridPane getGridPanePlayer1() {
         return gridPanePlayer1;
@@ -116,13 +116,13 @@ public class BattleGameStartControllerTest implements Initializable {
         BattleGameStartControllerTest.gridPanePlayer1 = gridPanePlayer1;
     }
 
-    public static GridPane getGridPanePlayer2() {
-        return gridPanePlayer2;
-    }
-
-    public static void setGridPanePlayer2(GridPane gridPanePlayer2) {
-        BattleGameStartControllerTest.gridPanePlayer2 = gridPanePlayer2;
-    }
+//    public static GridPane getGridPanePlayer2() {
+//        return gridPanePlayer2;
+//    }
+//
+//    public static void setGridPanePlayer2(GridPane gridPanePlayer2) {
+//        BattleGameStartControllerTest.gridPanePlayer2 = gridPanePlayer2;
+//    }
 
 //    public static BattleSeaController getBattleSeaController1() {
 //        return battleSeaController1;
@@ -208,7 +208,7 @@ public class BattleGameStartControllerTest implements Initializable {
     @FXML
     private void player1Attack(ActionEvent event) throws IOException {
         playMouseSound();
-        if (getTurn().equals(LoginController.getUsername())) {
+        if (getTurn().equals(dataLoader.enemyUsername(LoginController.getUsername()))) {
             player1Error.setText("Wait for Enemy");
             player1Stat.setVisible(true);
             player1Error.setVisible(true);
@@ -236,7 +236,7 @@ public class BattleGameStartControllerTest implements Initializable {
             if (result.startsWith(" is the Winner")){
                 dataLoader.giveScoreAndEditPlayerLog(dataLoader.firstGameNameGetter(),LoginController.getUsername(),dataLoader.enemyUsername(LoginController.getUsername()),getScore());
                 dataLoader.historySaver(LocalDate.now(),LoginController.getUsername(),dataLoader.enemyUsername(LoginController.getUsername()), dataLoader.firstGameNameGetter());
-
+                dataLoader.removeGameMatcher(LoginController.getUsername());
                 BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer1());
                 URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
                 Parent register = FXMLLoader.load(url);
@@ -306,18 +306,28 @@ public class BattleGameStartControllerTest implements Initializable {
         Type type = new TypeToken<ArrayList<String>>() {
         }.getType();
 
-        ArrayList<String> outputCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerCorrectBoom(LoginController.getUsername()), type);
+        ArrayList<String> outputCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerCorrectBoom(dataLoader.enemyUsername(LoginController.getUsername())), type);
         ArrayList<String> correctBooms = new ArrayList<>(outputCorrectBooms);
 
-        ArrayList<String> outputInCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerInCorrectBoom(LoginController.getUsername()), type);
+        ArrayList<String> outputInCorrectBooms = new Gson().fromJson(dataLoader.battleShipPlayerInCorrectBoom(dataLoader.enemyUsername(LoginController.getUsername())), type);
         ArrayList<String> inCorrectBooms = new ArrayList<>(outputInCorrectBooms);
 
         for (String correctBoom : correctBooms) {
-            System.out.println(correctBoom);
+            File file = new File("src\\main\\resources\\Images\\explosion.png");
+            ImageView image1 = new ImageView(file.toURI().toString());
+            image1.setFitWidth(38);
+            image1.setFitHeight(38);
+            String[] cordinate = correctBoom.split("\\s");
+            gridPlayerPlayer1Own.add(image1,Integer.parseInt(cordinate[0]),Integer.parseInt(cordinate[1]));
         }
-        System.out.println("++++++++++++++++");
+
         for (String inCorrectBoom : inCorrectBooms) {
-            System.out.println(inCorrectBoom);
+            File file = new File("src\\main\\resources\\Images\\cross.png");
+            ImageView image1 = new ImageView(file.toURI().toString());
+            image1.setFitWidth(38);
+            image1.setFitHeight(38);
+            String[] cordinate = inCorrectBoom.split("\\s");
+            gridPlayerPlayer1Own.add(image1,Integer.parseInt(cordinate[0]),Integer.parseInt(cordinate[1]));
         }
 
     }
@@ -330,7 +340,7 @@ public class BattleGameStartControllerTest implements Initializable {
     @FXML
     private void player1NexttTurn() {
         timer1.cancel();
-        timer2 = new Timer();
+//        timer2 = new Timer();
         playMouseSound();
         if (!passForNextTurnPlayer1) {
             player1Error.setText("Attack First");
@@ -397,6 +407,7 @@ public class BattleGameStartControllerTest implements Initializable {
 
         dataLoader.playReq("Surrender",dataLoader.enemyUsername(LoginController.getUsername()));
         System.out.println(dataLoader.letsPlay(dataLoader.enemyUsername(LoginController.getUsername())));
+        dataLoader.removeGameMatcher(LoginController.getUsername());
         if (pass){
             showWinPage();
         }
@@ -425,6 +436,7 @@ public class BattleGameStartControllerTest implements Initializable {
 
         dataLoader.playReq("Surrender",dataLoader.enemyUsername(LoginController.getUsername()) );
         System.out.println(dataLoader.letsPlay(dataLoader.enemyUsername(LoginController.getUsername())));
+        dataLoader.removeGameMatcher(LoginController.getUsername());
 
         if (pass){
             showWinPage();
@@ -458,7 +470,7 @@ public class BattleGameStartControllerTest implements Initializable {
     private void setProfiles() throws MalformedURLException {
         player1User.setText(BattlePreparationController.getPlayer1());
         player2User.setText(BattlePreparationController.getPlayer2());
-        point.setText(getScore() + "PT");
+        point.setText(score + "PT");
 
         String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator
                 + "Users" + File.separator + BattlePreparationController.getPlayer1() + File.separator
@@ -593,7 +605,7 @@ public class BattleGameStartControllerTest implements Initializable {
         whoseTurn();
 
         setPassForNextTurnPlayer1(false);
-        setPassForNextTurnPlayer2(false);
+//        setPassForNextTurnPlayer2(false);
         addMouseScrolling(player1Pro);
         addMouseScrolling2(player2Pro);
 //        timer(timer1);
@@ -609,9 +621,15 @@ public class BattleGameStartControllerTest implements Initializable {
                 try {
                     setTurn(dataLoader.battleShipPlayerTurn(LoginController.getUsername()));
                     Platform.runLater(() -> timerView.setText(getTurn()));
-//                    updateBoard();
-                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")){
-                        BattleWinnerController.setWinnerPlayerUsername("LoginController.getUsername()");
+                    Platform.runLater(() -> {
+                        try {
+                            updateBoard();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")) {
+                        BattleWinnerController.setWinnerPlayerUsername(dataLoader.enemyUsername(LoginController.getUsername()));
 
                         timer.cancel();
                         pass = true;

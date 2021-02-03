@@ -14,6 +14,9 @@ public class GameBoard {
     public int moves;
     public ArrayList<Box> availableBoxes;
     public ArrayList<Line> usedLines;
+    public ArrayList<String> red ;
+    public ArrayList<String> blue;
+
 
     public GameBoard(int columns, int rows) {
         this.columns = columns;
@@ -32,6 +35,8 @@ public class GameBoard {
         this.availableBoxes = new ArrayList<>();
         availableBoxes.addAll(boxes);
         this.usedLines = new ArrayList<>();
+        this.red = new ArrayList<>();
+        this.blue = new ArrayList<>();
     }
     public Lines getLines() {
         return lines;

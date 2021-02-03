@@ -6,23 +6,33 @@ import Server.Model.DotsAndBoxesModel.*;
 import java.util.ArrayList;
 
 public class DotsAndBoxesController {
-    GameBoard gameBoard = new GameBoard(8,8);
+    GameBoard gameBoard = new GameBoard(8, 8);
+
     //----------------lines-------------------
-    public ArrayList<Line> findLines(int row1, int column1, int row2, int column2){
+    public ArrayList<Line> findLines(int row1, int column1, int row2, int column2) {
         ArrayList<Line> finalLine = new ArrayList<>();
-        for(Line line : Lines.lines){
-            if (line.getFirstDot().getRow()==row1 && line.getFirstDot().getColumn()==column1 && line.getSecondDot().getRow()==row2 && line.getSecondDot().getColumn()==column2){
+        for (Line line : Lines.lines) {
+            if (line.getFirstDot().getRow() == row1 && line.getFirstDot().getColumn() == column1 && line.getSecondDot().getRow() == row2 && line.getSecondDot().getColumn() == column2) {
                 finalLine.add(line);
             }
         }
         return finalLine;
     }
+
     //---------------------moves--------------
     public Player turn() {
         if (gameBoard.moves % 2 == 0) {
             return Player.RED;
         } else return Player.BLUE;
     }
+
+    public String turnColor() {
+        if (gameBoard.moves % 2 == 0) {
+            return "red";
+        } else return "blue";
+    }
+
+
     public void move(ArrayList<Line> lines) {
         int boxNum = 0;
         for (int i = 0; i < lines.size(); i++) {
@@ -33,9 +43,13 @@ public class DotsAndBoxesController {
                     if (turn() == Player.BLUE) {
                         gameBoard.bluePoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.BLUE);
+                        String saveBlue = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
+                        this.gameBoard.blue.add(saveBlue);
                     } else if (turn() == Player.RED) {
                         gameBoard.redPoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.RED);
+                        String saveRed = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
+                        this.gameBoard.red.add(saveRed);
                     }
                     if (i == 0) {
                         gameBoard.moves -= 2;
@@ -49,6 +63,7 @@ public class DotsAndBoxesController {
             }
         }
     }
+
     public Box findTheBox(Line line) {
         Box finalBox = null;
         for (Box box : gameBoard.boxes) {
@@ -58,6 +73,7 @@ public class DotsAndBoxesController {
         }
         return finalBox;
     }
+
     public int isBoxCompleted() {
         int counter = 0;
         ArrayList<Box> forDelete = new ArrayList<>();
@@ -78,6 +94,7 @@ public class DotsAndBoxesController {
 
         return counter;
     }
+
     public String isBoxCompleted1() {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Box> forDelete = new ArrayList<>();
@@ -86,8 +103,8 @@ public class DotsAndBoxesController {
                 if (box.getTop().hasOwner()) {
                     if (box.getLeft().hasOwner()) {
                         if (box.getBottom().hasOwner()) {
-                                forDelete.add(box);
-                                stringBuilder.append(box.getId()).append("$");
+                            forDelete.add(box);
+                            stringBuilder.append(box.getId()).append("$");
 //                            System.out.println(box.getId());
                         }
                     }
@@ -104,11 +121,12 @@ public class DotsAndBoxesController {
 //        System.out.println(gameBoard.availableBoxes.size());
         return String.valueOf(stringBuilder);
     }
-    public ArrayList<String> completedBoxes(){
+
+    public ArrayList<String> completedBoxes() {
         ArrayList<String> completed = new ArrayList<>();
 //        gameBoard.availableBoxes.get(0).setOwner(Player.RED);
         for (Box box : gameBoard.availableBoxes) {
-            if (!box.getOwner().equals(Player.NONE)){
+            if (!box.getOwner().equals(Player.NONE)) {
                 System.out.println(box.getId());
                 completed.add(String.valueOf(box.getId()));
             }
@@ -117,31 +135,34 @@ public class DotsAndBoxesController {
 
         return completed;
     }
-    public String isThisBoxCompleted(String input){
+
+    public String isThisBoxCompleted(String input) {
         int id = Integer.parseInt(input);
-        String answer ="none";
+        String answer = "none";
         for (Box box : gameBoard.availableBoxes) {
-            if (box.getId()==id){
-                if (box.getOwner().equals(Player.BLUE)){
-                    answer="blue";
-                }else if (box.getOwner().equals(Player.RED)){
-                    answer="red";
+            if (box.getId() == id) {
+                if (box.getOwner().equals(Player.BLUE)) {
+                    answer = "blue";
+                } else if (box.getOwner().equals(Player.RED)) {
+                    answer = "red";
                 }
             }
         }
 
         return answer;
     }
-    public Line getLine(int row1,int column1,int row2,int column2){
+
+    public Line getLine(int row1, int column1, int row2, int column2) {
         Line finalLine = null;
-        for(Line line : Lines.lines){
-            if (line.getFirstDot().getRow()==row1 && line.getFirstDot().getColumn()==column1 && line.getSecondDot().getRow()==row2 && line.getSecondDot().getColumn()==column2){
+        for (Line line : Lines.lines) {
+            if (line.getFirstDot().getRow() == row1 && line.getFirstDot().getColumn() == column1 && line.getSecondDot().getRow() == row2 && line.getSecondDot().getColumn() == column2) {
                 finalLine = line;
             }
         }
 
         return finalLine;
     }
+
     public boolean isGameOver(int moves, int bluePoints, int redPoints) {
         int difference = Math.abs(bluePoints - redPoints);
         return difference > gameBoard.boxes.size() / 2 || bluePoints > gameBoard.boxes.size() / 2 || redPoints > gameBoard.boxes.size() / 2 || moves == 112;
@@ -164,7 +185,7 @@ public class DotsAndBoxesController {
 //                throw new FindLineException("This Line could not be find! Or directions of dots is not correct! Try again");
 //            }
 
-//            move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
+    //            move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
 //        }
 //        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
 //            RunDotsAndBoxes.printWinner();
@@ -172,44 +193,66 @@ public class DotsAndBoxesController {
 //        }
 //    }
     //todo add player history
-    public String whoIsWinner(){
-        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
-            if (gameBoard.bluePoints>gameBoard.redPoints){
+    public String whoIsWinner() {
+        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())) {
+            if (gameBoard.bluePoints > gameBoard.redPoints) {
                 return "blue";
-            }else return "red";
-        }else return null;
+            } else return "red";
+        } else return null;
     }
-//    public String blueIsWinner(){
+
+    //    public String blueIsWinner(){
 //        return "blue";
 //    }
 //    public String redIsWinner(){
 //        return "red";
 //    }
-    public int getRedPoints(){
+    public int getRedPoints() {
         return gameBoard.redPoints;
     }
-    public int getBluePoints(){
+
+    public int getBluePoints() {
         return gameBoard.bluePoints;
     }
-    public Player getBluePlayer(){
+
+    public Player getBluePlayer() {
         return Player.BLUE;
     }
-    public Player getRedPlayer(){
+
+    public Player getRedPlayer() {
         return Player.RED;
     }
+
     public void doTheCommands(String command) throws ExistLineException {
         String[] dots = command.split(",");
         String[] firstDot = dots[0].split("-");
         String[] secondDot = dots[1].split("-");
-        if (getLine(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])).hasOwner()){
+        if (getLine(Integer.parseInt(firstDot[0]), Integer.parseInt(firstDot[1]), Integer.parseInt(secondDot[0]), Integer.parseInt(secondDot[1])).hasOwner()) {
             throw new ExistLineException("This line is already taken, Try again!");
         }
-        move(findLines(Integer.parseInt(firstDot[0]),Integer.parseInt(firstDot[1]),Integer.parseInt(secondDot[0]),Integer.parseInt(secondDot[1])));
+        move(findLines(Integer.parseInt(firstDot[0]), Integer.parseInt(firstDot[1]), Integer.parseInt(secondDot[0]), Integer.parseInt(secondDot[1])));
     }
-    public String checkGameIsOver(){
-        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())){
+
+    public String checkGameIsOver() {
+        if (isGameOver(gameBoard.getMoves(), gameBoard.getBluePoints(), gameBoard.getRedPoints())) {
             return "yes";
-        }else return "no";
+        } else return "no";
+    }
+
+    public String redLines() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : this.gameBoard.red) {
+            stringBuilder.append(s).append("$");
+        }
+        return String.valueOf(stringBuilder);
+    }
+
+    public String blueLines() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String s : this.gameBoard.blue) {
+            stringBuilder.append(s).append("$");
+        }
+        return String.valueOf(stringBuilder);
     }
 
 }
