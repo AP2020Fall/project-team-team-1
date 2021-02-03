@@ -40,13 +40,18 @@ public class Line {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
-    public String toString(){
-        if (this.owner==Player.NONE){
-            return EMPTY;
-        }else if (getFirstDot().getColumn()==getSecondDot().getColumn()){
-            return VERTICAL_LINE;
-        }else if (getFirstDot().getRow()==getSecondDot().getRow()){
-            return HORIZONTAL_LINE;
-        }else return EMPTY;
+//    public String toString(){
+//        if (this.owner==Player.NONE){
+//            return EMPTY;
+//        }else if (getFirstDot().getColumn()==getSecondDot().getColumn()){
+//            return VERTICAL_LINE;
+//        }else if (getFirstDot().getRow()==getSecondDot().getRow()){
+//            return HORIZONTAL_LINE;
+//        }else return EMPTY;
+//    }
+
+    @Override
+    public String toString() {
+        return ""+getFirstDot().getRow()+"-"+getFirstDot().getColumn()+","+getSecondDot().getRow()+"-"+getSecondDot().getColumn()+"";
     }
 }
