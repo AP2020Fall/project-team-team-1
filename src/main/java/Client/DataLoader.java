@@ -151,7 +151,7 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
-    public String isThisBoxCompleted(String username , String id) throws IOException {
+    public String isThisBoxCompleted(String username, String id) throws IOException {
         Client.getDataOutputStream().writeUTF("Is This Box Completed " + username + " " + id);
         Client.getDataOutputStream().flush();
         return Client.getDataInputStream().readUTF();

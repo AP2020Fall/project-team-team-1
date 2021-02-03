@@ -346,7 +346,7 @@ public class Server {
             return answer;
         }
 
-        private String removeGameMatcher(String string){
+        private String removeGameMatcher(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             GameMatcher.removeGameMatcher(gameMatcher);
@@ -355,18 +355,18 @@ public class Server {
 
         /***************************************/
 
-        private String getPlayerPoint(String string){
+        private String getPlayerPoint(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
-            if (process[4].equals("red")){
+            if (process[4].equals("red")) {
                 return String.valueOf(gameMatcher.getDotsAndBoxesController().getRedPoints());
-            }else {
+            } else {
                 return String.valueOf(gameMatcher.getDotsAndBoxesController().getBluePlayer());
             }
 
         }
 
-        private String checkGameIsOverDots(String string){
+        private String checkGameIsOverDots(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[5]);
             return gameMatcher.getDotsAndBoxesController().checkGameIsOver();
@@ -374,7 +374,7 @@ public class Server {
         }
 
 
-        private String doTheCommandsDots(String string){
+        private String doTheCommandsDots(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
             try {
@@ -388,46 +388,44 @@ public class Server {
         }
 
 
-        private String isBoxCompleted(String string){
+        private String isBoxCompleted(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             return gameMatcher.getDotsAndBoxesController().isBoxCompleted1();
         }
 
 
-        private String dotsWhoseTurn(String string){
+        private String dotsWhoseTurn(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             return String.valueOf(gameMatcher.getDotsAndBoxesController().turnColor());
         }
 
 
-        private String dotsWhoIsWinner(String string){
+        private String dotsWhoIsWinner(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
             return gameMatcher.getDotsAndBoxesController().whoIsWinner();
         }
 
 
-
-        private String isThisBoxCompleted(String string){
+        private String isThisBoxCompleted(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
             return gameMatcher.getDotsAndBoxesController().isThisBoxCompleted(process[5]);
         }
 
-        private String getBlueLines(String string){
+        private String getBlueLines(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             return gameMatcher.getDotsAndBoxesController().blueLines();
         }
 
-        private String getRedLines(String string){
+        private String getRedLines(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             return gameMatcher.getDotsAndBoxesController().redLines();
         }
-
 
 
         /***************************************/
@@ -471,24 +469,24 @@ public class Server {
         private String getPlayerShipCoordinate(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
-            if (gameMatcher.getPlayer1().equals(process[4])){
+            if (gameMatcher.getPlayer1().equals(process[4])) {
                 return gameMatcher.getBattleSeaController().getPlayer1Coordinate(Integer.parseInt(process[5]));
-            }else {
+            } else {
                 return gameMatcher.getBattleSeaController().getPlayer2Coordinate(Integer.parseInt(process[5]));
             }
         }
 
-        private String playerAttack(String string){
+        private String playerAttack(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
             try {
 
-                if (gameMatcher.getPlayer1().equals(process[3])){
-                    return gameMatcher.getBattleSeaController().boomProcessor("player1",string.substring(string.indexOf(process[4])));
+                if (gameMatcher.getPlayer1().equals(process[3])) {
+                    return gameMatcher.getBattleSeaController().boomProcessor("player1", string.substring(string.indexOf(process[4])));
 
-            }else {
-                return gameMatcher.getBattleSeaController().boomProcessor("player2",string.substring(string.indexOf(process[4])));
-            }
+                } else {
+                    return gameMatcher.getBattleSeaController().boomProcessor("player2", string.substring(string.indexOf(process[4])));
+                }
 
             } catch (BattleShipWinner battleShipWinner) {
                 System.err.println(battleShipWinner.getMessage());
@@ -506,44 +504,44 @@ public class Server {
 
         }
 
-        private String battleShipPlayerTurn(String string){
+        private String battleShipPlayerTurn(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
-            if (gameMatcher.getWhoseTurn().equals("player1")){
+            if (gameMatcher.getWhoseTurn().equals("player1")) {
                 return gameMatcher.getPlayer1();
-            }else {
+            } else {
                 return gameMatcher.getPlayer2();
             }
 
         }
 
-        private String battleShipChangeTurn(String string){
+        private String battleShipChangeTurn(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
-            if (gameMatcher.getWhoseTurn().equals("player1")){
+            if (gameMatcher.getWhoseTurn().equals("player1")) {
                 gameMatcher.setWhoseTurn("player2");
-            }else {
+            } else {
                 gameMatcher.setWhoseTurn("player1");
             }
             return "done";
         }
 
-        private String battleShipPlayerCorrectBoom(String string){
+        private String battleShipPlayerCorrectBoom(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
-            if(gameMatcher.getPlayer1().equals(process[4])){
+            if (gameMatcher.getPlayer1().equals(process[4])) {
                 return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer1CorrectBooms());
-            }else {
+            } else {
                 return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer2CorrectBooms());
             }
         }
 
-        private String battleShipPlayerInCorrectBoom(String string){
+        private String battleShipPlayerInCorrectBoom(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
-            if(gameMatcher.getPlayer1().equals(process[4])){
+            if (gameMatcher.getPlayer1().equals(process[4])) {
                 return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer1InCorrectBooms());
-            }else {
+            } else {
                 return new Gson().toJson(gameMatcher.getBattleSeaController().getPlayer2InCorrectBooms());
             }
         }
@@ -581,22 +579,22 @@ public class Server {
         private String enemyUsername(String string) {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[2]);
-            if (gameMatcher.getPlayer1().equals(process[2])){
+            if (gameMatcher.getPlayer1().equals(process[2])) {
                 return gameMatcher.getPlayer2();
-            }else {
+            } else {
                 return gameMatcher.getPlayer1();
             }
         }
 
         private String giveScoreAndEditPlayerLog(String string) {
             String[] process = string.split("\\s");
-            Game.giveScoreAndEditPlayerLog(process[5],process[6],process[7],Long.parseLong(process[8]));
+            Game.giveScoreAndEditPlayerLog(process[5], process[6], process[7], Long.parseLong(process[8]));
             return "done";
         }
 
         private String historySaver(String string) {
             String[] process = string.split("\\s");
-            Game.historySaver(LocalDate.parse(process[2]),process[3],process[4],process[5]);
+            Game.historySaver(LocalDate.parse(process[2]), process[3], process[4], process[5]);
             return "done";
         }
 
@@ -621,7 +619,7 @@ public class Server {
         private String onlinePlayerStatus() {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for (OnlineUsers user : OnlineUsers.getOnlineUsers()){
+            for (OnlineUsers user : OnlineUsers.getOnlineUsers()) {
                 stringBuilder.append(user.getUsername()).append("~~~~~~").append(user.getStatus()).append("$");
             }
 
@@ -824,44 +822,43 @@ public class Server {
                 String out = username + " " + password;
 
 
-            if (adminGeneralController.getAdminUserName().equals(username)) {
-                try {
-                    logIn.loginAsAdmin(out);
-                    this.admin = Admin.getAdmins().get(0);
-                    this.username = Admin.getAdmins().get(0).getUserName();
-                    return "Success Admin login";
+                if (adminGeneralController.getAdminUserName().equals(username)) {
+                    try {
+                        logIn.loginAsAdmin(out);
+                        this.admin = Admin.getAdmins().get(0);
+                        this.username = Admin.getAdmins().get(0).getUserName();
+                        return "Success Admin login";
 
-                } catch (InvalidUserNameException e) {
-                    System.err.println(e.getMessage());
-                    return e.getMessage();
-                } catch (ExistAdminException e) {
-                    System.err.println(e.getMessage());
-                    return e.getMessage();
-                } catch (WrongPasswordException e) {
-                    System.err.println(e.getMessage());
-                    return e.getMessage();
+                    } catch (InvalidUserNameException e) {
+                        System.err.println(e.getMessage());
+                        return e.getMessage();
+                    } catch (ExistAdminException e) {
+                        System.err.println(e.getMessage());
+                        return e.getMessage();
+                    } catch (WrongPasswordException e) {
+                        System.err.println(e.getMessage());
+                        return e.getMessage();
+                    }
+                } else {
+                    try {
+                        logIn.loginAsPlayer(out);
+                        this.player = FindPlayerByInfo.findByUserName(username);
+                        this.username = FindPlayerByInfo.findByUserName(username).getUserName();
+                        return "Success Player login";
+
+                    } catch (InvalidUserNameException e) {
+                        System.err.println(e.getMessage());
+                        return e.getMessage();
+                    } catch (WrongPasswordException e) {
+                        System.err.println(e.getMessage());
+                        return e.getMessage();
+                    } catch (BanExceptionForLogin banExceptionForLogin) {
+                        System.err.println(banExceptionForLogin.getMessage());
+                        return banExceptionForLogin.getMessage();
+                    }
+
                 }
             } else {
-                try {
-                    logIn.loginAsPlayer(out);
-                    this.player = FindPlayerByInfo.findByUserName(username);
-                    this.username = FindPlayerByInfo.findByUserName(username).getUserName();
-                    return "Success Player login";
-
-                } catch (InvalidUserNameException e) {
-                    System.err.println(e.getMessage());
-                    return e.getMessage();
-                } catch (WrongPasswordException e) {
-                    System.err.println(e.getMessage());
-                    return e.getMessage();
-                } catch (BanExceptionForLogin banExceptionForLogin) {
-                    System.err.println(banExceptionForLogin.getMessage());
-                    return banExceptionForLogin.getMessage();
-                }
-
-            }
-        }
-            else {
                 return "Sth is wrong";
             }
         }
@@ -1460,10 +1457,9 @@ public class Server {
         }
 
         private String totalPlaySecondGame() {
-            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayedSecondGame())){
+            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayedSecondGame())) {
                 return adminGeneralController.numberOfTotalPlayedSecondGame();
-            }
-            else {
+            } else {
                 return "improper inputs";
             }
 
@@ -1471,10 +1467,9 @@ public class Server {
         }
 
         private String totalPlayPlatoGame() {
-            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayed())){
+            if (new Jwt().isInteger(adminGeneralController.numberOfTotalPlayed())) {
                 return adminGeneralController.numberOfTotalPlayed();
-            }
-            else {
+            } else {
                 return "improper inputs";
             }
 

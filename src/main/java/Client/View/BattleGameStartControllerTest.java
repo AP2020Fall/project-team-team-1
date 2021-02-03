@@ -628,7 +628,7 @@ public class BattleGameStartControllerTest implements Initializable {
                             e.printStackTrace();
                         }
                     });
-                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")){
+                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")) {
                         BattleWinnerController.setWinnerPlayerUsername(dataLoader.enemyUsername(LoginController.getUsername()));
 
                         timer.cancel();
