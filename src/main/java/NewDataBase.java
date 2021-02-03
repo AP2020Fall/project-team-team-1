@@ -63,7 +63,7 @@ public class NewDataBase {
                 User user;
 
                 if (Existence.checkUserNameExistence(username)){
-                    user=User.findUser(username);
+//                    user=User.findUser(username);
                 }else {
                     user = new User(name,last,id,username,pass,email,phone);
                     User.addNewUser(user);

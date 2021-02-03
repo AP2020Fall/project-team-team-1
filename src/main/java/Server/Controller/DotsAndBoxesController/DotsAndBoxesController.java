@@ -43,9 +43,13 @@ public class DotsAndBoxesController {
                     if (turn() == Player.BLUE) {
                         gameBoard.bluePoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.BLUE);
+                        String saveBlue = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
+                        this.gameBoard.blue.add(saveBlue);
                     } else if (turn() == Player.RED) {
                         gameBoard.redPoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.RED);
+                        String saveRed = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
+                        this.gameBoard.red.add(saveRed);
                     }
                     if (i == 0) {
                         gameBoard.moves -= 2;
@@ -237,20 +241,16 @@ public class DotsAndBoxesController {
 
     public String redLines() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line usedLine : gameBoard.usedLines) {
-            if (usedLine.getOwner().equals(Player.RED)) {
-                stringBuilder.append(usedLine).append("$");
-            }
+        for (String s : this.gameBoard.red) {
+            stringBuilder.append(s).append("$");
         }
         return String.valueOf(stringBuilder);
     }
 
     public String blueLines() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Line usedLine : gameBoard.usedLines) {
-            if (usedLine.getOwner().equals(Player.BLUE)) {
-                stringBuilder.append(usedLine).append("$");
-            }
+        for (String s : this.gameBoard.blue) {
+            stringBuilder.append(s).append("$");
         }
         return String.valueOf(stringBuilder);
     }

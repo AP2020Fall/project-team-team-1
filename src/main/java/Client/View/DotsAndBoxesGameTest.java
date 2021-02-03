@@ -403,6 +403,7 @@ public class DotsAndBoxesGameTest implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        whoseTurn();
 //        dotsAndBoxesController = new DotsAndBoxesController();
         try {
             dataLoader.gameMatcher(getFirstPlayer(), getSecondPlayer(), String.valueOf(getPoint()));
@@ -644,10 +645,12 @@ public class DotsAndBoxesGameTest implements Initializable {
     }
     @FXML
     private void drawLines() throws IOException {
+        System.out.println(dataLoader.getBlueLines(LoginController.getUsername()));
        String[] redLIne= dataLoader.getRedLines(LoginController.getUsername()).split("\\$");
         for (String s : redLIne) {
-            String[] line = s.split(",");
-            draw_line(line[0], line[1],"red");
+//            String[] line = s.split(",");
+            System.out.println(s);
+//            draw_line(s.substring(0,s.indexOf(",")), s.substring(s.indexOf(",")+1),"red");
         }
 
         String[] blueLine = dataLoader.getBlueLines(LoginController.getUsername()).split("\\$");
@@ -770,13 +773,13 @@ public class DotsAndBoxesGameTest implements Initializable {
 
 
 
-//    @FXML
-//    private void whoseTurn() {
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//
-//            @Override
-//            public void run() {
+    @FXML
+    private void whoseTurn() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
 //                try {
 //                    setTurn(dataLoader.battleShipPlayerTurn(LoginController.getUsername()));
 //                    Platform.runLater(() -> timerView.setText(getTurn()));
@@ -798,10 +801,17 @@ public class DotsAndBoxesGameTest implements Initializable {
 //                } catch (IOException e) {
 //                    System.err.println(e.getMessage());
 //                }
-//
-//            }
-//        }, 0, 5000);
-//
-//    }
+                    Platform.runLater(() -> {
+                        try {
+                            drawLines();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+            }
+        }, 5000, 5000);
+
+    }
 
 }
