@@ -9,6 +9,7 @@ import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,15 +32,13 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DotsAndBoxesRunMenu implements Initializable {
     private static final DataLoader dataLoader = new DataLoader();
 
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static LogIn logIn = new LogIn();
+//    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+//    protected static LogIn logIn = new LogIn();
     public Button btnSubmit;
     public JFXPasswordField txtPassword;
     public JFXTextField txtUsername;
@@ -123,8 +122,19 @@ public class DotsAndBoxesRunMenu implements Initializable {
             showError();
             return;
         }
-        try {
-            logIn.loginAsPlayer(txtUsername.getText()+" "+txtPassword.getText());
+
+        String response = dataLoader.login(txtUsername.getText(), txtPassword.getText());
+        String[] split = response.split("\\s");
+
+        if (response.equals("This Username is Ban By Admin. ")) {
+            showBanError();
+            return;
+        }
+        if (!split[0].equals("Success")) {
+            showError();
+            return;
+        }
+
             DotsAndBoxesGame dotsAndBoxesGame = new DotsAndBoxesGame();
             dotsAndBoxesGame.setFirstPlayer(this.username);
             dotsAndBoxesGame.setSecondPlayer(txtUsername.getText());
@@ -135,11 +145,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(message);
             window.show();
-        } catch (InvalidUserNameException | WrongPasswordException e) {
-            showError();
-        } catch (BanExceptionForLogin banExceptionForLogin) {
-            showBanError();
-        }
+
     }
     private void showError() throws IOException {
         URL url = new File("src/main/resources/FXML/LoginError.fxml").toURI().toURL();
@@ -171,5 +177,84 @@ public class DotsAndBoxesRunMenu implements Initializable {
             }
 
         });
+    }
+
+
+    @FXML
+    private void requestGetterForPlay() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                System.out.println("Timer");
+                String response = "";
+                String pass = "";
+                try {
+                    response = dataLoader.letsPlay(LoginController.getUsername());
+                    pass = dataLoader.waitingToPlay(LoginController.getUsername());
+                    System.out.println(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (pass.equalsIgnoreCase("true")) {
+                    try {
+                        dataLoader.setPassForPlay(LoginController.getUsername(), "false");
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("playyyyyyyyyyyyyyyyyyyyyyyy");
+                    Platform.runLater(() -> showGamePage());
+                    timer.cancel();
+                }
+
+                if (!response.equals("NO")) {
+                    GameRequests.setUsernameThatSentRequest(response);
+                    GameRequests.setGameNameForPlay("DotsAndBoxes");
+                    System.out.println("play Time");
+                    Platform.runLater(() -> showGameRequests());
+                    timer.cancel();
+                }
+
+            }
+        }, 0, 5000);
+
+
+    }
+    //for change scene
+    @FXML
+    private void showGameRequests() {
+        Stage stage = new Stage();
+        Object root = null;
+        try {
+            URL url = new File("src/main/resources/FXML/GameRequests.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage.setScene(new Scene((Parent) root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage window = (Stage) listViewFriends.getScene().getWindow();
+        window.setScene(stage.getScene());
+        window.show();
+    }
+
+    @FXML
+    private void showGamePage() {
+        Stage stage = new Stage();
+        Object root = null;
+        try {
+            URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
+            root = FXMLLoader.load(url);
+            stage.setScene(new Scene((Parent) root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage window = (Stage) listViewFriends.getScene().getWindow();
+        window.setScene(stage.getScene());
+        window.show();
     }
 }

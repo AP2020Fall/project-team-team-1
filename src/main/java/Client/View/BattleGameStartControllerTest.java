@@ -236,7 +236,7 @@ public class BattleGameStartControllerTest implements Initializable {
             if (result.startsWith(" is the Winner")){
                 dataLoader.giveScoreAndEditPlayerLog(dataLoader.firstGameNameGetter(),LoginController.getUsername(),dataLoader.enemyUsername(LoginController.getUsername()),getScore());
                 dataLoader.historySaver(LocalDate.now(),LoginController.getUsername(),dataLoader.enemyUsername(LoginController.getUsername()), dataLoader.firstGameNameGetter());
-
+                dataLoader.removeGameMatcher(LoginController.getUsername());
                 BattleWinnerController.setWinnerPlayerUsername(BattlePreparationController.getPlayer1());
                 URL url = new File("src/main/resources/FXML/BattleWinner.fxml").toURI().toURL();
                 Parent register = FXMLLoader.load(url);
@@ -407,6 +407,7 @@ public class BattleGameStartControllerTest implements Initializable {
 
         dataLoader.playReq("Surrender",dataLoader.enemyUsername(LoginController.getUsername()));
         System.out.println(dataLoader.letsPlay(dataLoader.enemyUsername(LoginController.getUsername())));
+        dataLoader.removeGameMatcher(LoginController.getUsername());
         if (pass){
             showWinPage();
         }
@@ -435,6 +436,7 @@ public class BattleGameStartControllerTest implements Initializable {
 
         dataLoader.playReq("Surrender",dataLoader.enemyUsername(LoginController.getUsername()) );
         System.out.println(dataLoader.letsPlay(dataLoader.enemyUsername(LoginController.getUsername())));
+        dataLoader.removeGameMatcher(LoginController.getUsername());
 
         if (pass){
             showWinPage();

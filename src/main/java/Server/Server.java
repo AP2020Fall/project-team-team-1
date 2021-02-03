@@ -321,8 +321,17 @@ public class Server {
                 answer = enemyUsername(input);
             else if (input.startsWith("Online Player Status"))
                 answer = onlinePlayerStatus();
+            else if (input.startsWith("Remove Game Matcher"))
+                answer = removeGameMatcher(input);
 
             return answer;
+        }
+
+        private String removeGameMatcher(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            GameMatcher.removeGameMatcher(gameMatcher);
+            return "done";
         }
 
         /***************************************/

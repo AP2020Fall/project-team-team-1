@@ -54,6 +54,12 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String removeGameMatcher(String p1) throws IOException {
+        Client.getDataOutputStream().writeUTF("Remove Game Matcher " + p1);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
     public String giveScoreAndEditPlayerLog(String gameName, String winner, String loser,long score) throws IOException {
         Client.getDataOutputStream().writeUTF("Give Score And Edit PlayerLog " + gameName + " " + winner + " " + loser +" " + score);
         Client.getDataOutputStream().flush();
