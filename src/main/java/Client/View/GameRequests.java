@@ -93,7 +93,7 @@ public class GameRequests implements Initializable {
             window.setScene(message);
             window.show();
         }else {
-            URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/FXML/DotsAndBoxesGameTest.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -108,9 +108,16 @@ public class GameRequests implements Initializable {
         playMouseSound();
 
         setUsernameThatSentRequest("null");
-        dataLoader.playReq(LoginController.getUsername(),"NO");
-        {
+        dataLoader.playReq("NO",LoginController.getUsername());
+        if (getGameNameForPlay().toLowerCase().startsWith("b")) {
             URL url = new File("src/main/resources/FXML/BattleShipRunMenu.fxml").toURI().toURL();
+            Parent register = FXMLLoader.load(url);
+            Scene message = new Scene(register);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(message);
+            window.show();
+        }else {
+            URL url = new File("src/main/resources/FXML/DotsAndBoxesRunMenu.fxml").toURI().toURL();
             Parent register = FXMLLoader.load(url);
             Scene message = new Scene(register);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

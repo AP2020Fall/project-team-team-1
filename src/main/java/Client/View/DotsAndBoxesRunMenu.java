@@ -98,6 +98,12 @@ public class DotsAndBoxesRunMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            dataLoader.playReq("NO",LoginController.getUsername());
+            dataLoader.setPassForPlay(LoginController.getUsername(),"false");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
          //System.out.println("Hello");
         try {
             addToList();
@@ -115,6 +121,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        requestGetterForPlay();
     }
 
     public void loginAsSecondPlayer(ActionEvent event) throws IOException {
@@ -173,7 +180,11 @@ public class DotsAndBoxesRunMenu implements Initializable {
         listViewFriends.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent arg0) {
                 String name = listViewFriends.getSelectionModel().getSelectedItem();
-                txtUsername.setText(name);
+                try {
+                    dataLoader.playReq(LoginController.getUsername(), name);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         });
@@ -247,7 +258,7 @@ public class DotsAndBoxesRunMenu implements Initializable {
         Stage stage = new Stage();
         Object root = null;
         try {
-            URL url = new File("src/main/resources/FXML/DotsAndBoxesGame.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/FXML/DotsAndBoxesGameTest.fxml").toURI().toURL();
             root = FXMLLoader.load(url);
             stage.setScene(new Scene((Parent) root));
         } catch (IOException e) {

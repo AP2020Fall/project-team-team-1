@@ -4,6 +4,7 @@ import Server.Controller.AdminController.AdminGeneralController;
 import Server.Controller.CompetencyController.Existence;
 import Server.Controller.CompetencyController.Validation;
 import Server.Controller.Exception.BattleShip.*;
+import Server.Controller.Exception.DotsAndBoxes.ExistLineException;
 import Server.Controller.Exception.Plato.*;
 import Server.Controller.OnlineUsersController;
 import Server.Controller.PlayerController.FindPlayerByInfo;
@@ -313,6 +314,20 @@ public class Server {
                 answer = battleShipPlayerCorrectBoom(input);
             else if (input.startsWith("BattleShip Player InCorrect Boom"))
                 answer = battleShipPlayerInCorrectBoom(input);
+            else if (input.startsWith("Get DotsAndBoxes Point"))
+                answer = getPlayerPoint(input);
+            else if (input.startsWith("Check Game Is Over Dots"))
+                answer = checkGameIsOverDots(input);
+            else if (input.startsWith("Do The Commands Dots"))
+                answer = doTheCommandsDots(input);
+            else if (input.startsWith("Is Box Completed"))
+                answer = isBoxCompleted(input);
+            else if (input.startsWith("Is This Box Completed"))
+                answer = isThisBoxCompleted(input);
+            else if (input.startsWith("Dots Whose Turn"))
+                answer = dotsWhoseTurn(input);
+            else if (input.startsWith("Dots Who Is Winner"))
+                answer = dotsWhoIsWinner(input);
             else if (input.startsWith("Give Score And Edit PlayerLog"))
                 answer = giveScoreAndEditPlayerLog(input);
             else if (input.startsWith("History Saver"))
@@ -333,6 +348,71 @@ public class Server {
             GameMatcher.removeGameMatcher(gameMatcher);
             return "done";
         }
+
+        /***************************************/
+
+        private String getPlayerPoint(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            if (process[4].equals("red")){
+                return String.valueOf(gameMatcher.getDotsAndBoxesController().getRedPoints());
+            }else {
+                return String.valueOf(gameMatcher.getDotsAndBoxesController().getBluePlayer());
+            }
+
+        }
+
+        private String checkGameIsOverDots(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[5]);
+            return gameMatcher.getDotsAndBoxesController().checkGameIsOver();
+
+        }
+
+
+        private String doTheCommandsDots(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            try {
+                gameMatcher.getDotsAndBoxesController().doTheCommands(process[5]);
+                return "done";
+            } catch (ExistLineException e) {
+                System.err.println(e.getMessage());
+                return e.getMessage();
+            }
+
+        }
+
+
+        private String isBoxCompleted(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            return gameMatcher.getDotsAndBoxesController().isBoxCompleted1();
+        }
+
+
+        private String dotsWhoseTurn(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            return String.valueOf(gameMatcher.getDotsAndBoxesController().turnColor());
+        }
+
+
+        private String dotsWhoIsWinner(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            return gameMatcher.getDotsAndBoxesController().whoIsWinner();
+        }
+
+
+
+        private String isThisBoxCompleted(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
+            return gameMatcher.getDotsAndBoxesController().isThisBoxCompleted(process[5]);
+        }
+
+
 
         /***************************************/
 

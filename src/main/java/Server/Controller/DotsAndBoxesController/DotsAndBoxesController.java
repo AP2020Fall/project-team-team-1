@@ -23,6 +23,14 @@ public class DotsAndBoxesController {
             return Player.RED;
         } else return Player.BLUE;
     }
+
+    public String turnColor() {
+        if (gameBoard.moves % 2 == 0) {
+            return "red";
+        } else return "blue";
+    }
+
+
     public void move(ArrayList<Line> lines) {
         int boxNum = 0;
         for (int i = 0; i < lines.size(); i++) {

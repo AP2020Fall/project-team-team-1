@@ -147,6 +147,12 @@ public class BattleShipRunMenu implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            dataLoader.playReq("NO",LoginController.getUsername());
+            dataLoader.setPassForPlay(LoginController.getUsername(),"false");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             addToList();
             initActions();
         } catch (IOException e) {
