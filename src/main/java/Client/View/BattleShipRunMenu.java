@@ -2,13 +2,13 @@ package Client.View;
 
 import Client.Client;
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.BanExceptionForLogin;
+//import Server.Controller.Exception.Plato.BanExceptionForLogin;
 import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.Exception.Plato.InvalidUserNameException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
+//import Server.Controller.Exception.Plato.InvalidUserNameException;
+//import Server.Controller.Exception.Plato.WrongPasswordException;
 import Server.Controller.PlayerController.FindPlayerByInfo;
 import Server.Controller.PlayerController.PlayerGeneralController;
-import Server.Controller.RegisterController.LogIn;
+//import Server.Controller.RegisterController.LogIn;
 import Server.Model.PlatoModel.Player;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -42,8 +42,8 @@ import java.util.*;
 public class BattleShipRunMenu implements Initializable {
     private static final DataLoader dataLoader = new DataLoader();
 
-    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
-    protected static LogIn logIn = new LogIn();
+    //    protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
+//    protected static LogIn logIn = new LogIn();
     private static long score = 10;
 
     public static long getScore() {
@@ -106,6 +106,7 @@ public class BattleShipRunMenu implements Initializable {
         window.setScene(stage.getScene());
         window.show();
     }
+
     @FXML
     private void showGamePage() {
         Stage stage = new Stage();
@@ -169,8 +170,8 @@ public class BattleShipRunMenu implements Initializable {
             @Override
             public void run() {
                 System.out.println("Timer");
-                String response ="";
-                String pass ="";
+                String response = "";
+                String pass = "";
                 try {
                     response = dataLoader.letsPlay(LoginController.getUsername());
                     pass = dataLoader.waitingToPlay(LoginController.getUsername());
@@ -179,12 +180,15 @@ public class BattleShipRunMenu implements Initializable {
                     e.printStackTrace();
                 }
 
-                if (pass.equalsIgnoreCase("true")){
+                if (pass.equalsIgnoreCase("true")) {
                     try {
-                        dataLoader.setPassForPlay(LoginController.getUsername(),"false");
+                        dataLoader.setPassForPlay(LoginController.getUsername(), "false");
+                        BattlePreparationControllerTest.setPlayer1(LoginController.getUsername());
+                        BattlePreparationControllerTest.setPlayer2(dataLoader.enemyUsername(LoginController.getUsername()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                     System.out.println("playyyyyyyyyyyyyyyyyyyyyyyy");
                     Platform.runLater(() -> showGamePage());
                     timer.cancel();
@@ -214,23 +218,28 @@ public class BattleShipRunMenu implements Initializable {
             showError();
             return;
         }
-        try {
-            logIn.loginAsPlayer(txtUsername.getText() + " " + txtPassword.getText());
-            BattlePreparationController.setPlayer1(this.username);
-            BattlePreparationController.setPlayer2(txtUsername.getText());
-            BattlePreparationController.setScore(getScore());
-            BattleGameStartController.setTimeForGame(btnField.getValue());
-            URL url = new File("src/main/resources/FXML/BattlePreparation.fxml").toURI().toURL();
-            Parent register = FXMLLoader.load(url);
-            Scene message = new Scene(register);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(message);
-            window.show();
-        } catch (InvalidUserNameException | WrongPasswordException e) {
-            showError();
-        } catch (BanExceptionForLogin banExceptionForLogin) {
+        String response = dataLoader.login(txtUsername.getText(), txtPassword.getText());
+        String[] split = response.split("\\s");
+
+        if (response.equals("This Username is Ban By Admin. ")) {
             showBanError();
+            return;
         }
+        if (!split[0].equals("Success")) {
+            showError();
+            return;
+        }
+        BattlePreparationController.setPlayer1(this.username);
+        BattlePreparationController.setPlayer2(txtUsername.getText());
+        BattlePreparationController.setScore(getScore());
+        BattleGameStartController.setTimeForGame(btnField.getValue());
+        URL url = new File("src/main/resources/FXML/BattlePreparation.fxml").toURI().toURL();
+        Parent register = FXMLLoader.load(url);
+        Scene message = new Scene(register);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(message);
+        window.show();
+
     }
 
     private void showError() throws IOException {
@@ -262,7 +271,7 @@ public class BattleShipRunMenu implements Initializable {
                 String name = listViewFriends.getSelectionModel().getSelectedItem();
                 txtUsername.setText(name);
                 try {
-                    dataLoader.playReq(LoginController.getUsername(),name);
+                    dataLoader.playReq(LoginController.getUsername(), name);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

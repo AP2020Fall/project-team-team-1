@@ -68,21 +68,21 @@ public class BattleGameStartControllerTest implements Initializable {
 //    private static AdminGeneralController adminGeneralController = new AdminGeneralController();
 //    private static BattleSeaController battleSeaController1;
     private static GridPane gridPanePlayer1;
-    private static GridPane gridPanePlayer2;
+//    private static GridPane gridPanePlayer2;
     private static Boolean passForNextTurnPlayer1;
-    private static Boolean passForNextTurnPlayer2;
+//    private static Boolean passForNextTurnPlayer2;
     private static long score = 10;
-    private static String timeForGame = "10";
+//    private static String timeForGame = "10";
     Timer timer1 = new Timer();
-    Timer timer2 = new Timer();
+//    Timer timer2 = new Timer();
 
-    public static String getTimeForGame() {
-        return timeForGame;
-    }
-
-    public static void setTimeForGame(String timeForGame) {
-        BattleGameStartControllerTest.timeForGame = timeForGame;
-    }
+//    public static String getTimeForGame() {
+//        return timeForGame;
+//    }
+//
+//    public static void setTimeForGame(String timeForGame) {
+//        BattleGameStartControllerTest.timeForGame = timeForGame;
+//    }
 
     public static long getScore() {
         return score;
@@ -100,13 +100,13 @@ public class BattleGameStartControllerTest implements Initializable {
         BattleGameStartControllerTest.passForNextTurnPlayer1 = passForNextTurnPlayer1;
     }
 
-    public static Boolean getPassForNextTurnPlayer2() {
-        return passForNextTurnPlayer2;
-    }
-
-    public static void setPassForNextTurnPlayer2(Boolean passForNextTurnPlayer2) {
-        BattleGameStartControllerTest.passForNextTurnPlayer2 = passForNextTurnPlayer2;
-    }
+//    public static Boolean getPassForNextTurnPlayer2() {
+//        return passForNextTurnPlayer2;
+//    }
+//
+//    public static void setPassForNextTurnPlayer2(Boolean passForNextTurnPlayer2) {
+//        BattleGameStartControllerTest.passForNextTurnPlayer2 = passForNextTurnPlayer2;
+//    }
 
     public static GridPane getGridPanePlayer1() {
         return gridPanePlayer1;
@@ -116,13 +116,13 @@ public class BattleGameStartControllerTest implements Initializable {
         BattleGameStartControllerTest.gridPanePlayer1 = gridPanePlayer1;
     }
 
-    public static GridPane getGridPanePlayer2() {
-        return gridPanePlayer2;
-    }
-
-    public static void setGridPanePlayer2(GridPane gridPanePlayer2) {
-        BattleGameStartControllerTest.gridPanePlayer2 = gridPanePlayer2;
-    }
+//    public static GridPane getGridPanePlayer2() {
+//        return gridPanePlayer2;
+//    }
+//
+//    public static void setGridPanePlayer2(GridPane gridPanePlayer2) {
+//        BattleGameStartControllerTest.gridPanePlayer2 = gridPanePlayer2;
+//    }
 
 //    public static BattleSeaController getBattleSeaController1() {
 //        return battleSeaController1;
@@ -340,7 +340,7 @@ public class BattleGameStartControllerTest implements Initializable {
     @FXML
     private void player1NexttTurn() {
         timer1.cancel();
-        timer2 = new Timer();
+//        timer2 = new Timer();
         playMouseSound();
         if (!passForNextTurnPlayer1) {
             player1Error.setText("Attack First");
@@ -468,7 +468,7 @@ public class BattleGameStartControllerTest implements Initializable {
     private void setProfiles() throws MalformedURLException {
         player1User.setText(BattlePreparationController.getPlayer1());
         player2User.setText(BattlePreparationController.getPlayer2());
-        point.setText(getScore() + "PT");
+        point.setText(score + "PT");
 
         String path = "src" + File.separator + "main" + File.separator + "resources" + File.separator
                 + "Users" + File.separator + BattlePreparationController.getPlayer1() + File.separator
@@ -603,7 +603,7 @@ public class BattleGameStartControllerTest implements Initializable {
         whoseTurn();
 
         setPassForNextTurnPlayer1(false);
-        setPassForNextTurnPlayer2(false);
+//        setPassForNextTurnPlayer2(false);
         addMouseScrolling(player1Pro);
         addMouseScrolling2(player2Pro);
 //        timer(timer1);
