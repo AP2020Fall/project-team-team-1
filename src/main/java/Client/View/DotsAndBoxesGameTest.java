@@ -642,10 +642,134 @@ public class DotsAndBoxesGameTest implements Initializable {
             }
         });
     }
-//    @FXML
-//    private void drawLines(){
-//
-//    }
+    @FXML
+    private void drawLines() throws IOException {
+       String[] redLIne= dataLoader.getRedLines(LoginController.getUsername()).split("\\$");
+        for (String s : redLIne) {
+            String[] line = s.split(",");
+            draw_line(line[0], line[1],"red");
+        }
+
+        String[] blueLine = dataLoader.getBlueLines(LoginController.getUsername()).split("\\$");
+        for (String s : blueLine) {
+            String[] line = s.split(",");
+            draw_line(line[0], line[1],"blue");
+        }
+    }
+    @FXML
+    private void draw_line(String firstID ,String secondID,String color){
+//        if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
+//            try {
+//                awardTheWinner();
+//            } catch (IOException e) {
+//                return;
+//            }
+//            lblWinner.setText(getWinner());
+//            WinnerPane.setVisible(true);
+//            WinnerPane.toFront();
+//        }
+        //-------------ConvertIDToNumber----------------//
+        int first = findCircleNumber(firstID);
+        int second = findCircleNumber(secondID);
+
+
+
+
+        Line line = new Line();
+        line.setStrokeWidth(2);
+        if (color.equalsIgnoreCase("red")){
+            line.setStroke(Color.rgb(192, 57, 43));
+        }else if (color.equalsIgnoreCase("blue")){
+            line.setStroke(Color.rgb(41, 128, 185));
+        }
+
+
+        if (first-second==1){
+
+
+//                try {
+//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+            line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
+            line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
+            line.setStartY(dots[first].getCenterY());
+            line.setEndY(dots[second].getCenterY());
+//                } catch (ExistLineException e) {
+//                    Alert alert = new Alert(AlertType.ERROR);
+//                    alert.setContentText(e.getMessage());
+//                    alert.showAndWait();
+//                }
+
+        }
+        if (first-second==-1){
+
+//                try {
+//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+            line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
+            line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
+            line.setStartY(dots[first].getCenterY());
+            line.setEndY(dots[second].getCenterY());
+
+//                } catch (ExistLineException e) {
+//                    Alert alert = new Alert(AlertType.ERROR);
+//                    alert.setContentText(e.getMessage());
+//                    alert.showAndWait();
+//                }
+
+        }
+        if (first-second==8){
+
+//                try {
+//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+            line.setStartX(dots[first].getCenterX());
+            line.setEndX(dots[second].getCenterX());
+            line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
+            line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
+
+//                } catch (ExistLineException e) {
+//                    Alert alert = new Alert(AlertType.ERROR);
+//                    alert.setContentText(e.getMessage());
+//                    alert.showAndWait();
+//                }
+
+        }
+        if (first-second==-8){
+
+//                try {
+//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+            line.setStartX(dots[first].getCenterX());
+            line.setEndX(dots[second].getCenterX());
+            line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
+            line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
+
+//                } catch (ExistLineException e) {
+//                    Alert alert = new Alert(AlertType.ERROR);
+//                    alert.setContentText(e.getMessage());
+//                    alert.showAndWait();
+//                }
+        }
+
+        board.getChildren().add(line);
+//        IntStream.range(0, 64).forEachOrdered(i -> dots[i].setFill(Color.rgb(189, 195, 199)));
+//        lblPlayer1Points.setText(String.valueOf(dotsAndBoxesController.getRedPoints()));
+//        lblPlayer1Points.setTextFill(Color.rgb(192, 57, 43));
+//        lblPlayer2Points.setText(String.valueOf(dotsAndBoxesController.getBluePoints()));
+//        lblPlayer2Points.setTextFill(Color.rgb(41, 128, 185));
+
+//        lblTurn.setText(whoseTurnIsIt());
+//        if (whoseTurnIsIt().equals(firstPlayer)){
+//            lblTurn.setTextFill(Color.rgb(192, 57, 43));
+//        }else if (whoseTurnIsIt().equals(secondPlayer)){
+//            lblTurn.setTextFill(Color.rgb(41, 128, 185));
+//        }
+
+
+//        showCompletedBoxes(dotsAndBoxesController.completedBoxes());
+//        findOwner1(dotsAndBoxesController.isBoxCompleted1());
+
+    }
+
+
+
 //    @FXML
 //    private void whoseTurn() {
 //        Timer timer = new Timer();
