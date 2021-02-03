@@ -6,10 +6,14 @@ public class OnlineUsers {
     private static ArrayList<OnlineUsers> onlineUsers = new ArrayList<>();
     private String username;
     private String status;
+    private String requestForGame;
+    private Boolean passForPlay;
 
     public OnlineUsers(String username, String status) {
         this.username = username;
         this.status = status;
+        this.requestForGame = "NO";
+        this.passForPlay = false;
     }
 
     public static ArrayList<OnlineUsers> getOnlineUsers() {
@@ -32,6 +36,22 @@ public class OnlineUsers {
         this.status = status;
     }
 
+    public String getRequestForGame() {
+        return requestForGame;
+    }
+
+    public void setRequestForGame(String requestForGame) {
+        this.requestForGame = requestForGame;
+    }
+
+    public Boolean getPassForPlay() {
+        return passForPlay;
+    }
+
+    public void setPassForPlay(Boolean passForPlay) {
+        this.passForPlay = passForPlay;
+    }
+
     public static void addNewOnlineUser(OnlineUsers onlineUsers){
         getOnlineUsers().add(onlineUsers);
     }
@@ -52,7 +72,7 @@ public class OnlineUsers {
 
     }
 
-    private static OnlineUsers onlineUsersFinder(String username){
+    public static OnlineUsers onlineUsersFinder(String username){
         for (OnlineUsers onlineUser : onlineUsers) {
             if (onlineUser.username.equals(username)){
                 return onlineUser;

@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class AdminUsersController implements Initializable {
@@ -70,6 +71,9 @@ public class AdminUsersController implements Initializable {
     public TableColumn<Player, Integer> tblID;
 
     @FXML
+    ListView<String> listViewonline;
+
+    @FXML
     private void backToAdminMenu(ActionEvent event) throws IOException {
         playMouseSound();
         URL url = new File("src/main/resources/FXML/AdminMenu.fxml").toURI().toURL();
@@ -112,9 +116,18 @@ public class AdminUsersController implements Initializable {
 
     private final ObservableList<Player> players = FXCollections.observableArrayList();
 
+    @FXML
+    private final ObservableList<String> observableList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblPlayerNum.setText(String.valueOf(Player.getPlayers().size()));
+        try {
+            dataLoader.loadPlayersList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        lblPlayerNum.setText(String.valueOf(playerArrayList.size()));
+
         try {
             lblGamesNum.setText(dataLoader.totalPlayedPlato());
         } catch (IOException e) {
@@ -153,22 +166,21 @@ public class AdminUsersController implements Initializable {
         table.setItems(filteredList);
         initActions();
 
-        //------------setDoubleClick---------//
-//        table.setRowFactory(tv->{
-//            TableRow<Player> row = new TableRow<>();
-//            row.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//                @Override
-//                public void handle(MouseEvent event) {
-//                    if (!row.isEmpty()){
-//                        String rowData = row.getItem().getUserName();
-//                        ShowUserProfileForAdminController.setUsername(rowData);
-//                    }
-//                }
-//            });
-//            return row;
-//        });
+        listViewonline.setItems(observableList);
+        try {
+            listViewonline.getItems().addAll(addToList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
+    private ArrayList<String> addToList() throws IOException {
+        String response = dataLoader.onlinePlayerStatus();
+        String[] friends = response.split("\\$");
+        return new ArrayList<>(Arrays.asList(friends));
+    }
+
     public void playMouseSound(){
         File file = new File("src\\main\\resources\\Sound\\Click.mp3");
         Media media = new Media(file.toURI().toString());
