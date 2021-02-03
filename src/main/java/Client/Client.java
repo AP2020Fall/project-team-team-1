@@ -1,9 +1,14 @@
 package Client;
 
+import Client.View.LoginController;
+import javafx.application.Platform;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Client {
     public static ArrayList<Client> clients = new ArrayList<>();

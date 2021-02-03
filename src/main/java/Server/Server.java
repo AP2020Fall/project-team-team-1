@@ -26,6 +26,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Server {
     protected static LogIn logIn = new LogIn();
@@ -33,6 +35,7 @@ public class Server {
     protected static AdminGeneralController adminGeneralController = new AdminGeneralController();
     protected static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
     protected static OnlineUsersController onlineUsersController = new OnlineUsersController();
+
 
     public static void main(String[] args) throws IOException {
         try {
@@ -74,6 +77,7 @@ public class Server {
         String username;
         Player player;
         Admin admin;
+        int counter = 0;
 
         public ClientHandler(Socket clientSocket, DataOutputStream dataOutputStream, DataInputStream dataInputStream) {
             this.clientSocket = clientSocket;
@@ -82,6 +86,7 @@ public class Server {
             this.username = "";
             this.player = null;
             this.admin = null;
+            this.counter=0;
         }
 
         public static void addNewClientHandler(ClientHandler clientHandler) {
@@ -104,9 +109,10 @@ public class Server {
 
         @Override
         public void run() {
-            //todo hal moshkel 2 bar darkhast
+
             try {
                 String input;
+                timerForBroken();
                 while (true) {
                     input = dataInputStream.readUTF();
                     if (player != null)
@@ -121,6 +127,11 @@ public class Server {
                         System.out.println("Connection closed!!!");
                         break;
                     }
+                    if (counter==50){
+                       clientSocket.close();
+                       break;
+                    }
+                    counter++;
                 }
 
             } catch (SocketException e) {
@@ -131,7 +142,18 @@ public class Server {
             }
 
         }
+        private void timerForBroken() {
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
 
+                @Override
+                public void run() {
+                    counter=0;
+                }
+            }, 0, 10000);
+
+
+        }
         private String answerClient(String input) {
             String answer = "null";
             if (input.startsWith("Register"))
@@ -783,8 +805,10 @@ public class Server {
             } catch (StrongerPasswordException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
+            } catch (AlreadyBan alreadyBan) {
+                System.err.println(alreadyBan.getMessage());
             }
-
+            return "error by ata";
         }
 
         private String confirmPassword(String string) {
@@ -855,12 +879,17 @@ public class Server {
                     } catch (BanExceptionForLogin banExceptionForLogin) {
                         System.err.println(banExceptionForLogin.getMessage());
                         return banExceptionForLogin.getMessage();
+                    } catch (AlreadyBan alreadyBan) {
+                        System.err.println(alreadyBan.getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
                 }
             } else {
                 return "Sth is wrong";
             }
+            return "ata will handle this";
         }
 
         private String getData(String input) {
