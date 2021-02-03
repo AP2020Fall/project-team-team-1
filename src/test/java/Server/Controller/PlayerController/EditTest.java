@@ -4,6 +4,9 @@ import Server.Controller.Exception.Plato.*;
 import Server.Model.PlatoModel.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 
 public class EditTest{
@@ -51,7 +54,7 @@ public class EditTest{
         assertEquals(FindPlayerByInfo.findByUserName("atarhz").getLastName(),"asna");
     }
     @Test
-    public void testEditPassword() throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException {
+    public void testEditPassword() throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException, IOException, AlreadyBan {
 
         Edit.editPassword("atarhz","11223344","hesamKhare22");
         assertEquals(FindPlayerByInfo.findByUserName("atarhz").getPassword(),"hesamKhare22");

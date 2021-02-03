@@ -6,6 +6,8 @@ import Server.Controller.Exception.Plato.*;
 import Server.Controller.RegisterController.LogIn;
 import Server.Model.PlatoModel.Player;
 
+import java.io.IOException;
+
 public class Edit {
 
     public static void editField(String username, String field, String input) throws InvalidNameException, InvalidEmailException, InvalidPhoneNumberException, ExistEmailException, InvalidFieldException {
@@ -39,7 +41,7 @@ public class Edit {
 
     }
 
-    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException {
+    public static void editPassword(String username, String oldPassword, String newPassword) throws InvalidPasswordException, WrongPasswordException, SamePasswordException, StrongerPasswordException, IOException, AlreadyBan {
         Player player = FindPlayerByInfo.findByUserName(username);
 
         if (!Existence.checkPassword(player.getUserName(), oldPassword))

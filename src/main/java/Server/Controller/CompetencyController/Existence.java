@@ -1,7 +1,11 @@
 package Server.Controller.CompetencyController;
 
+import Server.Controller.AdminController.AdminGeneralController;
+import Server.Controller.Exception.Plato.AlreadyBan;
 import Server.Controller.PlayerController.FindPlayerByInfo;
 import Server.Model.PlatoModel.*;
+
+import java.io.IOException;
 
 
 public class Existence {
@@ -30,7 +34,7 @@ public class Existence {
         return result;
     }
 
-    public static boolean checkPassword(String username, String password) {
+    public static boolean checkPassword(String username, String password) throws IOException, AlreadyBan {
         boolean result = false;
         Player userByUsername = null;
         for (Player user : Player.players) {
@@ -42,6 +46,9 @@ public class Existence {
         if (userByUsername != null) {
             if (userByUsername.getPassword().equals(password)) {
                 result = true;
+            }
+            if (!userByUsername.getPassword().equals(password)){
+                new AdminGeneralController().banPlayer(userByUsername.getUserName());
             }
         }
 

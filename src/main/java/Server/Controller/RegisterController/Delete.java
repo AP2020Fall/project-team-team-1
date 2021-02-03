@@ -2,10 +2,7 @@ package Server.Controller.RegisterController;
 
 
         import Server.Controller.CompetencyController.Existence;
-        import Server.Controller.Exception.Plato.ExistFriendException;
-        import Server.Controller.Exception.Plato.ExistPlayerException;
-        import Server.Controller.Exception.Plato.InvalidUserNameException;
-        import Server.Controller.Exception.Plato.WrongPasswordException;
+        import Server.Controller.Exception.Plato.*;
         import Server.Controller.PlayerController.FindPlayerByInfo;
         import Server.Controller.PlayerController.PlayerGeneralController;
         import Server.Model.DataBase.DataBase;
@@ -22,7 +19,7 @@ public class Delete {
     private static PlayerGeneralController playerGeneralController = new PlayerGeneralController();
 
 
-    public void deleteUser(String input) throws InvalidUserNameException, WrongPasswordException, IOException {
+    public void deleteUser(String input) throws InvalidUserNameException, WrongPasswordException, IOException, AlreadyBan {
         String[] inputSplit = input.split("\\s");
 
         if (!(Existence.checkUserNameExistence(inputSplit[0]))) {

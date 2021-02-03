@@ -89,6 +89,10 @@ public class RunBattleShip extends Menu {
                     this.run();
                 } catch (BanExceptionForLogin banExceptionForLogin) {
                     System.out.println(banExceptionForLogin.getMessage());
+                } catch (AlreadyBan alreadyBan) {
+                    System.out.println(alreadyBan.getMessage());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
                 }
                 this.parentMenu.run();
             }

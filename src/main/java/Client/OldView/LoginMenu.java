@@ -4,6 +4,7 @@ import Server.Controller.CompetencyController.Validation;
 import Server.Controller.Exception.Plato.*;
 import Server.Controller.RegisterController.LogIn;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -79,6 +80,10 @@ public class LoginMenu extends Menu {
                 } catch (BanExceptionForLogin banExceptionForLogin) {
                     System.out.println(banExceptionForLogin.getMessage());
                     this.parentMenu.run();
+                } catch (AlreadyBan alreadyBan) {
+                    System.out.println(alreadyBan.getMessage());
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
                 }
 
             }

@@ -1,10 +1,7 @@
 package Client.View;
 
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.BanExceptionForLogin;
-import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.Exception.Plato.InvalidUserNameException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.Exception.Plato.*;
 import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
 import com.jfoenix.controls.JFXPasswordField;
@@ -139,6 +136,8 @@ public class DotsAndBoxesRunMenu implements Initializable {
             showError();
         } catch (BanExceptionForLogin banExceptionForLogin) {
             showBanError();
+        } catch (AlreadyBan alreadyBan) {
+            System.out.println(alreadyBan.getMessage());
         }
     }
     private void showError() throws IOException {

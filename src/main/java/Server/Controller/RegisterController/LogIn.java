@@ -1,11 +1,10 @@
 package Server.Controller.RegisterController;
 
 import Server.Controller.CompetencyController.Existence;
-import Server.Controller.Exception.Plato.BanExceptionForLogin;
-import Server.Controller.Exception.Plato.ExistAdminException;
-import Server.Controller.Exception.Plato.InvalidUserNameException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.Exception.Plato.*;
 import Server.Model.PlatoModel.Admin;
+
+import java.io.IOException;
 
 public class LogIn {
 
@@ -13,7 +12,7 @@ public class LogIn {
     private static String password = "Test";
     private static boolean active = false;
 
-    public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException, BanExceptionForLogin {
+    public void loginAsPlayer(String input) throws InvalidUserNameException, WrongPasswordException, BanExceptionForLogin, IOException, AlreadyBan {
         String[] inputSplit = input.split("\\s");
 
         if (!(Existence.checkUserNameExistence(inputSplit[0]))) {

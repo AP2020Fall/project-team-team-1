@@ -1,6 +1,7 @@
 package Client.OldView;
 
 import Server.Controller.CompetencyController.Validation;
+import Server.Controller.Exception.Plato.AlreadyBan;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
 import Server.Controller.Exception.Plato.StrongerPasswordException;
 import Server.Controller.Exception.Plato.WrongPasswordException;
@@ -30,7 +31,7 @@ public class DeleteAccount extends Menu {
                     processDeleteAccountController.deleteUser(arrayListToString(input));
                     System.out.println(input.get(0)+" deleted Successfully");
                     this.parentMenu.parentMenu.run();
-                } catch (InvalidUserNameException | WrongPasswordException | IOException e) {
+                } catch (InvalidUserNameException | WrongPasswordException | IOException | AlreadyBan e) {
                     System.out.println(e.getMessage());
                     this.run();
                 }

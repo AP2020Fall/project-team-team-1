@@ -1,10 +1,7 @@
 package Client.OldView;
 
 import Server.Controller.DotsAndBoxesController.DotsAndBoxesController;
-import Server.Controller.Exception.Plato.BanExceptionForLogin;
-import Server.Controller.Exception.Plato.ExistPlayerException;
-import Server.Controller.Exception.Plato.InvalidUserNameException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.Exception.Plato.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -202,6 +199,10 @@ public class RunDotsAndBoxes extends Menu {
                     } catch (BanExceptionForLogin banExceptionForLogin) {
                         System.out.println(banExceptionForLogin.getMessage());
                         this.parentMenu.run();
+                    } catch (AlreadyBan alreadyBan) {
+                        System.out.println(alreadyBan.getMessage());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                     setUsername2(info.get(0));
                 } catch (InvalidUserNameException | WrongPasswordException e) {

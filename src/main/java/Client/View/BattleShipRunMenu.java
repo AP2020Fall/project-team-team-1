@@ -2,10 +2,7 @@ package Client.View;
 
 import Client.Client;
 import Client.DataLoader;
-import Server.Controller.Exception.Plato.BanExceptionForLogin;
-import Server.Controller.Exception.Plato.ExistFriendException;
-import Server.Controller.Exception.Plato.InvalidUserNameException;
-import Server.Controller.Exception.Plato.WrongPasswordException;
+import Server.Controller.Exception.Plato.*;
 import Server.Controller.PlayerController.FindPlayerByInfo;
 import Server.Controller.PlayerController.PlayerGeneralController;
 import Server.Controller.RegisterController.LogIn;
@@ -230,6 +227,8 @@ public class BattleShipRunMenu implements Initializable {
             showError();
         } catch (BanExceptionForLogin banExceptionForLogin) {
             showBanError();
+        } catch (AlreadyBan alreadyBan) {
+            System.out.println(alreadyBan.getMessage());
         }
     }
 

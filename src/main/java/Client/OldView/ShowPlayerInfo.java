@@ -34,6 +34,8 @@ public class ShowPlayerInfo extends Menu {
                     this.run();
                 } catch (IOException | StrongerPasswordException e) {
                     System.out.println(e.getMessage());
+                } catch (AlreadyBan alreadyBan) {
+                    System.out.println(alreadyBan.getMessage());
                 }
             }
         };

@@ -1,5 +1,6 @@
 package RegisterController;
 
+import Server.Controller.Exception.Plato.AlreadyBan;
 import Server.Controller.Exception.Plato.InvalidUserNameException;
 import Server.Controller.Exception.Plato.WrongPasswordException;
 import Server.Controller.RegisterController.Delete;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class DeleteTest {
     Delete delete = new Delete();
     @Test
-    public void testDelete() throws WrongPasswordException, InvalidUserNameException, IOException {
+    public void testDelete() throws WrongPasswordException, InvalidUserNameException, IOException, AlreadyBan {
         Player playerYasmin = new Player("yasmin", "kad", 1100, "yamsiin", "007Password","yasmiinkad@gmail.com", "09129749527");
         Player.players.add(playerYasmin);
         User.users.add(playerYasmin);

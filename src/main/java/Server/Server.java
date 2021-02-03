@@ -680,8 +680,10 @@ public class Server {
             } catch (StrongerPasswordException e) {
                 System.err.println(e.getMessage());
                 return e.getMessage();
+            } catch (AlreadyBan alreadyBan) {
+                System.err.println(alreadyBan.getMessage());
             }
-
+            return "wtf2";
         }
 
         private String confirmPassword(String string) {
@@ -752,6 +754,10 @@ public class Server {
                 } catch (BanExceptionForLogin banExceptionForLogin) {
                     System.err.println(banExceptionForLogin.getMessage());
                     return banExceptionForLogin.getMessage();
+                } catch (AlreadyBan alreadyBan) {
+                    System.err.println(alreadyBan.getMessage());
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
                 }
 
             }
@@ -759,6 +765,7 @@ public class Server {
             else {
                 return "Sth is wrong";
             }
+            return "wtf";
         }
 
         private String getData(String input) {
