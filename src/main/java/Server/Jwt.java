@@ -49,6 +49,17 @@ public class Jwt {
         return isInteger;
     }
 
+    public boolean isString(String input){
+        boolean isString = false ;
+        try{
+            String validString = String.valueOf(input);
+            isString = true;
+        }catch (Exception numberFormatException){
+            System.out.println("This is not a String! ");
+        }
+        return isString;
+    }
+
     public boolean isDouble(String input){
         boolean isDouble = false ;
         try{
@@ -60,16 +71,7 @@ public class Jwt {
         return isDouble;
     }
 
-    public boolean isString(String input){
-        boolean isString = false ;
-        try{
-            String validString = String.valueOf(input);
-            isString = true;
-        }catch (Exception numberFormatException){
-            System.out.println("This is not a String! ");
-        }
-        return isString;
-    }
+
 
 
 }
