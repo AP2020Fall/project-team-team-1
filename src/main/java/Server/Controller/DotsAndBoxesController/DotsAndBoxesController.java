@@ -220,4 +220,23 @@ public class DotsAndBoxesController {
         }else return "no";
     }
 
+    public String redLines (){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line usedLine : gameBoard.usedLines) {
+            if (usedLine.getOwner().equals(Player.RED)){
+                stringBuilder.append(usedLine).append("$");
+            }
+        }
+        return String.valueOf(stringBuilder);
+    }
+    public String blueLines (){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Line usedLine : gameBoard.usedLines) {
+            if (usedLine.getOwner().equals(Player.BLUE)){
+                stringBuilder.append(usedLine).append("$");
+            }
+        }
+        return String.valueOf(stringBuilder);
+    }
+
 }

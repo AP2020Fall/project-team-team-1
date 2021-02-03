@@ -6,6 +6,7 @@ import Server.Controller.Exception.DotsAndBoxes.ExistLineException;
 import Server.Controller.PlayerController.PlayerGeneralController;
 //import Server.Model.DotsAndBoxesModel.Player;
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,6 +41,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.IntStream;
 
 public class DotsAndBoxesGameTest implements Initializable {
@@ -253,7 +256,7 @@ public class DotsAndBoxesGameTest implements Initializable {
         }
     }
     @FXML
-    private void drawLine(int first , int second) throws IOException {
+    private void drawLine(int first , int second ) throws IOException {
         File file2 = new File("src\\main\\resources\\Sound\\hesam.mp3");
         Media media2 = new Media(file2.toURI().toString());
         MediaPlayer mediaPlayer2 = new MediaPlayer(media2);
@@ -629,4 +632,42 @@ public class DotsAndBoxesGameTest implements Initializable {
             }
         });
     }
+//    @FXML
+//    private void drawLines(){
+//
+//    }
+//    @FXML
+//    private void whoseTurn() {
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    setTurn(dataLoader.battleShipPlayerTurn(LoginController.getUsername()));
+//                    Platform.runLater(() -> timerView.setText(getTurn()));
+//                    Platform.runLater(() -> {
+//                        try {
+//                            updateBoard();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    });
+//                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")){
+//                        BattleWinnerController.setWinnerPlayerUsername(dataLoader.enemyUsername(LoginController.getUsername()));
+//
+//                        timer.cancel();
+//                        pass = true;
+//                        SurrenderPlayer1(new ActionEvent());
+//                        SurrenderPlayer2(new ActionEvent());
+//                    }
+//                } catch (IOException e) {
+//                    System.err.println(e.getMessage());
+//                }
+//
+//            }
+//        }, 0, 5000);
+//
+//    }
+
 }

@@ -328,6 +328,10 @@ public class Server {
                 answer = dotsWhoseTurn(input);
             else if (input.startsWith("Dots Who Is Winner"))
                 answer = dotsWhoIsWinner(input);
+            else if (input.startsWith("Get Blue Lines"))
+                answer = getBlueLines(input);
+            else if (input.startsWith("Get Red Lines"))
+                answer = getRedLines(input);
             else if (input.startsWith("Give Score And Edit PlayerLog"))
                 answer = giveScoreAndEditPlayerLog(input);
             else if (input.startsWith("History Saver"))
@@ -410,6 +414,18 @@ public class Server {
             String[] process = string.split("\\s");
             GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[4]);
             return gameMatcher.getDotsAndBoxesController().isThisBoxCompleted(process[5]);
+        }
+
+        private String getBlueLines(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            return gameMatcher.getDotsAndBoxesController().blueLines();
+        }
+
+        private String getRedLines(String string){
+            String[] process = string.split("\\s");
+            GameMatcher gameMatcher = GameMatcher.gameMatcherFinder(process[3]);
+            return gameMatcher.getDotsAndBoxesController().redLines();
         }
 
 

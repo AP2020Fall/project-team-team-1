@@ -169,6 +169,18 @@ public class DataLoader {
         return Client.getDataInputStream().readUTF();
     }
 
+    public String getBlueLines(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Get Blue Lines " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
+    public String getRedLines(String username) throws IOException {
+        Client.getDataOutputStream().writeUTF("Get Red Lines " + username);
+        Client.getDataOutputStream().flush();
+        return Client.getDataInputStream().readUTF();
+    }
+
 
     /***********************************/
     public String makePlayerOnline(String username) throws IOException {
