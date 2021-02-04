@@ -14,7 +14,7 @@
             <Image url="@../Images/jail.png" />
          </image>
       </ImageView>
-      <Label layoutX="10.0" layoutY="141.0" prefHeight="25.0" prefWidth="227.0" style="-fx-font-weight: Bold; -fx-alignment: Center; -fx-font-size: 17px;" text="You have been banned" textFill="#f13050" />
-      <Label layoutX="55.0" layoutY="166.0" prefHeight="21.0" prefWidth="142.0" style="-fx-font-weight: Bold; -fx-alignment: Center; -fx-font-size: 17px;" text="by the Admin!" textFill="#f13050" />
+      <Label layoutX="10.0" layoutY="141.0" prefHeight="25.0" prefWidth="227.0" style="-fx-font-weight: Bold; -fx-alignment: Center; -fx-font-size: 17px;" stylesheets="@../Style/StyleSheet.css" text="You have been banned" textFill="#f13050" />
+      <Label layoutX="55.0" layoutY="166.0" prefHeight="21.0" prefWidth="142.0" style="-fx-font-weight: Bold; -fx-alignment: Center; -fx-font-size: 17px;" stylesheets="@../Style/StyleSheet.css" text="by the Admin!" textFill="#f13050" />
    </children>
 </AnchorPane>

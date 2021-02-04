@@ -5,6 +5,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.View.BattleWinnerController">
@@ -19,11 +21,19 @@
             <Image url="@../Images/BattleShip/1stMedal.png" />
          </image>
       </ImageView>
-      <Label fx:id="winnerPlayer" alignment="CENTER" layoutX="46.0" layoutY="181.0" prefHeight="38.0" prefWidth="505.0" text="Player 1 Wins" textFill="WHITE">
+      <Label fx:id="winnerPlayer" alignment="CENTER" layoutX="46.0" layoutY="181.0" prefHeight="38.0" prefWidth="505.0" stylesheets="@../Style/StyleSheet.css" text="Player 1 Wins" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Button layoutX="227.0" layoutY="242.0" mnemonicParsing="false" onAction="#backToMenu" text="Back to MainMenu" />
+      <Button layoutX="244.0" layoutY="242.0" mnemonicParsing="false" onAction="#backToMenu" style="-fx-background-color: black; -fx-border-width: 0px 0px 2px 0px;" stylesheets="@../Style/StyleSheet.css" text="Back to MainMenu">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#20cfff" />
+                  <Stop color="#00acea" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill></Button>
    </children>
 </AnchorPane>

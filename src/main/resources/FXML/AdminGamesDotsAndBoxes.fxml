@@ -64,7 +64,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsNumber" layoutX="356.0" layoutY="212.0" prefHeight="17.0" prefWidth="68.0" text="15" textFill="WHITE" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="186.0" AnchorPane.topAnchor="202.0">
+      <Label fx:id="lblDotsNumber" layoutX="356.0" layoutY="212.0" prefHeight="20.0" prefWidth="90.0" text="15" textFill="WHITE" AnchorPane.bottomAnchor="178.0" AnchorPane.leftAnchor="346.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="202.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Label fx:id="lblDotsMvp" alignment="TOP_LEFT" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="90.0" stylesheets="@../Style/StyleSheet.css" text="Player1" textFill="WHITE">
+      <Label fx:id="lblDotsMvp" alignment="TOP_LEFT" layoutX="270.0" layoutY="228.0" prefHeight="20.0" prefWidth="162.0" stylesheets="@../Style/StyleSheet.css" text="Player1" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

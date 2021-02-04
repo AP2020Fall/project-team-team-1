@@ -143,7 +143,7 @@ public class ShowUserProfileForAdminController implements Initializable {
             dataLoader.playerBanState(getUsernameProfileForShowToAdmin());
 
         }
-        URL url = new File("src/main/resources/FXML/AdminMainMenu.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/FXML/ShowUserProfileForAdmin.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -266,12 +266,13 @@ public class ShowUserProfileForAdminController implements Initializable {
     @FXML
     private void loadUserData() {
         try {
+            setBtnBanAccount();
             setSuggestionCombo();
             setImgMedal();
             setPlatoAgeLabel();
             setProfilesLabels();
             setGameStatus();
-            setBtnBanAccount();
+            //setBtnBanAccount();
             setImgStatusToProfile();
             setNumberOfReports();
 
