@@ -700,7 +700,7 @@ public class DotsAndBoxesGameTest implements Initializable {
                 Platform.runLater(() -> {
                     try {
                         drawLines();
-                        //setLabels();
+                        setLabels();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
