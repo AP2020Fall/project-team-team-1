@@ -43,13 +43,9 @@ public class DotsAndBoxesController {
                     if (turn() == Player.BLUE) {
                         gameBoard.bluePoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.BLUE);
-                        String saveBlue = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
-                        this.gameBoard.blue.add(saveBlue);
                     } else if (turn() == Player.RED) {
                         gameBoard.redPoints += boxNum;
                         findTheBox(lines.get(i)).setOwner(Player.RED);
-                        String saveRed = lines.get(i).getFirstDot().getRow()+"-"+lines.get(i).getFirstDot().getColumn()+","+lines.get(i).getSecondDot().getRow() +"-"+lines.get(i).getSecondDot().getColumn();
-                        this.gameBoard.red.add(saveRed);
                     }
                     if (i == 0) {
                         gameBoard.moves -= 2;
@@ -229,6 +225,12 @@ public class DotsAndBoxesController {
         String[] secondDot = dots[1].split("-");
         if (getLine(Integer.parseInt(firstDot[0]), Integer.parseInt(firstDot[1]), Integer.parseInt(secondDot[0]), Integer.parseInt(secondDot[1])).hasOwner()) {
             throw new ExistLineException("This line is already taken, Try again!");
+        }
+
+        if (turn() == Player.BLUE){
+            this.gameBoard.blue.add(command);
+        }else {
+            this.gameBoard.red.add(command);
         }
         move(findLines(Integer.parseInt(firstDot[0]), Integer.parseInt(firstDot[1]), Integer.parseInt(secondDot[0]), Integer.parseInt(secondDot[1])));
     }

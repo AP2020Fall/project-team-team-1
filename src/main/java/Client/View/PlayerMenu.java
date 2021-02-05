@@ -26,6 +26,7 @@ import java.util.TimerTask;
 
 public class PlayerMenu implements Initializable {
     private static final DataLoader dataLoader = new DataLoader();
+    Timer timer = new Timer();
 
     @FXML
     Button tButton;
@@ -50,6 +51,8 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void goToMainMenu(ActionEvent event) throws IOException {
         playMouseSound();
+        timer.cancel();
+
         URL url = new File("src/main/resources/FXML/PlayerMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -60,6 +63,8 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void gotoGamesMenu(ActionEvent event) throws IOException {
         playMouseSound();
+        timer.cancel();
+
         URL url = new File("src/main/resources/FXML/GameMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -70,6 +75,7 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void goToProfile(ActionEvent event) throws IOException {
         playMouseSound();
+        timer.cancel();
 
         URL url = new File("src/main/resources/FXML/Profile.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
@@ -81,6 +87,8 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void logOut(ActionEvent event) throws IOException {
         playMouseSound();
+        timer.cancel();
+
         dataLoader.makePlayerOffline(LoginController.getUsername());
         LoginController.setUsername("null");
         LoginController.setPlayer(null);
@@ -94,6 +102,8 @@ public class PlayerMenu implements Initializable {
     @FXML
     public void goToFriendsMenu(ActionEvent event) throws IOException {
         playMouseSound();
+        timer.cancel();
+
         URL url = new File("src/main/resources/FXML/FriendsMainMenu.fxml").toURI().toURL();
         Parent register = FXMLLoader.load(url);
         Scene message = new Scene(register);
@@ -114,6 +124,7 @@ public class PlayerMenu implements Initializable {
     }
     @FXML
     private void broken() {
+
         Stage stage = new Stage();
         Object root = null;
         try {
@@ -129,11 +140,11 @@ public class PlayerMenu implements Initializable {
     }
     @FXML
     private void timerForBroken() {
-        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
+                timer.cancel();
                 try {
                     dataLoader.makePlayerOffline(LoginController.getUsername());
                 } catch (IOException e) {

@@ -211,16 +211,6 @@ public class DotsAndBoxesGameTest implements Initializable {
         }
     }
 
-//    @FXML
-//    private void updateScoreBoard(){
-//        Label redPoint = new Label(String.valueOf(dotsAndBoxesController.getRedPoints()));
-//        redPoint.setTextFill(Color.rgb(192, 57, 43));
-//        Text text = new Text("-");
-//        text.setFill(Color.WHITE);
-//        Label bluePoint = new Label(String.valueOf(dotsAndBoxesController.getBluePoints()));
-//        bluePoint.setTextFill(Color.rgb(41, 128, 185));
-//        hbox.getChildren().addAll(redPoint,text,bluePoint);
-//    }
 
     @FXML
     private void setOnMouseClicked(MouseEvent mouseEvent) {
@@ -403,6 +393,7 @@ public class DotsAndBoxesGameTest implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(LoginController.getUsername());
         whoseTurn();
 //        dotsAndBoxesController = new DotsAndBoxesController();
         try {
@@ -643,14 +634,14 @@ public class DotsAndBoxesGameTest implements Initializable {
             }
         });
     }
+
     @FXML
     private void drawLines() throws IOException {
         System.out.println(dataLoader.getBlueLines(LoginController.getUsername()));
-       String[] redLIne= dataLoader.getRedLines(LoginController.getUsername()).split("\\$");
+        String[] redLIne = dataLoader.getRedLines(LoginController.getUsername()).split("\\$");
         for (String s : redLIne) {
-//            String[] line = s.split(",");
-            System.out.println(s);
-//            draw_line(s.substring(0,s.indexOf(",")), s.substring(s.indexOf(",")+1),"red");
+            String[] line = s.split(",");
+            draw_line(s.substring(0,s.indexOf(",")), s.substring(s.indexOf(",")+1),"red");
         }
 
         String[] blueLine = dataLoader.getBlueLines(LoginController.getUsername()).split("\\$");
@@ -659,118 +650,44 @@ public class DotsAndBoxesGameTest implements Initializable {
             draw_line(line[0], line[1],"blue");
         }
     }
+
     @FXML
-    private void draw_line(String firstID ,String secondID,String color){
-//        if (dotsAndBoxesController.checkGameIsOver().equalsIgnoreCase("yes")){
-//            try {
-//                awardTheWinner();
-//            } catch (IOException e) {
-//                return;
-//            }
-//            lblWinner.setText(getWinner());
-//            WinnerPane.setVisible(true);
-//            WinnerPane.toFront();
-//        }
-        //-------------ConvertIDToNumber----------------//
+    private void draw_line(String firstID, String secondID, String color) {
         int first = findCircleNumber(firstID);
         int second = findCircleNumber(secondID);
-
-
-
-
         Line line = new Line();
         line.setStrokeWidth(2);
-        if (color.equalsIgnoreCase("red")){
+        if (color.equalsIgnoreCase("red")) {
             line.setStroke(Color.rgb(192, 57, 43));
-        }else if (color.equalsIgnoreCase("blue")){
+        } else if (color.equalsIgnoreCase("blue")) {
             line.setStroke(Color.rgb(41, 128, 185));
         }
-
-
-        if (first-second==1){
-
-
-//                try {
-//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
-            line.setStartX(dots[first].getCenterX()-dots[first].getRadius());
-            line.setEndX(dots[second].getCenterX()+dots[second].getRadius());
+        if (first - second == 1) {
+            line.setStartX(dots[first].getCenterX() - dots[first].getRadius());
+            line.setEndX(dots[second].getCenterX() + dots[second].getRadius());
             line.setStartY(dots[first].getCenterY());
             line.setEndY(dots[second].getCenterY());
-//                } catch (ExistLineException e) {
-//                    Alert alert = new Alert(AlertType.ERROR);
-//                    alert.setContentText(e.getMessage());
-//                    alert.showAndWait();
-//                }
-
         }
-        if (first-second==-1){
-
-//                try {
-//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
-            line.setStartX(dots[first].getCenterX()+dots[first].getRadius());
-            line.setEndX(dots[second].getCenterX()-dots[second].getRadius());
+        if (first - second == -1) {
+            line.setEndX(dots[second].getCenterX() - dots[second].getRadius());
             line.setStartY(dots[first].getCenterY());
             line.setEndY(dots[second].getCenterY());
-
-//                } catch (ExistLineException e) {
-//                    Alert alert = new Alert(AlertType.ERROR);
-//                    alert.setContentText(e.getMessage());
-//                    alert.showAndWait();
-//                }
-
         }
-        if (first-second==8){
-
-//                try {
-//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(second)+","+findIdByNumber(first)+"");
+        if (first - second == 8) {
             line.setStartX(dots[first].getCenterX());
             line.setEndX(dots[second].getCenterX());
             line.setStartY(dots[first].getCenterY() - dots[first].getRadius());
             line.setEndY(dots[second].getCenterY() + dots[second].getRadius());
 
-//                } catch (ExistLineException e) {
-//                    Alert alert = new Alert(AlertType.ERROR);
-//                    alert.setContentText(e.getMessage());
-//                    alert.showAndWait();
-//                }
-
         }
-        if (first-second==-8){
-
-//                try {
-//                    dotsAndBoxesController.doTheCommands(""+findIdByNumber(first)+","+findIdByNumber(second)+"");
+        if (first - second == -8) {
             line.setStartX(dots[first].getCenterX());
             line.setEndX(dots[second].getCenterX());
             line.setStartY(dots[first].getCenterY() + dots[first].getRadius());
             line.setEndY(dots[second].getCenterY() - dots[second].getRadius());
-
-//                } catch (ExistLineException e) {
-//                    Alert alert = new Alert(AlertType.ERROR);
-//                    alert.setContentText(e.getMessage());
-//                    alert.showAndWait();
-//                }
         }
-
         board.getChildren().add(line);
-//        IntStream.range(0, 64).forEachOrdered(i -> dots[i].setFill(Color.rgb(189, 195, 199)));
-//        lblPlayer1Points.setText(String.valueOf(dotsAndBoxesController.getRedPoints()));
-//        lblPlayer1Points.setTextFill(Color.rgb(192, 57, 43));
-//        lblPlayer2Points.setText(String.valueOf(dotsAndBoxesController.getBluePoints()));
-//        lblPlayer2Points.setTextFill(Color.rgb(41, 128, 185));
-
-//        lblTurn.setText(whoseTurnIsIt());
-//        if (whoseTurnIsIt().equals(firstPlayer)){
-//            lblTurn.setTextFill(Color.rgb(192, 57, 43));
-//        }else if (whoseTurnIsIt().equals(secondPlayer)){
-//            lblTurn.setTextFill(Color.rgb(41, 128, 185));
-//        }
-
-
-//        showCompletedBoxes(dotsAndBoxesController.completedBoxes());
-//        findOwner1(dotsAndBoxesController.isBoxCompleted1());
-
     }
-
 
 
     @FXML
@@ -780,34 +697,14 @@ public class DotsAndBoxesGameTest implements Initializable {
 
             @Override
             public void run() {
-//                try {
-//                    setTurn(dataLoader.battleShipPlayerTurn(LoginController.getUsername()));
-//                    Platform.runLater(() -> timerView.setText(getTurn()));
-//                    Platform.runLater(() -> {
-//                        try {
-//                            updateBoard();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-//                    });
-//                    if (dataLoader.letsPlay(LoginController.getUsername()).equals("Surrender")){
-//                        BattleWinnerController.setWinnerPlayerUsername(dataLoader.enemyUsername(LoginController.getUsername()));
-//
-//                        timer.cancel();
-//                        pass = true;
-//                        SurrenderPlayer1(new ActionEvent());
-//                        SurrenderPlayer2(new ActionEvent());
-//                    }
-//                } catch (IOException e) {
-//                    System.err.println(e.getMessage());
-//                }
-                    Platform.runLater(() -> {
-                        try {
-                            drawLines();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
+                Platform.runLater(() -> {
+                    try {
+                        drawLines();
+                        //setLabels();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
             }
         }, 5000, 5000);

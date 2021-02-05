@@ -122,7 +122,7 @@ public class Server {
                     dataOutputStream.writeUTF(answer);
                     dataOutputStream.flush();
                     System.out.println("server answered : " + answer);
-                    System.err.println(OnlineUsers.getOnlineUsers());
+                   // System.err.println(OnlineUsers.getOnlineUsers());
                     if (input.equals("end")) {
                         System.out.println("Connection closed!!!");
                         break;
