@@ -1373,7 +1373,8 @@ public class Server {
         private String addSuggestionServer(String string) {
             String[] process = string.split("\\s");
             try {
-                adminGeneralController.addSuggestion(process[2]);
+                //adminGeneralController.addSuggestion(process[2]+" "+process[3]);
+                adminGeneralController.addSuggestion(string.substring(string.indexOf(process[2])));
                 return "done";
             } catch (IOException e) {
                 System.err.println(e.getMessage());
